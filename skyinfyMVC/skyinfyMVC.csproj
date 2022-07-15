@@ -6069,7 +6069,6 @@
   <ItemGroup>
     <Content Include="schoolReports_Rpts\act_monthly_salary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>act_monthly_salary.cs</LastGenOutput>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <EmbeddedResource Include="schoolReports_Rpts\act_monthly_salary_old.rpt">

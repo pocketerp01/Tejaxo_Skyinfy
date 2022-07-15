@@ -183,7 +183,7 @@ var GridViewScroll = /** @class */ (function () {
             if (this.FooterFreeze != null)
                 this.FooterFreeze.scrollLeft = scrollLeft;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     GridViewScroll.prototype.getGridHeaderRows = function () {
