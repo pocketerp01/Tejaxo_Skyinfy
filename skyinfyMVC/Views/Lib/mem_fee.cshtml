@@ -1,0 +1,122 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(Model[0].Col15, "viewName", viewName);
+    sgen.SetSession(Model[0].Col15, "controllerName", controllerName);
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart /form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+   
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-2 ">
+                        <label id="lbl_amount" for="first-name">
+                            Security Fee  <span class="ClientProfileLabelColor">*</span>
+                        </label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class='input-group'>
+
+                                @Html.TextBoxFor(model => model[0].Col16, new { @id = "Txt_Amount", @onkeypress = "return isNumberKey(event)", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-offset-2 col-sm-2 ">
+                        <label id="Label1" for="first-name">
+                            Applicable For <span class="ClientProfileLabelColor">*</span>
+                        </label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+
+                        <div class="form-group">
+                            <div class='input-group'>
+
+
+                                <p>
+                                    All  Students
+                                    @Html.RadioButtonFor(model => model[0].Col17, "1", new { @id = "Rbt_All", @class = " sa-input radio ", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onblur = "return chkfeetype(this);" })
+                                    @*@Html.HiddenFor(model => model[0].Col17, new { @id = "hf_Rbt_All" })*@
+
+                                    Only For New Students
+                                    @Html.RadioButtonFor(model => model[0].Col17, "0", new { @id = "Rbt_new", @class = " sa-input radio ", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onblur = "return chkfeetype(this);" })
+                                    @*@Html.HiddenFor(model => model[0].Col17, new { @id = "hf_Rbt_new" })*@
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

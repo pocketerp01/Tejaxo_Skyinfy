@@ -1,0 +1,673 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+    string cg_com_name = sgen.GetCookie(Model[0].Col15, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var ispr = false;
+    var iscp = false;
+    var onclick = "";
+    var imgclosedisplay = "";
+}
+<style>
+
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
+
+        ul.timeline > li {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+
+            ul.timeline > li:before {
+                content: ' ';
+                background: white;
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #22c0e8;
+                left: -20px;
+                width: 20px;
+                height: 20px;
+                z-index: 400;
+            }
+</style>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btntext" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col33, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col34, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col35, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col23, new { @id = "hf_name" })
+    @Html.HiddenFor(model => model[0].Col24, new { @id = "hf_emil" })
+    @Html.HiddenFor(model => model[0].Col25, new { @id = "hf_ph" })
+    @Html.HiddenFor(model => model[0].Col30, new { @id = "hf_tyy" })
+    @Html.HiddenFor(model => model[0].Col31, new { @id = "hf_acl" })
+    @Html.HiddenFor(model => model[0].Col40, new { @id = "hf_btnshow" })
+    @Html.HiddenFor(model => model[0].Col41, new { @id = "hf_str" })
+    @Html.HiddenFor(model => model[0].Col42, new { @id = "hf_totcnt" })
+    @Html.HiddenFor(model => model[0].Col43, new { @id = "hf_loadcnt" })
+    @Html.HiddenFor(model => model[0].Col44, new { @id = "Ahf_btnshow" })
+    @Html.HiddenFor(model => model[0].Col45, new { @id = "Ahf_str" })
+    @Html.HiddenFor(model => model[0].Col46, new { @id = "Ahf_totcnt" })
+    @Html.HiddenFor(model => model[0].Col47, new { @id = "Ahf_loadcnt" })
+    @Html.HiddenFor(model => model[0].Col48, new { @id = "hf_tck" })
+    @Html.HiddenFor(model => model[0].Col49, new { @id = "hf_call" })
+    @Html.HiddenFor(model => model[0].Col50, new { @id = "hf_mom" })
+    @Html.HiddenFor(model => model[0].Col51, new { @id = "hf_App" })
+
+    <div class="row">
+        <div class='col-sm-4'>
+            <label for="first-name">Select Parent Account</label>
+            <div class="form-group">
+                <div class='input-group'>
+                    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_parent" })
+                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "Txt_parent", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Parent Account" })
+
+                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Parent Account" id="spn_parent" onclick="PARENT();"><i class="fa fa-search"></i></span>
+
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label for="first-name">Select  Account</label>
+            <div class="form-group">
+                <div class='input-group'>
+                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_acc", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%", onchange = "selectionIndexChange(this);" })
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class='col-sm-4'>
+            <label for="first-name">Select  Contact</label>
+            <div class="form-group">
+                <div class='input-group'>
+                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_contact", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%", onchange = "ct_Change(this);" })
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    if ((Model[0].Col18 != "") && Model[0].Col18 != null && Model[0].Col18 != "0")
+    {
+        <div class="row">
+            <div class='col-sm-5'>
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col18" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col19" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-7'>
+                <div class='col-sm-4'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col20" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                @if (Model[0].Col48 == "Y")
+                {
+                    <div class='col-sm-4'>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col21" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model[0].Col50 == "Y")
+                {
+                    <div class='col-sm-4'>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col22" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class='col-sm-5'>
+                @if (Model[0].Col49 == "Y")
+                {
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col33" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+                @if (Model[0].Col51 == "Y")
+                {
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col34" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    <br />
+    <div class="row">
+        <h3 style="text-align:center">@Model[0].Col35</h3>
+    </div>
+    @*<div class="row">
+            <div class='col-sm-2'>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <a onclick="tot_acc()">@Model[0].Col18</a>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <a onclick="tot_cont()">@Model[0].Col19</a>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <a onclick="tot_lead()">@Model[0].Col20</a>
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <a onclick="tot_ticket()">@Model[0].Col21</a>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <a onclick="tot_mom()">@Model[0].Col22</a>
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+    <br />
+
+
+    <div style="overflow:scroll">
+        @if ((Model[0].Col26 != null) && (Model[0].Col26 != "") && (Model[0].Col26 != "0"))
+        {
+            <div class="row" style="width:160%">
+                <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                    <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                        <div class="x_content">
+                            @if (Model[0].Col31 == "Account No.")
+                            {
+                                <div class="row">
+                                    <div class='col-sm-3'>
+                                        <div class='col-sm-2'> <label>S.No.</label> </div>
+                                        <div class='col-sm-5'><label for="first-name">Edit</label></div>
+                                        <div class='col-sm-5'><label for="first-name">View</label></div>
+
+                                    </div>
+                                    <div class='col-sm-3'><label for="first-name">@Model[0].Col31</label></div>
+                                    <div class='col-sm-2'><label for="first-name">@Model[0].Col23</label></div>
+                                    <div class='col-sm-2'><label for="first-name">@Model[0].Col24 </label></div>
+                                    <div class='col-sm-2'><label for="first-name">@Model[0].Col25 </label></div>
+
+
+                                </div>
+                            }
+
+                            else
+                            {
+                                <div class="row">
+                                    <div class='col-sm-4'>
+                                        <div class='col-sm-2'> <label>S.No.</label> </div>
+                                        <div class='col-sm-3'><label for="first-name">Edit</label></div>
+                                        <div class='col-sm-3'><label for="first-name">View</label></div>
+                                        <div class='col-sm-4'><label for="first-name">Recent Activity</label></div>
+                                    </div>
+                                    <div class='col-sm-3'><label for="first-name">@Model[0].Col31</label></div>
+                                    <div class='col-sm-2'><label for="first-name">@Model[0].Col23</label></div>
+                                    <div class='col-sm-2'><label for="first-name">@Model[0].Col24 </label></div>
+                                    <div class='col-sm-1'><label for="first-name">@Model[0].Col25 </label></div>
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        @if (Model.Count > 0)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                if ((Model[0].Col26 != null) && (Model[0].Col26 != "") && (Model[0].Col26 != "0"))
+                {
+                    <div class="row" style="width:160%">
+                        <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                                <div class="x_content">
+
+                                    <div id="Atten_@i" class="row table-responsive">
+                                        @if (Model[0].Col31 == "Account No.")
+                                        {
+                                            <div class='col-sm-3'>
+                                                <div class='col-sm-2'>
+
+                                                    <label for="first-name">@(i + 1)</label>
+
+                                                    <div class="form-group has-success">
+                                                        <div class='input-group'>
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <input type="submit" class="btn btn-info btn-sm" name="command" onclick="sethfval('@i');" formnovalidate value="EDIT" id="btn" accesskey="F" />
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <input type="submit" class="btn btn-info btn-sm" name="command" onclick="sethfval('@i');" formnovalidate value="VIEW" id="btn" accesskey="F" />
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.HiddenFor(model => model[i].Col32, new { @id = "hf_acc_no_" + i })
+                                                        @Html.HiddenFor(model => model[i].Col36, new { @id = "hf_acc_no_" + i })
+                                                        @Html.HiddenFor(model => model[i].Col37, new { @id = "hf_cp_id_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col32, new { @id = "acc_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @*<a id="ld" href="@Url.Action("lead","vastu",new { @mid="41005.1"})"  onclick="check();">*@
+                                                        @Html.HiddenFor(model => model[i].Col26, new { @id = "hf_fstr_" + i })
+                                                        @Html.HiddenFor(model => model[i].Col27, new { @id = "hf_name_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col27, new { @id = "name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.HiddenFor(model => model[i].Col28, new { @id = "hf_ph_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col28, new { @id = "ph", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.HiddenFor(model => model[i].Col29, new { @id = "hf_email_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col29, new { @id = "email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                        else
+                                        {
+                                            <div class='col-sm-4'>
+                                                <div class='col-sm-2'>
+
+                                                    <label for="first-name">@(i + 1)</label>
+
+                                                    <div class="form-group has-success">
+                                                        <div class='input-group'>
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <input type="submit" class="btn btn-info btn-sm" name="command" onclick="sethfval('@i');" formnovalidate value="EDIT" id="btn" accesskey="F" />
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <input type="submit" class="btn btn-info btn-sm" name="command" onclick="sethfval('@i');" formnovalidate value="VIEW" id="btn" accesskey="F" />
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <input type="submit" class="btn btn-info btn-sm" name="command" onclick="sethfval('@i');" formnovalidate value="RECENT ACTIVITY" id="btn" accesskey="F" />
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.HiddenFor(model => model[i].Col32, new { @id = "hf_acc_no_" + i })
+                                                        @Html.HiddenFor(model => model[i].Col36, new { @id = "hf_acc_no_" + i })
+                                                        @Html.HiddenFor(model => model[i].Col37, new { @id = "hf_cp_id_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col32, new { @id = "acc_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @*<a id="ld" href="@Url.Action("lead","vastu",new { @mid="41005.1"})"  onclick="check();">*@
+                                                        @Html.HiddenFor(model => model[i].Col26, new { @id = "hf_fstr_" + i })
+                                                        @Html.HiddenFor(model => model[i].Col27, new { @id = "hf_name_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col27, new { @id = "name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.HiddenFor(model => model[i].Col28, new { @id = "hf_ph_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col28, new { @id = "ph", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-1'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.HiddenFor(model => model[i].Col29, new { @id = "hf_email_" + i })
+
+                                                        @Html.DisplayFor(model => model[i].Col29, new { @id = "email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        }
+        <br />
+        @if (Model[0].Col40 == "Y")
+        {
+            <div class="row">
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" id="btngetdt" name="command" value="Load More Data" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    if (Model[0].LTM1.Count > 0)
+    {
+        <div class="col-sm-9">
+
+            <div class="container mt-5 mb-5">
+
+                <h4>Recent Activity</h4>
+
+                <br />
+                <ul class="timeline">
+                    @for (int i = 0; i < Model[0].LTM1.Count; i++)
+                    {
+                        @Html.HiddenFor(model => model[0].LTM1[i].Col2, new { @id = "hf_dt" })
+                        @Html.HiddenFor(model => model[0].LTM1[i].Col3, new { @id = "hf_user" })
+                        @Html.HiddenFor(model => model[0].LTM1[i].Col4, new { @id = "hf_rmk" })
+                        @Html.HiddenFor(model => model[0].LTM1[i].Col5, new { @id = "hf_nxtdt" })
+
+                        <li>
+
+                            <a target="_blank" style="color:#22c0e8">@Model[0].LTM1[i].Col2: @Model[0].LTM1[i].Col3</a>
+                            @*<a style="float:right; color :#22c0e8"> @Model[i].Col27</a>*@
+                            <div>
+                                <p style="float:left">@Model[0].LTM1[i].Col4 </p>
+                                <p style="float:right">@Model[0].LTM1[i].Col5</p>
+                            </div>
+                        </li>
+
+
+                    }
+
+                </ul>
+            </div>
+
+        </div>
+    }
+
+    if (Model[0].Col44 == "Y")
+    {
+        <div class="row">
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-success form-control sa-button" id="btngetdt" name="command" value="Load More Activity" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    @*<input type="submit" id="btn_acc" value="Accounts" formnovalidate name="Command" title="Accounts" style="visibility:hidden" class="btn btn-primary" />*@
+    <input type="submit" id="btn_cont" value="ctperson" formnovalidate name="Command" title="Contacts" style="visibility:hidden" class="btn btn-primary" />
+    @*<input type="submit" id="btn_lead" value="Leads" formnovalidate name="Command" title="Leads" style="visibility:hidden" class="btn btn-primary" />
+        <input type="submit" id="btn_ticket" value="Ticket" formnovalidate name="Command" title="Ticket" style="visibility:hidden" class="btn btn-primary" />
+        <input type="submit" id="btn_mom" value="Mom" formnovalidate name="Command" title="Mom" style="visibility:hidden" class="btn btn-primary" />*@
+    <input type="submit" id="btn_org" formnovalidate value="Organisation" name="Command" title="Org" style="visibility:hidden" class="btn btn-primary" />
+
+
+
+
+}
+
+<script type="text/javascript">
+  $(document).ready(function () {
+       @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+      $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+      @*var cmd = '@sgen.GetSession(Model[0].Col15, "crm_summ_comm")';
+      if (cmd!="")
+      {
+
+          if (cmd == "Accounts") { tot_acc(); }
+          else if (cmd == "Contacts") { tot_cont(); }
+      }*@
+
+
+    });
+    function PARENT() { var data = show_Foo('Select Parent Account', 'PARENT', '1', '@viewName', '@controllerName'); }
+    function selectionIndexChange() {
+        //  debugger;
+        $(parent.document.getElementById('btn_org')).trigger('click');
+    }
+
+    function ct_Change() {
+        //  debugger;
+        //$(parent.document.getElementById('ctperson')).trigger('click');
+        $(parent.document.getElementById('btn_cont')).trigger('click');
+    }
+
+
+    //function tot_acc() {
+    //  //  debugger;
+    //    $(parent.document.getElementById('btn_acc')).trigger('click');
+    //}
+
+    //function tot_cont() {
+    //   // debugger;
+    //    $(parent.document.getElementById('btn_cont')).trigger('click');
+    //}
+
+    //function tot_lead() {
+    //    //debugger;
+    //    $(parent.document.getElementById('btn_lead')).trigger('click');
+    //}
+
+    //function tot_ticket() {
+    // //   debugger;
+    //    $(parent.document.getElementById('btn_ticket')).trigger('click');
+    //}
+
+    //function tot_mom() {
+    //  //  debugger;
+    //    $(parent.document.getElementById('btn_mom')).trigger('click');
+    //}
+
+    function sethfval(val) {
+
+        $("#hfrow").val(val);
+
+    }
+
+</script>
+

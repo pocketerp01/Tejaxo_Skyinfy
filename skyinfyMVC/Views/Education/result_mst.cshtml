@@ -1,0 +1,275 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    Cmd_Fun cmd_fun = new Cmd_Fun(MyGuid);
+
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+
+                            <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="@Model[0].Col13" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="sa-btncancel form-control" style="border-radius: 10px!important;" formnovalidate id="btncancel" name="command" value="Cancel">Cancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix">
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+
+
+                        <div class='col-sm-6'>
+                            <label for="first-name">Exam Name <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_ex", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-6'>
+                            <label for="first-name">Class </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { multiple = "multiple", @id = "ddl_class", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory ", data_placeholder = "Select Class", onchange = "selectionIndexChange(this);" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-2'> <label>S.No.</label> </div>
+                        <div class='col-sm-2'><label for="first-name">Subject Category </label></div>
+                        <div class='col-sm-2'><label for="first-name">Subject</label></div>
+                        <div class='col-sm-2'><label for="first-name">Maximum Marks </label></div>
+                        <div class='col-sm-2'><label for="first-name">Minimum Percentage </label></div>
+                        <div class='col-sm-2'><label for="first-name">Minimum Marks</label></div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        if (Model[i].Col19 != null)
+        {
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                        <div class="x_content">
+
+                            <div id="Atten_@i" class="row table-responsive">
+                                <div class='col-sm-2'>
+
+                                    <label for="first-name">@(i + 1)</label>
+
+                                    <div class="form-group has-success">
+                                        <div class='input-group'>
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col17, new { @id = "sub_ct", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col18, new { @id = "sub_ctid" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class=" clearfix"></div>
+                                            @Html.DisplayFor(model => model[i].Col20, new { @id = "sub", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col19, new { @id = "sub_id" })
+
+
+
+                                            <span class="input-group-addon formclass">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class=" clearfix"></div>
+                                            @Html.TextBoxFor(model => model[i].Col21, new { @id = "Txt_Max" + i, @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return isNumberKey(event)", onkeyup= "Txtchnge(this);" })
+
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class=" clearfix"></div>
+                                            @Html.TextBoxFor(model => model[i].Col22, new { @id = "Txt_Per" + i, @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return isNumberKey(event)", onkeyup = "Txtchnge(this);" })
+
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class=" clearfix"></div>
+                                            @Html.TextBoxFor(model => model[i].Col23, new { @id = "Txt_Min" + i, @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_class" value="Class" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        });
+
+
+
+
+    function selectionIndexChange(ctrl) {
+
+        $(parent.document.getElementById('btn_class')).trigger('click');
+    }
+    function Txtchnge(myctrl)
+    {
+       // debugger;
+     var   Per_marks = parseFloat($(myctrl).closest('.x_content').find("[id*=Txt_Per]").val());
+        var Max_Marks = parseFloat($(myctrl).closest('.x_content').find("[id*=Txt_Max]").val());
+        var Min_Mrks = parseFloat($(myctrl).closest('.x_content').find("[id*=Txt_Min]").val());
+        if (parseFloat(Per_marks) > 100) {
+            alert("Please Enter Percentage Within 100");
+            $(myctrl).closest('.x_content').find("[id*=Txt_Per]").val(0);
+            $(myctrl).closest('.x_content').find("[id*=Txt_Min]").val(0);
+            return;
+        }
+
+        else {
+
+            var min_marks = (parseFloat(Per_marks) * Max_Marks) / 100 * 1;
+            if (isNaN(parseFloat(min_marks))) min_marks = 0;
+            //$(myctrl).closest('.x_content').find("[id*=Txt_Min]")[0].value = (parseFloat(Per_marks) * Max_Marks) / 100 * 1;
+            $(myctrl).closest('.x_content').find("[id*=Txt_Min]")[0].value = min_marks;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+

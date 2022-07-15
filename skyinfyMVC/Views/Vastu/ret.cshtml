@@ -1,0 +1,411 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string mandatory = "sa-mandatory";
+
+
+
+    var newstyle = "style=visibility:visible;";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model[0].Col55 == "N")
+    {
+        newstyle = "style=display:none;";
+        savestyle = "style=display:none;";
+        savenewstyle = "style=display:none;";
+    }
+    if (Model[0].Col56 == "N") { editstyle = "style=display:none;"; }
+    if (Model[0].Col57 == "N")
+    {
+        viewstyle = "style=display:none;";
+        viewauth = "N";
+    }
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-2" @newstyle>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btn_new" name="command" value="New" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @editstyle>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-warning form-control sa-button" @ViewBag.vedit id="btn_edit" onclick="editfun();" name="command" value="Edit" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @savestyle>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btn_save" name="command" value="@Model[0].Col13" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @savenewstyle>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsavenew id="btnsavenew" name="command" value='@Model[0].Col100' />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @viewstyle>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-info form-control sa-button" onclick="viewfun();" id="btnView" name="command" value="View" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="submit" class="sa-btncancel form-control" formnovalidate style="border-radius: 10px!important;" onclick="cancelfun();" id="Btn_Cancel" name="command" value="Cancel">Cancel</button>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col55, new { @id = "hf_btnnew" })
+        @Html.HiddenFor(model => model[0].Col56, new { @id = "hf_btnedit" })
+        @Html.HiddenFor(model => model[0].Col57, new { @id = "hf_btnview" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Country</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_ddlctry", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", @onchange = "selectionIndexChangeClass(this);" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">State</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_state", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", @onchange = "selectionIndexChangeSection(this);" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">City</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_city", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Legislation Area</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_leg_area", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Sub Legislation Area</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_sb_leg_area", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Act Name</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[0].SelectedItems6), new { @id = "ddl_act_nm", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Rule Name</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems7, new MultiSelectList(Model[0].TList7, "Value", "Text", Model[0].SelectedItems7), new { @id = "ddl_rule_nm", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Compliance Name</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_cplc_nm", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Compliance Name" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Compliance Description</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_cplc_desc", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Compliance Description" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Compliance Type</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems8, new MultiSelectList(Model[0].TList8, "Value", "Text", Model[0].SelectedItems8), new { @id = "ddl_cplc_type", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Statutory Authority</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems9, new MultiSelectList(Model[0].TList9, "Value", "Text", Model[0].SelectedItems9), new { @id = "ddl_stt_auth", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        @*@Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Section</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @*@Html.DropDownListFor(model => model[0].SelectedItems11, new MultiSelectList(Model[0].TList11, "Value", "Text", Model[0].SelectedItems11), new { @id = "ddl_assetselect", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })*@
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_section", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Section" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Rule No.</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_rl_no", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Rule No." })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Form No.</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_frm_no", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Form No." })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Filling Frequency</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems10, new MultiSelectList(Model[0].TList10, "Value", "Text", Model[0].SelectedItems10), new { @id = "ddl_fling_fq", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        @*@Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[i].TList2, "Value", "Text", Model[i].SelectedItems2), new
+                                            { @id = "ddl_trn", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory ", @multiple = "multiple" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Due Date</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_due_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", placeholder = "Forward Start Date " })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Penalty for non-filling</label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_pnlty_non_fling", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Penalty for non-filling" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Rem. days before due date</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_rem_days", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Rem. days before due date" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">interval days</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_int_days", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "interval days" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">SMS </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_sms", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "SMS" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Email</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Email" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Attachment</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_attchmnt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Attachment" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" id="btn_class" formnovalidate value="Class" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_section" formnovalidate value="Section" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+    });
+
+    function selectionIndexChangeClass(ctrl) {
+        //debugger;
+
+        $(parent.document.getElementById('btn_class')).trigger('click');
+    }
+
+    function selectionIndexChangeSection(ctrl) {
+        //debugger;
+
+        $(parent.document.getElementById('btn_section')).trigger('click');
+    }
+
+
+
+
+     function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() {
+                         if ('@viewauth'== "N") {
+            showmsgJS(1, "You dont have permission for view return type, please contact your admin", 2);
+            return;
+                       }
+        var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName');
+    }
+    function getcompany() { var data = show_Foo('UNIT Copy', 'UNITS', '1', '@viewName', '@controllerName'); }
+
+
+</script>

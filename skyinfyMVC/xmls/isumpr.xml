@@ -1,0 +1,1486 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FSTR" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEM_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="MAINGRP" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEMGRP" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEMSUBGRP" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEM_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="UOM" type="xs:string" minOccurs="0" />
+                <xs:element name="OPENING" type="xs:decimal" minOccurs="0" />
+                <xs:element name="RECEIVED" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ISSUED" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CLOSING" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PKTNO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="RATE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="AMOUNT" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <FSTR>1000031010100028</FSTR>
+    <ITEM_CODE>1010100028</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluplast</ITEMGRP>
+    <ITEMSUBGRP>uPVC Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031010100029</FSTR>
+    <ITEM_CODE>1010100029</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluplast</ITEMGRP>
+    <ITEMSUBGRP>uPVC Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031010100030</FSTR>
+    <ITEM_CODE>1010100030</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluplast</ITEMGRP>
+    <ITEMSUBGRP>uPVC Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 3</ITEM_NAME>
+    <PARTNO>3</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>500</CLOSING>
+    <PKTNO>5</PKTNO>
+    <RATE>50</RATE>
+    <AMOUNT>25000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031010100032</FSTR>
+    <ITEM_CODE>1010100032</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluplast</ITEMGRP>
+    <ITEMSUBGRP>uPVC Profiles</ITEMSUBGRP>
+    <ITEM_NAME>itemkk</ITEM_NAME>
+    <PARTNO>9090</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1500</RECEIVED>
+    <ISSUED>700</ISSUED>
+    <CLOSING>800</CLOSING>
+    <PKTNO>15</PKTNO>
+    <RATE>16</RATE>
+    <AMOUNT>12500</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031010100033</FSTR>
+    <ITEM_CODE>1010100033</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluplast</ITEMGRP>
+    <ITEMSUBGRP>uPVC Profiles</ITEMSUBGRP>
+    <ITEM_NAME>kkc1</ITEM_NAME>
+    <PARTNO>9090</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031020100004</FSTR>
+    <ITEM_CODE>1020100004</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluk</ITEMGRP>
+    <ITEMSUBGRP>Aluminium Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 4</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031020100005</FSTR>
+    <ITEM_CODE>1020100005</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluk</ITEMGRP>
+    <ITEMSUBGRP>Aluminium Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 5</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031020100006</FSTR>
+    <ITEM_CODE>1020100006</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluk</ITEMGRP>
+    <ITEMSUBGRP>Aluminium Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 6</ITEM_NAME>
+    <PARTNO>3</PARTNO>
+    <UOM>LITER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031020100007</FSTR>
+    <ITEM_CODE>1020100007</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Aluk</ITEMGRP>
+    <ITEMSUBGRP>Aluminium Profiles</ITEMSUBGRP>
+    <ITEM_NAME>Item 7</ITEM_NAME>
+    <PARTNO>4</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031150200001</FSTR>
+    <ITEM_CODE>1150200001</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Rm 1</ITEMGRP>
+    <ITEMSUBGRP>RM 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Grooves</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>2000</CLOSING>
+    <PKTNO>20</PKTNO>
+    <RATE>15</RATE>
+    <AMOUNT>30000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031150200002</FSTR>
+    <ITEM_CODE>1150200002</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Rm 1</ITEMGRP>
+    <ITEMSUBGRP>RM 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Insurgent</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>15000</RECEIVED>
+    <ISSUED>2000</ISSUED>
+    <CLOSING>13000</CLOSING>
+    <PKTNO>15</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031150200003</FSTR>
+    <ITEM_CODE>1150200003</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Rm 1</ITEMGRP>
+    <ITEMSUBGRP>RM 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Trivag</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>20000</RECEIVED>
+    <ISSUED>4500</ISSUED>
+    <CLOSING>15500</CLOSING>
+    <PKTNO>-20</PKTNO>
+    <RATE>-3</RATE>
+    <AMOUNT>-54000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031150200004</FSTR>
+    <ITEM_CODE>1150200004</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Rm 1</ITEMGRP>
+    <ITEMSUBGRP>RM 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Shangai</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>9000</RECEIVED>
+    <ISSUED>4100</ISSUED>
+    <CLOSING>4900</CLOSING>
+    <PKTNO>9</PKTNO>
+    <RATE>-9</RATE>
+    <AMOUNT>-42000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031760100001</FSTR>
+    <ITEM_CODE>1760100001</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Group1</ITEMGRP>
+    <ITEMSUBGRP>Group 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Habibs</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>200</ISSUED>
+    <CLOSING>300</CLOSING>
+    <PKTNO>3</PKTNO>
+    <RATE>20</RATE>
+    <AMOUNT>6000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031760100002</FSTR>
+    <ITEM_CODE>1760100002</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Group1</ITEMGRP>
+    <ITEMSUBGRP>Group 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Azus</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1800</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1800</CLOSING>
+    <PKTNO>15</PKTNO>
+    <RATE>10</RATE>
+    <AMOUNT>18000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031760100003</FSTR>
+    <ITEM_CODE>1760100003</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Group1</ITEMGRP>
+    <ITEMSUBGRP>Group 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Black Label</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>500</CLOSING>
+    <PKTNO>5</PKTNO>
+    <RATE>13</RATE>
+    <AMOUNT>6500</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031760100004</FSTR>
+    <ITEM_CODE>1760100004</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Group1</ITEMGRP>
+    <ITEMSUBGRP>Group 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Polo</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>18000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>18000</CLOSING>
+    <PKTNO>-18</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000031760100005</FSTR>
+    <ITEM_CODE>1760100005</ITEM_CODE>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Group1</ITEMGRP>
+    <ITEMSUBGRP>Group 1 A</ITEMSUBGRP>
+    <ITEM_NAME>Cairo</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1000</CLOSING>
+    <PKTNO>10</PKTNO>
+    <RATE>10</RATE>
+    <AMOUNT>9600</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032010300001</FSTR>
+    <ITEM_CODE>2010300001</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Rolls</ITEMGRP>
+    <ITEMSUBGRP>Sub Roll</ITEMSUBGRP>
+    <ITEM_NAME>P1</ITEM_NAME>
+    <PARTNO>YZ</PARTNO>
+    <UOM>INCH</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1600</RECEIVED>
+    <ISSUED>800</ISSUED>
+    <CLOSING>800</CLOSING>
+    <PKTNO>7</PKTNO>
+    <RATE>13</RATE>
+    <AMOUNT>10000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032010300002</FSTR>
+    <ITEM_CODE>2010300002</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Rolls</ITEMGRP>
+    <ITEMSUBGRP>Sub Roll</ITEMSUBGRP>
+    <ITEM_NAME>P2</ITEM_NAME>
+    <PARTNO>AX</PARTNO>
+    <UOM>PONDS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1300</RECEIVED>
+    <ISSUED>600</ISSUED>
+    <CLOSING>700</CLOSING>
+    <PKTNO>5</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032010300003</FSTR>
+    <ITEM_CODE>2010300003</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Rolls</ITEMGRP>
+    <ITEMSUBGRP>Sub Roll</ITEMSUBGRP>
+    <ITEM_NAME>P3</ITEM_NAME>
+    <PARTNO>X</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2700</RECEIVED>
+    <ISSUED>2100</ISSUED>
+    <CLOSING>600</CLOSING>
+    <PKTNO>10</PKTNO>
+    <RATE>67</RATE>
+    <AMOUNT>40000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032010300004</FSTR>
+    <ITEM_CODE>2010300004</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Rolls</ITEMGRP>
+    <ITEMSUBGRP>Sub Roll</ITEMSUBGRP>
+    <ITEM_NAME>P4</ITEM_NAME>
+    <PARTNO>A</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>2000</OPENING>
+    <RECEIVED>50000</RECEIVED>
+    <ISSUED>48000</ISSUED>
+    <CLOSING>4000</CLOSING>
+    <PKTNO>51</PKTNO>
+    <RATE>150</RATE>
+    <AMOUNT>600100</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032280100001</FSTR>
+    <ITEM_CODE>2280100001</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Gp1</ITEMGRP>
+    <ITEMSUBGRP>SGP1</ITEMSUBGRP>
+    <ITEM_NAME>Item Gp1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>3000</RECEIVED>
+    <ISSUED>1600</ISSUED>
+    <CLOSING>1400</CLOSING>
+    <PKTNO>40</PKTNO>
+    <RATE>143</RATE>
+    <AMOUNT>200000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032280100002</FSTR>
+    <ITEM_CODE>2280100002</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Gp1</ITEMGRP>
+    <ITEMSUBGRP>SGP1</ITEMSUBGRP>
+    <ITEM_NAME>Item Gp2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2500</RECEIVED>
+    <ISSUED>1500</ISSUED>
+    <CLOSING>1000</CLOSING>
+    <PKTNO>15</PKTNO>
+    <RATE>5</RATE>
+    <AMOUNT>4510</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032280100003</FSTR>
+    <ITEM_CODE>2280100003</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Gp1</ITEMGRP>
+    <ITEMSUBGRP>SGP1</ITEMSUBGRP>
+    <ITEM_NAME>Group Gp3</ITEM_NAME>
+    <PARTNO>3</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>5000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>5000</CLOSING>
+    <PKTNO>50</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032280100004</FSTR>
+    <ITEM_CODE>2280100004</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Gp1</ITEMGRP>
+    <ITEMSUBGRP>SGP1</ITEMSUBGRP>
+    <ITEM_NAME>Item Gp4</ITEM_NAME>
+    <PARTNO>4</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>2000</CLOSING>
+    <PKTNO>20</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032280100005</FSTR>
+    <ITEM_CODE>2280100005</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Gp1</ITEMGRP>
+    <ITEMSUBGRP>SGP1</ITEMSUBGRP>
+    <ITEM_NAME>Group Gp5</ITEM_NAME>
+    <PARTNO>Gp5</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000032280100006</FSTR>
+    <ITEM_CODE>2280100006</ITEM_CODE>
+    <MAINGRP>Packing Materials</MAINGRP>
+    <ITEMGRP>Gp1</ITEMGRP>
+    <ITEMSUBGRP>SGP1</ITEMSUBGRP>
+    <ITEM_NAME>Group Gp6</ITEM_NAME>
+    <PARTNO>Gp6</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034010100006</FSTR>
+    <ITEM_CODE>4010100006</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>Bits</ITEMGRP>
+    <ITEMSUBGRP>Metal</ITEMSUBGRP>
+    <ITEM_NAME>Hammer</ITEM_NAME>
+    <PARTNO>ZA</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>950</RECEIVED>
+    <ISSUED>850</ISSUED>
+    <CLOSING>100</CLOSING>
+    <PKTNO>3</PKTNO>
+    <RATE>50</RATE>
+    <AMOUNT>5000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034010100007</FSTR>
+    <ITEM_CODE>4010100007</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>Bits</ITEMGRP>
+    <ITEMSUBGRP>Metal</ITEMSUBGRP>
+    <ITEM_NAME>Item B1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>800</RECEIVED>
+    <ISSUED>790</ISSUED>
+    <CLOSING>10</CLOSING>
+    <PKTNO>3</PKTNO>
+    <RATE>500</RATE>
+    <AMOUNT>5000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034010100008</FSTR>
+    <ITEM_CODE>4010100008</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>Bits</ITEMGRP>
+    <ITEMSUBGRP>Metal</ITEMSUBGRP>
+    <ITEM_NAME>Item B2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>250</ISSUED>
+    <CLOSING>250</CLOSING>
+    <PKTNO>2</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034010100009</FSTR>
+    <ITEM_CODE>4010100009</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>Bits</ITEMGRP>
+    <ITEMSUBGRP>Metal</ITEMSUBGRP>
+    <ITEM_NAME>Item B3</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1300</RECEIVED>
+    <ISSUED>800</ISSUED>
+    <CLOSING>500</CLOSING>
+    <PKTNO>2</PKTNO>
+    <RATE>36</RATE>
+    <AMOUNT>18000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034010100010</FSTR>
+    <ITEM_CODE>4010100010</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>Bits</ITEMGRP>
+    <ITEMSUBGRP>Metal</ITEMSUBGRP>
+    <ITEM_NAME>Item B4</ITEM_NAME>
+    <PARTNO>X</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>600</RECEIVED>
+    <ISSUED>400</ISSUED>
+    <CLOSING>200</CLOSING>
+    <PKTNO>4</PKTNO>
+    <RATE>30</RATE>
+    <AMOUNT>6000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034200100004</FSTR>
+    <ITEM_CODE>4200100004</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>C1</ITEMGRP>
+    <ITEMSUBGRP>SGC1</ITEMSUBGRP>
+    <ITEM_NAME>Group C1</ITEM_NAME>
+    <PARTNO>Y</PARTNO>
+    <UOM>INCH</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>18000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>18000</CLOSING>
+    <PKTNO>20</PKTNO>
+    <RATE>222</RATE>
+    <AMOUNT>4000000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034200100005</FSTR>
+    <ITEM_CODE>4200100005</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>C1</ITEMGRP>
+    <ITEMSUBGRP>SGC1</ITEMSUBGRP>
+    <ITEM_NAME>Group C2</ITEM_NAME>
+    <PARTNO>ZY</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>9000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>9000</CLOSING>
+    <PKTNO>50</PKTNO>
+    <RATE>44</RATE>
+    <AMOUNT>400000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034200100006</FSTR>
+    <ITEM_CODE>4200100006</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>C1</ITEMGRP>
+    <ITEMSUBGRP>SGC1</ITEMSUBGRP>
+    <ITEM_NAME>Group C3</ITEM_NAME>
+    <PARTNO>C3</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>850</RECEIVED>
+    <ISSUED>400</ISSUED>
+    <CLOSING>450</CLOSING>
+    <PKTNO>4</PKTNO>
+    <RATE>11</RATE>
+    <AMOUNT>5000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034200100007</FSTR>
+    <ITEM_CODE>4200100007</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>C1</ITEMGRP>
+    <ITEMSUBGRP>SGC1</ITEMSUBGRP>
+    <ITEM_NAME>Group C4</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1900</RECEIVED>
+    <ISSUED>1000</ISSUED>
+    <CLOSING>900</CLOSING>
+    <PKTNO>-10</PKTNO>
+    <RATE>20</RATE>
+    <AMOUNT>18000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034200100008</FSTR>
+    <ITEM_CODE>4200100008</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>C1</ITEMGRP>
+    <ITEMSUBGRP>SGC1</ITEMSUBGRP>
+    <ITEM_NAME>group c5</ITEM_NAME>
+    <PARTNO>xyz</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>50000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>50000</CLOSING>
+    <PKTNO>500</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000034200100009</FSTR>
+    <ITEM_CODE>4200100009</ITEM_CODE>
+    <MAINGRP>Consumables</MAINGRP>
+    <ITEMGRP>C1</ITEMGRP>
+    <ITEMSUBGRP>SGC1</ITEMSUBGRP>
+    <ITEM_NAME>Group C6</ITEM_NAME>
+    <PARTNO>Group C6</PARTNO>
+    <UOM>LITER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>500</CLOSING>
+    <PKTNO>5</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035190100003</FSTR>
+    <ITEM_CODE>5190100003</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>G1</ITEMGRP>
+    <ITEMSUBGRP>SGG1</ITEMSUBGRP>
+    <ITEM_NAME>Group G1</ITEM_NAME>
+    <PARTNO>A</PARTNO>
+    <UOM>PONDS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2500</RECEIVED>
+    <ISSUED>2000</ISSUED>
+    <CLOSING>500</CLOSING>
+    <PKTNO>10</PKTNO>
+    <RATE>500</RATE>
+    <AMOUNT>250000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035190100004</FSTR>
+    <ITEM_CODE>5190100004</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>G1</ITEMGRP>
+    <ITEMSUBGRP>SGG1</ITEMSUBGRP>
+    <ITEM_NAME>Group G2</ITEM_NAME>
+    <PARTNO>ZX</PARTNO>
+    <UOM>LITER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>3000</RECEIVED>
+    <ISSUED>2500</ISSUED>
+    <CLOSING>500</CLOSING>
+    <PKTNO>5</PKTNO>
+    <RATE>600</RATE>
+    <AMOUNT>300000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035190100005</FSTR>
+    <ITEM_CODE>5190100005</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>G1</ITEMGRP>
+    <ITEMSUBGRP>SGG1</ITEMSUBGRP>
+    <ITEM_NAME>Group G3</ITEM_NAME>
+    <PARTNO>G3</PARTNO>
+    <UOM>METER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>3500</RECEIVED>
+    <ISSUED>3300</ISSUED>
+    <CLOSING>200</CLOSING>
+    <PKTNO>19</PKTNO>
+    <RATE>55</RATE>
+    <AMOUNT>11000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035190100006</FSTR>
+    <ITEM_CODE>5190100006</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>G1</ITEMGRP>
+    <ITEMSUBGRP>SGG1</ITEMSUBGRP>
+    <ITEM_NAME>G4</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>400</ISSUED>
+    <CLOSING>100</CLOSING>
+    <PKTNO>-4</PKTNO>
+    <RATE>50</RATE>
+    <AMOUNT>5000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035190100007</FSTR>
+    <ITEM_CODE>5190100007</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>G1</ITEMGRP>
+    <ITEMSUBGRP>SGG1</ITEMSUBGRP>
+    <ITEM_NAME>Group G5</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>500</RECEIVED>
+    <ISSUED>250</ISSUED>
+    <CLOSING>250</CLOSING>
+    <PKTNO>2</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100001</FSTR>
+    <ITEM_CODE>5450100001</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>WEIGHT</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1100</RECEIVED>
+    <ISSUED>500</ISSUED>
+    <CLOSING>600</CLOSING>
+    <PKTNO>7</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100002</FSTR>
+    <ITEM_CODE>5450100002</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1200</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1200</CLOSING>
+    <PKTNO>12</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100003</FSTR>
+    <ITEM_CODE>5450100003</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG3</ITEM_NAME>
+    <PARTNO>3</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>4600</RECEIVED>
+    <ISSUED>700</ISSUED>
+    <CLOSING>3900</CLOSING>
+    <PKTNO>44</PKTNO>
+    <RATE>56</RATE>
+    <AMOUNT>220000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100004</FSTR>
+    <ITEM_CODE>5450100004</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG4</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>220</RECEIVED>
+    <ISSUED>40</ISSUED>
+    <CLOSING>180</CLOSING>
+    <PKTNO>2</PKTNO>
+    <RATE>11</RATE>
+    <AMOUNT>2000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100005</FSTR>
+    <ITEM_CODE>5450100005</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG5</ITEM_NAME>
+    <PARTNO>5</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2800</RECEIVED>
+    <ISSUED>1600</ISSUED>
+    <CLOSING>1200</CLOSING>
+    <PKTNO>18</PKTNO>
+    <RATE>9</RATE>
+    <AMOUNT>11000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100006</FSTR>
+    <ITEM_CODE>5450100006</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG6</ITEM_NAME>
+    <PARTNO>6</PARTNO>
+    <UOM>INCH</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>2000</CLOSING>
+    <PKTNO>14</PKTNO>
+    <RATE>9</RATE>
+    <AMOUNT>18000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100007</FSTR>
+    <ITEM_CODE>5450100007</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG7</ITEM_NAME>
+    <PARTNO>7</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1000</CLOSING>
+    <PKTNO>10</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100008</FSTR>
+    <ITEM_CODE>5450100008</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG8</ITEM_NAME>
+    <PARTNO>8</PARTNO>
+    <UOM>CENTIMETER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1100</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1100</CLOSING>
+    <PKTNO>11</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100009</FSTR>
+    <ITEM_CODE>5450100009</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG9</ITEM_NAME>
+    <PARTNO>9</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>3200</RECEIVED>
+    <ISSUED>300</ISSUED>
+    <CLOSING>2900</CLOSING>
+    <PKTNO>-31</PKTNO>
+    <RATE>1</RATE>
+    <AMOUNT>2000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100010</FSTR>
+    <ITEM_CODE>5450100010</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG10</ITEM_NAME>
+    <PARTNO>10</PARTNO>
+    <UOM>CENTIMETER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2000</RECEIVED>
+    <ISSUED>1000</ISSUED>
+    <CLOSING>1000</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100011</FSTR>
+    <ITEM_CODE>5450100011</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG11</ITEM_NAME>
+    <PARTNO>11</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>1000</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100012</FSTR>
+    <ITEM_CODE>5450100012</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG12</ITEM_NAME>
+    <PARTNO>12</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>1000</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>-11</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450100013</FSTR>
+    <ITEM_CODE>5450100013</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group General</ITEMSUBGRP>
+    <ITEM_NAME>GG13</ITEM_NAME>
+    <PARTNO>13</PARTNO>
+    <UOM>LITER</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1200</RECEIVED>
+    <ISSUED>1100</ISSUED>
+    <CLOSING>100</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450200001</FSTR>
+    <ITEM_CODE>5450200001</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group</ITEMSUBGRP>
+    <ITEM_NAME>Item G1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2050</RECEIVED>
+    <ISSUED>350</ISSUED>
+    <CLOSING>1700</CLOSING>
+    <PKTNO>23</PKTNO>
+    <RATE>7</RATE>
+    <AMOUNT>11200</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450200002</FSTR>
+    <ITEM_CODE>5450200002</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group</ITEMSUBGRP>
+    <ITEM_NAME>Item G2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1200</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1200</CLOSING>
+    <PKTNO>12</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000035450200003</FSTR>
+    <ITEM_CODE>5450200003</ITEM_CODE>
+    <MAINGRP>General Items</MAINGRP>
+    <ITEMGRP>Group General</ITEMGRP>
+    <ITEMSUBGRP>Sub Group</ITEMSUBGRP>
+    <ITEM_NAME>Item G3</ITEM_NAME>
+    <PARTNO>3</PARTNO>
+    <UOM>INCH</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1990</RECEIVED>
+    <ISSUED>1090</ISSUED>
+    <CLOSING>900</CLOSING>
+    <PKTNO>7</PKTNO>
+    <RATE>9</RATE>
+    <AMOUNT>8000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039300200001</FSTR>
+    <ITEM_CODE>9300200001</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Group 2</ITEMGRP>
+    <ITEMSUBGRP>Group 2 B</ITEMSUBGRP>
+    <ITEM_NAME>Crystal</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>22000</RECEIVED>
+    <ISSUED>2000</ISSUED>
+    <CLOSING>20000</CLOSING>
+    <PKTNO>22</PKTNO>
+    <RATE>-1</RATE>
+    <AMOUNT>-20000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039300200002</FSTR>
+    <ITEM_CODE>9300200002</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Group 2</ITEMGRP>
+    <ITEMSUBGRP>Group 2 B</ITEMSUBGRP>
+    <ITEM_NAME>Expendable</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039300200003</FSTR>
+    <ITEM_CODE>9300200003</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Group 2</ITEMGRP>
+    <ITEMSUBGRP>Group 2 B</ITEMSUBGRP>
+    <ITEM_NAME>alupath</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>6700</RECEIVED>
+    <ISSUED>500</ISSUED>
+    <CLOSING>6200</CLOSING>
+    <PKTNO>7</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039370100001</FSTR>
+    <ITEM_CODE>9370100001</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Group Finish</ITEMGRP>
+    <ITEMSUBGRP>Sub group good</ITEMSUBGRP>
+    <ITEM_NAME>FG1</ITEM_NAME>
+    <PARTNO>Y</PARTNO>
+    <UOM>GALLONS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>800</ISSUED>
+    <CLOSING>200</CLOSING>
+    <PKTNO>2</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100001</FSTR>
+    <ITEM_CODE>9570100001</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1080</RECEIVED>
+    <ISSUED>670</ISSUED>
+    <CLOSING>410</CLOSING>
+    <PKTNO>10</PKTNO>
+    <RATE>-10</RATE>
+    <AMOUNT>-4000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100002</FSTR>
+    <ITEM_CODE>9570100002</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>INCH</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>320</ISSUED>
+    <CLOSING>680</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>-9</RATE>
+    <AMOUNT>-6000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100003</FSTR>
+    <ITEM_CODE>9570100003</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good3</ITEM_NAME>
+    <PARTNO>3</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>800</ISSUED>
+    <CLOSING>200</CLOSING>
+    <PKTNO>10</PKTNO>
+    <RATE>-30</RATE>
+    <AMOUNT>-6000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100004</FSTR>
+    <ITEM_CODE>9570100004</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good4</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100005</FSTR>
+    <ITEM_CODE>9570100005</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good5</ITEM_NAME>
+    <PARTNO>5</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1100</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>1100</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100006</FSTR>
+    <ITEM_CODE>9570100006</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good6</ITEM_NAME>
+    <PARTNO>6</PARTNO>
+    <UOM>PONDS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>250</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>250</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100007</FSTR>
+    <ITEM_CODE>9570100007</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good7</ITEM_NAME>
+    <PARTNO>7</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570100008</FSTR>
+    <ITEM_CODE>9570100008</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Group</ITEMSUBGRP>
+    <ITEM_NAME>FG Good</ITEM_NAME>
+    <PARTNO>8</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570200001</FSTR>
+    <ITEM_CODE>9570200001</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Item</ITEMSUBGRP>
+    <ITEM_NAME>FG Item1</ITEM_NAME>
+    <PARTNO>1</PARTNO>
+    <UOM>KG</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1400</RECEIVED>
+    <ISSUED>1400</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>14</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>-14000</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039570200002</FSTR>
+    <ITEM_CODE>9570200002</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg Goods</ITEMGRP>
+    <ITEMSUBGRP>Sub FG Item</ITEMSUBGRP>
+    <ITEM_NAME>FG Item2</ITEM_NAME>
+    <PARTNO>2</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>700</ISSUED>
+    <CLOSING>300</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200001</FSTR>
+    <ITEM_CODE>9930200001</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>JBL</ITEM_NAME>
+    <PARTNO>0</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <CLOSING>0</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200002</FSTR>
+    <ITEM_CODE>9930200002</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>FG Item</ITEM_NAME>
+    <PARTNO>XC</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>630</RECEIVED>
+    <ISSUED>350</ISSUED>
+    <CLOSING>280</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200003</FSTR>
+    <ITEM_CODE>9930200003</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>BKT CYLINDER HOLDER R</ITEM_NAME>
+    <PARTNO>75612V72R00</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2000</RECEIVED>
+    <ISSUED>1665</ISSUED>
+    <CLOSING>335</CLOSING>
+    <PKTNO>20</PKTNO>
+    <RATE>-18</RATE>
+    <AMOUNT>-5951.55</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200004</FSTR>
+    <ITEM_CODE>9930200004</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>HANGER TRAILING ARM R</ITEM_NAME>
+    <PARTNO>62131 V 53 M 00</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>3500</RECEIVED>
+    <ISSUED>2000</ISSUED>
+    <CLOSING>1500</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>-65</RATE>
+    <AMOUNT>-97580</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200005</FSTR>
+    <ITEM_CODE>9930200005</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>REINF STRG SHAFT BKT</ITEM_NAME>
+    <PARTNO>73215 V 53 M 00</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1000</RECEIVED>
+    <ISSUED>400</ISSUED>
+    <CLOSING>600</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>-25</RATE>
+    <AMOUNT>-14908</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200006</FSTR>
+    <ITEM_CODE>9930200006</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>Sash FR Door FR</ITEM_NAME>
+    <PARTNO>68221 V 82 P00</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>1500</RECEIVED>
+    <ISSUED>1200</ISSUED>
+    <CLOSING>300</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>-57</RATE>
+    <AMOUNT>-17244</AMOUNT>
+  </prepcur>
+  <prepcur>
+    <FSTR>1000039930200007</FSTR>
+    <ITEM_CODE>9930200007</ITEM_CODE>
+    <MAINGRP>Finshed Goods(FG)</MAINGRP>
+    <ITEMGRP>Fg 1</ITEMGRP>
+    <ITEMSUBGRP>FG 1A</ITEMSUBGRP>
+    <ITEM_NAME>SASH REAR DOOR FRONT</ITEM_NAME>
+    <PARTNO>68621 V 82 P 00</PARTNO>
+    <UOM>PCS</UOM>
+    <OPENING>0</OPENING>
+    <RECEIVED>2000</RECEIVED>
+    <ISSUED>500</ISSUED>
+    <CLOSING>1500</CLOSING>
+    <PKTNO>0</PKTNO>
+    <RATE>-2</RATE>
+    <AMOUNT>-3155</AMOUNT>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>test 100</COMPANY_NAME>
+    <COMPANY_ADDRESS>FBD</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>0</COMPANY_COUNTRY>
+    <COMPANY_STATE>0</COMPANY_STATE>
+    <COMPANY_CITY>0</COMPANY_CITY>
+    <COMPANY_PINCODE>-</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>shiv@skyinfy.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>0</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>9999999999</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>0</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>0</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>0</COM_PAN_NO>
+    <COMPANY_CIN_NO>0</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>003-unit</UNIT_NAME>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>0</UNIT_PINCODE>
+    <UNIT_EMAIL>0</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>0</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>0</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>07AAACB1534F4Z5</UNIT_GSTIN_NO>
+    <BANK_NAME>0</BANK_NAME>
+    <BANK_BRANCH>0</BANK_BRANCH>
+    <BANK_ACC>0</BANK_ACC>
+    <BANK_IFSC>0</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

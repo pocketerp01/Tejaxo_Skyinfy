@@ -1,0 +1,359 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col10;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string mandatory = "sa-mandatory";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    // ViewBag.Title = "BONUS CONFIG";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col10), @mid = EncryptDecrypt.Encrypt(Model[0].Col9) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>BONUS CONFIG</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" accesskey="S" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class=" form-control sa-button sa-btncancel" formnovalidate id="btncancel" name="command" value="Cancel" accesskey="C" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_mid", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_m_id", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btntext", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Copy Fixed Component from Other Units</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide5" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Select Unit </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems4, new MultiSelectList(Model[i].TList4, "Value", "Text", Model[i].SelectedItems4), new { @id = "ddl_unit", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox has-success", multiple = "multiple", @MaxLength = "20",@style="width:100%" })
+                                                        @*<select class="form-control select2 col-md-12 col-sm-12 col-xs-12 sa-select2-single" onkeydown="return checkLength(this, 20,event);" id="ddl_units" clientidmode="Static" runat="server" multiple="true" style="width: 100%; border-radius: 0px;"></select>*@
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <input type="submit" class="btn btn-primary form-control sa-button" formnovalidate id="btn_copyhead" name="command" value="Copy Config" accesskey="C" />
+                                                        @*<button type="submit" class="btn btn-primary form-control sa-button" causesvalidation="false" runat="server" id="btn_copyhead" onserverclick="btn_copyhead_ServerClick" accesskey="N"><u>C</u>opy Fixed Components</button>*@
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Doc No. </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col15, new { @id = "txt_vchnum", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>                            
+                            @*<div class='col-sm-4'>
+                                <label for="first-name">Copy From <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_unit", @readOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Unit" clientidmode="static" id="spn_unit" onclick="selectunit(this);"><i class="fa fa-search"></i></span>
+
+                                    </div>
+                                </div>
+                            </div>*@
+                            <div class='col-sm-4'>
+                                <label for="first-name">Type <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <b>Absolute </b>
+                                        @Html.RadioButtonFor(m => m[i].Col16, "001", new { @id = "rd_abs", @class = "sa-input radio " + @mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "bonustype(this);" })
+                                        <b>Percentage </b>
+                                        @Html.RadioButtonFor(m => m[i].Col16, "002", new { @id = "rd_per", @class = "sa-input radio " + @mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "bonustype(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Yearly Bonus Amount <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group demo2'>
+                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_bonusamt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + @mandatory + "", @MaxLength = "10" })
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Bonus On </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_bonuson", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", multiple = "multiple", @MaxLength = "20" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Bonus Percentage </label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_bonusper", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "5" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Exgratia On </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[i].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_exgon", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @MaxLength = "20" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Exgratia Percentage </label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_exgper", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Exgratia Percentage", @MaxLength = "5" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Max Earning For Bonus </label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_maxernbonus", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Exgratia Percentage", @MaxLength = "5" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Bonus if Limit Exceed </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[i].SelectedItems3, new SelectList(Model[i].TList3, "Value", "Text", Model[i].SelectedItems3.FirstOrDefault()), new { @id = "ddl_bonuslimitex", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @MaxLength = "20" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+          @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        //debugger;
+        var chks = $("[type=checkbox]");
+        for (var l = 0; l < chks.length; l++) {
+
+            try {
+                hide1(chks[l].parentElement.parentElement.children[1].children[0].children[0], chks[l].checked);
+            } catch (err) { }
+        }
+
+        if (!isPostBack()) {
+
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    //child.classList.remove = "fa-chevron-up";
+                    //child.classList.add = "fa-chevron-down";
+                    $(child).removeClass("fa-chevron-up")
+                    $(child).addClass("fa-chevron-down")
+                }
+            }
+        }
+
+        var btype = "";
+        if ($("[id*=rd_abs]")[0].checked == true) btype = $("[id*=rd_abs]")[0].value;
+        if ($("[id*=rd_per]")[0].checked == true) btype = $("[id*=rd_per]")[0].value;
+
+        if (btype == "001") {
+            $("[id*=txt_bonusper]").attr("ReadOnly", true);
+            $("[id*=txt_exgper]").attr("ReadOnly", true);
+        }
+        else if (btype == "002") {
+            $("[id*=txt_bonusper]").removeAttr("ReadOnly");
+            $("[id*=txt_exgper]").removeAttr("ReadOnly");
+            $("[id*=txt_bonusamt]").attr("ReadOnly", true);
+        }
+
+
+    });
+
+   //////EDIT CLICK
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName','@controllerName'); }
+
+    ///////// VIEW CLICK
+    function viewfun() { var data = show_Foo('View Detail Of Employees', 'DETAIL', '0', '@viewName', '@controllerName'); }
+
+        function selectunit() { var data = show_Foo('Select Unit', 'UNITS', '1', '@viewName','@controllerName'); }
+
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+
+    }
+    function hide(ctrl) {
+        //debugger;
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function hide1(ctrl, check) {
+
+        if (check) {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+        else {
+
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+        }
+    }
+    function bonustype(ctrl) {
+        //debugger
+        var btype = ctrl.value;
+        if (btype == "001") {
+            $("[id*=txt_bonusper]").attr("ReadOnly", true);
+            //$("[id*=ddl_exgon]")[0].disabled = true;
+            $("[id*=txt_exgper]").attr("ReadOnly", true);
+        }
+        else if(btype=="002") {
+            $("[id*=txt_bonusper]").removeAttr("ReadOnly");
+            $("[id*=txt_exgper]").removeAttr("ReadOnly");
+            $("[id*=txt_bonusamt]").attr("ReadOnly", true);
+        }
+    }
+
+</script>
+

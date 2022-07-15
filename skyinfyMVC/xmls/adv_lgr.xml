@@ -1,0 +1,2152 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="F_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="VCH_NUM" type="xs:string" minOccurs="0" />
+                <xs:element name="VCH_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="ADV_OUT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ADV_IN" type="xs:decimal" minOccurs="0" />
+                <xs:element name="BALANCE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="M_NAME" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000044</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>420000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-420000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000015</EMP_CODE>
+    <EMP_NAME>INDERJEET VERMA  </EMP_NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>18000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-18000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000019</EMP_CODE>
+    <EMP_NAME>INDRAJIT TIWARI  </EMP_NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000027</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>SH. GOPI NATH</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>01/12/2020</VCH_DATE>
+    <ADV_OUT>80000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-80000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000027</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>SH. GOPI NATH</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000027</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>SH. GOPI NATH</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000027</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>SH. GOPI NATH</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000028</EMP_CODE>
+    <EMP_NAME>PANKAJ KUMAR  </EMP_NAME>
+    <F_NAME>SH. BANI SINGH</F_NAME>
+    <VCH_NUM>000046</VCH_NUM>
+    <VCH_DATE>01/03/2021</VCH_DATE>
+    <ADV_OUT>100000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-100000</BALANCE>
+    <M_NAME>March    -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000028</EMP_CODE>
+    <EMP_NAME>PANKAJ KUMAR  </EMP_NAME>
+    <F_NAME>SH. BANI SINGH</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000007</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>1220000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1220000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>25000</ADV_IN>
+    <BALANCE>25000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000030</EMP_CODE>
+    <EMP_NAME>ASHOK KUMAR  </EMP_NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>1232352</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1232352</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000031</EMP_CODE>
+    <EMP_NAME>VINOD GUPTA  </EMP_NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>30000</ADV_IN>
+    <BALANCE>30000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000002</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>115000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-115000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000032</EMP_CODE>
+    <EMP_NAME>SHRI HARI UPADHYAY  </EMP_NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>69000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-69000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>24/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>27000</ADV_IN>
+    <BALANCE>27000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>7000</ADV_IN>
+    <BALANCE>7000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>7000</ADV_IN>
+    <BALANCE>7000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>7000</ADV_IN>
+    <BALANCE>7000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>7000</ADV_IN>
+    <BALANCE>7000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>7000</ADV_IN>
+    <BALANCE>7000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000033</EMP_CODE>
+    <EMP_NAME>NAVEEN  </EMP_NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>7000</ADV_IN>
+    <BALANCE>7000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>440000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-440000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000035</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000036</EMP_CODE>
+    <EMP_NAME>OBAIDUR RAHMAN  </EMP_NAME>
+    <F_NAME>SH. NOOR ALAM ANSARI</F_NAME>
+    <VCH_NUM>000016</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>54983</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-54983</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000019</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>50000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-50000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000039</EMP_CODE>
+    <EMP_NAME>FARMAN KHAN  </EMP_NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000042</EMP_CODE>
+    <EMP_NAME>SHYAM SUNDER  </EMP_NAME>
+    <F_NAME>SH. HARI MOHAN</F_NAME>
+    <VCH_NUM>000047</VCH_NUM>
+    <VCH_DATE>02/02/2021</VCH_DATE>
+    <ADV_OUT>50000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-50000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000042</EMP_CODE>
+    <EMP_NAME>SHYAM SUNDER  </EMP_NAME>
+    <F_NAME>SH. HARI MOHAN</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000042</EMP_CODE>
+    <EMP_NAME>SHYAM SUNDER  </EMP_NAME>
+    <F_NAME>SH. HARI MOHAN</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>8000</ADV_IN>
+    <BALANCE>8000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000045</VCH_NUM>
+    <VCH_DATE>01/03/2021</VCH_DATE>
+    <ADV_OUT>30000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-30000</BALANCE>
+    <M_NAME>March    -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000015</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>25000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-25000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000042</VCH_NUM>
+    <VCH_DATE>01/09/2020</VCH_DATE>
+    <ADV_OUT>5000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-5000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000037</VCH_NUM>
+    <VCH_DATE>01/09/2020</VCH_DATE>
+    <ADV_OUT>10000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-10000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000045</EMP_CODE>
+    <EMP_NAME>VIJAY KUMAR MAHATO  </EMP_NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>15000</ADV_IN>
+    <BALANCE>15000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000053</EMP_CODE>
+    <EMP_NAME>RAJ GOPAL SHARMA  </EMP_NAME>
+    <F_NAME>SH. P C SHARMA</F_NAME>
+    <VCH_NUM>000014</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>10000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-10000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000053</EMP_CODE>
+    <EMP_NAME>RAJ GOPAL SHARMA  </EMP_NAME>
+    <F_NAME>SH. P C SHARMA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000057</EMP_CODE>
+    <EMP_NAME>KV THOMAS  </EMP_NAME>
+    <F_NAME>LT. SH. K T VINCENT</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>64879</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-64879</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000057</EMP_CODE>
+    <EMP_NAME>KV THOMAS  </EMP_NAME>
+    <F_NAME>LT. SH. K T VINCENT</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>24/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>50000</ADV_IN>
+    <BALANCE>50000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>390000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-390000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>24/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000002</VCH_NUM>
+    <VCH_DATE>24/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>27/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000059</EMP_CODE>
+    <EMP_NAME>APOORV GUPTA  </EMP_NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>20000</ADV_IN>
+    <BALANCE>20000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000041</VCH_NUM>
+    <VCH_DATE>01/09/2020</VCH_DATE>
+    <ADV_OUT>150000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-150000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>12500</ADV_IN>
+    <BALANCE>12500</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>12500</ADV_IN>
+    <BALANCE>12500</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>12500</ADV_IN>
+    <BALANCE>12500</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>12500</ADV_IN>
+    <BALANCE>12500</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>12500</ADV_IN>
+    <BALANCE>12500</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000063</EMP_CODE>
+    <EMP_NAME>PRAMOD KUMAR YADAV  </EMP_NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>12500</ADV_IN>
+    <BALANCE>12500</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000076</EMP_CODE>
+    <EMP_NAME>NANDRAM  </EMP_NAME>
+    <F_NAME>KHEMKARAN</F_NAME>
+    <VCH_NUM>000033</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000076</EMP_CODE>
+    <EMP_NAME>NANDRAM  </EMP_NAME>
+    <F_NAME>KHEMKARAN</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000077</EMP_CODE>
+    <EMP_NAME>RAJ KUMAR  </EMP_NAME>
+    <F_NAME>RAM SAGAR MAHTO</F_NAME>
+    <VCH_NUM>000034</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000077</EMP_CODE>
+    <EMP_NAME>RAJ KUMAR  </EMP_NAME>
+    <F_NAME>RAM SAGAR MAHTO</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000084</EMP_CODE>
+    <EMP_NAME>LOKESH SHARMA  </EMP_NAME>
+    <F_NAME>SH. RADHAY SHYAM</F_NAME>
+    <VCH_NUM>000035</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000084</EMP_CODE>
+    <EMP_NAME>LOKESH SHARMA  </EMP_NAME>
+    <F_NAME>SH. RADHAY SHYAM</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000088</EMP_CODE>
+    <EMP_NAME>DEVINDAR  </EMP_NAME>
+    <F_NAME>SH. OMI</F_NAME>
+    <VCH_NUM>000028</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000088</EMP_CODE>
+    <EMP_NAME>DEVINDAR  </EMP_NAME>
+    <F_NAME>SH. OMI</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000094</EMP_CODE>
+    <EMP_NAME>BABALU  </EMP_NAME>
+    <F_NAME>SH. MANIK CHAND</F_NAME>
+    <VCH_NUM>000025</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000094</EMP_CODE>
+    <EMP_NAME>BABALU  </EMP_NAME>
+    <F_NAME>SH. MANIK CHAND</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000098</EMP_CODE>
+    <EMP_NAME>JITENDRA SHARMA  </EMP_NAME>
+    <F_NAME>JAI PAL SHARMA</F_NAME>
+    <VCH_NUM>000030</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000098</EMP_CODE>
+    <EMP_NAME>JITENDRA SHARMA  </EMP_NAME>
+    <F_NAME>JAI PAL SHARMA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000101</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>SHANKAR MAHATO</F_NAME>
+    <VCH_NUM>000040</VCH_NUM>
+    <VCH_DATE>01/09/2020</VCH_DATE>
+    <ADV_OUT>5000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-5000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000101</EMP_CODE>
+    <EMP_NAME>SANJAY KUMAR  </EMP_NAME>
+    <F_NAME>SHANKAR MAHATO</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>24/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>5000</ADV_IN>
+    <BALANCE>5000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000103</EMP_CODE>
+    <EMP_NAME>SHIVI KUMAR  </EMP_NAME>
+    <F_NAME>NAHAR SINGH</F_NAME>
+    <VCH_NUM>000024</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>2000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-2000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000103</EMP_CODE>
+    <EMP_NAME>SHIVI KUMAR  </EMP_NAME>
+    <F_NAME>NAHAR SINGH</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000038</VCH_NUM>
+    <VCH_DATE>01/08/2020</VCH_DATE>
+    <ADV_OUT>30000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-30000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000109</EMP_CODE>
+    <EMP_NAME>KAMAL SINGH MEHRA  </EMP_NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2000</ADV_IN>
+    <BALANCE>2000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>30000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-30000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000001</VCH_NUM>
+    <VCH_DATE>30/06/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000110</EMP_CODE>
+    <EMP_NAME>PREM BAHADUR  </EMP_NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000112</EMP_CODE>
+    <EMP_NAME>BADLU  </EMP_NAME>
+    <F_NAME>JAGGA</F_NAME>
+    <VCH_NUM>000021</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000112</EMP_CODE>
+    <EMP_NAME>BADLU  </EMP_NAME>
+    <F_NAME>JAGGA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000113</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>RAM CHARAN</F_NAME>
+    <VCH_NUM>000018</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000113</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>RAM CHARAN</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000114</EMP_CODE>
+    <EMP_NAME>SHIV KUMAR  </EMP_NAME>
+    <F_NAME>LT SH BANI RAM</F_NAME>
+    <VCH_NUM>000020</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000114</EMP_CODE>
+    <EMP_NAME>SHIV KUMAR  </EMP_NAME>
+    <F_NAME>LT SH BANI RAM</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000115</EMP_CODE>
+    <EMP_NAME>SURESH  </EMP_NAME>
+    <F_NAME>BHOLA</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>5000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-5000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000115</EMP_CODE>
+    <EMP_NAME>SURESH  </EMP_NAME>
+    <F_NAME>BHOLA</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2500</ADV_IN>
+    <BALANCE>2500</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000115</EMP_CODE>
+    <EMP_NAME>SURESH  </EMP_NAME>
+    <F_NAME>BHOLA</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2500</ADV_IN>
+    <BALANCE>2500</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000116</EMP_CODE>
+    <EMP_NAME>VEER SINGH  </EMP_NAME>
+    <F_NAME>LALA RAM</F_NAME>
+    <VCH_NUM>000013</VCH_NUM>
+    <VCH_DATE>01/06/2020</VCH_DATE>
+    <ADV_OUT>5000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-5000</BALANCE>
+    <M_NAME>June     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000116</EMP_CODE>
+    <EMP_NAME>VEER SINGH  </EMP_NAME>
+    <F_NAME>LALA RAM</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2500</ADV_IN>
+    <BALANCE>2500</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000116</EMP_CODE>
+    <EMP_NAME>VEER SINGH  </EMP_NAME>
+    <F_NAME>LALA RAM</F_NAME>
+    <VCH_NUM>000004</VCH_NUM>
+    <VCH_DATE>31/08/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>2500</ADV_IN>
+    <BALANCE>2500</BALANCE>
+    <M_NAME>August   -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000117</EMP_CODE>
+    <EMP_NAME>JAGADISH  </EMP_NAME>
+    <F_NAME>SH. NANK CHAND</F_NAME>
+    <VCH_NUM>000017</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000117</EMP_CODE>
+    <EMP_NAME>JAGADISH  </EMP_NAME>
+    <F_NAME>SH. NANK CHAND</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000124</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>SH. SHYAM BIHARI</F_NAME>
+    <VCH_NUM>000032</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000124</EMP_CODE>
+    <EMP_NAME>RAJESH KUMAR  </EMP_NAME>
+    <F_NAME>SH. SHYAM BIHARI</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000125</EMP_CODE>
+    <EMP_NAME>MONTI  </EMP_NAME>
+    <F_NAME>SH. KAMAL SINGH</F_NAME>
+    <VCH_NUM>000023</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000125</EMP_CODE>
+    <EMP_NAME>MONTI  </EMP_NAME>
+    <F_NAME>SH. KAMAL SINGH</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000135</EMP_CODE>
+    <EMP_NAME>SHIVAM  </EMP_NAME>
+    <F_NAME>SH. RAJESH KUMAR</F_NAME>
+    <VCH_NUM>000031</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000135</EMP_CODE>
+    <EMP_NAME>SHIVAM  </EMP_NAME>
+    <F_NAME>SH. RAJESH KUMAR</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000137</EMP_CODE>
+    <EMP_NAME>IRFAN SAIFI  </EMP_NAME>
+    <F_NAME>SH. ABDUL GAFFAR</F_NAME>
+    <VCH_NUM>000027</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000137</EMP_CODE>
+    <EMP_NAME>IRFAN SAIFI  </EMP_NAME>
+    <F_NAME>SH. ABDUL GAFFAR</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000149</EMP_CODE>
+    <EMP_NAME>RIDAM MAGAR  </EMP_NAME>
+    <F_NAME>SH. BHIM</F_NAME>
+    <VCH_NUM>000026</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>500</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000149</EMP_CODE>
+    <EMP_NAME>RIDAM MAGAR  </EMP_NAME>
+    <F_NAME>SH. BHIM</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>500</ADV_IN>
+    <BALANCE>500</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000154</EMP_CODE>
+    <EMP_NAME>VINIT KUMAR  </EMP_NAME>
+    <F_NAME>SH. JAIVEER SHARMA</F_NAME>
+    <VCH_NUM>000036</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000154</EMP_CODE>
+    <EMP_NAME>VINIT KUMAR  </EMP_NAME>
+    <F_NAME>SH. JAIVEER SHARMA</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000155</EMP_CODE>
+    <EMP_NAME>KARAN GIRI  </EMP_NAME>
+    <F_NAME>SH. DINESH GIRI</F_NAME>
+    <VCH_NUM>000039</VCH_NUM>
+    <VCH_DATE>01/09/2020</VCH_DATE>
+    <ADV_OUT>10000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-10000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000155</EMP_CODE>
+    <EMP_NAME>KARAN GIRI  </EMP_NAME>
+    <F_NAME>SH. DINESH GIRI</F_NAME>
+    <VCH_NUM>000005</VCH_NUM>
+    <VCH_DATE>30/09/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>September-2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000155</EMP_CODE>
+    <EMP_NAME>KARAN GIRI  </EMP_NAME>
+    <F_NAME>SH. DINESH GIRI</F_NAME>
+    <VCH_NUM>000008</VCH_NUM>
+    <VCH_DATE>30/11/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>November -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000155</EMP_CODE>
+    <EMP_NAME>KARAN GIRI  </EMP_NAME>
+    <F_NAME>SH. DINESH GIRI</F_NAME>
+    <VCH_NUM>000006</VCH_NUM>
+    <VCH_DATE>31/10/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>3000</ADV_IN>
+    <BALANCE>3000</BALANCE>
+    <M_NAME>October  -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000155</EMP_CODE>
+    <EMP_NAME>KARAN GIRI  </EMP_NAME>
+    <F_NAME>SH. DINESH GIRI</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000166</EMP_CODE>
+    <EMP_NAME>ANUP PRASAD  </EMP_NAME>
+    <F_NAME>SH. JAYNANDAN PRASAD</F_NAME>
+    <VCH_NUM>000029</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000166</EMP_CODE>
+    <EMP_NAME>ANUP PRASAD  </EMP_NAME>
+    <F_NAME>SH. JAYNANDAN PRASAD</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000171</EMP_CODE>
+    <EMP_NAME>ANIL KUMAR  </EMP_NAME>
+    <F_NAME>SH. SHIV KUMAR</F_NAME>
+    <VCH_NUM>000022</VCH_NUM>
+    <VCH_DATE>01/07/2020</VCH_DATE>
+    <ADV_OUT>1000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000171</EMP_CODE>
+    <EMP_NAME>ANIL KUMAR  </EMP_NAME>
+    <F_NAME>SH. SHIV KUMAR</F_NAME>
+    <VCH_NUM>000003</VCH_NUM>
+    <VCH_DATE>31/07/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>1000</ADV_IN>
+    <BALANCE>1000</BALANCE>
+    <M_NAME>July     -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000226</EMP_CODE>
+    <EMP_NAME>YOGESH  KUMAR</EMP_NAME>
+    <F_NAME>SH. VED PRAKASH</F_NAME>
+    <VCH_NUM>000043</VCH_NUM>
+    <VCH_DATE>01/12/2020</VCH_DATE>
+    <ADV_OUT>50000</ADV_OUT>
+    <ADV_IN>0</ADV_IN>
+    <BALANCE>-50000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000226</EMP_CODE>
+    <EMP_NAME>YOGESH  KUMAR</EMP_NAME>
+    <F_NAME>SH. VED PRAKASH</F_NAME>
+    <VCH_NUM>000012</VCH_NUM>
+    <VCH_DATE>28/02/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>February -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000226</EMP_CODE>
+    <EMP_NAME>YOGESH  KUMAR</EMP_NAME>
+    <F_NAME>SH. VED PRAKASH</F_NAME>
+    <VCH_NUM>000011</VCH_NUM>
+    <VCH_DATE>31/01/2021</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>January  -2021</M_NAME>
+  </prepcur>
+  <prepcur>
+    <EMP_CODE>000226</EMP_CODE>
+    <EMP_NAME>YOGESH  KUMAR</EMP_NAME>
+    <F_NAME>SH. VED PRAKASH</F_NAME>
+    <VCH_NUM>000009</VCH_NUM>
+    <VCH_DATE>31/12/2020</VCH_DATE>
+    <ADV_OUT>0</ADV_OUT>
+    <ADV_IN>10000</ADV_IN>
+    <BALANCE>10000</BALANCE>
+    <M_NAME>December -2020</M_NAME>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Kesho Packaging Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDAGB NAGAR</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>09</COMPANY_STATE>
+    <COMPANY_CITY>Noida</COMPANY_CITY>
+    <COMPANY_PINCODE>201306</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>info@keshopackaging.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>keshopackaging.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1204152702</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1204152702</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>09AADCK1978R1ZN</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AADCK1978R</COM_PAN_NO>
+    <COMPANY_CIN_NO>U74950DL2007PTC168971</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>KESHO PACKAGING PVT. LTD.</UNIT_NAME>
+    <UNIT_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDA,GB NAGAR</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Uttar Pradesh</STATE_NAME>
+    <UNIT_STATE>09</UNIT_STATE>
+    <UNIT_CITY>Noida</UNIT_CITY>
+    <UNIT_PINCODE>201306</UNIT_PINCODE>
+    <UNIT_EMAIL>INFO@KESHOPACKAGING.COM</UNIT_EMAIL>
+    <UNIT_WEBSITE>WWW.KESHOPACKAGING.COM</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>1204152701</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>1204152702</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>09AADCK1978R1ZN</UNIT_GSTIN_NO>
+    <BANK_NAME>0</BANK_NAME>
+    <BANK_BRANCH>0</BANK_BRANCH>
+    <BANK_ACC>911020043295952</BANK_ACC>
+    <BANK_IFSC>0</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

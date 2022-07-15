@@ -1,0 +1,387 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    string clr = "";
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid); string mandatory = "sa-mandatory";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_emp" })
+    @Html.HiddenFor(model => model[0].Col27, new { @id = "hf_rptto" })
+    @Html.HiddenFor(model => model[0].Col28, new { @id = "hf_rptto2" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+                        @if (Model[0].Col14 == "8009")
+                        {
+                            <div class="col-sm-4">
+                                <label for="first-name">
+                                    User Name<span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "Emp_name", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "OD Slip No." })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-sm-4">
+                                <label for="first-name">
+                                    User Name<span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_user", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%", onchange = "userchange();" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    </div>
+
+                    @if ((Model[0].Col28 != null) && (Model[0].Col28 != "0") && (Model[0].Col28 != ""))
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h2>Functional Manager</h2>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                                    <div class="x_content">
+                                        <div class="row">
+
+                                            <div class='col-sm-3'> <label>S.No.</label> </div>
+                                            <div class='col-sm-3'> <label>Employee Name</label> </div>
+                                            <div class='col-sm-3'><label for="first-name">Department</label></div>
+                                            <div class='col-sm-3'><label for="first-name">Designation</label></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                                    <div class="x_content">
+
+                                        <div id="Atte" class="row table-responsive">
+                                            <div class='col-sm-3'>
+
+                                                <label for="first-name">@( 1)</label>
+
+                                                <div class="form-group has-success">
+                                                    <div class='input-group'>
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[0].Col24, new { @id = "pname", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.DisplayFor(model => model[0].Col25, new { @id = "dep", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.DisplayFor(model => model[0].Col26, new { @id = "dsg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if ((Model[0].Col27 != null) && (Model[0].Col27 != "0") && (Model[0].Col27 != ""))
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h2>Reporting To</h2>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                                    <div class="x_content">
+                                        <div class="row">
+
+
+                                            <div class='col-sm-3'> <label>S.No.</label> </div>
+                                            <div class='col-sm-3'> <label>Employee Name</label> </div>
+                                            <div class='col-sm-3'><label for="first-name">Department</label></div>
+                                            <div class='col-sm-3'><label for="first-name">Designation</label></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                                    <div class="x_content">
+
+                                        <div id="Atte" class="row table-responsive">
+                                            <div class='col-sm-3'>
+
+                                                <label for="first-name">@( 1)</label>
+
+                                                <div class="form-group has-success">
+                                                    <div class='input-group'>
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[0].Col18, new { @id = "pname", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.DisplayFor(model => model[0].Col19, new { @id = "dep", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.DisplayFor(model => model[0].Col20, new { @id = "dsg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    @if ((Model[0].Col21 != null) && (Model[0].Col21 != "0") && (Model[0].Col21 != ""))
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h2>Reporting By</h2>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                                    <div class="x_content">
+                                        <div class="row">
+
+
+                                            <div class='col-sm-3'> <label>S.No.</label> </div>
+                                            <div class='col-sm-3'> <label>Employee Name</label> </div>
+                                            <div class='col-sm-3'><label for="first-name">Department</label></div>
+                                            <div class='col-sm-3'><label for="first-name">Designation</label></div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        if ((Model[i].Col21 != null) && (Model[i].Col21 != "") && (Model[i].Col21 != "0"))
+                        {
+
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                    <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                                        <div class="x_content">
+
+                                            <div id="Atten_@i" class="row table-responsive">
+                                                <div class='col-sm-3'>
+
+                                                    <label for="first-name">@(i + 1)</label>
+
+                                                    <div class="form-group has-success">
+                                                        <div class='input-group'>
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='col-sm-3'>
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            @Html.DisplayFor(model => model[i].Col21, new { @id = "rname_" + i, @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='col-sm-3'>
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <div class=" clearfix"></div>
+                                                            @Html.DisplayFor(model => model[i].Col22, new { @id = "rde_" + i, @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class='col-sm-3'>
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <div class=" clearfix"></div>
+                                                            @Html.DisplayFor(model => model[i].Col23, new { @id = "ds_" + i, @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="btn_user" formnovalidate value="Emp" name="Command" title="mom" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+
+    <script type="text/javascript">
+     $(document).ready(function () {
+            @Html.Raw(ViewBag.scripCall);
+            $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+         $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+      
+
+
+
+    });
+
+
+        function userchange() { $(parent.document.getElementById('btn_user')).trigger('click')}
+    </script>

@@ -1,0 +1,570 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+
+
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col21, new { @id = "txtlat" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "txtaddr1" })
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+                        @if (Model[0].Col14 == "8004.2")
+                        {
+                            <div class='col-sm-3'>
+                                <label for="first-name">Select User<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddlsendd", @class = "select2 sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <div class='col-sm-2'>
+                            <label for="first-name">From Date <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_fromdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-2'>
+                            <label for="first-name">To Date <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_todt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-2'>
+                            <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" name="command" @ViewBag.vfill value="Show Task Data" id="btn_Fill" accesskey="F" />
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        @if (Model[0].Col14 == "8004.2")
+                        {
+                            <div class='col-sm-3'>
+                                <label for="first-name">Select User<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddluser", @class = "select2 sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-2'>
+                                <label for="first-name">From Date <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_fromdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-2'>
+                                <label for="first-name">To Date <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_todt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-2'>
+                                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input type="submit" class="btn btn-primary form-control sa-button" name="command" @ViewBag.vfill value="Show Track Data" id="btn_Fill" accesskey="F" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-2'>
+                                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input type="submit" class="btn btn-primary form-control sa-button" name="command" @ViewBag.vfill value="Show Track Data On Map" id="btn_Fill" accesskey="F" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="padding: 3px 15px !important">
+            <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                <label for="first-name">
+                    GEO LOCATION
+
+
+
+                    <span class="ClientProfileLabelColor">*</span>
+
+
+                </label>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a id="ahide12" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content kc">
+                <div class="row">
+
+                    <div class='col-sm-4'>
+                            <label for="first-name">LAT-LONG<span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col21, new { @id = "txtlat", placeholder = "Lat-Long", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return false;" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <div class='col-sm-8'>
+                            <label for="first-name">Google Address<span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col22, new { @id = "txtaddr1", placeholder = "Google Address", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return false;" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12" runat="server" id="div1">
+                        <div class="x_panel">
+                            <div class="x_title" style="border-bottom: none !important">
+                                <div class="col-sm-3">
+                                    <h3>
+                                        Locate Your Location   <small>
+                                            <br />
+                                            Used for your Driving Location
+                                        </small>
+                                    </h3>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-8">
+                                    <div class="form-group">
+                                        <label>Search Here</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><i class="fa fa-male"></i></div>
+                                            <input id="txtsearch" type="text" class="form-control sa-textbox" placeholder="Enter your Location" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div>
+                        <div class="x_content">
+                            <div class="form-group">
+                                <div style="height: 300px">
+                                    <div style="width: 100%" id="mapCanvas"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <asp:HiddenField runat="server" ID="hf_latlang" />
+    <asp:HiddenField runat="server" ID="hf_edmode" />
+    <asp:HiddenField runat="server" ID="hf_clientid" />
+
+}
+
+<!---- Geo Location Scripts---->
+@Scripts.Render("~/bundles/gmapjs")
+@*@Scripts.Render("~/bundles/gmapjs2")*@
+@Styles.Render("~/bundles/gmapcss")
+
+<script type="text/javascript">
+     var locations = new Array();
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+    });
+     var _request = '';
+        var datatable = new Array();
+        var locations = new Array();
+        var selectedLocs = new Array();
+        //You can calculate directions (using a variety of methods of transportation) by using the DirectionsService object.
+        var directionsService = new google.maps.DirectionsService();
+        //Define a variable with all map points.
+        var _mapPoints = new Array();
+        //Define a DirectionsRenderer variable.
+        var _directionsRenderer = '';
+        var markername;
+
+        var mainLatlng = new google.maps.LatLng(28.47745, 77.03413799999998);
+        var myOptions = {
+            zoom: 10,
+            center: mainLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("mapCanvas"), myOptions);
+        var marker_color = "009BEE";
+        var marker_text_color = "FFFFFF";
+        var character = "12";
+
+        //var pinIcon = new google.maps.MarkerImage(
+        //    "http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=" + character + "|" + marker_color + "|" + marker_text_color,
+        //    null, /* size is determined at runtime */
+        //    null, /* origin is 0,0 */
+        //    null, /* anchor is bottom center of the scaled image */
+        //    new google.maps.Size(32, 48)
+        //);
+        //InitializeMap();
+        //loaddata();
+        //InitializeMap() function is used to initialize google map on page load.
+    function initialize(lat, long) {
+
+    var lat = lat;
+    var long = long;
+    //  var city = position.coords.locality;
+    var latLng = new google.maps.LatLng(lat, long);
+
+    //create map Options
+    var mapOptions = {
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    //end Map option
+    map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+
+    //set services
+
+
+    this.directionsDisplay = new google.maps.DirectionsRenderer;
+    this.directionsDisplay.setMap(map);
+    _directionsRenderer = new google.maps.DirectionsRenderer();
+
+    //Set the map for directionsRenderer
+    _directionsRenderer.setMap(map);
+    //Set different options for DirectionsRenderer mehtods.
+    //draggable option will used to drag the route.
+    _directionsRenderer.setOptions({
+        draggable: true
+    });
+
+    // Update current position info.
+    //updateMarkerPosition(latLng);
+    //geocodePosition(latLng);
+    //snapToRoad(latLng);
+
+    //Search Feature Started
+    var input = document.getElementById('txtsearch');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    var infowindow = new google.maps.InfoWindow();
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return;
+        }
+
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(15); // Why 17? Because it looks good.
+        }
+        //updateMarkerPosition(place.geometry.location);
+        //geocodePosition(place.geometry.location);
+        snapToRoad(place.geometry.location);
+        //fx(new google.maps.LatLng(place.geometry.location, place.geometry.location));
+
+    });
+}
+    var point = { lat: 22.5667, lng: 88.3667 };
+        var markerSize = { x: 22, y: 40 };
+
+        var image = new google.maps.MarkerImage("data:image/png;base64,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", null, null, null, new google.maps.Size(40, 52));
+
+        var icon = {
+
+            //url: "marker2.png", // url
+            //icon: image,
+            scaledSize: new google.maps.Size(50, 50), // scaled size
+            labelOrigin: new google.maps.Point(24, 20),
+            
+        };
+
+        var images = {
+            url: '../uploads/marker-yellow.png',
+            scaledSize: new google.maps.Size(45, 45),
+        };
+    function updateMarkerPosition(latLng) {
+        document.getElementById('txtlat').value = [
+            latLng.lat(),
+            latLng.lng()
+        ].join(', ');
+
+
+    }
+    var geocoder = new google.maps.Geocoder();
+    function geocodePosition(pos) {
+        geocoder.geocode({
+            latLng: pos
+        }, function (responses) {
+            if (responses && responses.length > 0) {
+                updateMarkerAddress(responses[0].formatted_address);
+            } else {
+                updateMarkerAddress('Cannot determine address at this location.');
+            }
+        });
+    }
+
+    function ADMIN() { var data = show_Foo('Select Account', 'ADMIN', '1', '@viewName', '@controllerName'); }
+    function PRV() { var data = show_Foo('Select Account', 'PRV', '1', '@viewName', '@controllerName'); }
+
+    function loaddata() {
+        //PageMethods.Getlocations(OnSuccess);
+        myMethod_C("@controllerName", "@viewName", "Getlocations", null, OnSuccessLoad, OnErroLoad);
+    }
+
+    function OnSuccessLoad(response) {
+        //debugger;
+        var xmlDoc = $.parseXML(response);
+        var xml = $(xmlDoc);
+        var customers = xml.find("MainData");
+        var i = 0;
+        customers.each(function () {
+            var customer = $(this);
+            i++;
+            locations.push([{ title: 'Ram' }, { lat: parseFloat( customer[0].children[0].innerHTML)
+        },
+                { long: parseFloat(customer[0].children[1].innerHTML) },
+                { ttype:customer[0].children[2].innerHTML }]);
+
+        });
+        window.sessionStorage.setItem("locations", JSON.stringify(locations));
+        addmarker();
+    }
+    function OnErroLoad(response) {
+        //debugger
+    }
+    function addmarker(loct) {
+
+        //debugger;
+       
+        
+        var marker, m;
+        for (m = 0; m < locations.length; m++) {
+            var myLatlng = new google.maps.LatLng(locations[m][1].lat, locations[m][2].long);
+            if (locations[m][3].ttype == 'Report_submit') {
+
+                marker = new google.maps.Marker({ // Set the marker
+                    position: myLatlng, // Position marker to coordinates
+                    title: locations[m][0].title,
+                    icon: images,
+                    map: map // assign the market to our map variable
+
+                });
+            }
+            //var homelat = locations[m][6].homelat;
+            //if (homelat == 1) {
+
+            //    marker = new google.maps.Marker({ // Set the marker
+            //        position: myLatlng, // Position marker to coordinates
+            //        title: locations[m][0].title,
+            //        icon: images,
+            //        map: map // assign the market to our map variable
+
+            //    });
+            //    map.setCenter({
+            //        lat: locations[m][1].lat,
+            //        lng: locations[m][2].long
+            //    });
+            //}
+            else {
+                marker = new google.maps.Marker({ // Set the marker
+                    position: myLatlng, // Position marker to coordinates
+                    title: "test",
+                    map: map, // assign the market to our map variable
+                    //label: { text: locations[m][4].qty, color: "white" }
+                });
+                   }
+            map.panTo(myLatlng);
+         
+            google.maps.event.addListener(marker, "dblclick", function (event) {
+
+                var qty = 1;
+                try {
+                    qty = parseFloat(this.getLabel().text);
+                }
+                catch{ }
+                var title = this.getTitle();
+                map.panTo(this.getPosition());
+                //debugger;
+                //if (title == 'Home Address' || qty > 0) {
+
+                //    var _currentPoints = event.latLng;
+
+                //    var found = false;
+                //    for (var i = 0; i < _mapPoints.length; i++) {
+                //        if (_mapPoints[i].lat() === _currentPoints.lat()) {
+                //            found = true;
+                //            break;
+                //        }
+                //    }
+                //    if (found) {
+                //        alert('Same Location is Already Added to Route');
+
+                //    }
+                //    else {
+                //        _mapPoints.push(_currentPoints);
+                //        window.sessionStorage.setItem("mappoints", JSON.stringify(_mapPoints));
+                //        //selectedLocs.push([this.getTitle(), _currentPoints]);
+                //        MarkerClick();
+                //    }
+                //}
+                //else {
+
+                //    alert('No Student Found on the Location.So can not Select');
+                //}
+            });
+            var infowindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', (function (marker, m) {
+                return function () {
+                    infowindow.setContent(locations[m][0].title);
+                    infowindow.open(map, marker);
+                }
+            })(marker, m));
+        }
+
+
+
+    }
+
+    function MarkerClick() {
+
+        var _waypoints = new Array();
+        if (_mapPoints.length > 2) //Waypoints will be come.
+        {
+            for (var j = 1; j < _mapPoints.length - 1; j++) {
+                var address = _mapPoints[j];
+                if (isNaN(_mapPoints[j].lat())) { }
+                else {
+                    if (address !== "") {
+                        _waypoints.push({
+                            location: address
+                            //stopover: true  //stopover is used to show marker on map for waypoints
+                        });
+                    }
+                }
+            }
+
+            //Call a drawRoute() function
+            drawRoutes(_mapPoints[0], _mapPoints[_mapPoints.length - 1], _waypoints);
+        }
+        else if (_mapPoints.length == 2) //Waypoints will be come.
+        {
+            drawRoutes(_mapPoints[0], _mapPoints[1], _waypoints);
+        }
+
+    }
+
+</script>
+
+
+

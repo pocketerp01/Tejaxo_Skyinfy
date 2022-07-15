@@ -1,0 +1,82 @@
+﻿.font_css
+{
+	font-family: Arial, Helvetica, sans-serif; font-weight: 700; color:#474646; font-size:12px;
+}
+.btnyes
+{
+	border: 1px solid #A1DCF2;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+	background-color:#157dec;color: #ffffff;
+	text-shadow: 0 -1px 1px #751d0c;
+	font-weight:bold;	
+}
+.btnyes:hover
+{
+	background-color:#1589ff;
+	position:relative;
+	cursor:pointer;
+}
+.btnno
+{
+	border: 1px solid #A1DCF2;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+	background-color:#e42217;color: #ffffff;
+	text-shadow: 0 -1px 1px #751d0c;
+	font-weight:bold;	
+}
+.btnno:hover
+{
+	background-color:#f62217;
+	position:relative;
+	cursor:pointer;
+}
+.rounded_corners
+        {
+            border: 1px solid #E91E63;
+            -webkit-border-radius: 30px;
+            -moz-border-radius: 30px;
+            overflow: hidden;
+            border-radius: 30px;
+        }
+        .rounded_corners td, .rounded_corners th
+        {
+            border: 1px solid #E91E63;
+            font-family: Roboto;
+            font-size: 10pt;
+        }
+        .rounded_corners table table td
+        {
+            border-style: none;
+        }
+.txtsrch
+{
+border-radius: 3px; 
+border: 1px solid #CCC; 
+} 
+ .txtsrch:focus { 
+outline-color: #54B4AD; 
+background-color:White;
+}
+.top-menu {width:518px; height:33px; margin:13px 0 0 0; padding:0; float:right; color:#000000;}
+
+.nav-top {width:517px; height:33px; margin:0; padding:0; float:right; background:url(../Images/bg.png) no-repeat;}
+.nav-top ul {list-style:none;}
+.nav-top ul li {display:inline;}
+.nav-top ul li a {
+height:27px; margin:0 0 0 15px; padding:9px 16px 0 14px; float:left; font-family:Arial; color:#000000; background:none; text-decoration:none; font-weight:bold;
+}
+.nav-top ul li a:hover {color:#ffffff; background:url(../Images/lava1.gif) no-repeat;cursor:pointer;}
+
+.nav-top ul li a .new { margin:-9px 0 0 -10px; padding:7px 0 0 8px; color:#ffffff; background:url(../images/redbg.gif) no-repeat; float:left; height:33px;}
+.header-grey {width:100%; height:60px; margin:0; padding:0; background:#414246;}
+#header-inside-use{width:95%; height:60px; margin:0 auto; padding:0;}
+.dmrc-logo1 {width:275px; height:73px; margin:-26px 0 0 0; padding:0; float:left; background:url(../Images/logo_left.gif) no-repeat}
+.logo-top {margin:0 0 0 14px; padding:0; width:230px; height:43px; float:left;}
+.pan {height:27px; margin:0 0 0 15px; padding: 9px 0 0 5px; float:left; font-family:Arial; color:#000000; background:none; text-decoration:none; font-weight:bold;}
+.pan:hover {color:#ffffff; background:url(../Images/lava1.gif) no-repeat; cursor:pointer;}

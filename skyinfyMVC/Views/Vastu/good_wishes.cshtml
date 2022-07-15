@@ -1,0 +1,743 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+
+                    <h3>@Model[0].Col9</h3>
+                    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                </div>
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8">
+        <div class="row">
+
+            <div class='col-sm-2'>
+                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vfill formnovalidate id="btn_Fill" name="command" value="Fill Data" accesskey="F"><u>F</u>ill Data</button>
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsend formnovalidate id="btn_Send" name="command" value="Send" accesskey="S"><u>S</u>end</button>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-3'>
+                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="button" class="btn btn-primary form-control sa-button" id="btn_pre" name="command" value="Previous Message" onclick="call_filterfrm( 'inv rpt','@Model[0].Col14','@Model[0].Col15','Previous Message');" accesskey="P"><u>P</u>revious Message</button>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="submit" class="sa-btncancel form-control sa-button" id="btncancel" name="command" formnovalidate value="Cancel" accesskey="C"><u>C</u>ancel</button>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <label for="first-name">Mode of Communication <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddlsendd", @class = "select2 sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">From Date <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_fromdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date  sa-mandatory" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">To Date <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_todt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date  sa-mandatory" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3' id="div3" runat="server">
+                            <label for="first-name">Phone CC</label>
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+
+                                    @Html.TextBoxFor(model => model[0].Col30, new { @id = "Txt_Phone_cc", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Phone CC", onkeydown = "return isPhoneKey(event)" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">Type Of Account <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddlacc", @class = "select2 sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                    @Html.CheckBoxFor(model => model[0].Chk3, new { @id = "chk_acc", @class = "sa-input checkbox", onchange = "chk_control(this,'ddlacc');" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">Mail Subject Heading<span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.TextBoxFor(model => model[0].Col32, new { @id = "txt_sub", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Mail Subject Heading" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3' id="div1" runat="server">
+                            <label for="first-name">Mail CC</label>
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_CC", @class = "select2 sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-3">
+                            <label for="first-name">SMS Languange Type <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.RadioButtonFor(model => model[0].Col31, "1", new { @id = "rdbe", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                    <b style="padding-top:12px"> English </b>
+
+                                    @Html.RadioButtonFor(model => model[0].Col31, "2", new { @id = "rdbl", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <b style="padding-top:12px"> Local(Ex.हिंदी) </b>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row" id="Emp">
+                        <div class='col-sm-6'>
+                            <label for="first-name" style="background-color:yellow">Choose Variables [account] , [person] , [mobile] , [email] eg. [account] <span class="ClientProfileLabelColor"></span></label>
+                            <br />
+                            <label for="first-name">Birthday Msg Text<span class="ClientProfileLabelColor"></span></label>
+
+                            <span class="input-group-addon formclass"></span>
+                            <label id="lbl_count_text" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.TextAreaFor(model => model[0].Col26, new { @id = "txt_rmk", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @cols = 80, @Rows = 2 })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                            <label id="lbl_full_msg" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                        </div>
+                        <div class='col-sm-6'>
+                            <label for="first-name" style="background-color:yellow">Choose Variables [account] , [person] , [mobile] , [email] eg. [account] <span class="ClientProfileLabelColor"></span></label>
+                            <br />
+                            <label for="first-name">Anniversary Msg Text<span class="ClientProfileLabelColor"></span></label>
+                            <span class="input-group-addon formclass"></span>
+                            <label id="lbl_count_text2" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.TextAreaFor(model => model[0].Col29, new { @id = "txt_rmk2", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @cols = 80, @Rows = 2 })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                            <label id="lbl_full_msg2" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+
+    <div style="overflow:scroll">
+        <div class="row" style="width:200%">
+            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row" id="Table0">
+                            <div class='col-sm-1'>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        @Html.CheckBoxFor(model => model[0].Chk4, new { @id = "cbSelectAll", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo1('#Table1', this);" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        S.No.
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class='col-sm-1'><label for="first-name">Org Name</label></div>
+                            <div class='col-sm-1'><label for="first-name">Contact Person</label></div>
+
+                            <div class='col-sm-1'><label for="first-name">Mobile No.</label></div>
+                            <div class='col-sm-1'><label for="first-name">Email Id</label></div>
+                            <div class='col-sm-1'>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="first-name">
+                                            DOB <span class="ClientProfileLabelColor"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @Html.CheckBoxFor(model => model[0].Chk5, new { @id = "cbSelectAll5", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo1('#Table1', this);" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class='col-sm-1'>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label for="first-name">
+                                            DOA<span class="ClientProfileLabelColor"></span>
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @Html.CheckBoxFor(model => model[0].Chk6, new { @id = "cbSelectAll6", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo1('#Table1', this);" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class='col-sm-2'><label for="first-name">Address</label></div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+        @*{*@
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+            @Html.HiddenFor(model => model[i].Col23, new { @id = "hf_new_fstr" })
+            @Html.HiddenFor(model => model[i].Col24, new { @id = "hf_prm" })
+            <div class="row" style="width:200%">
+                <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                    <div class="x_panel" style="padding:0px 17px!important">
+                        <div class="x_content">
+                            <div class="row" id="Table1">
+                                <div class='col-sm-1'>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class='input-group'>
+
+
+                                                    @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "cbSelect", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo2('#Table1', this);" })
+
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="first-name">@(i + 1)</label>
+                                            <div class="form-group has-success">
+                                                <div class='input-group'>
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col19, new { @id = "lbl_client", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col19, new { @id = "hf_client", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col20, new { @id = "lbl_client_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col33, new { @id = "lbl_ref_code", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col28, new { @id = "lbl_contact", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col28, new { @id = "lbl_contact", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col22, new { @id = "lbl_ph", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Position", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col22, new { @id = "lbl_client_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.DisplayFor(model => model[i].Col27, new { @id = "lbl_email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Position", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col27, new { @id = "lbl_email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Position", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class='col-sm-1'>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class='input-group'>
+
+                                                    @Html.DisplayFor(model => model[i].Col23, new { @id = "lbl_DOB", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Position", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class='input-group'>
+
+                                                    @*@Html.RadioButtonFor(model => model[i].Col24, "B", new { @id = "Rbt_F", @onclick = "Radio_Click(this)", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "First Half Absent" })*@
+                                                    @*@Html.CheckBoxFor(model => model[i].Chk2, new { @id = "cbSelect2", @onclick = "check_Click(this)", @class = "sa-input checkbox" })*@
+                                                    @Html.CheckBoxFor(model => model[i].Chk2, new { @id = "cbSelect2", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo2('#Table1', this);" })
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class='col-sm-1'>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class='input-group'>
+
+                                                    @Html.DisplayFor(model => model[i].Col25, new { @id = "lbl_DOA", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Position", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class='input-group'>
+
+                                                    @*@Html.RadioButtonFor(model => model[i].Col26, "W", new { @id = "Rbt_S", @onclick = "Radio_Click(this)", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "First Half Absent" })*@
+                                                    @*@Html.CheckBoxFor(model => model[i].Chk3, new { @id = "cbSelect3", @class = "sa-input checkbox" })*@
+                                                    @Html.CheckBoxFor(model => model[i].Chk3, new { @id = "cbSelect3", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo2('#Table1', this);" })
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col21, new { @id = "lbl_add", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Student Name", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+    @*}*@
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" formnovalidate style="visibility:hidden" class="btn btn-primary" />
+
+}
+<style>
+    #cbSelect {
+        margin-top: -5px;
+    }
+
+    #Table0 {
+        margin-top: -10px;
+    }
+
+    .smt {
+        height: 35px;
+    }
+
+    #cbSelectAll {
+        margin-top: -5px;
+    }
+</style>
+<script type="text/javascript">
+
+         $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+             $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+             $(".sa-select2-multiple").on("select2:select", function (evt) {
+
+                 var vall = $(this).val().join();
+
+                 hidebox(vall);
+             }).on('select2:unselect', function (e) {
+
+                 debugger
+                 var vall = $(this).val().join();
+                 hidebox(vall);
+
+             });
+             hidebox('-');
+
+    });
+
+
+    //function hidebox(vall) {
+
+    //    //debugger;
+    //    //if (vall.id == "btn_Fill") {
+    //    //    vall = $("#ddlsendd").val().join();
+    //    //    }
+    //    try {
+    //        if (vall == '-') { vall = $("#ddlsendd").val().join(); }
+    //    }
+    //    catch{ }
+    //    $("#Txt_Phone_cc").prop('disabled', false);
+    //    $("#txt_sub").prop('disabled', false);
+    //    $("#ddl_CC").prop('disabled', false);
+    //    if (!vall.toUpperCase().includes("SMS")) {
+    //        $("#Txt_Phone_cc").prop('disabled', true);
+    //    }
+    //    if (!vall.toUpperCase().includes("EMAIL")) {
+    //        $("#txt_sub").prop('disabled', true);
+    //        $("#ddl_CC").prop('disabled', true);
+    //        //$("#ddl_CC").parent().parent().parent().hide()
+    //    }
+    //}
+       function hidebox(vall) {
+        debugger
+        try {
+            if (vall == '-') { vall = $("#ddlsendd").val().join(); }
+        }
+        catch{ }
+        //$("#Txt_Phone_cc").prop('disabled', false);
+        //$("#txt_sub").prop('disabled', false);
+        //$("#ddl_CC").prop('disabled', false);
+        if (vall.toUpperCase().includes("EMAIL")) {
+            $("#Txt_Phone_cc").prop('disabled', true);
+        }
+        else if (vall.toUpperCase().includes("SMS")) {
+            $("#txt_sub").prop('disabled', true);
+            $("#ddl_CC").prop('disabled', true);
+        }
+        else if (vall.toUpperCase().includes("-")) {
+         $("#Txt_Phone_cc").prop('disabled', false);
+        $("#txt_sub").prop('disabled', false);
+        $("#ddl_CC").prop('disabled', false);
+        }
+    }
+    document.onkeyup = function (event) {
+
+
+        //debugger;
+
+        var totwrd = "140";
+        if ($("[id=rdbl]")[0].checked) {
+            totwrd = "55";
+        }
+        var msgno = "1";
+        var ctrl = event.target.id;
+
+        if (ctrl == "txt_rmk") {
+
+           
+
+            //var lbl_full_msg = $("[id*=lbl_full_msg]")[0];
+           
+
+            //lbl_full_msg.innerText =  $(event.target)[0].value;
+            var count = $(event.target)[0].value.length ;
+            var lbl_count_text = $("[id*=lbl_count_text]")[0];
+
+            msgno = parseFloat(count) / parseFloat(totwrd);
+
+
+            msgno = Math.ceil(msgno);
+            if (msgno == "0") { msgno = "1"; }
+
+            lbl_count_text.innerText = "Body Text Count : " + count + " / " + totwrd + " = " + msgno + " Message";
+
+        }
+
+        if (ctrl == "txt_rmk2") {
+
+
+
+            //var lbl_full_msg = $("[id*=lbl_full_msg2]")[0];
+
+
+            //lbl_full_msg.innerText = $(event.target)[0].value;
+            var count = $(event.target)[0].value.length;
+            var lbl_count_text = $("[id*=lbl_count_text2]")[0];
+
+            msgno = parseFloat(count) / parseFloat(totwrd);
+
+
+            msgno = Math.ceil(msgno);
+            if (msgno == "0") { msgno = "1"; }
+
+            lbl_count_text.innerText = "Body Text Count : " + count + " / " + totwrd + " = " + msgno + " Message";
+
+        }
+
+
+       
+    }
+
+        function CheckUncheckChildNodesForFoo1(childContainer, checkbox) {
+
+            var checks = "";
+            var check = $(checkbox)[0].checked;
+            if (checkbox.id == "cbSelectAll") { checks = $("[type=checkbox][id=cbSelect]");}
+           else if (checkbox.id == "cbSelectAll5") { checks = $("[type=checkbox][id=cbSelect2]");}
+           else if (checkbox.id == "cbSelectAll6") { checks = $("[type=checkbox][id=cbSelect3]");}
+
+            var cnt = checks.length;
+            for (var i = 0; i < cnt; i++) {
+                var chk = "";
+                //chk = $(checks[i]).closest('tr').find("[id*=hd_chk]").val();
+                if (check) {
+
+                    if (chk == "") { checks.eq(i).prop('checked', true); }
+                }
+                else {
+                    if (chk == "") { checks.eq(i).prop('checked', false); }
+                }
+
+            }
+
+            if (check) {
+
+                if (checkbox.id == "cbSelectAll") { checks = $("[type=checkbox][id=cbSelect]"); }
+                else if (checkbox.id == "cbSelectAll5") { checks = $("[type=checkbox][id=cbSelect2]"); }
+                else if (checkbox.id == "cbSelectAll6") { checks = $("[type=checkbox][id=cbSelect3]"); }
+
+                $("[type=checkbox][id=cbSelectAll]").prop('checked', true);
+            }
+            else {
+                if (checkbox.id == "cbSelectAll") { $("[type=checkbox][id=cbSelectAll]").prop('checked', false);; }
+                else if (checkbox.id == "cbSelectAll5") { $("[type=checkbox][id=cbSelectAll]5").prop('checked', false);; }
+                else if (checkbox.id == "cbSelectAll6") { $("[type=checkbox][id=cbSelectAll]6").prop('checked', false);; }
+                //$("[type=checkbox][id=cbSelectAll]").prop('checked', false);
+            }
+
+        }
+
+        function CheckUncheckChildNodesForFoo2(childContainer, check, ctrl) {
+            //debugger
+
+            var checktype = 2;
+            if (checktype != 2) {
+
+                $("[type=checkbox][id=cbSelect]").prop('checked', false);
+                $(ctrl).prop("checked", check);
+                document.getElementsByName(ctrl.name)[0].checked = check;
+
+            }
+            else {
+
+                var seeklimit = '<%= Session["SEEKLIMIT"] %>';
+                var checkall = true;
+                document.getElementsByName(ctrl.name)[0].checked = check;
+                var childChkBoxes = $(childContainer)[0].getElementsByTagName("input")
+                var childChkBoxCount = childChkBoxes.length;
+                for (var i = 1; i < childChkBoxCount; i++) {
+                    if ($(childChkBoxes[i]).children.length > 0)
+                        checkall = $(childChkBoxes[i])[0].checked;
+                    else checkall = $(childChkBoxes[i]).checked;
+                    if (!checkall) break;
+                }
+                $("[type=checkbox][id=cbSelectAll]").prop('checked', checkall);
+
+            }
+
+
+    }
+
+    function callFoodemo(title, headid, mid, m_id, btnid) {
+        //debugger;
+
+        var urls = "";
+        if (title == "Date Filter") { urls = "/Production/date_filter"; }
+        else urls = "/Inventory/filter_inv";
+
+        $.ajax({
+            type: "GET",
+            url: urls,
+            data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+            success: function (pageContents) {
+                //debugger
+                $('#myModal').width('50%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+                hidewait();
+            },
+            error: function (err) {
+                //debugger
+                hidewait();
+            }
+        });
+    }
+    function call_filterfrm(headid, mid, m_id, btnid) {
+        //debugger
+        var title = "";
+        if (btnid == "Previous Message") { title = "Date Filter"; }
+        else title = "Date Filter";
+
+        callFoodemo(title, headid, mid, m_id, btnid);
+    }
+
+    function chk_control(myctrl, ddl) {
+
+        if (myctrl.checked) {
+
+
+
+            $("select[id$=" + ddl + "] option").prop("selected", "selected")
+            $("select[id$=" + ddl + "]").trigger("change");
+
+
+        }
+
+        else {
+
+            $("select[id$=" + ddl + "] option").removeAttr("selected");
+            $("select[id$=" + ddl + "]").trigger("change");
+
+        }
+
+
+    }
+</script>

@@ -1,0 +1,132 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid); Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+
+                    <div class="row">
+
+
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="call_filterfrm( 'inv rpt','@Model[0].Col14','@Model[0].Col15','Party Wise');" class="btn btn-success form-control sa-button" id="btn_pur" name="command" value="Party Wise" />
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="call_filterfrm( 'inv rpt','@Model[0].Col14','@Model[0].Col15','Invoice Wise');" class="btn btn-success form-control sa-button" id="btn_red" name="command" value="Invoice Wise" />
+                            </div>
+                        </div>
+
+                     
+
+
+
+                    </div>
+                 
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+           @Html.Raw(ViewBag.scripCall)
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+        @*function lead() { var data = show_Foo('Select User For Detail', 'USERLEAD', '1', '@viewName', '@controllerName'); }
+        function lead_asig() { var data = show_Foo('Select Lead', 'ASSIGNEDLEAD', '1', '@viewName', '@controllerName'); }*@
+        @*function closed_lead() { var data = show_Foo('Select Closed Lead ', 'CLOSEDLEAD', '1', '@viewName', '@controllerName'); }*@
+
+
+        function callFoodemo(title, headid, mid, m_id, btnid) {
+            //debugger;
+
+            var urls = "";
+            if (title == "Date Filter") { urls = "/Production/date_filter"; }
+            else urls = "/Inventory/filter_inv";
+
+            $.ajax({
+                type: "GET",
+                url: urls,
+                data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+                success: function (pageContents) {
+                    //debugger
+                    $('#myModal').width('50%');
+                    $('#myModalContent').html(pageContents);
+                    $('#myModalLabel')[0].innerText = title;
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                    hidewait();
+                },
+                error: function (err) {
+                    //debugger
+                    hidewait();
+                }
+            });
+        }
+        function call_filterfrm(headid, mid, m_id, btnid) {
+            //debugger
+            var title = "Date Filter";
+            //if (btnid == "Previous Message") { title = "Date Filter"; }
+            //else title = "Date Filter";
+
+            callFoodemo(title, headid, mid, m_id, btnid);
+        }
+
+
+</script>
+
+
+
+
+

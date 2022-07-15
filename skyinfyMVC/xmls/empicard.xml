@@ -1,0 +1,131 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EXTERNAL_EMPNO" type="xs:string" minOccurs="0" />
+                <xs:element name="OLD_EMPCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="DOB" type="xs:string" minOccurs="0" />
+                <xs:element name="DOJ" type="xs:string" minOccurs="0" />
+                <xs:element name="DOL" type="xs:string" minOccurs="0" />
+                <xs:element name="PER_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="PER_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPT" type="xs:string" minOccurs="0" />
+                <xs:element name="BLOOD_GRP" type="xs:string" minOccurs="0" />
+                <xs:element name="FILE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FILE_PATH" type="xs:string" minOccurs="0" />
+                <xs:element name="CONTENT_TYPE" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <EMP_CODE>GMC000035</EMP_CODE>
+    <EXTERNAL_EMPNO>003</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0022</OLD_EMPCODE>
+    <EMP_NAME>SANJAY KUMAR</EMP_NAME>
+    <DOB>01/07/1975</DOB>
+    <DOJ>01/04/2013</DOJ>
+    <DOL>01/01/1900</DOL>
+    <PER_ADDRESS>0</PER_ADDRESS>
+    <PER_PINCODE>0</PER_PINCODE>
+    <CONTACT_NO>8586926703</CONTACT_NO>
+    <EMAIL_ID>0</EMAIL_ID>
+    <DEPT>Production</DEPT>
+    <BLOOD_GRP>0</BLOOD_GRP>
+    <FILE_NAME>-</FILE_NAME>
+    <FILE_PATH>-</FILE_PATH>
+    <CONTENT_TYPE>-</CONTENT_TYPE>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Kesho Packaging Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDAGB NAGAR</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>09</COMPANY_STATE>
+    <COMPANY_CITY>Noida</COMPANY_CITY>
+    <COMPANY_PINCODE>201306</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>info@keshopackaging.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>keshopackaging.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1204152702</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1204152702</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>09AADCK1978R1ZN</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AADCK1978R</COM_PAN_NO>
+    <COMPANY_CIN_NO>U74950DL2007PTC168971</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>KESHO PACKAGING PVT. LTD.</UNIT_NAME>
+    <UNIT_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDA,GB NAGAR</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Uttar Pradesh</STATE_NAME>
+    <UNIT_STATE>09</UNIT_STATE>
+    <UNIT_CITY>Noida</UNIT_CITY>
+    <UNIT_PINCODE>201306</UNIT_PINCODE>
+    <UNIT_EMAIL>INFO@KESHOPACKAGING.COM</UNIT_EMAIL>
+    <UNIT_WEBSITE>WWW.KESHOPACKAGING.COM</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>1204152701</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>1204152702</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>09AADCK1978R1ZN</UNIT_GSTIN_NO>
+    <BANK_NAME>0</BANK_NAME>
+    <BANK_BRANCH>0</BANK_BRANCH>
+    <BANK_ACC>911020043295952</BANK_ACC>
+    <BANK_IFSC>0</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

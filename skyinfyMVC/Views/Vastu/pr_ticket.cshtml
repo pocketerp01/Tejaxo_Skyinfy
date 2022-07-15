@@ -1,0 +1,375 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+    string MyGuid = "";
+    MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    if (MyGuid == "") { MyGuid = Model[0].LTM1[0].Col15; }
+    Cmd_Fun cmd_fun = new Cmd_Fun(MyGuid);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clientid_mst = sgen.GetCookie(MyGuid, "clientid_mst");
+    string unitid_mst = sgen.GetCookie(MyGuid, "unitid_mst");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var issp = false;
+    var imgclosedisplay = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var path = "";
+    string sessionname = "tck_mom_u_" + userCode + "_" + unitid_mst + "";
+    DataTable tmp = cmd_fun.getsessiondt(userCode, sessionname, "select id,param1,param2,upper(param3) param3 ,name from controls where client_id='" + clientid_mst + "' and param5='CUSTOMER DETAIL' and  param3='ORGANISATION NAME' ");
+
+}
+<style>
+    a.cke_path_item, span.cke_path_empty {
+        color: #f8f8f8 !important;
+    }
+</style>
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+
+                    <h4 class="text-primary"><b>TICKET DETAIL</b></h4>
+                </div>
+
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+
+
+
+        <div class='col-sm-2'>
+            <div class="form-group">
+                <div class='input-group'>
+                    <input type="button" class="btn btn-success form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btn_save" onclick="updatedticket();" name="command" value=@Model[0].LTM1[0].Col13 />
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="clearfix"> </div>
+@Html.HiddenFor(model => model[0].LTM1[0].Col1, new { @id = "hf_clientid" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col2, new { @id = "hf_clientunitid" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col3, new { @id = "hf_entby" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col4, new { @id = "hf_entdate" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col5, new { @id = "hf_editby" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col6, new { @id = "hf_editdate" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col7, new { @id = "hf_recid" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col8, new { @id = "hf_url" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col9, new { @id = "hf_title" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col10, new { @id = "hf_tab_name" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col11, new { @id = "hf_where" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col12, new { @id = "hf_type" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col13, new { @id = "hf_btn_text" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col14, new { @id = "hf_mid" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col15, new { @id = "hf_m_id" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col16, new { @id = "hf_vch_num" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col56, new { @id = "hf_btnedit" })
+@Html.HiddenFor(model => model[0].LTM1[0].Col57, new { @id = "hf_btnview" })
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="clearfix"></div>
+            <div class="x_content">
+                <div class="row">
+
+                    <div class='col-sm-3'>
+                        <label for="first-name">
+                            Doc No.<span class="ClientProfileLabelColor"> </span>
+                        </label>
+                        <div class="form-group">
+                            <div class='input-group'>
+
+                                @Html.TextBoxFor(model => model[0].LTM1[0].Col16, new { @id = "Txt_doc", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                <span class="input-group-addon formclass"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <label for="first-name">
+                            Doc Date<span class="ClientProfileLabelColor"> *</span>
+                        </label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                @Html.TextBoxFor(model => model[0].LTM1[0].Col29, new { @id = "doc_dt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory" })
+                                <span class="input-group-addon formclass"></span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <label for="first-name">
+                            <label for="first-name">Email Send</label>
+                            <span class="ClientProfileLabelColor"></span>
+                        </label>
+                        <div class="form-group">
+                            <div class='input-group demo2'>
+                                @Html.CheckBoxFor(model => model[0].LTM1[0].Chk2, new { @id = "chk_email", @class = "sa-input checkbox " })
+                                <span class="input-group-formclass" id="spn_add"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="row" id="cnt">
+
+
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                @tmp.Select("param3='ORGANISATION NAME'")[0]["name"].ToString()
+
+                                <span class="ClientProfileLabelColor"></span>
+
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.TextBoxFor(model => model[0].LTM1[0].Col24, new { @id = "Txt_accna", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Contact<span class="ClientProfileLabelColor">  *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.HiddenFor(model => model[0].LTM1[0].Col17, new { @id = "hf_ctid" })
+                                    @Html.HiddenFor(model => model[0].LTM1[0].Col18, new { @id = "hf_accc" })
+                                    @Html.TextBoxFor(model => model[0].LTM1[0].Col19, new { @id = "Txt_Cust", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Contact" id="spn_add" onclick="CONTACT();"><i class="fa fa-search"></i></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Email Id<span class="ClientProfileLabelColor">  *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.HiddenFor(model => model[0].LTM1[0].Col22, new { @id = "hf_email" })
+                                    @Html.TextBoxFor(model => model[0].LTM1[0].Col22, new { @id = "Txt_email", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Mobile No.<span class="ClientProfileLabelColor">  *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.TextBoxFor(model => model[0].LTM1[0].Col23, new { @id = "Txt_ph", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Ticket Source<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems8, new MultiSelectList(Model[0].LTM1[0].TList8, "Value", "Text", Model[0].LTM1[0].SelectedItems8), new { @id = "ddl_src", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Ticket Type<span class="ClientProfileLabelColor"> *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems1, new MultiSelectList(Model[0].LTM1[0].TList1, "Value", "Text", Model[0].LTM1[0].SelectedItems1), new { @id = "ddl_type", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Status<span class="ClientProfileLabelColor"> *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems2, new MultiSelectList(Model[0].LTM1[0].TList2, "Value", "Text", Model[0].LTM1[0].SelectedItems2), new { @id = "ddl_status", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Priority<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems3, new MultiSelectList(Model[0].LTM1[0].TList3, "Value", "Text", Model[0].LTM1[0].SelectedItems3), new { @id = "ddl_pr", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Group<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems4, new MultiSelectList(Model[0].LTM1[0].TList4, "Value", "Text", Model[0].LTM1[0].SelectedItems4), new { @id = "ddl_grp", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Agent<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems5, new MultiSelectList(Model[0].LTM1[0].TList5, "Value", "Text", Model[0].LTM1[0].SelectedItems5), new { @id = "ddl_agt", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Subject<span class="ClientProfileLabelColor"> *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].LTM1[0].Col21, new { @id = "Txt_Cust", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                <label for="first-name">Linked With MOM</label>
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    @Html.CheckBoxFor(model => model[0].LTM1[0].Chk3, new { @id = "chk_mom", @class = "sa-input checkbox ", @onchange = "checkmom(this);" })
+                                    <span class="input-group-formclass" id="spn_add"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    
+                    <div class="row">
+                        <div class='col-sm-3' id="mom" style="display:none">
+                            <label for="first-name">
+                                MOM Detail<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM1[0].SelectedItems7, new MultiSelectList(Model[0].LTM1[0].TList7, "Value", "Text", Model[0].LTM1[0].SelectedItems7), new { @id = "ddl_mom", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%", onchange = "momchange()" })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-12'>
+                            <label for="first-name">Message <span class="ClientProfileLabelColor">*</span></label>
+                            <span class="input-group-addon formclass"></span>
+                            <label id="lbl_count_text" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <div ass="col-md-10">
+                                        @Html.TextAreaFor(model => model[0].LTM1[0].Col20, new { @id = "FullDescription", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @rows = "5" })
+                                        <script>
+                                            CKEDITOR.replace("FullDescription");
+                                        </script>
+                                    </div>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+<input type="submit" id="btn_mom" formnovalidate value="Mom" name="Command" title="mom" style="visibility:hidden" class="btn btn-primary" />
+
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+
+    });
+    function checkmom(ctrl) {
+        debugger;
+        if ($(ctrl)[0].checked == true) {
+
+            $("#mom").show();
+
+        }
+
+        else {
+
+            $("#mom").hide();
+
+
+        }
+
+    }
+     function CONTACT() { var data = show_Foo('Select Account', 'CONTACT', '1', '@viewName', '@controllerName'); }
+</script>

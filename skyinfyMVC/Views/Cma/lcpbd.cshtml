@@ -1,0 +1,222 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    /**/
+
+    /**/
+
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate onclick='newfun();' id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-warning form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-success form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+
+
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart /form-data" }))
+{
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+
+                    <div class="row">
+
+                        <div class='col-sm-6'>
+                            <div class="row">
+                                <table class="table-responsive-md table-active table-borderless">
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Doc No.
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = "true" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Select Client Name
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = "true" })
+                                                <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Account" id="spn_add"><i class="fa fa-search"></i></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>                                    
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Period Of Letter Of Credit To Be Issued ( Days )
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_Col18", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Eligibility Limit
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_Col18", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="row">
+                                <table class="table-responsive-md table-active table-borderless">
+
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Doc Date
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                New Client Name
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>  
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Projected Purchase Under LC During The Current Year
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                            
+
+
+
+                                </table>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+}

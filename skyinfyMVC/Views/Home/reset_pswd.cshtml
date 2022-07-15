@@ -1,0 +1,150 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    Cmd_Fun cmd_fun;
+    cmd_fun = new Cmd_Fun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+                    <h3 id="hd_title">@Model[0].Col9</h3>
+                </div>
+
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+</div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="form-gap"></div>
+
+            <div class="x_panel">
+                <div class="x_titlw">
+                    <div class="text-center">
+                        <h2><span class="glyphicon glyphicon-lock"></span></h2>
+                        <h2 class="text-center">Reset Password?</h2>
+                        <p style="color: #821392">You can reset your password here.</p>
+                        <div class="x_content">
+
+
+
+                            <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        User Id
+                                        <span class="ClientProfileLabelColor">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="lbl_user" runat="server" Text=""></asp:Label>
+                                        @*<asp:TextBox ID="txtuser" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="true" OnTextChanged="txtuser_TextChanged1" ReadOnly="true" BackColor="#f5f5f5"></asp:TextBox>*@
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txtuser", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Current Password
+                                        <span class="ClientProfileLabelColor">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @*<asp:TextBox ID="cur_pasword" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>*@
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "cur_pasword", @type = "password",  @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", autocomplete = "off" })
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        New Password
+                                        <span class="ClientProfileLabelColor">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @*<asp:TextBox ID="new_pasword" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>*@
+                                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "new_pasword", @type = "password", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+
+
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                        Confirm Password
+                                        <span class="ClientProfileLabelColor">*</span>
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                      
+                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "con_pasword", @type = "password", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+
+                                        @*<asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="new_pasword" ControlToValidate="con_pasword" ErrorMessage="Pasword do not match" ForeColor="#FF5050" Display="Dynamic"></asp:CompareValidator>*@
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                        @*<asp:Button ID="reset" runat="server" BorderStyle="Solid" CssClass="btn-primary" Text="Reset" Width="90px" OnClick="reset_Click" />*@
+                                        <input type="submit" class="btn btn-primary sa-button" style="border-radius: 10px!important;" id="reset" name="command" value="Submit" accesskey="S" />
+
+
+                                        <br />
+                                        <b style="color:red">
+                                            @Html.DisplayFor(model => model[0].Col21, new { @id = "lbl_msg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        </b>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+    <script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+      
+    });
+
+    
+    </script>
+
+   

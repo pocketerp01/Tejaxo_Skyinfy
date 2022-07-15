@@ -1,0 +1,383 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string mandatory = "sa-mandatory";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(m => m[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(m => m[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(m => m[0].Col62, new { @id = "hf_ex_dt" })
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(m => m[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" onclick="setTableDatat();" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vupload id="btnupd" onclick="setTableDatat();" name="command" value="Upload" accesskey="E" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" onclick="setTableDatat();" name="command" value="Save" accesskey="S" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class=" form-control sa-button sa-btncancel" id="btncancel" value="Cancel" accesskey="C" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">Upload Type </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <b>New </b>
+                                    @Html.RadioButtonFor(m => m[0].Col17, "001", new { @id = "rd_new", @checked = "true", @class = "sa-input radio myclass" })
+                                    <b>Modify </b>
+                                    @Html.RadioButtonFor(m => m[0].Col17, "002", new { @id = "rd_mod", @class = "sa-input radio myclass" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">Table Name</label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_tbl", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Table Name" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">Upload File</label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <img id="imgupd1" src="../../images/file-upload-button.png" onclick="imgclick(this);" style="max-width: 120px" />
+                                    @Html.TextBoxFor(m => m[0].File1, new { style = "visibility: hidden; height: 0; width: 0", type = "file", name = "upd1", multiple = "multiple", accept = ".xls,.xlsx", onchange = "fileselected(this);" })
+                                    <span ClientIDMode="Static" onclick="imgclick(this);" ID="spanupd1">@Model[0].Col40</span>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <style>
+                            .grid-container {
+                                display: grid; /* This is a (hacky) way to make the .grid element size to fit its content */
+                                overflow: auto;
+                                height: 300px;
+                                /*width: 600px;*/
+                            }
+
+                            .grid {
+                                display: flex;
+                                flex-wrap: nowrap;
+                            }
+
+                            .grid-col {
+                                width: 100px;
+                                min-width: 100px;
+                            }
+
+                            .grid-item--header {
+                                height: 35px;
+                                min-height: 35px;
+                                z-index: 1;
+                                position: sticky;
+                                position: -webkit-sticky;
+                                top: 0;
+                                text-transform: uppercase;
+                                font-size: 12px;
+                                /*font-weight: bold;*/
+                                color: #ECF0F1;
+                                background: rgba(52,73,94,.94);
+                            }
+
+                            .grid-col--fixed-left {
+                                position: sticky;
+                                left: 0;
+                                z-index: 2;
+                                background: white;
+                            }
+
+                            .grid-col--fixed-right {
+                                position: sticky;
+                                right: 0;
+                                z-index: 9998;
+                                background: white;
+                            }
+
+                            .grid-item {
+                                height: 35px;
+                                border: 1px solid gray;
+                                /*color: #999;*/
+                                border: 1px solid #eee;
+                                padding-left: 5px;
+                                border-collapse: collapse;
+                                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif";
+                            }
+
+                            .grid-container::-webkit-scrollbar-thumb {
+                                background: #555;
+                                border: 0px none #ffffff;
+                                border-radius: 50px;
+                            }
+
+                                .grid-container::-webkit-scrollbar-thumb:hover {
+                                    background: #ffffff;
+                                }
+
+                                .grid-container::-webkit-scrollbar-thumb:active {
+                                    background: #555;
+                                }
+
+                            .grid-container::-webkit-scrollbar-track {
+                                background: #ffffff;
+                            }
+
+                            .grid-container::-webkit-scrollbar-corner {
+                                background: #ffffff;
+                            }
+
+                            .datepicker.dropdown-menu {
+                                z-index: 99999 !important
+                            }
+
+                            .bootstrap-datetimepicker-widget.dropdown-menu {
+                                overflow: visible;
+                                height: 100%;
+                            }
+                            /*.grid-item:hover {
+                                background: #4E5066;
+                                color: #FFFFFF;
+                                border-top: 1px solid #22262e;
+                            }*/
+                        </style>
+                        @if (Model.Count < 1)
+                        { }
+                        else
+                        {
+                            for (int i = 0; i < Model.Count; i++)
+                            {
+                                DataTable dtm = Model[i].dt1;
+                                if (dtm != null)
+                                {
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="x_panel" style="padding: 3px 15px !important">
+                                        <div class="x_content">
+                                            <div class="row">
+                                                <div class="grid-container">
+                                                    <div class="grid">
+                                                        @try
+                                                        {
+                                                            foreach (DataColumn dc in dtm.Columns)
+                                                            {
+                                                                int mlength = 20;
+                                                                try
+                                                                {
+                                                                    mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                                                }
+                                                                catch (Exception err) { }
+                                                                int k = 0;
+
+                                                                if (dc.Ordinal == 0)
+                                                                {
+                                                                    <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:140px;z-index:10;left:0px;position:sticky;">
+                                                                        <div class="grid-item grid-item--header">
+                                                                            <p>@dc.ColumnName.ToString()</p>
+                                                                        </div>
+
+                                                                        @foreach (DataRow dr in dtm.Rows)
+                                                                        {
+                                                                            <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' data-sakeys="gloval" contenteditable="false">
+                                                                                @if (!dr[dc].ToString().Contains("-"))
+                                                                                {
+                                                                                    <label>@(k + 1) - </label>
+                                                                                }
+                                                                                @dr[dc].ToString()
+                                                                            </div>
+                                                                            k++;
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                                else if (dc.Ordinal == 1)
+                                                                {
+                                                                    <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:160px;z-index:10;left:140px">
+                                                                        <div class="grid-item grid-item--header">
+                                                                            <p>@dc.ColumnName.ToString()</p>
+                                                                        </div>
+                                                                        @foreach (DataRow dr in dtm.Rows)
+                                                                        {
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                                        <div class="grid-item grid-item--header">
+                                                                            <p>@dc.ColumnName.ToString()</p>
+                                                                        </div>
+                                                                        @foreach (DataRow dr in dtm.Rows)
+                                                                        {
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                        }
+                                                                    </div>
+                                                                }
+                                                            }
+                                                        }
+                                                        catch (Exception err)
+                                                        {
+
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="hftable" id="hftable" />
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        @Html.Raw(ViewBag.scripCall)
+    });
+    function setTableDatat() {
+        try {
+
+            datatable = new Array();
+            var heads = $("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $("[id=row_" + r + "]");
+                var arr = new Array();
+                for (var h = 0; h < heads.length; h++) {
+                    var obj = {};
+                    obj[heads[h].children[0].innerText] = row[h].innerText;
+                    arr.push(obj);
+                }
+                datatable.push(arr);
+            }
+        }
+        catch (err) { alert(err); return; }
+        $("#hftable").val(JSON.stringify(datatable));
+        //PageMethods.settable(datatable);
+
+
+    }
+    function sethfval(val) {
+
+        $("#hfrow").val(val);
+        setTableDatat();
+    }
+
+    function fileselected(ctrl) {
+        //debugger
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 55) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 24 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            switch (ext) {
+                case 'xls':
+                case 'xlsx':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only xls,xlsx file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+            var filesize = file.size / 1024 / 1024;
+            if (filesize < 10) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 10mb';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+    }
+    function imgclick(ctrl) { $(ctrl).closest('div').find("input[type=file]").click(); }
+</script>

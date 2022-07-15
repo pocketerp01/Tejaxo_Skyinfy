@@ -1,0 +1,227 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CONTR" type="xs:string" minOccurs="0" />
+                <xs:element name="SALARY_YR" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="NETPAY" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ESI_ON_OT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTALOT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ARR" type="xs:double" minOccurs="0" />
+                <xs:element name="OT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OT_MST" type="xs:double" minOccurs="0" />
+                <xs:element name="OT_HRS" type="xs:float" minOccurs="0" />
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="F_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EXTERNAL_EMPNO" type="xs:string" minOccurs="0" />
+                <xs:element name="OLD_EMPCODE" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>5418</NETPAY>
+    <ESI_ON_OT>41</ESI_ON_OT>
+    <TOTALOT>5459</TOTALOT>
+    <ARR>0</ARR>
+    <OT>5459</OT>
+    <OT_MST>13300</OT_MST>
+    <OT_HRS>49.25</OT_HRS>
+    <NAME>VIVEK YADAV</NAME>
+    <F_NAME>SH SHYAM SINGH</F_NAME>
+    <EMP_CODE>GMC007561</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>28</OLD_EMPCODE>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>2142</NETPAY>
+    <ESI_ON_OT>16</ESI_ON_OT>
+    <TOTALOT>2158</TOTALOT>
+    <ARR>0</ARR>
+    <OT>2158</OT>
+    <OT_MST>10570</OT_MST>
+    <OT_HRS>24.5</OT_HRS>
+    <NAME>MUNEER KHAN</NAME>
+    <F_NAME>MD. KABUL KHAN</F_NAME>
+    <EMP_CODE>GMC007539</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>6</OLD_EMPCODE>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>3674</NETPAY>
+    <ESI_ON_OT>28</ESI_ON_OT>
+    <TOTALOT>3702</TOTALOT>
+    <ARR>0</ARR>
+    <OT>3702</OT>
+    <OT_MST>11392</OT_MST>
+    <OT_HRS>39</OT_HRS>
+    <NAME>SONU KUMAR</NAME>
+    <F_NAME>SH MUNSI RAM</F_NAME>
+    <EMP_CODE>GMC007545</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>12</OLD_EMPCODE>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>5201</NETPAY>
+    <ESI_ON_OT>39</ESI_ON_OT>
+    <TOTALOT>5240</TOTALOT>
+    <ARR>0</ARR>
+    <OT>5240</OT>
+    <OT_MST>10350</OT_MST>
+    <OT_HRS>60.75</OT_HRS>
+    <NAME>TEJPAL</NAME>
+    <F_NAME>SH GHAN SHYAM</F_NAME>
+    <EMP_CODE>GMC007544</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>11</OLD_EMPCODE>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>4845</NETPAY>
+    <ESI_ON_OT>37</ESI_ON_OT>
+    <TOTALOT>4882</TOTALOT>
+    <ARR>0</ARR>
+    <OT>4882</OT>
+    <OT_MST>10100</OT_MST>
+    <OT_HRS>58</OT_HRS>
+    <NAME>MAKHAN LAL</NAME>
+    <F_NAME>SH VISHAL SINGH</F_NAME>
+    <EMP_CODE>GMC007542</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>9</OLD_EMPCODE>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>827</NETPAY>
+    <ESI_ON_OT>6</ESI_ON_OT>
+    <TOTALOT>833</TOTALOT>
+    <ARR>0</ARR>
+    <OT>833</OT>
+    <OT_MST>11100</OT_MST>
+    <OT_HRS>9</OT_HRS>
+    <NAME>DILIP</NAME>
+    <F_NAME>SH RAM PAL</F_NAME>
+    <EMP_CODE>GMC007582</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>49</OLD_EMPCODE>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <SALARY_YR>2020</SALARY_YR>
+    <MONTH_NAME>september</MONTH_NAME>
+    <NETPAY>1648</NETPAY>
+    <ESI_ON_OT>12</ESI_ON_OT>
+    <TOTALOT>1660</TOTALOT>
+    <ARR>0</ARR>
+    <OT>1660</OT>
+    <OT_MST>10350</OT_MST>
+    <OT_HRS>19.25</OT_HRS>
+    <NAME>LALITA PRASAD</NAME>
+    <F_NAME>SH DEVINDER KUMAR</F_NAME>
+    <EMP_CODE>GMC007538</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>5</OLD_EMPCODE>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Gloval Management Consultants Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>B 331,332,Third floor ,Nehru Ground,Oppsite PNB Bank</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>06</COMPANY_STATE>
+    <COMPANY_CITY>Faridabad</COMPANY_CITY>
+    <COMPANY_PINCODE>121003</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>abc@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>abc.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1234567890</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1234567890</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>29ABCDE1234F2Z5</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AAAAA9999A</COM_PAN_NO>
+    <COMPANY_CIN_NO>U12345MH2014PTC123707</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>UNITED CORES  PVT. LTD.</UNIT_NAME>
+    <UNIT_ADDRESS>PLOT NO 215 ,SECTOR 58, FARIDABAD</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>FARIDABAD</UNIT_CITY>
+    <UNIT_PINCODE>0</UNIT_PINCODE>
+    <UNIT_EMAIL>0</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>0</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>0</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>Deployed At</SEPTR>
+    <UNIT_GSTIN_NO>0</UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

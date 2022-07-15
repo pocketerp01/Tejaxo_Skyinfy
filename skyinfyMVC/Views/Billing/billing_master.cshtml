@@ -1,0 +1,478 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    // string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(Model[0].Col20);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(Model[0].Col20, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col20, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col20, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons +=
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col20), @mid = EncryptDecrypt.Encrypt(Model[0].Col10) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <style type="text/css">
+        .myclass {
+            vertical-align: initial;
+            min-height: 0px;
+            margin: 0px
+        }
+    </style>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                @Html.Raw(buttons)
+                @if (ViewBag.showextend == "Y")
+                {
+                    <div class='col-sm-2'>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" class="btn btn-primary form-control sa-button" onclick="extfun();" id="btnext" name="command" value="Extend" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "lbl_entby" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "lbl_entdt" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_tbl" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "lbl_client_id" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "lbl_client_unit_id" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "lbl_url" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "lbl_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_heading" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col18, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col20, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col21, new { @id = "lbl_vch_num" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <div id="demo-form2" class="form-horizontal">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Doc No.</label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            @Html.TextBoxFor(model => model[i].Col11, new { @id = "txt_vchnum", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" id="lbl_headname">@Model[i].Col14 <span class="ClientProfileLabelColor">*</span></label>
+                                        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_headname" })
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            @Html.TextBoxFor(model => model[i].Col15, new { @id = "txt_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Enter Name", @MaxLength = "10" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Description <span class="ClientProfileLabelColor">*</span></label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_descrp", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Description" })
+                                        </div>
+                                    </div>
+                                    @if (Model[i].Col10.Equals("21001.2") || Model[i].Col10.Equals("17001.2") || Model[i].Col10.Equals("28004.6") || Model[i].Col10.Equals("41005.6"))
+                                    {
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">GST Rate (IGST)</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col12, new { @id = "txt_gstrate", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "GST Rate (IGST)", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk_gst", @class = "myclass sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name"></label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12"></div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col35, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">GST Cess</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_cessrate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "GST Cess", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk2, new { @id = "chk_cess", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Show</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk7, new { @id = "chk_sess", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">BCD Rate</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_bcdrate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "BCD Rate", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk3, new { @id = "chk_bcd", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name"></label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12"></div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col37, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Social Welfare Surcharge</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_swfrate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Social Welfare Surcharge", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk4, new { @id = "chk_sws", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Show</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk9, new { @id = "chk_sservice", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col38, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Anti-dumping Duty</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_antdump", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Anti-dumping Duty", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk5, new { @id = "chk_antdump", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Show</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk10, new { @id = "chk_antdmp", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col39, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Safeguard Duty</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_sfdty", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Safeguard Duty", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk6, new { @id = "chk_sfgd", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Show</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk11, new { @id = "chk_sduty", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col40, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">TCS Under GST</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_tcsgdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "TCS Under GST", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk8, new { @id = "chk_sfgd", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Show</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk13, new { @id = "chk_sduty", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col41, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group" id="div_gstrate">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">TCS Under IT</label>
+                                            <div class="col-md-3 col-sm-3 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_tcsit", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "TCS Under IT", onblur = "per(this);" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Editable</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk14, new { @id = "chk_sfgd", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <label class="control-label col-md-1 col-sm-1 col-xs-12" for="first-name">Show</label>
+                                            <div class="col-md-1 col-sm-1 col-xs-12">
+                                                @Html.CheckBoxFor(model => model[i].Chk15, new { @id = "chk_sduty", @class = "sa-input checkbox" })
+                                            </div>
+
+                                            <div class="col-md-2 col-sm-2 col-xs-12">
+                                                @Html.TextBoxFor(model => model[i].Col42, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date ", placeholder = "Effective Date", })
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status <span class="ClientProfileLabelColor"></span></label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            <b style="padding-top:12px">Active</b>
+                                            @Html.RadioButtonFor(model => model[i].Col17, "Active", new { @id = "active", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                            <b style="padding-top:12px">Inactive</b>
+                                            @Html.RadioButtonFor(model => model[i].Col17, "Inactive", new { @id = "Inactive", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Default </label>
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                            @Html.CheckBoxFor(model => model[i].Chk12, new { @id = "chk_df", @class = "sa-input checkbox" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <h4>BULK HSN CODE UPLOAD</h4>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class='col-sm-3' id="div_temp">
+                                <label for="first-name">Download Template </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <a id="potemp" style="cursor:pointer" onclick="hsntemp(event);">Template</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3' id="div_upd">
+                                <label for="first-name">Upload File</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <img id="imgupd1" src="../../images/file-upload-button.png" onclick="imgclick(this);" style="max-width: 120px" />
+                                        <input id="upd1" runat="server" onchange="fileselected(this);" style="visibility: hidden; height: 0; width: 0" multiple="multiple" name="upd1" type="file" />
+                                        <span onclick="imgclick(this);" ID="spanupd1"></span>
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <label></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input type="submit" class="btn btn-primary form-control sa-button" id="btnimport" @ViewBag.vimport formnovalidate name="command" value="Import" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function extfun() { var data = show_Foo('Extend To Unit', 'EXT', '2', '@viewName', '@controllerName'); }
+
+    function per(ctrl) {
+
+        var txt = ctrl;
+        if (txt.value.length > 0) {
+            if (!txt.value.endsWith('%')) {
+                if (txt.value > 100) {
+                    showmsgJS(1, "Percentage cannot greater than 100 ", 2);
+                    txt.value = "";
+                    return false;
+                }
+                txt.value = txt.value + "%";
+            }
+            else {
+                if (txt.value.endsWith('%')) {
+                    var a = txt.value.split('%')[0];
+                    if (a > 100) {
+                        showmsgJS(1, "Percentage cannot greater than 100 ", 2);
+                        txt.value = "";
+                        return false;
+                    }
+                    txt.value = txt.value
+                }
+            }
+        }
+        else { txt.value = "0" + "%" }
+    }
+    function fileselected(ctrl) {
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 40) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 38 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            switch (ext) {
+                case 'csv':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only xls,xlsx file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+            var filesize = file.size / 1024;
+            if (filesize < 100) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 100Kb';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+    }
+    function imgclick(ctrl) {
+        $(ctrl).closest('div').find("input[type=file]").click();
+    }
+    function hsntemp(evt) {
+        debugger;
+          evt.preventDefault();
+        var $form = $("#hsntemp");
+
+          $.ajax({
+              type: "POST",
+              url: "/Billing/SetSession",
+              data: $form.serialize() + "&Name=model&Myguid=@Model[0].Col20",
+              dataType: "json",
+              traditional: true,
+              success: function (response) {
+                  window.location.href = "@Url.RouteUrl(new { Controller = "Billing", Action = "hsntemp",m_id=Model[0].Col20 })";
+              },
+              error: function (err) {
+                   window.location.href = "@Url.RouteUrl(new { Controller = "Billing", Action = "hsntemp",m_id= Model[0].Col20 })";
+              }
+          });
+    }
+
+</script>
+

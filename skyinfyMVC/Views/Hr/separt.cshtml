@@ -1,0 +1,436 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    string clr = "";
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid); string mandatory = "sa-mandatory";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="first-name">
+                                Doc No.<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "vch_num", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Doc No." })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">
+                                Separation Submit Date<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "doc_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", data_placeholder = "Separation Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Employee Name
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "empname", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    @Html.HiddenFor(model => model[0].Col19, new { @id = "empname" })
+
+                                    @if (Model[0].Col14 == "8006.4")
+                                    {
+                                        <span class="input-group-addon formclass"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" clientidmode="static" id="emp_det" onclick="EMP(this);"><i class="fa fa-search"></i></span>
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Department
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "dept", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Designation
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col21, new { @id = "desig", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Date Of Joining
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col30, new { @id = "notice_period", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = "true" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Notice Period Req. Days
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col22, new { @id = "col22", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = "true" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Length Of Service
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col27, new { @id = "length", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = "true" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Notice Period Served Days
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col28, new { @id = "col28", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeypress = "return isNumberKey(event)", @onkeyup = "return txtchange();" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Notice Period Short Fall Days
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col29, new { @id = "col29", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = "true" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Last Working Date
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col23, new { @id = "lw_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">
+                                Reason<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_md", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                Purposed Last Working Date
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col24, new { @id = "plastdate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-8'>
+                            <label for="first-name">
+                                Remark
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].Col25, new { @id = "remk", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3>ASSETS WITH ME</h3>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+            <div style="overflow:scroll">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                                <div class="x_content">
+                                    <div class="row">
+                                        <div class='col-sm-1'> <label>S.No.</label> </div>
+                                        <div class='col-sm-2'> <label>Asset Serial No.</label> </div>
+                                        <div class='col-sm-4'> <label>Asset Name</label> </div>
+                                        <div class='col-sm-2'> <label>Expected Value</label> </div>
+                                        <div class='col-sm-3'> <label>Expected Return Date</label> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+                    @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+                    @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+                    @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+                    @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+                    @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+                    @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+                    @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+                    @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+                    @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+                    @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+                    @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+                    @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+                    @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+                    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+                    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+                    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+                    @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+                    @Html.HiddenFor(model => model[0].Col28, new { @id = "hf_pername" })
+                    @Html.HiddenFor(model => model[0].Col36, new { @id = "hf_status" })
+                    if ((Model[i].Col31 != null) && (Model[i].Col31 != "") && (Model[i].Col31 != "0"))
+                    {
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important; @clr">
+                                    <div class="x_content">
+
+                                        <div id="Atten_@i" class="row table-responsive">
+
+                                            <div class='col-sm-1'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        <label for="first-name">@(i + 1)</label>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.HiddenFor(model => model[i].Col31, new { @id = "asset_no" })
+                                                        @Html.DisplayFor(model => model[i].Col32, new { @id = "asset_sr_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col33, new { @id = "asset_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <div class=" clearfix"></div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col34, new { @id = "asset_value", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <div class=" clearfix"></div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col35, new { @id = "return_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        <div class=" clearfix"></div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="clearfix"></div>
+    {
+
+        
+
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        txtchange();
+
+    });
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+     function EMP() { var data = show_Foo('Select Employee', 'EMPDETAIL', '1', '@viewName', '@controllerName'); }
+
+    function txtchange()
+    {
+        debugger;
+        var req = $("[id*=col28]").val();
+        var col22 = $("[id*=col22]").val();
+
+
+        var shrtfall = parseFloat(col22) - parseFloat(req);
+        if (isNaN(parseFloat(shrtfall))) shrtfall = 0;
+        $("[id*=col29]").val(shrtfall);
+
+
+    }
+
+</script>

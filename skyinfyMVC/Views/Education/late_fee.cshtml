@@ -1,0 +1,279 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid); string mandatory = "sa-mandatory";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row" style="padding-bottom:40px">
+                        <div class='col-sm-3'>
+                            <label for="first-name">Late Fine Setting <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.RadioButtonFor(model => model[0].Col18, "1", new { @id = "Rdb_Slab", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                    <label for="first-name" style="padding:6px">Slab Wise</label>
+                                    @Html.RadioButtonFor(model => model[0].Col18, "0", new { @id = "Rdb_Flat", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                    <label for="first-name" style="padding:6px">Flat Wise</label>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Doc No.<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "vch_num", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Doc Date<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "Txt_Date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "Doc Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Class<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "Ddl_Class", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>     
+                    @for (int k = 0; k < Model[0].LTM1.Count; k++)
+                    {
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.HiddenFor(m => m[0].LTM1[k].Col1)
+                            <div class="x_panel" style="padding: 3px 15px !important">
+                                <div class="x_title" style="padding: 0px !important">
+                                    <!-- tools box -->
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <button type="submit" class="fa fa-plus" style="border:hidden" onclick="sethfval('@k');"  formnovalidate id="btnadd" name="command" data-toggle="tooltip" value="Add"  title="Add More"></button>
+                                            @*<input name="command" onclick="sethfval('@k');" type="submit" value="Add" class="fa fa-plus" formnovalidate data-toggle="tooltip" title="Add More" />*@
+                                        </li>
+                                        @*<li>
+                                            <button type="button" class="fa fa-chevron-up" style="border:hidden" onclick="hide(this,'@k');" id="btnhide" name="command" data-toggle="tooltip" value="Hide" title="Hide"></button>
+                                        </li>*@
+                                        <li>
+                                            <button type="submit" class="fa fa-close" style="border:hidden" onclick="sethfval('@k');" formnovalidate id="btnrem" name="command" data-toggle="tooltip" value="Remove" title="Remove"></button>
+                                            @*<input name="command" onclick="sethfval('@k');" type="submit" value="Remove" class="fa fa-close" formnovalidate data-toggle="tooltip" title="Remove" />*@
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix" id="diclear"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="row">
+                                        <div class='col-sm-3'>
+                                            <label for="first-name">Slab No <span class="ClientProfileLabelColor">*</span></label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM1[k].Col1, new { @id = "lbl_Slab", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Slab No", onkeydown = "return false;" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-3'>
+                                            <label for="first-name">Days <span class="ClientProfileLabelColor"></span></label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM1[k].Col18, new { @id = "txt_Days", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Days", onkeypress = "return isNumberKey(event)" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-3'>
+                                            <label for="first-name">Fine Amount (Per Day)  <span class="ClientProfileLabelColor"></span></label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM1[k].Col19, new { @id = "txt_amount", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Fine Amount (Per Day)", onkeypress = "return isNumberKey(event)" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-3' id="Id_Wave">
+                                            <label for="first-name">Wave off Amount(Per Day)  <span class="ClientProfileLabelColor"></span></label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM1[k].Col20, new { @id = "Txt_waveoff", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Wave off Amount (Per Day)", onkeypress = "return isNumberKey(event)", onkeyup = "return Txtchnge(this);" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    {
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+    }
+
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        myprog();
+    });
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function PARTY() { var data = show_Foo('Select Party', 'PARTY', '1', '@viewName', '@controllerName'); }
+
+    function Txtchnge(myctrl) {
+        //debugger;
+        var txt_amount = $(myctrl).parent().parent().parent().parent().find("input[id*=txt_amount]")[0].value;
+
+        var Txt_waveoff = $(myctrl).parent().parent().parent().parent().find("input[id*=Txt_waveoff]")[0].value;
+
+        if (parseFloat(txt_amount) < parseFloat(Txt_waveoff)) {
+            myctrl.value = txt_amount;
+            alert('Fine Waive Off  Cant Be Greater Than Fine Amount');
+            return;
+        }
+
+    }
+    function sethfval(val) { $("#hfrow").val(val); }
+    function hide(ctrl, vl) {
+        debugger;
+        vl = parseFloat(vl);
+        if (ctrl.children[vl].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[vl]).removeClass('fa-chevron-up');
+            $(ctrl.children[vl]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+        }
+        else {
+            $(ctrl.children[vl]).removeClass('fa-chevron-down');
+            $(ctrl.children[vl]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function myprog() {
+        var acode = $("#hf_mid")[0].value;
+        if (acode != "7002.19") {
+            $('[id *= Id_Wave]').hide();
+        }
+    }
+</script>

@@ -1,0 +1,2675 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FATHERS_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EXTERNAL_EMPNO" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPT" type="xs:string" minOccurs="0" />
+                <xs:element name="DESIG" type="xs:string" minOccurs="0" />
+                <xs:element name="EMPTYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="EMPCATEGORY" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="TOTAL_SALARY" type="xs:double" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <NAME>SURESH  </NAME>
+    <FATHERS_NAME>BHOLA</FATHERS_NAME>
+    <EMP_CODE>GMC000115</EMP_CODE>
+    <EXTERNAL_EMPNO>000149</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6830</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SAURABH  </NAME>
+    <FATHERS_NAME>RADHEY SHYAM</FATHERS_NAME>
+    <EMP_CODE>GMC000122</EMP_CODE>
+    <EXTERNAL_EMPNO>000310</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>12190</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MAMTA GUPTA  </NAME>
+    <FATHERS_NAME>SH. VINOD GUPTA</FATHERS_NAME>
+    <EMP_CODE>GMC000005</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Office</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>50000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>LOKESH KUMAR  </NAME>
+    <FATHERS_NAME>SH. MOHAN LAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000009</EMP_CODE>
+    <EXTERNAL_EMPNO>0057</EXTERNAL_EMPNO>
+    <DEPT>Purchase</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>20842</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KRISHNA KUMAR  </NAME>
+    <FATHERS_NAME>CHANDRAMA PRASAD</FATHERS_NAME>
+    <EMP_CODE>GMC000130</EMP_CODE>
+    <EXTERNAL_EMPNO>000295</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHIVAM  </NAME>
+    <FATHERS_NAME>SH. RAJESH KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000135</EMP_CODE>
+    <EXTERNAL_EMPNO>000315</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4143</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>YOGESH CHANDRA SATI  </NAME>
+    <FATHERS_NAME>SH. K D SATI</FATHERS_NAME>
+    <EMP_CODE>GMC000016</EMP_CODE>
+    <EXTERNAL_EMPNO>0044</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Co-Ordinator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>53631</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DEEPAK KASHYAP  </NAME>
+    <FATHERS_NAME>SH. PREM CHAND</FATHERS_NAME>
+    <EMP_CODE>GMC000142</EMP_CODE>
+    <EXTERNAL_EMPNO>N.P</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6417</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ASIF  </NAME>
+    <FATHERS_NAME>SH. ISLAMUDDIN</FATHERS_NAME>
+    <EMP_CODE>GMC000143</EMP_CODE>
+    <EXTERNAL_EMPNO>000346</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>3256</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MOHAMMMAD SHAQIB  </NAME>
+    <FATHERS_NAME>SH. SHAUQEEN</FATHERS_NAME>
+    <EMP_CODE>GMC000148</EMP_CODE>
+    <EXTERNAL_EMPNO>000353</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6836</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PANKAJ KUMAR  </NAME>
+    <FATHERS_NAME>SH. BANI SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000028</EMP_CODE>
+    <EXTERNAL_EMPNO>0025</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Incharge</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>31095</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIPIN  YADAV</NAME>
+    <FATHERS_NAME>SH. KIRAN PAL YADAV</FATHERS_NAME>
+    <EMP_CODE>GMC000181</EMP_CODE>
+    <EXTERNAL_EMPNO>000368</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>11489</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>IFTKHARUL  HASAN</NAME>
+    <FATHERS_NAME>SH. IZHARUL HASAN</FATHERS_NAME>
+    <EMP_CODE>GMC000196</EMP_CODE>
+    <EXTERNAL_EMPNO>000387</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4046</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SAMIRUL  HASAN</NAME>
+    <FATHERS_NAME>SH. NOORUL HASAN</FATHERS_NAME>
+    <EMP_CODE>GMC000197</EMP_CODE>
+    <EXTERNAL_EMPNO>000388</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>3181</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANJEEV  VATS</NAME>
+    <FATHERS_NAME>LT. SH. R.K VATS</FATHERS_NAME>
+    <EMP_CODE>GMC000209</EMP_CODE>
+    <EXTERNAL_EMPNO>00232</EXTERNAL_EMPNO>
+    <DEPT>Marketing</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KULDEEP  KUMAR</NAME>
+    <FATHERS_NAME>SH. TOTARAM</FATHERS_NAME>
+    <EMP_CODE>GMC000232</EMP_CODE>
+    <EXTERNAL_EMPNO>000412</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Temporary</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7105</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NAVEEN  </NAME>
+    <FATHERS_NAME>SH. INDERPAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000033</EMP_CODE>
+    <EXTERNAL_EMPNO>0081</EXTERNAL_EMPNO>
+    <DEPT>It</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>58641</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>UDHAM  SHARMA</NAME>
+    <FATHERS_NAME>BRHAM DUTT SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000238</EMP_CODE>
+    <EXTERNAL_EMPNO>000417</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4537</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIJAY KUMAR YADAV  </NAME>
+    <FATHERS_NAME>SH. RAM LAKHAN YADAV</FATHERS_NAME>
+    <EMP_CODE>GMC000049</EMP_CODE>
+    <EXTERNAL_EMPNO>0056</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>27474</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ANUJ  </NAME>
+    <FATHERS_NAME>SH. VED PRAKASH SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000054</EMP_CODE>
+    <EXTERNAL_EMPNO>00242</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>14583</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ANKUR TYAGI  </NAME>
+    <FATHERS_NAME>SH. VIRENDRA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000055</EMP_CODE>
+    <EXTERNAL_EMPNO>0088</EXTERNAL_EMPNO>
+    <DEPT>Dispatch</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>19545</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>APOORV GUPTA  </NAME>
+    <FATHERS_NAME>SH. VINOD GUPTA</FATHERS_NAME>
+    <EMP_CODE>GMC000059</EMP_CODE>
+    <EXTERNAL_EMPNO>0072</EXTERNAL_EMPNO>
+    <DEPT>Marketing</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>79641</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MAHESH KUMAR  </NAME>
+    <FATHERS_NAME>DULI CHAND</FATHERS_NAME>
+    <EMP_CODE>GMC000065</EMP_CODE>
+    <EXTERNAL_EMPNO>000122</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Driver</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>22767</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ARENDRA KUMAR  </NAME>
+    <FATHERS_NAME>MADHAO RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000072</EMP_CODE>
+    <EXTERNAL_EMPNO>0007</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Fitter</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>14259</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DEEPAK KUMAR  </NAME>
+    <FATHERS_NAME>JITENDRA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000073</EMP_CODE>
+    <EXTERNAL_EMPNO>00050</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Fitter</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>27293</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AMIT KUMAR  </NAME>
+    <FATHERS_NAME>SH. SHREE PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000074</EMP_CODE>
+    <EXTERNAL_EMPNO>000307</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Fitter</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>19500</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MANISH KASHYAP  </NAME>
+    <FATHERS_NAME>SH. DHARMVEER KASHYAP</FATHERS_NAME>
+    <EMP_CODE>GMC000082</EMP_CODE>
+    <EXTERNAL_EMPNO>000340</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BHOLE  </NAME>
+    <FATHERS_NAME>LT. SH. MANVEER</FATHERS_NAME>
+    <EMP_CODE>GMC000095</EMP_CODE>
+    <EXTERNAL_EMPNO>000114</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5191</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIRENDRA  RAJBHAR</NAME>
+    <FATHERS_NAME>SH. RAMLAKHAN</FATHERS_NAME>
+    <EMP_CODE>GMC000104</EMP_CODE>
+    <EXTERNAL_EMPNO>00056</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9934</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SALAUDDIN ANSARI  </NAME>
+    <FATHERS_NAME>SH. ISLAM ANSARI</FATHERS_NAME>
+    <EMP_CODE>GMC000106</EMP_CODE>
+    <EXTERNAL_EMPNO>000326</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>18361</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PREM BAHADUR  </NAME>
+    <FATHERS_NAME>CHANDRA BAHADUR</FATHERS_NAME>
+    <EMP_CODE>GMC000110</EMP_CODE>
+    <EXTERNAL_EMPNO>000112</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Peon</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9597</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJESH KUMAR  </NAME>
+    <FATHERS_NAME>SH. SHYAM BIHARI</FATHERS_NAME>
+    <EMP_CODE>GMC000124</EMP_CODE>
+    <EXTERNAL_EMPNO>000173</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Die Sider</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5600</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MONTI  </NAME>
+    <FATHERS_NAME>SH. KAMAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000125</EMP_CODE>
+    <EXTERNAL_EMPNO>000364</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Die Sider</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6369</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DANISH  </NAME>
+    <FATHERS_NAME>SH. SAHAJAD ALI</FATHERS_NAME>
+    <EMP_CODE>GMC000128</EMP_CODE>
+    <EXTERNAL_EMPNO>000312</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7333</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANDEEP KUMAR  </NAME>
+    <FATHERS_NAME>SH. SURAJ PAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000006</EMP_CODE>
+    <EXTERNAL_EMPNO>0096</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>17560</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DEVENDRA SINGH  </NAME>
+    <FATHERS_NAME>HAKIM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000129</EMP_CODE>
+    <EXTERNAL_EMPNO>000260</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8266</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RANJEET KUMAR  </NAME>
+    <FATHERS_NAME>AMAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000132</EMP_CODE>
+    <EXTERNAL_EMPNO>000286</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>3984</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PREM SHARMA  </NAME>
+    <FATHERS_NAME>SH. JASWANT SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000012</EMP_CODE>
+    <EXTERNAL_EMPNO>0005</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>25555</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VINIT KUMAR  </NAME>
+    <FATHERS_NAME>SH. JAIVEER SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000154</EMP_CODE>
+    <EXTERNAL_EMPNO>000354</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6146</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJU KUMAR  </NAME>
+    <FATHERS_NAME>SH. PRABHU RAY</FATHERS_NAME>
+    <EMP_CODE>GMC000165</EMP_CODE>
+    <EXTERNAL_EMPNO>000323</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9128</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANTOSH KUMAR  </NAME>
+    <FATHERS_NAME>LT. SH. RAM MILAN</FATHERS_NAME>
+    <EMP_CODE>GMC000168</EMP_CODE>
+    <EXTERNAL_EMPNO>000172</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7735</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MANISH KUMAR  </NAME>
+    <FATHERS_NAME>SH. PRAKASH KHARVAR</FATHERS_NAME>
+    <EMP_CODE>GMC000169</EMP_CODE>
+    <EXTERNAL_EMPNO>000334</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>16714</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SURJEET  SINGH</NAME>
+    <FATHERS_NAME>SH. AMAR PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000200</EMP_CODE>
+    <EXTERNAL_EMPNO>000382</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4937</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>GAURAV  TIWARI</NAME>
+    <FATHERS_NAME>SH. RAMESH TIWARI</FATHERS_NAME>
+    <EMP_CODE>GMC000227</EMP_CODE>
+    <EXTERNAL_EMPNO>000408</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7025</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SUMIT PRATAP SINGH</NAME>
+    <FATHERS_NAME>MAHENDRA SINGH CHAUHAN</FATHERS_NAME>
+    <EMP_CODE>GMC000237</EMP_CODE>
+    <EXTERNAL_EMPNO>000414</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10014</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIJAY KUMAR MAHATO  </NAME>
+    <FATHERS_NAME>SH. SHANKER MEHTO</FATHERS_NAME>
+    <EMP_CODE>GMC000045</EMP_CODE>
+    <EXTERNAL_EMPNO>0020</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>18790</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ASHOK KUMAR  </NAME>
+    <FATHERS_NAME>SH. HARI SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000046</EMP_CODE>
+    <EXTERNAL_EMPNO>0019</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>31299</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PRADEEP KUMAR  </NAME>
+    <FATHERS_NAME>SH. HARISH CHAND GUPTA</FATHERS_NAME>
+    <EMP_CODE>GMC000047</EMP_CODE>
+    <EXTERNAL_EMPNO>0035</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>15593</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANJAY SINGH  </NAME>
+    <FATHERS_NAME>SH. KUNWAR PAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000069</EMP_CODE>
+    <EXTERNAL_EMPNO>000220</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Electrician</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>22474</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAMESH CHAND  </NAME>
+    <FATHERS_NAME>SH. UDAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000111</EMP_CODE>
+    <EXTERNAL_EMPNO>0004</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Stp</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9250</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PINKI  </NAME>
+    <FATHERS_NAME>SH. SANJAY DHALAN</FATHERS_NAME>
+    <EMP_CODE>GMC000004</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Hr</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>44400</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MANOJ KUMAR  </NAME>
+    <FATHERS_NAME>SH. PADAM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000007</EMP_CODE>
+    <EXTERNAL_EMPNO>00234</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>15078</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KUVENDRA  </NAME>
+    <FATHERS_NAME>SHADILAL</FATHERS_NAME>
+    <EMP_CODE>GMC000131</EMP_CODE>
+    <EXTERNAL_EMPNO>000305</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9956</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RATAN KUMAR  </NAME>
+    <FATHERS_NAME>SH. SHIV PRTAP</FATHERS_NAME>
+    <EMP_CODE>GMC000139</EMP_CODE>
+    <EXTERNAL_EMPNO>000330</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>INDERJEET VERMA  </NAME>
+    <FATHERS_NAME>SH. RAM KUMAR VERMA</FATHERS_NAME>
+    <EMP_CODE>GMC000015</EMP_CODE>
+    <EXTERNAL_EMPNO>00231</EXTERNAL_EMPNO>
+    <DEPT>Marketing</DEPT>
+    <DESIG>Co-Ordinator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>43614</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RIDAM MAGAR  </NAME>
+    <FATHERS_NAME>SH. BHIM</FATHERS_NAME>
+    <EMP_CODE>GMC000149</EMP_CODE>
+    <EXTERNAL_EMPNO>000357</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6511</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SARIKA VERMA  </NAME>
+    <FATHERS_NAME>SH. INDRAJEET VERMA</FATHERS_NAME>
+    <EMP_CODE>GMC000023</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Marketing</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>33000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>OMPARKASH KUMAR RAY  </NAME>
+    <FATHERS_NAME>VIGAN RAY</FATHERS_NAME>
+    <EMP_CODE>GMC000158</EMP_CODE>
+    <EXTERNAL_EMPNO>000275</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIKAS KUMAR SIROHI  </NAME>
+    <FATHERS_NAME>RAJKUMAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000163</EMP_CODE>
+    <EXTERNAL_EMPNO>00012</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>21801</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ANUP PRASAD  </NAME>
+    <FATHERS_NAME>SH. JAYNANDAN PRASAD</FATHERS_NAME>
+    <EMP_CODE>GMC000166</EMP_CODE>
+    <EXTERNAL_EMPNO>000324</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10480</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>YOGENDRA  </NAME>
+    <FATHERS_NAME>SH. JAGDISH</FATHERS_NAME>
+    <EMP_CODE>GMC000174</EMP_CODE>
+    <EXTERNAL_EMPNO>000362</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>2079</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SUDHEER  KUMAR</NAME>
+    <FATHERS_NAME>SH. RAMPRAKASH</FATHERS_NAME>
+    <EMP_CODE>GMC000182</EMP_CODE>
+    <EXTERNAL_EMPNO>000378</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ROOP LAL  </NAME>
+    <FATHERS_NAME>SH. SIDAAR</FATHERS_NAME>
+    <EMP_CODE>GMC000185</EMP_CODE>
+    <EXTERNAL_EMPNO>000372</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4196</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KAMLESH  CHOUBEY</NAME>
+    <FATHERS_NAME>SH. JAWAHAR CHOUBEY</FATHERS_NAME>
+    <EMP_CODE>GMC000187</EMP_CODE>
+    <EXTERNAL_EMPNO>000379</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6805</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RITIK  </NAME>
+    <FATHERS_NAME>SH. DIGAMBAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000188</EMP_CODE>
+    <EXTERNAL_EMPNO>000373</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ARPIT  SHARMA</NAME>
+    <FATHERS_NAME>SH. DINESH SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000205</EMP_CODE>
+    <EXTERNAL_EMPNO>000390</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>12098</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIKAS  KASHYAP</NAME>
+    <FATHERS_NAME>SH. JAIVEER SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000206</EMP_CODE>
+    <EXTERNAL_EMPNO>000391</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DHEER  SINGH</NAME>
+    <FATHERS_NAME>SH. BALRAM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000214</EMP_CODE>
+    <EXTERNAL_EMPNO>000396</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PRAMOD KUMAR YADAV</NAME>
+    <FATHERS_NAME>SH. RAM BARAN YADAV</FATHERS_NAME>
+    <EMP_CODE>GMC000218</EMP_CODE>
+    <EXTERNAL_EMPNO>000400</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7130</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ROHIT  NANDAN</NAME>
+    <FATHERS_NAME>SH. NARENDRA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000216</EMP_CODE>
+    <EXTERNAL_EMPNO>000398</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHER  SINGH</NAME>
+    <FATHERS_NAME>SH. SALEKH CHAND</FATHERS_NAME>
+    <EMP_CODE>GMC000222</EMP_CODE>
+    <EXTERNAL_EMPNO>000404</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4980</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>YOGESH  KUMAR</NAME>
+    <FATHERS_NAME>SH. VED PRAKASH</FATHERS_NAME>
+    <EMP_CODE>GMC000226</EMP_CODE>
+    <EXTERNAL_EMPNO>00249</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>25000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AMIT KUMAR SHARMA</NAME>
+    <FATHERS_NAME>SH. RAJENDRA SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000228</EMP_CODE>
+    <EXTERNAL_EMPNO>000409</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANJAY  KUMAR</NAME>
+    <FATHERS_NAME>SH. HARI SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000230</EMP_CODE>
+    <EXTERNAL_EMPNO>00211</EXTERNAL_EMPNO>
+    <DEPT>Hr</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>19850</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>CHANDRAMANI  </NAME>
+    <FATHERS_NAME>AMAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000236</EMP_CODE>
+    <EXTERNAL_EMPNO>000416</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Temporary</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6333</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VINOD GUPTA  </NAME>
+    <FATHERS_NAME>LT. SH. O P GUPTA</FATHERS_NAME>
+    <EMP_CODE>GMC000031</EMP_CODE>
+    <EXTERNAL_EMPNO>002</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>20923</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHYAM SUNDER  </NAME>
+    <FATHERS_NAME>SH. HARI MOHAN</FATHERS_NAME>
+    <EMP_CODE>GMC000042</EMP_CODE>
+    <EXTERNAL_EMPNO>00150</EXTERNAL_EMPNO>
+    <DEPT>Fg</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>12346</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHER SINGH  </NAME>
+    <FATHERS_NAME>SH. BALRAM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000050</EMP_CODE>
+    <EXTERNAL_EMPNO>00218</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10403</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DUSHYANT  </NAME>
+    <FATHERS_NAME>SH. NAND KISHOR KAUSHIK</FATHERS_NAME>
+    <EMP_CODE>GMC000051</EMP_CODE>
+    <EXTERNAL_EMPNO>00238</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>30706</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VISHAL PAL  </NAME>
+    <FATHERS_NAME>SH. VINOD KUMAR PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000067</EMP_CODE>
+    <EXTERNAL_EMPNO>000258</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Driver</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>22000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AKSHAY KUMAR  </NAME>
+    <FATHERS_NAME>SH. SHIVSHANKAR RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000092</EMP_CODE>
+    <EXTERNAL_EMPNO>000311</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6559</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AARIF  </NAME>
+    <FATHERS_NAME>SH. SHOKIN</FATHERS_NAME>
+    <EMP_CODE>GMC000008</EMP_CODE>
+    <EXTERNAL_EMPNO>00235</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>14582</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ANKIT SINGH  </NAME>
+    <FATHERS_NAME>SH. ANIL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000133</EMP_CODE>
+    <EXTERNAL_EMPNO>000313</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5526</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SUKHVIR  </NAME>
+    <FATHERS_NAME>SH. HET SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000138</EMP_CODE>
+    <EXTERNAL_EMPNO>000325</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7025</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AMIT KUMAR VARMA  </NAME>
+    <FATHERS_NAME>SH. JHULLAN PRASAD VARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000140</EMP_CODE>
+    <EXTERNAL_EMPNO>000331</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6139</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KARAN GIRI  </NAME>
+    <FATHERS_NAME>SH. DINESH GIRI</FATHERS_NAME>
+    <EMP_CODE>GMC000155</EMP_CODE>
+    <EXTERNAL_EMPNO>000212</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>20523</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DASHRATH KUMAR  </NAME>
+    <FATHERS_NAME>SH. LAGAN DEV PASWAN</FATHERS_NAME>
+    <EMP_CODE>GMC000164</EMP_CODE>
+    <EXTERNAL_EMPNO>000316</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>18734</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJU  </NAME>
+    <FATHERS_NAME>SH. SAHAB SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000167</EMP_CODE>
+    <EXTERNAL_EMPNO>000144</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>22025</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SONU  KUMAR</NAME>
+    <FATHERS_NAME>SH. KALLAN PRASAD</FATHERS_NAME>
+    <EMP_CODE>GMC000186</EMP_CODE>
+    <EXTERNAL_EMPNO>000374</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6805</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJENDRA  KUMAR</NAME>
+    <FATHERS_NAME>LT. SH. MEGHASINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000203</EMP_CODE>
+    <EXTERNAL_EMPNO>000385</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6342</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJ KUMAR  </NAME>
+    <FATHERS_NAME>SITARAM</FATHERS_NAME>
+    <EMP_CODE>GMC000208</EMP_CODE>
+    <EXTERNAL_EMPNO>000139</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>28400</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MANJU  AGARWAL</NAME>
+    <FATHERS_NAME>0</FATHERS_NAME>
+    <EMP_CODE>GMC000210</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>60000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>LAL  SINGH</NAME>
+    <FATHERS_NAME>SH. SHYABLU</FATHERS_NAME>
+    <EMP_CODE>GMC000213</EMP_CODE>
+    <EXTERNAL_EMPNO>000395</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5849</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ARJUN  SINGH</NAME>
+    <FATHERS_NAME>SH. MAHENDRA PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000215</EMP_CODE>
+    <EXTERNAL_EMPNO>000397</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4562</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AKHILESH  KUMAR</NAME>
+    <FATHERS_NAME>SH. MUNIVAR RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000217</EMP_CODE>
+    <EXTERNAL_EMPNO>000399</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5846</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AKASH  </NAME>
+    <FATHERS_NAME>LT. SH. BIJENDER SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000225</EMP_CODE>
+    <EXTERNAL_EMPNO>000407</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6955</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ASHOK  KUMAR</NAME>
+    <FATHERS_NAME>SH. UDAI VIR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000234</EMP_CODE>
+    <EXTERNAL_EMPNO>00250</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>80000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AKASH  BHARDWAJ</NAME>
+    <FATHERS_NAME>YOGESH</FATHERS_NAME>
+    <EMP_CODE>GMC000235</EMP_CODE>
+    <EXTERNAL_EMPNO>000415</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10483</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VINOD  KUMAR</NAME>
+    <FATHERS_NAME>LT. SH. RAMLAL</FATHERS_NAME>
+    <EMP_CODE>GMC000029</EMP_CODE>
+    <EXTERNAL_EMPNO>00013</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Line Incharge</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>43535</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ASHOK KUMAR  </NAME>
+    <FATHERS_NAME>SH. BALEY RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000030</EMP_CODE>
+    <EXTERNAL_EMPNO>0074</EXTERNAL_EMPNO>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>47000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANJAY KUMAR  </NAME>
+    <FATHERS_NAME>LT. SH. MOMRAJ SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000035</EMP_CODE>
+    <EXTERNAL_EMPNO>003</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>44885</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIDUR KUMAR  </NAME>
+    <FATHERS_NAME>SH. HARI KISHAN SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000041</EMP_CODE>
+    <EXTERNAL_EMPNO>0054</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Shift Inch</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>36000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KV THOMAS  </NAME>
+    <FATHERS_NAME>LT. SH. K T VINCENT</FATHERS_NAME>
+    <EMP_CODE>GMC000057</EMP_CODE>
+    <EXTERNAL_EMPNO>00111</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Co-Ordinator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>GAURAV TYAGI  </NAME>
+    <FATHERS_NAME>SH. SHIV KUMAR TYAGI</FATHERS_NAME>
+    <EMP_CODE>GMC000060</EMP_CODE>
+    <EXTERNAL_EMPNO>00102</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>27544</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJ KUMAR  </NAME>
+    <FATHERS_NAME>LALLAN SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000066</EMP_CODE>
+    <EXTERNAL_EMPNO>000264</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Driver</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>22350</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NANDRAM  </NAME>
+    <FATHERS_NAME>KHEMKARAN</FATHERS_NAME>
+    <EMP_CODE>GMC000076</EMP_CODE>
+    <EXTERNAL_EMPNO>000274</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ATAR SINGH  </NAME>
+    <FATHERS_NAME>SH. RAMKISHAN PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000079</EMP_CODE>
+    <EXTERNAL_EMPNO>N.A</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJ KUMAR  </NAME>
+    <FATHERS_NAME>RAM SAGAR MAHTO</FATHERS_NAME>
+    <EMP_CODE>GMC000077</EMP_CODE>
+    <EXTERNAL_EMPNO>00022</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4919</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIJENDRA  </NAME>
+    <FATHERS_NAME>NANHE LAL</FATHERS_NAME>
+    <EMP_CODE>GMC000078</EMP_CODE>
+    <EXTERNAL_EMPNO>000216</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7652</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PAPPU SINGH  </NAME>
+    <FATHERS_NAME>SH. RAGHURAJ SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000083</EMP_CODE>
+    <EXTERNAL_EMPNO>000339</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7727</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>LOKESH SHARMA  </NAME>
+    <FATHERS_NAME>SH. RADHAY SHYAM</FATHERS_NAME>
+    <EMP_CODE>GMC000084</EMP_CODE>
+    <EXTERNAL_EMPNO>000341</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>LALIT KUMAR  </NAME>
+    <FATHERS_NAME>SH. PRAMOD KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000087</EMP_CODE>
+    <EXTERNAL_EMPNO>000350</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DEVINDAR  </NAME>
+    <FATHERS_NAME>SH. OMI</FATHERS_NAME>
+    <EMP_CODE>GMC000088</EMP_CODE>
+    <EXTERNAL_EMPNO>000351</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6067</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BRAJESH KUMAR SHARMA</NAME>
+    <FATHERS_NAME>SH. RAJENDRA PAL SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000003</EMP_CODE>
+    <EXTERNAL_EMPNO>0065</EXTERNAL_EMPNO>
+    <DEPT>Dispatch</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>18944</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VINOD KUMAR YADAV  </NAME>
+    <FATHERS_NAME>SH. SHIV MANGAL YADAV</FATHERS_NAME>
+    <EMP_CODE>GMC000010</EMP_CODE>
+    <EXTERNAL_EMPNO>00212</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>21835</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PUJA BANSAL  </NAME>
+    <FATHERS_NAME>SH. AMIT GUPTA</FATHERS_NAME>
+    <EMP_CODE>GMC000014</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>51009</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>JITENDAR KUMAR  </NAME>
+    <FATHERS_NAME>SH. RAVINDRA KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000141</EMP_CODE>
+    <EXTERNAL_EMPNO>000333</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>IKBAL KHAN  </NAME>
+    <FATHERS_NAME>SH. ISHLAMUDDIN</FATHERS_NAME>
+    <EMP_CODE>GMC000144</EMP_CODE>
+    <EXTERNAL_EMPNO>000348</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BICKY THAKUR  </NAME>
+    <FATHERS_NAME>ANIL THAKUR</FATHERS_NAME>
+    <EMP_CODE>GMC000151</EMP_CODE>
+    <EXTERNAL_EMPNO>000283</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>13776</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KUMAR SAHIB  </NAME>
+    <FATHERS_NAME>SH. SHATRUAGHN SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000156</EMP_CODE>
+    <EXTERNAL_EMPNO>00014</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>15838</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MOHMMAD AFJAL HASAN  </NAME>
+    <FATHERS_NAME>NAJMUL HASAN</FATHERS_NAME>
+    <EMP_CODE>GMC000157</EMP_CODE>
+    <EXTERNAL_EMPNO>000276</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>19468</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PRADEEP KUMAR  </NAME>
+    <FATHERS_NAME>TARA CHAND</FATHERS_NAME>
+    <EMP_CODE>GMC000159</EMP_CODE>
+    <EXTERNAL_EMPNO>000268</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>11229</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RANJAY SAH  </NAME>
+    <FATHERS_NAME>SH RAMAPATI SAH</FATHERS_NAME>
+    <EMP_CODE>GMC000160</EMP_CODE>
+    <EXTERNAL_EMPNO>000205</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9793</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PAWAN  SHUKLA</NAME>
+    <FATHERS_NAME>SH. MATASHANKAR SHUKLA</FATHERS_NAME>
+    <EMP_CODE>GMC000207</EMP_CODE>
+    <EXTERNAL_EMPNO>000392</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>21683</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>HARI OM  KUMAR</NAME>
+    <FATHERS_NAME>SH. KEHAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000212</EMP_CODE>
+    <EXTERNAL_EMPNO>000393</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJAT  KUMAR</NAME>
+    <FATHERS_NAME>SH. RAJESH MATHUR</FATHERS_NAME>
+    <EMP_CODE>GMC000221</EMP_CODE>
+    <EXTERNAL_EMPNO>000403</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7405</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SATISH  KUMAR</NAME>
+    <FATHERS_NAME>SH. ASHARFI LAL</FATHERS_NAME>
+    <EMP_CODE>GMC000223</EMP_CODE>
+    <EXTERNAL_EMPNO>000405</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6639</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ADESH  TYAGI</NAME>
+    <FATHERS_NAME>LT SH TRILOK CHAND TYAGI</FATHERS_NAME>
+    <EMP_CODE>GMC000229</EMP_CODE>
+    <EXTERNAL_EMPNO>00251</EXTERNAL_EMPNO>
+    <DEPT>Dispatch</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>13590</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAHUL  TIWARI</NAME>
+    <FATHERS_NAME>RAJESH TIWARI</FATHERS_NAME>
+    <EMP_CODE>GMC000233</EMP_CODE>
+    <EXTERNAL_EMPNO>000413</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Temporary</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6367</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHRI HARI UPADHYAY  </NAME>
+    <FATHERS_NAME>SH. S N UPADHYAY</FATHERS_NAME>
+    <EMP_CODE>GMC000032</EMP_CODE>
+    <EXTERNAL_EMPNO>005</EXTERNAL_EMPNO>
+    <DEPT>Hr</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>41140</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>HIMANSHU SHARMA  </NAME>
+    <FATHERS_NAME>LT. SH. JITENDRA SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000038</EMP_CODE>
+    <EXTERNAL_EMPNO>00229</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>17468</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>FARMAN KHAN  </NAME>
+    <FATHERS_NAME>SH. ZAMIRULLAH KHAN</FATHERS_NAME>
+    <EMP_CODE>GMC000039</EMP_CODE>
+    <EXTERNAL_EMPNO>00027</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Printing Incharge</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>44468</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BABLU  KUMAR</NAME>
+    <FATHERS_NAME>SATVEER</FATHERS_NAME>
+    <EMP_CODE>GMC000239</EMP_CODE>
+    <EXTERNAL_EMPNO>000418</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Temporary</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5749</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>LAKSHMI NARAYAN GUPTA</NAME>
+    <FATHERS_NAME>BHAGWAN DAS GUPTA</FATHERS_NAME>
+    <EMP_CODE>GMC000240</EMP_CODE>
+    <EXTERNAL_EMPNO>00252</EXTERNAL_EMPNO>
+    <DEPT>Marketing</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>70000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SEKAR  GANESAN</NAME>
+    <FATHERS_NAME>GANESAN</FATHERS_NAME>
+    <EMP_CODE>GMC000241</EMP_CODE>
+    <EXTERNAL_EMPNO>00257</EXTERNAL_EMPNO>
+    <DEPT>Overall</DEPT>
+    <DESIG>Head</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>76774</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BHASKAR CHAND PADALIA</NAME>
+    <FATHERS_NAME>BHUVAN CHAND PADALIA</FATHERS_NAME>
+    <EMP_CODE>GMC000243</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Office</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8065</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PRADEEP KUMAR  </NAME>
+    <FATHERS_NAME>SH. YAAD RAM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000043</EMP_CODE>
+    <EXTERNAL_EMPNO>00226</EXTERNAL_EMPNO>
+    <DEPT>Fg</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>15574</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>UMESH CHANDRA  </NAME>
+    <FATHERS_NAME>LT. SH. HIRA LAL</FATHERS_NAME>
+    <EMP_CODE>GMC000048</EMP_CODE>
+    <EXTERNAL_EMPNO>0048</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>19900</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AMIT KUMAR  </NAME>
+    <FATHERS_NAME>SH. YOGENDER SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000061</EMP_CODE>
+    <EXTERNAL_EMPNO>000328</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4206</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PRAMOD KUMAR YADAV  </NAME>
+    <FATHERS_NAME>SH. KAILASH YADAV</FATHERS_NAME>
+    <EMP_CODE>GMC000063</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Driver</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>11500</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIJAY PATEL  </NAME>
+    <FATHERS_NAME>AMARJEET PATEL</FATHERS_NAME>
+    <EMP_CODE>GMC000070</EMP_CODE>
+    <EXTERNAL_EMPNO>000218</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Electrician</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10896</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NADEEM  KHAN</NAME>
+    <FATHERS_NAME>TAHSEEN KHAN</FATHERS_NAME>
+    <EMP_CODE>GMC000099</EMP_CODE>
+    <EXTERNAL_EMPNO>000131</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9611</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHIVI KUMAR  </NAME>
+    <FATHERS_NAME>NAHAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000103</EMP_CODE>
+    <EXTERNAL_EMPNO>000215</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>18338</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BADLU  </NAME>
+    <FATHERS_NAME>JAGGA</FATHERS_NAME>
+    <EMP_CODE>GMC000112</EMP_CODE>
+    <EXTERNAL_EMPNO>000259</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7158</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHIV KUMAR  </NAME>
+    <FATHERS_NAME>LT SH BANI RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000114</EMP_CODE>
+    <EXTERNAL_EMPNO>000198</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7577</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ASHOK KUMAR  </NAME>
+    <FATHERS_NAME>AMAR SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000127</EMP_CODE>
+    <EXTERNAL_EMPNO>000297</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>12836</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RINKU  KUMAR</NAME>
+    <FATHERS_NAME>SH. SURESH PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000002</EMP_CODE>
+    <EXTERNAL_EMPNO>0018</EXTERNAL_EMPNO>
+    <DEPT>Dispatch</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>27180</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MUNNA KUMAR RAY  </NAME>
+    <FATHERS_NAME>SH. SUNARSHI RAY</FATHERS_NAME>
+    <EMP_CODE>GMC000134</EMP_CODE>
+    <EXTERNAL_EMPNO>000213</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7723</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MANGAL SINGH  </NAME>
+    <FATHERS_NAME>SH. RAM PAL PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000136</EMP_CODE>
+    <EXTERNAL_EMPNO>000321</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9864</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>IMTYAJ ANASARI  </NAME>
+    <FATHERS_NAME>SH. MUKHTAR ANASARI</FATHERS_NAME>
+    <EMP_CODE>GMC000150</EMP_CODE>
+    <EXTERNAL_EMPNO>000356</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7380</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>INDRAJIT TIWARI  </NAME>
+    <FATHERS_NAME>SH. CHANDRA BHAN TIWARI</FATHERS_NAME>
+    <EMP_CODE>GMC000019</EMP_CODE>
+    <EXTERNAL_EMPNO>0095</EXTERNAL_EMPNO>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>27951</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RISHI PAL SINGH  </NAME>
+    <FATHERS_NAME>DHARMVEER SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000161</EMP_CODE>
+    <EXTERNAL_EMPNO>000308</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>19122</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PRAMOD  KUMAR</NAME>
+    <FATHERS_NAME>SH. MAHENDRA KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000175</EMP_CODE>
+    <EXTERNAL_EMPNO>000365</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>3209</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAVINDRA  </NAME>
+    <FATHERS_NAME>SH. VEERPAL</FATHERS_NAME>
+    <EMP_CODE>GMC000180</EMP_CODE>
+    <EXTERNAL_EMPNO>000370</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>UMESH  </NAME>
+    <FATHERS_NAME>SH. SURESH</FATHERS_NAME>
+    <EMP_CODE>GMC000198</EMP_CODE>
+    <EXTERNAL_EMPNO>000380</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4196</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NEERAJ  </NAME>
+    <FATHERS_NAME>SH. MATHURA PRASAD</FATHERS_NAME>
+    <EMP_CODE>GMC000199</EMP_CODE>
+    <EXTERNAL_EMPNO>000381</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6417</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SURAJ  KUMAR</NAME>
+    <FATHERS_NAME>SH. MITHLESH</FATHERS_NAME>
+    <EMP_CODE>GMC000189</EMP_CODE>
+    <EXTERNAL_EMPNO>000376</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAVENDRA  </NAME>
+    <FATHERS_NAME>LT. SH. SHANTI SWAROOP</FATHERS_NAME>
+    <EMP_CODE>GMC000204</EMP_CODE>
+    <EXTERNAL_EMPNO>000389</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4937</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AMAN  PAL</NAME>
+    <FATHERS_NAME>SH. RAKESH PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000224</EMP_CODE>
+    <EXTERNAL_EMPNO>000406</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6189</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SUMIT  </NAME>
+    <FATHERS_NAME>RAJESH</FATHERS_NAME>
+    <EMP_CODE>GMC000231</EMP_CODE>
+    <EXTERNAL_EMPNO>000411</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5917</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VIKRANT CHAUHAN  </NAME>
+    <FATHERS_NAME>SH. VIRENDAR CHAUHAN</FATHERS_NAME>
+    <EMP_CODE>GMC000037</EMP_CODE>
+    <EXTERNAL_EMPNO>00112</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>21680</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PANKAJ KUMAR SINGH  </NAME>
+    <FATHERS_NAME>SH. AMRENDRA PRASAD SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000056</EMP_CODE>
+    <EXTERNAL_EMPNO>00241</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ANIL KUMAR SAH  </NAME>
+    <FATHERS_NAME>RAM CHANDRA SAHU</FATHERS_NAME>
+    <EMP_CODE>GMC000093</EMP_CODE>
+    <EXTERNAL_EMPNO>000141</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9387</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>GAURAV KUMAR  </NAME>
+    <FATHERS_NAME>MAHENDRA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000096</EMP_CODE>
+    <EXTERNAL_EMPNO>000190</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>14205</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHAHJAD ALAM  </NAME>
+    <FATHERS_NAME>HAIDER ALI</FATHERS_NAME>
+    <EMP_CODE>GMC000123</EMP_CODE>
+    <EXTERNAL_EMPNO>000271</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>YOGESH KUMAR  </NAME>
+    <FATHERS_NAME>SH. RAM CHANDRA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000011</EMP_CODE>
+    <EXTERNAL_EMPNO>000211</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8903</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAVI KUMAR  </NAME>
+    <FATHERS_NAME>LALA RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000153</EMP_CODE>
+    <EXTERNAL_EMPNO>000285</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>GOVIND SHARMA  </NAME>
+    <FATHERS_NAME>LT. SH. MAHESH SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000018</EMP_CODE>
+    <EXTERNAL_EMPNO>00245</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Co-Ordinator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>60000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PUNAM  </NAME>
+    <FATHERS_NAME>SH. ASHOK KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000020</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>30354</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DIVYANSHU TIWARI  </NAME>
+    <FATHERS_NAME>SH. VED NARAYAN TIWARI</FATHERS_NAME>
+    <EMP_CODE>GMC000021</EMP_CODE>
+    <EXTERNAL_EMPNO>0075</EXTERNAL_EMPNO>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>26281</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SUSHIL KUMAR SHUKLA  </NAME>
+    <FATHERS_NAME>SH. BRAMHCHARI SHUKLA</FATHERS_NAME>
+    <EMP_CODE>GMC000025</EMP_CODE>
+    <EXTERNAL_EMPNO>00222</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Gate Entry</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ANIL KUMAR  </NAME>
+    <FATHERS_NAME>SH. SHIV KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000171</EMP_CODE>
+    <EXTERNAL_EMPNO>000335</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJKUMAR  PAL</NAME>
+    <FATHERS_NAME>SH. MAHESH PAL</FATHERS_NAME>
+    <EMP_CODE>GMC000179</EMP_CODE>
+    <EXTERNAL_EMPNO>000371</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6811</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>JITENDRA  </NAME>
+    <FATHERS_NAME>LT. SH. LALBABU</FATHERS_NAME>
+    <EMP_CODE>GMC000183</EMP_CODE>
+    <EXTERNAL_EMPNO>000369</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4022</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAM  GOPAL</NAME>
+    <FATHERS_NAME>SH. PEETAMBAR</FATHERS_NAME>
+    <EMP_CODE>GMC000190</EMP_CODE>
+    <EXTERNAL_EMPNO>000377</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>4537</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>HARDVARI  LAL</NAME>
+    <FATHERS_NAME>LT. SH. MAHENDRA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000195</EMP_CODE>
+    <EXTERNAL_EMPNO>000386</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7627</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AVNISH  KUMAR</NAME>
+    <FATHERS_NAME>SH. MULAYAM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000201</EMP_CODE>
+    <EXTERNAL_EMPNO>000383</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHRIPAL  SINGH</NAME>
+    <FATHERS_NAME>LT. SH. GYAN SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000219</EMP_CODE>
+    <EXTERNAL_EMPNO>000401</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7080</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AVANISH KUMAR RAGHAV</NAME>
+    <FATHERS_NAME>SH. LALIT RAGHAB</FATHERS_NAME>
+    <EMP_CODE>GMC000220</EMP_CODE>
+    <EXTERNAL_EMPNO>000402</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>888</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>OBAIDUR RAHMAN  </NAME>
+    <FATHERS_NAME>SH. NOOR ALAM ANSARI</FATHERS_NAME>
+    <EMP_CODE>GMC000036</EMP_CODE>
+    <EXTERNAL_EMPNO>0066</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RADHEY  SHYAM</NAME>
+    <FATHERS_NAME>SATVEER SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000242</EMP_CODE>
+    <EXTERNAL_EMPNO>000419</EXTERNAL_EMPNO>
+    <DEPT>Office</DEPT>
+    <DESIG>Driver</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7453</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>GULVESH  </NAME>
+    <FATHERS_NAME>SH. BRIJ LAL</FATHERS_NAME>
+    <EMP_CODE>GMC000052</EMP_CODE>
+    <EXTERNAL_EMPNO>00237</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>32647</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>EKLOVYA SAINI  </NAME>
+    <FATHERS_NAME>SH. DEVENDER SAINI</FATHERS_NAME>
+    <EMP_CODE>GMC000058</EMP_CODE>
+    <EXTERNAL_EMPNO>00244</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>21164</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SACHIN KUMAR  </NAME>
+    <FATHERS_NAME>SH. OMPRAKASH</FATHERS_NAME>
+    <EMP_CODE>GMC000062</EMP_CODE>
+    <EXTERNAL_EMPNO>000358</EXTERNAL_EMPNO>
+    <DEPT>Quality</DEPT>
+    <DESIG>Assistant</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8963</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>DEEPAK SHARMA  </NAME>
+    <FATHERS_NAME>SHISHPAL</FATHERS_NAME>
+    <EMP_CODE>GMC000068</EMP_CODE>
+    <EXTERNAL_EMPNO>000163</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Electrician</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>15400</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BANKELAL  </NAME>
+    <FATHERS_NAME>RAM SARAN</FATHERS_NAME>
+    <EMP_CODE>GMC000071</EMP_CODE>
+    <EXTERNAL_EMPNO>000298</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Fireman</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8066</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KALE KHAN  </NAME>
+    <FATHERS_NAME>SH. SABUDDIN</FATHERS_NAME>
+    <EMP_CODE>GMC000085</EMP_CODE>
+    <EXTERNAL_EMPNO>000347</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>JITENDRA SINGH  </NAME>
+    <FATHERS_NAME>JAGVEER SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000090</EMP_CODE>
+    <EXTERNAL_EMPNO>000288</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BABLU  </NAME>
+    <FATHERS_NAME>DEEP CHAND</FATHERS_NAME>
+    <EMP_CODE>GMC000091</EMP_CODE>
+    <EXTERNAL_EMPNO>000170</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Masan</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10684</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>BABALU  </NAME>
+    <FATHERS_NAME>SH. MANIK CHAND</FATHERS_NAME>
+    <EMP_CODE>GMC000094</EMP_CODE>
+    <EXTERNAL_EMPNO>00068</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8092</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>GUDDU  </NAME>
+    <FATHERS_NAME>SH. DAROGA SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000097</EMP_CODE>
+    <EXTERNAL_EMPNO>000302</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>23269</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>JITENDRA SHARMA  </NAME>
+    <FATHERS_NAME>JAI PAL SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000098</EMP_CODE>
+    <EXTERNAL_EMPNO>000254</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>12855</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>PUSHPENDRA KUMAR  </NAME>
+    <FATHERS_NAME>SH. SHADI LAL</FATHERS_NAME>
+    <EMP_CODE>GMC000105</EMP_CODE>
+    <EXTERNAL_EMPNO>000319</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>24783</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>AJAY KUMAR  </NAME>
+    <FATHERS_NAME>LT. SH. VEDRAM</FATHERS_NAME>
+    <EMP_CODE>GMC000107</EMP_CODE>
+    <EXTERNAL_EMPNO>000329</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10621</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>VEER SINGH  </NAME>
+    <FATHERS_NAME>LALA RAM</FATHERS_NAME>
+    <EMP_CODE>GMC000116</EMP_CODE>
+    <EXTERNAL_EMPNO>000151</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7652</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SUJEET KUMAR SRIVASTAVA  </NAME>
+    <FATHERS_NAME>LT. SH. GIRIS KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000120</EMP_CODE>
+    <EXTERNAL_EMPNO>000291</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Welder</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>22438</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>IRFAN SAIFI  </NAME>
+    <FATHERS_NAME>SH. ABDUL GAFFAR</FATHERS_NAME>
+    <EMP_CODE>GMC000137</EMP_CODE>
+    <EXTERNAL_EMPNO>000322</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>9753</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ASHISH  </NAME>
+    <FATHERS_NAME>SH. OMI</FATHERS_NAME>
+    <EMP_CODE>GMC000145</EMP_CODE>
+    <EXTERNAL_EMPNO>000349</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>1480</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NAVEEN CHANDRA  </NAME>
+    <FATHERS_NAME>SH. BHUWAN CHANDRA</FATHERS_NAME>
+    <EMP_CODE>GMC000017</EMP_CODE>
+    <EXTERNAL_EMPNO>009</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Co-Ordinator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>55354</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SHIV DUTT SHARMA  </NAME>
+    <FATHERS_NAME>SH. BAL KISHAN SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000024</EMP_CODE>
+    <EXTERNAL_EMPNO>00180</EXTERNAL_EMPNO>
+    <DEPT>Purchase</DEPT>
+    <DESIG>Executive</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>21894</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJESH KUMAR  </NAME>
+    <FATHERS_NAME>SH. GOPI NATH</FATHERS_NAME>
+    <EMP_CODE>GMC000027</EMP_CODE>
+    <EXTERNAL_EMPNO>0023</EXTERNAL_EMPNO>
+    <DEPT>Dispatch</DEPT>
+    <DESIG>Incharge</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>42178</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>JAGEND  </NAME>
+    <FATHERS_NAME>BALAKRAM</FATHERS_NAME>
+    <EMP_CODE>GMC000152</EMP_CODE>
+    <EXTERNAL_EMPNO>000282</EXTERNAL_EMPNO>
+    <DEPT>Store</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>8399</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>UMESH  KUMAR</NAME>
+    <FATHERS_NAME>SH. MULAYAM SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000173</EMP_CODE>
+    <EXTERNAL_EMPNO>000363</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NEERAJ  KUMAR</NAME>
+    <FATHERS_NAME>SH. VINOD KUMAR</FATHERS_NAME>
+    <EMP_CODE>GMC000177</EMP_CODE>
+    <EXTERNAL_EMPNO>000367</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>ROHIT  </NAME>
+    <FATHERS_NAME>SH. SATYAPRAKASH</FATHERS_NAME>
+    <EMP_CODE>GMC000176</EMP_CODE>
+    <EXTERNAL_EMPNO>000366</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>5130</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>MUDSSIR  </NAME>
+    <FATHERS_NAME>LT. SH. AJMOODIN</FATHERS_NAME>
+    <EMP_CODE>GMC000184</EMP_CODE>
+    <EXTERNAL_EMPNO>000375</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6171</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>NARENDRA  SINGH</NAME>
+    <FATHERS_NAME>SH. AMARPAL SINGH</FATHERS_NAME>
+    <EMP_CODE>GMC000202</EMP_CODE>
+    <EXTERNAL_EMPNO>000384</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SILKI  GUPTA</NAME>
+    <FATHERS_NAME>0</FATHERS_NAME>
+    <EMP_CODE>GMC000211</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Manager</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>30000</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KAPIL SHARMA  </NAME>
+    <FATHERS_NAME>SH. KISHAN SHARMA</FATHERS_NAME>
+    <EMP_CODE>GMC000044</EMP_CODE>
+    <EXTERNAL_EMPNO>0034</EXTERNAL_EMPNO>
+    <DEPT>Maintenance</DEPT>
+    <DESIG>Supervisor</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Staff</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>49374</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJAN VAJPAYEE  </NAME>
+    <FATHERS_NAME>SH. VIDHYA NAND VAJPAYEE</FATHERS_NAME>
+    <EMP_CODE>GMC000080</EMP_CODE>
+    <EXTERNAL_EMPNO>000336</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>6562</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SOCHAND  </NAME>
+    <FATHERS_NAME>LT. SH. NATHU</FATHERS_NAME>
+    <EMP_CODE>GMC000089</EMP_CODE>
+    <EXTERNAL_EMPNO>000355</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>0</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>SANJAY KUMAR  </NAME>
+    <FATHERS_NAME>SHANKAR MAHATO</FATHERS_NAME>
+    <EMP_CODE>GMC000101</EMP_CODE>
+    <EXTERNAL_EMPNO>00018</EXTERNAL_EMPNO>
+    <DEPT>Production</DEPT>
+    <DESIG>Operator</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>23605</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>KAMAL SINGH MEHRA  </NAME>
+    <FATHERS_NAME>GOPAL SINGH MEHRA</FATHERS_NAME>
+    <EMP_CODE>GMC000109</EMP_CODE>
+    <EXTERNAL_EMPNO>000118</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Peon</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>10592</TOTAL_SALARY>
+  </prepcur>
+  <prepcur>
+    <NAME>RAJESH KUMAR  </NAME>
+    <FATHERS_NAME>RAM CHARAN</FATHERS_NAME>
+    <EMP_CODE>GMC000113</EMP_CODE>
+    <EXTERNAL_EMPNO>000152</EXTERNAL_EMPNO>
+    <DEPT>Admin</DEPT>
+    <DESIG>Sweeper</DESIG>
+    <EMPTYPE>Permanent</EMPTYPE>
+    <EMPCATEGORY>Worker</EMPCATEGORY>
+    <BANK_NAME>-</BANK_NAME>
+    <TOTAL_SALARY>7652</TOTAL_SALARY>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Kesho Packaging Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDAGB NAGAR</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>09</COMPANY_STATE>
+    <COMPANY_CITY>Noida</COMPANY_CITY>
+    <COMPANY_PINCODE>201306</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>info@keshopackaging.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>keshopackaging.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1204152702</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1204152702</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>09AADCK1978R1ZN</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AADCK1978R</COM_PAN_NO>
+    <COMPANY_CIN_NO>U74950DL2007PTC168971</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>KESHO PACKAGING PVT. LTD.</UNIT_NAME>
+    <UNIT_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDA,GB NAGAR</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Uttar Pradesh</STATE_NAME>
+    <UNIT_STATE>09</UNIT_STATE>
+    <UNIT_CITY>Noida</UNIT_CITY>
+    <UNIT_PINCODE>201306</UNIT_PINCODE>
+    <UNIT_EMAIL>INFO@KESHOPACKAGING.COM</UNIT_EMAIL>
+    <UNIT_WEBSITE>WWW.KESHOPACKAGING.COM</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>1204152701</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>1204152702</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>09AADCK1978R1ZN</UNIT_GSTIN_NO>
+    <BANK_NAME>0</BANK_NAME>
+    <BANK_BRANCH>0</BANK_BRANCH>
+    <BANK_ACC>911020043295952</BANK_ACC>
+    <BANK_IFSC>0</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

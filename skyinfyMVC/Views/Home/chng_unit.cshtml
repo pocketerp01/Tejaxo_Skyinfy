@@ -1,0 +1,166 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    string mq = "";
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { id = viewName, enctype = "multipart/form-data" }))
+{
+    <div class="page-title">
+        <div class="title_left">
+            <h3>CHANGE: COMPANY / UNIT / YEAR</h3>
+        </div>
+
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                <div class="input-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+
+            <div class="x_panel">
+
+                <div class="x_content">
+
+                    <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Status <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.ListBoxFor(model => model[0].SelectedItems1, new MultiSelectList(new List<SelectListItem>(), "Value", "Text", Model[0].SelectedItems1), new { @id = "0", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory ", onchange = "ddl_change('0');" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Company <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(new List<SelectListItem>(), "Value", "Text", Model[0].SelectedItems2), new { @id = "1", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory ", onchange = "ddl_change('1');" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Unit <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @*@Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(new List<SelectListItem>(), "Value", "Text", Model[0].SelectedItems3), new { @id = "2", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory ", onchange = "ddl_change('2');" })*@
+                                @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(new List<SelectListItem>(), "Value", "Text", Model[0].SelectedItems3), new { @id = "2", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory ", onchange = "ddl_change('2');" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Year <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(new List<SelectListItem>(), "Value", "Text", Model[0].SelectedItems4), new { @id = "3", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory " })
+                            </div>
+                        </div>
+
+          
+
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <input id="btn_submit"  type="button" onclick="submited()" value="Submit" class="btn-primary btn" BorderStyle="Solid" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <asp:Button ClientIDMode="Static" runat="server" ID="hfbtnok" Style="display: none" OnClick="hfbtnok_Click" />
+    <input type="submit" id="btn_company" value="company" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    @Html.HiddenFor(model => model[0].Col1, new { id = "col1" })
+    @Html.HiddenFor(model => model[0].Col2, new { id = "col2" })
+    @Html.HiddenFor(model => model[0].Col3, new { id = "col3" })
+    @Html.HiddenFor(model => model[0].Col4, new { id = "col4" })
+    @Html.HiddenFor(model => model[0].Col14, new { id = "col4" })
+    @Html.HiddenFor(model => model[0].Col15, new { id = "col4" })
+
+}
+<script>
+    $(document).ready(function () {
+        $(".sa-mandatory").attr("required", "required");
+        var oop = '';
+        oop += '<option value="1" selected="selected">Active</option>';
+        oop += '<option value="0">Inactive</option>';
+        $('#0').html(oop).prop("disabled", false)
+            .select2().trigger("change");
+    });
+
+    function submited() {
+        
+        var mid = $("#0 option:selected").text() + "###" + $("#1 option:selected").text()
+            + "###" + $("#2 option:selected").text() + "###" + $("#3 option:selected").text();
+        var $form = $('#@viewName');
+        var url = '@Url.Action(viewName, "Home")';
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $form.serialize() + "&command=submit" + "&mid=" + mid,
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+                mytoast('success', 'toast-top-right', 'Particulars Changed Successfully');
+                window.location.href = '@Url.Action("dashboard", "Home")';
+            },
+            error: function (err) {
+                mytoast('success', 'toast-top-right', 'Particulars Changed Successfully');
+                window.location.href = '@Url.Action("dashboard", "Home",new { m_id=EncryptDecrypt.Encrypt(MyGuid)})';
+            }
+        });
+
+    }
+    function ddl_change(ddlid) {
+        var $form = $('#@viewName');
+        var url = '@Url.Action("getdll_Data", "Home")';
+        var obj = { "modelstr": $form.serialize(), "ddlid": ddlid, "Myguid": '@MyGuid' };
+      
+        var ddl = $('#' + (parseFloat(ddlid) + 1));
+        if (obj.modelstr == "") return;
+        $.getJSON(url, obj, function (response) {
+            var data = [{ id: "1", text: "Active" }, { id: "0", text: "Inactive" }];
+            var newOptions = '';
+
+            var i = 0;
+            $.each(response, function (index, item) {
+
+                if (i == 0) {
+                    newOptions += '<option value="' + item.Value + '" selected="selected">' + item.Text + '</option>';
+                }
+                else {
+                    newOptions += '<option value="' + item.Value + '">' + item.Text + '</option>';
+                }
+                i++;
+            });
+            $(ddl).select2('destroy').html(newOptions).prop("disabled", false)
+                .select2();
+            try {
+                $('#' + parseFloat(ddlid) + 2).empty();
+                $('#' + parseFloat(ddlid) + 3).empty();
+                $('#' + parseFloat(ddlid) + 4).empty();
+            }
+            catch (err) { }
+        });
+
+
+    }
+</script>

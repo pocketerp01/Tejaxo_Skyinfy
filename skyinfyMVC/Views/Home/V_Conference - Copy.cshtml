@@ -1,0 +1,1425 @@
+﻿
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+}
+
+<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/ajhifddimkapgcifgcodmmfdlknahffk">
+
+<style>
+    /**, *:before, *:after {
+      box-sizing: border-box;
+    }*/
+
+    /*body {
+      background: #C5DDEB;
+      font: 14px/20px "Lato", Arial, sans-serif;
+      padding: 40px 0;
+      color: white;
+    }*/
+    .list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .list li {
+            position: relative;
+            /*margin-bottom: 10px;*/
+        }
+
+    #topright {
+        position: absolute;
+        right: 0;
+        top: 0;
+        display: block;
+        text-indent: -999em;
+        text-decoration: none;
+    }
+
+    .container {
+        /*margin: 0 auto;*/
+        width: 100%;
+        background: #444753;
+        /*border-radius: 5px;*/
+    }
+
+    .people-list {
+        width: 260px;
+        float: left;
+    }
+
+    .search {
+        padding: 20px;
+    }
+
+    /*input {
+        border-radius: 3px;
+        border: none;
+        padding: 14px;
+        color: white;
+        background: #6A6C75;
+        width: 90%;
+        font-size: 14px;
+      }*/
+    .fa-search {
+        position: relative;
+        left: -25px;
+    }
+
+    ul {
+        /*padding: 20px;*/
+        /*height: 770px;*/
+    }
+
+    li {
+        /*padding-bottom: 20px;*/
+    }
+
+    img {
+        float: left;
+    }
+
+    .about {
+        float: left;
+        margin-top: 8px;
+    }
+
+    .about {
+        padding-left: 8px;
+    }
+
+    .status {
+        color: rgb(189, 189, 189);
+    }
+
+    .chat {
+        width: 490px;
+        float: left;
+        background: #F2F5F8;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        color: #434651;
+    }
+
+    .chat-header {
+        padding: 20px;
+        border-bottom: 2px solid white;
+    }
+
+    img {
+        float: left;
+    }
+
+    .chat-about {
+        float: left;
+        padding-left: 10px;
+        margin-top: 6px;
+    }
+
+    .chat-with {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .chat-num-messages {
+        color: $gray;
+    }
+
+    .fa-star {
+        float: right;
+        color: #D8DADF;
+        font-size: 20px;
+        margin-top: 12px;
+    }
+
+    }
+
+    .chat-history {
+        padding: 30px 30px 20px;
+        border-bottom: 2px solid white;
+        overflow-y: scroll;
+        height: 575px;
+    }
+
+    .message-data {
+        margin-bottom: 15px;
+    }
+
+    .message-data-time {
+        color: lightgray;
+        padding-left: 6px;
+    }
+
+    .message {
+        color: black;
+        padding: 18px 20px;
+        line-height: 10px;
+        font-size: 16px;
+        border-radius: 7px;
+        margin-bottom: 30px;
+        width: 70%;
+        position: relative;
+        font-family: Verdana;
+    }
+
+    .my-message {
+        background: darkgrey;
+    }
+
+    .other-message {
+        background-color: darkgrey;
+    }
+
+    :after {
+        border-bottom-color: dimgray;
+        left: 93%;
+    }
+
+    .chat-message {
+        padding: 30px;
+    }
+
+    textarea {
+        width: 100%;
+        border: none;
+        padding: 10px 20px;
+        font: 14px/22px "Lato", Arial, sans-serif;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        resize: none;
+    }
+
+    .fa-file-o, .fa-file-image-o {
+        font-size: 16px;
+        color: gray;
+        cursor: pointer;
+    }
+
+    button {
+        float: right;
+        color: $blue;
+        font-size: 16px;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        background: #F2F5F8;
+    }
+
+    &:hover {
+        color: darkblue;
+    }
+
+    .online, .offline, .me {
+        margin-right: 3px;
+        font-size: 10px;
+    }
+
+    .online {
+        color: green;
+    }
+
+    .offline {
+        color: orange;
+    }
+
+    .me {
+        color: #293955;
+    }
+
+    .align-left {
+        text-align: left;
+    }
+
+    .align-right {
+        text-align: right;
+    }
+
+    .float-right {
+        float: right;
+    }
+
+    /*.clearfix:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+    }*/
+</style>
+<style>
+    .form-control-borderless {
+        border: none;
+    }
+
+        .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+            border: none;
+            outline: none;
+            box-shadow: none;
+        }
+</style>
+@using (Html.BeginForm("V_Conference", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>CONFERENCE MEETING</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;"
+                               id="btnnew" onclick="open_room();" name="command" value="New Meeting" accesskey="N" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-success form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;"
+                               id="btnjoin" onclick="join_room();" name="command" value="Join Meeting" accesskey="N" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-warning form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;"
+                               id="btnshare" name="command"  value="Share Screen" accesskey="N" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-sm-2">
+            <div class="form-group">
+                <div class='input-group'>
+                    <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;"
+                           id="btnleave" onclick="close_room();" name="command"  value="Leave Meeting" accesskey="N" />
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="sa-btncancel form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;"
+                               id="btnend" onclick="end_room();" name="command" value="End meeting" accesskey="N" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div class="clearfix"></div>
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(m => m[0].Col17, new { id = "Student_Name" })
+        @Html.HiddenFor(m => m[0].Col18, new { id = "rollno" })
+        @Html.HiddenFor(m => m[0].Col19, new { id = "Class" })
+        @Html.HiddenFor(m => m[0].Col20, new { id = "section" })
+        @Html.HiddenFor(m => m[0].Col21, new { id = "client_id" })
+        @Html.HiddenFor(m => m[0].Col22, new { id = "unit_id" })
+        @Html.HiddenFor(m => m[0].Col23, new { id = "utype" })
+        @Html.HiddenFor(m => m[0].Col14, new { id = "m_id" })
+        @Html.HiddenFor(m => m[0].Col15, new { id = "mid" })
+
+
+    }
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+
+<div class="row" style="background:#F2F5F8">
+    <div class="col-sm-4 col-xs-4 center-block">
+        <div class="chat-header clearfix" style="height:70px;">
+            @*@if (Model[0].Col24 != "" && Model[0].Col24 == "CPR")
+                {
+                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddlclass", @class = "sa-select2-single form-control sa-textbox", @multiple = "multiple", onclange = "ddlchange();" })
+                }*@
+            <input type="text" id="room-id" value="abcde" class="form-control form-control-lg form-control-borderless" placeholder="Enter Meeting Id..." autocorrect=off autocapitalize=off size=20>
+        </div>
+        <div id="chat-container">
+            <div class="chat-output"></div>
+        </div>
+        <section class="make-center">
+            <div id="videos-container"></div>
+            <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+        </section>
+    </div>
+    <div class="col-sm-8 col-xs-8 center-block">
+        <div class="container clearfix">
+            <div class="people-list" id="people-list" style="width:40%">
+                <div class="chat-header clearfix" style="height:70px;">
+                    <h5 class="text-muted" style="color:white;font-family:Verdana;">
+                        <span class="fa fa-list principal-title" style="padding-right:5px;font-size:larger;"></span>
+                        Connected Peoples
+                    </h5>
+                </div>
+                <ul class="list" id="no_bullet" style="overflow-y:scroll;height:400px"></ul>
+            </div>
+            <div class="chat" style="width:60%">
+                <div class="chat-header clearfix">
+                    <div class="chat-about">
+                        <div class="chat-with">
+                            <span class="fa fa-comments principal-title" style="padding-right:5px;font-size:larger;"></span>
+                            Online Chat
+                            @*<div class="chat-num-messages">already 1 902 messages</div>*@
+                        </div>
+                        @*<i class="fa fa-star"></i>*@
+                    </div>
+                </div>
+                <!-- end chat-header -->
+                <div class="chat-history">
+                    <ul id="c_hist" style="overflow-y:scroll;height:400px"></ul>
+                </div> <!-- end chat-history -->
+                <div id="file-container"></div>
+                <div class="chat-message clearfix">
+                    <textarea name="message-to-send" id="input-text-chat" class="form-control form-control-lg form-control-borderless" placeholder="Type your message..." rows="1"></textarea>
+                    <span class="input-group-addon btn-success" data-toggle="tooltip" data-placement="top" title="Send" id="btn_send"><i class="fa fa-paper-plane-o"></i></span>
+                    <span class="input-group-addon btn btn-primary" data-toggle="tooltip" data-placement="top" title="Attachment" id="share-file"><i class="fa fa-paperclip"></i></span>
+                    <!--end of col-->
+                </div> <!-- end chat-message -->
+            </div> <!-- end chat -->
+        </div> <!-- end container -->
+        <script id="message-template" type="text/x-handlebars-template">
+            <li class="clearfix">
+                <div class="message-data align-right">
+                    <span class="message-data-time">{{time}}, Today</span> &nbsp; &nbsp;
+                    <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
+                </div>
+                <div class="message other-message float-right">
+                    {{messageOutput}}
+                </div>
+            </li>
+        </script>
+        <script id="message-response-template" type="text/x-handlebars-template">
+            <li>
+                <div class="message-data">
+                    <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+                    <span class="message-data-time">{{time}}, Today</span>
+                </div>
+                <div class="message my-message">
+                    {{response}}
+                </div>
+            </li>
+        </script>
+    </div>
+</div>
+<div class="row">
+    <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+</div>
+<script src="~/dist/RTCMultiConnection.js"></script>
+<script src="~/dist/RTCMultiConnection.min.js"></script>
+@*<script src="~/node_modules/webrtc-adapter/out/adapter.js"></script>*@
+<script src="~/socket.io/socket.io.js"></script>
+<!-- custom layout for HTML5 audio/video elements -->
+<link rel="stylesheet" href="~/dev/getHTMLMediaElement.css">
+<script src="~/dev/getHTMLMediaElement.js"></script>
+<script src="~/node_modules/recordrtc/RecordRTC.js"></script>
+<script src="~/node_modules/webrtc-screen-capturing/getScreenId.js"></script>
+<script src="~/node_modules/fbr/FileBufferReader.js"></script>
+<script src="~/dist/list.js"></script>
+
+<script>
+    (function () {
+
+        var chat = {
+            messageToSend: '',
+            messageResponses: [
+                'Why did the web developer leave the restaurant? Because of the table layout.',
+                'How do you comfort a JavaScript bug? You console it.',
+                'An SQL query enters a bar, approaches two tables and asks: "May I join you?"',
+                'What is the most used language in programming? Profanity.',
+                'What is the object-oriented way to become wealthy? Inheritance.',
+                'An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol'
+            ],
+            init: function () {
+                this.cacheDOM();
+                this.bindEvents();
+                this.render();
+            },
+            cacheDOM: function () {
+                this.$chatHistory = $('.chat-history');
+                this.$button = $('button');
+                this.$textarea = $('#message-to-send');
+                this.$chatHistoryList = this.$chatHistory.find('ul');
+            },
+            bindEvents: function () {
+                this.$button.on('click', this.addMessage.bind(this));
+                this.$textarea.on('keyup', this.addMessageEnter.bind(this));
+            },
+            render: function () {
+                this.scrollToBottom();
+                if (this.messageToSend.trim() !== '') {
+                    var template = Handlebars.compile($("#message-template").html());
+                    var context = {
+                        messageOutput: this.messageToSend,
+                        time: this.getCurrentTime()
+                    };
+
+                    this.$chatHistoryList.append(template(context));
+                    this.scrollToBottom();
+                    this.$textarea.val('');
+
+                    // responses
+                    var templateResponse = Handlebars.compile($("#message-response-template").html());
+                    var contextResponse = {
+                        response: this.getRandomItem(this.messageResponses),
+                        time: this.getCurrentTime()
+                    };
+
+                    setTimeout(function () {
+                        this.$chatHistoryList.append(templateResponse(contextResponse));
+                        this.scrollToBottom();
+                    }.bind(this), 1500);
+
+                }
+
+            },
+
+            addMessage: function () {
+                this.messageToSend = this.$textarea.val()
+                this.render();
+            },
+            addMessageEnter: function (event) {
+                // enter was pressed
+                if (event.keyCode === 13) {
+                    this.addMessage();
+                }
+            },
+            scrollToBottom: function () {
+                this.$chatHistory.scrollTop(this.$chatHistory[0].scrollHeight);
+            },
+            getCurrentTime: function () {
+                return new Date().toLocaleTimeString().
+                    replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+            },
+            getRandomItem: function (arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+
+        };
+
+        chat.init();
+
+        var searchFilter = {
+            options: { valueNames: ['name'] },
+            init: function () {
+                var userList = new List('people-list', this.options);
+                var noItems = $('<li id="no-items-found">No items found</li>');
+
+                userList.on('updated', function (list) {
+                    if (list.matchingItems.length === 0) {
+                        $(list.list).append(noItems);
+                    } else {
+                        noItems.detach();
+                    }
+                });
+            }
+        };
+
+        searchFilter.init();
+
+    })();
+</script>
+
+
+<script>
+
+    // ......................................................
+    // .......................UI Code........................
+    // ......................................................
+    //document.getElementById('open-room').onclick = function () {
+
+
+    //};
+    function setUserInfo() {
+        
+        connection.extra.userName = $("#Student_Name")[0].value;
+        connection.extra.rollno = $("#rollno")[0].value;
+        connection.extra.classname = $("#Class")[0].value;
+        connection.extra.section = $("#section")[0].value;
+    }
+    function end_room() {
+        //
+        connection.getAllParticipants().forEach(function (participant) {
+            connection.disconnectWith(participant);
+        });
+        connection.attachStreams.forEach(function (stream) {
+            stream.stop();
+        });
+        if (!connection.isInitiator) return;
+        connection.send({
+            userRemoved: true,
+            removedUserId: 'xyz'
+        });
+    }
+    function close_room() {
+        connection.close();
+    }
+    function open_room() {
+
+        //document.getElementById('room-id').value = new Date().getTime();
+        disableInputButtons();
+        setUserInfo();
+        var roomid = document.getElementById('room-id').value;
+        beforeOpenOrJoin(roomid, function () {
+            connection.open(roomid, function () {
+                afterOpenOrJoin();
+                try {
+                    $("video")[0].style.maxheight = "100%";
+                } catch (err) { }
+            });
+        });
+        fillUsers();
+    }
+
+    function join_room() {
+        disableInputButtons();
+        setUserInfo();
+        var roomid = document.getElementById('room-id').value;
+        beforeOpenOrJoin(roomid, function () {
+            connection.join(roomid, function () {
+                // join callback
+                afterOpenOrJoin();
+            });
+        });
+        fillUsers();
+    }
+    function fillUsers() {
+        //if (!connection.isInitiator)
+        {
+            connection.onUserStatusChanged = function () {
+                $("#no_bullet").empty();
+                connection.getAllParticipants().forEach(function (pid) {
+
+                    if (connection.peers[pid].peer.connectionState == "connected") {
+
+                        /**/
+                        /**/
+                        $("#no_bullet").append('<li href="#" class="clearfix"><div class="about"><div class= "name" >' + connection.peers[pid].extra.userName
+                            + ' / ' + connection.peers[pid].extra.rollno
+                            + ' / ' + connection.peers[pid].extra.classname
+                            + ' / ' + connection.peers[pid].extra.section + '</div ><div class="status"> <i class="fa fa-circle online"></i> Signal (Fine) </div> </div ></li>');
+                    }
+                    else {
+                        $("#no_bullet").append('<li href="#" class="clearfix"><div class="about"><div class= "name" >' + connection.peers[pid].extra.userName
+
+                            + ' / ' + connection.peers[pid].extra.rollno
+                            + ' / ' + connection.peers[pid].extra.classname
+                            + ' / ' + connection.peers[pid].extra.section + '</div ><div class="status"> <i class="fa fa-circle offline"></i> Signal (Weak) </div> </div ></li>');
+                    }
+                    //participants.push({
+                    //    pid: pid,
+                    //    broadcaster: connection.peers[pid].extra.broadcaster === true
+                    //});
+                });
+            }
+        }
+    }
+
+    var chatContainer = document.querySelector('.chat-output');
+
+    function appendDIV(obj) {
+        var element = document.createElement("div");
+        var text = obj.text || obj.data.text;
+        var userName = obj.userName || obj.data.userName;
+        var classname = obj.classname || obj.data.classname;
+        var rollno = obj.rollno || obj.data.rollno;
+        var section = obj.section || obj.data.section;
+        //$("#c_hist").append('<li"> <div class= "message-data align-right"><span class="message-data-time" >(' + formatAMPM() + ')' + userName +
+        //    ' / ' + rollno + '</span><div class="float-right example">' + text + '</div></div > </li >');
+
+        $("#c_hist").append('<li"> <div class= "message-data align-right"><span class="message-data-time" >(' + formatAMPM() + ')<a style="color:Black">' + userName +
+            ' / ' + rollno + '</a></span><div class="float-right example">' + text + '</div></div ><br/> </li >');
+        document.getElementById('input-text-chat').focus();
+    }
+    function appendDIV_file(obj) {
+        ;
+        var userName = obj.userName || obj.data.userName;
+        var classname = obj.classname || obj.data.classname;
+        var rollno = obj.rollno || obj.data.rollno;
+
+
+        var file = obj.file || obj.data.file;
+
+        if (file == null) {
+            var text = obj.text || obj.data.text;
+
+            $("#c_hist").append('<li"> <div class= "message-data align-right"><span class="message-data-time" >(' + formatAMPM() + ')</span><span class="message-data-name">' + userName +
+                ' / ' + rollno + '</span><div class="float-right example">' + text + '</div></div ><br/> </li >');
+        }
+        else {
+            $("#c_hist").append('<li> <div class= "message-data align-right" ><span class="message-data-time" >(' + formatAMPM() + ')</span><span class="message-data-name">' + userName +
+                ' / ' + rollno + '</span> <div class="float-right example"><a href = "' + file.url + '" download = "' + file.name + '" style="color: darkcyan;">' + file.name + ' <i class="fa fa-download float-right" style="padding-left:8px;"></i></a></div></div><br/></li >');
+
+        }
+        document.getElementById('input-text-chat').focus();
+    }
+    function formatAMPM() {
+        var dt;
+        var d = new Date(),
+            minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+            hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+            ampm = d.getHours() >= 12 ? 'pm' : 'am',
+            //months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            dt = 'Today' + ' ' + hours + ':' + minutes + ampm;
+        return dt;
+    }
+    function myFunction(VAL) {
+        ;
+        var vall;
+        vall = VAL;
+        var x = document.getElementById("stud_list");
+        var y = document.getElementById("2nd_col");
+        if (vall == true) {
+            x.style.display = "block";
+            document.getElementById("btnjoin").disabled = true;
+            document.getElementById("btnnew").disabled = true;
+        }
+        else if (vall == "-") {
+            x.style.display = "none";
+        } else {
+            x.style.display = "none";
+            document.getElementById("btnnew").disabled = true;
+            document.getElementById("btnjoin").disabled = true;
+        }
+    }
+
+
+    //document.getElementById('join-room').onclick = function () {
+
+    //};
+
+    // ......................................................
+    // ..................RTCMultiConnection Code.............
+    // ......................................................
+
+    var connection = new RTCMultiConnection();
+
+    // by default, socket.io server is assumed to be deployed on your own URL
+    connection.socketURL = 'https://rtcmulticonnection.herokuapp.com/';
+
+    // comment-out below line if you do not have your own socket.io server
+    // connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
+    connection.socketMessageEvent = 'video-screen-demo';
+    connection.autoCloseEntireSession = true;
+    connection.enableFileSharing = true;
+    //connection.dontCaptureUserMedia = true;
+    //connection.attachStreams.push(videoAndScreenMixer.getMixedStream());
+    connection.session = {
+        audio: true,
+        video: true
+    };
+
+    connection.sdpConstraints.mandatory = {
+        OfferToReceiveAudio: true,
+        OfferToReceiveVideo: true
+    };
+
+    connection.videosContainer = document.getElementById('videos-container');
+    connection.onstream = function (event) {
+
+
+        var existing = document.getElementById(event.streamid);
+        if (existing && existing.parentNode) {
+            existing.parentNode.removeChild(existing);
+        }
+
+        if (event.type === 'local' && event.stream.isVideo) {
+            RMCMediaTrack.cameraStream = event.stream;
+            RMCMediaTrack.cameraTrack = event.stream.getVideoTracks()[0];
+        }
+
+        event.mediaElement.removeAttribute('src');
+        event.mediaElement.removeAttribute('srcObject');
+        event.mediaElement.muted = true;
+        event.mediaElement.volume = 0;
+
+        var video = document.createElement('video');
+
+        try {
+            video.setAttributeNode(document.createAttribute('autoplay'));
+            video.setAttributeNode(document.createAttribute('playsinline'));
+        } catch (e) {
+            video.setAttribute('autoplay', true);
+            video.setAttribute('playsinline', true);
+        }
+
+        if (event.type === 'local') {
+            video.volume = 0;
+            try {
+                video.setAttributeNode(document.createAttribute('muted'));
+            } catch (e) {
+                video.setAttribute('muted', true);
+            }
+        }
+        video.srcObject = event.stream;
+
+        var width = parseInt(connection.videosContainer.clientWidth / 3) - 20;
+        var mediaElement = getHTMLMediaElement(video, {
+            title: connection.extra.userName || connection.peers[event.userid].extra.userName,
+            buttons: ['full-screen'],
+            width: width,
+            showOnMouseEnter: false
+        });
+
+        connection.videosContainer.appendChild(mediaElement);
+
+        setTimeout(function () {
+            mediaElement.media.play();
+        }, 5000);
+
+        mediaElement.id = event.streamid;
+
+        if (event.type === 'local') {
+            RMCMediaTrack.selfVideo = mediaElement.media;
+        }
+
+        // to keep room-id in cache
+        localStorage.setItem(connection.socketMessageEvent, connection.sessionid);
+    };
+
+    connection.onstreamended = function (event) {
+        var mediaElement = document.getElementById(event.streamid);
+        if (mediaElement) {
+            mediaElement.parentNode.removeChild(mediaElement);
+        }
+    };
+
+    connection.onEntireSessionClosed = function (event) {
+        //
+        connection.close();
+    };
+
+    connection.onMediaError = function (e) {
+        if (e.message === 'Concurrent mic process limit.') {
+            if (DetectRTC.audioInputDevices.length <= 1) {
+                alert('Please select external microphone. Check github issue number 483.');
+                return;
+            }
+
+            var secondaryMic = DetectRTC.audioInputDevices[1].deviceId;
+            connection.mediaConstraints.audio = {
+                deviceId: secondaryMic
+            };
+
+            connection.join(connection.sessionid);
+        }
+    };
+
+    // ..................................
+    // ALL below scripts are redundant!!!
+    // ..................................
+
+    //File Sharing
+
+
+    connection.enableFileSharing = true; // by default, it is "false".
+
+    //connection.session = {
+    //    data: true
+    //};
+
+    //connection.sdpConstraints.mandatory = {
+    //    OfferToReceiveAudio: false,
+    //    OfferToReceiveVideo: false
+    //};
+
+    // https://www.rtcmulticonnection.org/docs/iceServers/
+    // use your own TURN-server here!
+    //connection.iceServers = [{
+    //    'urls': [
+    //        'stun:stun.l.google.com:19302',
+    //        'stun:stun1.l.google.com:19302',
+    //        'stun:stun2.l.google.com:19302',
+    //        'stun:stun.l.google.com:19302?transport=udp',
+    //    ]
+    //}];
+    
+    connection.onmessage = appendDIV;
+    connection.filesContainer = document.getElementById('file-container');
+
+
+
+    var progressHelper = {};
+
+    // www.RTCMultiConnection.org/docs/onFileStart/
+    connection.onFileStart = function (file) {
+        var div = document.createElement('div');
+        div.title = file.name;
+        div.innerHTML = '<label>0%</label> <progress></progress>';
+
+        if (file.remoteUserId) {
+            try {
+
+                div.innerHTML += ' (Sharing with:' + connection.peers[file.remoteUserId].extra.userName + ')';
+            }
+            catch{
+                div.innerHTML += ' (Sharing From:' + connection.extra.userName + ')';
+            }
+        }
+
+        if (!connection.filesContainer) {
+            connection.filesContainer = document.body || document.documentElement;
+        }
+
+        connection.filesContainer.insertBefore(div, connection.filesContainer.firstChild);
+
+        if (!file.remoteUserId) {
+            progressHelper[file.uuid] = {
+                div: div,
+                progress: div.querySelector('progress'),
+                label: div.querySelector('label')
+            };
+            progressHelper[file.uuid].progress.max = file.maxChunks;
+            return;
+        }
+
+        if (!progressHelper[file.uuid]) {
+            progressHelper[file.uuid] = {};
+        }
+
+        progressHelper[file.uuid][file.remoteUserId] = {
+            div: div,
+            progress: div.querySelector('progress'),
+            label: div.querySelector('label')
+        };
+        progressHelper[file.uuid][file.remoteUserId].progress.max = file.maxChunks;
+    };
+
+    // www.RTCMultiConnection.org/docs/onFileProgress/
+    connection.onFileProgress = function (chunk) {
+        var helper = progressHelper[chunk.uuid];
+        if (!helper) {
+            return;
+        }
+        if (chunk.remoteUserId) {
+            helper = progressHelper[chunk.uuid][chunk.remoteUserId];
+            if (!helper) {
+                return;
+            }
+        }
+
+        helper.progress.value = chunk.currentPosition || chunk.maxChunks || helper.progress.max;
+        updateLabel(helper.progress, helper.label);
+    };
+
+    // www.RTCMultiConnection.org/docs/onFileEnd/
+    connection.onFileEnd = function (file) {
+        var helper = progressHelper[file.uuid];
+        if (!helper) {
+            console.error('No such progress-helper element exist.', file);
+            return;
+        }
+
+        if (file.remoteUserId) {
+            helper = progressHelper[file.uuid][file.remoteUserId];
+            if (!helper) {
+                return;
+            }
+        }
+
+        //var div = helper.div;
+        //var div = $("#file-container");
+        //if (file.type.indexOf('image') != -1) {
+        //    div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Download <strong style="color:red;">' + file.name + '</strong> </a><br />';
+        //    //commented by Ram 13052020
+        //    //div.innerHTML = div.innerHTML + '<img src="' + file.url + '" title="' + file.name + '" style="max-width: 80%;">';
+        //} else {
+        //    div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Download <strong style="color:red;">' + file.name + '</strong> </a><br />';
+        //    //commented by Ram 13052020
+
+        //    //div.innerHTML = div.innerHTML + '<iframe src="' + file.url + '" title="' + file.name + '" style="width: 80%;border: 0;height: inherit;margin-top:1em;"></iframe>';
+        //}
+        var obj = {};
+        obj.userid = file.remoteUserId;
+        obj.userName = connection.extra.userName || connection.peers[file.userid].extra.userName;
+        obj.rollno = connection.extra.rollno || connection.peers[file.userid].extra.rollno;
+        obj.classname = connection.extra.classname || connection.peers[file.userid].extra.classname;
+        obj.section = connection.extra.classname || connection.peers[file.userid].extra.section;
+        obj.file = file;
+
+
+        //var obj = {};
+
+        //obj.fileurl = file.url;
+        //obj.filename = file.name;
+
+        appendDIV_file(obj);
+        $(helper.div).empty();
+    };
+
+    function updateLabel(progress, label) {
+        if (progress.position === -1) {
+            return;
+        }
+
+        var position = +progress.position.toFixed(2).split('.')[1] || 100;
+        label.innerHTML = position + '%';
+    }
+
+
+
+
+        //End File
+
+
+    function disableInputButtons() {
+        //document.getElementById('room-id').onkeyup();
+
+        document.getElementById('btnnew').disabled = true;
+        document.getElementById('btnjoin').disabled = true;
+        //document.getElementById('room-id').disabled = true;
+    }
+
+    // ......................................................
+    // ......................Handling Room-ID................
+    // ......................................................
+
+    var roomid = '';
+    if (localStorage.getItem(connection.socketMessageEvent)) {
+        roomid = localStorage.getItem(connection.socketMessageEvent);
+    } else {
+        roomid = connection.token();
+    }
+    var txtRoomId = document.getElementById('room-id');
+    txtRoomId.value = roomid;
+    txtRoomId.onkeyup = txtRoomId.oninput = txtRoomId.onpaste = function () {
+        localStorage.setItem(connection.socketMessageEvent, document.getElementById('room-id').value);
+    };
+
+    // detect 2G
+    if (navigator.connection &&
+        navigator.connection.type === 'cellular' &&
+        navigator.connection.downlinkMax <= 0.115) {
+        alert('2G is not supported. Please use a better internet service.');
+    }
+</script>
+<script type="text/javascript">
+    // screen sharing codes goes here
+    var RMCMediaTrack = {
+        cameraStream: null,
+        cameraTrack: null,
+        screen: null
+    };
+
+    function beforeOpenOrJoin(roomid, callback) {
+        connection.socketCustomEvent = roomid;
+        callback();
+    }
+
+    function afterOpenOrJoin() {
+        //
+        //pc.createOffer(
+        //    function (offer) {
+        //        
+        //        pc.setLocalDescription(offer);
+        //        // modify the SDP after calling setLocalDescription
+        //        offer.sdp = setMediaBitrates(offer.sdp);
+        //        // your signaling code to communicate the offer goes here
+        //    });
+
+        connection.socket.on(connection.socketCustomEvent, function (message) {
+            if (message.userid === connection.userid) return; // ignore self messages
+
+            if (message.justSharedMyScreen === true) {
+                var video = document.getElementById(message.userid);
+                if (video) {
+                    // video.querySelector('video').srcObject = null;
+                }
+            }
+
+            if (message.justStoppedMyScreen === true) {
+                var video = document.getElementById(message.userid);
+                if (video) {
+                    video.querySelector('video').srcObject = null;
+                }
+            }
+        });
+
+    }
+
+    var btnShareScreen = document.getElementById('btnshare');
+    //connection.onUserStatusChanged = function () {
+    //    
+    //    btnShareScreen.disabled = connection.getAllParticipants().length <= 0;
+    //};
+
+    btnShareScreen.onclick = function () {
+
+        if ($(this)[0].value === "Share Screen") {
+
+            //$(this)[0].value = "Camera";
+            connection.addStream({
+                screen: true,
+                oneway: true
+            });
+
+            //connection.getChromeExtensionStatus('ajhifddimkapgcifgcodmmfdlknahffk', function (status) {
+                
+            //    if (status == 'installed-enabled') {
+            //        // chrome extension is installed & enabled.
+            //    }
+
+            //    if (status == 'installed-disabled') {
+            //        // chrome extension is installed but disabled.
+            //    }
+
+            //    if (status == 'not-installed') {
+            //        // chrome extension is not installed
+
+            //        chrome.webstore.install("https://chrome.google.com/webstore/detail/ajhifddimkapgcifgcodmmfdlknahffk",
+            //            function () { console.log("installed it"); }, function () { console.log("rejected it"); });
+
+            //    }
+
+            //    if (status == 'not-chrome') {
+            //        // using non-chrome browser
+            //    }
+            //});
+
+            //getScreenStream(function (screen) {
+
+            //    var isLiveSession = connection.getAllParticipants().length > 0;
+            //    if (isLiveSession) {
+            //        replaceTrack(RMCMediaTrack.screen);
+            //    }
+
+            //    // now remove old video track from "attachStreams" array
+            //    // so that newcomers can see screen as well
+            //    connection.attachStreams.forEach(function (stream) {
+            //        stream.getVideoTracks().forEach(function (track) {
+            //            stream.removeTrack(track);
+            //        });
+
+            //        // now add screen track into that stream object
+            //        stream.addTrack(RMCMediaTrack.screen);
+            //    });
+            //});
+        }
+        else {
+
+
+            RMCMediaTrack.screen.stop();
+            //if (RMCMediaTrack.cameraStream.getVideoTracks()[0].readyState) {
+            //    RMCMediaTrack.cameraStream.getVideoTracks().forEach(function (track) {
+            //        RMCMediaTrack.cameraStream.removeTrack(track);
+            //    });
+            //    RMCMediaTrack.cameraStream.addTrack(RMCMediaTrack.cameraTrack);
+            //}
+
+            //RMCMediaTrack.selfVideo.srcObject = RMCMediaTrack.cameraStream;
+
+            //connection.socket && connection.socket.emit(connection.socketCustomEvent, {
+            //    justStoppedMyScreen: true,
+            //    userid: connection.userid
+            //});
+
+            //// share camera again
+            //replaceTrack(RMCMediaTrack.cameraTrack);
+
+            //// now remove old screen from "attachStreams" array
+            //connection.attachStreams = [RMCMediaTrack.cameraStream];
+            //getScreenStream(function (screen) {
+
+
+            //    
+            //    //var isLiveSession = connection.getAllParticipants().length > 0;
+            //    //if (isLiveSession) {
+            //    //    replaceTrack(RMCMediaTrack.screen);
+            //    //}
+
+            //    // now remove old video track from "attachStreams" array
+            //    // so that newcomers can see screen as well
+            //    //connection.attachStreams.forEach(function (stream) {
+            //    //    stream.getVideoTracks().forEach(function (track) {
+            //    //        stream.removeTrack(track);
+            //    //    });
+
+            //    //    // now add screen track into that stream object
+            //    //    stream.addTrack(RMCMediaTrack.cameraStream);
+            //    //});
+            //});
+
+            $(this)[0].value = "Share Screen";
+        }
+    };
+
+    function getScreenStream(callback) {
+        
+        getScreenId(function (error, sourceId, screen_constraints) {
+            navigator.mediaDevices.getUserMedia(screen_constraints).then(function (screen) {
+                RMCMediaTrack.screen = screen.getVideoTracks()[0];
+                
+                RMCMediaTrack.selfVideo.srcObject = screen;
+
+                // in case if onedned event does not fire
+                (function looper() {
+                    // readyState can be "live" or "ended"
+                    if (RMCMediaTrack.screen.readyState === 'ended') {
+                        RMCMediaTrack.screen.onended();
+                        return;
+                    }
+                    setTimeout(looper, 1000);
+                })();
+
+                var firedOnce = false;
+                RMCMediaTrack.screen.onended = RMCMediaTrack.screen.onmute = RMCMediaTrack.screen.oninactive = function () {
+                    if (firedOnce) return;
+                    firedOnce = true;
+                    btnShareScreen.value = "Share Screen";
+                    if (RMCMediaTrack.cameraStream.getVideoTracks()[0].readyState) {
+                        RMCMediaTrack.cameraStream.getVideoTracks().forEach(function (track) {
+                            RMCMediaTrack.cameraStream.removeTrack(track);
+                        });
+                        RMCMediaTrack.cameraStream.addTrack(RMCMediaTrack.cameraTrack);
+                    }
+
+                    RMCMediaTrack.selfVideo.srcObject = RMCMediaTrack.cameraStream;
+
+                    connection.socket && connection.socket.emit(connection.socketCustomEvent, {
+                        justStoppedMyScreen: true,
+                        userid: connection.userid
+                    });
+
+                    // share camera again
+                    replaceTrack(RMCMediaTrack.cameraTrack);
+
+                    // now remove old screen from "attachStreams" array
+                    connection.attachStreams = [RMCMediaTrack.cameraStream];
+
+                    // so that user can share again
+                    btnShareScreen.disabled = false;
+                    //document.getElementById('btnleave').disabled = false;
+                };
+
+                connection.socket && connection.socket.emit(connection.socketCustomEvent, {
+                    justSharedMyScreen: true,
+                    userid: connection.userid
+                });
+
+                callback(screen);
+            });
+        });
+    }
+
+    function replaceTrack(videoTrack) {
+        if (!videoTrack) return;
+        if (videoTrack.readyState === 'ended') {
+            alert('Can not replace an "ended" track. track.readyState: ' + videoTrack.readyState);
+            return;
+        }
+        connection.getAllParticipants().forEach(function (pid) {
+            var peer = connection.peers[pid].peer;
+            if (!peer.getSenders) return;
+            var trackToReplace = videoTrack;
+            peer.getSenders().forEach(function (sender) {
+                if (!sender || !sender.track) return;
+                if (sender.track.kind === 'video' && trackToReplace) {
+                    sender.replaceTrack(trackToReplace);
+                    trackToReplace = null;
+                }
+            });
+        });
+    }
+
+
+    // ......................................................
+    // ................FileSharing/TextChat Code.............
+    // ......................................................
+
+    
+    document.getElementById('input-text-chat').onkeyup = function (e) {
+        if (e.keyCode != 13) return;
+
+        // removing trailing/leading whitespace
+        sendmsg();
+    };
+
+    function sendmsg() {
+
+        var txtbox = document.getElementById('input-text-chat');
+        txtbox.value = txtbox.value.replace(/^\s+|\s+$/g, '');
+        if (!txtbox.value.length) return;
+
+        var obj = {};
+        obj.text = txtbox.value;
+        obj.userName = connection.extra.userName;
+        obj.rollno = connection.extra.rollno;
+        obj.classname = connection.extra.classname;
+        obj.section = connection.extra.section;
+        connection.send(obj);
+        appendDIV(obj);
+        txtbox.value = '';
+    }
+    document.getElementById('btn_send').onclick = sendmsg;
+
+    // ......................................................
+    // ................FileSharing/TextChat Code.............
+    // ......................................................
+
+    document.getElementById('share-file').onclick = function () {
+        var fileSelector = new FileSelector();
+        fileSelector.selectSingleFile(function (file) {
+            connection.send(file);
+        });
+    };
+
+
+    
+
+    ////01052020  my Customized
+    function getScreenConstraints(error, sourceId, canRequestAudioTrack) {
+        
+        var screen_constraints = {
+            audio: false,
+            video: {
+                mandatory: {
+                    chromeMediaSource: error ? 'screen' : 'desktop',
+                    maxWidth: 320,
+                    maxHeight: 240
+                },
+                optional: []
+            }
+        };
+
+        if (!!canRequestAudioTrack) {
+            screen_constraints.audio = {
+                mandatory: {
+                    chromeMediaSource: error ? 'screen' : 'desktop',
+                    // echoCancellation: true
+                },
+                optional: []
+            };
+        }
+
+        if (sourceId) {
+            screen_constraints.video.mandatory.chromeMediaSourceId = sourceId;
+
+            if (screen_constraints.audio && screen_constraints.audio.mandatory) {
+                screen_constraints.audio.mandatory.chromeMediaSourceId = sourceId;
+            }
+        }
+
+        return screen_constraints;
+    }
+
+</script>
+
+<script type="text/javascript">
+    function setMediaBitrates(sdp) {
+        return setMediaBitrate(setMediaBitrate(sdp, "video", 500), "audio", 50);
+    }
+
+    function setMediaBitrate(sdp, media, bitrate) {
+        var lines = sdp.split("\n");
+        var line = -1;
+        for (var i = 0; i < lines.length; i++) {
+            if (lines[i].indexOf("m=" + media) === 0) {
+                line = i;
+                break;
+            }
+        }
+        if (line === -1) {
+            console.debug("Could not find the m line for", media);
+            return sdp;
+        }
+        console.debug("Found the m line for", media, "at line", line);
+
+        // Pass the m line
+        line++;
+
+        // Skip i and c lines
+        while (lines[line].indexOf("i=") === 0 || lines[line].indexOf("c=") === 0) {
+            line++;
+        }
+
+        // If we're on a b line, replace it
+        if (lines[line].indexOf("b") === 0) {
+            console.debug("Replaced b line at line", line);
+            lines[line] = "b=AS:" + bitrate;
+            return lines.join("\n");
+        }
+
+        // Add a new b line
+        console.debug("Adding new b line before line", line);
+        var newLines = lines.slice(0, line)
+        newLines.push("b=AS:" + bitrate)
+        newLines = newLines.concat(lines.slice(line, lines.length))
+        return newLines.join("\n")
+    }
+</script>
+
+@*<script>
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    var myStream;
+    var peer = new Peer({ key: 'PeerJS key' });
+
+    var setOthersStream = function (stream) {
+        $('#others-video').prop('src', URL.createObjectURL(stream));
+    };
+
+    var setMyStream = function (stream) {
+        myStream = stream;
+        $('#video').prop('src', URL.createObjectURL(stream));
+    };
+
+    peer.on('open', function (id) {
+        $('#peer-id').text(id);
+    });
+
+    peer.on('call', function (call) {
+        call.answer(myStream);
+        call.on('stream', setOthersStream);
+    });
+
+    $(function () {
+        navigator.getUserMedia({ audio: true, video: true }, setMyStream, function () { });
+    //    $('#call').on('click', function () {
+    //        var call = peer.call($('#others-peer-id').val(), myStream);
+    //        call.on('stream', setOthersStream);
+    //    });
+    //    //create button to toggle video
+    //    var video_button = document.getElementsByTagId('video_button');
+    //    video_button.appendChild(document.createTextNode("Toggle hold"));
+
+    //    video_button.video_onclick = function () {
+    //        myStream.getVideoTracks()[0].enabled = !(myStream.getVideoTracks()[0].enabled);
+    //    }
+
+    //    //var audio_button = document.getElementsByTagId('video_button');
+    //    //video_button.appendChild(document.createTextNode("Toggle hold"));
+
+    //    //audio_button.audio_onclick = function () {
+    //    //    myStream.getAudioTracks()[0].enabled = !(myStream.getAudioTracks()[0].enabled);
+    //    //}
+    //});
+
+    peer.on('error', function (e) {
+        console.log(e.message);
+    });
+
+  
+</script>*@

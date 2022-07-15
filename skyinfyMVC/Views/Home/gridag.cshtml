@@ -1,0 +1,371 @@
+﻿@using System.Data;
+@model List<skyinfyMVC.Models.Tmodelmain>
+@{
+    ViewBag.Title = "gridag";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<h2>gridag</h2>
+
+
+<!----datatable---->
+<link href="~/erp/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+
+<!-- Datatables -->
+<script src="/erp/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="/erp/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="/erp/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="/erp/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="/erp/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="/erp/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="/erp/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="/erp/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="/erp/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="/erp/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/erp/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="/erp/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript">
+
+
+    //app.controller("MyCntrl", function ($scope, $http) {
+    //    $http.get("/home/GetStudent")
+    //        .then(function (res) {
+    //            var data = [];
+    //            var columns = [];
+    //            debugger
+    //            var yourobj = JSON.parse(res.data);
+    //            for (n1_1 in yourobj[0]) {
+    //                columns.push({ "key": n1_1, "width": "4%", "dataType": "string", "showTags": "false", "showColumns": "true" });
+    //            }
+    //            $scope.columns = eval(columns);
+    //            $scope.gridData = yourobj;
+    //        });
+    //});
+
+    //$(document).ready(function () {
+    //    $('#example').DataTable({
+    //        "processing": true, // for show progress bar
+    //        "serverSide": true, // for process server side
+    //        "filter": true, // this is for disable filter (search box)
+    //        "orderMulti": false, // for disable multiple column at once
+    //        "pageLength": 5,
+    //    });
+    //});
+</script>
+
+@using GridMvc.Html;
+@*@(Html
+                            .Grid(Model[0].dt1.Rows.Cast()).
+                            .Build(columns =>
+                            {
+                                columns.Add(model => model["Name"] as String).Filterable(true).Sortable(true).Named("name").Titled("Name");
+                                columns.Add(model => model["Surname"] as String).Filterable(true).Sortable(true).Named("surname").Titled("Surname");
+                                columns.Add(model => model["MaritalStatus"] as String).Filterable(true).Sortable(true).Named("marital-status").Titled("Marital status");
+
+                                columns.Add(model => model["Age"] as String).Filterable(true).Sortable(true).Named("age").Titled("Age");
+                                columns.Add(model => model["Birthday"] as String).Filterable(true).Sortable(true).Named("birthday").Titled("Birthday");
+                                columns.Add(model => model["IsWorking"] as String).Filterable(true).Sortable(true).Named("is-working").Titled("Is working");
+                            })
+                            .Empty("No data found")
+                            .Pageable(pager =>
+                            {
+                                pager.RowsPerPage = 3;
+                            })
+    )*@
+
+@*@Html.Grid(Model[0].dt1.Rows.Cast<DataColumn>).AutoGenerateColumns()*@
+
+@*<link href="~/Content/jsgrid/css/demos.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+    <link href="~/Content/jsgrid/css/jsgrid.css" rel="stylesheet" />
+    <link href="~/Content/jsgrid/css/theme.css" rel="stylesheet" />*@
+@*<script src="/Content/jsgrid/db.js"></script>*@
+
+@*<script src="/Content/jsgrid/src/jsgrid.core.js"></script>
+    <script src="/Content/jsgrid/src/jsgrid.core.js"></script>
+    <script src="/Content/jsgrid/src/jsgrid.load-indicator.js"></script>
+    <script src="/Content/jsgrid/src/jsgrid.load-strategies.js"></script>
+    <script src="/Content/jsgrid/src/jsgrid.sort-strategies.js"></script>
+    <script src="/Content/jsgrid/src/jsgrid.field.js"></script>
+    <script src="/Content/jsgrid/src/fields/jsgrid.field.text.js"></script>
+    <script src="/Content/jsgrid/src/fields/jsgrid.field.number.js"></script>
+    <script src="/Content/jsgrid/src/fields/jsgrid.field.select.js"></script>
+    <script src="/Content/jsgrid/src/fields/jsgrid.field.checkbox.js"></script>
+    <script src="/Content/jsgrid/src/fields/jsgrid.field.control.js"></script>*@
+
+<h1>Basic Scenario</h1>
+<div id="jsGrid"></div>
+
+<table id="example" class="display" cellspacing="0" width="100%">
+    <thead>
+        <tr style="text-align:left;">
+            <th>Name</th>
+            <th>Age</th>
+            <th>DoB</th>
+        </tr>
+    </thead>
+
+    <tfoot>
+        <tr style="text-align:left;">
+            <th>Name</th>
+            <th>Age</th>
+            <th>DoB</th>
+        </tr>
+    </tfoot>
+</table>
+
+@*<table id="myTable">
+        <thead>
+            <tr>
+                <td>ID</td>
+                <td>NAme</td>
+                <td>ID</td>
+                <td>Name</td>
+                <td>Age </td>
+                <td>Country</td>
+                <td>Address</td>
+                <td>
+                    Married
+                </td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>*@
+<style>
+    .showHide {
+        cursor: pointer;
+    }
+</style>
+<div style="padding: 10px; border: 5px solid black; margin-top: 50px" class="container-fluid">
+    <div>
+        <b class="label label-danger" style="padding: 8.5px">Click to Show or Hide Column:</b>
+        <div class="btn-group btn-group-sm">
+            <a class="showHide btn btn-primary" data-columnindex="0">ID</a>
+            <a class="showHide btn btn-primary" data-columnindex="1">FirstName</a>
+            <a class="showHide btn btn-primary" data-columnindex="2">LastName</a>
+            <a class="showHide btn btn-primary" data-columnindex="3">FeesPaid</a>
+            <a class="showHide btn btn-primary" data-columnindex="4">Gender</a>
+            <a class="showHide btn btn-primary" data-columnindex="5">Email</a>
+            <a class="showHide btn btn-primary" data-columnindex="6">TelephoneNumber</a>
+            <a class="showHide btn btn-primary" data-columnindex="7">Date of Birth</a>
+        </div>
+    </div>
+    <br />
+    <table id="studentTable" class="table table-responsive table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Fees Paid</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Telephone Number</th>
+                <th>Date of Birth</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Fees Paid</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Telephone Number</th>
+                <th>Date of Birth</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/home/GetStudents",
+            success: function (data) {
+                var datatableVariable = $('#studentTable').DataTable({
+                    data: JSON.parse(data),
+                    serverSide: true,
+                    columns: [
+                        { 'data': 'iD' },
+                        { 'data': 'firstName' },
+                        { 'data': 'lastName' },
+                        {
+                            'data': 'feesPaid', 'render': function (feesPaid) {
+                                return '$ ' + feesPaid;
+                            }
+                        },
+                        { 'data': 'gender' },
+                        { 'data': 'emailId' },
+                        { 'data': 'telephoneNumber' },
+                        {
+                            'data': 'dateOfBirth', 'render': function (date) {
+                                try {
+                                    var date = new Date(parseInt(date.substr(6)));
+                                    var month = date.getMonth() + 1;
+                                    return date.getDate() + "/" + month + "/" + date.getFullYear();
+                                }
+                                catch (err) {
+                                    var date = new Date();
+                                    var month = date.getMonth() + 1;
+                                    return date.getDate() + "/" + month + "/" + date.getFullYear();
+                                }
+                            }
+                        }]
+                });
+                $('#studentTable tfoot th').each(function () {
+                    var placeHolderTitle = $('#studentTable thead th').eq($(this).index()).text();
+                    $(this).html('<input type="text" class="form-control input input-sm" placeholder = "Search ' + placeHolderTitle + '" />');
+                });
+                datatableVariable.columns().every(function () {
+                    var column = this;
+                    $(this.footer()).find('input').on('keyup change', function () {
+                        column.search(this.value).draw();
+                    });
+                });
+                $('.showHide').on('click', function () {
+                    var tableColumn = datatableVariable.column($(this).attr('data-columnindex'));
+                    tableColumn.visible(!tableColumn.visible());
+                });
+            }
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        // Setup - add a text input to each footer cell
+        //$('#example tfoot th').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        //});
+        //$('#example thead th').each(function () {
+        //    var title = $('#example tfoot th').eq($(this).index()).text();
+        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        //});
+        @*//$.getJSON('url/for/colums', function (columnsData) {
+        var table = $('#example').dataTable({
+            "processing": true, // control the processing indicator.
+            "serverSide": true, // recommended to use serverSide when data is more than 10000 rows for performance reasons
+            "info": true,   // control table information display field
+            "stateSave": true,  //restore table state on page reload,
+            "lengthMenu": [[10, 20, 50, -1], [10, 20, 50, "All"]],    // use the first inner array as the page length values and the second inner array as the displayed options
+            "ajax": {
+                "url": "@string.Format("{0}://{1}{2}", Request.Url.Scheme, Request.Url.Authority, Url.Content("~"))/Grid/AjaxGetJsonData",
+                "type": "GET"
+            }, "columns": [
+                { "data": "Name", "orderable": true },
+                { "data": "Age", "orderable": false },
+                { "data": "DoB", "orderable": true }
+            ],
+            //"order": [[0, "asc"]]
+        });*@
+        //});
+
+        //.columnFilter({
+        //    "aoColumns": [
+        //        { "type": "number-range" },
+        //        { "type": "text" },
+        //        { "type": "select" },
+        //        { "type": "date-range" }
+        //    ]
+        //});
+
+
+        // Apply the search
+        //debugger
+        //table.columns().eq(0).each(function (colIdx) {
+        //    $('input', table.column(colIdx).header()).on('keyup change', function () {
+        //        table
+        //            .column(colIdx)
+        //            .search(this.value)
+        //            .draw();
+        //    });
+        //});
+
+    });
+
+
+
+    //$('#myTable').DataTable({
+    //    serverSide: true,
+    //    ajax: '/home/GetPerson'
+    //    //{
+    //    //    url: '/home/GetPerson',
+    //    //    dataFilter: function (data) {
+    //    //        debugger
+    //    //        var json;
+    //    //        json.recordsTotal = data.length;
+    //    //        json.recordsFiltered = data.length;
+    //    //        json.data = data;
+
+    //    //        return JSON.stringify(json); // return JSON string
+    //    //    }
+    //    //}
+    //});
+
+    //var countries = [
+    //    { Name: "", Id: 0 },
+    //    { Name: "United States", Id: 1 },
+    //    { Name: "Canada", Id: 2 },
+    //    { Name: "United Kingdom", Id: 3 },
+    //    { Name: "France", Id: 4 },
+    //    { Name: "Brazil", Id: 5 },
+    //    { Name: "China", Id: 6 },
+    //    { Name: "Russia", Id: 7 }
+    //];
+
+    //$("#jsGrid").jsGrid({
+    //    height: "50%",
+    //    width: "100%",
+
+    //    filtering: true,
+    //    inserting: true,
+    //    editing: true,
+    //    sorting: true,
+    //    paging: true,
+    //    autoload: true,
+    //    pageSize: 10,
+    //    pageButtonCount: 5,
+    //    deleteConfirm: "Do you really want to delete client?",
+    //    controller: {
+    //        loadData: function (filter) {
+    //            return $.ajax({
+    //                type: "GET",
+    //                url: "/home/GetPerson",
+    //                data: filter,
+    //                dataType: "json"
+    //            })
+    //        }
+    //    },
+    //    fields: [
+    //        { name: "Name", type: "text", width: 150 },
+    //        { name: "Age", type: "number", width: 50, filtering: false },
+    //        { name: "Address", type: "text", width: 200 },
+    //        { name: "Country", type: "select", items: countries, valueField: "Id", textField: "Name" },
+    //        { name: "Married", type: "checkbox", title: "Is Married", sorting: false },
+    //        { type: "control" }
+    //    ]
+    //});
+    //$(".jsgrid-grid-body")[0].style.height = "400px";
+
+
+    //$(document).ready(function () {
+
+    //    var data = $.ajax({
+    //        type: "GET",
+    //        url: "/home/GetPerson",
+    //        data: filter,
+    //        dataType: "json"
+    //    });
+
+
+    //});
+</script>
+

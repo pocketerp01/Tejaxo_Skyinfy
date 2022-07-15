@@ -1,0 +1,292 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{ string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+        @*@Html.Raw(buttons)*@
+        <div class="col-md-8">
+            <div class="row">
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="I" onclick="editfun();">Ed<u>i</u>t</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" accesskey='@Model[0].Col121'>@Html.Raw(Model[0].Col122)</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="form-control sa-button sa-btncancel" formnovalidate id="btncancel" name="command" value="Cancel" accesskey="C"><u>C</u>ancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+
+    <div class="clearfix"></div>
+    <div class="x_panel">
+        <div class="x_content">
+            <div class="row">
+                <div class="col-sm-6 ">
+                    <label for="first-name">
+                        Name<span class="ClientProfileLabelColor">*</span>
+                    </label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(model => model[0].Col17, new { @id = "Txt_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Name" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <label for="first-name">
+                        Description<span class="ClientProfileLabelColor">*</span>
+                    </label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(model => model[0].Col18, new { @id = "Txt_desc", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Description" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 ">
+                    <label for="first-name">
+                        Work Flow Applicable For<span class="ClientProfileLabelColor"></span>
+                    </label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_wrkflow" })
+                            @Html.TextBoxFor(model => model[0].Col20, new { @id = "Txt_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @ReadOnly = true })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model[0].Col14 == "400011.7")
+                {
+                    <div class="col-sm-6 ">
+                        <label for="first-name">
+                            Ticket Type<span class="ClientProfileLabelColor"></span>
+                        </label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_ticktype" })
+                                @Html.TextBoxFor(model => model[0].Col22, new { @id = "Txt_tcktype", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @ReadOnly = true })
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <hr />
+            </div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class='col-sm-1'>
+                    <label for="first-name">Level <span class="ClientProfileLabelColor"></span></label>
+                </div>
+                @if (Model[0].Col14 == "33002.1")
+                {
+                    <div class='col-sm-3'>
+                        <label for="first-name">Select Role <span class="ClientProfileLabelColor"></span></label>
+                    </div>
+                }
+                else
+                {
+                    <div class='col-sm-3'>
+                        <label for="first-name">Select User <span class="ClientProfileLabelColor"></span></label>
+                    </div>
+                }
+
+                @*@if (Model[0].Col14 == "400011.7")
+        {
+            <div class='col-sm-3'>
+                <label for="first-name">Ticket Type <span class="ClientProfileLabelColor"></span></label>
+
+            </div>
+        }*@
+                @if (Model[0].Col14 == "33002.1")
+                {
+                    <div class='col-sm-2'>
+                        <label for="first-name">Intimation Only<span class="ClientProfileLabelColor"></span></label>
+                    </div>
+                }
+                <div class='col-sm-3'>
+                    <label for="first-name">TAT (Calender Days)<span class="ClientProfileLabelColor"></span></label>
+                </div>
+                @if (Model[0].Col14 == "33002.1")
+                {
+                    <div class='col-sm-3'>
+                    </div>
+                }
+
+            </div>
+
+            @for (int k = 0; k < Model[0].LTM2.Count; k++)
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    @Html.HiddenFor(m => m[0].LTM2[k].Col1)
+                    @Html.HiddenFor(m => m[0].LTM2[k].Col19)
+
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important">
+                            <!-- tools box -->
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><input name="command" onclick="sethfval('@k');" type="submit" value="Add" class="fa fa-plus" formnovalidate data-toggle="tooltip" title="Add More" /> </li>
+                                <li><input name="command" onclick="sethfval('@k');" type="submit" value="Remove" class="fa fa-close" formnovalidate data-toggle="tooltip" title="Remove" /> </li>
+                            </ul>
+                            <div class="clearfix" id="diclear"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <b>@(k + 1)</b> <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class='col-sm-3'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].LTM2[k].SelectedItems1, new MultiSelectList(Model[0].LTM2[k].TList1, "Value", "Text", Model[0].LTM2[k].SelectedItems1), new { @id = "ddl_role" + k + "", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple", onchange = "selectindex_change();" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if (Model[0].Col14 == "33002.1")
+                                {
+
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.CheckBoxFor(m => Model[0].LTM2[k].Chk1, new { @id = "chk_1" + k + "", @class = "sa-input checkbox" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                    <div class='col-sm-3'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].LTM2[k].Col17, new { @id = "txt_inti" + k + "", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "TAT (Calender Days)" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if (Model[0].Col14 == "33002.1")
+                                    {
+                                        <div class='col-sm-3' style="display:none" id="div_othr_@k">
+                                            <div class="form-group">
+                                                <div class='input-group'>
+
+                                                    @Html.DropDownListFor(model => model[0].LTM2[k].SelectedItems2, new MultiSelectList(Model[0].LTM2[k].TList2, "Value", "Text", Model[0].LTM2[k].SelectedItems2), new { @id = "ddl" + k + "", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+<script type="text/javascript">
+          $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+              $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+              selectindex_change();
+    });
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName','@Model[0].Col14'); }
+    @*function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }*@
+    function sethfval(val) { $("#hfrow").val(val); }
+    function selectindex_change() {
+        debugger;
+
+        var ids = new Array();
+        var vals = $("select[id*=ddl_role]").length;
+        if (vals == "" || vals == undefined) {
+            vals = 1;
+        }
+        for (var i = 0; i < vals; i++) {
+            try {
+                if (ids.includes($("#ddl_role" + i + "")[0].value)) alert('Duplicate Role Exist');
+                else ids.push($("#ddl_role" + i + "")[0].value);
+                if ($("#ddl_role" + i + "")[0].value == "999999") { $("#div_othr_" + i + "").show(); }
+                else { $("#div_othr_" + i + "").hide(); }
+            }
+            catch{ }
+        }
+
+    }
+
+</script>

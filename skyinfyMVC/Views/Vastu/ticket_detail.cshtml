@@ -1,0 +1,606 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string mandatory = "sa-mandatory";
+
+
+}
+<style>
+
+
+    .btn-breadcrumb {
+        width: 100%;
+        background-color: #fff;
+        border-radius: 4px;
+        border: solid 1px #ccc;
+    }
+
+        .btn-breadcrumb .btn {
+            border-color: transparent;
+            border: 0px solid transparent;
+            border-right: 1px solid transparent !important;
+            font-size: 11px;
+        }
+
+    .breadcrumb-default {
+        background-color: #fff;
+    }
+
+    .btn-primary, .breadcrumb-primary {
+        background-color: #337ab7;
+    }
+
+        .btn-primary:hover {
+            background-color: #286090;
+        }
+
+    .breadcrumb-success {
+        background-color: #5cb85c;
+    }
+
+    .breadcrumb-info {
+        background-color: #5bc0de;
+    }
+
+    .breadcrumb-warning {
+        background-color: #f0ad4e;
+    }
+
+    .breadcrumb-danger {
+        background-color: #d9534f;
+    }
+
+    .breadcrumb-negro {
+        background-color: #d4d4d4;
+    }
+
+    .btn-breadcrumb .btn:last-child {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+        .btn-breadcrumb .btn:last-child:after {
+            margin-left: -2px;
+        }
+
+        .btn-breadcrumb .btn:last-child:before {
+            margin-left: -1px;
+        }
+
+    .btn-breadcrumb .btn-derecha {
+        float: right;
+        margin-right: 0px;
+        padding: 6px 10px 6px 10px !important;
+        margin-left: 0px !important;
+        border-radius: 0px !important;
+    }
+
+        .btn-breadcrumb .btn-derecha:first-child {
+            border-top-right-radius: 2px !important;
+            border-bottom-right-radius: 2px !important;
+        }
+
+        .btn-breadcrumb .btn-derecha:after, .btn-breadcrumb .btn-derecha:before {
+            content: none !important;
+        }
+
+    .btn-breadcrumb .btn:after {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 13px solid transparent;
+        border-bottom: 14px solid transparent;
+        border-left: 10px solid white;
+        position: absolute;
+        top: 50%;
+        margin-top: -14px;
+        margin-left: 0px;
+        left: 100%;
+        z-index: 3;
+    }
+
+    .btn-breadcrumb .btn:before {
+        content: " ";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 13px solid transparent;
+        border-bottom: 14px solid transparent;
+        border-left: 10px solid rgb(173, 173, 173);
+        position: absolute;
+        top: 50%;
+        margin-top: -14px;
+        margin-left: 1px;
+        left: 100%;
+        z-index: 3;
+    }
+
+    /** The Spacing **/
+    .btn-breadcrumb .btn {
+        padding: 6px 12px 6px 24px;
+    }
+
+        .btn-breadcrumb .btn:first-child {
+            padding: 6px 6px 6px 10px;
+        }
+
+        .btn-breadcrumb .btn:last-child {
+            padding: 6px 18px 6px 24px;
+        }
+
+        /** Default button **/
+        .btn-breadcrumb .btn.btn-default:after {
+            border-left: 10px solid #fff;
+        }
+
+        .btn-breadcrumb .btn.btn-default:hover:after {
+            border-left: 10px solid #e6e6e6;
+        }
+
+        .btn-breadcrumb .btn.btn-default:hover:before, .btn-breadcrumb .btn.btn-default:before {
+            border-left: 10px solid #adadad;
+        }
+
+    .breadcrumb-default {
+        border: solid 1px #adadad;
+    }
+
+    /** Primary button **/
+    .btn-breadcrumb .btn.btn-primary:after {
+        border-left: 10px solid #337ab7;
+    }
+
+    .btn-breadcrumb .btn.btn-primary:hover:after {
+        border-left: 10px solid #286090;
+    }
+
+    .btn-breadcrumb .btn.btn-primary:hover:before, .btn-breadcrumb .btn.btn-primary:before {
+        border-left: 10px solid #204d74;
+    }
+
+    .breadcrumb-primary {
+        border: solid 1px #204d74;
+    }
+
+    /** Success button **/
+    .btn-breadcrumb .btn.btn-success:after {
+        border-left: 10px solid #5cb85c;
+    }
+
+    .btn-breadcrumb .btn.btn-success:hover:after {
+        border-left: 10px solid #449d44;
+    }
+
+    .btn-breadcrumb .btn.btn-success:hover:before, .btn-breadcrumb .btn.btn-success:before {
+        border-left: 10px solid #398439;
+    }
+
+    .breadcrumb-success {
+        border: solid 1px #398439;
+    }
+
+    /** Danger button **/
+    .btn-breadcrumb .btn.btn-danger:after {
+        border-left: 10px solid #d9534f;
+    }
+
+    .btn-breadcrumb .btn.btn-danger:hover:after {
+        border-left: 10px solid #c9302c;
+    }
+
+    .btn-breadcrumb .btn.btn-danger:hover:before, .btn-breadcrumb .btn.btn-danger:before {
+        border-left: 10px solid #ac2925;
+    }
+
+    .breadcrumb-danger {
+        border: solid 1px #ac2925;
+    }
+
+    /** Warning button **/
+    .btn-breadcrumb .btn.btn-warning:after {
+        border-left: 10px solid #f0ad4e;
+    }
+
+    .btn-breadcrumb .btn.btn-warning:hover:after {
+        border-left: 10px solid #ec971f;
+    }
+
+    .btn-breadcrumb .btn.btn-warning:hover:before, .btn-breadcrumb .btn.btn-warning:before {
+        border-left: 10px solid #d58512;
+    }
+
+    .breadcrumb-warning {
+        border: solid 1px #d58512;
+    }
+
+    /** Info button **/
+    .btn-breadcrumb .btn.btn-info:after {
+        border-left: 10px solid #5bc0de;
+    }
+
+    .btn-breadcrumb .btn.btn-info:hover:after {
+        border-left: 10px solid #31b0d5;
+    }
+
+    .btn-breadcrumb .btn.btn-info:hover:before, .btn-breadcrumb .btn.btn-info:before {
+        border-left: 10px solid #269abc;
+    }
+
+    .breadcrumb-info {
+        border: solid 1px #269abc;
+    }
+</style>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row navbar-default">
+
+    </div>
+
+
+    <div class="container">
+
+        <div class="row">
+
+
+
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid_" + i })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid_" + i })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby_" + i })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate_" + i })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby_" + i })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate_" + i })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid_" + i })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url_" + i })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title_" + i })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name_" + i })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where_" + i })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type_" + i })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text_" + i })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid_" + i })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id_" + i })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num_" + i })
+        @Html.HiddenFor(model => model[i].Col17, new { @id = "hf_leadtype_" + i })
+        @Html.HiddenFor(model => model[i].Col50, new { @id = "hf_geo_" + i })
+        @Html.HiddenFor(model => model[0].Col56, new { @id = "hf_btnedit" })
+        @Html.HiddenFor(model => model[0].Col57, new { @id = "hf_btnview" })
+
+        <div class="x_panel">
+            <div class="container">
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" id="divdetails" href="#home"><b>Details</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" id="divact" onclick="activityclick(this)" href="#menu1"><b>Activity</b></a>
+                    </li>
+                    @if (Model[0].LTM2[0].Col27 != "Re-Opened")
+                    {
+                        if (Model[0].LTM1[0].Col43 == "0")
+                        {
+                            <li class="nav-item">
+                                <a id="ld" href="@Url.RouteUrl(new { Controller = "Purchase", Action = "party", m_id = EncryptDecrypt.Encrypt(@MyGuid), mid = EncryptDecrypt.Encrypt("40002.9"), fstr = EncryptDecrypt.Encrypt(@Model[0].LTM1[0].Col16 + "_PRO") })">
+
+                                    <b>Convert Into Prospect</b>
+                                </a>
+                            </li>
+                        }
+                    }
+
+                </ul>
+
+
+                <div class="tab-content">
+                    <div id="home" class="container tab-pane fadeIn">
+                        <br>
+
+                        <br />
+                        <div class="row" id="pr_ticketdt">
+                            @Html.Partial("pr_ticket", Model)
+                        </div>
+
+
+                        <div class="tab-content">
+                            <div id="subtab11" class="container tab-pane fade active">
+                                <br />
+
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                    <div id="menu1" class="container tab-pane fade">
+                        <br>
+
+                        <ul class="nav nav-tabs" role="tablist">
+
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" id="divfollow" href="#subtab3"><b>Follow Up</b></a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div id="subtab1" class="container tab-pane fade">
+                                <br />
+                                <div class="row">
+                                    <div class='col-sm-4'>
+                                        <label for="first-name">Email</label>
+                                        <div class="form-group ">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "", @ReadOnly = "true" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <label for="first-name"></label>
+                                        <div class="form-group ">
+                                            <div class='input-group'>
+                                                <input type="button" class="btn btn-primary" name="Command" value="Compose" />
+
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="subtab2" class="container tab-pane fade">
+                                <br />
+                                <div class="row">
+                                    <div class='col-sm-4'>
+                                        <label for="first-name">Address</label>
+                                        <div class="form-group ">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_branch_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "", @ReadOnly = "true" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="subtab3" class="container tab-pane fade">
+                                <br />
+                                <div class="row" id="pr_tml">
+                                    @Html.Partial("pr_timeline", Model)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+@Styles.Render("~/bundles/updcss")
+@Scripts.Render("~/bundles/updjs")
+
+<!---- Geo Location Scripts---->
+
+@if (Model[0].LTM1[0].Col50 == "Y")
+{
+    @Scripts.Render("~/bundles/gmapjs")
+    @Scripts.Render("~/bundles/gmapjs2")
+    @Styles.Render("~/bundles/gmapcss")
+}
+<!---- Geo Location Scripts---->
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        debugger;
+        @Html.Raw(ViewBag.scripCall);
+        $("[id=divdetails]").click();
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function PARTY() { var data = show_Foo('Select Customer', 'PARTY', '1', '@viewName', '@controllerName'); }
+    function selectadd() { var data = show_Foo('Select Address', 'ADD1', '1', '@viewName', '@controllerName'); }
+
+</script>
+<script>
+    function hide(ctrl) {
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    //function hide1(ctrl, check) {
+
+    //    if (check) {
+    //        $(ctrl.children[0]).removeClass('fa-chevron-down');
+    //        $(ctrl.children[0]).addClass('fa-chevron-up');
+    //        ctrl.closest("div").parentElement.children[1].style.display = 'block';
+    //    }
+    //    else {
+
+    //        $(ctrl.children[0]).removeClass('fa-chevron-up');
+    //        $(ctrl.children[0]).addClass('fa-chevron-down');
+    //        ctrl.closest("div").parentElement.children[1].style.display = 'none';
+    //    }
+    //}
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+
+    }
+
+    function activityclick(ctrl)
+    {
+        //debugger;
+        $("[id=divfollow]").click();
+    }
+
+     function updatedfollow() {
+
+
+        var url = '@Url.Action("pr_timeline", "vastu")';
+        var keyWord = $('#Keyword').val();
+         var $ff = $('#pr_tml :input');
+        var gg = $ff.serialize();
+
+         showwait();
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                "model1": gg, "name": keyWord
+            },
+            //contentType: "application/json; charset=utf-8",
+            //datatype: "json",
+            //traditional: true,
+            success: function (data) {
+                hidewait();
+
+                $('#pr_tml').empty();
+                $('#pr_tml').append(data);
+                //$('#myModal').modal(options);
+                //$('#myModal').modal('show');
+                $(".sa-date").inputmask({ "mask": maskformat(dformat(dateformat)) })
+                $(".sa-date").datetimepicker({
+                    ignoreReadonly: true,
+                    format: dformat(dateformat),
+                    //minDate: today
+                });
+                $(".sa-select2-single").select2({
+
+
+                    maximumSelectionLength: 1,
+                    //placeholder: $(this).attr("placeholder"),
+                    //multiple: true,
+
+                    allowClear: true
+                })
+
+                //$(".sa-select2-multiple").select2({ placeholder: "Select a state"});
+                $(".sa-select2-multiple").select2();
+                $('.sa-selectfast').fastselect({
+                    placeholder: '',
+                });
+
+            },
+            error: function (err) {
+                hidewait();
+                alert("Dynamic content load failed.");
+            }
+        });
+    }
+
+    function updatedticket() {
+         //debugger;
+
+        var url = '@Url.Action("pr_ticket", "vastu")';
+        var keyWord = $('#Keyword').val();
+         var $ff = $('#pr_ticketdt :input');
+        var gg = $ff.serialize();
+
+
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                "model1": gg, "name": keyWord
+            },
+            //contentType: "application/json; charset=utf-8",
+            //datatype: "json",
+            //traditional: true,
+            success: function (data) {
+                hidewait();
+                $('#pr_ticketdt').empty();
+                $('#pr_ticketdt').append(data);
+                //$('#myModal').modal(options);
+                //$('#myModal').modal('show');
+
+                $(".sa-date").inputmask({ "mask": maskformat(dformat(dateformat)) })
+                $(".sa-date").datetimepicker({
+                    ignoreReadonly: true,
+                    format: dformat(dateformat),
+                    //minDate: today
+                });
+                $(".sa-select2-single").select2({
+
+
+                    maximumSelectionLength: 1,
+                    //placeholder: $(this).attr("placeholder"),
+                    //multiple: true,
+
+                    allowClear: true
+                })
+
+                //$(".sa-select2-multiple").select2({ placeholder: "Select a state"});
+                $(".sa-select2-multiple").select2();
+                $('.sa-selectfast').fastselect({
+                    placeholder: '',
+                });
+
+            },
+            error: function (err) {
+
+                alert("Dynamic content load failed.");
+            }
+        });
+    }
+
+     function disableForm_td() {
+
+            //$(".body").find("input[type=text],input[type=checkbox],select").prop("disabled", true);
+
+         $("#pr_ticketdt").find("input[type=text],input[type=checkbox],input[type=email],input[type=radio],input[type=password],select,textarea").not("#mySearch").not("#ddmenus").prop("disabled", true);
+    }
+
+     function enableForm_td() {
+
+         $("#pr_ticketdt").find("input[type=text],input[type=checkbox],input[type=email],input[type=radio],input[type=password],select,textarea").prop("disabled", false);
+    }
+
+    function disableForm_tf() {
+
+        //$(".body").find("input[type=text],input[type=checkbox],select").prop("disabled", true);
+
+        $("#pr_tml").find("input[type=text],input[type=checkbox],input[type=email],input[type=radio],input[type=password],select,textarea").not("#mySearch").not("#ddmenus").prop("disabled", true);
+    }
+
+    function enableForm_tf() {
+
+        $("#pr_tml").find("input[type=text],input[type=checkbox],input[type=email],input[type=radio],input[type=password],select,textarea").prop("disabled", false);
+    }
+</script>
+
+

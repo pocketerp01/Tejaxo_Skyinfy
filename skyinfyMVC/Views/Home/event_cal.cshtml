@@ -1,0 +1,150 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";    
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*<link href="~/Content/css/monthly.css" rel="stylesheet" />
+    <script src="../../../../js/monthly.js"></script>*@
+    @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_mod" })
+    @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_mod" })
+    <div class="page-title">
+        <div class="title_left">
+            <h3>CALENDAR</h3>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+
+                                <div class="col-md-1">MyToDo</div>
+                                <div class="col-md-1">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                            <div style="height: 20px; width: 10px; background-color: #21618C; border: 1px solid" data-toggle="tooltip" data-placement="top" title="Admin"></div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <div style="height: 20px; width: 10px; background-color: #5499C7; border: 1px solid" data-toggle="tooltip" data-placement="top" title="Other"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-md-1" id="div_tr" runat="server">Training</div>
+        <div class="col-md-1" id="div_tr1" runat="server">
+            <div style="height: 20px; width: 20px; background-color: #EDBB99; border: 1px solid"></div>
+        </div>*@
+                                @*<div class="col-md-1" id="div_conf" runat="server">Conference</div>
+        <div class="col-md-1" id="div_conf1" runat="server">
+            <div style="height: 20px; width: 20px; background-color: #26b99a; border: 1px solid"></div>
+        </div>*@
+                                @*<div class="col-md-1" id="div_qp" runat="server">Quiz Praxis</div>
+        <div class="col-md-1" id="div_qp1" runat="server">
+            <div style="height: 20px; width: 20px; background-color: #E8DAEF; border: 1px solid"></div>
+        </div>*@
+                                <div class="col-md-1">Notification</div>
+                                <div class="col-md-1">
+                                    <div style="height: 20px; width: 20px; background-color: #ff6a00; border: 1px solid"></div>
+                                </div>
+
+                                <div class="col-md-1">Leads</div>
+                                <div class="col-md-1">
+                                    <div style="height: 20px; width: 20px; background-color: #008000; border: 1px solid"></div>
+                                </div>
+
+                                <div class="col-md-1">Tickets</div>
+                                <div class="col-md-1">
+                                    <div style="height: 20px; width: 20px; background-color: #8f008f; border: 1px solid"></div>
+                                </div>
+
+                                <div class="col-md-1">Appointments</div>
+                                <div class="col-md-1">
+                                    <div style="height: 20px; width: 20px; background-color: #008f8f; border: 1px solid"></div>
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="monthly" id="demo-1"></div>
+
+                            <script type="text/javascript">
+                                $('#demo-1').monthly({
+                                    mode: 'event',
+                                    xmlUrl: '../../Handler.ashx?m_id=@Model[0].Col15&mid=@Model[0].Col14'
+                                });
+
+                            </script>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Reminder</h2>
+
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <asp:Panel runat="server" ID="pnl_showreminder" Visible="false">
+                        <br />
+                        <asp:Repeater runat="server" ID="reminderrepeater">
+                            <ItemTemplate>
+
+                                <div class="alert alert-primary" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <b class="alert-heading">
+                                        <asp:Label runat="server" ID="lbl_title" Text='<%#Eval("title") %>'></asp:Label>
+                                    </b>
+                                    <p>
+                                        <asp:Label runat="server" ID="lbl_desc" Text='<%#Eval("datefrom") %>'></asp:Label>
+                                    </p>
+                                    <p class="mb-0">
+                                        <asp:Label runat="server" ID="lbl_from" Text='<%#Eval("dateto") %>'></asp:Label>
+                                    </p>
+                                    <p class="mb-0">
+                                        <asp:Label runat="server" ID="lbl_to" Text='<%#Eval("description") %>'></asp:Label>
+                                    </p>
+                                </div>
+
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+
+                    </asp:Panel>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

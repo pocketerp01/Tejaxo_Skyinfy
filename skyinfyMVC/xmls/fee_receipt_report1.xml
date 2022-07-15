@@ -1,0 +1,151 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="REMARKS" type="xs:string" minOccurs="0" />
+                <xs:element name="TOTAL_FEE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTAL_RECEIPT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTAL_BAL" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DUE_FEE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DUE_RECEIPT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DUE_BAL" type="xs:decimal" minOccurs="0" />
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FATHER_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="REGNO" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ACADEMIC_YEAR_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="ACADEMIC_YEAR" type="xs:string" minOccurs="0" />
+                <xs:element name="CLASS_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="CLASS" type="xs:string" minOccurs="0" />
+                <xs:element name="FEE_HEAD_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="HEADNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MODE_OF_PAYMENT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="MASTER_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_UNIT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="SECTION_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="SECTION" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <REMARKS>0</REMARKS>
+    <TOTAL_FEE>29000</TOTAL_FEE>
+    <TOTAL_RECEIPT>6000</TOTAL_RECEIPT>
+    <TOTAL_BAL>23000</TOTAL_BAL>
+    <DUE_FEE>7000</DUE_FEE>
+    <DUE_RECEIPT>6000</DUE_RECEIPT>
+    <DUE_BAL>1000</DUE_BAL>
+    <NAME>yogender kumar </NAME>
+    <FATHER_NAME>surender kumar </FATHER_NAME>
+    <REGNO>20/name/22</REGNO>
+    <RECEIPT_NO>Name/9</RECEIPT_NO>
+    <RECEIPT_AMOUNT>1000</RECEIPT_AMOUNT>
+    <ACADEMIC_YEAR_ID>003</ACADEMIC_YEAR_ID>
+    <ACADEMIC_YEAR>2020 2021</ACADEMIC_YEAR>
+    <CLASS_ID>056</CLASS_ID>
+    <CLASS>class-1</CLASS>
+    <FEE_HEAD_ID>001</FEE_HEAD_ID>
+    <HEADNAME>monthly fee</HEADNAME>
+    <MODE_OF_PAYMENT_ID>005</MODE_OF_PAYMENT_ID>
+    <MASTER_NAME>Advance</MASTER_NAME>
+    <CLIENT_ID>001</CLIENT_ID>
+    <CLIENT_UNIT_ID>001001</CLIENT_UNIT_ID>
+    <MONTH_NAME>April</MONTH_NAME>
+    <SECTION_ID>001</SECTION_ID>
+    <SECTION>a</SECTION>
+    <RECEIPT_DATE>13/04/2020 05:56:58</RECEIPT_DATE>
+    <MONTH>April</MONTH>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Demo International Limited</COMPANY_NAME>
+    <COMPANY_ADDRESS>sec 31demo address</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>07</COMPANY_STATE>
+    <COMPANY_CITY>Delhi Cantt.</COMPANY_CITY>
+    <COMPANY_PINCODE>121001</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>gsthelp001@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>demo.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>8989898989</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>8989898989</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>10AAAAA0000A1ZA</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>DRMPP1798A</COM_PAN_NO>
+    <COMPANY_CIN_NO>CIN69798798</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>unit1</UNIT_NAME>
+    <UNIT_ADDRESS>sec 31</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121001</UNIT_PINCODE>
+    <UNIT_EMAIL>satest39@gmail.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>8070605040</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9090909090</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>100</SEPTR>
+    <UNIT_GSTIN_NO>06AAGCK0295E2ZO</UNIT_GSTIN_NO>
+    <BANK_NAME>UNION BANK OF INDIA</BANK_NAME>
+    <BANK_BRANCH>FARIDABAD</BANK_BRANCH>
+    <BANK_ACC>090908090809</BANK_ACC>
+    <BANK_IFSC>UBIN098909</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

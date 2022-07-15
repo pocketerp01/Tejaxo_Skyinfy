@@ -1,0 +1,215 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />*@
+
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+                            @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" id="btncancel" name="command" formnovalidate value="Cancel" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="x_panel">
+            <div class="x_content">
+                <div class="row">
+                    <div class='col-sm-3'>
+                        <label for="first-name">Doc No. </label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_vchnum", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <label for="first-name">Module <span class="ClientProfileLabelColor">*</span></label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { multiple = "multiple", @id = "ddl_mod", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory", placeholder = "Select Module", onchange = "getmain()", @MaxLength = "10" })
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <label for="first-name">Role <span class="ClientProfileLabelColor">*</span></label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { multiple = "multiple", @id = "ddl_role", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-mandatory", placeholder = "Select Role", @MaxLength = "10" })
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="first-name"></label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vgetdt id="btngetdt" name="command" value="Get Data" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div id="jstree"></div>
+
+                        <input type="hidden" name="selectedItems" id="selectedItems" />
+                        @*<input type="submit" value="Submit" />*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btnval" value="ddl_role" formnovalidate name="Command" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function getmain() { $("#btnval").click(); }
+
+</script>
+
+@*<script type="text/javascript">
+        $(function () {
+            $('#jstree').on('changed.jstree', function (e, data) {
+                var i, j;
+                var selectedItems = [];
+                for(i = 0, j = data.selected.length; i < j; i++) {
+
+                    //Fetch the Id.
+                    var id = data.selected[i];
+
+                    //Remove the ParentId.
+                    if(id.indexOf('-') != -1){
+                        id = id.split("-")[1];
+                    }
+
+                    //Add the Node to the JSON Array.
+                    selectedItems.push({
+                        text: data.instance.get_node(data.selected[i]).text,
+                        id: id,
+                        parent: data.node.parents[0]
+                    });
+                }
+
+                //Serialize the JSON Array and save in HiddenField.
+                $('#selectedItems').val(JSON.stringify(selectedItems));
+            }).jstree({
+                "core": {
+                    "themes": {
+                        "variant": "large"
+                    },
+                    "data": @Html.Raw(ViewBag.Json)
+                    },
+                "checkbox": {
+                    "keep_selected_style": false
+                },
+                "plugins": ["wholerow", "checkbox"],
+            });
+        });
+</script>*@
+
+
+<script>
+    $(function () {
+        var selectedData;
+        $('#jstree').jstree({
+            "core": {
+                "multiple": true,
+                "check_callback": false,
+                'themes': {
+                    "responsive": true,
+                    'variant': 'larg',
+                    'stripes': false,
+                    'dots': false
+                }
+            },
+            "types": {
+                "default": {
+                    "icon": "fa fa-folder icon-state-warning icon-lg"
+                },
+                "file": {
+                    "icon": "fa fa-file icon-state-warning icon-lg"
+                }
+            },
+            "plugins": ["dnd", "state", "types", "sort", "checkbox"]
+        });
+    });
+</script>
+
+

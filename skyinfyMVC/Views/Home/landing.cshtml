@@ -1,0 +1,363 @@
+﻿@model IList<skyinfyMVC.Models.Tmodelmain>
+@{    
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skyinfy-ERP</title>
+    <link rel="icon" href="~/Uploads/logo.ico" type="image/ico" />
+
+    @Styles.Render("~/bundles/lpcss")
+    @Scripts.Render("~/bundles/lpjs")
+
+    @*<link href="~/erp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />//11*@
+    @*<script src="~/erp/Scripts/jquery.min.js"></script>
+        <script src="~/erp/Scripts/jquery-2.2.4.min.js"></script>*@
+    @*<script src="..../../../../../Scripts/jquery-3.1.1.min.js"></script>
+        <script src="../../../../../../../erp/vendors/jquery/dist/jquery.min.js"></script>
+        <script src="../../../erp/vendors/bootstrap/dist/js/bootstrap.min.js"></script>//11*@
+    @*<script src="~/erp/vendors/bootstrap/dist/js/bootstrap.min.js"></script>*@
+    <!--------------toast-------->
+    @*<link href="~/js/toast/toastrsample.css" rel="stylesheet" />//11*@
+    @*<link href="~/js/toast/toastr.css" rel="stylesheet" />*@
+    @*<link href="~/js/toast/toastr.min.css" rel="stylesheet" />//11*@
+    @*<script src="~/js/toast/toastr.js"></script>*@
+    @*<script src="~/js/toast/toastr.min.js"></script>//11*@
+    @*<script src="~/js/toast/toastrsample.js"></script>*@
+    @*<script src="~/js/toast/toastrsample.min.js"></script>//11*@
+
+    <script type="text/javascript">
+        function togthis(ctrl) {
+            ctrl.classList.toggle("hover");
+        }
+    </script>
+    <style>
+        .btn-group-sm > .btn, .btn-sm {
+            font-size: 1.5rem !important;
+        }
+
+        #team {
+            background: #eee !important;
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            background-color: #108d6f;
+            border-color: #108d6f;
+            box-shadow: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #007b5e;
+            border-color: #007b5e;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+            section .section-title {
+                text-align: center;
+                color: #007b5e;
+                margin-bottom: 50px;
+                text-transform: uppercase;
+            }
+
+        #team .card {
+            border: none;
+            background: #ffffff;
+        }
+
+        .image-flip:hover .backside,
+        .image-flip.hover .backside {
+            -webkit-transform: rotateY(0deg);
+            -moz-transform: rotateY(0deg);
+            -o-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+            border-radius: .25rem;
+        }
+
+        .image-flip:hover .frontside,
+        .image-flip.hover .frontside {
+            -webkit-transform: rotateY(180deg);
+            -moz-transform: rotateY(180deg);
+            -o-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+        }
+
+        .mainflip {
+            -webkit-transition: 1s;
+            -webkit-transform-style: preserve-3d;
+            -ms-transition: 1s;
+            -moz-transition: 1s;
+            -moz-transform: perspective(1000px);
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            transition: 1s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .frontside {
+            position: relative;
+            -webkit-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            z-index: 2;
+            margin-bottom: 30px;
+        }
+
+        .backside {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: white;
+            -webkit-transform: rotateY(-180deg);
+            -moz-transform: rotateY(-180deg);
+            -o-transform: rotateY(-180deg);
+            -ms-transform: rotateY(-180deg);
+            transform: rotateY(-180deg);
+            -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+            -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+            box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        }
+
+        .frontside,
+        .backside {
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            -ms-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-transition: 1s;
+            -webkit-transform-style: preserve-3d;
+            -moz-transition: 1s;
+            -moz-transform-style: preserve-3d;
+            -o-transition: 1s;
+            -o-transform-style: preserve-3d;
+            -ms-transition: 1s;
+            -ms-transform-style: preserve-3d;
+            transition: 1s;
+            transform-style: preserve-3d;
+        }
+
+            .frontside .card,
+            .backside .card {
+                min-height: 312px;
+            }
+
+                .backside .card a {
+                    font-size: 18px;
+                    color: #007b5e !important;
+                }
+
+                .frontside .card .card-title,
+                .backside .card .card-title {
+                    color: #007b5e !important;
+                }
+
+                .frontside .card .card-body img {
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                }
+
+        body {
+            padding-top: 20px;
+            font-size: 1.5rem !important;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+            sessionStorage.setItem("menuid", "l1");
+        });
+
+    </script>
+    <script>
+        function selectionIndexChange(ctrl) {
+            javascript: __doPostBack(ctrl.id, '');
+        }
+    </script>
+</head>
+<body>
+    @*@using (Html.BeginForm("landing", "home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {*@
+
+        @using (Html.BeginForm("landing", "home", new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15) }, FormMethod.Post, new { id = "landing", enctype = "multipart/form-data" }))
+        {
+            <div>
+                @*<script src="~/Content/landing/Lp_jquery.min.js"></script>
+                <script src="~/Content/landing/Lp_js_bootstrap.min.js"></script>
+                <link href="~/Content/landing/Lp_bootstrap.min.css" rel="stylesheet" />
+                <link href="~/Content/landing/Lp_font-awesome.min.css" rel="stylesheet" />//11*@
+
+                <!------ Include the above in your HEAD tag ---------->
+                <!-- Team -->
+                <section id="team" class="pb-5">
+                    <div>
+                        <div class="container">
+
+                            <div class="row">
+                                <div class="col-md-6 offset-3">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <h1 class="panel-title" style="text-align: center!important">
+                                                WELCOME :
+                                                <label id="lbl_comp_name" style="text-align: center!important">@Model[0].Col11</label>
+                                                @Html.HiddenFor(m => m[0].Col11)
+                                            </h1>
+                                            <h3 class="panel-title" style="text-align: center!important">
+                                                <label id="lbl_user_name">@Model[0].Col12</label>
+                                                @Html.HiddenFor(m => m[0].Col12)
+                                                -YEAR (<label id="lbl_com_yr">@Model[0].Col13</label>)
+                                                @Html.HiddenFor(m => m[0].Col13)
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <h5 class="section-title h1">OUR MODULE</h5>
+                        <div class="row" id="kdiv" runat="server">
+
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+
+                                <div class='col-md-3' style='padding-right:3px !important; padding-left:10px !important;'>
+                                    @Html.HiddenFor(m => m[0].Col15)
+                                    <div class='image-flip' ontouchstart='togthis(this);'>
+                                        <div class='mainflip'>
+                                            <div class='frontside' style='margin-bottom:15px !important;width:100%'>
+                                                <div class='card' style='min-height:272px !important'>
+                                                    <div class='card-body text-center'>
+                                                        <p><img class='img-fluid' style='width:80px !important; height:80px !important' src='../../Uploads/logo.jpg' onerror="if (this.src != ' ../../Uploads/logo.jpg') this.src = '../../Uploads/logo.jpg';" alt='card image' /></p>
+                                                        <h4 class='card-title' style='margin-bottom:0.5rem !important;font-size:2rem !important'>@Model[i].Col22 </h4>
+                                                        @Html.HiddenFor(m => m[i].Col22)
+                                                        <p class='card-text' style='line-height:1.4 !important;'> @Model[i].Col23 </p>
+                                                        @Html.HiddenFor(m => m[i].Col23)
+                                                        @Html.HiddenFor(m => m[i].Col21)
+                                                        @if (Model[i].Col21 == "0")
+                                                        {
+
+                                                            <a href='#' class='btn btn-danger btn-sm' style="color: white !important;position:fixed;bottom:30px;left:44%;">Expired</a>
+                                                        }
+                                                        @if (Model[i].Col21 == "1")
+                                                        {
+                                                            @: <a href='#' class='btn btn-success btn-sm' style='color: white !important;position:fixed;bottom:30px;left:44%;'>Active</a>
+                                                        }
+                                                        @if (Model[i].Col21 == "2")
+                                                        {
+                                                            @: <a href='#' class='btn btn-warning btn-sm' style='color: white !important;position:fixed;bottom:30px;left:44%;'>Deactive</a>
+                                                        }
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="#" onclick="modclick(event,'@Model[i].Col20');">
+                                                @Html.HiddenFor(m => m[i].Col20)
+                                                <div class='backside' style="width:100%">
+                                                    <div class='card' style='min-height:272px !important'>
+                                                        <div class='card-body text-center mt-4' style='margin-top: 0rem!important'>
+                                                            <p>
+                                                                <img class='img-fluid' style='width:80px !important; height:80px !important;border-radius: 50% !important'
+                                                                     src='../../Uploads/person-icon.png' onerror="if (this.src != '../../Uploads/logo.jpg') this.src = '../../Uploads/logo.jpg';"
+                                                                     alt='card image' />
+                                                            </p>
+                                                            <h4 class='card-title'>
+                                                                <input type="submit" value="@Model[i].Col25" id="@Model[i].Col20" style="background: transparent;border: none; font-size: 18px;" name="command" onclick="savefun(this);" />
+                                                                @*<a href="@Url.Action(" landing",new { @menuid=Model[i].Col20 })" id='@Model[i].Col24'> @Model[i].Col25 </a>*@
+                                                            </h4>
+                                                            @Html.HiddenFor(m => m[i].Col25)
+                                                            <p class='card-text' style='min-width: 200px'>@Model[i].Col26</p>
+                                                            @Html.HiddenFor(m => m[i].Col26)
+                                                            @if (Model[i].Col21 == "0")
+                                                            {
+                                                                @: <a href='#' class='btn btn-danger btn-sm' style="color: white !important;position:fixed;bottom:30px;left:44%;">Expired</a>
+                                                            }
+                                                            @if (Model[i].Col21 == "1")
+                                                            {
+                                                                @: <a href='#' class='btn btn-success btn-sm' style='color: white !important;position:fixed;bottom:30px;left:44%;'>Active</a>
+                                                            }
+                                                            @if (Model[i].Col21 == "2")
+                                                            {
+                                                                @: <a href='#' class='btn btn-warning btn-sm' style='color: white !important;position:fixed;bottom:30px;left:44%;'>Deactive</a>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 offset-4">
+                                <div class="form-group">
+                                    @*<input id="btn_logout" name="command" type="submit" style="font-size: 1em!important" class="btn btn-danger form-control" value="Logout" />*@
+                                    <a href="@Url.Action("Signout", "Home")" style="font-size: 1em!important" class="btn btn-danger form-control" value="Logout">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Team -->
+            </div>
+            @Html.HiddenFor(m => m[0].Col31, new { @id = "hfmenu" })
+            <input type="submit" name="command" value="btnm" id="btnm" style="display:none" />
+            <script type="text/javascript">
+                function btn_logout_Click(ctrl) {
+
+                }
+                function savefun(ctrl) {
+
+                    $("#hfmenu").val(ctrl.id);
+                }
+                function modclick(evt, val) {
+                    evt.preventDefault();
+                    var $form = $("form");
+                    $("#hfmenu").val(val);
+
+                    $("#btnm").click();
+                    //$.ajax({
+                    //    type: "POST",
+                    //    url: "/home/landing",
+                    //    data: $form.serialize() + "&command=search$mid=" + val + "",
+                    //    dataType: "json",
+                    //    traditional: true,
+                    //    success: function (response) {
+                    //
+                    //        //document.body.innerHTML = response;
+                    //    },
+                    //    error: function (err) {
+                    //
+
+                    //        //$('#myModalContent').html(err.responseText);
+                    //    }
+
+                    //});
+
+                }
+            </script>
+        }
+  
+</body>
+</html>

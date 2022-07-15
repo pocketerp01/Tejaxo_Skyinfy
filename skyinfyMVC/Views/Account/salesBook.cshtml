@@ -1,0 +1,372 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode"); string clr = "";
+    ViewBag.Title = "ledger_mst";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(MyGuid, "viewName", viewName);
+    sgen.SetSession(MyGuid, "controllerName", controllerName);
+}
+<!----datatable---->
+<link href="~/erp/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<!-- Datatables -->
+
+<script>
+
+    $(document).ready(function () {
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        var val = $("input[type='radio']:checked").val();
+        if (val == "001") {
+            $("#div_tab1").show();
+            $("#div_tab2").hide();
+            showdata('demoGrid');
+        }
+        else {
+            $("#div_tab1").hide();
+            $("#div_tab2").show();
+            showdata('grd2');
+        }
+    });
+
+    function showdata(tableid) {
+        var rdtype = $("input[type='radio']:checked").val();        
+        var gdval ='@Model[0].Col12'+"~" + rdtype + "~" + '@Model[0].Col19';
+        var obj = { "gridid": tableid, "myguid": @MyGuid };
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            data: obj,
+            url: "/Grid/GetCols",
+            success: function (data) {
+                var cols = [];
+                $('#' + tableid).parents().find("div[id*=_" + tableid + "]").show();
+                var yourobj = JSON.parse(data);
+                var htr = $("#" + tableid).find('thead tr');
+                var ftr = $("#" + tableid).find('tfoot tr');
+
+                var i = 0;
+                for (n1_1 in yourobj[0]) {
+                    $(htr).append("<th>" + n1_1 + "</th>");
+                    $(ftr).append("<th>" + n1_1 + "</th>");
+                    if (i == 0) {
+
+                        cols.push(
+                            {
+                                "render": function (data, type, full, meta, row) {
+                                    var fstr = full[Object.keys(full)[0]];
+                                    return "<a onclick=getdetail('" + gdval + "','" + full[Object.keys(full)[0]] + "'); class='btn btn-primary' style='max-height: 20px;padding-top: 0px;max-width:36px'><i class='fa fa-eye' aria-hidden='true' data-toggle='tooltip' data-placement=top' title='Detail'></i></a>";
+                                }
+                            }
+                        );
+                    }
+                    else { cols.push({ "data": n1_1, "name": n1_1, "autoWidth": true }); }
+                    i++;
+                }
+                var table = $("#" + tableid).DataTable({
+                    processing: true, // control the processing indicator.
+                    serverSide: true, // recommended to use serverSide when data is more than 10000 rows for performance reasons
+                    //info: true,   // control table information display field
+                    //stateSave: true, //restore table state on page reload,
+                    searchDelay: 1000,
+                    lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],    // use the first inner array as the page length values and the second inner array as the displayed options
+                    ajax: function (data, callback, settings) {
+                        data.gridid = tableid;
+                        data.myguid =@MyGuid;
+                        $.ajax({
+                            url: '/Grid/LoadData',
+                            method: 'POST',
+                            data: data
+                        }).done(function (res) {
+
+                            callback(JSON.parse(res));
+                        }).error(function (res) {
+
+                            callback(JSON.parse(res));
+                        }).error;
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                        //if (data["DESCRIPTION"].length > 10) {
+                        //    $('td', row).eq(5).text(data["DESCRIPTION"].slice(0, 10) + "..");
+                        //}
+                        //if (data["STATUS"] == 'C') {
+                        //    $(row)[0].style.textDecoration = "line-through";
+                        //}
+                    },
+                    columns: cols,
+                    //"order": [[0, "asc"]]
+                });
+                //debugger
+                // Get the column API object
+                //var column = table.column($(this).attr('data-column'));
+
+                //// Toggle the visibility
+                //column.visible(!column.visible());
+                var timeout;
+                $("#" + tableid + "_filter input")
+                    .unbind().bind("input", function (e) {
+                        var vali = $(this).val();
+                        if (timeout) { clearTimeout(timeout); }
+                        timeout = setTimeout(function () {
+                            table.search(vali).draw();
+                        }, 1000);
+                    });
+                $("#" + tableid + " tfoot th").each(function () {
+                    var placeHolderTitle = $("#" + tableid).find('thead th').eq($(this).index() + 1).text();
+                    $("#" + tableid).find('tfoot th').eq($(this).index() + 1).html(' <input type = "text" class= "form-control input input-sm" placeholder = "Search ' + placeHolderTitle + '" /> ');
+                });
+                table.columns().every(function () {
+                    var column = this;
+                    //if (column.index() == 6) {
+                    //    column.visible(!column.visible());
+                    //}
+                    var timeout;
+                    $(this.footer()).find('input').on('keyup change', function () {
+                        var keyy = this;
+                        if (timeout) { clearTimeout(timeout); }
+                        timeout = setTimeout(function () {
+                            debugger
+                            column.search(keyy.value).draw();
+                        }, 1000);
+                    });
+                });
+
+            },
+            error: function (res) {
+                $('#' + tableid).parents().find("div[id*=_" + tableid + "]").hide();
+
+            }
+        });
+        try { $(".dataTables_processing")[0].style.paddingTop = "15px"; }
+        catch (err) { }
+    }
+
+    function getdata(ctrl) {
+        var val = ctrl.value;
+        if (val == "001") {
+            $("#div_tab1").show();
+            $("#div_tab2").hide();
+            showdata('demoGrid');
+        }
+        else {
+            $("#div_tab1").hide();
+            $("#div_tab2").show();
+            showdata('grd2');
+        }
+    }
+
+    function getdetail(val, vchnum) {
+        debugger
+        var obj = { "val": val, "vchnum": vchnum };
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "/Account/getdetail",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj),
+            datatype: "json",
+            success: function (response) {
+                debugger
+                $('#myModal').width('70%');
+                $('#myModal').height('100%');
+                $('#myModal')[0].style.marginLeft = "400px";
+                $("#myModalContent")[0].style.padding = "30px"
+
+                var xmlDoc = $.parseXML(response);
+                var xml = $(xmlDoc);
+                var customers = xml.find("DetailData");
+                var k = 0;
+                var table = "<table id='grd1' class='table table-striped table-bordered dt-responsive nowrap' width='100%' cellspacing='0'>";
+                customers.each(function () {
+
+                    debugger
+                    var customer = $(this);                
+                    var cols = customer[0].children.length;
+
+                    if (k == 0) {
+                        table += "<thead><tr>";
+                        table += "<th>" + customer[0].children[0].tagName + "</th>";
+                        table += "<th>" + customer[0].children[1].tagName + "</th>";
+                        table += "<th>" + customer[0].children[2].tagName + "</th>";
+                        table += "<th>" + customer[0].children[3].tagName + "</th>";
+                        if (val.split('~')[1].trim() == "002") { table += "<th>" + customer[0].children[4].tagName + "</th>"; }
+                        table += "</tr></thead>";
+                        table += "<tbody>";
+                    }
+
+                    table += "<tr>";
+                    for (var c = 0; c < cols; c++) {
+
+                        table += "<td>" + customer[0].children[c].textContent + "</td>";
+                    }
+
+                    table += "</tr>";
+                    k++;
+                });
+                table += "</tbody>";             
+                table += "</table>";             
+
+                $('#myModalContent').html(table);
+                $('#myModalLabel')[0].innerText = "Detail Data";
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+            }, error: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+</script>
+<style>
+    tfoot {
+        display: table-header-group;
+    }
+</style>
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_rd" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_pid" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <label for="first-name">Filter </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <b style="padding-top:12px"> Date wise </b>
+                                    @Html.RadioButtonFor(model => model[0].Col16, "001", new { @id = "rd_date", @class = " sa-input radio", onchange = "getdata(this);", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <b style="padding-top:12px"> Party wise </b>
+                                    @Html.RadioButtonFor(model => model[0].Col16, "002", new { @id = "rd_party", @class = " sa-input radio", onchange = "getdata(this);", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">From Date </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_fdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", placeholder = "From Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">To Date </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_tdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", placeholder = "To Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="first-name"></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <button type="submit" class="btn btn-primary form-control sa-button" id="btnget" name="command" value="GetData">Get Data</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row" id="div_tab1">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="width:100%; margin:0 auto;">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <div class="x_title">Date wise Amount</div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+
+                                                <thead>
+                                                    <tr></tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr></tr>
+                                                </tfoot>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="div_tab2">
+                        <div class="col-md-12 col-sm-12 col-xs-12" style="width:100%; margin:0 auto;">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <div class="x_title">Party wise Amount</div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <table id="grd2" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+
+                                                <thead>
+                                                    <tr></tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr></tr>
+                                                </tfoot>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

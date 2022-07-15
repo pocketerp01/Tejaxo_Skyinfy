@@ -1,0 +1,200 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+<style type="text/css">
+    .myclass {
+        vertical-align: initial !important;
+        min-height: 0px !important;
+        margin: 0px !important;
+        padding-top: 0px !important;
+    }
+</style>
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" accesskey="S" name="command" value="@Model[0].Col13">@Html.Raw(Model[0].Col122)</button>
+                            @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+                            @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class='form-group'>
+                        <div class='input-group'>
+                            <button type='submit' class='btn btn-success form-control sa-button' @ViewBag.vsavenew id='btnsavenew' accesskey="W" name='command' value="@Model[0].Col100">@Html.Raw(Model[0].Col123)</button>
+                            @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+                            @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+                            <span class='input-group-addon formclass'></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="sa-btncancel form-control sa-button" formnovalidate id="btncancel" name="command" value="Cancel" accesskey="C">C<u>a</u>ncel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_status" })
+        @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_cdt" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Doc No. </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_vchnum", @readOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Title <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_title", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Title" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Activity Date Required </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk_req", @class = "sa-input checkbox myclass" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group hidectrl" id="div_fdt">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">From Date</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_fdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-fy-datetime", placeholder = "From Date", onblur = "filltdt(this);" })
+                                </div>
+                            </div>
+
+                            <div class="form-group hidectrl" id="div_tdt">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">To Date</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_tdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-fy-datetime", placeholder = "To Date" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Description <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_desc", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Description" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Priority </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.CheckBoxFor(model => model[i].Chk2, new { @id = "chk_prior", @class = "sa-input checkbox myclass" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+       // debugger;
+        if ($("#chk_req").prop("checked") === true) {
+            $("#div_fdt").show();
+            $("#div_tdt").show();
+        }
+        else {
+            $("#div_fdt").hide();
+            $("#div_tdt").hide();
+        }
+
+    });
+
+
+    $("#chk_req").click(function () {
+        if ($(this).prop("checked") === true) {
+            $("#div_fdt").show();
+            $("#div_tdt").show();
+        }
+        else {
+            $("#div_fdt").hide();
+            $("#div_tdt").hide();
+        }
+    });
+
+    function filltdt(ctrl) {
+        var fdt = ctrl.value;
+        if (fdt != "") {
+            $("#txt_tdt")[0].value = fdt;
+        }
+    }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '1', '@viewName', '@controllerName'); }
+
+</script>

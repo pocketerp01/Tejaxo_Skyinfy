@@ -1,0 +1,1120 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CONTR" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_UNIT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EXTERNAL_EMPNO" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPT" type="xs:string" minOccurs="0" />
+                <xs:element name="DESIG" type="xs:string" minOccurs="0" />
+                <xs:element name="F_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_DAYS" type="xs:short" minOccurs="0" />
+                <xs:element name="PAIDDAYS" type="xs:float" minOccurs="0" />
+                <xs:element name="PF_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="PF_UAN" type="xs:string" minOccurs="0" />
+                <xs:element name="ESI_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SALARY_YR" type="xs:string" minOccurs="0" />
+                <xs:element name="BASIC_ERN" type="xs:double" minOccurs="0" />
+                <xs:element name="HRA_ERN" type="xs:double" minOccurs="0" />
+                <xs:element name="CON_ERN" type="xs:double" minOccurs="0" />
+                <xs:element name="ER1" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER3" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER4" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER6" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER8" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER10" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER11" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER12" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER13" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER14" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER15" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ER16" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED1" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED3" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED4" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED6" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED8" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED10" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTEARN" type="xs:double" minOccurs="0" />
+                <xs:element name="TOTDED" type="xs:double" minOccurs="0" />
+                <xs:element name="NETSALARY" type="xs:double" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="heads">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ER1" type="xs:string" minOccurs="0" />
+                <xs:element name="ER2" type="xs:string" minOccurs="0" />
+                <xs:element name="ER3" type="xs:string" minOccurs="0" />
+                <xs:element name="ER4" type="xs:string" minOccurs="0" />
+                <xs:element name="ER5" type="xs:string" minOccurs="0" />
+                <xs:element name="ER6" type="xs:string" minOccurs="0" />
+                <xs:element name="ER7" type="xs:string" minOccurs="0" />
+                <xs:element name="ER8" type="xs:string" minOccurs="0" />
+                <xs:element name="ER9" type="xs:string" minOccurs="0" />
+                <xs:element name="ER10" type="xs:string" minOccurs="0" />
+                <xs:element name="ER11" type="xs:string" minOccurs="0" />
+                <xs:element name="ER12" type="xs:string" minOccurs="0" />
+                <xs:element name="ER13" type="xs:string" minOccurs="0" />
+                <xs:element name="ER14" type="xs:string" minOccurs="0" />
+                <xs:element name="ER15" type="xs:string" minOccurs="0" />
+                <xs:element name="ER16" type="xs:string" minOccurs="0" />
+                <xs:element name="DED1" type="xs:string" minOccurs="0" />
+                <xs:element name="DED2" type="xs:string" minOccurs="0" />
+                <xs:element name="DED3" type="xs:string" minOccurs="0" />
+                <xs:element name="DED4" type="xs:string" minOccurs="0" />
+                <xs:element name="DED5" type="xs:string" minOccurs="0" />
+                <xs:element name="DED6" type="xs:string" minOccurs="0" />
+                <xs:element name="DED7" type="xs:string" minOccurs="0" />
+                <xs:element name="DED8" type="xs:string" minOccurs="0" />
+                <xs:element name="DED9" type="xs:string" minOccurs="0" />
+                <xs:element name="DED10" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009402</EMP_CODE>
+    <EXTERNAL_EMPNO>154</EXTERNAL_EMPNO>
+    <EMP_NAME>DIGEMBER</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. RAM SARAN</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.5</PAIDDAYS>
+    <PF_NO>13866</PF_NO>
+    <PF_UAN>100137453540</PF_UAN>
+    <ESI_NO>1306673213</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>13270</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>13049</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>125</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1566</DED1>
+    <DED2>99</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>24</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>13174</TOTEARN>
+    <TOTDED>1714</TOTDED>
+    <NETSALARY>11460</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009404</EMP_CODE>
+    <EXTERNAL_EMPNO>158</EXTERNAL_EMPNO>
+    <EMP_NAME>JITENDER</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. DHARAM PAL</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.87</PAIDDAYS>
+    <PF_NO>13984</PF_NO>
+    <PF_UAN>100176476811</PF_UAN>
+    <ESI_NO>1306673210</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>13395</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>13337</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>125</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1600</DED1>
+    <DED2>101</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>72</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>13462</TOTEARN>
+    <TOTDED>1798</TOTDED>
+    <NETSALARY>11664</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009409</EMP_CODE>
+    <EXTERNAL_EMPNO>161</EXTERNAL_EMPNO>
+    <EMP_NAME>MAN SINGH</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. KARTER SINGH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.75</PAIDDAYS>
+    <PF_NO>15851</PF_NO>
+    <PF_UAN>100217043767</PF_UAN>
+    <ESI_NO>1309520858</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>11530</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>11434</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>110</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1372</DED1>
+    <DED2>87</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>37</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>11544</TOTEARN>
+    <TOTDED>1521</TOTDED>
+    <NETSALARY>10023</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009411</EMP_CODE>
+    <EXTERNAL_EMPNO>157</EXTERNAL_EMPNO>
+    <EMP_NAME>VEER BHAN</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH.HUKAM SINGH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>30</PAIDDAYS>
+    <PF_NO>16670</PF_NO>
+    <PF_UAN>100401410863</PF_UAN>
+    <ESI_NO>1306673223</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>13569</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>13569</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>130</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1628</DED1>
+    <DED2>103</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>37</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>13699</TOTEARN>
+    <TOTDED>1793</TOTDED>
+    <NETSALARY>11906</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009413</EMP_CODE>
+    <EXTERNAL_EMPNO>164</EXTERNAL_EMPNO>
+    <EMP_NAME>RAJESH KUMAR</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. CHIMAN LAL</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>27.12</PAIDDAYS>
+    <PF_NO>17413</PF_NO>
+    <PF_UAN>100295919342</PF_UAN>
+    <ESI_NO>1307393514</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>13640</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>12331</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>105</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1480</DED1>
+    <DED2>93</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>150</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>12436</TOTEARN>
+    <TOTDED>1748</TOTDED>
+    <NETSALARY>10688</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009414</EMP_CODE>
+    <EXTERNAL_EMPNO>159</EXTERNAL_EMPNO>
+    <EMP_NAME>RAM KARAN</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. KHILONI</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29</PAIDDAYS>
+    <PF_NO>17594</PF_NO>
+    <PF_UAN>100301259633</PF_UAN>
+    <ESI_NO>1306673216</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>12845</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>12417</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>115</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1490</DED1>
+    <DED2>94</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>71</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>12532</TOTEARN>
+    <TOTDED>1680</TOTDED>
+    <NETSALARY>10852</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009415</EMP_CODE>
+    <EXTERNAL_EMPNO>166</EXTERNAL_EMPNO>
+    <EMP_NAME>SANTOSH KUMAR</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. INDERAJ SINGH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.5</PAIDDAYS>
+    <PF_NO>17595</PF_NO>
+    <PF_UAN>100336778392</PF_UAN>
+    <ESI_NO>1307405863</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>14369</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>14130</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>125</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1696</DED1>
+    <DED2>107</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>153.5</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>14255</TOTEARN>
+    <TOTDED>1981.5</TOTDED>
+    <NETSALARY>12273.5</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009418</EMP_CODE>
+    <EXTERNAL_EMPNO>156</EXTERNAL_EMPNO>
+    <EMP_NAME>ASHOK KUMAR</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. OM PARKASH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>28.37</PAIDDAYS>
+    <PF_NO>18447</PF_NO>
+    <PF_UAN>100093735698</PF_UAN>
+    <ESI_NO>1306673220</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>12420</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>11745</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>120</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1409</DED1>
+    <DED2>89</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>170.5</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>11865</TOTEARN>
+    <TOTDED>1693.5</TOTDED>
+    <NETSALARY>10171.5</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009420</EMP_CODE>
+    <EXTERNAL_EMPNO>162</EXTERNAL_EMPNO>
+    <EMP_NAME>BIRENDER SINGH</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. BRIJ LAL</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29</PAIDDAYS>
+    <PF_NO>20131</PF_NO>
+    <PF_UAN>100115836450</PF_UAN>
+    <ESI_NO>1306673632</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>13320</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>12876</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>120</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1545</DED1>
+    <DED2>97</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>0</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>12996</TOTEARN>
+    <TOTDED>1667</TOTDED>
+    <NETSALARY>11329</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009421</EMP_CODE>
+    <EXTERNAL_EMPNO>167</EXTERNAL_EMPNO>
+    <EMP_NAME>NARDEV</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. SHIV NARAIN</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.75</PAIDDAYS>
+    <PF_NO>21656</PF_NO>
+    <PF_UAN>100250554914</PF_UAN>
+    <ESI_NO>1306796724</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>11380</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>11285</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>90</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1354</DED1>
+    <DED2>85</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>115.5</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>11375</TOTEARN>
+    <TOTDED>1579.5</TOTDED>
+    <NETSALARY>9795.5</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009422</EMP_CODE>
+    <EXTERNAL_EMPNO>535</EXTERNAL_EMPNO>
+    <EMP_NAME>BHUPENDRA</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH.BISHAN SINGH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.62</PAIDDAYS>
+    <PF_NO>23694</PF_NO>
+    <PF_UAN>100113184401</PF_UAN>
+    <ESI_NO>1314373531</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>10706</BASIC_ERN>
+    <HRA_ERN>540</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>10570</ER1>
+    <ER2>533</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>110</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1268</DED1>
+    <DED2>84</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>72</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>11213</TOTEARN>
+    <TOTDED>1449</TOTDED>
+    <NETSALARY>9764</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009426</EMP_CODE>
+    <EXTERNAL_EMPNO>674</EXTERNAL_EMPNO>
+    <EMP_NAME>SAGAR</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH.CHASAMVEER</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>30</PAIDDAYS>
+    <PF_NO>25691</PF_NO>
+    <PF_UAN>100326880733</PF_UAN>
+    <ESI_NO>1320890224</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>10486</BASIC_ERN>
+    <HRA_ERN>436</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>10486</ER1>
+    <ER2>436</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>130</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1258</DED1>
+    <DED2>83</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>21</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>11052</TOTEARN>
+    <TOTDED>1387</TOTDED>
+    <NETSALARY>9665</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009428</EMP_CODE>
+    <EXTERNAL_EMPNO>704</EXTERNAL_EMPNO>
+    <EMP_NAME>PARVEEN BHADANA</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH. GAJ RAJ BHADANA</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>30</PAIDDAYS>
+    <PF_NO>26351</PF_NO>
+    <PF_UAN>100269095488</PF_UAN>
+    <ESI_NO>1321016265</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>10430</BASIC_ERN>
+    <HRA_ERN>816</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>10430</ER1>
+    <ER2>816</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>130</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1252</DED1>
+    <DED2>85</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>34</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>11376</TOTEARN>
+    <TOTDED>1396</TOTDED>
+    <NETSALARY>9980</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009429</EMP_CODE>
+    <EXTERNAL_EMPNO>713</EXTERNAL_EMPNO>
+    <EMP_NAME>MANOHAR LAL</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH.NAH PAL</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.87</PAIDDAYS>
+    <PF_NO>27243</PF_NO>
+    <PF_UAN>100220855424</PF_UAN>
+    <ESI_NO>1320954303</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>10342</BASIC_ERN>
+    <HRA_ERN>505</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>10297</ER1>
+    <ER2>503</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>130</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1236</DED1>
+    <DED2>82</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>101.5</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>10930</TOTEARN>
+    <TOTDED>1444.5</TOTDED>
+    <NETSALARY>9485.5</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009430</EMP_CODE>
+    <EXTERNAL_EMPNO>751</EXTERNAL_EMPNO>
+    <EMP_NAME>SUKHVIR</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH.NATHI SINGH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.5</PAIDDAYS>
+    <PF_NO>29730</PF_NO>
+    <PF_UAN>100437711281</PF_UAN>
+    <ESI_NO>1320475925</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>9877</BASIC_ERN>
+    <HRA_ERN>970</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>9712</ER1>
+    <ER2>954</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>125</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1165</DED1>
+    <DED2>81</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>17</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>10791</TOTEARN>
+    <TOTDED>1288</TOTDED>
+    <NETSALARY>9503</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009432</EMP_CODE>
+    <EXTERNAL_EMPNO>843</EXTERNAL_EMPNO>
+    <EMP_NAME>VINOD KUMAR</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH SATBIR</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>29.87</PAIDDAYS>
+    <PF_NO>71628</PF_NO>
+    <PF_UAN>100589620417</PF_UAN>
+    <ESI_NO>1321288589</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>10277</BASIC_ERN>
+    <HRA_ERN>174</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>10232</ER1>
+    <ER2>173</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>120</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>1228</DED1>
+    <DED2>79</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>147</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>10525</TOTEARN>
+    <TOTDED>1479</TOTDED>
+    <NETSALARY>9046</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC009433</EMP_CODE>
+    <EXTERNAL_EMPNO>882</EXTERNAL_EMPNO>
+    <EMP_NAME>SAHIL</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>OM PRAKASH</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>23</PAIDDAYS>
+    <PF_NO>73385</PF_NO>
+    <PF_UAN>101001655999</PF_UAN>
+    <ESI_NO>1322620566</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>9607</BASIC_ERN>
+    <HRA_ERN>0</HRA_ERN>
+    <CON_ERN>0</CON_ERN>
+    <ER1>7365</ER1>
+    <ER2>0</ER2>
+    <ER3>0</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>100</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>884</DED1>
+    <DED2>56</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>55</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>7465</TOTEARN>
+    <TOTDED>1020</TOTDED>
+    <NETSALARY>6445</NETSALARY>
+  </prepcur>
+  <prepcur>
+    <CONTR>Self</CONTR>
+    <CLIENT_UNIT_ID>001027</CLIENT_UNIT_ID>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <EMP_CODE>GMC028353</EMP_CODE>
+    <EXTERNAL_EMPNO>899</EXTERNAL_EMPNO>
+    <EMP_NAME>JAYA CHANDRAN KEEDANGHAT</EMP_NAME>
+    <DEPT>Production</DEPT>
+    <DESIG>Helper</DESIG>
+    <F_NAME>RAMAN KUTTY NAIR</F_NAME>
+    <MONTH_ID>009</MONTH_ID>
+    <MONTH_NAME>September</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAIDDAYS>30</PAIDDAYS>
+    <PF_NO>74250</PF_NO>
+    <PF_UAN>100171188291</PF_UAN>
+    <ESI_NO>0</ESI_NO>
+    <SALARY_YR>2020</SALARY_YR>
+    <BASIC_ERN>17000</BASIC_ERN>
+    <HRA_ERN>9000</HRA_ERN>
+    <CON_ERN>4000</CON_ERN>
+    <ER1>17000</ER1>
+    <ER2>9000</ER2>
+    <ER3>4000</ER3>
+    <ER4>0</ER4>
+    <ER5>0</ER5>
+    <ER6>0</ER6>
+    <ER7>130</ER7>
+    <ER8>0</ER8>
+    <ER9>0</ER9>
+    <ER10>0</ER10>
+    <ER11>0</ER11>
+    <ER12>0</ER12>
+    <ER13>0</ER13>
+    <ER14>0</ER14>
+    <ER15>0</ER15>
+    <ER16>0</ER16>
+    <DED1>2040</DED1>
+    <DED2>0</DED2>
+    <DED3>0</DED3>
+    <DED4>25</DED4>
+    <DED5>0</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>30130</TOTEARN>
+    <TOTDED>2065</TOTDED>
+    <NETSALARY>28065</NETSALARY>
+  </prepcur>
+  <heads>
+    <ER1>BASIC</ER1>
+    <ER2>HRA</ER2>
+    <ER3>CONVEY</ER3>
+    <ER4>ATTN</ER4>
+    <ER5>PUNC</ER5>
+    <ER6>MED</ER6>
+    <ER7>CANTEEN</ER7>
+    <ER8>OTHER</ER8>
+    <ER9>-</ER9>
+    <ER10>-</ER10>
+    <ER11>-</ER11>
+    <ER12>-</ER12>
+    <ER13>-</ER13>
+    <ER14>-</ER14>
+    <ER15>-</ER15>
+    <ER16>-</ER16>
+    <DED1>EPF</DED1>
+    <DED2>EMP_ESI</DED2>
+    <DED3>VPF</DED3>
+    <DED4>EMP_LWF</DED4>
+    <DED5>CANT_DED</DED5>
+    <DED6>OTHR_DED</DED6>
+    <DED7>PT</DED7>
+    <DED8>MEDIC</DED8>
+    <DED9>ADV</DED9>
+    <DED10>-</DED10>
+  </heads>
+  <Company_Detail>
+    <COMPANY_NAME>Gloval Management Consultants Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>B 331,332,Third floor ,Nehru Ground,Oppsite PNB Bank</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>06</COMPANY_STATE>
+    <COMPANY_CITY>Faridabad</COMPANY_CITY>
+    <COMPANY_PINCODE>121003</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>abc@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>abc.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1234567890</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1234567890</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>29ABCDE1234F2Z5</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AAAAA9999A</COM_PAN_NO>
+    <COMPANY_CIN_NO>U12345MH2014PTC123707</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA  PVT. LTD. (STORE DEPTT)</UNIT_NAME>
+    <UNIT_ADDRESS>MODEL TOWN, SEC-11, NIT FARIDABAD.HARYANA</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>FARIDABAD</UNIT_CITY>
+    <UNIT_PINCODE>0</UNIT_PINCODE>
+    <UNIT_EMAIL>0</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>0</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>0</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>Deployed At</SEPTR>
+    <UNIT_GSTIN_NO>0</UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

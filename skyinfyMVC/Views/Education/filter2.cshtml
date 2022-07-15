@@ -1,0 +1,417 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col11;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+   
+    //ViewBag.Title = "DATE FILTER";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var userCode = sgen.GetCookie(MyGuid, "userCode");
+    var currdate = sgen.server_datetime_local(userCode);
+}
+<form action="/Education/filter2" id="fee_filter" method="post">
+    <div id="Content1">
+        @*<link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />
+        <script src="../js/daterange/daterangepicker.js"></script>
+        <link href="../js/daterange/daterangepicker.css" rel="stylesheet" />
+        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <script src="../css/select2/select2.full.min.js"></script>*@
+        <script>
+            $(function () {
+                $('.select2').select2();
+            });
+        </script>
+        <script type="text/javascript">
+            function Rbt_st_Chk(f, ddl) {
+                var selected;
+                
+                $("#" + ddl + "").prop('disabled', false);
+                if (f.value == "1") {
+                    $("select[id$=" + ddl + "] option").prop("selected", "selected")
+                    $("select[id$=" + ddl + "]").trigger("change");
+                }
+
+                else if (f.value == "2")
+                {
+                    $("select[id$=" + ddl + "] option").removeAttr("selected");
+                    $("select[id$=" + ddl + "]").trigger("change");
+                    $("#"+ddl+"").prop('disabled', true);
+                }
+
+                else if (f.value == "3") {
+                    $("select[id$=" + ddl + "] option").removeAttr("selected");
+                    $("select[id$=" + ddl + "]").trigger("change");
+                }
+            }
+            function close_pop() {
+                var mm = "";
+                //create below button on Parent page
+                //<asp:Button runat="server" ID="callback1" clientIDMode="Static" Style="display:none" OnClick="callback1_Click" />
+                @if (sgen.GetSession(MyGuid, "parentname") != null)
+                {
+                    @:mm = '@sgen.GetSession(MyGuid, "parentname").ToString()';
+
+                    }
+
+                if (mm == "master") { $(parent.document.getElementById('callback0')).trigger('click'); }
+                else if (mm == "MVC") { parent.callback(); }
+                else if ($(parent.document.getElementById('callback1'))[0].tagName == "A") $(parent.document.getElementById('callback1'))[0].click();
+                else $(parent.document.getElementById('callback1')).trigger('click');
+                $("#myModal").modal('hide');
+
+            }
+            $(document).ready(function () {
+                debugger
+                $(".sa-date").datetimepicker({
+                    ignoreReadonly: true,
+                    format: dformat(dateformat),
+                });
+                var myHidden = document.getElementById('hfddlcom');
+                $(".sa-select2-multiple").select2();
+
+                var hf_btnid = $("[id*=hf_btnid]").val();
+                $("[id*=divdt]").show();
+                $("[id*=categoryfilter]").show();
+                $("[id*=feetypefilter]").show();
+                $("[id*=feeheadfilter]").show();
+                if (hf_btnid == "Fee Collection")
+                {
+                    $("[id*=feetypefilter]").hide();
+                    $("[id*=feeheadfilter]").hide();
+                }
+                if ((hf_btnid == "Student Due Fee") || (hf_btnid == "Family Due Fee")) {
+                  
+                    $("[id*=divdt]").hide();
+                    $("[id*=categoryfilter]").hide();
+                    $("[id*=feetypefilter]").hide();
+                    $("[id*=feeheadfilter]").hide();
+                }
+
+                if ((hf_btnid == "Student Fee Receipt(With Con.)") || (hf_btnid == "Student Fee Receipt(WithOut Con.)") || (hf_btnid == "Head Wise Receipt (With Con.)") || (hf_btnid == "Head Wise Receipt (WithOut Con.)")) {
+                    $("[id*=categoryfilter]").hide();
+                    $("[id*=feetypefilter]").hide();
+                    $("[id*=feeheadfilter]").hide();
+                }
+
+               
+
+              
+
+            });
+
+            //function HEAD() {
+            //    $(parent.document.getElementById('btn_head')).trigger('click');
+            //}
+            function btnokclick(selectedindex, evt) {
+                debugger;
+                evt.preventDefault();
+
+                var $form = $("#fee_filter");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Education/filter2",
+                    data: $("form[id='fee_filter'] input,select").not("#ddmenus,#ddquick,#ctl00_HtmlEditorExtender2FontName,#ctl00_HtmlEditorExtender2FontSize").serialize() + "&command=Search",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+                        close_pop();
+                    },
+                    error: function (err) {
+                        close_pop();
+                    }
+                });
+            }
+
+            function HEAD(evt) {
+
+                evt.preventDefault();
+
+                var $form = $("#fee_filter");
+
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Education/filter2",
+                    data: $("form[id='fee_filter'] input,select").not("#ddmenus,#ddquick,#ctl00_HtmlEditorExtender2FontName,#ctl00_HtmlEditorExtender2FontSize").serialize() + "&command=Head",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+                        debugger
+                        $('#fee_filter').html(response.responseText);
+                        $(".sa-select2-single").select2({
+                            maximumSelectionLength: 1,
+                            allowClear: true
+                        })
+                        $(".sa-select2-multiple").select2();
+                        //close_pop();
+                    },
+                    error: function (response) {
+                        debugger
+
+                        $('#fee_filter').html(response.responseText);
+                        $(".sa-select2-single").select2({
+                            maximumSelectionLength: 1,
+                            allowClear: true
+                        })
+                        $(".sa-select2-multiple").select2();
+                    }
+                    //close_pop();
+                });
+            }
+
+        </script>
+        
+    </div>
+    <div id="Content2">
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_btnid" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row" id="divdt">
+                            <div class='col-sm-4'>
+
+
+                                <label for="first-name">Academic Year </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_acadmicyr", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @MaxLength = "20", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class='col-sm-4'>
+                                From  Date
+                                <div class="form-group">
+                                    <div class='input-group date' id='myDatepicker2'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "Txt_FromDt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "From Date" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                To  Date
+                                <div class="form-group">
+                                    <div class='input-group date' id='myDatepicker2'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "Txt_ToDt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "To Date" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="categoryfilter">
+                            <div class='col-sm-8'>
+                                .
+                                <div class="form-group">
+                                    <div class='input-group date'>
+                                        Detail All
+                                        @Html.RadioButtonFor(model => model[0].Col19, "1", new { @id = "Rbt_D_cat", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_category')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Summary All
+                                        @Html.RadioButtonFor(model => model[0].Col19, "2", new { @id = "Rbt_S_cat", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_category')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Select
+                                        @Html.RadioButtonFor(model => model[0].Col19, "3", new { @id = "Rbt_T_cat", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_category')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+
+                                <label for="first-name">Class Category </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_category", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @MaxLength = "20", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" id="classfilter">
+                            <div class='col-sm-8'>
+                                .
+                                <div class="form-group">
+                                    <div class='input-group date'>
+                                        Detail All
+                                        @Html.RadioButtonFor(model => model[0].Col20, "1", new { @id = "Rbt_D_Cl", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_class')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Summary All
+                                        @Html.RadioButtonFor(model => model[0].Col20, "2", new { @id = "Rbt_S_Cl", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_class')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Select
+                                        @Html.RadioButtonFor(model => model[0].Col20, "3", new { @id = "Rbt_T_Cl", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_class')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+
+                                <label for="first-name">Class</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_class", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @style = "width:100%" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row" id="sectionfilter">
+                            <div class='col-sm-8'>
+                                .
+                                <div class="form-group">
+                                    <div class='input-group date'>
+                                        Detail All
+                                        @Html.RadioButtonFor(model => model[0].Col21, "1", new { @id = "Rbt_D_S", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_section')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Summary All
+                                        @Html.RadioButtonFor(model => model[0].Col21, "2", new { @id = "Rbt_S_S", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_section')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Select
+                                        @Html.RadioButtonFor(model => model[0].Col21, "3", new { @id = "Rbt_T_S", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_section')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class='col-sm-4'>
+
+                                <label for="first-name">Section</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_section", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @style = "width:100%" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row" id="feetypefilter">
+                            <div class='col-sm-8'>
+                                .
+                                <div class="form-group">
+                                    <div class='input-group date'>
+                                        Detail All
+                                        @Html.RadioButtonFor(model => model[0].Col22, "1", new { @id = "Rbt_D_FT", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_FeeType')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Summary All
+                                        @Html.RadioButtonFor(model => model[0].Col22, "2", new { @id = "Rbt_S_FT", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_FeeType')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Select
+                                        @Html.RadioButtonFor(model => model[0].Col22, "3", new { @id = "Rbt_T_FT", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_FeeType')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class='col-sm-4'>
+
+                                <label for="first-name">  Fee Type</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_FeeType", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @style = "width:100%" })
+
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="feeheadfilter">
+                            <div class='col-sm-8'>
+                                .
+                                <div class="form-group">
+                                    <div class='input-group date'>
+                                        Detail All
+                                        @Html.RadioButtonFor(model => model[0].Col23, "1", new { @id = "Rbt_D_FT", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_FeeHead')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Summary All
+                                        @Html.RadioButtonFor(model => model[0].Col23, "2", new { @id = "Rbt_S_FT", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_FeeHead')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        Select
+                                        @Html.RadioButtonFor(model => model[0].Col23, "3", new { @id = "Rbt_T_FT", @class = "sa-input radio", @onclick = "Rbt_st_Chk(this,'ddl_FeeHead')", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-1'>
+                                .
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+
+                                        @*<input name="command" type="submit" value="head" style="max-height: 20px;padding-top: 0px;" class="fa fa-search" formnovalidate data-toggle="tooltip" title="Hide" />*@
+
+                                        <span class="input-group" data-toggle="tooltip" data-placement="top" title="Add Fee Heads" id="spn_head" onclick="HEAD(event);"><i class="fa fa-search"></i></span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+
+                                <label for="first-name"> Fee Head</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @*<span class="input-group-addon" data-toggle="tooltip" data-placement="top" id="spn_parent" onclick="PARENT();"><i class="fa fa-search"></i></span>*@
+
+
+                                        @Html.DropDownListFor(model => model[0].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[0].SelectedItems6), new { @id = "ddl_FeeHead", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @style = "width:100%" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-sm-3 col-sm-offset-3">
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+
+                                        <input type="button" id="btnOk" value="Search" name="command" onclick="btnokclick('', event);" class="btn btn-primary form-control sa-button fa-search" />
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" id="btn_head" value="head" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+</form>
+

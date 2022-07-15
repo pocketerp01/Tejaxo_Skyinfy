@@ -1,0 +1,249 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @*<input type="button" onclick="btnisum();" class="btn btn-success form-control sa-button" id="btn_isum" name="command" value="Stock Summary" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_isum" name="command" value="Stock Summary" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Stock Summary');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">                                
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_isumrate" name="command" value="Stock Summary With Rate" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Stock Summary With Rate');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_isumpr" name="command" value="Stock Summary Print" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Stock Summary Print');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_stkmm" name="command" value="Stock Moment Report" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Stock Moment Report');" />
+                            </div>
+                        </div>                       
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp1" name="command" value="Slow and Non Moving" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Slow and Non Moving');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="getcisum();" class="btn btn-success form-control sa-button" id="btn_cisum" name="command" value="Complete Stock Summary" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="getlocisum();" class="btn btn-success form-control sa-button" id="btn_locisum" name="command" value="Location Wise Stock Summary" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="getpendis();" class="btn btn-success form-control sa-button" id="btn_pndsp" name="command" value="Pending Invoice Against Dispatch" />
+                            </div>
+                        </div>                        
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="getgrpsum();" class="btn btn-success form-control sa-button" id="btn_grpsum" name="command" value="Group Summary" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @*<input type="button" onclick="getpendsc();" class="btn btn-success form-control sa-button" id="btn_pndsdl" name="command" value="Pending Dispatch Against Dispatch Sch" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_pndsdl" name="command" value="Pending Dispatch Against Dispatch Sch" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending Dispatch Against Dispatch Sch');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_ptysl" name="command" value="Party Wise Sale" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Party Wise Sale');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_itmwisesl" name="command" value="Item Wise Sale" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Item Wise Sale');" />
+                            </div>
+                        </div>                      
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @* <input type="button" onclick="getpenso();" class="btn btn-success form-control sa-button" id="btn_pndso" name="command" value="Pending Dispatch Against SO" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_pndso" name="command" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending Dispatch Against SO');" value="Pending Dispatch Against SO" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp2" name="command" value="last Rec and Issue Inv" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','last Rec and Issue Inv');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @*<input type="button" class="btn btn-success form-control sa-button" id="btn_rp1" name="command" value="Pending MRS" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending MRS');" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp3" name="command" value="Pending MRS" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending MRS');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="submit" class="btn btn-success form-control sa-button" id="btn_autoind" name="command" value="Auto Indents" />
+                            </div>
+                        </div>                       
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp4" name="command" value="Pending MRN" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending MRN');" />
+                                @* <input type="button" class="btn btn-success form-control sa-button" id="btn_rp1" name="command" value="Pending MRN"  onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending MRN');" />*@
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_mrnsummry" name="command" value="MRN Report Detailed" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','MRN Report Detailed');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_mrnsummry2" name="command" value="MRN Summary (Item Wise)" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','MRN Summary (Item Wise)');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_mrnsummry3" name="command" value="MRN Summary (Party Wise)" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','MRN Summary (Party Wise)');" />
+                            </div>
+                        </div>                       
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @*<input type="button" onclick="getiledger();" class="btn btn-success form-control sa-button" id="btn_iledger" name="command" value="Item Ledger" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_iledger" name="command" value="Item Ledger" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Item Ledger');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" onclick="btnfifo();" class="btn btn-success form-control sa-button" id="btn_fifo" name="command" value="FIFO / Moving Avg Valuation" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+           @Html.Raw(ViewBag.scripCall)
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function aselect() { var data = show_Foo('Select Module', 'MODULE', '1', '@viewName', '@controllerName'); }
+    function btnisum() { var data = show_Foo('Stock Summary', 'ISUM', '1', '@viewName', '@controllerName'); }    
+    function btnfifo() { var data = show_Foo('FIFO Wise Item Summary', 'IFIFO', '1', '@viewName', '@controllerName'); }
+    function getiledger() { var data = show_Foo('Item Summary', 'ILEDGER', '2', '@viewName', '@controllerName'); }
+    function getcisum() { var data = show_Foo('Complete Stock Summary', 'CISUM', '0', '@viewName', '@controllerName'); }
+    function getlocisum() { var data = show_Foo('Location Wise Item Summary', 'LOCISUM', '0', '@viewName', '@controllerName'); }
+
+    function getgrpsum() { var data = show_Foo('Item Group Summary', 'GRPSUM', '0', '@viewName', '@controllerName'); }
+    function getppo() { var data = show_Foo('Pending Po Summary', 'PPO', '1', '@viewName', '@controllerName'); }
+
+    function getpendis() { var data = show_Foo('Pending Invoice Against Dispatch', 'PDSP', '0', '@viewName', '@controllerName'); }
+    function getpendsc() { var data = show_Foo('Pending Dispatch Against Dispatch Sch', 'PDSC', '0', '@viewName', '@controllerName'); }
+    function getpenso() { var data = show_Foo('Pending Dispatch Against SO', 'PSO', '0', '@viewName', '@controllerName'); }
+    function getptr() { var data = show_Foo('Party Wise Sale', 'PWS', '0', '@viewName', '@controllerName'); }
+    function getitmw() { var data = show_Foo('Item Wise Sale', 'ITWS', '0', '@viewName', '@controllerName'); }
+
+
+    function callFoodemo(title, headid, mid, m_id, btnid) {     
+        var urls = "";
+        if (title == "Date Filter") { urls = "/Production/date_filter"; }
+        else urls = "/Inventory/filter_inv";
+
+        $.ajax({
+            type: "GET",
+            url: urls,
+            data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+            success: function (pageContents) {
+              //  debugger
+                $('#myModal').width('50%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+                hidewait();
+            },
+            error: function (err) {
+             
+                hidewait();
+            }
+        });
+    }
+    function call_filterfrm(headid, mid, m_id, btnid)
+    {
+       // debugger
+        var title = "";
+        if (btnid == "Party Wise Sale" || btnid == "Item Wise Sale" || btnid == "Pending MRN" || btnid == "Pending Dispatch Against Dispatch Sch" || btnid == "Item Ledger"
+            || btnid == "Pending Dispatch Against SO" || btnid == "Pending MRS" || btnid == "Pending MRN" || btnid == "Pending PO" || btnid == "MRN Report Detailed"
+            || btnid == "MRN Summary (Item Wise)" || btnid == "MRN Summary (Party Wise)" || btnid == "Stock Summary" || btnid == "Stock Summary Print" || btnid == "Stock Moment Report" || btnid == "Stock Summary With Rate") { title = "Date Filter"; }
+        else title = "Inv reps";
+        callFoodemo(title, headid, mid, m_id, btnid);        
+    }
+
+</script>
+

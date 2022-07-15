@@ -1,0 +1,363 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    /**/
+
+    /**/
+
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate  id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-warning form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-success form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+
+
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+<style>
+    td {
+        width: 180px;
+    }
+</style>
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart /form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+    @Html.HiddenFor(model => model[0].Col55, new { @id = "hf_btnnew" })
+    @Html.HiddenFor(model => model[0].Col56, new { @id = "hf_btnedit" })
+    @Html.HiddenFor(model => model[0].Col57, new { @id = "hf_btnview" })
+    @Html.HiddenFor(model => model[0].Col135, new { @id = "cmdval" })
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                        <h3 id="hd_title">PRE SHIPMENT LIMIT</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="row">
+                                <table class="table-responsive-md table-active table-borderless">
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Doc No.
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = "true" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Select Client Name
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_custid" })
+                                                @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_Col18", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = "true" })
+                                                <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Client Name" id="spn_add" onclick="PARTY();"><i class="fa fa-search"></i></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Projected Export Sales For Current/ Next Year
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_Col21", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Gross Margin
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_Col22", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Cost of Goods Sold
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_Col23", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Creditors Credit Peroid
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_Col24", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Total Credit Purchase
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_Col25", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = true, @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="row">
+                                <table class="table-responsive-md table-active table-borderless">
+
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Doc Date
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                New Client Name
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_Col20", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Net Purchase (Excluding Credit Purchase)
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_Col26", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = true, @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Usance Period( Date Of Advance Payment To Realisation Of Sale Proceed
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_Col27", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                No of Rotations
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_Col28", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = true, @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Eligible PCFC(Import/Inland As Relevant) Limit
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_Col29", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = true, @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Value Of Property Available For Mortgage
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col30, new { @id = "txt_Col30", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @Readonly = true, @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+ function PARTY() { var data = show_Foo('Select Account', 'PARTY', '1', '@viewName', '@controllerName'); }
+
+
+</script>

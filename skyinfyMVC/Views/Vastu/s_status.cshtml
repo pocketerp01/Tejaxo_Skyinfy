@@ -1,0 +1,125 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+  //  @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+ //   @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+  //  @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+ //   @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+  // @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+  //  @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+   // @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+  //  @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+  //  @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+  //  @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+   // @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+   // @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+   // @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+
+
+
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-primary form-control sa-button" id="btn_isum" name="command" value="Site Status" onclick="call_filterfrm( 'inv rpt','@Model[0].Col14','@Model[0].Col15','Site Status');" accesskey="po1" />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" formnovalidate style="visibility:hidden" class="btn btn-primary" />
+
+
+}
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+        });
+
+    function callFoodemo(title, headid, mid, m_id, btnid) {
+        //debugger;
+
+        var urls = "";
+        if (title == "Date Filter") { urls = "/Production/date_filter"; }
+        else urls = "/Inventory/filter_inv";
+
+        $.ajax({
+            type: "GET",
+            url: urls,
+            data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+            success: function (pageContents) {
+                //debugger
+                $('#myModal').width('50%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+                hidewait();
+            },
+            error: function (err) {
+                //debugger
+                hidewait();
+            }
+        });
+    }
+    function call_filterfrm(headid, mid, m_id, btnid) {
+        //debugger
+        var title = "";
+        if (btnid == "Site Status") { title = "Date Filter"; }
+        else title = "Date Filter";
+
+        callFoodemo(title, headid, mid, m_id, btnid);
+    }
+</script>

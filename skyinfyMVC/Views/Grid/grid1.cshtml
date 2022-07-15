@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "grid1";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+<h2>grid1</h2>
+
+
+
+
+<!----datatable---->
+<link href="~/erp/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
+<link href="~/erp/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />
+
+
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<!-- Datatables -->
+
+<script>
+
+    $(document).ready(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: "/Grid/GetCols",
+            success: function (data) {
+                var cols = [];
+                var tbid = $("#demoGrid");
+                
+                var yourobj = JSON.parse(data);
+                var htr = $(tbid).find('thead tr');
+                var ftr = $(tbid).find('tfoot tr');
+                //cols.push({ "data": "fstr", "name": "fstr", "autoWidth": true });
+                cols.push(
+                    {
+                        "render": function (data, type, full, meta, row) {
+                            return "<a class='btn btn-info' href='/grid/Edit/' + full.CustomerID + '>Edit</a>   " +
+                                " <a href = '#' class='btn btn-danger' onclick = DeleteData('h'); > Delete</a > ";
+                        }
+                    }
+                    //,
+                    //{
+                    //    data: null, render: function (data, type, row) {
+                    //        debugger
+                    //        return "<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.CustomerID + "'); >Delete</a>";
+                    //    }
+                    //}
+                );
+            
+                for (n1_1 in yourobj[0]) {
+                    $(htr).append("<th>" + n1_1 + "</th>");
+                    $(ftr).append("<th>" + n1_1 + "</th>");
+                    cols.push({ "data": n1_1, "name": n1_1, "autoWidth": true });
+
+                }
+                //      { "data": "Country", "name": "Country", "autoWidth": true },
+                //        { "data": "Phone", "name": "Phone", "title": "Status", "autoWidth": true },
+
+                      
+
+                var table = $('#demoGrid').DataTable({
+                    processing: true, // control the processing indicator.
+                    serverSide: true, // recommended to use serverSide when data is more than 10000 rows for performance reasons
+                    info: true,   // control table information display field
+                    stateSave: true, //restore table state on page reload,                   
+                    lengthMenu: [[10, 20, 50, -1], [10, 20, 50, "All"]],    // use the first inner array as the page length values and the second inner array as the displayed options
+                    ajax: function (data, callback, settings) {
+                        $.ajax({
+                            url: '/Grid/LoadData',
+                            method: 'POST',
+                            data: data
+                        }).done(function (res) {
+
+                            callback(JSON.parse(res));
+                        }).error(function (res) {
+
+                            callback(JSON.parse(res));
+                        }).error;
+                    },
+                    columns: cols,
+                    //"order": [[0, "asc"]]
+                });
+                $('#demoGrid tbody tr').each(function () {
+                    var row = this;
+                    $(row).find("td").append("<a href='#' class='btn btn-danger' onclick=DeleteData('" + row.CustomerID + "'); >Delete</a>");
+                });
+                $('#demoGrid tfoot th').each(function () {
+                    var placeHolderTitle = $('#demoGrid thead th').eq($(this).index() + 1).text();
+                    $('#demoGrid tfoot th').eq($(this).index() + 1).html('<input type="text" class="form-control input input-sm" placeholder = "Search ' + placeHolderTitle + '" />');
+                });
+                table.columns().every(function () {
+                    
+                    var column = this;
+                    $(this.footer()).find('input').on('keyup change', function () {
+                        column.search(this.value).draw();
+                    });
+                });
+            }
+        });
+    });
+</script>
+<style>
+    tfoot {
+        display: table-header-group;
+    }
+</style>
+
+<div class="container">
+    <br />
+    <div style="width:90%; margin:0 auto;">
+        <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+          
+            <thead>
+                <tr>
+                    <th>-</th>
+        
+                    @*<th>CustomerID</th>
+        <th>CompanyName</th>
+        <th>ContactName</th>
+        <th>ContactTitle</th>
+        <th>City</th>
+        <th>PostalCode</th>
+        <th>Country</th>
+        <th>Phone</th>*@
+
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>-</th>
+                    @*<th>CustomerID</th>
+        <th>CompanyName</th>
+        <th>ContactName</th>
+        <th>ContactTitle</th>
+        <th>City</th>
+        <th>PostalCode</th>
+        <th>Country</th>
+        <th>Phone</th>*@
+
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+</div>

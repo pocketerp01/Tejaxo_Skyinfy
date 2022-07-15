@@ -1,0 +1,827 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="STATUS" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="CLASS_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="STUDENTTYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="STUDENT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FATHER_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="REGNUMBER" type="xs:string" minOccurs="0" />
+                <xs:element name="PAID" type="xs:string" minOccurs="0" />
+                <xs:element name="SCHOLARSHIP_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="SCHOLARSHIP" type="xs:decimal" minOccurs="0" />
+                <xs:element name="FEESTATUS" type="xs:string" minOccurs="0" />
+                <xs:element name="FEEDATE" type="xs:string" minOccurs="0" />
+                <xs:element name="FEE_MONTH" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_DATE" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="DUE_DATE1" type="xs:string" minOccurs="0" />
+                <xs:element name="OVERDUE_DT" type="xs:string" minOccurs="0" />
+                <xs:element name="HIDEDATE" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_IDD" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FEE_AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="FEETYPE_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="FREQUENCY_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="FEEHEAD_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="FREQUENCYNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FEETYPENAME" type="xs:string" minOccurs="0" />
+                <xs:element name="HEADNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="PAIDAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="INTIALSTATUS" type="xs:string" minOccurs="0" />
+                <xs:element name="HAVETRANSPORT" type="xs:string" minOccurs="0" />
+                <xs:element name="PICK_POINT" type="xs:string" minOccurs="0" />
+                <xs:element name="DROP_POINT" type="xs:string" minOccurs="0" />
+                <xs:element name="EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="PHONENO" type="xs:string" minOccurs="0" />
+                <xs:element name="DUE_DAY" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OVERDUE_DAY" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CLASSNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="DISPLAY_ID" type="xs:long" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/76</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>550</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-05-07T05:14:56+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>550</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/143</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-04-07T09:00:30+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>-550</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April    </MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>30</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/145</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>550</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-05-18T09:06:23+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>550</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Regular Fees</STATUS>
+    <RECEIPT_NO>SCSH/357</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>550</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-07-24T05:33:29+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>1100</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>1100</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>15/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April    </MONTH_NAME>
+    <FEE_AMOUNT>6000</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>15</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Regular Fees</STATUS>
+    <RECEIPT_NO>SCSH/357</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-07-24T05:33:29+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>1900</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>1900</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/143</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-04-07T09:00:30+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>-1500</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/76</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>1500</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-05-07T05:14:56+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>1500</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Regular Fees</STATUS>
+    <RECEIPT_NO>SCSH/73</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>1500</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20190401</FEEDATE>
+    <FEE_MONTH>01/04/2019</FEE_MONTH>
+    <RECEIPT_DATE>2019-05-07T05:18:15+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/04/2019</DUE_DATE1>
+    <OVERDUE_DT>30/04/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>30/04/2019</HIDEDATE>
+    <MONTH_IDD>04</MONTH_IDD>
+    <MONTH_NAME>April</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>3400</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>3400</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>1</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20190701</FEEDATE>
+    <FEE_MONTH>01/07/2019</FEE_MONTH>
+    <DUE_DATE1>01/07/2019</DUE_DATE1>
+    <OVERDUE_DT>31/07/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/07/2019</HIDEDATE>
+    <MONTH_IDD>07</MONTH_IDD>
+    <MONTH_NAME>July     </MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>31</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>4</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20190701</FEEDATE>
+    <FEE_MONTH>01/07/2019</FEE_MONTH>
+    <DUE_DATE1>01/07/2019</DUE_DATE1>
+    <OVERDUE_DT>15/07/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/07/2019</HIDEDATE>
+    <MONTH_IDD>07</MONTH_IDD>
+    <MONTH_NAME>July     </MONTH_NAME>
+    <FEE_AMOUNT>3000</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>15</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>4</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20191001</FEEDATE>
+    <FEE_MONTH>01/10/2019</FEE_MONTH>
+    <DUE_DATE1>01/10/2019</DUE_DATE1>
+    <OVERDUE_DT>31/10/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/10/2019</HIDEDATE>
+    <MONTH_IDD>10</MONTH_IDD>
+    <MONTH_NAME>October  </MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>31</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>7</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20191001</FEEDATE>
+    <FEE_MONTH>01/10/2019</FEE_MONTH>
+    <DUE_DATE1>01/10/2019</DUE_DATE1>
+    <OVERDUE_DT>15/10/2019 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/10/2019</HIDEDATE>
+    <MONTH_IDD>10</MONTH_IDD>
+    <MONTH_NAME>October  </MONTH_NAME>
+    <FEE_AMOUNT>3000</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>15</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>7</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/144</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>1650</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20200101</FEEDATE>
+    <FEE_MONTH>01/01/2020</FEE_MONTH>
+    <RECEIPT_DATE>2019-05-18T09:01:27+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/01/2020</DUE_DATE1>
+    <OVERDUE_DT>31/01/2020 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/01/2020</HIDEDATE>
+    <MONTH_IDD>01</MONTH_IDD>
+    <MONTH_NAME>January</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>1650</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>10</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20200101</FEEDATE>
+    <FEE_MONTH>01/01/2020</FEE_MONTH>
+    <DUE_DATE1>01/01/2020</DUE_DATE1>
+    <OVERDUE_DT>31/01/2020 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/01/2020</HIDEDATE>
+    <MONTH_IDD>01</MONTH_IDD>
+    <MONTH_NAME>January  </MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>002</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Transport</FEETYPENAME>
+    <HEADNAME>Transport</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>31</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>10</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>-</STATUS>
+    <RECEIPT_NO>-</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>0</PAID>
+    <SCHOLARSHIP>0</SCHOLARSHIP>
+    <FEESTATUS>Pending</FEESTATUS>
+    <FEEDATE>20200101</FEEDATE>
+    <FEE_MONTH>01/01/2020</FEE_MONTH>
+    <DUE_DATE1>01/01/2020</DUE_DATE1>
+    <OVERDUE_DT>15/01/2020 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/01/2020</HIDEDATE>
+    <MONTH_IDD>01</MONTH_IDD>
+    <MONTH_NAME>January  </MONTH_NAME>
+    <FEE_AMOUNT>3000</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>0</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>School</HAVETRANSPORT>
+    <PICK_POINT>007</PICK_POINT>
+    <DROP_POINT>007</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>1</DUE_DAY>
+    <OVERDUE_DAY>15</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>10</DISPLAY_ID>
+  </prepcur>
+  <prepcur>
+    <STATUS>Concession Fees</STATUS>
+    <RECEIPT_NO>SCSH/144</RECEIPT_NO>
+    <CLASS_ID>002</CLASS_ID>
+    <STUDENTTYPE>New</STUDENTTYPE>
+    <STUDENT_NAME>JAYANT  </STUDENT_NAME>
+    <FATHER_NAME>VIJAY PAL </FATHER_NAME>
+    <REGNUMBER>Satyam/SCSH/159</REGNUMBER>
+    <PAID>2</PAID>
+    <SCHOLARSHIP>400</SCHOLARSHIP>
+    <FEESTATUS>-</FEESTATUS>
+    <FEEDATE>20200101</FEEDATE>
+    <FEE_MONTH>01/01/2020</FEE_MONTH>
+    <RECEIPT_DATE>2019-05-18T09:01:27+05:30</RECEIPT_DATE>
+    <DUE_DATE1>01/01/2020</DUE_DATE1>
+    <OVERDUE_DT>31/01/2020 00:00:00</OVERDUE_DT>
+    <HIDEDATE>31/01/2020</HIDEDATE>
+    <MONTH_IDD>01</MONTH_IDD>
+    <MONTH_NAME>January</MONTH_NAME>
+    <FEE_AMOUNT>0</FEE_AMOUNT>
+    <FEETYPE_ID>006</FEETYPE_ID>
+    <FREQUENCY_ID>4</FREQUENCY_ID>
+    <FEEHEAD_ID>001</FEEHEAD_ID>
+    <FREQUENCYNAME>Monthly</FREQUENCYNAME>
+    <FEETYPENAME>Academic</FEETYPENAME>
+    <HEADNAME>Fees</HEADNAME>
+    <RECEIPT_AMOUNT>400</RECEIPT_AMOUNT>
+    <PAIDAMOUNT>0</PAIDAMOUNT>
+    <INTIALSTATUS>Y</INTIALSTATUS>
+    <HAVETRANSPORT>-</HAVETRANSPORT>
+    <PICK_POINT>-</PICK_POINT>
+    <DROP_POINT>-</DROP_POINT>
+    <EMAIL_ID>0</EMAIL_ID>
+    <PHONENO>7027078585</PHONENO>
+    <DUE_DAY>0</DUE_DAY>
+    <OVERDUE_DAY>0</OVERDUE_DAY>
+    <CLASSNAME>NUR-A</CLASSNAME>
+    <DISPLAY_ID>10</DISPLAY_ID>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Satyam  Convent School</COMPANY_NAME>
+    <COMPANY_ADDRESS>gehlab road,near kuti mandirhathin(palwal)</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>06</COMPANY_STATE>
+    <COMPANY_CITY>Faridabad</COMPANY_CITY>
+    <COMPANY_PINCODE>121103</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>kartikvatsa1987@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>NA</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>8930555657</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>9671363430</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>00AAAAA0000A1Z5</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AAA47666</COM_PAN_NO>
+    <COMPANY_CIN_NO>AAA58877</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>Hathin</UNIT_NAME>
+    <UNIT_ADDRESS>Gehlab Road</UNIT_ADDRESS>
+    <UNIT_COUNTRY xml:space="preserve"> </UNIT_COUNTRY>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Hathin</UNIT_CITY>
+    <UNIT_PINCODE>121103</UNIT_PINCODE>
+    <UNIT_EMAIL xml:space="preserve"> </UNIT_EMAIL>
+    <UNIT_WEBSITE xml:space="preserve"> </UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>8930555657</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO xml:space="preserve"> </UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO xml:space="preserve"> </UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

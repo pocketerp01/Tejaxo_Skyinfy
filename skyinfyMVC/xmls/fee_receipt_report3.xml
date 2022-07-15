@@ -1,0 +1,238 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="REMARKS" type="xs:string" minOccurs="0" />
+                <xs:element name="TOTAL_FEE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTAL_RECEIPT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTAL_BAL" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DUE_FEE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DUE_RECEIPT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DUE_BAL" type="xs:decimal" minOccurs="0" />
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="FATHER_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="REGNO" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ACADEMIC_YEAR_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="ACADEMIC_YEAR" type="xs:string" minOccurs="0" />
+                <xs:element name="CLASS_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="CLASS" type="xs:string" minOccurs="0" />
+                <xs:element name="FEE_HEAD_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="HEADNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MODE_OF_PAYMENT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="MASTER_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_UNIT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="SECTION_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="SECTION" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIPT_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <REMARKS>0</REMARKS>
+    <TOTAL_FEE>20400</TOTAL_FEE>
+    <TOTAL_RECEIPT>20400</TOTAL_RECEIPT>
+    <TOTAL_BAL>0</TOTAL_BAL>
+    <DUE_FEE>7350</DUE_FEE>
+    <DUE_RECEIPT>7350</DUE_RECEIPT>
+    <DUE_BAL>0</DUE_BAL>
+    <NAME>KANAK  </NAME>
+    <FATHER_NAME>HEMENT KUMAR </FATHER_NAME>
+    <REGNO>Satyam/SCSH/81</REGNO>
+    <RECEIPT_NO>SCSH/91</RECEIPT_NO>
+    <RECEIPT_AMOUNT>4050</RECEIPT_AMOUNT>
+    <ACADEMIC_YEAR_ID>002</ACADEMIC_YEAR_ID>
+    <ACADEMIC_YEAR>2019 2020</ACADEMIC_YEAR>
+    <CLASS_ID>004</CLASS_ID>
+    <CLASS>UKG</CLASS>
+    <FEE_HEAD_ID>001</FEE_HEAD_ID>
+    <HEADNAME>Transport</HEADNAME>
+    <MODE_OF_PAYMENT_ID>001</MODE_OF_PAYMENT_ID>
+    <MASTER_NAME>CASH</MASTER_NAME>
+    <CLIENT_ID>001</CLIENT_ID>
+    <CLIENT_UNIT_ID>001001</CLIENT_UNIT_ID>
+    <MONTH_NAME>April,August,December,January,July,May,November,October,September</MONTH_NAME>
+    <SECTION_ID>001</SECTION_ID>
+    <SECTION>A</SECTION>
+    <RECEIPT_DATE>09/04/2019 10:48:28</RECEIPT_DATE>
+    <MONTH>April, May, July, August, September, October, November, December, January, February, March</MONTH>
+  </prepcur>
+  <prepcur>
+    <REMARKS>0</REMARKS>
+    <TOTAL_FEE>20400</TOTAL_FEE>
+    <TOTAL_RECEIPT>20400</TOTAL_RECEIPT>
+    <TOTAL_BAL>0</TOTAL_BAL>
+    <DUE_FEE>7350</DUE_FEE>
+    <DUE_RECEIPT>7350</DUE_RECEIPT>
+    <DUE_BAL>0</DUE_BAL>
+    <NAME>KANAK  </NAME>
+    <FATHER_NAME>HEMENT KUMAR </FATHER_NAME>
+    <REGNO>Satyam/SCSH/81</REGNO>
+    <RECEIPT_NO>SCSH/91</RECEIPT_NO>
+    <RECEIPT_AMOUNT>11300</RECEIPT_AMOUNT>
+    <ACADEMIC_YEAR_ID>002</ACADEMIC_YEAR_ID>
+    <ACADEMIC_YEAR>2019 2020</ACADEMIC_YEAR>
+    <CLASS_ID>004</CLASS_ID>
+    <CLASS>UKG</CLASS>
+    <FEE_HEAD_ID>002</FEE_HEAD_ID>
+    <HEADNAME>Fee</HEADNAME>
+    <MODE_OF_PAYMENT_ID>001</MODE_OF_PAYMENT_ID>
+    <MASTER_NAME>CASH</MASTER_NAME>
+    <CLIENT_ID>001</CLIENT_ID>
+    <CLIENT_UNIT_ID>001001</CLIENT_UNIT_ID>
+    <MONTH_NAME>April,January,July,October</MONTH_NAME>
+    <SECTION_ID>001</SECTION_ID>
+    <SECTION>A</SECTION>
+    <RECEIPT_DATE>09/04/2019 10:48:28</RECEIPT_DATE>
+    <MONTH>April, May, July, August, September, October, November, December, January, February, March</MONTH>
+  </prepcur>
+  <prepcur>
+    <REMARKS>0</REMARKS>
+    <TOTAL_FEE>20400</TOTAL_FEE>
+    <TOTAL_RECEIPT>20400</TOTAL_RECEIPT>
+    <TOTAL_BAL>0</TOTAL_BAL>
+    <DUE_FEE>7350</DUE_FEE>
+    <DUE_RECEIPT>7350</DUE_RECEIPT>
+    <DUE_BAL>0</DUE_BAL>
+    <NAME>GUNVIKA  </NAME>
+    <FATHER_NAME>DHARMENDER KUMAR </FATHER_NAME>
+    <REGNO>Satyam/SCSH/136</REGNO>
+    <RECEIPT_NO>SCSH/91</RECEIPT_NO>
+    <RECEIPT_AMOUNT>15000</RECEIPT_AMOUNT>
+    <ACADEMIC_YEAR_ID>002</ACADEMIC_YEAR_ID>
+    <ACADEMIC_YEAR>2019 2020</ACADEMIC_YEAR>
+    <CLASS_ID>002</CLASS_ID>
+    <CLASS>NUR</CLASS>
+    <FEE_HEAD_ID>001</FEE_HEAD_ID>
+    <HEADNAME>Fees</HEADNAME>
+    <MODE_OF_PAYMENT_ID>001</MODE_OF_PAYMENT_ID>
+    <MASTER_NAME>CASH</MASTER_NAME>
+    <CLIENT_ID>001</CLIENT_ID>
+    <CLIENT_UNIT_ID>001001</CLIENT_UNIT_ID>
+    <MONTH_NAME>April,January,July,October</MONTH_NAME>
+    <SECTION_ID>001</SECTION_ID>
+    <SECTION>A</SECTION>
+    <RECEIPT_DATE>09/04/2019 10:48:28</RECEIPT_DATE>
+    <MONTH>April, May, July, August, September, October, November, December, January, February, March</MONTH>
+  </prepcur>
+  <prepcur>
+    <REMARKS>0</REMARKS>
+    <TOTAL_FEE>20400</TOTAL_FEE>
+    <TOTAL_RECEIPT>20400</TOTAL_RECEIPT>
+    <TOTAL_BAL>0</TOTAL_BAL>
+    <DUE_FEE>7350</DUE_FEE>
+    <DUE_RECEIPT>7350</DUE_RECEIPT>
+    <DUE_BAL>0</DUE_BAL>
+    <NAME>GUNVIKA  </NAME>
+    <FATHER_NAME>DHARMENDER KUMAR </FATHER_NAME>
+    <REGNO>Satyam/SCSH/136</REGNO>
+    <RECEIPT_NO>SCSH/91</RECEIPT_NO>
+    <RECEIPT_AMOUNT>4950</RECEIPT_AMOUNT>
+    <ACADEMIC_YEAR_ID>002</ACADEMIC_YEAR_ID>
+    <ACADEMIC_YEAR>2019 2020</ACADEMIC_YEAR>
+    <CLASS_ID>002</CLASS_ID>
+    <CLASS>NUR</CLASS>
+    <FEE_HEAD_ID>001</FEE_HEAD_ID>
+    <HEADNAME>Transport</HEADNAME>
+    <MODE_OF_PAYMENT_ID>001</MODE_OF_PAYMENT_ID>
+    <MASTER_NAME>CASH</MASTER_NAME>
+    <CLIENT_ID>001</CLIENT_ID>
+    <CLIENT_UNIT_ID>001001</CLIENT_UNIT_ID>
+    <MONTH_NAME>April,August,December,February,January,July,March,May,November,October,September</MONTH_NAME>
+    <SECTION_ID>001</SECTION_ID>
+    <SECTION>A</SECTION>
+    <RECEIPT_DATE>09/04/2019 10:48:28</RECEIPT_DATE>
+    <MONTH>April, May, July, August, September, October, November, December, January, February, March</MONTH>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Satyam  Convent School</COMPANY_NAME>
+    <COMPANY_ADDRESS>gehlab road,near kuti mandirhathin(palwal)</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>06</COMPANY_STATE>
+    <COMPANY_CITY>Faridabad</COMPANY_CITY>
+    <COMPANY_PINCODE>121103</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>kartikvatsa1987@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>NA</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>8930555657</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>9671363430</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>00AAAAA0000A1Z5</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AAA47666</COM_PAN_NO>
+    <COMPANY_CIN_NO>AAA58877</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>Hathin</UNIT_NAME>
+    <UNIT_ADDRESS>Gehlab Road</UNIT_ADDRESS>
+    <UNIT_COUNTRY xml:space="preserve"> </UNIT_COUNTRY>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Hathin</UNIT_CITY>
+    <UNIT_PINCODE>121103</UNIT_PINCODE>
+    <UNIT_EMAIL xml:space="preserve"> </UNIT_EMAIL>
+    <UNIT_WEBSITE xml:space="preserve"> </UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>8930555657</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO xml:space="preserve"> </UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO xml:space="preserve"> </UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

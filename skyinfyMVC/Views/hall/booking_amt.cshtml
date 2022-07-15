@@ -1,0 +1,524 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid); string mandatory = "sa-mandatory";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' onclick='setTableDatat();' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btnView' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Party Name <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_party", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Select Party" })
+                                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Party" id="spn_add" onclick="PARTY();"><i class="fa fa-search"></i></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Party Contact No <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_contact", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Party Contact No" })
+
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Function Name <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_function", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Function Name" })
+
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Function Date <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_func_dt", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Function Date" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                No. Of Pax <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_pax", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "No. Of Pax" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Gross Amount <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_total", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Total Amount" })
+
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Other Amount<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col35, new { @id = "txt_oth", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @ReadOnly = "true", data_placeholder = "Other Amount" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Net Amount<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col36, new { @id = "txt_net", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @ReadOnly = "true", data_placeholder = "Net Amount" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Amt Rec Till Now<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col37, new { @id = "txt_till", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @ReadOnly = "true", data_placeholder = "Amt Rec Till Now" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Balance Amount<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col38, new { @id = "txt_bal", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @ReadOnly = "true", data_placeholder = "Balance Amount" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Rec Date<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col39, new { @id = "txt_recdt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", @ReadOnly = "true", data_placeholder = "Rec Date" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Mode Of Payment <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_md", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Amount Received <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_bk", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", data_placeholder = "Booking Amount", @onkeydown = "return isNumberKey(event)" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="first-name">
+                                Remark<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_rmk", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Remark" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-1'> <label>S.No.</label> </div>
+                        <div class='col-sm-2'><label for="first-name">Entry Date </label></div>
+                        <div class='col-sm-2'><label for="first-name">Received Date </label></div>
+                        <div class='col-sm-2'><label for="first-name">Amount </label></div>
+                        <div class='col-sm-2'><label for="first-name">Mode Of Payment</label></div>
+                        <div class='col-sm-2'><label for="first-name">Remark</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_party_code" })
+        @Html.HiddenFor(model => model[0].Col23, new { @id = "hf_fun" })
+        @Html.HiddenFor(model => model[0].Col34, new { @id = "hf_vch_date" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+        for (int i = 0; i < Model.Count; i++)
+        {
+            if (Model[i].Col30 != null)
+            {
+
+                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important; @clr">
+                    <div class="x_content">
+
+                        <div id="Atten_@i" class="row table-responsive">
+                            <div class='col-sm-1'>
+
+                                <label for="first-name">@(i + 1)</label>
+
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <div class=" clearfix"></div>
+                                        @Html.DisplayFor(model => model[i].Col30, new { @id = "dt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <div class=" clearfix"></div>
+                                        @Html.DisplayFor(model => model[i].Col39, new { @id = "rc_dt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DisplayFor(model => model[i].Col31, new { @id = "amt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DisplayFor(model => model[i].Col32, new { @id = "md", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                        <div class=" clearfix"></div>
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-2'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.DisplayFor(model => model[i].Col33, new { @id = "remark", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Department" })
+
+                                        <div class=" clearfix"></div>
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+
+
+
+
+
+
+
+    }
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="hidden" name="hftable" id="hftable" />
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+    });
+
+
+
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    @*function printfun() { var data = show_Foo('Select Entry For Print', 'PRINT', '1', '@viewName', '@controllerName'); }*@
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function PARTY() { var data = show_Foo('Select Party', 'PARTY', '1', '@viewName', '@controllerName'); }
+
+    //function setTableDatat() {
+    //    try {
+    //        debugger;
+    //        datatable = new Array();
+
+    //        var heads = $("[id*=col_]");
+    //        var rows = $(heads).eq(0).find("[id*=row_]");
+    //        for (var r = 0; r < rows.length; r++) {
+    //            var row = $("[id=row_" + r + "]");
+    //            var arr = new Array();
+    //            for (var h = 0; h < heads.length; h++) {
+    //                var obj = {};
+    //                obj[heads[h].children[0].innerText] = row[h].innerText;
+    //                arr.push(obj);
+    //            }
+    //            datatable.push(arr);
+    //        }
+    //    }
+    //    catch (err) { alert(err); return; }
+    //    $("#hftable").val(JSON.stringify(datatable));
+    //    //PageMethods.settable(datatable);
+
+
+    //}
+    //function sethfval(val) {
+
+    //    $("#hfrow").val(val);
+    //    setTableDatat();
+    //}
+    //function calcamt() {
+    //    debugger;
+    //    var amt = 0;
+    //    var rate = 0;
+    //    var pax = 0;
+    //    var tot = 0;
+    //    var tot_amt = 0;
+    //    var txt_total = 0;
+    //    txt_total=  $("#txt_total")[0].value ;
+
+    //    var heads = $("[id*=col_]");
+    //    var rows = $(heads).eq(0).find("[id*=row_]");
+    //    for (var r = 0; r < rows.length; r++) {
+    //        var row = $("[id=row_" + r + "]");
+    //        amt = parseFloat(row[3].innerText);
+
+    //        if (isNaN(amt)) { amt = 0; }
+
+    //        tot_amt = amt + parseFloat(tot_amt);
+
+    //        if (tot_amt > parseFloat(txt_total))
+    //        {
+    //            row[3].innerText = "0";
+    //            tot_amt = parseFloat(tot_amt) - amt ;
+    //        }
+
+    //    }
+
+
+    //    $("#txt_bk")[0].value = tot_amt;
+
+
+
+    //}
+
+    //function showddl(ctrl) {
+
+    //    //if($(ctrl).parent().parent().siblings().is(":visible"))
+    //    if ($(ctrl).parent().siblings().eq(1).is(":visible")) {
+    //        $(ctrl).parent().siblings().eq(1).hide();
+    //        $(ctrl).parent().siblings().eq(0).show();
+    //    }
+    //    else {
+    //        $(ctrl).parent().siblings().eq(1).show();
+    //        $(ctrl).parent().siblings().eq(0).hide();
+    //    }
+
+    //}
+</script>

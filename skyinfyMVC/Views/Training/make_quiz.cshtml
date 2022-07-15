@@ -1,0 +1,424 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    string clr = "";
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid); string mandatory = "sa-mandatory";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+
+
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="row">
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+                    <h3 id="hd_title">@Model[0].Col9</h3>
+                </div>
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+    @Html.Raw(buttons)
+</div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-md-8 col-sm-8 col-xs-12" for="first-name">
+                                Choose Module , Category ,Title And Quiz To Make Quiz Praxis
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Select Training To Make Quiz Praxis <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <a id="a_title" causevalidation="false" onclick="a_title_ServerClick();" data-toggle="tooltip" data-placement="top" title="Select Training"><i class="fa fa-search" style="margin-top: 11px;"></i></a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Module <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "module_drpdwn", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", onchange = "module_drpdwn_SelectedIndexChanged(this);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Category <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "category_drpdwn", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", onchange = "category_drpdwn_SelectedIndexChanged(this);" })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12 ">
+                                Title <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "course_title_drpdwn", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", onchange = "course_title_drpdwn_SelectedIndexChanged(this);" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12 ">
+                                Ref Code
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "ref_code_txtbx", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                No Of Quiz in This Catagory<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "lbl_ques_count", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                Quiz Praxis Name<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model[0].Col19, new { @id = "quepapr_name_txtbx", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onblur = "quepapr_name_txtbx_TextChanged();" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="x_panel">
+                                <div class="x_content">
+                                    <div class="row">
+                                        <div class='col-sm-1'> <label></label> </div>
+                                        <div class='col-sm-2'><label for="first-name">ID</label></div>
+                                        <div class='col-sm-2'><label for="first-name">Module</label></div>
+                                        <div class='col-sm-2'><label for="first-name">Catagory</label></div>
+                                        <div class='col-sm-2'><label for="first-name">Title</label></div>
+                                        <div class='col-sm-3'><label for="first-name">Quiz</label></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important; @clr">
+                                    <div class="x_content">
+                                        <div id="Table1" class="row table-responsive">
+                                            <div class="col-sm-1">
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chkRow", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo2('#Table1', this);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class=" clearfix"></div>
+                                                        @Html.DisplayFor(model => model[i].Col21, new { @id = "lbl_quesid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        @Html.HiddenFor(model => model[i].Col21, new { @id = "lbl_quesid" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col22, new { @id = "lbl_module", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                        @Html.HiddenFor(model => model[i].Col22, new { @id = "lbl_module" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col23, new { @id = "lbl_category", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        @Html.HiddenFor(model => model[i].Col23, new { @id = "lbl_category" })
+
+                                                        <div class=" clearfix"></div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-2'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col24, new { @id = "lbl_title", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        @Html.HiddenFor(model => model[i].Col24, new { @id = "lbl_title" })
+                                                        <div class=" clearfix"></div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-3'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DisplayFor(model => model[i].Col25, new { @id = "ques_link_btn", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        @Html.HiddenFor(model => model[i].Col25, new { @id = "ques_link_btn" })
+                                                        <div class=" clearfix"></div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    @*<div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12">
+            <button type="submit" class="btn btn-info form-control sa-button" id="ass_btn" name="command" value="Submit" accesskey="R">Create Praxis</button>
+        </div>
+    </div>*@
+
+    <div class="clearfix"></div>
+    {
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_tab2" })
+        @Html.HiddenFor(model => model[0].Col26, new { @id = "hf_quesid" })
+        @Html.HiddenFor(model => model[0].Col27, new { @id = "hf_vchnum2" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_module" value="Module" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_catag" value="Catagory" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_title" value="Title" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_papername" value="Pname" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        debugger;
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function a_title_ServerClick() { var data = show_Foo('Select Training', 'CHOOSETITLE', '1', '@viewName', '@controllerName'); }
+
+    function removetempfile(ctrl) {
+        //debugger;
+        var cnt = ctrl.id.split('e')[1];
+        $("#upd" + cnt + "")[0].value = "";
+        $("#spanupd" + cnt + "")[0].innerText = "";
+        $("#thumbnil" + cnt + "")[0].src = "";
+        $("#thumbnil" + cnt + "").hide();
+        $(ctrl).hide();
+    }
+    function fileselected(ctrl) {
+        debugger;
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 20) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 15 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            switch (ext) {
+                case 'pdf':
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'bmp':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only pdf,jpg,jpeg,png,bmp file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+            var filesize = file.size / 1024;
+            if (filesize < 100) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 100Kb';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+
+        var files = ctrl.files;
+        var thmbcnt = ctrl.id.split('d')[1].trim();
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            var nonimg = false;
+            if (!file.type.match(imageType)) {
+                //continue;
+                nonimg = true;
+            }
+
+            var img = document.getElementById("thumbnil" + thmbcnt + "");
+            img.file = file;
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+                    //debugger
+                    aImg.src = e.target.result;
+                    if (nonimg == true) {
+                        aImg.src = "../../../images/pdfthumb.png";
+                    }
+                    //aImg.setAttribute("data-pdf-thumbnail-file", e.target.result);
+                    //createPDFThumbnails();
+                };
+            })(img);
+            reader.readAsDataURL(file);
+            $("#thumbnil" + thmbcnt + "").show();
+            $("#img_close" + thmbcnt + "").show();
+        }
+    }
+    function imgclick(ctrl) { $(ctrl).closest('div').find("input[type=file]").click(); }
+            function fdelete(evt, id) {
+            //prevent the browsers default function
+            evt.preventDefault();
+            //grab the form and wrap it with jQuery
+            var $form = $("form");
+            var obj = { "value": id };
+            myMethod('@controllerName', '@viewName', "fdelete", obj, null);
+            $("#callback1").click();
+    }
+    function module_drpdwn_SelectedIndexChanged(ctrl) {
+        $(parent.document.getElementById('btn_module')).trigger('click');
+    }
+    function quepapr_name_txtbx_TextChanged() {
+        $(parent.document.getElementById('btn_papername')).trigger('click');
+    }
+
+    function category_drpdwn_SelectedIndexChanged(ctrl) {
+        $(parent.document.getElementById('btn_catag')).trigger('click');
+    }
+
+    function course_title_drpdwn_SelectedIndexChanged(ctrl) {
+        $(parent.document.getElementById('btn_title')).trigger('click');
+    }
+    function chk2(checkbox) {
+        debugger;
+        var check = $(checkbox)[0].checked;
+        if (check)
+        {
+            $("[id*=ch_fileupload1]").show();
+            $("[id*=ch_fileupload2]").show();
+            $("[id*=ch_fileupload3]").show();
+            $("[id*=ch_fileupload4]").show();
+        }
+        else {
+            $("[id*=ch_fileupload1]").hide();
+            $("[id*=ch_fileupload2]").hide();
+            $("[id*=ch_fileupload3]").hide();
+            $("[id*=ch_fileupload4]").hide();
+        }
+    }
+</script>

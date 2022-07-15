@@ -1,0 +1,225 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+ 
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;" id="btnnew" name="command" value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-warning form-control" @ViewBag.vedit style="border-radius: 10px!important;" id="btnedit" onclick="editfun();" name="command" value="Edit" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btnsave" name="command" value="Save" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-info form-control" style="border-radius: 10px!important;" onclick="viewfun();" id="btndetail" name="command" value="View" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="sa-btncancel form-control" style="border-radius: 10px!important;" id="btncancel" name="command" value="Cancel" >Cancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "lbl_entby", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "lbl_entby", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "lbl_entdt", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "lbl_entdt", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "lbl_vch_num", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "vch_num", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "lbl_client_id", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "clientid", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "lbl_client_unit_id", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "client_unit_id", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "lbl_url", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "url", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "lbl_recid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "recid", @onkeydown = "return checkLength(this, 28,event);" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "lbl_master_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "master_id", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">Select Student</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Student" id="spn_add" onclick="add2();"><i class="fa fa-search"></i></span>
+
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Floor" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Drop BY</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        
+
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Floor" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Drop By Contact No.</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Floor" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Drop Time</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", data_placeholder = "Drop Time" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">Pick By</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Floor" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Pick By Contact No.</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Floor" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Pick Time</label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_Dropby", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", data_placeholder = "Drop Time" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        });
+       // function newfun() {
+
+       //// debugger
+       // enableForm();
+       // $("[id*=btnsave]").attr("disabled", false);
+       // $("[id*=btnnew]").attr("disabled", true);
+       // $("[id*=btnedit]").attr("disabled", true);
+
+       // }
+
+        function editfun() {
+
+            var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName','@controllerName');
+        }
+
+        function viewfun() {
+        var data = show_Foo('View Detail', 'VIEW', '0', '@viewName','@controllerName');
+        }
+
+
+        //function cancelfun() {
+        //$("[id*=btnnew]").attr("disabled", false);
+        //$("[id*=btnedit]").attr("disabled", false);
+        //$("[id*=btnsave]").attr("disabled", true);
+        //$("[id*=btndetail]").attr("disabled", false);
+        //$("[id*=btncancel]").attr("disabled", false);
+        //fillBlanks();
+        //disableForm();
+        //}
+
+    </script>
+

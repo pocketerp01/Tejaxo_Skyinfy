@@ -1,0 +1,72 @@
+﻿
+<form id="sticky">
+    <div class="container body">
+        <div role="main">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div id="alerts"></div>
+                        <div class="containerClass">
+                            <asp:TextBox ID="message" runat="server" Rows="10" onkeyup="saveFun();" TextMode="MultiLine" Style="width: 100%" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>
+                            <ajaxtoolkit:HtmlEditorExtender ID="HtmlEditorExtender2" TargetControlID="message" EnableSanitization="false" runat="server"></ajaxtoolkit:HtmlEditorExtender>
+                        </div>
+                        <br />                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<style>
+    .select2-selection__choice {
+        color: white;
+    }
+</style>
+
+<style type="text/css">
+    .auto-style1 {
+        height: 30px;
+    }
+
+    .containerClass .ajax__html_editor_extender_container {
+        width: 100% !important; /*important is really important at here*/
+    }
+</style>
+<link href="../css/select2/select2.min.css" rel="stylesheet" />
+<script type="text/javascript">
+
+
+    $(function () {
+
+        Sys.Application.add_load(function () {
+            $(".ajax__html_editor_extender_texteditor").keyup(function () {
+                //show its' content...
+                PageMethods.Setvalues($(this).html());
+            });
+
+        })
+    });  
+
+    function save() {
+
+        evt.preventDefault();
+        var $form = $("#sticky");
+        $.ajax({
+            type: "POST",
+            url: "/foo/footable_v2",
+            data: $form.serialize() + "&command=search",
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+                document.body.innerHTML = response;
+            },
+            error: function (err) {
+                $('#myModalContent').html(err.responseText);
+                enhancegrid();
+                $(".tHeaderCell").on("click", function (evt) {
+                    Sortbtn(evt);
+                });
+            }
+        });
+    }
+</script>

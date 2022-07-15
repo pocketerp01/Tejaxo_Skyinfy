@@ -1,0 +1,402 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    Cmd_Fun cmd_fun;
+    cmd_fun = new Cmd_Fun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    string basestr = "", imgdisplay = "", base64 = "";
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var path = "";
+    var issp = false;
+    var imgclosedisplay = "";
+
+    }
+    @using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <div class="title_left">
+                            <h3 id="hd_title">@Model[0].Col9</h3>
+                        </div>
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+            @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+            @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+            @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+            @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+            @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+            @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+            @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+            @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+            @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+            @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+            @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+            @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+            @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+            @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+            @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    First Name <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "first_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Middle Name
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "middle_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Last Name <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col19, new { @id = "last_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Email Address
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "edit_email", @type = "email", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Date Of Birth
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col21, new { @id = "edit_dob", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Gender <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_gender", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", multiple = "multiple", @style = "width:100%" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Country <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @*<asp:DropDownList ID="edit_country" runat="server" OnSelectedIndexChanged="edit_country_SelectedIndexChanged" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="True">
+                                        </asp:DropDownList>*@
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_country", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", multiple = "multiple", @style = "width:100%", onchange = "selectionIndexChange(this);" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    State <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_state", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", multiple = "multiple", @style = "width:100%" })
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    City <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col22, new { @id = "edit_city", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Address
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                                    @Html.TextAreaFor(model => model[0].Col23, new { @id = "edit_address", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Pincode
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col24, new { @id = "edit_pincode", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "6" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Mobile
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col25, new { @id = "edit_number", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mobile" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Alternate Mobile
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[0].Col26, new { @id = "edit_altnumber", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mobile" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                    Profile Picture <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="row">
+                                    <div class='col-sm-7'>
+
+                                        @try
+                                        {
+                                            //var splist = Model[0].LTM1.Where(m => m.Col2 == "RMK").ToList();
+                                            var splist = Model[0].Col27.ToList();
+                                            issp = splist.Count > 0;
+                                            imgdisplay = "none";
+                                            imgclosedisplay = "none";
+
+                                            if (issp)
+                                            {
+                                                base64 = sgen.imgtobase64(serverpath + Model[0].Col28);
+                                                basestr = "data: image/png;base64," + base64;
+                                                imgdisplay = "block";
+                                            }
+                                        }
+                                        catch (Exception err) { imgdisplay = "none"; imgclosedisplay = "none"; }
+
+                                        @if (issp)
+                                        {
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    <label>File Already Attached</label>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (!issp)
+                                        {
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    <img id="imgupd1" src="../../images/file-upload-button.png" onclick="imgclick(this);" style="max-width: 120px" />
+                                                    <input id="upd1" onchange="fileselected(this);" style="visibility: hidden; height: 0; width: 0" name="upd1" type="file" />
+                                                    <span onclick="imgclick(this);" ID="spanupd1">@Model[0].Col28</span>
+                                                    <span class="input-group-addon formclass"></span>
+                                                    @Html.HiddenFor(model => model[0].Col28, new { @id = "hf_sp" })
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                    <div class='col-sm-5'>
+                                        <img id="thumbnil1" style="width: 120px; height: 120px; margin-top: 10px; display: @imgdisplay" data-pdf-thumbnail-file="@basestr" src="@basestr" alt="" />
+                                        <span id="img_close1" style="border: 1px solid white;padding: 3px;cursor:pointer;display:@imgclosedisplay" onclick="removetempfile(this);"><i class="fa fa-close"></i></span>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    @*<asp:Button ID="edit" runat="server" CssClass="btn btn-primary" Text="EDIT" OnClick="edit_Click" />
+                                        <asp:Button ID="update" runat="server" CssClass="btn btn-primary" OnClick="update_Click" Text="Update Profile" />*@
+                                    <input type="submit" class="btn btn-primary sa-button" style="border-radius: 10px!important;" id="update" name="command" value="Update" accesskey="U" />
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+        <input type="submit" id="btn_state" formnovalidate value="state" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+        <input type="submit" id="hfbtnyes" formnovalidate value="hfbtnyes" name="Command" title="hfbtnyes" style="visibility:hidden" class="btn btn-primary" />
+    }
+
+    <script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+    });
+
+
+
+
+    function fileselected(ctrl) {
+
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 20) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 15 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            switch (ext) {
+                case 'pdf':
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'bmp':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only pdf,jpg,jpeg,png,bmp file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+            var filesize = file.size / 1024;
+            if (filesize < 1000) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 1000Kb';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+
+        var files = ctrl.files;
+        var thmbcnt = ctrl.id.split('d')[1].trim();
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            var nonimg = false;
+            if (!file.type.match(imageType)) {
+                //continue;
+                nonimg = true;
+            }
+
+            var img = document.getElementById("thumbnil" + thmbcnt + "");
+            img.file = file;
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+                    //debugger
+                    aImg.src = e.target.result;
+                    if (nonimg == true) {
+                        aImg.src = "../../../images/pdfthumb.png";
+                    }
+                    //aImg.setAttribute("data-pdf-thumbnail-file", e.target.result);
+                    //createPDFThumbnails();
+                };
+            })(img);
+            reader.readAsDataURL(file);
+            $("#thumbnil" + thmbcnt + "").show();
+            $("#img_close" + thmbcnt + "").show();
+        }
+    }
+    function imgclick(ctrl) { $(ctrl).closest('div').find("input[type=file]").click(); }
+    function onsuccessdown(response) { window.location.href = response; }
+    function onfailuredown(response) { }
+    function fdelete(evt, id) {
+        //debugger;
+                //prevent the browsers default function
+        evt.preventDefault();
+        //grab the form and wrap it with jQuery
+        var $form = $("form");
+        var obj = { "value": id };
+        myMethod('@controllerName', '@viewName', "fdelete", obj, null);
+        $("#callback1").click();
+    }
+
+    //function onsuccessdel(response) { bindFiles(); }
+    //function onfailuredel(response) { }
+
+    function selectionIndexChange(ctrl) {
+       // debugger;
+
+        $(parent.document.getElementById('btn_state')).trigger('click');
+    }
+    </script>
+

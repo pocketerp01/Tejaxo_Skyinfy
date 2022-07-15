@@ -1,0 +1,147 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    Cmd_Fun cmd_fun = new Cmd_Fun(MyGuid);
+    Layout = "~/Views/Shared/Login_Master.cshtml";
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    sgen.SetSession(MyGuid, "Forgot_pswd", "Yes");
+
+
+    }
+    <form action="/Home/forgot_pswd" id="forgot" method="post">
+
+        <p class="logstyle">
+            @Html.DisplayFor(model => model[0].Col9, new { @id = "lbl_title", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+            @Html.HiddenFor(model => model[0].Col9, new { @id = "lbl_title" })
+        </p>
+        @*<div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <div class="title_left">
+                                <h3 id="hd_title">@Model[0].Col9</h3>
+                            </div>
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>*@
+
+        <div class="clearfix"> </div>
+
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+
+        <div class="login">
+            <div class="panel-body">
+                <div class="text-center">
+                    <div>
+                        <a class="hiddenanchor" id="signup"></a>
+                        <a class="hiddenanchor" id="signin"></a>
+
+                        <div class="login_wrapper">
+                            <div class="animate form login_form">
+                                @*<section class="login_content">*@
+                                <div id="Form2" runat="server">
+
+
+
+                                    <h2><span class="glyphicon glyphicon-lock"></span></h2>
+
+                                    <p style="color: #821392">You can recover your password here...</p>
+                                    <div class="panel-body">
+
+
+
+                                        <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                                    User Id <span class="ClientProfileLabelColor">*</span>
+                                                </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "userid_txtbx", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                    @*<asp:Button ID="Button1" runat="server" BorderStyle="Solid" CssClass="btn-primary" Text="Submit" OnClick="Button1_Click" />*@
+
+                                                    <input type="submit" class="btn btn-primary sa-button" style="border-radius: 10px!important;" id="btn_Submit" name="command" value="Submit" accesskey="S" />
+
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                    <a class="reset_pass" href="@Url.RouteUrl(new { Controller = controllerName, Action = "login" })">Back to Login</a>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                                    <b style="color:red">
+                                                        @Html.DisplayFor(model => model[0].Col18, new { @id = "lbl_msg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                    </b>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+
+
+                                </div>
+                                @*</section>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </form>
+
+    <script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+    });
+
+
+    </script>

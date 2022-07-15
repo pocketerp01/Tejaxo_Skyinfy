@@ -1,0 +1,422 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string role_mst = sgen.GetCookie(MyGuid, "role_mst");
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+}
+
+
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+
+    @Html.HiddenFor(model => model[0].Col50, new { @id = "refcode" })
+    @Html.HiddenFor(model => model[0].Col51, new { @id = "clsrtype" })
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_content">
+                    <Panel ID="Panel3" runat="server" ScrollBars="Vertical" TabIndex="10" Height="500px">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <tbody>
+                                <tr>
+                                    <td colspan="5">From</td>
+                                    <td>
+                                        @Html.DisplayFor(model => model[0].Col17, new { @id = "lblfrom", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">To</td>
+                                    <td>
+                                        @Html.DisplayFor(model => model[0].Col18, new { @id = "lblto", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        Cc
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model[0].Col19, new { @id = "lblcc", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                    </td>
+                                </tr>
+                                @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_from" })
+                                @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_to" })
+                                @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_cc" })
+                                <tr>
+                                    <td colspan="5">
+                                        Task Type
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(model => model[0].Col20, new { @id = "lbl_tt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">Subject</td>
+                                    <td>
+
+                                        @Html.DisplayFor(model => model[0].Col21, new { @id = "lblsubject", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">Priority</td>
+                                    <td>
+                                        @Html.DisplayFor(model => model[0].Col24, new { @id = "lblprior", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">Completion Date</td>
+                                    <td>
+                                        @Html.DisplayFor(model => model[0].Col27, new { @id = "lblcdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">Message</td>
+                                    <td>
+                                        @Html.DisplayFor(model => model[0].Col22, new { @id = "lblbody", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                    </td>
+                                </tr>
+                                @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_tsktypename" })
+                                @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_subject" })
+                                @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_body" })
+                                @Html.HiddenFor(model => model[0].Col23, new { @id = "hf_tasktypeid" })
+                                @Html.HiddenFor(model => model[0].Col24, new { @id = "hf_prior" })
+                                @Html.HiddenFor(model => model[0].Col25, new { @id = "hf_clsrtype" })
+                                @Html.HiddenFor(model => model[0].Col27, new { @id = "hf_cdt" })
+                                <tr>
+                                    <td colspan="5">Attachment</td>
+
+                                    @if (Model[0].LTM1 != null)
+                                    {
+                                        for (int f = 0; f < Model[0].LTM1.Count; f++)
+                                        {
+                                            @Html.HiddenFor(model => model[0].LTM1[f].Col1, new { @id = "hf_ltm1" })
+                                            @Html.HiddenFor(model => model[0].LTM1[f].Col2, new { @id = "hf_ltm2" })
+                                            @Html.HiddenFor(model => model[0].LTM1[f].Col3, new { @id = "hf_ltm3" })
+                                            @Html.HiddenFor(model => model[0].LTM1[f].Col4, new { @id = "hf_ltm4" })
+                                            <td>
+                                                <a href="@Url.RouteUrl(new { Controller = "Hr", Action = "fdowntsk", value = Model[0].LTM1[f].Col3+Model[0].LTM1[f].Col4+"taskfile",myguid=MyGuid })">@Model[0].LTM1[f].Col1</a>
+                                            </td>                                            
+                                        }
+                                    }
+                                </tr>
+                                <tr>
+                                    <td colspan="5"></td>
+                                    <td colspan="2">
+                                        <div class="row">
+                                            <div class="col-sm-2 col-md-2">
+                                                @if (!role_mst.Trim().ToUpper().Equals("OWNER"))
+                                                {
+                                                    if (Model[0].Col25 == "02")
+                                                    {
+                                                        @*<input type="button" ID="btn_clstsk" name="command" value="Close Task" onclick="$('#td_remark').show();" class="btn-success" Style="float: right;@Model[0].Col91" />*@
+                                                        <input type="button" ID="btn_clstsk" name="command" value="Close Task" onclick="$('#td_remark').show();" class="btn btn-success form-control sa-button" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @*<input type="button" ID="btn_clstsk" name="command" value="Close Task" onclick="$('#td_remark').show();" class="btn-success" Style="float: right;@Model[0].Col91" />*@
+                                                    <input type="button" ID="btn_clstsk" name="command" value="Close Task" onclick="$('#td_remark').show();" class="btn btn-success form-control sa-button" />
+                                                }
+                                            </div>
+                                            <div class="col-sm-2 col-md-2">
+                                                @*<input type="submit" ID="btn_rjct" value="Reject" name="command" class="btn-primary" Style="float: right;@Model[0].Col94" OnClick="btn_rjct_Click" />
+                                                    <input type="submit" ID="btn_apprvd" value="Approved" name="command" class="btn-primary" Style="float: right;;@Model[0].Col93" OnClick="btn_apprvd_Click" />*@
+                                                @*<input type="submit" ID="reply" value="Reply" name="command" class="btn-primary" Style="float: right;@Model[0].Col92" formnovalidate /><Label ID="lblmsg" Text=""></Label>*@
+                                                <input type="submit" ID="reply" value="Reply" name="command" class="btn btn-primary form-control sa-button" formnovalidate /><Label ID="lblmsg" Text=""></Label>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr id="td_remark" style="display:none">
+                                    <td colspan="5">Closer Remarks <span class="ClientProfileLabelColor">*</span></td>
+                                    <td>
+                                        <div ass="col-md-10">
+                                            @Html.TextAreaFor(model => model[0].Col26, new { @id = "FullDescription", @class = "form-control", @rows = "200" })
+                                            <script>
+                                                CKEDITOR.replace("FullDescription");
+                                            </script>
+                                        </div>
+                                        <input type="submit" ID="btn_remark" name="command" value="Close" formnovalidate class="btn-primary" />
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        @Html.HiddenFor(m => m[0].Col81)
+                        <Panel ID="Panel1" @Model[0].Col81>
+                            <div class="container body">
+                                <div role="main">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="x_panel">
+                                            <div class="x_title">
+                                                <h2>TASK ASSIGN<small></small></h2>
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <div class="x_content">
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-default">To*</span>
+                                                        </span>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_email", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", multiple = "multiple", @MaxLength = "20" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group">
+                                                        <span class="input-group-btn">
+                                                            <span class="btn btn-default">Cc</span>
+                                                        </span>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_cc", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", multiple = "multiple", @MaxLength = "20" })
+                                                    </div>
+                                                </div>
+
+                                                @*<div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <span class="btn btn-default">Task Type</span>
+                                                            </span>
+                                                            <input type="hidden" ID="hf_ttid" />
+                                                            @Html.TextBoxFor(model => model[0].Col31, new { @id = "txt_tsktype", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })
+
+                                                        </div>
+                                                    </div>*@
+
+                                                @*<div class="form-group">*@
+                                                @*<div class="input-group">
+                                                    <span class="input-group-btn">
+                                                        <span class="btn btn-default">Sub</span>
+                                                    </span>*@
+                                                @*<input type="text" ID="txtsub" Style="width: 100%" class="form-control col-md-12 col-sm-12 col-xs-12" />*@
+                                                @*@Html.TextBoxFor(model => model[0].Col32, new { @id = "txtsub", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "" })*@
+                                                @*</div>
+                                                    </div>*@
+
+
+                                                @*<div class="form-group">
+                                                        <div class="input-group">
+                                                            <span class="input-group-btn">
+                                                                <span class="btn btn-default">Attachment</span>
+                                                            </span>
+                                                            <asp:FileUpload runat="server" ID="up_file" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Multiple="Multiple" /><span id="spnDocMsg" class="error" style="display: none;"></span>
+                                                        </div>
+                                                    </div>*@
+
+                                                <div id="alerts"></div>
+                                                <div class="containerClass">
+                                                    @Html.TextAreaFor(model => model[0].Col33, new { @id = "message", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", rows = "10", placeholder = "" })
+                                                    @*<input type="tel" ID="message" runat="server" Rows="10" TextMode="MultiLine" Style="width: 100%" class="form-control col-md-12 col-sm-12 col-xs-12" />*@
+                                                    @*<ajaxtoolkit:HtmlEditorExtender ID="HtmlEditorExtender2" TargetControlID="message" EnableSanitization="false" runat="server"></ajaxtoolkit:HtmlEditorExtender>*@
+
+                                                </div>
+                                                <br />
+                                                <div class="ln_solid"></div>
+
+
+                                                <div class="form-group">
+                                                    <div class="col-md-12">
+                                                        <asp:HyperLink ID="HyperLink1" runat="server" CssClass="btn btn-primary" NavigateUrl="corp_adm_compose.aspx" Style="float: right">Cancel</asp:HyperLink>
+
+                                                        <input type="submit" ID="sendmail" name="command" class="btn btn-success" value="Send" Style="float: left" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <style>
+                                    .select2-selection__choice {
+                                        color: white;
+                                    }
+                                </style>
+
+                                @*<script src="../css/select2/select2_4.0.6.min.js"></script>*@
+                                <script type="text/javascript">
+                                    $(document).ready(function () {
+
+                                        //    var myHidden = document.getElementById('<%= hfto.ClientID %>');
+                                        //    if (!myHidden.value == "") {
+                                        //        var newStateVal = myHidden.value.split(',');
+                                        //        var local = false; var localnames = "";
+                                        //        var extra = false; var extranames = "";
+                                        //        for (i = 0; i < newStateVal.length; i++) {
+                                        //            // Set the value, creating a new option if necessary
+                                        //            if ($("#email").find("option[value='" + newStateVal[i] + "']").length == 1) {
+                                        //                if (localnames == "") localnames = newStateVal[i];
+                                        //                else localnames = localnames + "," + newStateVal[i];
+                                        //                local = true;
+                                        //            }
+                                        //            else if (!$("#email").find("option[value='" + newStateVal[i] + "']").length == 0) {
+                                        //                if (extranames == "") extranames = newStateVal[i];
+                                        //                else extranames = extranames + "," + newStateVal[i];
+                                        //                extra = true;
+                                        //            }
+                                        //        }
+                                        //        if (local) {
+
+                                        //            $("#email").val(localnames.split(','));
+                                        //        }
+                                        //        if (extra) {
+                                        //            // Create the DOM option that is pre-selected by default
+                                        //            for (i = 0; i < extranames.split(',').length; i++) {
+                                        //                debugger;
+                                        //                $("#email").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                                        //                // Append it to the select
+                                        //                //$("#ContentPlaceHolder1_email").append(newState);
+                                        //            }
+                                        //        }
+                                        //    }
+                                        //    else $("#email").val(null).trigger('change.select2');
+
+                                        //    //$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+                                        //    $("#email").trigger('change');
+                                        //    debugger;
+                                        //    var myHidden = document.getElementById('<%= hfcc.ClientID %>');
+                                        //    if (!myHidden.value == "") {
+                                        //        var newStateVal = myHidden.value.split(',');
+                                        //        var local = false; var localnames = "";
+                                        //        var extra = false; var extranames = "";
+                                        //        for (i = 0; i < newStateVal.length; i++) {
+                                        //            // Set the value, creating a new option if necessary
+                                        //            if ($("#cc").find("option[value='" + newStateVal[i] + "']").length == 1) {
+                                        //                if (localnames == "") localnames = newStateVal[i];
+                                        //                else localnames = localnames + "," + newStateVal[i];
+                                        //                local = true;
+
+
+                                        //            }
+                                        //            else if (!$("#cc").find("option[value='" + newStateVal[i] + "']").length == 0) {
+                                        //                if (extranames == "") extranames = newStateVal[i];
+                                        //                else extranames = extranames + "," + newStateVal[i];
+                                        //                extra = true;
+                                        //            }
+                                        //        }
+                                        //        if (local) {
+
+                                        //            $("#cc").val(localnames.split(','));
+                                        //        }
+                                        //        if (extra) {
+                                        //            // Create the DOM option that is pre-selected by default
+                                        //            for (i = 0; i < extranames.split(',').length; i++) {
+                                        //                debugger;
+                                        //                $("#cc").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                                        //                // Append it to the select
+                                        //                //$("#ContentPlaceHolder1_email").append(newState);
+                                        //            }
+                                        //        }
+                                        //    } else $("#cc").val(null).trigger('change.select2');    //$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+                                        //    $("#cc").trigger('change');
+
+
+
+                                        //    $("#email").select2({
+                                        //        tags: true,
+                                        //        tokenSeparators: [",", ";", " "],
+                                        //        templateSelection: function (data, container) {
+                                        //            var myHidden = document.getElementById('<%= hfto.ClientID %>');
+                                        //            myHidden.value = $('#email').val().toString();
+                                        //            if ($("#cc option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                                        //                $(container).css("background-color", "blue");
+                                        //            }
+                                        //            else {
+
+                                        //                $(container).css("background-color", "red");
+                                        //            }
+                                        //            return data.text;
+                                        //        },
+                                        //        maximumSelectionLength: 1,
+                                        //        multiple: true,
+                                        //    });
+
+
+                                        //    $("#cc").select2({
+                                        //        tags: true,
+                                        //        tokenSeparators: [",", ";", " "],
+                                        //        templateSelection: function (data, container) {
+                                        //            var myHidden = document.getElementById('<%= hfcc.ClientID %>');
+                                        //            myHidden.value = $('#cc').val().toString();
+                                        //            if ($("#cc option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                                        //                $(container).css("background-color", "blue");
+                                        //            }
+                                        //            else {
+
+                                        //                $(container).css("background-color", "red");
+                                        //            }
+                                        //            return data.text;
+                                        //        },
+                                        //    });
+                                    });
+
+                                </script>
+                                <asp:HiddenField ID="hfto" runat="server" />
+                                <asp:HiddenField ID="hfcc" runat="server" />
+                                <asp:Button ClientIDMode="Static" runat="server" ID="hfbtnok" Style="display: none" OnClick="hfbtnok_Click" />
+                            </div>
+                        </Panel>
+
+                    </Panel>
+                </div>
+            </div>
+        </div>
+        <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+            @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+</script>
+

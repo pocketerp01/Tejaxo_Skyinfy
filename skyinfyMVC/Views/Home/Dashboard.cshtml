@@ -1,0 +1,591 @@
+﻿@using System.Data;
+@using skyinfyMVC.App_Data;
+@{
+
+
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string modulename_mst = sgen.GetCookie(MyGuid, "m_name").ToString();
+    string moduleid_mst = sgen.GetCookie(MyGuid, "m_id").ToString();
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+
+
+    List<SelectListItem> mod1 = new List<SelectListItem>();
+    mod1.Add(new SelectListItem { Value = "3D", Text = "3D" });
+    mod1.Add(new SelectListItem { Value = "2D", Text = "2D" });
+    var d3items = new MultiSelectList(mod1, "value", "text", mod1, new List<int>() { 1 });
+
+    List<SelectListItem> mod2 = new List<SelectListItem>();
+    mod2.Add(new SelectListItem { Value = "line", Text = "Line" });
+    mod2.Add(new SelectListItem { Value = "pie", Text = "Pie" });
+    mod2.Add(new SelectListItem { Value = "bar", Text = "Bar" });
+    mod2.Add(new SelectListItem { Value = "barstacked", Text = "BarStacked" });
+    mod2.Add(new SelectListItem { Value = "column", Text = "Column" });
+    mod2.Add(new SelectListItem { Value = "columnstacked", Text = "ColumnStacked" });
+    var typeitems = new MultiSelectList(mod2, "value", "text", mod2, new List<int>() { 1 });
+
+    List<SelectListItem> mod3 = new List<SelectListItem>();
+    mod3.Add(new SelectListItem { Value = "Flat", Text = "Flat" });
+    mod3.Add(new SelectListItem { Value = "Pivot", Text = "Pivot" });
+    var pivotitems = new MultiSelectList(mod3, "value", "text", mod3, new List<int>() { 1 });
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { id = viewName, enctype = "multipart/form-data" }))
+{
+    <input type="button" id="hfbtnyes" value="Yes" onclick="menuclick(this);" name="backup" title="Yes" style="visibility:hidden" class="btn btn-primary" />
+
+    @Styles.Render("~/bundles/dashcss")
+
+    <style>
+        .x_panel {
+            border: 2px solid #0052ff1a;
+            border-radius: 5px;
+            padding-bottom: 5px;
+            padding-right: 5px;
+        }
+
+     
+    </style>
+
+    @*<link href="~/Scripts/calender/css/responsive-calendar.min.css" rel="stylesheet" />
+        <script src="~/Scripts/calender/js/responsive-calendar.min.js"></script>
+            <script src="../../../../Scripts/highcharts/highcharts.js"></script>
+            <script src="../../../../Scripts/highcharts/highcharts-3d.js"></script>
+            <script src="../../../../Scripts/highcharts/exporting.js"></script>
+            <script src="../../../../Scripts/highcharts/export-data.js"></script>
+            <script src="../../../../Scripts/highcharts/highcharts-more.js"></script>//20*@
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-primary" onclick="showCharts()">Show Dashboard</button>
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-4"></div>
+
+    </div>
+    <div id="pportal" style="display:none">
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="first-name">
+                    Student Name <span class="ClientProfileLabelColor">*</span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @*@try
+                            {
+                                Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_pay_terms", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @style = "width:100%" });
+                            }
+                            catch (Exception err) { }*@
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <label for="first-name">
+                    <span class="ClientProfileLabelColor"></span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        <button type="submit" class="btn btn-primary form-control sa-button" style="border-radius: 10px!important;" runat="server" id="btn_Show" onserverclick="btn_Show_ServerClick" accesskey="N"><u>S</u>how</button>
+
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-xs-12" style="z-index: 1">
+
+                <div class="x_panel">
+                    <div class="x_title">
+                    </div>
+                    <div class="x_content">
+                        <div class=" row">
+                            <div class="col-sm-2">
+                                <div class="row" style="height:80px">
+                                    <span>@*Color Codes*@</span>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#138D75;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>PP</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#884EA0;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>PA</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#2E86C1;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>PL</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#CB4335;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>AA</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#884EA0;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>AP</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#CA6F1E;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>AL</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#D4AC0D;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>LL</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#2E86C1;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>LP</label></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6" style="background-color:#CA6F1E;width:40px;min-height:18px"></div>
+                                    <div class="col-sm-6" style="width:40px;min-height:20px"> <label>LA</label></div>
+                                </div>
+
+                            </div>
+                            <div class="col-sm-10">
+                                <!-- Responsive calendar - START -->
+                                <div class="responsive-calendar">
+                                    <div class="controls">
+                                        <a class="pull-left" data-go="prev">
+                                            <div class="btn btn-primary">Prev</div>
+                                        </a>
+                                        <h4><span data-head-year></span><span data-head-month></span></h4>
+                                        <a class="pull-right" data-go="next">
+                                            <div class="btn btn-primary">Next</div>
+                                        </a>
+                                    </div>
+                                    <hr />
+                                    <div class="day-headers">
+                                        <div class="day header">Mon</div>
+                                        <div class="day header">Tue</div>
+                                        <div class="day header">Wed</div>
+                                        <div class="day header">Thu</div>
+                                        <div class="day header">Fri</div>
+                                        <div class="day header">Sat</div>
+                                        <div class="day header">Sun</div>
+                                    </div>
+                                    <div class="days" data-group="days">
+                                    </div>
+                                </div>
+                                <!-- Responsive calendar - END -->
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <a style="padding-top: 100px" href="../../../../../../erp/Notifications.aspx">See All</a>
+            </div>
+
+
+        </div>
+    </div>
+    <div id="maincharts">
+        <div id="divgrp">
+            <div class="col-sm-4 col-xs-12 divchild" style="display: none;z-index: 1">
+
+                <div class="x_panel">
+                    <div class="x_title" style="margin-bottom:0px">
+                        <div class="row">
+                            <div class="col-md-12" style="text-align: center;color:black" id="dtitle"> </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3' style="padding-right: 0px;padding-left: 0px;">
+                                @Html.DropDownListFor(model => typeitems, typeitems, new { @id = "ddl_type", @onchange = "resetit(this);", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                            </div>
+                            <div class='col-sm-2' style="padding-right: 0px;padding-left: 0px;">
+                                @Html.DropDownListFor(model => d3items, d3items, new { @id = "ddl_3d", @onchange = "resetit(this);", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                            </div>
+                            <div class='col-sm-2' style="padding-right: 0px;padding-left: 0px;">
+                                @Html.DropDownListFor(model => pivotitems, pivotitems, new { @id = "ddl_pivot", @onchange = "resetit(this);", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                            </div>
+                            <div class="col-sm-5">
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li>
+                                        <a id="arefresh" onclick="resetit(this);"><i class="fa fa-refresh fa-spin"></i></a>
+                                    </li>
+                                    <li>
+                                        <a id="ahide" onclick="hide(this);"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li class="dropdown">
+                                        <a class="dropdown-toggle" id="aext" role="button" aria-expanded="false"><i class="fa fa-expand"></i></a>
+                                    </li>
+                                    <li>
+                                        <a id="aclose" onclick="removechart(this);"><span style="display: none"></span> <i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="x_content" id="divmain" runat="server">
+                        <div id="chart1" style="height: 265px" runat="server">Loading your data</div>
+                        <input type="button" id="btnchart" style="display:none" OnClick="btnchart_Click" />
+                    </div>
+                    <hidden id="hf_chartno" />
+                </div>
+            </div>
+        </div>
+        <div id='ChartModal' class='modal'>
+            <div class="modal-dialog" style="width: 80%; height: 600px;">
+
+                <div class="modal-content">
+                    <div id='ChartContent'>
+
+                        <div class="x_panel">
+                            <div class="x_title" style="margin-bottom:0px">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center;color:black" id="dtitle"> </div>
+                                </div>
+                                <div class="row">
+                                    <div class='col-sm-3' style="padding-right: 0px;padding-left: 0px;">
+                                        @Html.DropDownListFor(model => typeitems, typeitems, new { @id = "ddl_typeext", @onchange = "resetit(this);", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                    </div>
+                                    <div class='col-sm-2' style="padding-right: 0px;padding-left: 0px;">
+                                        @Html.DropDownListFor(model => d3items, d3items, new { @id = "ddl_3dext", @onchange = "resetit(this);", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                    </div>
+                                    <div class='col-sm-2' style="padding-right: 0px;padding-left: 0px;">
+                                        @Html.DropDownListFor(model => pivotitems, pivotitems, new { @id = "ddl_pivotext", @onchange = "resetit(this);", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li>
+                                                <a id="arefresh" onclick="resetit(this);"><i class="fa fa-refresh fa-spin"></i></a>
+                                            </li>
+                                            <li>
+                                                <a id="ahide" onclick="hide(this);"><i class="fa fa-chevron-up"></i></a>
+                                            </li>
+                                            <li class="dropdown">
+                                                <a class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-expand"></i></a>
+                                            </li>
+                                            <li>
+                                                <a id="aclose" class="close" data-dismiss="modal" aria-hidden="true"><span style="display: none"></span> <i class="fa fa-close"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="x_content" id="divmain" runat="server">
+                                <div id="chartext" style="height: 600px" runat="server">Loading your data</div>
+                                <input type="button" id="btnchart" style="display:none" OnClick="btnchart_Click" />
+                            </div>
+                            <hidden id="hf_chartno" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    @Scripts.Render("~/bundles/dashcaljs")
+    @Scripts.Render("~/bundles/dashjs")
+
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        //showCharts();
+             @Html.Raw(ViewBag.scripCall);
+
+        $(".responsive-calendar").responsiveCalendar({
+            time: '2018-08',
+            //events: {
+            //  "2018-08-30": {"number": 5, "url": "http://w3widgets.com/responsive-slider"},
+            //  "2018-08-26": {"number": 1, "url": "http://w3widgets.com"},
+            //  "2018-08-03":{"number": 1},
+            //    "2018-08-12": {}
+            //}
+
+            events: {
+                "2018-08-30": { "url": "http://w3widgets.com/responsive-slider" },
+                "2018-08-26": { "url": "http://w3widgets.com" },
+                "2018-08-03": { "tyle": "PP" },
+                "2018-08-19": { "tyle": "PA" },
+                "2018-08-10": { "tyle": "PL" },
+                "2018-08-11": { "tyle": "LL" },
+                "2018-08-14": { "tyle": "LP" },
+                "2018-08-28": { "tyle": "LA" },
+                "2018-08-01": { "tyle": "AA" },
+                "2018-08-04": { "tyle": "AP" },
+                "2018-08-08": { "tyle": "AL" }
+            }
+
+
+            //if (dayEvents.tyle == "PP") day.find("a")[0].style.backgroundColor = "#138D75";
+            // if (dayEvents.tyle == "PA") day.find("a")[0].style.backgroundColor = "#884EA0";
+            // if (dayEvents.tyle == "PL") day.find("a")[0].style.backgroundColor = "#2E86C1";
+            // if (dayEvents.tyle == "AA") day.find("a")[0].style.backgroundColor = "#CB4335";
+            // if (dayEvents.tyle == "AP") day.find("a")[0].style.backgroundColor = "#884EA0";
+            // if (dayEvents.tyle == "AL") day.find("a")[0].style.backgroundColor = "#CA6F1E";
+            // if (dayEvents.tyle == "LL") day.find("a")[0].style.backgroundColor = "#D4AC0D";
+            // if (dayEvents.tyle == "LP") day.find("a")[0].style.backgroundColor = "#2E86C1";
+            // if (dayEvents.tyle == "LA") day.find("a")[0].style.backgroundColor = "#CA6F1E";
+        });
+
+
+    });
+
+
+    </script>
+    <script type="text/javascript">
+
+        function showCharts() {
+            var obj = { "MyGuid": '@MyGuid' };
+            var dd = "-";
+            $.post({
+                url: '/Home/ChartList',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(obj),
+                datatype: "text",
+                success: function (response) {
+
+                    OnSuccess55(response);
+
+                },
+                error: function (res) {
+
+                    alert("Dynamic content load failed.");
+                }
+            });
+        }
+        var Charts = null;
+        var kk = 1;
+        var maxxharts = 0;
+        function OnSuccess55(response) {
+
+            //var xmlDoc = $.parseXML(response);
+            var xml = $(response);
+            Charts = xml.find("MainData");
+            maxxharts = Charts.length;
+            shownext();
+            //gridViewScroll.undo();
+            //Hide Loader
+            //$("#loader").hide();
+        }
+
+      function shownext() {
+            try {
+                if (breakall) { return; }
+                var customer = $(Charts).eq(kk - 1);
+                //var divid = $("[id$=divgrp]").find(".divchild").eq(0).find("[id*=chart1]")[0].id;
+                //var hf_chatno = $("[id$=divgrp]").find(".divchild").eq(0).find("[id*=hf_chartno]")[0];
+                //hf_chatno.value = customer[0].children[9].textContent;
+                //var btnid = $("[id$=divgrp]").find("input").eq(0)[0].id;
+                if (breakall) { return; }
+                kk++;
+                if (kk > 1) {
+
+                    //var cols = customer[0].children.length;///temporary comment
+                    var row = $("[id$=divgrp]").find(".divchild").eq(0).clone(true);
+                    row[0].style.display = "block";
+                    hfid = $(row).find("[id*=hf_chartno]")[0].id + kk;
+                    divid = $(row).find("[id*=chart1]")[0].id + kk;
+                    aextid = $(row).find("[id*=aext]")[0].id + kk;
+                    btnid = $(row).find("input")[0].id + kk;
+                    $(row).find("[id*=chart1]")[0].id = divid;
+                    $(row).find("[id*=hf_chartno]")[0].id = hfid;
+                    $(row).find("[id*=hf_chartno]")[0].value = customer[0].children[9].textContent;//temporary comment
+                    $(row).find("[id*=dtitle]")[0].innerText = customer[0].children[2].textContent;//temporary comment
+                    $(row).find("input")[0].id = btnid;
+                    $(row).find("[id*=ddl_type]")[0].id = $(row).find("[id*=ddl_type]")[0].id + kk;
+                    $(row).find("[id*=ddl_3d]")[0].id = $(row).find("[id*=ddl_3d]")[0].id + kk;
+                    $(row).find("[id*=ddl_pivot]")[0].id = $(row).find("[id*=ddl_pivot]")[0].id + kk;
+                    $(row).find("[id*=arefresh]")[0].id = $(row).find("[id*=arefresh]")[0].id + kk;
+
+                    //$(row).find("[id*=ddl_type]").find("option[value=" + customer[0].children[8].textContent + "]").prop("selected", "selected");
+
+                    $(row).find("[id*=aext]")[0].id = aextid;
+                    $(row[0]).find("[id*=aext]")[0].setAttribute("onclick", "extend(this);");
+                    row.addClass("loader");
+                    //row.append('<div  style = "background-color:white"><img id="loader" alt="" src="103.gif" /></div>');
+                    $("[id$=divgrp]").append(row);
+                }
+
+                Populate(customer[0].children[9].textContent, divid, btnid, customer[0].children[8].textContent, customer[0].children[15].textContent, customer[0].children[14].textContent);
+            }
+            catch (err) { }
+        }
+
+        //{
+        //    var chartno = dr["chartno"].ToString();
+        //    Html.Raw("Populate(" + dr["chart_no"].ToString() + ", " + dr["divname"].ToString() + ", " + dr["btnid"].ToString() + ", "", "", "");");
+        //}
+        function Populate(chartno, divname, btnid, type_str, d3_str, pivot_str) {
+
+                if (breakall) {
+
+                    return;
+                }
+                //  debugger
+                var refresh = "N";
+                $.post({
+                    url: '/Home/Populate',
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify({
+                        "chartno": chartno, "divname": divname, "btnid": btnid, "type_str": type_str, "d3_str": d3_str, "pivot_str": pivot_str, "refresh": refresh, "Myguid": '@MyGuid'
+                    }),
+                    datatype: "text",
+                    success: function (response) {
+                        try {
+                            if (breakall) { return; }
+                            eval(response.split("~!~!~")[1]);
+                            $(".highcharts-credits").remove();
+                            $("#" + response.split("~!~!~")[0]).parent().parent().parent().find("#loader").hide();
+                            if (kk <= maxxharts) {
+                                setTimeout(shownext, 1000);
+                            }
+                        }
+                        catch (err) {
+
+                        }
+                    },
+                    error: function (res) {
+
+                        //alert("Dynamic content load failed.");
+                    }
+                });
+
+        }
+
+        function resetDDL(id) {
+
+            var oldInput = $("#" + id + "").clone(true);
+            parentn = $("#" + id + "")[0].parentElement.parentElement;
+            parentn.className = "";
+            //parentn.className = "input-group";
+            $(parentn).empty();
+            $(parentn).append(oldInput);
+            $(oldInput).select2();
+        }
+
+        function resetit(ctrl) {
+
+
+            var refresh = "N";
+            if (ctrl.id.includes("arefresh")) {
+
+                chartno = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("[id*=hf_chartno]").val();
+                divname = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("div[id*=chart]")[0].id;
+                btnid = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("input")[0].id;
+                type_str = $("#" + ctrl.id).parent().parent().parent().parent().find("select[id*=ddl_type]").val();
+                d3_str = $("#" + ctrl.id).parent().parent().parent().parent().find("select[id*=ddl_3d]").val();
+                pivot_str = $("#" + ctrl.id).parent().parent().parent().parent().find("select[id*=ddl_pivot]").val();
+                refresh = "Y";
+
+            }
+            else {
+                chartno = $("#" + ctrl.id).parent().parent().parent().parent().find("[id*=hf_chartno]").val();
+                divname = $("#" + ctrl.id).parent().parent().parent().parent().find("div[id*=chart]")[0].id;
+                btnid = $("#" + ctrl.id).parent().parent().parent().parent().find("input")[0].id;
+                type_str = $("#" + ctrl.id).parent().parent().find("select[id*=ddl_type]").val();
+                d3_str = $("#" + ctrl.id).parent().parent().find("select[id*=ddl_3d]").val();
+                pivot_str = $("#" + ctrl.id).parent().parent().find("select[id*=ddl_pivot]").val();
+
+            }
+
+
+            $.post({
+                url: '/Home/Populate',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "chartno": chartno, "divname": divname, "btnid": btnid, "type_str": type_str, "d3_str": d3_str, "pivot_str": pivot_str, "refresh": refresh,"Myguid":'@MyGuid'
+                }),
+                datatype: "text",
+                success: function (response) {
+                    try {
+
+                        var options = { "backdrop": "static", keyboard: true };
+                        var data = $(".divchild").eq(2).html();
+                        var val = response.split("~!~!~")[1];
+                        //$('#ChartModal').find("[id*=chart1]")[0].id = response.split("~!~!~")[0];
+                        //$('#ChartModal').find("input")[0].id = response.split("~!~!~")[2];
+                        eval(val);
+
+                    }
+                    catch (err) {
+                    }
+                },
+                error: function (res) {
+
+                    //alert("Dynamic content load failed.");
+                }
+            });
+        }
+
+        function extend(ctrl) {
+
+            chartno = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("[id*=hf_chartno]").val();
+            divname = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("[id*=chart1]")[0].id;
+            btnid = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("input")[0].id;
+            type_str = $("#" + ctrl.id).parent().parent().parent().parent().find("select[id*=ddl_type]").val();
+            d3_str = $("#" + ctrl.id).parent().parent().parent().parent().find("select[id*=ddl_3d]").val();
+            pivot_str = $("#" + ctrl.id).parent().parent().parent().parent().find("select[id*=ddl_pivot]").val();
+            $('#ChartModal').find("[id*=hf_chartno]")[0].value = chartno;
+
+
+            $('#ChartModal').find("[id*=ddl_type]").find("option[value=" + type_str + "]").prop("selected", "selected");
+            $('#ChartModal').find("[id*=ddl_3d]").find("option[value=" + d3_str + "]").prop("selected", "selected");
+            $('#ChartModal').find("[id*=ddl_pivot]").find("option[value=" + pivot_str + "]").prop("selected", "selected");
+            $('#ChartModal').find("[id*=dtitle]")[0].innerText = $("#" + ctrl.id).parent().parent().parent().parent().parent().parent().find("[id*=dtitle]")[0].innerText;
+            var refresh = "N";
+
+
+            $.post({
+                url: '/Home/Populate',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    "chartno": chartno, "divname": divname, "btnid": btnid, "type_str": type_str, "d3_str": d3_str, "pivot_str": pivot_str, "refresh": refresh, "Myguid": '@MyGuid'
+                }),
+                datatype: "text",
+                success: function (response) {
+                    try {
+                        var options = { "backdrop": "static", keyboard: true };
+                        var data = $(".divchild").eq(2).html();
+                        var val = response.split("~!~!~")[1].replace(response.split("~!~!~")[0], "chartext");
+                        //$('#ChartModal').find("[id*=chart1]")[0].id = response.split("~!~!~")[0];
+                        //$('#ChartModal').find("input")[0].id = response.split("~!~!~")[2];
+                        eval(val);
+                        $(".highcharts-credits").remove();
+                        $('#myModalLabel').html("Graph Preview");
+                        $('#ChartModal').modal(options);
+                        $('#ChartModal').modal('show');
+                    }
+                    catch (err) {
+                    }
+                },
+                error: function (res) {
+
+                    //alert("Dynamic content load failed.");
+                }
+            });
+        }
+    </script>
+
+
+
+}

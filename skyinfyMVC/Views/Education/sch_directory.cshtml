@@ -1,0 +1,164 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+  
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row" id="div_rpt">
+
+                        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+                        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+                        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+                        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+                        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+                        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+                        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+                        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+                        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+                        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+                        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+                        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+                        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+                        @Html.HiddenFor(model => model[0].Col16, new { @id = "vch_num" })
+
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="x_panel" style="border-left: 5px solid #73879C!important;">
+                                    <div class="x_title">
+                                        <h6 style="font-weight: 800">Teacher Detail</h6>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="x_panel">
+                                            <div class="x_content">
+                                                <div class="profile_pic">
+                                                    <img id="img_tpic" src="~/Uploads/person-icon.png" class="img-circle profile_img" />
+                                                </div>
+
+                                                <div class="profile_info">
+                                                    <h5 style="font-weight: 600; font-size: medium" id="hd_tname">
+                                                        @Html.DisplayFor(model => model[i].Col17, new { @id = "hd_tname", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                                    </h5>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <h5 style="font-weight: 600; font-size: small">Designation</h5>
+
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            @*<h5 style="font-weight: 600; font-size: small" id="hd_tdesignation"><%# Eval("designation") %></h5>*@
+                                                            <h5 style="font-weight: 600; font-size: small" id="hd_tdesignation">
+                                                                @Html.DisplayFor(model => model[i].Col18, new { @id = "hd_tdesignation", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <h5 style="font-weight: 600; font-size: small">Department</h5>
+
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            @*<h5 style="font-weight: 600; font-size: small" id="h1"><%# Eval("department") %></h5>*@
+                                                            <h5 style="font-weight: 600; font-size: small" id="dept">
+                                                                @Html.DisplayFor(model => model[i].Col19, new { @id = "h1", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+                                                            <h5 style="font-weight: 600; font-size: small">Class</h5>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            @*<h5 style="font-weight: 600; font-size: small" id="hd_tclass"><%# Eval("class") %></h5>*@
+                                                            <h5 style="font-weight: 600; font-size: small" id="hd_tclas">
+                                                                @Html.DisplayFor(model => model[i].Col20, new { @id = "hd_tclass", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                                            </h5>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+
+                                                            <h5 style="font-weight: 600; font-size: small">Contact No</h5>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+                                                            @*<h5 style="font-weight: 600; font-size: small" id="hd_tcontact"><%# Eval("contact") %></h5>*@
+                                                            <h5 style="font-weight: 600; font-size: small" id="hd_tcont">
+                                                                @Html.DisplayFor(model => model[i].Col21, new { @id = "hd_tcontact", @class = "form-control col-md-12 col-sm-12 col-xs-12" })
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-sm-6">
+
+                                                            <h5 style="font-weight: 600; font-size: small">Email</h5>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6">
+
+                                                            <h5 style="font-weight: 600; font-size: small;word-wrap:break-word" id="htemail"> @Html.DisplayFor(model => model[0].Col22, new { @id = "hdtemail", @class = "form-control col-md-12 col-sm-12 col-xs-12" })</h5>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+<script type="text/javascript">
+   // debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        //var desig = $("#hd_tdesignation")[0].innerText;
+        //if (desig == "") { $("#div_rpt").hide(); }
+        //else { $("#div_rpt").show(); }
+
+    });
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '1', '@viewName', '@controllerName'); }
+
+    //function getstd() {
+    //    $("#btn_std").click();
+    //}
+</script>
+

@@ -1,0 +1,310 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">                                
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btntext" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">                   
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Upcoming <small>Birthdays</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">Settings 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content blockscroll">
+                                    @if (Model[0].dt1 != null)
+                                    {
+                                        for (int i = 0; i < Model[0].dt1.Rows.Count; i++)
+                                        {
+                                            <article class="media event">
+                                                <a class="pull-left date">
+                                                    <p class="month">@Model[0].dt1.Rows[i]["sm"].ToString().Trim()</p>
+                                                    <p class="day">@Model[0].dt1.Rows[i]["dy"].ToString().Trim()</p>
+                                                </a>
+                                                <div class="media-body">
+                                                    <a class="title" href="#">@Model[0].dt1.Rows[i]["empname"].ToString().Trim()</a>
+                                                    <p>@Model[0].dt1.Rows[i]["deptdesig"].ToString().Trim()</p>
+                                                    <p>@Model[0].dt1.Rows[i]["dy"].ToString().Trim() @Model[0].dt1.Rows[i]["mm"].ToString().Trim()</p>
+                                                </div>
+                                            </article>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Upcoming <small>Anniversaries</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">Settings 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content blockscroll">
+                                    @if (Model[0].dt2 != null)
+                                    {
+                                        for (int i = 0; i < Model[0].dt2.Rows.Count; i++)
+                                        {
+                                            <article class="media event">
+                                                <a class="pull-left date">
+                                                    <p class="month">@Model[0].dt2.Rows[i]["sm"].ToString().Trim()</p>
+                                                    <p class="day">@Model[0].dt2.Rows[i]["dy"].ToString().Trim()</p>
+                                                </a>
+                                                <div class="media-body">
+                                                    <a class="title" href="#">@Model[0].dt2.Rows[i]["empname"].ToString().Trim()</a>
+                                                    <p>@Model[0].dt2.Rows[i]["deptdesig"].ToString().Trim()</p>
+                                                    <p>@Model[0].dt2.Rows[i]["dy"].ToString().Trim() @Model[0].dt2.Rows[i]["mm"].ToString().Trim()</p>
+                                                </div>
+                                            </article>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Upcoming <small>Joining Anniversaries</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">Settings 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content blockscroll">
+                                    @if (Model[0].dt3 != null)
+                                    {
+                                        for (int i = 0; i < Model[0].dt3.Rows.Count; i++)
+                                        {
+                                            <article class="media event">
+                                                <a class="pull-left date">
+                                                    <p class="month">@Model[0].dt3.Rows[i]["sm"].ToString().Trim()</p>
+                                                    <p class="day">@Model[0].dt3.Rows[i]["dy"].ToString().Trim()</p>
+                                                </a>
+                                                <div class="media-body">
+                                                    <a class="title" href="#">@Model[0].dt3.Rows[i]["empname"].ToString().Trim()</a>
+                                                    <p>@Model[0].dt3.Rows[i]["deptdesig"].ToString().Trim()</p>
+                                                    <p>@Model[0].dt3.Rows[i]["doj"].ToString().Trim() - @Model[0].dt3.Rows[i]["cmgyr"].ToString().Trim()</p>                                                    
+                                                </div>
+                                            </article>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>               
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Upcoming <small>Confirmation Due</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">Settings 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content blockscroll">
+                                    @if (Model[0].dt4 != null)
+                                    {
+                                        for (int i = 0; i < Model[0].dt4.Rows.Count; i++)
+                                        {
+                                            <article class="media event">
+                                                <a class="pull-left date">
+                                                    <p class="month">@Model[0].dt4.Rows[i]["sm"].ToString().Trim()</p>
+                                                    <p class="day">@Model[0].dt4.Rows[i]["dy"].ToString().Trim()</p>
+                                                </a>
+                                                <div class="media-body">
+                                                    <a class="title" href="#">@Model[0].dt4.Rows[i]["empname"].ToString().Trim()</a>
+                                                    <p>@Model[0].dt4.Rows[i]["deptdesig"].ToString().Trim()</p>
+                                                    <p>@Model[0].dt4.Rows[i]["dop"].ToString().Trim()</p>
+                                                </div>
+                                            </article>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="x_panel">
+                                <div class="x_title">
+                                    <h2>Upcoming <small>Seperation</small></h2>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li>
+                                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="#">Settings 1</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Settings 2</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="close-link"><i class="fa fa-close"></i></a>
+                                        </li>
+                                    </ul>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content blockscroll">
+                                    @if (Model[0].dt5 != null)
+                                    {
+                                        for (int i = 0; i < Model[0].dt5.Rows.Count; i++)
+                                        {
+                                            <article class="media event">
+                                                <a class="pull-left date">
+                                                    <p class="month">@Model[0].dt5.Rows[i]["sm"].ToString().Trim()</p>
+                                                    <p class="day">@Model[0].dt5.Rows[i]["dy"].ToString().Trim()</p>
+                                                </a>
+                                                <div class="media-body">
+                                                    <a class="title" href="#">@Model[0].dt5.Rows[i]["empname"].ToString().Trim()</a>
+                                                    <p>@Model[0].dt5.Rows[i]["deptdesig"].ToString().Trim()</p>
+                                                    <p>@Model[0].dt5.Rows[i]["dos"].ToString().Trim()</p>
+                                                </div>
+                                            </article>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>   
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+  $(document).ready(function () {
+       @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+</script>
+
+<style>
+    .blockscroll {
+        max-height: 30rem;
+        overflow: auto;
+    }
+</style>
+
+
+
+

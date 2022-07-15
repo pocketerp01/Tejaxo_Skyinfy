@@ -1,0 +1,45 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+    @using skyinfyMVC.Models;
+    @{    
+        Layout = "~/Views/Shared/Login_Master.cshtml";
+
+
+        string errorLine = Multiton.GetError(Model.Exception);
+    }
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <title>Error</title>
+</head>
+<body>
+    <hgroup>
+        <h1>Please Refresh Your Page</h1>
+        @if (Model != null)
+        {
+            <h5>
+                @Model.Exception.Message
+                <br />
+                @Model.ControllerName
+                <br />
+                @Model.ActionName
+                <br />
+                Error Line : @errorLine
+                <br />
+                <a onclick="$('#dverror').show();">Show Detailed Error</a>
+                <br />
+
+            </h5>
+
+        }
+        <h2>Please refresh your page or contact your administrator.</h2>
+    </hgroup>
+    <div id="dverror" style="display:none">
+        @Model.Exception.StackTrace.ToString()
+    </div>
+</body>
+</html>
+
+

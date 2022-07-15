@@ -1,0 +1,74 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    sgenFun sgen = new sgenFun(Model[0].Col11);
+    string userCode = sgen.GetCookie(Model[0].Col11, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(Model[0].Col11, "viewName", viewName);
+    sgen.SetSession(Model[0].Col11, "controllerName", controllerName);
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col11), @mid = EncryptDecrypt.Encrypt(Model[0].Col10) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="submit" class="btn btn-success form-control sa-button" id="btn_book_ledger" name="command" value="Book Ledger" accesskey="B" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="submit" class="btn btn-success form-control sa-button" id="btn_std_ledger" name="command" value="Student Book Ledger" accesskey="S" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        });
+       
+    </script>
+

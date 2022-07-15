@@ -1,0 +1,107 @@
+﻿
+
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    string xno = "", xdt = "";
+    }
+
+    @using (Html.BeginForm(viewName, controllerName, new { }, FormMethod.Post, new { id = "sotemp", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+        <button type="submit" ID="Download" Text="Update Software" value="down" name="command">Update Software</button>
+
+
+        <hr />
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            var vv = '@Html.Raw(ViewBag.msg)';
+            showmsgJS('1', vv, '1');
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var timeleft = 10;
+        var downloadTimer;
+        function stime() {
+            //downloadTimer = setInterval(getprog, 100);
+            var obj = { "command": 'down' };
+            var res = myMethod("@controllerName", "@viewName", "@viewName", obj, sucs1, fails1);
+
+        }
+        function etime() {
+            clearInterval(downloadTimer);
+        }
+        function getprog() {
+
+            var obj = { "value": 'a' };
+            var res = myMethod_C("@controllerName", "@viewName", "Prog", obj, sucs, fails);
+        }
+        function sucs(response) {
+
+            mytoast('success', 'toast-top-right', response);
+            var cur = response.split('#')[0].split('/')[1];
+            var tot = response.split('#')[0].split('/')[2];
+            var perc1 = Math.floor(parseFloat('1212') / parseFloat('1202') * 100);
+            if (parseFloat(cur) > 1) {
+
+                $("[id=prg1]").css('width', perc1 + '%');
+            }
+            var cur = response.split('#')[1].split('/')[1];
+            var tot = response.split('#')[1].split('/')[2];
+            var perc2 = Math.floor(parseFloat('1212') / parseFloat('1202') * 100);
+            if (parseFloat(cur) > 1) {
+
+                $("[id=prg2]").css('width', perc2 + '%');
+            }
+            if (perc2 == 100) {
+                etime();
+            }
+        }
+        function fails(response) {
+mytoast('success', 'toast-top-right', response);
+        }
+        function sucs1(response) {
+
+          mytoast('success', 'toast-top-right', response);
+        }
+        function fails1(response) {
+mytoast('success', 'toast-top-right', response);
+        }
+        </script>
+    }

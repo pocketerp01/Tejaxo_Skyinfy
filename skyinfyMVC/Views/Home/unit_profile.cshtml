@@ -1,0 +1,776 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    Cmd_Fun cmd_fun;
+    cmd_fun = new Cmd_Fun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    string mandatory = "sa-mandatory";
+    var issp = false;
+    var imgclosedisplay = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    string cg_com_name = sgen.GetCookie(MyGuid,"cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var path = "";
+
+    var newstyle = "style=visibility:visible;";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+    string con_type = "";
+    string buttons = "";
+    #region buttons
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2' " + newstyle + ">" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + editstyle + " > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + savestyle + " > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group' " + savenewstyle + " > " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + viewstyle + " > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btnView' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model[0].Col133 == "N")
+    {
+        newstyle = "style=display:none;";
+        savestyle = "style=display:none;";
+
+    }
+    if (Model[0].Col134 == "N") { editstyle = "style=display:none;"; }
+    if (Model[0].Col135 == "N")
+    {
+        viewstyle = "style=display:none;";
+        viewauth = "N";
+    }
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[i].Col50, new { @id = "hf_client" })
+        @Html.HiddenFor(model => model[i].Col51, new { @id = "hf_rec_id_comp" })
+        @Html.HiddenFor(model => model[i].Col52, new { @id = "hf_tb2" })
+        @Html.HiddenFor(model => model[i].Col53, new { @id = "hf_tb3" })
+        @Html.HiddenFor(model => model[i].Col54, new { @id = "hf_tb4" })
+        @Html.HiddenFor(model => model[i].Col55, new { @id = "hf_cupid" })
+        @Html.HiddenFor(model => model[i].Col43, new { @id = "hf_comp_type" })
+
+        @Html.HiddenFor(model => model[i].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[i].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[i].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[i].Col123, new { @id = "savenew" })
+        @Html.HiddenFor(model => model[0].Col133, new { @id = "hf_btnnew" })
+        @Html.HiddenFor(model => model[0].Col134, new { @id = "hf_btnedit" })
+        @Html.HiddenFor(model => model[0].Col135, new { @id = "hf_btnview" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Client Name <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_company_list", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", onchange = "changecompany(this)" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Doc No. </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_vchnum", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Unit Code <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_unit_code", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Maxlength = "98" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Unit Name </label>
+                                <div class="form-group">
+                                    <div class='input-group demo2'>
+
+                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_unit_Name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                                        <span class="input-group-addon formclass"></span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4' id="div_eduboard" style="display:none">
+                                <label for="first-name">Education Board <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[i].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_board", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Country <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[i].SelectedItems3, new MultiSelectList(Model[i].TList3, "Value", "Text", Model[i].SelectedItems3), new { @id = "ddl_country_name", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", onchange = "changecountry(this)" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">State <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.DropDownListFor(model => model[i].SelectedItems4, new MultiSelectList(Model[i].TList4, "Value", "Text", Model[i].SelectedItems4), new { @id = "ddl_state_name", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", onchange = "changestate(this)" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">City <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        <asp:DropDownList ID="ddl_city" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" OnSelectedIndexChanged="ddl_city_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        @Html.DropDownListFor(model => model[i].SelectedItems5, new MultiSelectList(Model[i].TList5, "Value", "Text", Model[i].SelectedItems5), new { @id = "ddl_city", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", onchange = "changecity(this)" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4' id="citydiv" style="display:none">
+                                <label for="first-name">Type Your City <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_city", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Address Line1 <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_address", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "50" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Address Line2 </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_address2", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Address Line3 </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_address3", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Pincode <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_pincode", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "6", @onkeydown = "return isNumberKey(event)" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Start Date <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_startdate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Cease Date</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_ceasedate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Unit Seperator <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_sep", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @MaxLength = "20" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Local Currency <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.DropDownListFor(model => model[i].SelectedItems6, new MultiSelectList(Model[i].TList6, "Value", "Text", Model[i].SelectedItems6), new { @id = "ddl_curr", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <h5>Other Details</h5>
+                            <hr />
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">GSTIN No </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_GSTIN_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "21" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Email Id <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "58" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Mobile Number <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col29, new { @id = "txt_contact", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "10" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Alternate Mobile </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col30, new { @id = "txt_contact2", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "10" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Unit Website </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col31, new { @id = "unit_website", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @*<div class="row">
+            <hr />
+            <h5>Financial Year</h5>
+        </div>
+
+        <div class="row">
+            <div class='col-sm-4'>
+                <label for="first-name">From </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[i].Col32, new { @id = "txt_fyf", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory" })
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4'>
+                <label for="first-name">To</label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[i].Col33, new { @id = "txt_fyt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory" })
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+                        @*<div class="row" id="div_rowacyr" style="display:none">
+            <hr />
+            <h5>Academic Year</h5>
+        </div>
+
+        <div class="row" id="div_acyr" style="display:none">
+            <div class='col-sm-4'>
+                <label for="first-name">From</label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[i].Col34, new { @id = "txt_acf", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-4'>
+                <label for="first-name">To</label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[i].Col35, new { @id = "txt_act", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+                        <div class="row">
+                            <h5>Contact Person Details</h5>
+                            <hr />
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Name <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_person_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Designation <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col37, new { @id = "txt_person_designation", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Email Id <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col38, new { @id = "txt_person_email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Contact No <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col39, new { @id = "txt_person_contact", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "10" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name"> </label>
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <b style="padding-top:12px"> Active </b>
+                                        @Html.RadioButtonFor(model => model[i].Col40, "1", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <b style="padding-top:12px"> Inactive </b>
+                                        @Html.RadioButtonFor(model => model[i].Col40, "0", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <h5>Bank Details</h5>
+                            <hr />
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Name </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col44, new { @id = "txt_bankname", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Branch </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col45, new { @id = "txt_branch", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Account Number </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col46, new { @id = "txt_accno", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "30" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">IFSC Code <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col47, new { @id = "txt_contactno", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "13" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <hr />
+                            <h4 style="font-style: italic">Location</h4>
+                        </div>
+
+
+                        <div class="row">
+
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>GEO LOCATION<span class="ClientProfileLabelColor">*</span></b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide12" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">LAT-LONG<span class="ClientProfileLabelColor"></span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <div class='input-group'>
+                                                            @Html.TextBoxFor(model => model[i].Col41, new { @id = "txtlat", placeholder = "Lat-Long", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return false;" })
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class='col-sm-8'>
+                                                <label for="first-name">Google Address<span class="ClientProfileLabelColor"></span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col42, new { @id = "txtaddr1", placeholder = "Google Address", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return false;" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12" runat="server" id="div1">
+                                                <div class="x_panel">
+                                                    <div class="x_title" style="border-bottom: none !important">
+                                                        <div class="col-sm-3">
+                                                            <h3>
+                                                                Locate Your Location   <small>
+                                                                    <br />
+                                                                    Used for your Driving Location
+                                                                </small>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-8">
+                                                        <div class="form-group">
+                                                            <label>Search Here</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-addon"><i class="fa fa-male"></i></div>
+                                                                <input id="txtsearch" type="text" class="form-control sa-textbox" placeholder="Enter your Location" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="x_content">
+                                                    <div class="form-group">
+                                                        <div style="height: 300px">
+                                                            <div style="width: 100%" id="mapCanvas"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <asp:HiddenField runat="server" ID="hf_latlang" />
+                            <asp:HiddenField runat="server" ID="hf_edmode" />
+                            <asp:HiddenField runat="server" ID="hf_clientid" />
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_country" formnovalidate value="Country" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_comp" formnovalidate value="Company" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_state" formnovalidate value="State" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+
+
+
+}
+
+@Styles.Render("~/bundles/gmapcss")
+@Scripts.Render("~/bundles/gmapjs")
+@Scripts.Render("~/bundles/gmapjs2")
+
+<script type="text/javascript">
+    $(document).ready(function () {       
+            @Html.Raw(ViewBag.scripCall);
+            $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        });
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function selectreg() {
+      //  debugger;
+        var data = show_Foo('Select City', 'CITY', '1', '@viewName', '@controllerName');
+    }
+    function viewfun() {
+                         if ('@viewauth'== "N") {
+            showmsgJS(1, "You dont have permission for view lead, please contact your admin", 2);
+            return;
+                       }
+        var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName');
+    }
+
+    function changecompany(ctrl) {        
+        $(parent.document.getElementById('btn_comp')).trigger('click');
+    }
+
+    function changecountry(ctrl) {      
+        $(parent.document.getElementById('btn_country')).trigger('click');
+    }
+
+    function changestate(ctrl) {      
+        $(parent.document.getElementById('btn_state')).trigger('click');
+    }
+    function changecity(ctrl) {
+       // debugger;
+        try {
+            var city_val = $(ctrl).val().join();
+            if (city_val == "Other") {
+                $("[id*=citydiv]").show();
+             
+            }
+            else {
+                $("[id*=citydiv]").hide();
+              
+            }
+        }
+        catch{ }
+
+
+    }
+
+    //function client_change(ctrl) {
+    //    debugger;
+    //    try {
+    //        var client_val = $(ctrl).val().join();
+    //        if (client_val == "Educational Inst.") {
+    //            $("[id*=divboard]").show();
+    //            $("[id*=divacrow]").show();
+    //            $("[id*=divacyr]").show();
+    //        }
+    //        else {
+    //            $("[id*=divboard]").hide();
+    //            $("[id*=divacrow]").hide();
+    //            $("[id*=divacyr]").hide();
+    //        }
+    //    }
+    //    catch{ }
+
+
+    //}
+
+
+
+
+   
+
+</script>

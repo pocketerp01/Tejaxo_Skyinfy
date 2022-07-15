@@ -1,0 +1,170 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @* <input type="button" class="btn btn-success form-control sa-button" id="btn_rp1" name="command" value="Pending PO" onclick="getppo();" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp1" name="command" value="Pending PO" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending PO');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp4" name="command" value="Pending Indent" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Pending Indent');" />
+                                @*<input type="button" onclick="btninvsl();" class="btn btn-success form-control sa-button" id="btn_inv" name="command" value="Pending Indent" accesskey="po1" />*@
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp3" name="command" value="Purchase Order Detailed" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Purchase Order Detailed');" />
+                            </div>
+                        </div>
+                        @*<div class="col-sm-4">
+            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                <input type="button" onclick="btnitmsale();" class="btn btn-success form-control sa-button" id="btn_itm" name="command" value="Item Wise Sale" />
+                <input type="button" class="btn btn-success form-control sa-button" id="btn_itmwisesl" name="command" value="Item Wise Sale" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','Item Wise Sale');" />
+
+            </div>
+        </div>*@
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                @*<input type="button" onclick="btnptsum();" class="btn btn-success form-control sa-button" id="btn_ptysum" name="command" value="PO Summary Item Wise" accesskey="po1" />*@
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_rp3" name="command" value="PO Summary Item Wise" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','PO Summary Item Wise');" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_itsum" name="command" value="PO Summary Party Wise" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','PO Summary Party Wise');" />
+
+                                @*<input type="button" onclick="btnitsum();" class="btn btn-success form-control sa-button" id="btn_itsum" name="command" value="PO Summary Party Wise" accesskey="po2" />*@
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-success form-control sa-button" id="btn_hsn" name="command" value="HSN Wise Sale Summary" onclick="call_filterfrm('Inv rpt','@Model[0].Col14','@Model[0].Col15','HSN Wise Sale Summary');" />
+
+                                <input type="button" onclick="btngethsn();" class="btn btn-success form-control sa-button" id="btn_hsn" name="command" value="HSN Wise Sale Summary" />
+                            </div>
+                        </div>
+                    </div>*@
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+           @Html.Raw(ViewBag.scripCall)
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    @*function aselect() { var data = show_Foo('Select Module', 'MODULE', '1', '@viewName', '@controllerName'); }*@
+    function btninvsl() { var data = show_Foo('Invoice Wise Sales Summary', 'INVOICE', '0', '@viewName', '@controllerName'); }
+    function btnitmsale() { var data = show_Foo('Item Wise Sale', 'ITWS', '0', '@viewName', '@controllerName'); }
+    function btngethsn() { var data = show_Foo('HSN Wise Sale Summary', 'HSNRPT', '0', '@viewName', '@controllerName'); }
+
+    function btnitsum() { var data = show_Foo('PO Summary Party Wise', 'POPARTYSUM', '1', '@viewName', '@controllerName'); }
+    function btnptsum() { var data = show_Foo('PO Summary Item Wise', 'POITSUM', '1', '@viewName', '@controllerName'); }
+    @*function getcisum() { var data = show_Foo('Complete Stock Summary', 'CISUM', '0', '@viewName', '@controllerName'); }
+    function getlocisum() { var data = show_Foo('Location Wise Item Summary', 'LOCISUM', '0', '@viewName', '@controllerName'); }
+
+    function getgrpsum() { var data = show_Foo('Item Group Summary', 'GRPSUM', '0', '@viewName', '@controllerName'); }
+    function getppo() { var data = show_Foo('Pending Po Summary', 'PPO', '1', '@viewName', '@controllerName'); }
+
+    function getpendis() { var data = show_Foo('Pending Invoice Against Dispatch', 'PDSP', '0', '@viewName', '@controllerName'); }
+    function getpendsc() { var data = show_Foo('Pending Dispatch Against Dispatch Sch', 'PDSC', '0', '@viewName', '@controllerName'); }
+    function getpenso() { var data = show_Foo('Pending Dispatch Against SO', 'PSO', '0', '@viewName', '@controllerName'); }
+    function getptr() { var data = show_Foo('Party Wise Sale', 'PWS', '0', '@viewName', '@controllerName'); }
+    function getitmw() { var data = show_Foo('Item Wise Sale', 'ITWS', '0', '@viewName', '@controllerName'); }*@
+
+
+    function callFoodemo(title, headid, mid, m_id, btnid) {
+        //debugger;
+
+        var urls = "";
+        if (title == "Date Filter") { urls = "/Production/date_filter"; }
+        else urls = "/Inventory/filter_inv";
+
+        $.ajax({
+            type: "GET",
+            url: urls,
+            data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+            success: function (pageContents) {
+                //debugger
+                $('#myModal').width('50%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+                hidewait();
+            },
+            error: function (err) {
+                //debugger
+                hidewait();
+            }
+        });
+    }
+
+    function call_filterfrm(headid, mid, m_id, btnid)
+    {
+        var title = "";
+        if (btnid == "Pending PO" || btnid == "Pending Indent" || btnid == "Purchase Order Detailed" || btnid == "PO Summary Item Wise" || btnid == "PO Summary Party Wise" || btnid == "Pending Indent") { title = "Date Filter"; }
+        else title = "Inv reps";
+
+        callFoodemo(title, headid, mid, m_id, btnid);
+    }
+</script>
+

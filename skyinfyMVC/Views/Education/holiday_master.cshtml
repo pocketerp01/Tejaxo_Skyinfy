@@ -1,0 +1,278 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+    @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "vch_num" })
+        @Html.HiddenFor(model => model[i].Col20, new { @id = "holiday_id" })
+        @Html.HiddenFor(model => model[i].Col21, new { @id = "vch_date" })
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">Holiday Name <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[i].Col17, new { @id = "holiday", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", data_placeholder = "Holiday Name", @MaxLength = "28" })
+
+                                    @*<asp:TextBox ID="holiday" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>*@
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <div class="form-group">
+                                <label for="first-name">
+                                    Holiday From <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[i].Col18, new { @id = "date_from", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date sa-from-date sa-mandatory", @MaxLength = "28", data_placeholder = "Holiday From" })
+                                    @*<asp:TextBox runat="server" ID="date_from" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date sa-from-date"></asp:TextBox>*@
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <div class="form-group">
+                                <label for="first-name">
+                                    Holiday To <span class="ClientProfileLabelColor">*</span>
+                                </label>
+
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[i].Col19, new { @id = "date_to", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date  sa-to-date sa-mandatory", data_placeholder = " Holiday To" })
+                                    @*<asp:TextBox runat="server" ID="date_to" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date  sa-to-date"></asp:TextBox>*@
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        <div class='col-sm-4'>
+                            <label for="first-name">Class <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { multiple = "multiple", @id = "ddl_class", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 ", data_placeholder = "Choose class" })
+                                    @* <select class="form-control col-md-12 col-sm-12 col-xs-12 select2 sa-select2-multiple sa-textbox" clientidmode="static" id="ddl_class" onchange="selectionIndexChange(this);" runat="server" multiple="true" style="width: 100%"></select>*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4" style="display:none">
+                            <label for="first-name">Apply For <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <b>
+                                        For Teacher
+                                        @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "Chk_teacher", @class = "sa-input checkbox" })
+                                        @*<input type="checkbox" clientidmode="Static" runat="server" id="Chk_teacher" class="sa-input checkbox" name="cb" />*@
+                                        @*<asp:Label ID="lbl_teacher" runat="server" Text="For Teacher"></asp:Label>*@
+
+                                    </b>
+
+                                    <b>
+                                        Student
+                                        @Html.CheckBoxFor(model => model[i].Chk2, new { @id = "Chk_student", @class = "sa-input checkbox" })
+                                        @*<input type="checkbox" clientidmode="Static" runat="server" id="Chk_student" checked="checked" class="sa-input checkbox" name="cb" />*@
+                                        @*<asp:Label ID="lbl_std" runat="server" Text="For Student"></asp:Label>*@
+
+                                    </b>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+
+
+
+
+</script>
+
+
+@*<script>
+
+            //$(function () {
+
+            //    $('.select2').select2();
+
+
+            //});
+
+            //  $("#checkbox").click(function () {
+            //    if ($("#checkbox").is(':checked')) {
+
+            //         $("#e1").val("Alaska").trigger("change");
+            //    } else {
+            //        $("#e1 > option").removeAttr("selected");
+            //        $("#e1").trigger("change");
+            //    }
+            //});
+
+            // $("#button").click(function () {
+            //    alert($("#DdlchkCaste").val());
+            //});
+
+
+            //function fillddl(subjects) {
+            //    debugger;
+
+            //    var a = subjects.split(",");
+            //    var mm = "";
+            //    for (index = 0, len = a.length; index < len; ++index) {
+            //        if (mm == "") mm = a[index];
+            //        else mm = "'" + mm + "','" + a[index] + "'";
+            //    }
+            //    $("[id$=ddl_class]").val(a).trigger("change");
+            //}
+
+
+            //function AllowNumeric(key) {
+            //    var keycode = (key.which) ? key.which : key.keyCode;
+            //    if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+            //        //alert('Please Enter Only Digits e.g. 1,2,3,4');
+            //        return false;
+            //    }
+            //    else {
+            //        return true;
+            //    }
+            //}
+
+            //$("#button").click(function () {
+            //    alert($("#ddl_class").val());
+            //});
+
+
+    </script>*@
+

@@ -1,0 +1,242 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(Model[0].Col15, "viewName",viewName);
+    sgen.SetSession(Model[0].Col15, "controllerName",controllerName);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+                    <h3>
+                        @Model[0].Col9
+
+                    </h3>
+                </div>
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="first-name">Class <span class="ClientProfileLabelColor">*</span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.ListBoxFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_Class", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @*onchange = "selectionIndexChangeClass(this);"*@})
+                        @*@Html.DropDownListFor(model => model[i].SelectedItems1, new SelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1.FirstOrDefault()), new { @id = "ddl_Class", style = "border-color: silver;", @class = "sa-textbox form-control col-md-12 col-sm-12 col-xs-12", data_placeholder = "Select Class", onchange = "selectionIndexChangeClass(this);", @disabled = "disabled" })*@
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="first-name">Section <span class="ClientProfileLabelColor">*</span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.ListBoxFor(model => model[i].SelectedItems2, new MultiSelectList(Model[i].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_section", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onchange = "selectionIndexChangeSection(this);" })
+
+
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <label for="first-name">Student Name <span class="ClientProfileLabelColor">*</span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.ListBoxFor(model => model[i].SelectedItems3, new MultiSelectList(Model[i].TList3, "Value", "Text", Model[i].SelectedItems3), new { @id = "ddl_std", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <label for="first-name">Sorting By <span class="ClientProfileLabelColor">*</span></label>
+                <div class='input-group'>
+                    <div class="clearfix"></div>
+                    <p>
+                        @*Teacher
+                        @Html.RadioButtonFor(model => model[i].Col25, "T", new { @id = "rb_tripledep", @class = " sa-input radio sa-mandatory", @onchange = "teacher_wise(this);", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                        Date
+                        @Html.RadioButtonFor(model => model[i].Col25, "D", new { @id = "rb_Contprocess", @class = " sa-input radio sa-mandatory", @onchange = "date_wise(this);", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @checked = "true" })*@
+
+                        Teacher
+                        @Html.RadioButtonFor(model => model[0].Col25, "T", new { @id = "rb_tripledep", @class = " sa-input radio sa-mandatory",  @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                        Date
+                        @Html.RadioButtonFor(model => model[0].Col25, "D", new { @id = "rb_Contprocess", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                    </p>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+
+            </div>
+            <div class='col-sm-2'>
+                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" name="command" @ViewBag.vfill value="Fill Data" id="btn_Fill" accesskey="F" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            @*VIVEK*@
+
+        </div>
+        <div class="row">
+            <div class='col-sm-12'>
+                <label for="first-name">Remark <span class="ClientProfileLabelColor">*</span></label>
+                <div class="form-group ">
+                    <div class='input-group'>
+                        @Html.TextAreaFor(model => model[i].Col17, new { @id = "txt_rmrk", @rows = "10", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeypress = "return false;" })
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <div class="title_left">
+                            <h3 id="h1" runat="server">ENTER NEW REMARK</h3>
+                        </div>
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-2">
+                <label for="first-name">Date <span class="ClientProfileLabelColor">*</span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.TextBoxFor(model => model[i].Col33, new { @id = "txt_date", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date", placeholder = "Date" })
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <label for="first-name">
+                    Teacher <span class="ClientProfileLabelColor">*</span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.ListBoxFor(model => model[i].SelectedItems4, new SelectList(Model[i].TList4, "Value", "Text", Model[i].SelectedItems4), new { @id = "ddl_td", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onchange = "selectionIndexChange(this);", @multiple = "multiple" })
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-5'>
+                <div class="form-group">
+                    <label for="first-name">Enter Remark <span class="ClientProfileLabelColor">*</span></label>
+                    <div class='input-group'>
+                        @Html.TextAreaFor(model => model[i].Col34, new { @id = "txt_remrk", @rows = "2", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Enter Remark",@MaxLength="298" })
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+
+                <div class='col-sm-3'>
+                    <div class="form-group">
+                        <label for="first-name"> <span class="ClientProfileLabelColor"></span></label>
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btnsave" name="command" value=@Model[0].Col13 />
+                            @*<input type="submit" class="btn btn-success form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btn_save" accesskey="s" name="command" value="Add" />*@
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    }
+
+    <input type="submit" id="btn_class" value="Class" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_section" value="Section" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_teacher" value="teacher" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_date" value="Date" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        });
+
+
+
+
+    function selectionIndexChangeClass(ctrl)
+    {
+        //debugger;
+
+        $(parent.document.getElementById('btn_class')).trigger('click');
+    }
+
+    function selectionIndexChangeSection(ctrl)
+    {
+        debugger;
+
+        $(parent.document.getElementById('btn_section')).trigger('click');
+    }
+
+    function teacher_wise(ctrl) {
+        //debugger;
+
+        $(parent.document.getElementById('btn_teacher')).trigger('click');
+    }
+
+    function date_wise(ctrl) {
+        //debugger;
+
+        $(parent.document.getElementById('btn_date')).trigger('click');
+    }
+
+</script>
+
+
+
+

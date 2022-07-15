@@ -1,0 +1,190 @@
+﻿@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = (Model[0].Col15);
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    ViewBag.Title = "ALERT CONFIGURATION";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+}
+
+@using (Html.BeginForm("alert_config", "Mst", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left"><h3>ALERT CONFIGURATION</h3></div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="row">
+                <div class='col-sm-6'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="Save" accesskey="S" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_15" })
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-2">
+
+                        </div>
+                        <div class="col-md-11">
+                            <div class="row">
+                                <div class='col-sm-2'>
+                                    <label for="first-name"> Sr No.</label>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Alert Type</label>
+                                </div>
+                                <div class='col-sm-1'>
+                                    <label for="first-name">SMS</label>
+                                </div>
+                                <div class='col-sm-1'>
+                                    <label for="first-name">Email</label>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <label for="first-name">Studentwise SMS</label>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <label for="first-name">Studentwise Email</label>
+                                </div>
+                            </div>
+
+                            <div class="x_title"></div>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                string onclick = "";
+
+                                @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_masid" })
+                                @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_masname" })
+
+                                @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_6" })
+                                @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_7" })
+                                @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_8" })
+                                @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_9" })
+
+
+                                <div class="row">
+
+                                    <div class='col-sm-2'>
+                                        <label for="first-name">@Model[i].Col1</label>
+                                    </div>
+                                    <div class='col-sm-4'>
+                                        <label for="first-name">@Model[i].Col2</label>
+                                    </div>
+
+                                    @if (Model[i].Col6 == "2")
+                                    {
+                                        onclick = "return false;";
+                                    }
+                                    else { onclick = "chkchange(this);"; }
+                                    <div class='col-sm-1'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.CheckBoxFor(m => m[i].Chk1, new { onclick, @class = "sa-input checkbox chk1" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @if (Model[i].Col7 == "2")
+                                    {
+                                        onclick = "return false;";
+                                    }
+                                    else { onclick = "chkchange(this);"; }
+                                    <div class='col-sm-1'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.CheckBoxFor(m => m[i].Chk2, new { onclick, @class = "sa-input checkbox chk2" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @if (Model[i].Col8 == "2")
+                                    {
+                                        onclick = "return false;";
+                                    }
+                                    else { onclick = "return true;"; }
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.CheckBoxFor(m => m[i].Chk3, new { onclick, @class = "sa-input checkbox chk3" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    @if (Model[i].Col9 == "2")
+                                    {
+                                        onclick = "return false;";
+                                    }
+                                    else { onclick = "return true;"; }
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.CheckBoxFor(m => m[i].Chk4, new { onclick, @class = "sa-input checkbox chk4" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <asp:HiddenField runat="server" ID="hf_edmode" />
+    <asp:Button runat="server" ID="callback1" ClientIDMode="Static" Style="display: none" />
+
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+      @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function chkchange() {
+        //debugger;
+        var chk1 = $('.chk1');
+        var chk2 = $('.chk2');
+        var chk4 = $('.chk4');
+        var chk3 = $('.chk3');
+        for (var k = 0; k < chk1.length; k++) {
+            if (chk1[k].checked != true) { chk3[k].checked = false; chk3[k].disabled = true; }
+            else { chk3[k].disabled = false; }
+            if (chk2[k].checked != true) { chk4[k].checked = false; chk4[k].disabled = true; }
+            else { chk4[k].disabled = false; }
+        }
+    }
+
+
+
+</script>

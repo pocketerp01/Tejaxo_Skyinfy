@@ -1,0 +1,226 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;" id="btnnew" name="command" value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control" @ViewBag.vedit style="border-radius: 10px!important;" id="btnedit" onclick="editfun();" name="command" value="Edit" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btnsave" name="command" value="Save" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control" style="border-radius: 10px!important;" onclick="viewfun();" id="btndetail" name="command" value="View" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="sa-btncancel form-control" style="border-radius: 10px!important;" id="btncancel" name="command" value="Cancel">Cancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "lbl_entby" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "lbl_entdt" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "lbl_vch_num" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "lbl_client_id" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "lbl_client_unit_id" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "lbl_url" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "lbl_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_rno" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_m" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+
+                            <div class='col-sm-4'>
+                                <label for="first-name">Class <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group has-success">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new SelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1.FirstOrDefault()), new { @id = "ddl_class", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple", @MaxLength = "20", onchange = "selectionIndexChange(this);" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Minimum % For Promoted</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "Txt_ProPer", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        for (int j = 0; j < Model[0].LTM1.Count; j++)
+        {
+            <div id="divmain" runat="server">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important">
+                            @Html.HiddenFor(m => m[0].LTM1[j].Col1)
+                            <!-- tools box -->
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><input name="command" onclick="sethfval('@j');" type="submit" value="+" class="fa fa-plus" data-toggle="tooltip" title="Add More" /> </li>
+                                <li><input name="command" onclick="sethfval('@j');" type="submit" value="X" class="fa fa-close" data-toggle="tooltip" title="Remove" /> </li>
+                            </ul>
+                            <div class="clearfix" id="diclear"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Set % For Grade Or Position <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].LTM1[j].Col2, new { @id = "ddl_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "perc" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Grade <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].LTM1[j].Col3, new { @id = "txt_grade", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "grade" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Position <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].LTM1[j].Col4, new { @id = "txt_pos", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "position" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    }
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_class" value="properc" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    function sethfval(val) {
+        //  debugger
+        $("#hfrow").val(val);
+    }
+</script>
+<script type="text/javascript">
+   // debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+
+
+
+    function selectionIndexChange(ctrl) {
+       // debugger;
+        //javascript: __doPostBack(ctrl.id, '');
+        $(parent.document.getElementById('btn_class')).trigger('click');
+    }
+</script>
+
+
+

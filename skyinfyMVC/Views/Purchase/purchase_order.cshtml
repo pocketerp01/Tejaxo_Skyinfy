@@ -1,0 +1,131 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col11;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col11), @mid = EncryptDecrypt.Encrypt(Model[0].Col10) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+
+                    @if (Model[0].Col10.Equals("28002.1"))
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_po1" name="command" value="PO-1" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_po2" name="command" value="PO-2" />
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                    @if (Model[0].Col10.Equals("22001.4"))
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_gv" name="command" value="General Voucher"/>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_rv" name="command" value="Receipt Voucher" />
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+
+                    @if (Model[0].Col10.Equals("7020.8"))
+                    {
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_sic1" name="command" value="ICard 1" accesskey="ic1" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_sic2" name="command" value="ICard 2" accesskey="ic2" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_sic3" name="command" value="ICard 3" accesskey="ic3" />
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                    <input type="submit" class="btn btn-success form-control sa-button" id="btn_sic4" name="command" value="ICard 4" accesskey="ic4" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+           @Html.Raw(ViewBag.scripCall)
+    });
+
+    function aselect() {
+        var data = show_Foo('Select Module', 'MODULE', '1', '@viewName','@controllerName');
+    }
+
+    $(document).ready(function () {
+           $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');      
+        $('#module_drpdwn').change(function () {
+        });
+    });
+
+
+</script>
+

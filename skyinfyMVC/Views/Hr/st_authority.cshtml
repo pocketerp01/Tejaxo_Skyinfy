@@ -1,0 +1,554 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col45, new { @id = "hf_llsigid2" })
+        @Html.HiddenFor(model => model[i].Col46, new { @id = "hf_llsigid1" })
+        @Html.HiddenFor(model => model[i].Col47, new { @id = "hf_llsigid" })
+        @Html.HiddenFor(model => model[i].Col48, new { @id = "hf_itsigid" })
+        @Html.HiddenFor(model => model[i].Col49, new { @id = "hf_ptsigid" })
+        @Html.HiddenFor(model => model[i].Col50, new { @id = "hf_esisigid" })
+        @Html.HiddenFor(model => model[i].Col51, new { @id = "hf_pfsigid" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Select Company</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Company <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_company", @onkeydown = "return checkLength(this, 20,event);", onchange = "selecunitddl(this);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Unit <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_unit", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Registration Info</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide2" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Incorporation Date <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_incdate", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Corporate Identification Number <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_cin", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Income Tax (IT) Info</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide6" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">PAN</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_panno", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" title="Enter in TAN Format [AAAAA9999A].">TAN </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_tanno", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">TAN Circle </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_tancircle", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">CIT (TDS)</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_cit", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Income Tax (IT) Form 16 Signature Info</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide7" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group deomo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_itname", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Name of the person signing the relavant legal forms" clientidmode="static" id="a_sigit" onclick="selectreg(this);"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Designation </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_itdesig", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Father's Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_fnameit", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Address </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_addit", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">PIN Code </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_pincodeit", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" title="Enter in PAN Format [AAAAA9999A].">PAN Number </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_pannoit", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Mobile Number </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col29, new { @id = "txt_phit", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Labour Laws Info</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide8" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Act / Rules Name</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col30, new { @id = "txt_actll", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" title="Name of the person signing the relavant legal forms">Signatory Name</label>
+                                                <div class="form-group">
+                                                    <div class='input-group demo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col31, new { @id = "txt_signamell", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Name of the person signing the relavant legal forms" clientidmode="static" id="a_sigll" onclick="selectreg2(this);"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory Designation</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col32, new { @id = "txt_sigdesigll", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory's Father's Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col33, new { @id = "txt_sigfnamell", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Address </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col34, new { @id = "txt_sigaddll", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Act / Rules Name</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col35, new { @id = "txt_actll1", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" title="Name of the person signing the relavant legal forms">Signatory Name</label>
+                                                <div class="form-group">
+                                                    <div class='input-group demo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_signamell1", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Name of the person signing the relavant legal forms" clientidmode="static" id="a_sigll1" onclick="selectreg3(this);"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory Designation</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col37, new { @id = "txt_sigdesigll1", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory's Father's Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col38, new { @id = "txt_sigfnamell1", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Address </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col39, new { @id = "txt_sigaddll1", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Act / Rules Name</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col40, new { @id = "txt_actll2", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" title="Name of the person signing the relavant legal forms">Signatory Name</label>
+                                                <div class="form-group">
+                                                    <div class='input-group demo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col41, new { @id = "txt_signamell2", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Name of the person signing the relavant legal forms" clientidmode="static" id="a_sigll2" onclick="selectreg4(this);"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory Designation</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col42, new { @id = "txt_sigdesigll2", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory's Father's Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col43, new { @id = "txt_sigfnamell2", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Address </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col44, new { @id = "txt_sigaddll2", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", ReadOnly = "true" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <asp:HiddenField runat="server" ID="hf_edmode" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btnunit" formnovalidate value="UNIT" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //debugger;
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        if (!isPostBack()) {
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    //child.classList.remove = "fa-chevron-up";
+                    //child.classList.add = "fa-chevron-down";
+                    $(child).removeClass("fa-chevron-up")
+                    $(child).addClass("fa-chevron-down")
+                }
+            }
+        }
+    });
+    function disablectrl(ctrl) {
+        //debugger;
+        var vall = $(ctrl).val();
+        if (vall == "Yes") $(ctrl).parents().find(".body").find("input[type=text],select").not(ctrl).prop("disabled", false);
+        else $(ctrl).parents().find(".body").find("input[type=text],select").not(ctrl).prop("disabled", true);
+    }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Details', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function selectreg() { var data = show_Foo('Select Employee', 'ITSIG', '1', '@viewName', '@controllerName'); }
+    function selectreg2() { var data = show_Foo('Select Employee', 'LLSIG', '1', '@viewName', '@controllerName'); }
+    function selectreg3() { var data = show_Foo('Select Employee', 'LLSIG1', '1', '@viewName', '@controllerName'); }
+    function selectreg4() { var data = show_Foo('Select Employee', 'LLSIG2', '1', '@viewName', '@controllerName'); }
+    function selecunitddl(ctrl) {
+        //debugger;
+
+        $(parent.document.getElementById('btnunit')).trigger('click');
+    }
+    function getcompany() { var data = show_Foo('UNIT Copy', 'UNITS', '1', '@viewName', '@controllerName'); }
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+
+</script>

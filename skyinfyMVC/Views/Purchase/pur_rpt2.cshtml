@@ -1,0 +1,153 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    string userid_mst = sgen.GetCookie(MyGuid, "userid_mst");
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string clientid_mst = sgen.GetCookie(MyGuid, "clientid_mst");
+    string unitid_mst = sgen.GetCookie(MyGuid, "unitid_mst");
+    string role_mst = sgen.GetCookie(MyGuid, "role_mst");
+    string mid_mst = EncryptDecrypt.Decrypt(Request.QueryString["mid"]);
+    DataTable tmp = sgen.getdata(userCode, "select vch_num as rpt_code,fun_name,rpt_name,cat_id,cat_name as catagory,menu_id," +
+"module_id,module,vch_date as created_date from reports where type='ASR' and client_id='" + clientid_mst + "' and cat_name='" +
+Model[0].Col9 + "' and menu_id = '" + mid_mst + "' and username='" + userid_mst + "'");
+    if (tmp.Rows.Count == 0)
+    {
+        tmp = sgen.getdata(userCode, "select vch_num as rpt_code,fun_name,rpt_name,cat_id,cat_name as catagory,menu_id," +
+ "module_id,module,vch_date as created_date from reports where type='RPT' and cat_name='" +
+ Model[0].Col9 + "' and menu_id = '" + mid_mst + "'");
+    }
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+                    <div class="panel" style="padding: 10px;">
+                        <div class="container-fluid">
+                            <div class="row">
+                                @if (tmp.Rows.Count > 0)
+                                {
+                                    for (int i = 0; i < tmp.Rows.Count; i++)
+                                    {
+                                        if (tmp.Rows[i]["fun_name"].ToString() == "call_filterfrm")
+                                        {
+                                            <div class="col-md-4">
+                                                <div class="content" style="border: 1px solid">
+                                                    <input type="button" class="btn btn-success form-control sa-button" id="btnrpt_@i" name="command" value='@Html.Raw(tmp.Rows[i]["rpt_name"].ToString())' onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col14','@Model[0].Col15','@Html.Raw(tmp.Rows[i]["rpt_name"].ToString())');" accesskey="H" />
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            string fun= tmp.Rows[i]["fun_name"].ToString()+"();";
+                                            <div class="col-md-4">
+                                                <div class="content" style="border: 1px solid">
+                                                    <input type="button" class="btn btn-success form-control sa-button" id="btnrpt_@i" name="command" value='@Html.Raw(tmp.Rows[i]["rpt_name"].ToString())' onclick='@fun' accesskey="H" />
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+           @Html.Raw(ViewBag.scripCall)
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    @*function aselect() { var data = show_Foo('Select Module', 'MODULE', '1', '@viewName', '@controllerName'); }*@
+    function btninvsl() { var data = show_Foo('Invoice Wise Sales Summary', 'INVOICE', '0', '@viewName', '@controllerName'); }
+    function btnitmsale() { var data = show_Foo('Item Wise Sale', 'ITWS', '0', '@viewName', '@controllerName'); }
+    function btngethsn() { var data = show_Foo('HSN Wise Sale Summary', 'HSNRPT', '0', '@viewName', '@controllerName'); }
+
+    function btnitsum() { var data = show_Foo('PO Summary Party Wise', 'POPARTYSUM', '1', '@viewName', '@controllerName'); }
+    function btnptsum() { var data = show_Foo('PO Summary Item Wise', 'POITSUM', '1', '@viewName', '@controllerName'); }
+    @*function getcisum() { var data = show_Foo('Complete Stock Summary', 'CISUM', '0', '@viewName', '@controllerName'); }
+    function getlocisum() { var data = show_Foo('Location Wise Item Summary', 'LOCISUM', '0', '@viewName', '@controllerName'); }
+
+    function getgrpsum() { var data = show_Foo('Item Group Summary', 'GRPSUM', '0', '@viewName', '@controllerName'); }
+    function getppo() { var data = show_Foo('Pending Po Summary', 'PPO', '1', '@viewName', '@controllerName'); }
+
+    function getpendis() { var data = show_Foo('Pending Invoice Against Dispatch', 'PDSP', '0', '@viewName', '@controllerName'); }
+    function getpendsc() { var data = show_Foo('Pending Dispatch Against Dispatch Sch', 'PDSC', '0', '@viewName', '@controllerName'); }
+    function getpenso() { var data = show_Foo('Pending Dispatch Against SO', 'PSO', '0', '@viewName', '@controllerName'); }
+    function getptr() { var data = show_Foo('Party Wise Sale', 'PWS', '0', '@viewName', '@controllerName'); }
+    function getitmw() { var data = show_Foo('Item Wise Sale', 'ITWS', '0', '@viewName', '@controllerName'); }*@
+
+        function callFoodemo(title, headid, mid, m_id, btnid) {
+            var urls = "";
+            //if (title == "Date Filter") { urls = "/Production/date_filter"; }
+            if (title == "Date Filter") { urls = "/Production/dtcu_filter"; }
+            else urls = "/Inventory/filter_inv";
+
+            $.ajax({
+                type: "GET",
+                url: urls,
+                data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+                success: function (pageContents) {
+                    //  debugger
+                    $('#myModal').width('50%');
+                    $('#myModalContent').html(pageContents);
+                    $('#myModalLabel')[0].innerText = title;
+                    $('#myModal').modal(options);
+                    $('#myModal').modal('show');
+
+                    hidewait();
+                },
+                error: function (err) {
+
+                    hidewait();
+                }
+            });
+        }
+        function call_filterfrm(headid, mid, m_id, btnid) {
+            var title = "";
+            if (btnid == "Pending PO" || btnid == "Pending Indent" || btnid == "Purchase Order Detailed" || btnid == "PO Summary Item Wise" || btnid == "PO Summary Party Wise" || btnid == "Pending Indent") { title = "Date Filter"; }
+            else title = "Date Filter";
+            callFoodemo(title, headid, mid, m_id, btnid);
+        }
+    </script>
+

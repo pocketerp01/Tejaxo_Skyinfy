@@ -1,0 +1,251 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var issp = false;
+    var imgclosedisplay = "";
+
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var path = "";
+    var ispr = false;
+    var iscp = false;
+    var onclick = "";
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+<style>
+    a.cke_path_item, span.cke_path_empty {
+        color: #f8f8f8 !important;
+    }
+</style>
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+    @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" }) 
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <label for="first-name">Doc No.</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col16, new { @id = "vch_num", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="first-name">
+                                    Doc Date <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "tempname", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "Doc Date" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <label for="first-name">
+                                    FAQ Category <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_htyp", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-12'>
+                                    <label for="first-name">FAQ Question<span class="ClientProfileLabelColor"></span></label>
+                                    <span class="input-group-addon formclass"></span>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextAreaFor(model => model[0].Col20, new { @id = "txt_qs", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @cols = 80, @Rows = 1 })
+                                            <script>
+                                                CKEDITOR.replace("txt_qs");
+                                            </script>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class='col-sm-12'>
+                                    <label for="first-name">FAQ Answer<span class="ClientProfileLabelColor"></span></label>
+                                    <span class="input-group-addon formclass"></span>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextAreaFor(model => model[0].Col132, new { @id = "txt_ans", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @cols = 80, @Rows = 3 })
+                                            <script>
+                                                CKEDITOR.replace("txt_ans");
+                                            </script>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" formnovalidate style="visibility:hidden" class="btn btn-primary" />
+}
+@Styles.Render("~/bundles/updcss")
+@Scripts.Render("~/bundles/updjs")
+<script type="text/javascript">
+
+    function renderPDF(url, canvasContainer, options) {
+        //debugger
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+        // The workerSrc property shall be specified.
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.js';
+
+        var options = options || { scale: 1 };
+
+        function renderPage(page) {
+            var viewport = page.getViewport(options.scale);
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            canvasContainer.appendChild(canvas);
+            page.render(renderContext);
+        }
+
+        function renderPages(pdfDoc) {
+            for (var num = 1; num <= pdfDoc.numPages; num++)
+                pdfDoc.getPage(num).then(renderPage);
+        }
+
+        pdfjsLib.disableWorker = true;
+        pdfjsLib.getDocument(url).then(renderPages);
+
+    }
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+      @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        @*$("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');*@
+      $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+     function newfun() { var data = show_Foo('Select Form', 'NEW', '1', '@viewName', '@controllerName'); }
+    function editfun() { var data = show_Foo('Select Entry To Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+        //function viewfun() { var data = show_Foo('View Detail', 'VIEW', '1', '@viewName', '@controllerName'); }
+</script>

@@ -1,0 +1,169 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(MyGuid, "viewName", viewName);
+    sgen.SetSession(MyGuid, "controllerName", controllerName);
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <style>
+        .fixed_height_390 {
+            height: 190px !important;
+        }
+        p {
+            font-size: 20px;
+        }
+    </style>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_dash1" })
+    @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_dash2" })
+    @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_dash3" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_dash4" })
+    @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_dash5" })
+    @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_dash6" })
+
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_type1" })
+    @Html.HiddenFor(model => model[0].Col23, new { @id = "hf_type2" })
+    @Html.HiddenFor(model => model[0].Col24, new { @id = "hf_type3" })
+    @Html.HiddenFor(model => model[0].Col25, new { @id = "hf_type4" })
+    @Html.HiddenFor(model => model[0].Col26, new { @id = "hf_type5" })
+    @Html.HiddenFor(model => model[0].Col27, new { @id = "hf_type6" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                            <a href="/Account/salesBook?mid=@EncryptDecrypt.Encrypt("45001.1")&m_id=@EncryptDecrypt.Encrypt(MyGuid)&tid=@EncryptDecrypt.Encrypt(Model[0].Col26)&frm_id='SACC'">
+                                <div class="x_panel ui-ribbon-container fixed_height_390">
+                                    <div class="x_title">
+                                        <h2>Sales Book</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <h3 class="name_title">Total Amount: </h3>
+                                        <p>@Model[0].Col16</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                            <a href="/Account/purBook?mid=@EncryptDecrypt.Encrypt("45001.2")&m_id=@EncryptDecrypt.Encrypt(MyGuid)&tid=@EncryptDecrypt.Encrypt(Model[0].Col27)&frm_id='SACC'">
+                                <div class="x_panel ui-ribbon-container fixed_height_390">
+                                    <div class="x_title">
+                                        <h2>Purchase Book</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <h3 class="name_title">Total Amount: </h3>
+                                        <p>@Model[0].Col17</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                            <a href="/Account/debtors?mid=@EncryptDecrypt.Encrypt("45001.3")&m_id=@EncryptDecrypt.Encrypt(MyGuid)&tid=@EncryptDecrypt.Encrypt(Model[0].Col22)&frm_id='SACC'">
+                                <div class="x_panel ui-ribbon-container fixed_height_390">
+                                    <div class="x_title">
+                                        <h2>Debtors</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <h3 class="name_title">Total Amount: </h3>
+                                        <p>@Model[0].Col18</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                            <a href="/Account/creditors?mid=@EncryptDecrypt.Encrypt("45001.4")&m_id=@EncryptDecrypt.Encrypt(MyGuid)&tid=@EncryptDecrypt.Encrypt(Model[0].Col23)&frm_id='SACC'">
+                                <div class="x_panel ui-ribbon-container fixed_height_390">
+                                    <div class="x_title">
+                                        <h2>
+                                            Creditors
+                                        </h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <h3 class="name_title">Total Amount: </h3>
+                                        <p>@Model[0].Col19</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                            <a href="/Account/bankBal?mid=@EncryptDecrypt.Encrypt("45001.5")&m_id=@EncryptDecrypt.Encrypt(MyGuid)&tid=@EncryptDecrypt.Encrypt(Model[0].Col24)&frm_id='SACC'">
+                                <div class="x_panel ui-ribbon-container fixed_height_390">
+                                    <div class="x_title">
+                                        <h2>Bank Balance</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <h3 class="name_title">Total Amount: </h3>
+                                        <p>@Model[0].Col20</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-xs-12 widget widget_tally_box">
+                            <a href="/Account/cashBal?mid=@EncryptDecrypt.Encrypt("45001.6")&m_id=@EncryptDecrypt.Encrypt(MyGuid)&tid=@EncryptDecrypt.Encrypt(Model[0].Col25)&frm_id='SACC'">
+                                <div class="x_panel ui-ribbon-container fixed_height_390">
+                                    <div class="x_title">
+                                        <h2>Cash Balance</h2>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <h3 class="name_title">Total Amount: </h3>
+                                        <p>@Model[0].Col21</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

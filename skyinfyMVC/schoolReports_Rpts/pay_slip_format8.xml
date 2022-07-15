@@ -1,0 +1,143 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="OLD_EMPCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="DESIG" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPT" type="xs:string" minOccurs="0" />
+                <xs:element name="PF_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="ACCOUNT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="JOIN_DATE" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <NAME>zar01  </NAME>
+    <EMP_CODE>GMC000001</EMP_CODE>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <DESIG>Sports Teacher</DESIG>
+    <DEPT>Human Resource</DEPT>
+    <PF_NO>0</PF_NO>
+    <ACCOUNT_NO>53471146187775275876</ACCOUNT_NO>
+    <JOIN_DATE>01/04/2019</JOIN_DATE>
+  </prepcur>
+  <prepcur>
+    <NAME>zar02  </NAME>
+    <EMP_CODE>GMC000002</EMP_CODE>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <DESIG>Assistant</DESIG>
+    <DEPT>Teaching</DEPT>
+    <PF_NO>0</PF_NO>
+    <ACCOUNT_NO>0</ACCOUNT_NO>
+    <JOIN_DATE>01/04/2019</JOIN_DATE>
+  </prepcur>
+  <prepcur>
+    <NAME>zar03  </NAME>
+    <EMP_CODE>GMC000003</EMP_CODE>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <DESIG>AMC Head</DESIG>
+    <DEPT>Sash</DEPT>
+    <PF_NO>0</PF_NO>
+    <ACCOUNT_NO>0</ACCOUNT_NO>
+    <JOIN_DATE>01/04/2019</JOIN_DATE>
+  </prepcur>
+  <prepcur>
+    <NAME>zar04  </NAME>
+    <EMP_CODE>GMC000004</EMP_CODE>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <DESIG>Desig007</DESIG>
+    <DEPT>Teaching</DEPT>
+    <PF_NO>0</PF_NO>
+    <ACCOUNT_NO>0</ACCOUNT_NO>
+    <JOIN_DATE>01/04/2019</JOIN_DATE>
+  </prepcur>
+  <prepcur>
+    <NAME>zar05  </NAME>
+    <EMP_CODE>GMC000005</EMP_CODE>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <DESIG>Sports Teacher</DESIG>
+    <DEPT>Human Resource</DEPT>
+    <PF_NO>0</PF_NO>
+    <ACCOUNT_NO>0</ACCOUNT_NO>
+    <JOIN_DATE>01/04/2019</JOIN_DATE>
+  </prepcur>
+  <prepcur>
+    <NAME>zar06  </NAME>
+    <EMP_CODE>GMC000006</EMP_CODE>
+    <OLD_EMPCODE>7027</OLD_EMPCODE>
+    <DESIG>Desig007</DESIG>
+    <DEPT>Teaching</DEPT>
+    <PF_NO>0</PF_NO>
+    <ACCOUNT_NO>0</ACCOUNT_NO>
+    <JOIN_DATE>01/04/2019</JOIN_DATE>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Infra Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>Sec-31 Mewla Maharajpur</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>06</COMPANY_STATE>
+    <COMPANY_CITY>Faridabad</COMPANY_CITY>
+    <COMPANY_PINCODE>121011</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>gsthelp001@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>web.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>7895459625</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>0129654578</COMPANY_ALTERNATE_CONTACT_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>Unit</UNIT_NAME>
+    <UNIT_ADDRESS>Sec-31 Mewla Maharajpur</UNIT_ADDRESS>
+    <UNIT_COUNTRY>0</UNIT_COUNTRY>
+    <UNIT_STATE>0</UNIT_STATE>
+    <UNIT_CITY>0</UNIT_CITY>
+    <UNIT_PINCODE>121011</UNIT_PINCODE>
+    <UNIT_EMAIL>0</UNIT_EMAIL>
+    <UNIT_WEBSITE>web.com</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>7895459625</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>0129654578</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>0</SEPTR>
+  </Branch_Detail>
+</NewDataSet>

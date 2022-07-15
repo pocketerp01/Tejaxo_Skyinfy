@@ -1,0 +1,68 @@
+﻿@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    ViewBag.Title = "Crystal reports in MVC 4";
+    Layout = null;
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+   
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+<style>
+    .reportsDiv {
+        border: 1px #000 solid;
+        min-height: 900px;
+        width: 800px;
+    }
+</style>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div id="exp">
+        <div style="height:40px"></div>
+      
+    </div>
+    <div align="start" id="divmainx" >
+        <div class="reportsDiv" id="reportsDiv" align="center">
+        </div>
+
+    </div>
+}
+    
+    <script src="..../../../../../Scripts/jquery-3.1.1.min.js"></script>
+    <script>
+    $(document).ready(function () { RunReport(); });
+        function RunReport() {
+            $.ajax({
+                url: '/Foo/ShowReport?Myguid=@MyGuid',
+                type: 'GET',
+                success: function (response) {
+                  
+                    if (response.result == "-2") {
+                        alert('Error during display of report');
+                    }
+                    else {
+                        debugger
+
+                        var jqXHR = $.ajax({
+                            type: "post",
+                            url: "/foo/RefreshReport?Myguid=@MyGuid",
+                            contentType: "application/json; charset=utf-8",                           
+                            datatype: "json",
+                            async: false                           
+                        });
+                        //$('#reportsDiv').load('RefreshReport?Myguid=@MyGuid');
+                        $('#reportsDiv').html(jqXHR.responseText);
+                        
+                        $("#reportsIframe").width($("#divmainx").width());
+                    }
+                },
+                error: function (xhr, status, error) {
+                    displayErrorMessage('Error during display of report');
+                }
+            });
+        }
+       
+    </script>

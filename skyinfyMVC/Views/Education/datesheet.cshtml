@@ -1,0 +1,637 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+    string cg_com_name = sgen.GetCookie(Model[0].Col15, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var ispr = false;
+    var iscp = false;
+    var onclick = "";
+    var imgclosedisplay = "";
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+        <div class='col-sm-1'>
+            <div class="form-group">
+                <div class='input-group'>
+                    <button type='button' class='btn btn-success form-control sa-button' style='border-radius: 10px!important;' formnovalidate onclick='printfun();' id='btnprint' name='command' value='Print' accesskey='P'><u>P</u>rint</button>
+                    @* <input type="button" class="btn btn-success form-control sa-button" id="btnprint" name="command" value="Print" accesskey="P" onclick="printfun();" />*@
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+
+    {
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                <div class="x_panel">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <label for="first-name">Class <span class="ClientProfileLabelColor">*</span> </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @*<select class="form-control col-md-12 col-sm-12 col-xs-12 select2 sa-select2-multiple sa-textbox" clientidmode="static" id="ddl_class" runat="server" multiple="true" style="width: 100%"></select>*@
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_class", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <label for="first-name">Section <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @*<select class="form-control col-md-12 col-sm-12 col-xs-12 select2 sa-select2-multiple sa-textbox" clientidmode="static" id="ddl_section" runat="server" multiple="true" style="width: 100%"></select>*@
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_section", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <label for="first-name">Exam Frequency <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class='input-group'>
+                                        @*<select class="form-control col-md-12 col-sm-12 col-xs-12 select2 sa-select2-single sa-textbox" clientidmode="static" id="ddl_frequency" runat="server" multiple="true" style="width: 100%"></select>*@
+                                        @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_frequency", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <label for="first-name">Exam Type <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class='input-group'>
+                                        @*<select class="form-control col-md-12 col-sm-12 col-xs-12 select2 sa-select2-single sa-textbox" clientidmode="static" id="ddl_Examtype" runat="server" multiple="true" style="width: 100%"></select>*@
+                                        @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_Examtype", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <label for="first-name">Exam Start Time <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_from", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time" })
+                                        @*<asp:TextBox runat="server" ID="txt_from" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time"></asp:TextBox>*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <label for="first-name">Exam End Time <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_to", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time" })
+                                        @*<asp:TextBox runat="server" ID="txt_to" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time"></asp:TextBox>*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" runat="server" id="div2">
+                                <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @*<asp:Button ID="Btn_Fill" Text="Fill Data" runat="server" OnClick="Btn_Fill_Click" CssClass=" btn-primary btn form-control sa-button"></asp:Button>*@
+                                        <input type="submit" class="btn btn-primary form-control sa-button" name="command" @ViewBag.vfill value="Fill Data" formnovalidate id="btn_Fill" accesskey="F" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                    <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <div class='col-sm-6'> <label>S.No.</label> </div>
+                                    <div class='col-sm-6'><label for="first-name">Select<span class="ClientProfileLabelColor"></span></label></div>
+                                </div>
+                                <div class='col-sm-1'><label for="first-name">Subject</label></div>
+                                <div class='col-sm-1'><label for="first-name">Class Section</label></div>
+                                <div class="col-sm-3">
+                                    <div class='col-sm-6'><label for="first-name">Subject Type<span class="ClientProfileLabelColor"></span></label></div>
+                                    <div class='col-sm-6'><label for="first-name">Exam Date<span class="ClientProfileLabelColor"></span></label></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class='col-sm-3'><label for="first-name">Exam Start Time</label></div>
+                                    <div class='col-sm-3'><label for="first-name">Exam End Time</label></div>
+                                    <div class='col-sm-3'><label for="first-name">Max Marks</label></div>
+                                    <div class='col-sm-3'><label for="first-name">Min Marks </label></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @{
+                if (Model.Count > 0)
+                {
+                    for (int i = 0; i < Model.Count; i++)
+                    {
+                        if (Model[i].Col19 != null)
+                        {
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                                    <div class="x_panel" style="padding:0px 17px!important">
+                                        <div class="x_content">
+                                            <div class="row">
+                                                <div class="col-sm-1">
+                                                    <div class='col-sm-6'>
+                                                        <label for="first-name">@(i + 1)</label>
+                                                        <div class="form-group has-success">
+                                                            <div class='input-group'>
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class='col-sm-6'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "cbSelect", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo2('#Table1', this);" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+
+
+                                                <div class='col-sm-1'>
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            @Html.DisplayFor(model => model[i].Col19, new { @id = "lbl_Subject", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                            @Html.HiddenFor(model => model[i].Col28, new { @id = "lbl_subject_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+                                                            @*@Html.HiddenFor(model => model[i].Col20, new { @id = "lbl_client_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })*@
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='col-sm-1'>
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            @Html.DisplayFor(model => model[i].Col20, new { @id = "lbl_Class_Section", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                            @Html.HiddenFor(model => model[i].Col27, new { @id = "lbl_subclasssec", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <div class='col-sm-6'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.DropDownListFor(model => model[i].SelectedItems5, new MultiSelectList(Model[i].TList5, "Value", "Text", Model[i].SelectedItems5), new { @id = "ddl_subtype" + i, @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                                                @*@Html.DisplayFor(model => model[i].Col19, new { @id = "lbl_Subject_Type", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })*@
+                                                                @Html.HiddenFor(model => model[i].Col26, new { @id = "lbl_subtype", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class='col-sm-6'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col21, new { @id = "Txt_Exam_dt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date ", @onkeypress = "return checkLength(this, 28,event);" })
+                                                                @*@Html.DisplayFor(model => model[i].Col20, new { @id = "lbl_Duedt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Due Date", @onkeydown = "return checkLength(this, 28,event);" })*@
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-sm-6">
+
+                                                    <div class='col-sm-3'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_fromtime", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", @onkeypress = "return checkLength(this, 28,event);" })
+                                                                @*@Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_frq" + i, @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })*@
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class='col-sm-3'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_toTime", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time ", @onkeypress = "return checkLength(this, 28,event);" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class='col-sm-3'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_max", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeypress = "return checkLength(this, 28,event);", @onkeydown = "return isNumberKey(event)", @MaxLength = "3" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class='col-sm-3'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_min", @onkeydown = "return isNumberKey(this);", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeypress = "return checkLength(this, 28,event);", @MaxLength = "3" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                @*<div class='col-sm-1'>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+
+                                                                @Html.RadioButtonFor(model => model[i].Col26, "W", new { @id = "Rbt_S", @onclick = "Radio_Click(this)", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "First Half Absent" })
+                                                                @Html.CheckBoxFor(model => model[i].Chk3, new { @id = "Rbt_S", @class = "sa-input checkbox" })
+
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                }
+            }
+        </div>
+    }
+
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    function Txtchngemax(myctrl) {
+        var maxval = myctrl.value;
+        var minval = $(myctrl).closest('tr').find("input[type=text][id*=txt_min]")[0].value;
+        if (parseFloat(minval) > parseFloat(maxval)) {
+            myctrl.value = 0;
+            alert("Max. Marks Cant Be less than Min. Marks");
+            return;
+        }
+
+
+    }
+
+    function Txtchngemin(myctrl) {
+        var minval = myctrl.value;
+        var maxval = $(myctrl).closest('tr').find("input[type=text][id*=txt_max]")[0].value;
+        if (parseFloat(minval) > parseFloat(maxval)) {
+            myctrl.value = 0;
+            alert("Max. Marks Cant Be less than Min. Marks");
+            return;
+        }
+
+
+    }
+
+    function CheckUncheckChildNodesForFoo1(childContainer, checkbox) {
+
+        var check = $(checkbox)[0].checked;
+
+        var checks = $("[type=checkbox][id=cbSelect]");
+        var cnt = checks.length;
+        for (var i = 0; i < cnt; i++) {
+            var chk = "";
+            chk = $(checks[i]).closest('tr').find("[id*=hd_chk]").val();
+            if (check) {
+
+                if (chk == "") { checks.eq(i).prop('checked', true); }
+            }
+            else {
+                if (chk == "") { checks.eq(i).prop('checked', false); }
+            }
+
+        }
+
+        if (check) {
+            //$("[type=checkbox][id=cbSelect]").prop('checked', true);
+            $("[type=checkbox][id=cbSelectAll]").prop('checked', true);
+        }
+        else {
+            //$("[type=checkbox][id=cbSelect]").prop('checked', false);
+            $("[type=checkbox][id=cbSelectAll]").prop('checked', false);
+        }
+
+    }
+
+    function CheckUncheckChildNodesForFoo2() {
+
+        var chk = $("[id*=cbSelect]");
+        var ddl = $("[id*=ddl_subtype]");
+        var exdt = $("[id*=Txt_Exam_dt]");
+        var ftime = $("[id*=txt_fromtime]");
+        var ttime = $("[id*=txt_toTime]");
+        var max = $("[id*=txt_max]");
+        var min = $("[id*=txt_min]");
+
+        for (var k = 0; k < chk.length; k++) {
+            if (chk[k].checked == false) {
+                ddl[k].disabled = true;
+                exdt[k].disabled = true;
+                ftime[k].disabled = true;
+                ttime[k].disabled = true;
+                max[k].disabled = true;
+                min[k].disabled = true;
+            }
+            else {
+                ddl[k].disabled = false;
+                exdt[k].disabled = false;
+                ftime[k].disabled = false;
+                ttime[k].disabled = false;
+                max[k].disabled = false;
+                min[k].disabled = false;
+            }
+        }
+
+    }
+
+    $(document).ready(function () {
+
+        CheckUncheckChildNodesForFoo2();
+    });
+</script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        onchange_warr('ddl_frnwarranty');
+    });
+
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function printfun() { var data = show_Foo('Print Data', 'PRINT', '1', '@viewName', '@controllerName'); }
+
+    function setTableDatat() {
+        try {
+            // calcamt();
+            datatable = new Array();
+
+            var heads = $("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $("[id=row_" + r + "]");
+                var arr = new Array();
+                for (var h = 0; h < heads.length; h++) {
+                    var obj = {};
+                    obj[heads[h].children[0].innerText] = row[h].innerText;
+                    arr.push(obj);
+                }
+                datatable.push(arr);
+            }
+        }
+        catch (err) { alert(err); return; }
+        $("#hftable").val(JSON.stringify(datatable));
+        //PageMethods.settable(datatable);
+
+
+    }
+
+    function selectmhead(ctrl) {
+
+
+        $(parent.document.getElementById('btn_class')).trigger('click');
+    }
+
+
+    function fileselected(ctrl) {
+
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 20) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 15 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            switch (ext) {
+                case 'pdf':
+                case 'jpg':
+                case 'jpeg':
+                case 'png':
+                case 'bmp':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only pdf,,jpg,jpeg,png file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+            var filesize = file.size / 1024;
+            if (filesize < 100) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 100Kb';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+
+
+        var files = ctrl.files;
+        var thmbcnt = ctrl.id.split('d')[1].trim();
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            if (!file.type.match(imageType)) {
+                //continue;
+            }
+
+            var img = document.getElementById("thumbnil" + thmbcnt + "");
+            img.file = file;
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+
+                    aImg.src = e.target.result;
+                    aImg.setAttribute("data-pdf-thumbnail-file", e.target.result);
+                    createPDFThumbnails();
+                };
+            })(img);
+            reader.readAsDataURL(file);
+            $("#thumbnil" + thmbcnt + "").show();
+            $("#img_close" + thmbcnt + "").show();
+
+        }
+    }
+    function imgclick(ctrl) { $(ctrl).closest('div').find("input[type=file]").click(); }
+        function fdelete(evt, id) {
+                //prevent the browsers default function
+        evt.preventDefault();
+        //grab the form and wrap it with jQuery
+        var $form = $("form");
+         var obj = { "value": id };
+        myMethod('@controllerName', '@viewName', "fdelete", obj, null);
+        $("#callback1").click();
+    }
+    function removetempfile(ctrl) {
+        //debugger;
+        var cnt = ctrl.id.split('e')[1];
+        $("#upd" + cnt + "")[0].value = "";
+        $("#spanupd" + cnt + "")[0].innerText = "";
+        $("#thumbnil" + cnt + "")[0].src = "";
+        $("#thumbnil" + cnt + "").hide();
+        $(ctrl).hide();
+    }
+
+</script>
+<script>
+    function selectionIndexChange(ctrl) {
+        //debugger;
+        javascript: __doPostBack(ctrl.id, '');
+    }
+
+    function onchange_warr(ctrl) {
+        //debugger;
+
+        if ((ctrl.value == "") || (ctrl.value == "N")) {
+            $("#ddlcur").hide();
+        }
+
+        else { $("#ddlcur").show(); }
+    }
+    function warrt() {
+        //debugger
+        var icode = "", chkcode = "", ptype = "";
+        ptype = "";
+        var acode = $("#ddl_frnwarranty")[0].value;
+        if (acode == "") { showmsgJS(1, "Please select Condition", 2); return; }
+        else { $("#ddlcur").show(); }
+    }
+</script>

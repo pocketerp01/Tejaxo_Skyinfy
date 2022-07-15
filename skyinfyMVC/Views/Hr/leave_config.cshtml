@@ -1,0 +1,879 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clr = "";
+    // ViewBag.Title = "ESI";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" id="btncancel" name="command" value="Cancel" formnovalidate accesskey="C" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Copy Components from Other Company</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide5" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Select Company </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_units", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-4">
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <input type="submit" class="btn btn-primary form-control sa-button" causesvalidation="false" name="command" @ViewBag.vcopy value="Copy" id="btn_copyhead" accesskey="F" />
+                                                        @*<button type="submit" class="btn btn-primary form-control sa-button" causesvalidation="false" runat="server" id="btn_copyhead" onserverclick="btn_copyhead_ServerClick" accesskey="N"><u>C</u>opy Fixed Components</button>*@
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-4'>
+                    <label for="first-name">Doc No. <span class="ClientProfileLabelColor">*</span></label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_vchnum", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = true, placeholder = "Doc No." })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label for="first-name">Policy Name/Rule <span class="ClientProfileLabelColor">*</span></label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Policy Name/Rule", onkeypress = "return checkLength(this, 28,event);" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-4'>
+                    <label for="first-name">Abbreviation <span class="ClientProfileLabelColor">*</span></label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_abbreviation", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Abbreviation", onkeypress = "return checkLength(this, 18,event);" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class='col-sm-4'>
+                    <label for="first-name">Display Name <span class="ClientProfileLabelColor">*</span></label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_displayname", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Display Name", onkeypress = "return checkLength(this, 28,event);" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                            <b>Leave Credit Rules</b>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content kc">
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Credit Frequency </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_creditfreq", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple", onchange = "show_njco(this);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="If You Choose 'Yes' The Leave Credit Will Happen Based On The 'No' Of Work Days">Credit On </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_crediton", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">No Of Days </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_no_of_days", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "No Of Days", onkeypress = "return checkLength(this, 4,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="If You Choose 'Yes' The Leave Credit Will Happen Based On The 'No' Of Work Days">Credit is Attendance Dependent <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk1, new { @id = "cb_credit", @class = "chkshow sa-input checkbox", onchange = "chkshow(this);" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4 hidectrl' id="div_whpoa">
+                                    <label for="first-name" title="If You Choose 'Yes' The Credit Will Be Prorated Based On Date Of Joining">Whether Holiday/Weekly Off Is Part Of Attendance </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk2, new { @id = "chk_whpoa", @class = "sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="If You Choose 'Yes' The Credit Will Be Prorated Based On Date Of Joining">Proration Applicable For New Joinees <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk3, new { @id = "cb_proration", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hidectrl" id="div_njco">
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="If You Choose 'Yes' The Credit Will Be Prorated Based On Date Of Joining">New Joinee Cut Off Rule</label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk4, new { @id = "cb_cutoff", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Credit Type </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_credittype", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple", onchange = "show_rpt(this);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row hidectrl" id="div_rpt">
+                                    <div class="col-sm-8">
+                                        @if (Model[0].LTM1 != null)
+                                        {
+
+                                            for (int k = 0; k < Model[0].LTM1.Count; k++)
+                                            {
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    @Html.HiddenFor(m => m[0].LTM1[k].Col1)
+                                                    <div class="x_panel" style="padding: 3px 15px !important">
+                                                        <div class="x_title" style="padding: 0px !important">
+                                                            <!-- tools box -->
+                                                            <ul class="nav navbar-right panel_toolbox">
+                                                                <li><input name="command" onclick="sethfval('@k');" type="submit" value="Add" class="fa fa-plus" formnovalidate data-toggle="tooltip" title="Add More" /> </li>
+                                                                <li><input name="command" onclick="sethfval('@k');" type="submit" value="Remove" class="fa fa-close" formnovalidate data-toggle="tooltip" title="Remove" /> </li>
+                                                            </ul>
+                                                            <div class="clearfix" id="diclear"></div>
+                                                        </div>
+                                                        <div class="x_content">
+                                                            <div class="row">
+                                                                <div class='col-sm-2'>
+                                                                    <label for="first-name">From<span class="ClientProfileLabelColor">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @Html.TextBoxFor(model => model[i].LTM1[k].Col10, new { @id = "txt_from", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='col-sm-2'>
+                                                                    <label for="first-name">Value<span class="ClientProfileLabelColor">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @Html.LabelFor(model => model[i].LTM1[k].Col11, new { @id = "lbl_value1", @class = " form-control col-md-12 col-sm-12 col-xs-12" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='col-sm-2'>
+                                                                    <label for="first-name">To<span class="ClientProfileLabelColor">*</span></label>
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @Html.TextBoxFor(model => model[i].LTM1[k].Col12, new { @id = "txt_to", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='col-sm-2'>
+                                                                    <label for="first-name">Value </label>
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @Html.LabelFor(model => model[i].LTM1[k].Col13, new { @id = "lbl_value2", @class = " form-control col-md-12 col-sm-12 col-xs-12" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='col-sm-2'>
+                                                                    <label for="first-name">Days </label>
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @Html.TextBoxFor(model => model[i].LTM1[k].Col14, new { @id = "txt_days", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                            <b>Leave Encash Rules</b>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a id="ahide2" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content kc">
+
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Can Carry Forward </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk14, new { @id = "cb_carry_frwrd", @class = "ccf sa-input checkbox", @onchange = "cancarryforwrd(this);" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4 hidectrl' id="div_cancarryforwrd">
+                                    <label for="first-name" title="Specify The Max No Of Days That Can Be Carry Forward In A Year">Max Carry Forward At Year End </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_max_carry", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max Carry Forward At Year End", @onkeypress = "return checkLength(this, 4,event);", @onkeydown = "return IsNumberKey(event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Is Encashable? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk15, new { @id = "cb_encashale", @class = "encashable sa-input checkbox", @onchange = "isencashable(this);" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hidectrl" id="div_encashable">
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Specify The Max No Of Days That Can Be Encashed Either On Seperation Or While In Service,If Applicable">Max Days Encashable </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_max_days", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max Days Encashable", @onkeypress = "return checkLength(this, 4,event);", @onkeydown = "return IsNumberKey(event)" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Encashable Formula </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_encashformula", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Encashable Formula", @onkeypress = "return IsNumberKey(event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name"></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <input type="submit" class="btn btn-primary form-control sa-button" id="btn_formula" name="command" BorderStyle="Solid" value="Formula" accesskey="F" />
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                            <b>Leave General Rules</b>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a id="ahide3" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content kc">
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Min. Service Period Before Leave Can Be Applied (Days) </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_service", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Min Service Period", @onkeypress = "return checkLength(this, 4,event);", @onkeydown = "return IsNumberKey(event)" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Min / insurance (Days) </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_mininsurance", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Min Insurance Days", @onkeypress = "return checkLength(this, 4,event);", @onkeydown = "return IsNumberKey(event)" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Max / insurance (Days) </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_maxinsurance", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max Insurance Days", @onkeypress = "return checkLength(this, 4,event);", @onkeydown = "return IsNumberKey(event)" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Max. Leave Balance </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_leavebalance", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max. Leave Balance", @onkeypress = "return checkLength(this, 4,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Max. Negative Leave Balance </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_ngleavebal", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max. Negative Leave Balance", @onkeypress = "return checkLength(this, 4,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="If You Select 'Yes' Leaves Not Utilised Will Elapse The Period considered For This Is Same As 'Credit Type' In Client Tab ">Unavailed Leave Will Elapse <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk5, new { @id = "cb_unavaleave", @class = "sa-input checkbox", @onchange = "isencashable(this);" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Leave Request Window </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_leavereq", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Leave Request Window" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Notice For Leave Request </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col30, new { @id = "txt_noticeleavereq", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Notice For Leave Request" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Is Attachment Required <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk6, new { @id = "cb_attachment", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <label for="first-name">Max Leave That Can Be Taken </label>
+                                    <div class="form-group">
+                                        <div class=' input-group'>
+                                            <div class="row">
+                                                <div class="col-md-2 col-sm-2" title="Days Per">
+                                                    @Html.TextBoxFor(model => model[0].Col31, new { @id = "txt_daysper", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeypress = "return AllowNumeric(event)" })
+                                                </div>
+                                                <div class="col-md-3 col-sm-3">
+                                                    <label for="first-name" class="col-md-12 col-sm-12 col-xs-12">Days Per </label>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4">
+                                                    @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_period", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                </div>
+                                                <div class="col-md-2 col-sm-2">
+                                                    @Html.TextBoxFor(model => model[0].Col32, new { @id = "txt_days", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeypress = "return AllowNumeric(event)",placeholder= "Days" })
+                                                </div>
+                                            </div>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class='col-sm-6'>
+                                    <label for="first-name">Max No Of Instances That Can Be Taken </label>
+                                    <div class="form-group">
+                                        <div class=' input-group'>
+                                            <div class="row">
+                                                <div class="col-md-5 col-sm-5" title="Days Per">
+                                                    @Html.TextBoxFor(model => model[0].Col33, new { @id = "txt_period", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeypress = "return AllowNumeric(event)" })
+                                                </div>
+                                                <div class="col-md-2 col-sm-2">
+                                                    <label for="first-name" class="col-md-12 col-sm-12 col-xs-12">Period </label>
+                                                </div>
+                                                <div class="col-md-5 col-sm-5">
+                                                    @Html.DropDownListFor(model => model[0].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[0].SelectedItems6), new { @id = "ddl", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                            <b>Sandwich Rule</b>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a id="ahide4" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content kc">
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Choose 'Yes' If You Want Weekly Off Falling Between 2 Leave Days Be Considered As Part of leave ">Is Leave Part Of Weekly Off? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk7, new { @id = "cb_lwoff", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Choose 'Yes' If You Want Weekly Off Holiday Between 2 Leave Days Be Considered As Part of leave">Is Leave Part Of Holiday? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk8, new { @id = "cb_lph", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Choose 'Yes' If You Want Weekly Off Falling Between 2 Leave Days Be Considered As Part of leave  ">Is Leave Part Of Preceeding Week Off? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk9, new { @id = "cb_lppwoff", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Choose 'Yes' If You Want Weekly Off Falling Between 2 Leave Days Be Considered As Part of leave  ">Is Leave Part Of Preceeding Holiday? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk10, new { @id = "cb_lpph", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Choose 'Yes' If You Want Weekly Off Falling Between 2 Leave Days Be Considered As Part of leave  ">Is Leave Part Of Succeeding Weekly Off? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk11, new { @id = "cb_lpswoff", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name" title="Choose 'Yes' If You Want Weekly Off Falling Between 2 Leave Days Be Considered As Part of leave  ">Is Leave Part Of Succeeding Holiday? <span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="clearfix"></div>
+                                            <p>
+                                                @Html.CheckBoxFor(model => model[0].Chk12, new { @id = "cb_lpsh", @class = "flink sa-input checkbox" })
+                                            </p>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Can't Clubbed With </label>
+                                    <div class="form-group">
+                                        <div class=' input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems7, new MultiSelectList(Model[0].TList7, "Value", "Text", Model[0].SelectedItems7), new { @id = "ddl_cantclubbed", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                            <b>Applicable</b>
+                            <ul class="nav navbar-right panel_toolbox">
+                                <li><a id="ahide5" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content kc">
+                            <div class="row">
+                                <div class='col-sm-4'>
+                                    <label for="first-name">Criteria </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems8, new MultiSelectList(Model[0].TList8, "Value", "Text", Model[0].SelectedItems8), new { @id = "ddl_criteria", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple", onchange = "selectchange(this);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='hidectrl col-sm-4' runat="server" id="div_criteriatype">
+                                    <label for="first-name">Criteria Type </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems9, new MultiSelectList(Model[0].TList9, "Value", "Text", Model[0].SelectedItems9), new { @id = "ddl_criteriatype", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                            @Html.CheckBoxFor(model => model[0].Chk13, new { @id = "checkbox", @class = "all sa-input checkbox", onchange = "selectall(this);" })
+                                            Select All
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    }
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="ddl8" formnovalidate value="Criteria_type" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+         @Html.Raw(ViewBag.scripCall);
+         $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        if (!isPostBack()) {
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    //child.classList.remove = "fa-chevron-up";
+                    //child.classList.add = "fa-chevron-down";
+                    $(child).removeClass("fa-chevron-up")
+                    $(child).addClass("fa-chevron-down")
+                }
+            }
+        }
+
+        if ($(".chkshow").is(':checked')) {
+            $("#div_whpoa").show();
+        }
+        else { $("#div_whpoa").hide(); }
+
+        if ($(".encashable").is(':checked')) {
+            $("#div_encashable").show();
+        }
+        else { $("#div_encashable").hide(); }
+
+        if ($(".ccf").is(':checked')) {
+            $("#div_cancarryforwrd").show();
+        }
+        else { $("#div_cancarryforwrd").hide(); }
+
+        var ctrl = $("[id*=ddl_creditfreq]")[0].value;
+        if (ctrl.value == "003") {
+            $("#div_njco").show();
+        }
+        else { $("#div_njco").hide(); }
+
+        var ctrl1 = $("[id*=ddl_credittype]")[0].value;
+        debugger;
+        if (ctrl1 == "002" && ($("[id*=ddl_creditfreq]")[0].value != "001" || $("[id*=ddl_creditfreq]")[0].value != "002")) {
+            $("#div_rpt").show();
+        }
+        else { $("#div_rpt").hide(); }
+
+    });
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('List Of Leave Config', 'DETAIL', '0', '@viewName', '@controllerName'); }
+
+    function isencashable(ctrl) {
+        if ($(".encashable").is(':checked')) {
+            $("#div_encashable").show();
+        }
+        else {
+            $("#div_encashable").hide();
+        }
+    }
+    function cancarryforwrd(ctrl) {
+        if ($(".ccf").is(':checked')) {
+            $("#div_cancarryforwrd").show();
+        }
+        else {
+            $("#div_cancarryforwrd").hide();
+        }
+    }
+    function chkshow(ctrl) {
+        if ($(".chkshow").is(':checked')) {
+            $("#div_whpoa").show();
+        }
+        else {
+            $("#div_whpoa").hide();
+        }
+    }
+    function show_rpt(ctrl) {
+        debugger;
+        if (ctrl.value == "002" && ($("[id*=ddl_creditfreq]")[0].value != "001" || $("[id*=ddl_creditfreq]")[0].value != "002")) {
+            $("#div_rpt").show();
+        }
+        else { $("#div_rpt").hide(); }
+    }
+    function show_njco(ctrl) {
+        debugger;
+        if (ctrl.value == "003") {
+            $("#div_njco").show();
+        }
+        else { $("#div_njco").hide(); }
+    }
+    function hide(ctrl) {
+        //$(ctrl).closest("div.x_content").hide();
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+
+    }
+    function selectall(ctrl) {
+        if ($(".all").is(':checked')) {
+            $("#ddl_criteriatype > option").prop("selected", "selected");
+            $("#ddl_criteriatype").trigger("change");
+        } else {
+            $("#ddl_criteriatype > option").removeAttr("selected");
+            $("#ddl_criteriatype").trigger("change");
+        }
+    }
+    function selectchange(ctrl) {
+        debugger;
+        //debugger;
+        var vall = $(ctrl).val();
+        if (vall != null || vall != "") {
+            $(parent.document.getElementById('ddl8')).trigger('click');
+            $("#div_criteriatype").show();
+        }
+    }
+
+    function sethfval(val) { $("#hfrow").val(val); }
+
+</script>

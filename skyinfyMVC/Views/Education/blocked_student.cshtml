@@ -1,0 +1,215 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+ 
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart /form-data" }))
+{
+    <div class="col-sm-4">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+
+                </div>
+
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-sm-2">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" name="command" value="Inactive" id="btn_Fill" accesskey="F" />
+                        @*<button type="submit" class="btn btn-primary form-control sa-button" causesvalidation="false" runat="server" id="btninactive" onserverclick="btninactive_ServerClick" accesskey="I"><u>I</u>nactive</button>*@
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "vch_num" })
+        @Html.HiddenFor(model => model[i].Col38, new { @id = "hf_fstr" })
+        @Html.HiddenFor(model => model[i].Col39, new { @id = "F_EMAIL" })
+        @Html.HiddenFor(model => model[i].Col40, new { @id = "KC_USER" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Select Student <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_area", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox  " })
+                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Student" clientidmode="static" id="spn_add" onclick="foo(this);">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row" runat="server" id="div_profile" style="display:none">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="border-left: 5px solid #73879C!important;">
+                                    <div class="x_title">
+                                        <h6 style="font-weight: 900">Student Detail</h6>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="x_panel">
+                                            <div class="x_content">
+                                                <div class="">
+                                                    <h5 style="font-weight: 900; font-size: medium; text-align: center" runat="server" id="hd_stdprofile"></h5>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="x_content">
+                                            <table class="table table-responsive table-striped table-hover table-bordered">
+                                                <tr>
+                                                    <td style="font-weight: 900; color: #73879C">Father Name</td>
+                                                    <td>  @Html.DisplayFor(model => model[i].Col18, new { @id = "fee", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Mother Name</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col19, new { @id = "feepe", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Gaurdian Name</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col20, new { @id = "fe", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 900; color: #73879C">DOB</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col21, new { @id = "fe", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Gender</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col22, new { @id = "fgender", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Nationality</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col23, new { @id = "fnder", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 900; color: #73879C">Place Of Birth</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col24, new { @id = "palce", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Mother Tongue</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col25, new { @id = "mother", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Adhaar No</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col26, new { @id = "moher", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 900; color: #73879C">Religion</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col27, new { @id = "Religion", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Caste</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col28, new { @id = "Registration", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Last School</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col29, new { @id = "Caste", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 900; color: #73879C">Registration No</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col30, new { @id = "Scool", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Roll No</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col31, new { @id = ">Roll l", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Class</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col32, new { @id = "Class", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-weight: 900; color: #73879C">Academic Year</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col33, new { @id = " Ygfear", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Section</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col34, new { @id = " Yesar", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                    <td style="font-weight: 900; color: #73879C">Blood Group</td>
+                                                    <td>@Html.DisplayFor(model => model[i].Col35, new { @id = " Yedsr", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })</td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Inactive <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk_inactive", @class = "sa-input checkbox" })
+
+                                        @*<input type="checkbox" class="sa-input checkbox" runat="server" id="chk_inactive" />*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Date <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col36, new { @id = "txtarea", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date  " })
+                                        @*<asp:TextBox runat="server" ID="txt_blockdt" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" onkeydown="return false;"></asp:TextBox>*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Reason <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col37, new { @id = "txt_blockreason", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox  ",@MaxLength="198" })
+                                        @*<asp:TextBox runat="server" ID="txt_blockreason" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox"></asp:TextBox>*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <asp:HiddenField runat="server" ID="hf_edmode" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+   
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        var fstr = $("#hf_fstr")[0].value;
+        if (fstr != "") {
+            $("#div_profile").show();
+        }
+    });
+
+
+
+
+    //function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    //function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+     function foo() { var data = show_Foo('Select Student ', 'STUDENT', '1', '@viewName', '@controllerName'); }
+
+
+
+
+
+</script>

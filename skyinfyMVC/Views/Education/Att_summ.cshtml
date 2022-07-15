@@ -1,0 +1,206 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    string MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+<style type="text/css">
+    .tile-stats .count {
+        font-size: 15px !important;
+    }
+
+    /*h3 {
+        margin-top: 8px !important;
+        margin-bottom: 8px !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+    }*/
+</style>
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col23, new { @id = "hf_heading" })
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <label for="first-name">Attendance Date</label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col21, new { @id = "Txt_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">.</label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <button type="submit" class="btn btn-primary form-control sa-button" name="command" value="Submit" id="btnsubmit" accesskey="S"><u>S</u>ubmit</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br /><br />
+                    <div class="row">
+                        <div class='col-md-4 col-sm- col-xs-12'>
+                            <div class="form-group">
+
+
+                                @Html.TextBoxFor(model => model[0].Col22, new { @id = "lbl_std", @onkeydown = "return false;", @class = " form-control sa-textbox " })
+
+
+
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm- col-xs-12'>
+                            <div class="form-group">
+
+
+                                @Html.TextBoxFor(model => model[0].Col23, new { @id = "lbl_fhp", @onkeydown = "return false;", @class = " form-control sa-textbox " })
+
+
+
+                            </div>
+                        </div>
+                        <div class='col-md-4 col-sm- col-xs-12'>
+                            <div class="form-group">
+
+
+                                @Html.TextBoxFor(model => model[0].Col24, new { @id = "lbl_shp", @onkeydown = "return false;", @class = " form-control sa-textbox " })
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <br />
+                        @*<br />*@
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if ((Model[i].Col17 != "") && (Model[i].Col18 != "0") && (Model[i].Col18 != ""))
+                            {
+                                <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                    <div class="tile-stats">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="count">Class-Section</div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p>@Model[i].Col17</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="count">No. Of Students</div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p>@Model[i].Col18</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="count">First Half Present</div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p>@Model[i].Col19</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="count">Sec Half Present</div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <p>@Model[i].Col20</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+<script type="text/javascript">
+  $(document).ready(function () {
+       @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function click_fun(ctrl) {
+      //  debugger
+       // btnclass.removeClass('btn btn-success').addClass('btn-default');
+
+
+    }
+
+</script>
+
+
+
+
+
+

@@ -1,0 +1,1950 @@
+﻿@model skyinfyMVC.Models.TableResultModel
+
+@using System.Data
+@using skyinfyMVC.Models;
+@{
+    string MyGuid = Model.Myguid;
+    sgenFun sgen = new sgenFun(MyGuid);
+    Multiton multiton = Multiton.GetInstance(MyGuid);
+   
+    ViewBag.Title = "Footable_v1";
+    Layout = null;
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(MyGuid, "viewName", viewName);
+    sgen.SetSession(MyGuid, "controllerName", controllerName);
+}
+
+<style>
+    .footable > tbody > tr > td, .footable > thead > tr > th {
+        padding: 6px !important;
+    }
+
+    .GridViewScrollHeader TH, .GridViewScrollHeader TD {
+        padding: 6px !important;
+    }
+
+    #footable_v2 input[type=checkbox] {
+        margin: 0 0 0 0 !important;
+    }
+
+    #footable_v2 .sa-input {
+        height: 15px !important;
+        width: 15px !important;
+    }
+    /*.gridViewScrollHelper {
+        width: 39px!important;
+        height: 10px!important;
+        margin-top: -8px!important;
+    }*/
+    .headerSortDown:after,
+    .headerSortUp:after {
+        content: ' ';
+        position: relative;
+        left: 10px;
+        border: 7px solid transparent;
+    }
+
+    .headerSortDown:after {
+        top: 10px;
+        border-top-color: silver;
+        margin-left: -10px;
+    }
+
+    .headerSortUp:after {
+        bottom: 15px;
+        border-bottom-color: silver;
+        margin-left: -10px;
+    }
+
+    .headerSortDown,
+    .headerSortUp {
+        padding-left: 0px;
+    }
+</style>
+<form action="/Foo/footable_v2" id="footable_v2" method="post">
+    @Styles.Render("~/bundles/foocss1")
+    @Scripts.Render("~/bundles/foojs1")
+    @Html.HiddenFor(m => m.Myguid)
+
+    @*@if (Model.error == "Y")
+        {
+            <script type="text/javascript">
+            @Html.Raw(ViewBag.scripCall);
+            </script>
+        }
+
+        @if (Model.error != "Y")
+        {*@
+
+    <div id="Content1">
+
+
+
+        @*<script src="~/erp/adminlite/js/adminlte.min.js"></script>
+            <link href="~/erp/adminlite/dist/css/AdminLTE.min.css" rel="stylesheet" />
+            <link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />//11*@
+
+        <script type="text/javascript">
+            function close_pop() {
+
+                //create below button on Parent page
+                var backtobac = '';
+                 backtobac = '@sgen.GetSession(MyGuid, "BackToBack")';
+                @*if (backtobac = ! null) {
+                    backtobac = '@Session["BackToBack"]';
+                }*@
+                if (backtobac == null) {
+                    backtobac = '';
+                }
+
+                //<asp:Button runat="server" ID="callback1" clientIDMode="Static" Style="display:none" OnClick="callback1_Click" />
+                if (backtobac != '') {
+
+                    parent.BackToBack(backtobac.split("!~!")[0].toString(), backtobac.split("!~!")[1].toString(), backtobac.split("!~!")[2].toString());
+                }
+                else {
+                    var mm = '@sgen.GetSession(MyGuid, "parentname")';
+                    if (mm == "master") {
+                        if ($(parent.document.getElementById('callback0')).length == 1) {
+                            $(parent.document.getElementById('callback0')).trigger('click');
+                        }
+                        else { $(parent.document.getElementById('callback1')).trigger('click'); }
+
+                    }
+                    else if (mm == "MVC") { parent.callback(); }
+                    else if ($(parent.document.getElementById('callback1'))[0].tagName == "A") $(parent.document.getElementById('callback1'))[0].click();
+                    else $(parent.document.getElementById('callback1')).trigger('click');
+                }
+                //$("#footable_v2").remove();
+                $("#myModal").modal('hide');
+            }
+
+            $(document).ready(function () {
+
+                var checktype = '@sgen.GetSession(MyGuid, "CHECKTYPE").ToString()';
+                if (checktype != 2) {
+                    $("[type=checkbox][id=cbSelectAll]").hide();
+                }
+                else $("[type=checkbox][id=cbSelectAll]").show();
+
+                //    $(this).find(".checkbox").prop('checked', true);
+            });
+
+            function CheckUncheckChildNodesForFoo1(childContainer, check) {
+
+
+                //if ($("[type=checkbox][id=cbSelectAll]:first").is("checked")}
+                if (check) {
+                    $("[type=checkbox][id=cbSelect]").prop('checked', true);
+                    $("[type=checkbox][id=cbSelectAll]").prop('checked', true);
+                }
+                else {
+                    $("[type=checkbox][id=cbSelect]").prop('checked', false);
+                    $("[type=checkbox][id=cbSelectAll]").prop('checked', false);
+                }
+
+            }
+
+
+            function CheckUncheckChildNodesForFoo2(childContainer, check, ctrl) {
+
+
+                var checktype = '@sgen.GetSession(MyGuid, "CHECKTYPE").ToString()';
+                if (checktype != 2) {
+
+                    $("[type=checkbox][id=cbSelect]").prop('checked', false);
+                    $(ctrl).prop("checked", check);
+                    $(ctrl)[0].checked = check;
+
+                }
+                else {
+
+                    var seeklimit = '@sgen.GetSession(MyGuid, "SEEKLIMIT").ToString()';
+                    var checkall = true;
+                    $(ctrl)[0].checked = check;
+                    var childChkBoxes = $(childContainer)[0].getElementsByTagName("input")
+                    var childChkBoxCount = childChkBoxes.length;
+                    for (var i = 1; i < childChkBoxCount; i++) {
+                        if ($(childChkBoxes[i]).children.length > 0)
+                            checkall = $(childChkBoxes[i])[0].checked;
+                        else checkall = $(childChkBoxes[i]).checked;
+                        if (!checkall) break;
+                    }
+                    $("[type=checkbox][id=cbSelectAll]").prop('checked', checkall);
+
+                }
+
+
+            }
+
+            function hidemain(ctrl) {
+
+
+                if (ctrl.children[1].children[0].children[0].classList.contains('fa-plus')) {
+                    $(ctrl.children[1].children[0].children[0]).removeClass('fa-plus');
+                    $(ctrl.children[1].children[0].children[0]).addClass('fa-minus');
+                    ctrl.parentElement.children[1].style.display = 'block';
+
+                }
+                else {
+                    $(ctrl.children[1].children[0].children[0]).removeClass('fa-minus');
+                    $(ctrl.children[1].children[0].children[0]).addClass('fa-plus');
+
+                    ctrl.parentElement.children[1].style.display = 'none';
+                }
+            }
+
+        </script>
+        <style>
+
+            ::-webkit-scrollbar {
+                width: 11px;
+                height: auto;
+            }
+
+            ::-webkit-scrollbar-thumb {
+                background: black;
+                border: 0px none #ffffff;
+                border-radius: 50px;
+                /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #b6e2fd), color-stop(0.20, #91bae4), color-stop(0.50, #8fbff0), color-stop(0.51, #6ba8e4), color-stop(0.75, #87c2fb), color-stop(1.00, #bcf4fd));
+                background: -webkit-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+                background: -moz-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+                background: -o-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+                background: -ms-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+                background: linear-gradient(to bottom, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);*/
+            }
+
+                ::-webkit-scrollbar-thumb:hover {
+                    background: #2E9AFE;
+                }
+
+                ::-webkit-scrollbar-thumb:active {
+                    background: #555;
+                }
+
+            ::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            ::-webkit-scrollbar-corner {
+                background: transparent;
+            }
+        </style>
+
+    </div>
+    <div id="Content2">
+        <div style="margin-left: 10px; margin-right: 10px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 0px!important; width: 100%">
+                        <div class="box collapsed-box" style="height: auto!important;padding:0px; background-color: transparent!important">
+                            <div class="with-border" onclick="hidemain(this);" style="padding-left: 10px; padding-top: 5px;">
+                                <h7 class="">Report Options</h7>
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <!-- /.box-tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+
+                                    <div class="panel">
+                                        <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h4 class="panel-title">Filter Options</h4>
+                                        </a>
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                <div class="container">
+                                                    <div class="row" id="ItemList">
+                                                        @Html.Partial("_partfilters", Model)
+                                                    </div>
+                                                    <div class="row">
+
+                                                        <div class='col-sm-4'>
+                                                            Order By
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    @Html.ListBoxFor(m => m.ddorderbySelected, new SelectList(Model.ddorderby, "Value", "Text", Model.ddorderbySelected), new { id = "ddorderby", @style = "width: 100%", @class = "form-control" })
+                                                                    @*<select id="ddorderby" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control"></select>*@
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel">
+                                    <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <h4 class="panel-title">View / Export Options</h4>
+                                    </a>
+                                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                        <div class="panel-body">
+
+                                            <div class="container">
+                                                <div class="row" style="align-items: center!important">
+
+
+                                                    <div class='col-sm-4' style="margin: auto!important">
+
+                                                        @*<%-- Select Export Option--%>*@
+                                                        <div class="form-group">
+                                                            <div class="input-group">
+                                                                <a id="exppdf" onclick="exppdf(event);">
+                                                                    @*<img src="~/images/pdf_icon.png" style="max-height: 64px; max-width: 64px" />*@
+                                                                    <img src="data:image/png;base64,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" style="max-height: 64px; max-width: 64px" />
+                                                                </a>
+                                                                <a id="expword" onclick="expword(event);">
+                                                                    @*<img src="~/images/word_icon.png" style="max-height: 64px; max-width: 64px" runat="server" />*@
+                                                                    <img src="data:image/png;base64,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" style="max-height: 64px; max-width: 64px" runat="server" />
+                                                                </a>
+                                                                <a id="expxls" onclick="expxls(event);">
+                                                                    @*<img src="~/images/xls_icon.ico" style="max-height: 64px; max-width: 64px" />*@
+                                                                    <img src="data:image/png;base64,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" style="max-height: 64px; max-width: 64px" />
+                                                                </a>
+                                                                <a id="expcsv" onclick="expcsv(event);">
+                                                                    @*<img src="~/images/csv_icon.png" style="max-height: 64px; max-width: 64px" />*@
+                                                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEACAYAAABccqhmAAAf/UlEQVR42u2dC5BdRZmA/3PvnRd5TiAJBCIDMWFdKAhZSkSJTrR4LIkl4hbZihhniyp0dbfILq64pRZDgbu6vsKWyi5V6IC1bmEVjy0eJazCQLIKIZDEStSERyYQJiRRCMmETDKTme3/3HMmZ+7t8+5z+vV/1vVm7qNvn8vt73T//XcfBwht6d6waya7W+z/6d13eTcEn78g58dsYbcD3r8HvBvS791v7n//mQfSFUmogiO7AkQ8rKFjI++CemPHGzbsj8iuVwNPQ10Um73bABPDZtmVIqIhASiG19i74URjz3sGlw32IHwp9JMU1IIEIBnW4Luh3uDxptpZvSiwt9APdSH0y66MzZAASiZwhr8a7GnwcaAQHgLqIZQOCaAEWKPHxt4N9UZ/puz6KM4uOCGDh2RXxnRIAAXhNXr/NkN2fTTlHajL4CGSQTGQAATide/XADX6IvBlsJaGCeIgAeTEm4vvgXrDp+59OeAwYS279VEOQj5IABnxovc97PZZ2XWxnHugLoJ+2RXRERJASljD72F3vUBne9XAXkEvE0Gf7IroBAkgAV43f413o7G92mCsAIcHa2l4EA8JIALW8Lug3uh7gBq+bqAI+qAuggHZlVEVEgAHr+H3Ao3vTQHjBL0kgmZIAAECXf1bZNeFKIRbgYYGkyABAI3xLYNiBAGsFwBF9a2FZg3AYgF4WXt4JqAFOXaDC5HW2JpdaJ0AvO5+L7vdKLsuhFLcAfUegVXDAqsE4C3Q6QMa5xN8MD7QY9PCIysE4E3r9QF194lk4LCgx4ZpQ+MFwBo/RvZ7gc76RDqwN4BDgrWyK1IkxgrAG+tjV47O+kQesDdwtamxASMFQGN9QjDGxgaMEgBF+ImCMW6mwBgBePP6faD/NtqE2uA25z2m5A0YIQDq8hMlY8yQQHsBsMaPUVrq8hMyuINJYI3sSuRBWwFQlJ9QBK1nCbQUgDfex8ZPC3gIFdA2LqCdALzNOLHx03ifUAmMC1yt2+akWgnAW7r7E9n1IIgI/kanJcbaCIA1/l6gnXoIPbiVSaBXdiWSoIUAWOPvA9qfj9CLe5gEemRXIg7lBUCNn9AY5SWgtACo8RMGoLQElBSAN8ffD5TWS5gBThN2q5groJwAqPEThqKkBFQUACZTUOMnTGQLE8Bi2ZUIopQAaMxPWIBSMQFlBECNn7AIZSSghACo8RMWooQEpAuAMvwIi5GeMShVAJTbTxBy1w5IE4C3qu8pWZ9PEAqxTNYqQikC8Nbz4wHTkl6CqC8l7paxn0DpAqBEH4LgIiVRSIYA+oG28SIIHk8zAXSX+YGlCoA28CSIWErdaLQ0AXhbdz9Y1ucRhMZ8sqwtx0sRAAX9CCIVpQUFCxeArUG/BR0t7FaDua1VWNDeAlOq0nOuymF8nN3GAn+yv8fGJr+E/f3vW3fCSwcPTzzmVKqw6JROOL1zBjx7ZFz2UahAKUHBMgRgzbgfG/snZ0+BD01vgzns30Q4f/fURnhx39uTHlsypxO+eeliuOkPe2FgjL4/KCEeUKgAbBn3Y8P/0vwZcP7UVtlV0YYwAfxg2UUwNDJKEjhBofGAwgTgdf0HwPBx/2dOnQrXzZ0quxraESUAhCQwAcYDuooaChQpgH4weL5/arUCt3TNpLN+RuIEgKAE/umVt+DVo2NpizeNwvIDChEAa/w4bvl+kd+ITLDxf3vBLDi7oya7KtqSRAAISmD17/fD4XFLgqjh/AOTwFrRhQr/Vlnj72J3OH1hZNefGr8YkgoAefmdw/DlXQdtlwAOBRYzCQyILLQIAfSDwV3/3q5OuGRGm+xqaE8aASAkARfhQwGh36bpUX+c4vv8vGmyq2EEaQWAkARchM4KCPsmTY/6Y9f/3vfNtiehp2CyCAB5+eC7cPNrQzB03NrAoNBZAZECMDrhh6b7xJJVAMj6fQfgtj3Dsg9BJsIShIQIwMv13yT1KykQOvuLJ48AkF+88Sf4/h9HZB+GTC4UsVZAlAD6weDA3+WzOuCm+UaObKSRVwCI5RIQEhDMLQAbNvakyL94RAgAsVwCuTcUzSUAL/CH3ZAzZX8TRfLAeXOp+y8YUQJAHt/7DnzvzSOyD0kGu6CeG5A5IJhXAL1g+J7+uKz3R4tOFl7uSwcOuQ1gz+Ej8NLbhyYex0Zw6pQO+MgZc2BqS7pkI8yae3r3PniTlRlsXAs7p8E0VtaFc2a55fPetyNQB59F7H1J6tDYkJHTprSzW0foe0QKAPm37YPwq+FKpvdqTq5rC2QWgOnTfj6Y64+Zf6J4dOcg3L3tFdZI46PYV3XNg+vPOzuyISEokbu3vgqPDQzGlnkqa5grF53Jbu+ZeAwFcPkDzTu0f/X958Lys+bFfvanHlmf+r08AaBsnrhmWebv1lIJ5JoWzCOAXjD87I+IEgA2spvXbYZN+99O9T5sFF+7+Fz48OlzuM9jT+KLT250y08DygXL9bl5/WZY98b+Sa9Zevps+Nal0RezvW/Ha3DHpu1NdY5ryDwBIL9eeVnGb7iOpRLI3AvIJAAv33+n7KMuAxHz/9g4v8Aa6csHDmV6PzaoH370Ilg4c3IWIp59P/v4s6kbv09QAtgz+caGbU2vwYYcNQy45pF1Tb2ZRrnwuHvbq6zX8krT4/de8QF478x82ZaWSuCsLOsEsgqgDyy5mKcIAaxmjZTX+LFh4Zkdx8vIIdaQn3ljH3d4gK+9hzWO4HCAd9bG12H3Hsf701prcOjYqNtLuG/HLm65OObGsTdK5JqH1zXJ5MYLz5k0XAiC5aKAwsqMAocrtz/XLBwUBwokL7fs2Gvb1mKZLjaaWgA2nf2RvALAsxye7RrBs9zX2Y99Iedsx+tWI41n1g/e979Nr/nmpRdwhwvustrHf9MkgWtZ417DGjmCDbIxjoD1xLMyj7Wsjj9ndQ2CMYYHViyN/V6wHth7aATrjseQF0s3FEndC8gigD6w5OyP5BUABtcaz6rYqH7EuvRRXeswCQTHyDwBRHXZeQ32wtmd7vACwd7HV9ZvaXrf/Ssu5QYied3/oFDiwOAhDmPSHEMaLJRA6hThVAKwJfIfJI8AwhpU2Fk6SFiXPNi95jVADNx9/eLzuA2IN92Hw4RgL4QnLN4wIKz7HyYLHii4+xqEhFx/3gK4/tyzM33nvGO2SAKpZwTSCqAXLIj8B8kjAF6XOmkXOQm8GIAPimCJN++/MEVQLekwIO1wgQfGRVZzJILyeuDjS4X0AhDLJJBqRiCtANAs1pz9kTwCwOm5xmm/NF3kOHAaDafT4sCGhBJAGXz4jDmRQkh6Zk/aU4gjbDoQy7lR0PeEYF3/dscfYV+2CROdeIcJYGbSFycWgA05/zzyCIDXRceuLXZxRRE2fRcFnqmxgYUl6vDqHWzcYUObLGN3FCSKkgfGJjBGIQqLNhRJvEYgjQAGwPCcfx55BMAL0mU5S8aRJhMwSNh8fVx0n9f9T5I0FEZYL0D0UACxRAK7mAC6krww0bfAGn83u3sqyWtNI48AePP/onsAQfZ4awDwDL2J3SdJEOJJIGwYgHkIOHzgdf+TpA2HERYLQPDzfhgzY5L68+yQwDImgf64FyUVQB9YNPUXRHQMIEmWnA92799smCYLW9DDw19w9OK+t0KDhYjfsIPw5IXxC3xd45Ajbw4/EpYZiBQlgZtfP2zy1mKJEoNiBeBN/aVLYDeIPALgJQGl6dbyGqF/psXGjVl+QaJW7+EZ+7bntnJFwBuW8PIQcBiAjbGxjDRSiyJsKOB/b99aulhoTGDzW4dcCRhMZ9yUYBIBGH2RjzjyCCCsK51kGBC2ys6PxvN6F0niC0kDk2GfzyNJXkMSUFJ4XC9FrJnA48O6iuoNGL6hSOzFRJIIYAAsDP755M0E5DVU/PFiYw0bM4ctHgoG4ng5AMGsvjB4vYqwBhy2hiGsTiIIS4Bq/P5WnlNf0ixCBAZLIDYYGCkA0zf7TEJeAUTN1eOZF3/IwR8xnv1ue24bt+EFA21h03/YHV+z5BxuwwhLLw6bvksyxSgyr8EnSU/AB8XlJjux4U+e4YHBEojcPDROAH1gafDPR8RqQN60WhCcl8cde/a8eyR0o5DGs3vcEmN8vR8s3MPKfHH/W9yyo6bvwjYKCcILIIoAP/srrJcTFhOIAuuDKc5p2TJ0DNpPmw+VlhbhxyORyGBgnACsy/xrRNT1AHhz50kJWzyUd5+BJIuSotKN06b+ZiFqdqAInEoVWmfPhdZO8dvASSIyMzBUAKZf5ispIi8IgvPzKII0G3hELe5Bsu40lKTxI1HDgCKSmnhgz+X2DVsz9QayUmlrZ72BM6Danmxhk+KEXk4sSgB9YHn3HxF9RSBssNio8BZ25vY3CrmKjfeTzvmjXLDMqASgqe7GoJ1uHCFp1N4XDA+c+ku68k8EKDnsDZQpgtaT50Ab6xFoTugwIEoA1nf/kaIvCdb4Y47bTTcJOIW3p2G8L6JcVcAeAe5w9AwbmvD2ExBNpdYC7fPmQ/WkKbIPPSuhwwCuAKj7fwK6JqDaoAxwtmAHu+H26kMj2SP5cT0LjAtgfADjBBrCHQaECcDoC32mgQRgD7zFW41gb6Bt7jyoTZsuu7pp4e4WFCaAAbA4+ScICcAekgjApzZ1OhsWnKFTb4CbFNQkAEr+mQwJwB7SCADBxt829zRomSFufULBNCUF8QRgde5/IyQAe0grAB8MDmqSQNS0NoAngH4w+FLfaSEB2ENWASCaJBA1XVKcJwCrrqYQBwnAHvIIwEf1BCImgEltftIfNu/8EwYJwB5ECMAHE4haTz5FxSDhpJ2CGgXQC5Zt+x0HCcAeRAoAUTSBaNK24Y0C6Aca/0+CBGAPogXgo1gC0aQ4QKMAaPzfAAnAHooSAIKNH2MDKiQQBeMAE/+g+X8+JAB7KFIAPookEE3kAwQFQPP/HEgA9lCGABAFpgwn8gGCAugDWv7bBAnAHsoSgI/EBKKJ5cFBAWCXIP+F2Q0jTgC4x16SvesI+eDehe+N2L6sbAEg2BtoYT2Bkvcc2MIE4O4DFxQABQA5xAkgai97Qi3irjUoQwA+ZScQ+YFA9/8oABgOCcAcVBaAT4kJRG4g0BcAbQASAgnAHHQQAFJSApG7QYgvgF6gDEAuJABz0EUAPgUnELkZgb4AcKugT8g+YBUhAZiDbgJACkwg+h8mgKt9AfQDpQBzIQGYg44C8CkggchNCfYFQDMAIZAAzEFnASCiE4hwJsCx/fLfcZAAzEF3AfgITCDqdGgPgGhEC6DaUnVv8ddlJqIYHxuH4yPHYWx0LPF7TBEAIiiBaBkJIAZRAqhUK9DS0cL+w1HLFwlKYHR4FMbH40exJgnAJ2cCkSuAXqApwFBECAAbf+tJrXTWL4ix42Nw7PCx2NeZKACfjFOGt5IAYhAhgLYpbeBUqfUXyejRUfcWhckCQDIkELkC6ANaBRhKXgFUa2ysdpLy20VrD8YEjg4djXyN6QLwwesU4PUKEvQG7nEoByCavAKotdXcG1E8OAzA4UAYtggASZhA9DQJIIa8Amid0urGAIjiOfbuschZAZsE4IMJRHgtw5ApQ1cAtA9ABCQAfSAB8IlIINriUBZgNCQAfSABRMNLICIBxEAC0AcSQDJwzwE/gYgEEAMJQB9IAMnxE4hIADGQAPSBBJAeEkAMJAB9IAGkhwQQAwlAH0gA6SEBxEAC0AcSQHpIADGQAPSBBJAeEkAMJAB9IAGkhwQQAwlAH0gA6SEBxEAC0AcSQHpIADGQAPSBBJAeEkAMJAB9IAGkhwQQAwlAH0gA6SEBxFCEAHAjS7wlZWIn4RxlVCoVqLVP3phk/Pg4jBwdKbUM9zvB/REbwMYrogwSQDpIADEUIYAk+9cF4e0qlLaMSq3S1GiSbqYpsgykfXp702PDB4dzl0ECSA9tCBIDCUBsGQgJQBWc7bQlWAwkALFlICQANXAq1Q0kgBhIAGLLQEgAauALoA9oW/BQSABiy0BIAGrgVGv304VBYiABiC0DIQGoARPA90gAMZAAxJaBkADUwBdAN9DFQUMhAYgtAyEBqEGl1rKcBBADCUBsGQgJQA18Acxk/05+gXvLIAGILQMhAahBtf2kU9xL1lI2YDgkALFlICQANXhh9QrHF0A/UC4AlyIEgI0m6ofaCDa8vGU4FadpPQFeUTfNegIRZSC8i6WmkVlYGSSA5GAOwMbr/vJiXwAPsbtPyK6UitBqQH0gASSHCeCXTACX+QLoBZoK5EIC0AcSQHJwCnDjp6+8yRfA1ezuQdmVUhESgD6QAJJTqbVc9/yqK/7LF8BidrdJdqVUhASgDySA5Di12iUbV135rOM/QDMBfCgIKLYMhIKA8sEZALwPCoD2BeBA04Biy0BoGlA2zvYXVi//M/df/kO0KpAPCUBsGQgJQC64CnDjp6/8K/ff/oNMAGvY3fdlV041SAAnUGkIQALITqXW8vXnV11xO/47KAAKBHIgAagJCSA7fgDQ/XfwCQoENkMCUBMSQHb8ACDSKIB+oJTgSZAA1IQEkA0/BXji7+CTlBHYDAlATUgA2fAzACf+Dj5JewM0Y7sAbjh/obgvk8Ndv30p0/tIANnAPQCeX3XFY/7fTuMLKA4wGdsFsPEzy8V9mRwu+umjmd5HAshGcPyP8ATQDxQHmIAEQAIwhcbxv/tY44soH2AyJAASgCkE5/99eAKgfIAANq0F4AlFhgB4iUJJXkMCiCY4/z/xGO+FTAID7O5M2RVWAZtWA/LScWUIgHd2TwIJIApn8IXVy09vepT3UiaAtezuRtlVVgESAAnABJxq7ccbP33l9U2P815MG4ScgARAAjABfwOQxsedsDcwCRxgdzNkV1w2JAASgP44Q6z7P437TNhbaHlwnSIEgMG38fHk6RaO47hBvFxl4P+qDf+52dvHxk40GN6MgAwB4HcWB0+qJAA+weW/Tc+FvYmGAXVoGpCmAXUnrPuPOFFvpGEACYAEoDvh3X/32ai30jCABEAC0Juo7r/7fNSbKSmIBEAC0Bte8s+k5+MKsD0piARAAtAXfvLPpFfEFWH72gASAAlAV3i5/40kEYDVlw8nAZAAdAUv/73h2o/+Keo1sQJAbA4GkgBIADoSF/ybeF2SwmzeKYgEQALQkcadf8JIJADE1mAgCYAEoB/xwb+JVyYtkgmgh939RPahlU1uAbBGh40vCAngBCQA8bCz/9+zs/8Pkrw2sQAQGzMD8wqA13hxE440V9PBjTwaN/NIW0alUoFa++R6jB8fh5GjIxN/8xqPDAE0CpNHo8wQlBlKLQw7BBCd+df06jRF27hteF4BVGtVaDmpRfZhJELr1YDjrP6Hoq8vaIMAGrf9jn19msK9KcEBsKgXkFcASNvUtqbVfCqiswCSDInMF4AzVG3v6Iqb+pv0jrQfYdtuQSIEgEHAJEtcZaOrAHAoc/Tw0djXmS6AsF1/It+T9kOYALrY3U7ZB1sWIgSAuEG4jtYM33h56CgAHPOPvDuSaG8E0wXAzv6LNlz7sVRXWsn0c7QpMUiUABDc2KPaWuXu8qsC2ghgvN7w0wZCTRZA0sSfpvdl+TCbegEiBaAjqk4DZsFcAeDYv31J2rO/+86sH2nLjECcAO7YtB3u2/Ga7GoWBglAfdJG/ie9N+uH2jIj8MEZ7XBL18zQ5+/e9ircvfUV2dUsDJME8OuVl0U+r6cA0kf+J707z0fb0As4f2orfHvBrNDn172xH25ev1l2NQvDFAGcNqUD7l9xaejzm/a/DV98cmMpdRFJnrO/+/48H+71AvDXb+waganVCtx/3pzQ54dGRuGah9e59yZiigBWLnoP3HjhOaHP6ylyZ5Cd/c/PevZ3S8hbBRvWCPz0fbNhTms19PlvbNgGj+4clF3NWJbMPTn1e+66/AOF1umGJ55N/Z4X96b/vT+wYimcOiV8dkHHWE6anP8whMxKm35J8S/NnwGXzeoIfV6XXsCKBWdA7wcvkF2NXPT+egs88sruVO+JO/sjn3pkPew5fET24SWGd6nvTOWIqIzpm4fGxQGQxwYG4fbntsmuaiw3nL8QbrhgkexqZOJh1vBvZQJIw8KZ09zo/9SW8CsOv3zgEKx+PH1PRCZxm30mLkdUhUxPEY4bBiC6SOAW1gv4OOsN6ESWxo+Bvx8uuyiy64/oMoTzyZLyG1qWqEqZPi14ORsC3DQ//tAwmHTbc1uVHw78Jxvb/0WGmIAMdrx1EG544jepvtMlczrhm5cujjzzI28eHoZrHlkn+xBTkG/ar6k0kVUz/XJidy46Bc7uqMW+Dn+omBuAZxVVRYAN467LL4FFs6bLrkokg0NHYNUjzyT+HrHLv/Kc98BVXfMSvV63s3/UZb6yIHxpiskBwQUdLfCjRenOmji/LDtV+MGXX4e3hpt3/kEJPHzNR2Faq5r7FRw6NgKfe+JZ2PH2wabnZrW3wvKzTodWb03Faaybv2T2rNjufhDd5v5FBf4mlSm6kt46AZxQtXoooBJ49vwC+6FjsKuRRZ3T3eGAihJYxbrmvMaPjfzeKy6J7d7HfSc6zNycIHu+f2SpRVTV9IuJxE0LqghOcX328We5P3jMDyh6vj8tYdN92Ogxqo9d/azgd4Bn/pc4QlSVJBf5yEJhq9NNHgogOkoAf/D4w+dJQKUcge8+/zv47z/wF5v+YNlFboAvKzo2/iK6/hNlF1Vp02cFEB2HA8+8sQ++sp4/naZCjkDUdN9X338uG/cnC+7xwCHQzezYdUr4ER31byq9yKqbPiuAYGDw8/OmuclCuoBRb4x+85CZI9D/+pvwpf4XuM9df+7ZcP15CzKXreuqTdFR/0YK36DK9AQhH+wNfGbu1NhkIVVYu2k7/Dwk9/1ny5eWPj0YNdePU3pfu/jcTOVictbdW1/V7KxfR2TCT+hnFH0Q3lCgn93UGGAWDPYIMDbwoeltyssAsxaxgTRSdo5A1Fw/buCBQb804PTeM7v3KZ2HEY+znXX9P1RU13/iU8o4FG+tQD8YHA8I4/yTajC8dxDGR47lL6wAfs/OvEdGm/fVwzTan61YWvj0YNRcf0etCos6p0HVSfYzPXRsVKvgXjjOkFOrXiYi1z/2k8o6JBviAWGMjx2Hd3e9CmNHh/MXViJl5AjgcuAsy3tNpuhxf5BSN6m2JR7AQ1cJfGT+XPhud7oueFKyLO01nTLG/ZM+r+wDND0/II7hPbth5B29dhEuIkfgri074K7fCk1q054i5/tDP7Psg7QtKMhDRwn840V/Dqved5aQsrIs7TWfcoJ+TZ8q41BtDgr66CgBETkCL7Dx/ucybANmNuUF/Zo+WdYhMwl0s7unZH2+ChzdOwjH3tYrAJYnRyDLun4bqNRalj+/6orHZHy21CvV2bChaBzYC8DegC5kzRHA6b6PP/AkNf4GRGzsmQfpl6q04doCcegmgbTTg1Fz/TaTd09/IXWQ/SUgNl1sNAyTJXBT/0Z4+vW9squsFFkv5im8HrIr4EMSqEvg6N49bs6ADiSZHqS5/mZUafxuXWRXIAhJAOD48BE48tpOIyTws9/vhO9t/J3sKiqFSo3frY/sCjTCJIDbiVmbI4DoJgHe9CDN9TcjI9Entk6yK9AIJQrV0VkCON236lGdttouAzmJPrG1kl0BHiSBOiiB4d27YGx0RHZVYvGnBxGa629Ezcbv1kx2BaKgmIBei4hQAjgroOPmG0Wh2pi/qX6yKxAHSUAvCRAnUL3xu3WUXYEkkARIArqhQ+N36ym7AkmhjMG6BI7s3gXH3z0suypEBCpk+CWuq+wKpIHWDtTRcSWhLcjO7U+LVgJAvFWED4HFS4kRkoBqOEOVWm2lrFV9mWstuwJZ8PYT6APLpwlJAqrgbHdq1R4Z6/lz11x2BbLi5QpgT8Da7cWQo/v3wrE/7ZNdDWvB7L5Ka9tVKs7xJ6q/7ArkxeaNRn10W0loCmVv4FnIMciugAi8Lcf7wOK4AEmgTNzx/ufL2rq70CORXQFRUFyAJFAO+o73uUcjuwIi8eICvWDxkGD00EFXArosItIJ7PJXWlq/rOt4n3tMsitQBLYPCXRbSag+5nT5m45MdgWKwvZZApKAGJxK9ZeV1ra/NumsP+n4ZFegaJgI1kB9WGBdb4AkkAf3rP8tdta/XXZNCj1K2RUoAyaBLqgPCazrDbh7CuzZTYuIUlCf22+9bsO1HzP+2mVWCMDH1tgArSRMirlj/dAjll2BsrF1poAkEI2JEf5Exy27ArLw8gYwi9CaYQFJoBns7kPFudGUef3Uxy+7ArLxlhj3stuZsutSBiiB4cHdMDpk+1V6nEHW3f9XnZbuFvItyK6ACnjDgjXezYr4gL0rCZ0hp1q9i3X3/8W27j7325BdAZUIiMCKnYfskgA1fB4kAA7etGEvWLAPoQ0SwP35Ki0t/2zDtF5aSAAReCLAHkEPGDw0MHNPAf+M3/If1PDDIQEkwIYYgTkrCamrnwYSQEpMnjXQWwIU1c8CCSAj3uakPWBYnEA3CeD43nGcH+u2GacqkABy4g0PeqA+PDCiV4DXHcDrD6i7iMg929/p1FrupG5+PkgAAvGyC1EEuOZA61iBeisJ3bH94+wX+x1bs/aKgARQEN7CI/+mpQzkS6De6FkX/0GbFuiUCQmgBDwZdENdBloNE8qXgDPIGv0vWKN/khp98ZAASsYbJnRDXQZaLEQaGxmBI7sHCltEhAtynErl4XEY/yV178uFBCAZbzbBvykrBJErCd0VeI6znp3lf0XRe7mQABQj0ENY7N2U2eY8mwSc7axLv5U19s10hlcPEoAGeFLoghNSwKlHKb2FMAm4Z3WAg+zM/lvW2F9kjf0VauzqQwLQGC8HYbH/p3ff5d0QfD5vD2ILux3w/j2At/Hjo86xP+77v9FDB2tOreU5movXl/8HmXIKmHvaMtkAAAAASUVORK5CYII=" style="max-height: 64px; max-width: 64px" />
+                                                                </a>
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-5'>
+                                                        <div class="row">
+                                                            <div class='col-sm-12'>
+                                                                Selected Column Export
+                                                                <div class="form-group">
+                                                                    <div class='input-group'>
+                                                                        @*<select id="ddcolumns" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control"></select>*@
+                                                                        @Html.ListBoxFor(m => m.ddcolumnsSelected, new SelectList(Model.ddcolumns, "Value", "Text", Model.ddcolumnsSelected), new { id = "ddcolumns", @style = "width: 100%", @class = "form-control" })
+                                                                        <span class="input-group-addon formclass"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class='col-sm-12'>
+                                                                Select Columns to Show
+                                                                <div class="form-group">
+                                                                    <div class='input-group'>
+                                                                        @*<select id="ddshowcols" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control"></select>*@
+                                                                        @Html.ListBoxFor(m => m.ddshowcolsSelected, new SelectList(Model.ddshowcols, "Value", "Text", Model.ddshowcolsSelected), new { id = "ddshowcols", @style = "width: 100%", @class = "form-control" })
+                                                                        <span class="input-group-addon formclass"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @if (Model.divtempl)
+                                                {
+                                                    @:<div class="row" id="divtempl" style="display:block">
+                                                    }
+                                                    else
+                                                    {
+                                                        @:<div class="row" id="divtempl" style="display:none">
+                                                        }
+
+
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <div class='input-group'>
+                                                            <div class="title_left">
+                                                                <h3 class="box-title">Saving & Selection Options</h3>
+                                                            </div>
+
+                                                            <span class="input-group-addon formclass"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="row">
+
+                                                        <div class='col-sm-6'>
+                                                            Template Name
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    <input ID="txttname" CssClass="form-control col-lg-12 sa-textbox" placeholder="Template Name" />
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-2'>
+                                                            <label Text="." Style="color: white"></label>
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    <input type="button" class="btn btn-success form-control" onclick="savetempl();" id="btn_save" style="border-radius: 10px!important;" value="Save As Template" />
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+
+
+            @*<div class="col-md-12" style="float: none!important">
+            <div style="height: 10pt">
+            </div>
+        </div>*@
+
+
+
+            <div class='col-sm-5'>
+                Search Any String Here :
+                <label id="lbltotrecords">@Model.lbltotrecords</label>
+                @Html.HiddenFor(m => m.lbltotrecords)
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.TextBoxFor(m => m.txtsearch, new { id = "txtsearch", @Class = "form-control", @onkeyup = "Searchtxt(event);", Width = "100%", placeholder = "Search Here" })
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-7'>
+                <div class="row">
+                    <div class='col-sm-4' style="margin: auto!important">
+                        Select Records to View
+                        <div class="form-group">
+                            <div class="input-group">
+                                @Html.DropDownListFor(m => m.iPageRecords, new SelectList(Model.ddpages, "Value", "Text", Model.ddpages.FirstOrDefault()), new { @id = "ddpages", @style = "width: 100%", @class = "form-control" })
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divsbtn" class='col-sm-2'>
+                        <label Text="." Style="color: white">.</label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" ID="Button1" name="command" value="Search" onClick="Searchbtn(event);" class="btn btn-primary btn-block margin-bottom" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divokbtn" class='col-sm-3'>
+                        <label Text="." Style="color: white">.</label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" id="btnOk" value="Get Selected" name="command" onclick="btnokclick('', event);" class="btn btn-primary btn-block margin-bottom" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="divokbtn" class='col-sm-3'>
+                        <label Text="." Style="color: white">.</label>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" id="btnOk" value="Load More" name="command" onclick="GetRecords();" class="btn btn-primary btn-block margin-bottom" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-body no-padding firstdiv" style="width: 98%;">
+                <div class="table-responsive col-md-12" style="overflow-x: inherit!important; align-items: center;">
+                    <div id="dvGrid">
+                        @if (Model.CampaignDataTable.Rows.Count > 0)
+                        {
+                            <table id="grdviewnew" class="footable table toggle-medium">
+                                <thead>
+                                    <tr class="GridViewScrollHeader">
+                                        @if (Convert.ToInt16(sgen.GetSession(MyGuid, "SEEKTYPE").ToString()) == 2)
+                                        {
+                                            <th>
+                                                <input type="checkbox" runat="server" class="sa-input checkbox" id="cbSelectAll" onclick="CheckUncheckChildNodesForFoo1('#grdviewnew', this.checked);" />
+                                            </th>
+                                        }
+                                        @for (int h = 1; h < Model.CampaignDataTable.Columns.Count; h++)
+                                        {
+                                            if (h == 2) { }
+                                            else
+                                            {
+                                                <th class="tHeaderCell" width="" col_name="@Model.CampaignDataTable.Columns[h].ColumnName" sort_direction='@((string.IsNullOrEmpty(Model.SortDirection)) ? "" : (@Model.CampaignDataTable.Columns[h].ColumnName.ToString() == Model.SortColumn ? (Model.SortDirection == "ASC" ? "DESC" : "ASC") : ""))'>@Model.CampaignDataTable.Columns[h].ColumnName</th>
+                                            }
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.CampaignDataTable.Rows.Count; i++)
+                                    {
+                                        string btnc = "RowSelect(" + i + ")";
+                                        //if (sgen.GetSession(MyGuid, "SEEKTYPE").ToString() == "2")
+                                        //{
+                                        //    btnc = "DblRowSelect(" + i + ")";
+                                        //}
+
+                                        <tr onclick="@btnc;" ondblclick="btnokclick(@i,event);">
+                                            @if (Convert.ToInt16(sgen.GetSession(MyGuid, "SEEKTYPE").ToString()) == 2)
+                                            {
+                                                <td>
+                                                    @if (Convert.ToInt16(Model.CampaignDataTable.Rows[i]["chk"]) == 1)
+                                                    {
+                                                        <input runat="server" type="checkbox" class="sa-input checkbox" onclick="CheckUncheckChildNodesForFoo2('#grdviewnew', this.checked, this);" id="cbSelect" checked="checked" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input runat="server" type="checkbox" class="sa-input checkbox" onclick="CheckUncheckChildNodesForFoo2('#grdviewnew', this.checked, this);" id="cbSelect" />
+                                                    }
+                                                </td>
+                                            }
+                                            @for (int c = 1; c < Model.CampaignDataTable.Rows[i].ItemArray.Count(); c++)
+                                            {
+
+                                                if (c == 2) { }
+                                                else
+                                                {
+                                                    var vall = Model.CampaignDataTable.Rows[i].ItemArray.ElementAt(c).ToString().Trim();
+
+                                                    var minl = Model.CampaignDataTable.Columns[c].ColumnName.ToString().ToString().Length;
+                                                    var minpx = minl * 10 + "px";
+                                                    string isnum = "";
+
+                                                    try
+                                                    {
+                                                        if (vall.Substring(vall.Length - 3, 1).Equals("."))
+                                                        {
+                                                            isnum = "text-align: end;";
+                                                        }
+                                                    }
+                                                    catch (Exception err)
+                                                    {
+                                                        isnum = "";
+                                                    }
+                                                    <td style="@isnum min-width:@minpx">@Model.CampaignDataTable.Rows[i].ItemArray.ElementAt(c)</td>
+                                                }
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                        else
+                        {
+                            <div runat="server" id="div_nodata" visible="false">
+                                <img src="../../images/nodata.png" alt="no data found" />
+
+                            </div>
+                        }
+                    </div>
+                </div>
+                @if (Model.sumofclosing != null && Model.sumofclosing != "")
+                {
+                    <div class="row">
+                        <div class="col-md-12" style="background-color:#6495ed;">
+                            <div class="col-md-2">
+                                <label id="labelname" style="color:white;">Sum Of Opening</label>
+                            </div>
+                            <div class="col-md-1">
+                                <label id="sumoprn" style="color:white;">@Model.sumofopening</label>
+                            </div>
+                            <div class="col-md-2">
+                                <label id="labelname2" style="color:white;">Sum Of Dr Amount</label>
+                            </div>
+                            <div class="col-md-1">
+                                <label id="drsum" style="color:white;">@Model.sumofdramt</label>
+                            </div>
+                            <div class="col-md-2">
+                                <label id="labelname3" style="color:white;">Sum Of Cr Amount</label>
+                            </div>
+                            <div class="col-md-1">
+                                <label id="crsum" style="color:white;">@Model.sumofcramt</label>
+                            </div>
+                            <div class="col-md-2">
+                                <label id="labelname4" style="color:white;">Sum Of Closing Amount</label>
+                            </div>
+                            <div class="col-md-1">
+                                <label id="closingsum" style="color:white;">@Model.sumofclosing</label>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        </div>
+        @Html.HiddenFor(m => m.hforderby, new { value = "" })
+        @Html.HiddenFor(m => m.hfddcolumns, new { value = "" })
+        @Html.HiddenFor(m => m.hfddshowcols, new { value = "" })
+        @Html.HiddenFor(m => m.hfddpages, new { value = "" })
+        @Html.HiddenFor(m => m.sumofopening, new { value = "" })
+        @Html.HiddenFor(m => m.sumofcramt, new { value = "" })
+        @Html.HiddenFor(m => m.sumofdramt, new { value = "" })
+        @Html.HiddenFor(m => m.sumofclosing, new { value = "" })
+        @Html.HiddenFor(m => m.showtot, new { value = "" })
+        @Html.HiddenFor(m => m.hfGridView1SV, new { value = "" })
+        @Html.HiddenFor(m => m.hfGridView1SH, new { value = "" })
+        @Html.HiddenFor(m => m.selectedrows, new { value = "", id = "hfselectedrows" })
+
+        </div>
+</div>
+
+
+<style>
+    .myselected {
+        background-color: #999999;
+    }
+</style>
+
+@*<link href="~/js/GridViewScroll-master/css/web.css" rel="stylesheet" />
+    <script src="~/js/GridViewScroll-master/js/gridviewscroll.js"></script>//11*@
+
+@*<link href="~/erp/directlink/footable.min.css" rel="stylesheet" />
+    <script src="~/erp/directlink/footable.js"></script>11*@
+
+<script type="text/javascript">
+
+        function getScrollPosition() {
+            var position = gridViewScroll.scrollPosition;
+            alert("scrollTop: " + position.scrollTop + ", scrollLeft: " + position.scrollLeft);
+        }
+        function setScrollPosition(top, left) {
+            var scrollPosition = { scrollTop: top, scrollLeft: left };
+
+            gridViewScroll.scrollPosition = scrollPosition;
+        }
+        function enhancegrid() {
+
+            var lastpos = 0;
+            var scrolled = true;
+            var beforelastpos = 0;
+            var grdwidth = $(".firstdiv")[0].clientWidth;
+            gridViewScroll = new GridViewScroll({
+                elementID: "grdviewnew",
+                width: grdwidth,
+                height: 380,
+                startVertical: $("#hfGridView1S").val(),
+                startHorizontal: $("#hfGridView1SH").val(),
+                onScrollVertical: function (delta) {
+                    $("#hfGridView1SV").val(delta);
+                },
+                onScrollHorizontal: function (delta) {
+                    $("#hfGridView1SH").val(delta);
+                },
+
+                freezeColumn: false,
+                freezeFooter: false,
+                freezeColumnCssClass: "",
+                freezeFooterCssClass: "",
+                freezeHeaderRowCount: 1,
+                freezeColumnCount: 1,
+                onscroll: function (scrollTop, scrollLeft,e) {
+
+                    console.log(scrollTop + " - " + scrollLeft);
+                    var $o = gridViewScroll;
+
+
+                        if (scrollTop + $o["Content"].offsetHeight >= $o["ContentGrid"].clientHeight && scrollTop + $o["Content"].offsetHeight >= lastpos) {
+                            if (lastpos < scrollTop + $o["Content"].offsetHeight) {
+                                beforelastpos = lastpos;
+                                lastpos = scrollTop - $o["Content"].offsetHeight;
+                            }
+
+
+
+                            //GetRecords();
+                            //var scrollPosition = { scrollTop: beforelastpos, scrollLeft: scrollLeft };
+                            //gridViewScroll.scrollPosition = scrollPosition;
+                            //$(document.getElementById("btnOk")).focus();
+                            //e.preventDefault();
+                            //alert('end reached');
+                        }
+
+                    else {
+                        scrolled = false;
+                    }
+
+                    //if ($o[0].scrollHeight - $o.scrollTop() <= $o.outerHeight()) {
+                    //    console.log("pos:" + $o.scrollPosition + " S height" + $o[0].scrollHeight + " S top" + $o.scrollTop() + "O heig " + $o.outerHeight());
+
+                    //}
+                    //else alert('you scrolled');
+                }
+            });
+            gridViewScroll.enhance();
+
+
+
+
+            function offset(el) {
+                var rect = el.getBoundingClientRect(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+            }
+
+            try {
+                var val = $("#grdviewnew_Header_Fixed")[0].offsetTop + "px";
+                $("#grdviewnew_Header_Freeze")[0].style.top = val;
+            } catch (err) { }
+
+
+        }
+        $(document).ready(function () {
+
+            var firsttime;
+            var grdwidth = $(".firstdiv")[0].clientWidth;
+            $(".grdviewnew_Header .grdviewnew_Header_Fixed .grdviewnew_Content .grdviewnew_Content_Fixed").css("width", grdwidth);
+
+            //if (firsttime == undefined) { $("#Button1").click(); firsttime = "N"; }
+
+            //$('[id*=grdviewnew] tr :last').closest('table').closest('tr').on('click', function () {
+            //    $(this).next('tr').hide();
+            //});
+            $('.footable-row-detail-name').click(function () {
+                alert('hohoho');
+            });
+
+            $("tr.footable-row-detail").on('click', function (e) {
+
+                alert('ok report');
+                //$('table').footable().trigger('footable_collapse_all');
+                //alert("Single" + $(this)[0].sectionRowIndex);
+            });
+
+            $("table tr").on('click', function (e) {
+
+                //$('table').footable().trigger('footable_collapse_all');
+                //alert("Single" + $(this)[0].sectionRowIndex);
+            });
+            $("table tr").on('dblclick', function (e) {
+                //alert("Double" + $(this)[0].sectionRowIndex);
+            });
+
+
+            //$(".footable-row-detail").click(function (e) {
+            //    alert("Single cell" + $(this)[0].sectionRowIndex);
+            //});
+            //$('tr').dblclick(function () {
+            //
+            //    var id = $(this).attr('id');
+            //    alert("Double" + id);
+            //});
+
+          //  
+            var seektype = '@sgen.GetSession(MyGuid, "SEEKTYPE").ToString()';
+
+            if (seektype == 2) {
+
+                $("#divsbtn")[0].classList.remove("col-sm-4");
+                $("#divsbtn")[0].classList.add("col-sm-2");
+                $("#divokbtn")[0].style.display = 'block';
+            }
+            else { $("#divokbtn")[0].style.display = 'none'; }
+
+            try {
+                var element = $(".modal-backdrop");
+                element[0].classList.remove("modal-backdrop");
+            } catch (err) { }
+
+            //try {
+            //    $("[id*=snav]").hide();
+            //    $(".left_col")[0].style.display = 'none';
+            //    $(".top_nav")[0].style.display = 'none';
+            //    $(".right_col")[0].classList.remove("right_col");
+            //    //$("#aspnetForm")[0].children[9].children[1].children[0].children[0].style.display='none'
+            //    $("#aspnetForm")[0].children[9].children[1].children[0].children[3].style.display = 'none';
+
+            //}
+            //catch (er) { }
+
+            if (!detectmob()) {
+                //enhancegrid();
+            }
+            else {
+
+                $('[id*=grdviewnew]').footable();
+                $('[id*=grdviewnew] tr :last').closest('table').closest('tr').find('td').show();
+                $(window).resize(function () {
+                    location.reload();
+                });
+                $('[id*=grdviewnew] tr :last').closest('table').closest('tr').on('click', function () {
+
+                    $(this).next('tr').hide();
+                });
+                //$('[id*=grdviewnew]').footable({
+                //    "paging": {
+                //        "enabled": true
+                //    },
+                //    "filtering": {
+                //        "enabled": true
+                //    },
+                //    "sorting": {
+                //        "enabled": true
+                //    }
+                //});
+                //Load GridView Rows when DIV is scrolled
+                var divv = document.getElementById('dvGrid');
+                divv.style.width = '100%';
+                divv.style.overflow = 'auto';
+                divv.style.height = '400px';
+
+                $(".table-responsive").on("scroll", function (e) {
+                    var $o = $(e.currentTarget);
+                    if ($o[0].scrollHeight - $o.scrollTop() <= $o.outerHeight()) {
+                        //GetRecords();
+                        //e.preventDefault();
+                    }
+                });
+            }
+        });
+        var gridviewID = "grdviewnew";
+        var gridview = null;
+        var gridviewFreeze = null;
+        var selectedRowIndex = -1;
+
+        $(document).ready(function () {
+            gridview = $('#' + gridviewID);
+            gridviewFreeze = $('#' + gridviewID + '_Content_Freeze');
+        });
+
+        function RowMouseOver(rowIndex) {
+
+            if (selectedRowIndex == rowIndex) return;
+            try {
+                gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItemHover';
+
+                if (gridviewFreeze[0])
+                    if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].addClass = 'GridviewScrollItemHover';
+            }
+            catch (err) { }
+        }
+
+        function RowMouseOut(rowIndex) {
+
+            if (selectedRowIndex == rowIndex) return;
+            try {
+                gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItem';
+
+                if (gridviewFreeze[0])
+                    if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'GridViewScrollItemFreeze';
+            }
+            catch (err) { }
+        }
+
+    function RowSelect(rowIndex) {
+
+        //return;
+        //if (detectmob()) { return; }
+        if (selectedRowIndex == rowIndex) return;
+
+        RowReset(selectedRowIndex);
+        var rowss = getselection(selectedRowIndex);
+        $("#hfselectedrows").val(rowss);
+        selectedRowIndex = rowIndex;
+        //alert(rowIndex + 1 + "Clicked");
+        //var rowss = getselection(rowIndex);
+
+        //PageMethods.Setvalues(rowss, sucs, fail);
+        //javascript: __doPostBack("grdviewnew", rowIndex);
+        $("#hfselectedrows").val(rowss);
+        gridview[0].rows[rowIndex + 1].className = 'myselected';
+
+        if (gridviewFreeze[0])
+            if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'myselected';
+    }
+    function DblRowSelect(rowIndex) {
+       // 
+            var seektype = '@sgen.GetSession(MyGuid, "SEEKTYPE").ToString()';
+            if (seektype == "0") return;
+
+            RowReset(selectedRowIndex);
+
+            selectedRowIndex = rowIndex;
+            //alert(rowIndex + 1 + "Clicked");
+
+
+
+            var rowss = getselection(selectedRowIndex);
+            if (rowss === "") {
+                alert('Please Select Atleat One Row');
+                return;
+            }
+            var obj = { "idxs": rowss, "Myguid": '@MyGuid' };
+            myMethod_C('@controllerName', '@viewName', 'Setvalues', obj, sucs, fail);
+            //PageMethods.Setvalues(rowss, sucs, fail);
+            //javascript: __doPostBack("grdviewnew", "");
+            gridview[0].rows[rowIndex + 1].className = 'myselected';
+            if (gridviewFreeze[0])
+                if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'myselected';
+        }
+
+        function btnokclick(selectedindex, evt) {
+
+
+            var seektype = '@sgen.GetSession(MyGuid, "SEEKTYPE").ToString()';
+            if (seektype == "0") return;
+            var seeklimit = '@sgen.GetSession(MyGuid, "SEEKLIMIT").ToString()';
+            var rowss = getselection(selectedindex);
+            if (rowss === "") {
+                alert('Please Select Atleat One Row');
+                return;
+            }
+
+            var cnt = 1;
+            try {
+                var cnt = rowss.split(',').length;
+            }
+            catch (err) { }
+            if (cnt > seeklimit) {
+                alert('Maximum Selection Limit is ' + seeklimit + ' and You have selected ' + cnt + '.Please Change Selection');
+            }
+            else {
+                var obj = { "idxs": rowss };
+
+                @* myMethod_C('@controllerName', '@viewName', 'Setvalues', obj, sucs, fail);
+                //PageMethods.Setvalues(rowss, sucs, fail);
+                javascript: __doPostBack("grdviewnew", "");*@
+                $("#hfselectedrows").val(rowss);
+
+                //prevent the browsers default function
+                evt.preventDefault();
+                //grab the form and wrap it with jQuery
+                var $form = $("#footable_v2");
+                //if client side validation fails, don't do anything
+                //if (!$form.valid()) return;
+                //send your ajax request
+                $.ajax({
+                    type: "POST",
+                    url: "/foo/footable_v2",
+                    data: $form.serialize() + "&command=selected&rows=" + rowss + "",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+
+                        close_pop();
+                    },
+                    error: function (err) {
+
+                        close_pop();
+                    }
+                });
+            }
+        }
+
+    function getselection(selectedindex) {
+     //   
+            var idxs = "";
+            var selected;
+            var seektype = '@sgen.GetSession(MyGuid, "SEEKTYPE").ToString()';
+            if (seektype == "0") return idxs;
+            var trs = $("[id$=grdviewnew] tr");
+            if (detectmob()) trs = $("[id$=grdviewnew] tr[onmouseout*=RowMouseOut]");
+            for (var t = 1; t < trs.length; t++) {
+                var chk;
+                if (detectmob()) chk = trs[t - 1].children[0].children[1];
+                else {
+                    chk = trs[t].children[0].children[0];
+                    if (t === 1) chk = trs[t].children[0].children[0].children[0];
+                } if (chk.children.length > 0)
+                    selected = chk.children[0].checked;
+                else selected = chk.checked;
+
+                if (selected) {
+                    if (idxs === "") idxs = (t - 1);
+                    else idxs = idxs + "," + (t - 1);
+
+                }
+            }
+            if (idxs === "") {
+                idxs = selectedindex;
+            }
+            return idxs;
+        }
+        function sucs() {
+            hidewait();
+        }
+        function fail() { hidewait(); }
+
+    function savetempl() {
+       // 
+            try {
+                showwait();
+
+
+                var colfil = $("[id*=ddnames]").val().toString();
+                var oper = $("[id*=ddoperators]").val().toString();
+                var filtstr = $("[id*=txtsval]").val().toString();
+                var ordr = $("[id*=hforderby]").val().toString();
+                var records = $("[id*=hfddpages]").val().toString();
+                var colexp = $("[id*=hfddcolumns]").val().toString();
+                var colsshow = $("[id*=hfddshowcols]").val().toString();
+                var tempname = $("[id*=txttname]").val().toString();
+                if (tempname == "") {
+                    hidewait();
+                    alert('Template Name can not be Blank');
+                    return;
+                }
+                var obj = {
+                    "colfil": colfil, "oper": oper, "filtstr": filtstr, "ordr": ordr, "records": records, "colexp": colexp, "tempname": tempname, "colsshow": colsshow
+                };
+                myMethod_C('@controllerName', '@viewName', 'Save_template', obj, sucst, failt);
+                //PageMethods.Save_template(colfil, oper, filtstr, ordr, records, colexp, tempname, colsshow, sucst, failt);
+            }
+            catch (err) {
+
+                hidewait();
+                alert('Something Went Wrong .Please Check');
+            }
+        }
+        function sucst(response) {
+
+            hidewait();
+            if (response == "True") {
+                alert('Template Saved');
+            }
+            else if (response == "0") {
+                alert('Template Name Already Exist');
+
+            }
+            else {
+                alert('Error in Saving');
+            }
+        }
+        function failt(response) {
+            hidewait();
+            alert('Error in Saving');
+        }
+        function RowReset(rowIndex) {
+            gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItem';
+            if (gridviewFreeze[0])
+                gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'GridViewScrollItemFreeze';
+        }
+        function GridCellClick(Rownum, CellNumber) {
+            alert("Row " + Rownum + " cell " + CellNumber);
+        }
+
+        function expword(evt) {
+
+             evt.preventDefault();
+         var $form = $("#footable_v2");
+        evt.preventDefault();
+        var $form = $("#footable_v2");
+        $.ajax({
+            type: "POST",
+            url: "/foo/SetSession",
+            data: $form.serialize() + "&Name=model",
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+             window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "expword" })";
+            },
+            error: function (err) {
+                window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "expword" })";
+            }
+        });
+
+
+        }
+    function expxls(evt) {
+
+
+        evt.preventDefault();
+         var $form = $("#footable_v2");
+        evt.preventDefault();
+        var $form = $("#footable_v2");
+        $.ajax({
+            type: "POST",
+            url: "/foo/SetSession",
+            data: $form.serialize() + "&Name=model",
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+
+                window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "expxls" })";
+            },
+            error: function (err) {
+                window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "expxls" })";
+            }
+        });
+
+    }
+        function expcsv(evt) {
+
+
+             evt.preventDefault();
+         var $form = $("#footable_v2");
+        evt.preventDefault();
+        var $form = $("#footable_v2");
+        $.ajax({
+            type: "POST",
+            url: "/foo/SetSession",
+            data: $form.serialize() + "&Name=model",
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+                window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "expcsv" })";
+            },
+            error: function (err) {
+                window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "expcsv" })";
+            }
+        });
+
+
+        }
+        function exppdf(evt) {
+
+
+             evt.preventDefault();
+         var $form = $("#footable_v2");
+        evt.preventDefault();
+        var $form = $("#footable_v2");
+        $.ajax({
+            type: "POST",
+            url: "/foo/SetSession",
+            data: $form.serialize() + "&Name=model",
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+                  window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "exppdf" })";
+            },
+            error: function (err) {
+                window.location.href = "@Url.RouteUrl(new { Controller = "Foo", Action = "exppdf" })";
+            }
+        });
+
+
+        }
+
+
+        function Searchtxt(evt) {
+
+            event.preventDefault();
+
+            if (event.keyCode === 13) {
+                Searchbtn(evt);
+            }
+        }
+
+        function Searchbtn(evt) {
+
+            //prevent the browsers default function
+            evt.preventDefault();
+            //grab the form and wrap it with jQuery
+            var $form = $("#footable_v2");
+            //if client side validation fails, don't do anything
+            //if (!$form.valid()) return;
+            //send your ajax request
+            $.ajax({
+                type: "POST",
+                url: "/foo/footable_v2",
+                data: $form.serialize() + "&command=search",
+                dataType: "json",
+                traditional: true,
+                success: function (response) {
+                    document.body.innerHTML = response;
+                },
+                error: function (err) {
+                    $('#myModalContent').html(err.responseText);
+                    enhancegrid();
+                    $(".tHeaderCell").on("click", function (evt) {
+                        Sortbtn(evt);
+                    });
+                }
+            });
+            @* showwait();
+            var searchval = $("[id$=txtsearch]")[0].value;
+            var obj = { "searchval": searchval };
+            myMethod_C('@controllerName', '@viewName', 'SetSearch', obj, sucs, fail);
+            //PageMethods.SetSearch(searchval);
+            var seektype = '@Session["SEEKTYPE"].ToString()';
+            //if (seektype != 2) {
+
+
+            //    return;
+            //}
+            var rowss = getselection("");
+
+            var opname = $("[id$=ddoperators]")[0].value;
+            var colname = $("[id$=ddnames]")[0].value;
+            var sval = $("[id$=txtsval]")[0].value;
+            var searchval = $("[id$=txtsearch]")[0].value;
+
+            var colctrls = $("[id$=ddnames] option");
+            var cnts = colctrls.length;
+            var cols = "", cond = "", orderby = "";
+
+            colctrls.each(function () {
+
+                var opt = $(this);
+                if (cols == "") cols = "cast(" + opt[0].value + "  AS CHAR CHARACTER SET utf8)";
+                else cols = cols + ", cast(" + opt[0].value + " AS CHAR CHARACTER SET utf8)";
+            });
+
+
+            if (!sval == "") {
+                if (opname == "Equals To") cond = " and " + colname + " = " + sval;
+                else if (opname == "Contains") cond = " and instr(" + colname + ",'" + sval.toLowerCase() + "')>0";
+                else if (opname == "Smaller Than") cond = " and " + colname + " < '" + sval + "'";
+                else if (opname == "Greater Than") cond = " and " + colname + " > '" + sval + "'";
+            }
+            //string where = " where CONCAT(" + cols + ") LIKE '%" + txtsearch.Text.Trim() + "%' " + cond;
+
+            var where = " where INSTR(lower(CONCAT(" + cols + ")), '" + searchval.toLowerCase() + "') > 0 " + cond;
+            var hrorder = document.getElementById('hforderby').value;
+            if (hrorder == "") orderby = "sr_no";
+            else orderby = hrorder;
+            var showcols = "*";
+            var hfshowcols = document.getElementById('hfddshowcols').value;
+            if (hfshowcols == "") showcols = "*";
+            else showcols = hfshowcols;
+
+
+            if ($("[id$=grdviewnew].loader").length == 0) {
+                var row = $("[id$=grdviewnew] tr").eq(0).clone(true);
+                row.addClass("loader");
+                row.children().remove();
+                row.append('<td colspan = "999" style = "background-color:white"><img id="loader" alt="" src="/images/103.gif" /></td>');
+                $("[id$=grdviewnew]").append(row);
+            }
+            var obj1 = {
+                "idxs": rowss, "pageIndex": "1",
+                "where": where, "orderby": orderby, "showcols": showcols
+            };
+            myMethod_C('@controllerName', '@viewName', 'SearchClick', obj1, OnSuccess, onfailure);*@
+            //PageMethods.Setvalues(rowss, sucs, fail);
+        }
+
+</script>
+
+<script type="text/javascript">
+        var pageIndex = 1;
+        var pageCount;
+
+
+        //Function to make AJAX call to the Web Method
+    function GetRecords() {
+      //  
+        pageIndex++;
+        if (pageIndex == 2 || pageIndex <= pageCount) {
+
+            //Show Loader
+
+
+            var opname = $("[id$=ddoperators]")[0].value;
+            var colname = $("[id$=ddnames]")[0].value;
+            var sval = $("[id$=txtsval]")[0].value;
+            var searchval = $("#footable_v2 [id*=txtsearch]")[0].value;
+
+            var colctrls = $("[id$=ddnames] option");
+            var cnts = colctrls.length;
+            var cols = "", cond = "", orderby = "";
+            colctrls.each(function () {
+
+                var opt = $(this);
+                if (cols == "") cols = "NVL(" + opt[0].value + ",'0')";
+                else cols = cols + "|| NVL(" + opt[0].value + ",'0')";
+            });
+
+            if (!sval == "") {
+                sval = sval.toLowerCase();
+                if (opname == "Equals To") cond = " and " + colname + " = " + sval;
+                else if (opname == "Contains") cond = " and lower(NVL(" + colname + ",'0')) LIKE '%" + sval.toLowerCase() + "%'";
+                else if (opname == "Smaller Than") cond = " and " + colname + " < '" + sval + "'";
+                else if (opname == "Greater Than") cond = " and " + colname + " > '" + sval + "'";
+            }
+            //string where = " where CONCAT(" + cols + ") LIKE '%" + txtsearch.Text.Trim() + "%' " + cond;
+
+            var where = " where lower(" + cols + ") LIKE '%" + searchval.toLowerCase() + "%' " + cond;
+            var hrorder = document.getElementById('hforderby').value;
+            if (hrorder == "") orderby = "";
+            else orderby = "ORDER BY " + hrorder;
+            var showcols = "*";
+            var hfshowcols = document.getElementById('hfddshowcols').value;
+            if (hfshowcols == "") showcols = "*";
+            else showcols = hfshowcols;
+
+
+            if ($("[id$=grdviewnew].loader").length == 0) {
+                var row = $("[id$=grdviewnew] tr").eq(0).clone(true);
+                row.addClass("loader");
+                row.children().remove();
+                row.append('<td colspan = "999" style = "background-color:white"><img id="loader" alt="" src="/images/103.gif" /></td>');
+                $("[id$=grdviewnew]").append(row);
+            }
+            showwait();
+            var obj = {
+                "pageIndex": pageIndex,
+                "where": where, "orderby": orderby, "showcols": showcols, "Myguid": '@MyGuid'
+            };
+
+            myMethod_C('@controllerName', '@viewName', 'getdata', obj, OnSuccess, onfailure);
+            //PageMethods.getdata(pageIndex, where, orderby, showcols, OnSuccess, onfailure);
+        }
+        else {
+
+            alert("No More Data");
+        }
+    }
+
+        //Function to recieve XML response append rows to GridView
+        var totrecords = "";
+        function OnSuccess(response) {
+
+
+            var isnew = false;
+            var pref = response.split('!~!~!')[0];
+
+            if (pref === "searchclick") {
+                isnew = true;
+            }
+
+            response = response.split('!~!~!')[1];
+
+            var xmlDoc = $.parseXML(response);
+            var xml = $(xmlDoc);
+            pageCount = parseInt(xml.find("PageCount").eq(0)[0].textContent)
+            totrecords = parseInt(xml.find("Totals").eq(0).find("Total").text());
+            var curritems = $("[id$=grdviewnew] tr").length - 2;
+            var customers = xml.find("MainData");
+            $("[id$=grdviewnew] .loader").remove();
+            var kk = 0;
+
+            customers.each(function () {
+
+                var customer = $(this);
+                kk++;
+                var cols = customer[0].children.length;
+                var row = $("[id$=grdviewnew] tr").eq(3).clone(true);
+                var seektype = '@sgen.GetSession(MyGuid, "SEEKTYPE").ToString()';
+                if (seektype == 2) {
+                    var tctl = "ctl" + (curritems + kk + 1).toString().padStart(2, '0');
+                    var tar;
+                    var obj;
+                    try {
+                        tar = $(row)[0].children[0].children[0].children[0].name.split('$');
+                        obj = $(row)[0].children[0].children[0].children[0];
+                    }
+                    catch (err) {
+                        try {
+                            tar = $(row)[0].children[0].children[0].name.split('$');
+                            obj = $(row)[0].children[0].children[0];
+                        }
+                        catch (err) { }
+                    }
+                    var tl = tar.length - 2;
+                    tar.splice(tl, tl + 2);
+                    var newname = tar.join("$");
+                    newname = newname + "$" + tctl + "$cbSelect";
+                    obj.name = newname;
+                }
+
+                var ss = false;
+                var ii = 0;
+                for (i = 0; i < cols; i++) {
+
+                    var txt = "";
+
+                    if (i == 0) {
+                        if (seektype == 2) {
+                            if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                                $(row[0].children[i].children[0])[0].children[0].checked = false;
+                            }
+                            else $(row[0].children[i])[0].children[0].checked = false;
+                        }
+                        else {
+                            ii = i + 1;
+                            txt = customer[0].children[ii].textContent;
+                            if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                                $(row[0].children[i].children[0]).html(txt);
+                            }
+                            else $(row[0].children[i]).html(txt);
+                        }
+                    }
+                    else if (i > 1) {
+                        if (seektype != 2 && i >= 2) ii = i + 2;
+                        else if (seektype == 2 && i >= 2) ii = i + 1;
+                        //else if (seektype != 2 && i == 2) ii = 3;
+                        else ii = i;
+                        if (ii < cols) {
+
+                            txt = customer[0].children[ii].textContent;
+                            if (!detectmob() && i == 0) $(row[0].children[i].children[0]).html(txt);
+                            else $(row[0].children[i]).html(txt);
+                        }
+                    }
+
+                    else if (i == 1) {
+                        if (seektype != 2) ii = i + 2;
+                        else ii = i;
+                        txt = customer[0].children[ii].textContent;
+                        if (!detectmob() && i == 0) $(row[0].children[i].children[0]).html(txt);
+                        else $(row[0].children[i]).html(txt);
+                    }
+                    //else {
+
+                    //    if (seektype == 2) {
+                    //        if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                    //            $(row[0].children[i].children[0])[0].checked = false;
+                    //        }
+                    //        else $(row[0].children[i])[0].children[0].checked = false;
+                    //    }
+                    //    else {
+                    //        txt = customer[0].children[i].textContent;
+                    //        if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                    //            $(row[0].children[i].children[0]).html(txt);
+                    //        }
+                    //        else $(row[0].children[i]).html(txt);
+                    //    }
+                    //}
+
+                }
+
+                //seektype
+                //$(".name", row).html(customer.find("ContactName").text());
+                //$(".city", row).html(customer.find("City").text());
+                //$(".postal", row).html(customer.find("PostalCode").text());
+                //$(".country", row).html(customer.find("Country").text());
+
+                var ind = (curritems * 1 + kk * 1) - 1;
+                //$(row[0])[0].setAttribute("onmouseover", "RowMouseOver(" + ind + ");");
+                //$(row[0])[0].setAttribute("onmouseout", "RowMouseOut(" + ind + ");");
+                if (seektype == 2) $(row[0])[0].setAttribute("onclick", "RowSelect(" + ind + ");");
+                else $(row[0])[0].setAttribute("onclick", "RowSelect(" + ind + ");");
+
+                //$(row[0])[0].setAttribute("onmouseover", "RowMouseOver(" + ind + ");");
+                //$(row[0])[0].setAttribute("onmouseout", "RowMouseOut(" + ind + ");");
+                $(row[0])[0].setAttribute("ondblclick", "btnokclick(" + ind + ",event);");
+                //$(row[0])[0].setAttribute("onclick", "RowSelect(" + ind + ");");
+                $(row[0])[0].setAttribute("data-id", ind);
+
+
+                $("[id$=grdviewnew]").append(row);
+            });
+            //gridViewScroll.undo();
+
+            var curlen = $("[id$=grdviewnew] tr").length - 1;
+            var lblp = document.getElementById('lbltotrecords');
+            lblp.innerText = "Showing " + curlen + " of Total " + totrecords;
+           
+          
+            if (!detectmob()) {
+                gridViewScroll.enhance();
+                $(".tHeaderCell").on("click", function (evt) {
+                    Sortbtn(evt);
+                });
+                try {
+                    var val = $("#grdviewnew_Header_Fixed")[0].offsetTop + "px";
+                    $("#grdviewnew_Header_Freeze")[0].style.top = val;
+                } catch (err) { }
+
+
+                setScrollPosition(750 * (pageIndex - 1), 0);
+            }
+
+            expandme('2');
+            hidewait();
+          
+        }
+        function onfailure(response) {
+
+            pageIndex--;
+            hidewait();
+            //alert(response + "Failure");
+    }
+    function expandme(ttype) {
+        
+      
+        ctrl = $("#myModal").find("#btnexp");
+        var ii = $(ctrl)[0].innerText.trim();
+
+        if (ttype == "2") {
+            if (ii == "+") {
+                ii = "-";
+            } else {
+                ii = "+";
+            }
+        }
+
+        try {
+            if (ii == "+") {
+                $(ctrl)[0].innerText = "-";
+                $(".modal-dialog").width('100%');
+                $("#grdviewnew_Header").width('100%');
+                $("#grdviewnew_Header_Fixed").width('100%');
+                $("#grdviewnew_Content_Fixed").width('100%');
+
+                $("#mymodelcont").height((screen.height * 78) / 100);;
+                $("#grdviewnew_Content_Fixed").height((screen.height * 55) / 100);
+            }
+            else {
+               $(ctrl)[0].innerText = "+";
+                $(".modal-dialog").width('80%');
+                $("#grdviewnew_Content_Fixed").width('100%');
+                $("#mymodelcont").height((screen.height * 60) / 100);;
+                $("#grdviewnew_Content_Fixed").height((screen.height * 35) / 100);
+            }
+        }
+        catch (err) { }
+    }
+
+</script>
+<style>
+    .select2-selection__choice {
+        color: white;
+    }
+
+    .no-search .select2-search {
+        display: none
+    }
+
+    .footable-row-detail-value {
+        word-wrap: break-word !important;
+        width: 200px !important;
+    }
+</style>
+
+@*<script src="~/content/css/select2/select2_4.0.6.min.js"></script>//11*@
+<script type="text/javascript">
+    $(document).ready(function () {
+       @if (ViewBag.basequey == "")
+       {
+           <text>
+
+        $("#Button1").click();
+
+        </text>
+       }
+                   //$("#grdviewnew_Header_Fixed").height('45px');
+
+                   //var myHidden = document.getElementById('hfddpages');
+                   //if (!myHidden.value == "") {
+                   //    var newStateVal = myHidden.value.split(',');
+                   //    var local = false; var localnames = "";
+                   //    var extra = false; var extranames = "";
+                   //    for (i = 0; i < newStateVal.length; i++) {
+                   //        // Set the value, creating a new option if necessary
+                   //        if ($("#ddpages").find("option[value='" + newStateVal[i] + "']").length) {
+                   //            if (localnames == "") localnames = newStateVal[i];
+                   //            else localnames = localnames + "," + newStateVal[i];
+                   //            local = true;
+                   //            var element = $("#ddpages").find("option[value='" + newStateVal[i] + "']")[0];
+                   //            var $element = $(element);
+                   //            $element.detach();
+                   //            $("#ddpages").append($element);
+
+
+                   //        }
+                   //        else if (!$("#ddpages").find("option[value='" + newStateVal[i] + "']").length) {
+                   //            if (extranames == "") extranames = newStateVal[i];
+                   //            else extranames = extranames + "," + newStateVal[i];
+                   //            extra = true;
+                   //        }
+                   //    }
+                   //    if (local) {
+
+                   //        $("#ddpages").val(localnames.split(',')).trigger('change.select2');
+                   //    }
+                   //    if (extra) {
+                   //        // Create the DOM option that is pre-selected by default
+                   //        for (i = 0; i < extranames.split(',').length; i++) {
+
+                   //            $("#ddpages").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                   //            // Append it to the select
+                   //            //$("#ContentPlaceHolder1_email").append(newState);
+                   //        }
+                   //    }
+                   //}
+                   //else $("#ddpages").val(null).trigger('change.select2');
+
+                   ////$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+                   //$("#ddpages").trigger('change');
+
+                   var myHidden = document.getElementById('hfddcolumns');
+                   if (!myHidden.value == "") {
+                       var newStateVal = myHidden.value.split(',');
+                       var local = false; var localnames = "";
+                       var extra = false; var extranames = "";
+                       for (i = 0; i < newStateVal.length; i++) {
+                           // Set the value, creating a new option if necessary
+                           if ($("#ddcolumns").find("option[value='" + newStateVal[i] + "']").length) {
+                           if (localnames == "") localnames = newStateVal[i];
+                           else localnames = localnames + "," + newStateVal[i];
+                           local = true;
+                           var element = $("#ddcolumns").find("option[value='" + newStateVal[i] + "']")[0];
+                           var $element = $(element);
+                    $element.detach();
+                    $("#ddcolumns").append($element);
+                       }
+                else if (!$("#ddcolumns").find("option[value='" + newStateVal[i] + "']").length) {
+                           if (extranames == "") extranames = newStateVal[i];
+                           else extranames = extranames + "," + newStateVal[i];
+                           extra = true;
+                       }
+                   }
+                   if (local) {
+
+                $("#ddcolumns").val(localnames.split(',')).trigger('change.select2');
+                   }
+                   if (extra) {
+                       // Create the DOM option that is pre-selected by default
+                       for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddcolumns").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                           // Append it to the select
+                           //$("#ContentPlaceHolder1_email").append(newState);
+                       }
+                   }
+               }
+
+               var myHidden = document.getElementById('hfddshowcols');
+        if (!myHidden.value == "") {
+            var newStateVal = myHidden.value.split(',');
+            var local = false; var localnames = "";
+            var extra = false; var extranames = "";
+            for (i = 0; i < newStateVal.length; i++) {
+                // Set the value, creating a new option if necessary
+                if ($("#ddshowcols").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (localnames == "") localnames = newStateVal[i];
+                    else localnames = localnames + "," + newStateVal[i];
+                    local = true;
+                    var element = $("#ddshowcols").find("option[value='" + newStateVal[i] + "']")[0];
+                    var $element = $(element);
+                    $element.detach();
+                    $("#ddshowcols").append($element);
+                }
+                else if (!$("#ddshowcols").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (extranames == "") extranames = newStateVal[i];
+                    else extranames = extranames + "," + newStateVal[i];
+                    extra = true;
+                }
+            }
+            if (local) {
+
+                $("#ddshowcols").val(localnames.split(',')).trigger('change.select2');
+            }
+            if (extra) {
+                // Create the DOM option that is pre-selected by default
+                for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddshowcols").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                    // Append it to the select
+                    //$("#ContentPlaceHolder1_email").append(newState);
+                }
+            }
+        }
+
+        var myHidden = document.getElementById('hforderby');
+        if (!myHidden.value == "") {
+            var newStateVal = myHidden.value.split(',');
+       var local = false; var localnames = "";
+       var extra = false; var extranames = "";
+            for (i = 0; i < newStateVal.length; i++) {
+                // Set the value, creating a new option if necessary
+                if ($("#ddorderby").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (localnames == "") localnames = newStateVal[i];
+                    else localnames = localnames + "," + newStateVal[i];
+                    local = true;
+                    var element = $("#ddorderby").find("option[value='" + newStateVal[i] + "']")[0];
+                    var $element = $(element);
+                    $element.detach();
+                    $("#ddorderby").append($element);
+                }
+                else if (!$("#ddorderby").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (extranames == "") extranames = newStateVal[i];
+                    else extranames = extranames + "," + newStateVal[i];
+                    extra = true;
+                }
+            }
+            if (local) {
+
+                $("#ddorderby").val(localnames.split(',')).trigger('change.select2');
+            }
+            if (extra) {
+                // Create the DOM option that is pre-selected by default
+                for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddorderby").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                    // Append it to the select
+                    //$("#ContentPlaceHolder1_email").append(newState);
+                }
+            }
+        }
+        else $("#ddorderby").val(null).trigger('change.select2');
+
+        //$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+        $("#ddorderby").trigger('change');
+
+
+
+
+        $("#ddorderby,#ddcolumns").select2({
+           tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+               var myHidden = document.getElementById('hforderby');
+               myHidden.value = $('#ddorderby').val().toString();
+
+               if ($("#ddorderby,ddcolumn option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+               }
+                else {
+
+                    $(container).css("background-color", "red");
+               }
+
+               return data.text;
+           },
+            multiple: true,
+
+        });
+
+
+        $("#ddcolumns").select2({
+           tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+               var myHidden = document.getElementById('hfddcolumns');
+               myHidden.value = $('#ddcolumns').val().toString();
+
+               if ($("#ddcolumns option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+               }
+                else {
+
+                    $(container).css("background-color", "red");
+               }
+
+               return data.text;
+           },
+            multiple: true,
+
+        }).on('select2:unselecting', function (e) {
+           var myHidden = document.getElementById('hfddcolumns');
+           list = myHidden.value.split(',');
+           list.splice(list.indexOf(e.params.args.data.id), 1);
+           list.join(',');
+           myHidden.value = list.join(',');
+       });
+
+        $("#ddshowcols").select2({
+           tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+               var myHidden = document.getElementById('hfddshowcols');
+               myHidden.value = $('#ddshowcols').val().toString();
+
+               if ($("#ddshowcols option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+               }
+                else {
+
+                    $(container).css("background-color", "red");
+               }
+
+               return data.text;
+           },
+            multiple: true,
+
+        }).on('select2:unselecting', function (e) {
+           var myHidden = document.getElementById('hfddshowcols');
+           list = myHidden.value.split(',');
+           list.splice(list.indexOf(e.params.args.data.id), 1);
+           list.join(',');
+           myHidden.value = list.join(',');
+       });
+
+
+        $("#ddorderby,#ddcolumns,#ddshowcols").on("select2:select", function (evt) {
+           var element = evt.params.data.element;
+           var $element = $(element);
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+       });
+
+        //$("#ddpages").select2({
+        //    tags: true,
+        //    tokenSeparators: [",", ";", " "],
+        //    templateSelection: function (data, container) {
+        //        var myHidden = document.getElementById('hfddpages');
+        //        myHidden.value = $('#ddpages').val().toString();
+
+        //        if ($("#ddpages option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+        //            $(container).css("background-color", "blue");
+        //        }
+        //        else {
+
+        //            $(container).css("background-color", "blue");
+        //        }
+
+        //        return data.text;
+        //    },
+        //    multiple: true,
+        //    maximumSelectionLength: 1,
+        //});
+
+        //$("#ddpages").on('select2:open', function () {
+        //    $('.select2-search__field').attr('maxlength', 5);
+        //});
+
+    });
+    function showmsgJS(msgtype, msg, alert_type) {
+        try {
+
+            //var lblmsg = $("[id=msgp]");
+            document.getElementById("msgp").innerHTML = msg;
+            //lblmsg.innerHTML = msg;
+            if (msgtype == 1) {
+                $("[id=btnyes]").hide();
+                $("[id=btnno]").hide();
+
+                switch (alert_type) {
+                    case 0:
+                        $("[id=dtitle]")[0].style.backgroundColor = "#E74C3C";
+                        $("[id=title_type]")[0].innerHTML = "Error";
+                        break;
+                    case 1:
+                        $("[id=dtitle]")[0].style.backgroundColor = "#1ABB9C";
+                        $("[id=title_type]")[0].innerHTML = "Success";
+                        break;
+                    case 2:
+                        $("[id=dtitle]")[0].style.backgroundColor = "#f0ad4e";
+                        $("[id=title_type]")[0].innerHTML = "Warning";
+                        break;
+                }
+            }
+
+            else if (msgtype == 2) {
+                $("[id=btnok]").hide();
+
+                $("[id=title_type]")[0].innerHTML = "Confirmation";
+                $("[id=dtitle]")[0].style.backgroundColor = "#f0ad4e";
+            }
+
+            else if (msgtype == 3) {
+                $("[id=btnyes]").hide();
+                $("[id=btnno]").hide();
+                $("[id=btnok]").hide();
+
+                switch (alert_type) {
+                    case 0:
+                        $("[id=dtitle]")[0].style.backgroundColor = "#E74C3C";
+                        $("[id=title_type]")[0].innerHTML = "Error";
+                        break;
+                    case 1:
+                        $("[id=dtitle]")[0].style.backgroundColor = "#1ABB9C";
+                        ("[id=title_type]")[0].innerHTML = "Success";
+                        break;
+                    case 2:
+                        $("[id=dtitle]")[0].style.backgroundColor = "#f0ad4e";
+                        ("[id=title_type]")[0].innerHTML = "Warning";
+                        break;
+                }
+
+            }
+
+
+            showerror();
+        }
+
+        catch (eerre) {
+            alert(msg);
+
+        }
+
+
+
+    }
+
+
+
+    function Showfilters() {
+
+        //
+        var url = '@Url.Action("_partfilters", "Foo")';
+        var keyWord = $('#Keyword').val();
+        var $ff = $('#ItemList :input');
+        var gg = $ff.serialize();
+
+
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {
+                "filters": gg, "name": keyWord
+            },
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            traditional: true,
+            success: function (data) {
+                //hidewait();
+                $('#ItemList').empty();
+                $('#ItemList').append(data);
+                //$('#myModal').modal(options);
+                //$('#myModal').modal('show');
+
+            },
+            error: function (err) {
+
+                alert("Dynamic content load failed.");
+            }
+        });
+    }
+
+    function showerror() {
+
+        var options = { "backdrop": "static", keyboard: true };
+        $("#MYID").modal(options);
+        $("#MYID").modal('show');
+
+    }
+</script>
+
+<button type="button" id="mybtn" class="btn btn-primary" style="display: none" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+<div id='MYID' class='modal'>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div id="dtitle" class="modal-header" style="background-color: red; color: white">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 id="title_type" class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+                <p id="msgp"></p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnyes" type="button" onclick="yesclick();" class="btn btn-default" data-dismiss="modal">Yes</button>
+                <button id="btnok" type="button" onclick="okclick();" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                <button id="btnno" type="button" onclick="noclick();" class="btn btn-primary" data-dismiss="modal">No</button>
+                <button id="btnok1" clientidmode="static" type="button" style="display: none" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Small modal -->
+<button type="button" id="mybtn3" class="btn btn-primary" style="display: none" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+<div id='myconn' class='modal'>
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <p>Connection Lost .....Please Try Again</p>
+            </div>
+            <div class="modal-footer">
+                <button id="btnyes" type="button" onclick="myconn();" class="btn btn-default" ">Try Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>

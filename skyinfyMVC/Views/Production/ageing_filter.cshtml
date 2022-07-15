@@ -1,0 +1,311 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col11;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    ViewBag.Title = "AGEING FILTER";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var userCode = sgen.GetCookie(MyGuid, "userCode");
+    var currdate = sgen.server_datetime_local(userCode);
+}
+<form action="/Production/date_filter" id="date_filter" method="post">
+    <div id="Content1">
+        <link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />
+        <script src="~/Content/css/select2/select2_4.0.6.min.js"></script>
+        <script type="text/javascript">
+            function close_pop() {
+                var mm = "";
+                //create below button on Parent page
+                //<asp:Button runat="server" ID="callback1" clientIDMode="Static" Style="display:none" OnClick="callback1_Click" />
+                @if (sgen.GetSession(MyGuid, "parentname") != null)
+                {
+                    @:mm = '@sgen.GetSession(MyGuid, "parentname").ToString()';
+
+                    }
+                if (mm == "master") { $(parent.document.getElementById('callback0')).trigger('click'); }
+                else if (mm == "MVC") { parent.callback(); }
+                else if ($(parent.document.getElementById('callback1'))[0].tagName == "A") $(parent.document.getElementById('callback1'))[0].click();
+                else $(parent.document.getElementById('callback1')).trigger('click');
+                $("#myModal").modal('hide');
+            }
+
+            $(document).ready(function () {
+                //var myHidden = document.getElementById('hfddlcom');
+          
+            });
+
+            function btnokclick(selectedindex, evt) {
+                //prevent the browsers default function
+                evt.preventDefault();
+                var $form = $("#date_filter");
+                $.ajax({
+                    type: "POST",
+                    url: "/Production/ageing_filter",
+                    data: $form.serialize() + "&command=Submit",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+                        close_pop();
+                    },
+                    error: function (err) {
+                        close_pop();
+                    }
+                });
+            }
+        </script>
+    </div>
+    <div id="Content2">
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_btnid" })
+        @Html.HiddenFor(model => model[0].Col13, new { id = "hfddlcom" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_tab" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_dfdf" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">From : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_from1", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return false;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">To : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_to1", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return isNumberKey(event);", onblur = "to_s(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">From : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_from2", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return false;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">To : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_to2", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return isNumberKey(event);", onblur = "to_s(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">From : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_from3", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return false;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">To : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_to3", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return isNumberKey(event);", onblur = "to_s(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">From : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_from4", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return false;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">To : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_to4", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return isNumberKey(event);", onblur = "to_s(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">From : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_from5", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return false;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">To : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_to5", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return isNumberKey(event);", onblur = "to_s(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">From : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_from6", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return false;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">To : </label>
+                            </div>
+                            <div class='col-sm-3'>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_to6", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onkeydown = "return isNumberKey(event);", onblur = "to_s(this);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="=row">
+                            <div class="col-sm-12">
+                                <label for="first-name">Method Of Ageing </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.RadioButtonFor(model => model[0].Col29, "ABD", new { @id = "Rbt_inside", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                        <b style="padding-top:12px">Ageing By Bill Date </b>
+                                        @Html.RadioButtonFor(model => model[0].Col29, "ADD", new { @id = "Rbt_outside", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <b style="padding-top:12px">Ageing By Due Date </b>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<div class='col-sm-12'>
+            <label for="first-name">Method Of Ageing </label>
+            <div class="form-group">
+                <div class='input-group'>
+                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddlcom", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @style = "width:100%", @multiple = "multiple" })
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+                        </div>
+                        <div class="row">
+                            <label for="first-name"> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="button" id="btnOk" value="Submit" name="command" onclick="btnokclick('', event);" class="btn btn-primary form-control sa-button" />
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script type="text/javascript">
+    function padlc(value, length) {
+        value = String(value);
+        length = length - value.length;
+        return ('0'.repeat(length) + value)
+    }
+    function to_s(control) {
+        debugger
+        var id = $(control)[0].id;
+        var c = id.slice(id.length - 1, id.length);
+        c = parseInt(c);
+        if (c == 1) {
+            var to3 = $("#txt_to" + c)[0].value;//3
+            $("#txt_from" + (c + 1) + "")[0].value = parseInt(to3) + 1;
+            var f5 = $("#txt_from" + (c + 1) + "")[0].value;
+            var t5 = $("#txt_to" + (c + 1) + "")[0].value;
+            if (parseInt(f5) > parseInt(t5)) {
+                try {
+                    for (var a = c + 1; a <= 6; a++) {
+                        var from = $("#txt_from" + a + "")[0].value;
+                        $("#txt_to" + a + "")[0].value = parseInt(from) + 10;
+                        $("#txt_from" + (a + 1) + "")[0].value = parseInt(from) + 10;
+                    }
+                } catch (e) {
+                }
+            }
+        }
+        else {
+            var to3 = $("#txt_to" + (c - 1))[0].value;//3
+            var to4 = $("#txt_to" + c)[0].value;//4
+            if (to4 != "" && to4 != "0") {
+                if (parseInt(to3) > parseInt(to4)) {
+                    $("#txt_to" + c)[0].value = parseInt(to3) + 10;
+                }
+                to4 = $("#txt_to" + c + "")[0].value;
+                //$("#txt_from" + (c + 1))[0].value = to4;
+                $("#txt_from" + (c + 1) + "")[0].value = parseInt(to4) + 1;
+            }
+            var f5 = $("#txt_from" + (c + 1) + "")[0].value;
+            var t5 = $("#txt_to" + (c + 1) + "")[0].value;
+            if (parseInt(f5) > parseInt(t5)) {
+                try {
+                    for (var a = c + 1; a <= 6; a++) {
+                        var from = $("#txt_from" + a + "")[0].value;
+                        $("#txt_to" + a + "")[0].value = parseInt(from) + 10;
+                        $("#txt_from" + (a + 1) + "")[0].value = parseInt(from) + 10;
+                    }
+                } catch (e) {
+                }
+            }
+        }
+       
+
+    }
+</script>

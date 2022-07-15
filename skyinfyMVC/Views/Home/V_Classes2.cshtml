@@ -1,0 +1,1704 @@
+﻿@model IList<skyinfyMVC.Models.Tmodelmain>
+@using skyinfyMVC.Models;
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    //string serverpath = Server.MapPath("~/Uploads/name/name.jpg");
+    string serverpath = HttpContext.Current.Server.MapPath("/Uploads/stud_icon.png");
+    Multiton multiton = Multiton.GetInstance(MyGuid);
+    string userCode = multiton.UserCode;
+    Layout = null;
+}
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/erp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/css/bootstrap-toggle.min.css" rel="stylesheet" media="print" />*@
+
+    @*<link href="~/Content/css/passwordstrength.css" rel="stylesheet" />//09N*@
+    <script src="..../../../../../Scripts/jquery-3.1.1.min.js"></script>
+    <script src="../../../../../../../erp/vendors/jquery/dist/jquery.min.js"></script>
+
+    @*<script src="../../../../js/monthly.js"></script>*@
+    <script src="../../../erp/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="~/erp/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <script src="../../../../Scripts/sgen.js"></script>
+    <link href="~/Content/css/sgen.css" rel="stylesheet" />
+    <link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />
+
+    <script src="../../../../Content/css/select2/select2_4.0.6.min.js"></script>
+
+
+
+    @*<link href="~/Content/css/bootstrap-datepicker.css" rel="stylesheet" />
+    <script src="../../../../js/bootstrap-datepicker.js"></script>
+    <script src="../../../../js/bootstrap-datepicker.min.js"></script>
+
+    <script src="../../../erp/vendors/moment/min/moment.min.js"></script>
+
+    <!-- bootstrap-datetimepicker -->
+    <link href="~/erp/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <!-- bootstrap-datetimepicker -->
+    <script src="../../../erp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+
+    <link href="~/Scripts/inputmast/css/inputmask.css" rel="stylesheet" />
+
+    <script src="../../../../Scripts/inputmast/dist/jquery.inputmask.js"></script>
+    <script src="../../../../Scripts/inputmast/dist/jquery.inputmask.min.js"></script>*@
+
+
+
+    @*<script>
+        var timezone = getCookie('@MyGuid', "timezone");
+        var dateformat = getCookie('@MyGuid',"dateformat");
+        var timeformat = getCookie('@MyGuid',"timeformat");
+        var datetimeformat = getCookie('@MyGuid',"datetimeformat");
+        var Ac_from_dt = moment(getCookie('@MyGuid',"Ac_From_Date"), dformat(datetimeformat));
+        var Ac_to_dt = moment(getCookie('@MyGuid',"Ac_To_Date"), dformat(datetimeformat));
+        var today = moment();
+        var fy_from_dt = moment(getCookie('@MyGuid',"year_from"), dformat(datetimeformat));
+        var fy_to_dt = moment(getCookie('@MyGuid',"year_to"), dformat(datetimeformat));
+    </script>*@
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+
+
+            if (detectmob()) {
+
+                var lihide = $(".lihide");
+                lihide.each(function () {
+                    $(this).hide();
+                });
+
+            }
+
+        });
+
+
+
+
+        function replaceAll(inputString, fromval, toval) {
+            var res = inputString.replace("/" + fromval + "/gi", toval);
+            return res;
+        }
+        $(document).ready(function () {
+            $(".sa-select2-single").select2({
+
+
+                maximumSelectionLength: 1,
+                //placeholder: $(this).attr("placeholder"),
+                //multiple: true,
+
+                allowClear: true
+            })
+
+            //$(".sa-select2-multiple").select2({ placeholder: "Select a state"});
+            $(".sa-select2-multiple").select2();
+            myFunction("-");
+
+            //for cell focus, tab key, arrow key work
+        });
+
+
+    </script>
+    <style>
+        .form-control-borderless {
+            border: none;
+        }
+
+            .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+                border: none;
+                outline: none;
+                box-shadow: none;
+            }
+
+        div.example {
+            background-color: lightgrey;
+            padding: 10px;
+            color: darkcyan;
+            border-radius: 25px;
+            position: relative;
+            font-family: Verdana;
+        }
+
+        @@media screen and (min-width: 600px) {
+            div.example {
+                font-size: 15px;
+                color: darkcyan;
+                border-radius: 25px;
+                position: relative;
+                font-family: Verdana;
+            }
+        }
+
+        @@media screen and (max-width: 600px) {
+            div.example {
+                font-size: 17px;
+                color: darkcyan;
+                border-radius: 25px;
+                position: relative;
+                font-family: Verdana;
+            }
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin-left: 10px;
+            color: darkslategrey;
+        }
+
+            .list li {
+                position: relative;
+                margin-bottom: 10px;
+            }
+
+        #topright {
+            position: absolute;
+            right: 0;
+            top: 0;
+            display: block;
+            text-indent: -999em;
+            text-decoration: none;
+        }
+
+        .contr {
+            /*margin: 0 auto;*/
+            width: 100%;
+            /*background: #444753;*/
+            background: #f2f5f8;
+            /*border-radius: 5px;*/
+        }
+
+        .people-list {
+            width: 100%;
+            float: left;
+        }
+
+        .search {
+            padding: 20px;
+        }
+
+        .fa-search {
+            position: relative;
+            left: -25px;
+        }
+
+        img {
+            float: left;
+        }
+
+        .about {
+            float: left;
+            margin-top: 8px;
+        }
+
+        .status {
+            color: rgb(189, 189, 189);
+        }
+
+        .chat {
+            width: 100%;
+            float: left;
+            background: #F2F5F8;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+            color: #434651;
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 2px solid white;
+        }
+
+        img {
+            float: left;
+        }
+
+        .chat-about {
+            float: left;
+            padding-left: 10px;
+            margin-top: 6px;
+        }
+
+        .chat-with {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .chat-num-messages {
+            color: $gray;
+        }
+
+        .fa-star {
+            float: right;
+            color: #D8DADF;
+            font-size: 20px;
+            margin-top: 12px;
+        }
+
+        .chat-history {
+            padding: 30px 30px 20px;
+            /*border-bottom: 2px solid white;*/
+            overflow-y: auto;
+            height: 400px;
+        }
+
+        .chat-history {
+            width: 375px;
+            overflow-x: auto;
+            padding: 30px 30px 20px;
+        }
+
+        .chat-list {
+            /*padding: 30px 30px 20px;*/
+            /*border-bottom: 2px solid white;*/
+            overflow-y: auto;
+            height: 400px;
+        }
+
+        .message-data {
+            margin-bottom: 25px;
+        }
+
+        .message-data-time {
+            color: slategray;
+            /*padding-left: 6px;
+            padding-right: 10px;*/
+        }
+
+        .my-message {
+            background: darkgrey;
+        }
+
+        .other-message {
+            background-color: darkgrey;
+        }
+
+            .other-message :after {
+                border-bottom-color: dimgray;
+                left: 93%;
+            }
+
+        .chat-message {
+            padding: 30px;
+        }
+
+        textarea {
+            width: 100%;
+            border: none;
+            padding: 10px 20px;
+            font: 14px/22px "Lato", Arial, sans-serif;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            resize: none;
+        }
+
+        .break-text {
+            word-wrap: break-word;
+        }
+
+        button {
+            float: right;
+            color: $blue;
+            font-size: 16px;
+            text-transform: uppercase;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            background: #F2F5F8;
+        }
+
+        &:hover {
+            color: darkblue;
+        }
+
+        .online, .offline, .me {
+            margin-right: 3px;
+            font-size: 10px;
+        }
+
+        .online {
+            color: green;
+        }
+
+        .offline {
+            color: orange;
+        }
+
+        .me {
+            color: #293955;
+        }
+
+        .align-left {
+            text-align: left;
+        }
+
+        .align-right {
+            text-align: right;
+        }
+
+        .float-right {
+            float: right;
+        }
+    </style>
+    <style>
+
+        @@media (min-width: 544px) {
+            #anc_file {
+                font-size: 5px;
+            }
+            /*1rem = 16px*/
+        }
+
+        /* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+        @@media (min-width: 768px) {
+            #anc_file {
+                font-size: 7px;
+            }
+            /*1rem = 16px*/
+        }
+
+        /* Large devices (desktops, 992px and up) */
+        @@media (min-width: 992px) {
+            #anc_file {
+                font-size: 10px;
+            }
+            /*1rem = 16px*/
+        }
+
+        /* Extra large devices (large desktops, 1200px and up) */
+        @@media (min-width: 1200px) {
+            #anc_file {
+                font-size: 15px;
+            }
+            /*1rem = 16px*/
+        }
+
+        /*
+        ::::::::::::::::::::::::::::::::::::::::::::::::::::
+        Custom media queries
+        */
+
+        /* Set width to make card deck cards 100% width */
+        @@media (min-width: 950px) and (max-width:1100px) {
+            #anc_file {
+                font-size: 15px;
+                color: red;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    @using (Html.BeginForm("V_Classes2", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <div class="title_left">
+                                <h3 style="font-weight:bold;">VIDEO BROADCASTING</h3>
+                            </div>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-8">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" class="btn btn-primary form-control" style="border-radius: 10px!important;"
+                                       id="btnnew" onclick="open_room();" name="command" value="New Meeting" accesskey="N" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" class="btn btn-primary form-control" style="border-radius: 10px!important;"
+                                       id="btnjoin" onclick="join_room();" name="command" value="Join Meeting" accesskey="N" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" class="btn btn-primary form-control" style="border-radius: 10px!important;"
+                                       id="btnshare" name="command" value="Share Screen" accesskey="N" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <input type="button" class="btn btn-primary form-control" style="border-radius: 10px!important;"
+                                       id="btnleave" onclick="close_room();" name="command" value="Leave Meeting" accesskey="N" />
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @Html.HiddenFor(m => m[0].Col17, new { id = "Student_Name" })
+            @Html.HiddenFor(m => m[0].Col18, new { id = "rollno" })
+            @Html.HiddenFor(m => m[0].Col19, new { id = "Class" })
+            @Html.HiddenFor(m => m[0].Col20, new { id = "section" })
+            @Html.HiddenFor(m => m[0].Col24, new { id = "Classid" })
+            @Html.HiddenFor(m => m[0].Col25, new { id = "sectionid" })
+            @Html.HiddenFor(m => m[0].Col21, new { id = "client_id" })
+            @Html.HiddenFor(m => m[0].Col22, new { id = "unit_id" })
+            @Html.HiddenFor(m => m[0].Col23, new { id = "utype" })
+            @Html.HiddenFor(m => m[0].Col14, new { id = "m_id" })
+            @Html.HiddenFor(m => m[0].Col15, new { id = "mid" })
+            <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden;" class="btn btn-primary" />
+            @if (Model[0].Col23 != "" && Model[0].Col23 == "CPR")
+            {
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">Class </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddlclass", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", onchange = "ddlchange();" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">Section </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddlsection", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", onchange = "ddlchange();" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+            }
+            <div class="row" style="background:#F2F5F8">
+                <div class="col-sm-4">
+                    <div class="chat-header clearfix" style="height:70px;">
+                        <input type="text" id="room-id" value="abcde" class="form-control form-control-lg form-control-borderless" placeholder="Enter Meeting Id..." autocorrect=off autocapitalize=off size=20 onkeydown="return false;">
+                    </div>
+                    <div id="chat-container">
+                        <div class="chat-output"></div>
+                    </div>
+                    <section class="make-center">
+                        <div id="videos-container"></div>
+                    </section>
+                </div>
+                <div class="col-sm-8">
+                    <div class="contr clearfix" id="2nd_col">
+                        <div class="row">
+                            <div class="col-sm-5" id="stud_list">
+                                <div class="people-list" id="people-list">
+                                    <div class="chat-header clearfix" style="height:70px;">
+                                        <h5 class="text-muted" style="color:black;font-weight: bold;font-size: 16px;">
+                                            <span class="fa fa-list principal-title" style="padding-right:5px;"></span>
+                                            Connected Students
+                                        </h5>
+                                    </div>
+                                    <div class="chat-list">
+                                        <ol class="list" id="no_bullet"></ol>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="chat">
+                                    <div class="chat-header clearfix">
+                                        <div class="chat-about">
+                                            <div class="chat-with">
+                                                <span class="fa fa-comments principal-title" style="padding-right:5px;font-size:larger;"></span>
+                                                Online Chat
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- end chat-header -->
+                                    <div class="chat-history">
+                                        <ul id="c_hist" style="list-style: none;"></ul>
+                                    </div> <!-- end chat-history -->
+                                    <div id="file-container"></div>
+                                    <div class="chat-message">
+                                        <textarea name="message-to-send" id="input-text-chat" class="form-control form-control-lg form-control-borderless" placeholder="Type your message..." rows="1"></textarea>
+                                        <span class="input-group-addon btn-success" data-toggle="tooltip" data-placement="top" title="Send" id="btn_send"><i class="fa fa-paper-plane-o"></i></span>
+                                        <span class="input-group-addon btn btn-primary" data-toggle="tooltip" data-placement="top" title="Attachment" id="share-file"><i class="fa fa-paperclip"></i></span>
+                                        <!--end of col-->
+                                    </div> <!-- end chat-message -->
+                                </div> <!-- end chat -->
+                                <script id="message-template" type="text/x-handlebars-template">
+                                    <li class="clearfix">
+                                        <div class="message-data align-right">
+                                            <span class="message-data-time">{{time}}, Today</span> &nbsp; &nbsp;
+                                            <span class="message-data-name">Olia</span> <i class="fa fa-circle me"></i>
+                                        </div>
+                                        <div class="message other-message float-right">
+                                            {{messageOutput}}
+                                        </div>
+                                    </li>
+                                </script>
+                                <script id="message-response-template" type="text/x-handlebars-template">
+                                    <li>
+                                        <div class="message-data">
+                                            <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+                                            <span class="message-data-time">{{time}}, Today</span>
+                                        </div>
+                                        <div class="message my-message">
+                                            {{response}}
+                                        </div>
+                                    </li>
+                                </script>
+                            </div>
+                        </div>
+
+
+                    </div> <!-- end container -->
+
+                </div>
+            </div>
+            <div class="row">
+                <div id="room-urls" style="text-align: center;display: none;background: #F1EDED;margin: 15px -10px;border: 1px solid rgb(189, 189, 189);border-left: 0;border-right: 0;"></div>
+            </div>
+        </div>
+    }
+    <script src="~/dist/RTCMultiConnection.js"></script>
+    <script src="~/dist/RTCMultiConnection.min.js"></script>
+    @*<script src="~/node_modules/webrtc-adapter/out/adapter.js"></script>*@
+    <script src="~/socket.io/socket.io.js"></script>
+    <!-- custom layout for HTML5 audio/video elements -->
+    <link rel="stylesheet" href="~/dev/getHTMLMediaElement.css">
+    <script src="~/dev/getHTMLMediaElement.js"></script>
+    <script src="~/node_modules/recordrtc/RecordRTC.js"></script>
+    <script src="~/node_modules/webrtc-screen-capturing/getScreenId.js"></script>
+    <script src="~/node_modules/fbr/FileBufferReader.js"></script>
+    <script src="~/dist/list.js"></script>
+
+    <script>
+        (function () {
+
+            var chat = {
+                messageToSend: '',
+                messageResponses: [
+                    'Why did the web developer leave the restaurant? Because of the table layout.',
+                    'How do you comfort a JavaScript bug? You console it.',
+                    'An SQL query enters a bar, approaches two tables and asks: "May I join you?"',
+                    'What is the most used language in programming? Profanity.',
+                    'What is the object-oriented way to become wealthy? Inheritance.',
+                    'An SEO expert walks into a bar, bars, pub, tavern, public house, Irish pub, drinks, beer, alcohol'
+                ],
+                init: function () {
+                    this.cacheDOM();
+                    this.bindEvents();
+                    this.render();
+                },
+                cacheDOM: function () {
+                    this.$chatHistory = $('.chat-history');
+                    this.$button = $('button');
+                    this.$textarea = $('#message-to-send');
+                    this.$chatHistoryList = this.$chatHistory.find('ul');
+                },
+                bindEvents: function () {
+                    this.$button.on('click', this.addMessage.bind(this));
+                    this.$textarea.on('keyup', this.addMessageEnter.bind(this));
+                },
+                render: function () {
+                    this.scrollToBottom();
+                    if (this.messageToSend.trim() !== '') {
+                        var template = Handlebars.compile($("#message-template").html());
+                        var context = {
+                            messageOutput: this.messageToSend,
+                            time: this.getCurrentTime()
+                        };
+
+                        this.$chatHistoryList.append(template(context));
+                        this.scrollToBottom();
+                        this.$textarea.val('');
+
+                        // responses
+                        var templateResponse = Handlebars.compile($("#message-response-template").html());
+                        var contextResponse = {
+                            response: this.getRandomItem(this.messageResponses),
+                            time: this.getCurrentTime()
+                        };
+
+                        setTimeout(function () {
+                            this.$chatHistoryList.append(templateResponse(contextResponse));
+                            this.scrollToBottom();
+                        }.bind(this), 1500);
+
+                    }
+
+                },
+
+                addMessage: function () {
+                    this.messageToSend = this.$textarea.val()
+                    this.render();
+                },
+                addMessageEnter: function (event) {
+                    // enter was pressed
+                    if (event.keyCode === 13) {
+                        this.addMessage();
+                    }
+                },
+                scrollToBottom: function () {
+                    this.$chatHistory.scrollTop(this.$chatHistory[0].scrollHeight);
+                },
+                getCurrentTime: function () {
+                    return new Date().toLocaleTimeString().
+                        replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
+                },
+                getRandomItem: function (arr) {
+                    return arr[Math.floor(Math.random() * arr.length)];
+                }
+
+            };
+
+            chat.init();
+
+            var searchFilter = {
+                options: { valueNames: ['name'] },
+                init: function () {
+                    var userList = new List('people-list', this.options);
+                    var noItems = $('<li id="no-items-found">No items found</li>');
+
+                    userList.on('updated', function (list) {
+                        if (list.matchingItems.length === 0) {
+                            $(list.list).append(noItems);
+                        } else {
+                            noItems.detach();
+                        }
+                    });
+                }
+            };
+
+            searchFilter.init();
+
+        })();
+    </script>
+    <script>
+        //$("video")[0].style.maxheight = "100%";
+        // ......................................................
+        // .......................UI Code........................
+        // ......................................................
+              $(document).ready(function () {
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+                  $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+                  var types = document.getElementById('utype');
+                  if (types.value == "CPR") {
+                  ddlchange();
+                  //$("#btnnew").attr('readonly', true);
+                  //$("#room-id").value("");
+                  }
+                  else if (types.value == "STD"){
+                      ddlstuddetail();
+                  }
+              });
+
+        function ddlstuddetail() {
+
+            try {
+                var txtbox = document.getElementById('room-id');
+                var vall = $("#Classid")[0].value;
+                var val2 = $("#sectionid")[0].value;
+                var unit = $("#unit_id")[0].value;
+                txtbox.value ='@userCode' +  unit + vall + val2;
+            }
+            catch{ }
+        }
+        function ddlchange() {
+            try {
+                var txtbox = document.getElementById('room-id');
+                var vall = $("#ddlclass")[0].value;
+                var val2 = $("#ddlsection")[0].value;
+                if (vall == "" || val2 == "") {
+                    txtbox.value = "";
+                    return;
+                }
+                var cl = $("#client_id")[0].value;
+                var unit = $("#unit_id")[0].value;
+                txtbox.value ='@userCode' +  unit + vall + val2;
+            }
+            catch{ }
+        }
+        function close_room() {
+            connection.close();
+        }
+        function setUserInfo() {
+            connection.extra.userName = $("#Student_Name")[0].value;
+            connection.extra.rollno = $("#rollno")[0].value;
+            connection.extra.classname = $("#Class")[0].value;
+            connection.extra.section = $("#section")[0].value;
+        }
+
+        function open_room() {
+            var r_id = $("#room-id")[0].value;
+            if (r_id == "" || r_id == undefined) { alert("Please Enter Meeting ID"); return; }
+            //document.getElementById('room-id').value = new Date().getTime();
+            disableInputButtons();
+            connection.extra.broadcaster = true;
+            setUserInfo();
+            DetectRTC.load(function () {
+                if (DetectRTC.videoInputDevices.length > 1) {
+                    connection.mediaConstraints = {
+                        audio: true,
+                        video: {
+                            deviceId: DetectRTC.videoInputDevices[0].deviceId
+                        }
+                    };
+                }
+                connection.openOrJoin(document.getElementById('room-id').value, function (isRoomExist, roomid, error) {
+                    if (error) {
+                        console.error('openOrJoin', error, roomid);
+                        return;
+                    }
+                    //$("#C3kTjEiKPFRRd8lVdFVxBAkZiZfTkQubTk65").find("h2")[0].innerText = "Ram";
+                    //showRoomURL(roomid);
+                    afterConnectingSocket();
+
+                    if (!connection.isInitiator) {
+                        console.log('I am creating my own room as well.');
+
+                        var initialStatus = connection.dontCaptureUserMedia;
+                        connection.dontCaptureUserMedia = true;
+                        // each user must create a separate room as well!
+                        connection.open(connection.userid, function (isRoomOpened, roomid, error) {
+                            if (error) {
+                                console.error('open', error, roomid);
+                                try {
+                                    $("video")[0].style.maxheight = "100%";
+                                } catch (err) { }
+                                return;
+                            }
+                            connection.dontCaptureUserMedia = initialStatus;
+                            connection.isInitiator = false;
+                        });
+                    }
+
+
+                });
+            });
+            fillUsers();
+            myFunction(true);
+
+        }
+        function fillUsers() {
+            //if (!connection.isInitiator)
+            {
+                connection.onUserStatusChanged = function () {
+                    $("#no_bullet").empty();
+                    connection.getAllParticipants().forEach(function (pid) {
+
+                        var userName = connection.extra.rollno || connection.peers[pid].extra.userName;
+                        var classname = connection.extra.classname || connection.peers[pid].extra.classname;
+                        var section = connection.extra.section || connection.peers[pid].extra.section;
+                        var rollno = connection.extra.rollno || connection.peers[pid].extra.rollno;
+                        
+
+                        if (connection.peers[pid].peer.connectionState == "connected") {
+
+                            /**/
+                            /**/
+                            $("#no_bullet").append('<li href="#" class="clearfix"><div class="about"><div class= "name" >' + userName
+                                + ' / ' + rollno
+                                + ' / ' + classname
+                                + ' / ' + section + '</div ><div class="status"> <i class="fa fa-circle online"></i> Signal (Fine) </div> </div ></li>');
+                        }
+                        else {
+                            $("#no_bullet").append('<li href="#" class="clearfix"><div class="about"><div class= "name" >' + userName
+
+                                + ' / ' + rollno
+                                + ' / ' + classname
+                                + ' / ' + section + '</div ><div class="status"> <i class="fa fa-circle offline"></i> Signal (Weak) </div> </div ></li>');
+                        }
+                        //participants.push({
+                        //    pid: pid,
+                        //    broadcaster: connection.peers[pid].extra.broadcaster === true
+                        //});
+                    });
+                }
+            }
+        }
+        function join_room() {
+
+            disableInputButtons();
+            joinBroadcastLooper(document.getElementById('room-id').value);
+            try {
+                $("video")[0].style.maxheight = "100%";
+            } catch (err) { }
+            if (DetectRTC.videoInputDevices.length > 1) {
+                document.getElementById('switch-camera').disabled = false;
+
+                var idx = 0;
+                document.getElementById('switch-camera').onclick = function () {
+                    var deviceId = DetectRTC.videoInputDevices[0].deviceId;
+                    if (idx % 2 == 0) {
+                        deviceId = DetectRTC.videoInputDevices[1].deviceId;
+                    }
+                    idx++;
+
+                    this.disabled = true;
+                    navigator.mediaDevices.getUserMedia({
+                        video: {
+                            deviceId: deviceId
+                        }
+                    }).then(function (cam) {
+                        document.getElementById(connection.userid).media.srcObject = cam;
+
+                        document.getElementById('switch-camera').disabled = false;
+                        connection.getAllParticipants().forEach(function (remoteUserId) {
+                            var peer = connection.peers[remoteUserId].peer;
+                            var sender = peer.getSenders().filter(function (s) {
+                                return s.track.kind === 'video'
+                            })[0];
+                            var track = cam.getTracks().filter(function (s) {
+                                return s.kind === 'video'
+                            })[0];
+                            if (sender && track) {
+                                sender.track.stop();
+                                sender.replaceTrack(track);
+                            }
+
+
+                        });
+
+                        // for upcoming users
+                        var audioTrack = connection.attachStreams[0].getTracks().filter(function (s) {
+                            return s.kind === 'audio'
+                        })[0];
+
+                        if (audioTrack) {
+                            cam.addTrack(audioTrack);
+                        }
+
+                        connection.attachStreams = [cam];
+                    });
+                };
+            }
+            fillUsers();
+            myFunction(false);
+
+            //connection.onclose = function (event) {
+            //
+            //    event.useid // gives the connection closed userid
+            //}
+            //connection.onUserStatusChanged = function () {
+            //    connection.getAllParticipants().forEach(function (pid) {
+            //        $("#no_bullet").append('<li><a href="#" style="color:red">' + pid + '</a></li>');
+            //        participants.push({
+            //            pid: pid,
+            //            broadcaster: connection.peers[pid].extra.broadcaster === true
+            //        });
+            //    });
+            //}
+        }
+
+        // ......................................................
+        // ..................RTCMultiConnection Code.............
+        // ......................................................
+        // screen sharing codes goes here
+        var RMCMediaTrack = {
+            cameraStream: null,
+            cameraTrack: null,
+            screen: null
+        };
+        var connection = new RTCMultiConnection();
+
+        connection.autoCloseEntireSession = true;
+
+        // by default, socket.io server is assumed to be deployed on your own URL
+        connection.socketURL = 'https://rtcmulticonnection.herokuapp.com/';
+
+        // comment-out below line if you do not have your own socket.io server
+        // connection.socketURL = 'https://rtcmulticonnection.herokuapp.com:443/';
+
+        connection.socketMessageEvent = 'btnshare';
+        connection.enableFileSharing = true; // by default, it is "false".
+        connection.session = {
+            audio: true,
+            video: true,
+            broadcast: true,
+            data: true
+        };
+
+        connection.sdpConstraints.mandatory = {
+            OfferToReceiveAudio: true,
+            OfferToReceiveVideo: true
+        };
+        // https://www.rtcmulticonnection.org/docs/iceServers/
+        // use your own TURN-server here!
+        connection.iceServers = [{
+            'urls': [
+                'stun:stun.l.google.com:19302',
+                'stun:stun1.l.google.com:19302',
+                'stun:stun2.l.google.com:19302',
+                'stun:stun.l.google.com:19302?transport=udp',
+            ]
+        }];
+
+
+        connection.videosContainer = document.getElementById('videos-container');
+        connection.onstream = function (event) {
+            var width = parseInt(connection.videosContainer.clientWidth) - 2;
+
+            var mediaElement = getHTMLMediaElement(event.mediaElement, {
+                title: connection.extra.userName || connection.peers[event.userid].extra.userName,
+                buttons: [''],
+                //buttons: ['full-screen'],
+                width: width,
+                showOnMouseEnter: false
+            });
+
+            connection.videosContainer.appendChild(mediaElement);
+
+            setTimeout(function () {
+                mediaElement.media.play();
+            }, 5000);
+
+            mediaElement.id = event.userid;
+
+            if (event.type === 'local' && event.stream.isVideo) {
+                RMCMediaTrack.cameraStream = event.stream;
+                RMCMediaTrack.cameraTrack = event.stream.getVideoTracks()[0];
+            }
+            if (event.type === 'local') {
+                RMCMediaTrack.selfVideo = mediaElement.media;
+            }
+
+            if (event.type === 'remote' && connection.isInitiator) {
+                var participants = [];
+                connection.getAllParticipants().forEach(function (pid) {
+                    participants.push({
+                        pid: pid,
+                        broadcaster: connection.peers[pid].extra.broadcaster === true
+                    });
+                });
+                connection.socket.emit(connection.socketCustomEvent, {
+                    participants: participants
+                });
+            } else if (event.type === 'remote' && !connection.extra.broadcaster) {
+                connection.socket.emit(connection.socketCustomEvent, {
+                    giveAllParticipants: true
+                });
+            }
+        };
+        connection.onstreamended = function (event) {
+            var mediaElement = document.getElementById(event.streamid);
+            if (mediaElement) {
+                mediaElement.parentNode.removeChild(mediaElement);
+            }
+        };
+
+
+
+
+        //File Sharing
+
+
+        connection.enableFileSharing = true; // by default, it is "false".
+
+        //connection.session = {
+        //    data: true
+        //};
+
+        //connection.sdpConstraints.mandatory = {
+        //    OfferToReceiveAudio: false,
+        //    OfferToReceiveVideo: false
+        //};
+
+        // https://www.rtcmulticonnection.org/docs/iceServers/
+        // use your own TURN-server here!
+        //connection.iceServers = [{
+        //    'urls': [
+        //        'stun:stun.l.google.com:19302',
+        //        'stun:stun1.l.google.com:19302',
+        //        'stun:stun2.l.google.com:19302',
+        //        'stun:stun.l.google.com:19302?transport=udp',
+        //    ]
+        //}];
+
+        connection.onmessage = appendDIV;
+        connection.filesContainer = document.getElementById('file-container');
+
+
+
+        var progressHelper = {};
+
+        // www.RTCMultiConnection.org/docs/onFileStart/
+        connection.onFileStart = function (file) {
+            var div = document.createElement('div');
+            div.title = file.name;
+            div.innerHTML = '<label>0%</label> <progress></progress>';
+
+            if (file.remoteUserId) {
+                try {
+
+                    div.innerHTML += ' (Sharing with:' + connection.peers[file.remoteUserId].extra.userName + ')';
+                }
+                catch{
+                    div.innerHTML += ' (Sharing From:' + connection.extra.userName + ')';
+                }
+            }
+
+            if (!connection.filesContainer) {
+                connection.filesContainer = document.body || document.documentElement;
+            }
+
+            connection.filesContainer.insertBefore(div, connection.filesContainer.firstChild);
+
+            if (!file.remoteUserId) {
+                progressHelper[file.uuid] = {
+                    div: div,
+                    progress: div.querySelector('progress'),
+                    label: div.querySelector('label')
+                };
+                progressHelper[file.uuid].progress.max = file.maxChunks;
+                return;
+            }
+
+            if (!progressHelper[file.uuid]) {
+                progressHelper[file.uuid] = {};
+            }
+
+            progressHelper[file.uuid][file.remoteUserId] = {
+                div: div,
+                progress: div.querySelector('progress'),
+                label: div.querySelector('label')
+            };
+            progressHelper[file.uuid][file.remoteUserId].progress.max = file.maxChunks;
+        };
+
+        // www.RTCMultiConnection.org/docs/onFileProgress/
+        connection.onFileProgress = function (chunk) {
+            debugger
+            var helper = progressHelper[chunk.uuid];
+            if (!helper) {
+                return;
+            }
+            if (chunk.remoteUserId) {
+                helper = progressHelper[chunk.uuid][chunk.remoteUserId];
+                if (!helper) {
+                    return;
+                }
+            }
+
+            helper.progress.value = chunk.currentPosition || chunk.maxChunks || helper.progress.max;
+            updateLabel(helper.progress, helper.label);
+        };
+
+        // www.RTCMultiConnection.org/docs/onFileEnd/
+        connection.onFileEnd = function (file) {
+            debugger
+            var helper = progressHelper[file.uuid];
+            if (!helper) {
+                console.error('No such progress-helper element exist.', file);
+                return;
+            }
+
+            if (file.remoteUserId) {
+                helper = progressHelper[file.uuid][file.remoteUserId];
+                if (!helper) {
+                    return;
+                }
+            }
+
+            //var div = helper.div;
+            //var div = $("#file-container");
+            //if (file.type.indexOf('image') != -1) {
+            //    div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Download <strong style="color:red;">' + file.name + '</strong> </a><br />';
+            //    //commented by Ram 13052020
+            //    //div.innerHTML = div.innerHTML + '<img src="' + file.url + '" title="' + file.name + '" style="max-width: 80%;">';
+            //} else {
+            //    div.innerHTML = '<a href="' + file.url + '" download="' + file.name + '">Download <strong style="color:red;">' + file.name + '</strong> </a><br />';
+            //    //commented by Ram 13052020
+
+            //    //div.innerHTML = div.innerHTML + '<iframe src="' + file.url + '" title="' + file.name + '" style="width: 80%;border: 0;height: inherit;margin-top:1em;"></iframe>';
+            //}
+            var obj = {};
+            obj.userid = file.remoteUserId;
+            obj.userName = connection.extra.userName || connection.peers[file.userid].extra.userName;
+            obj.rollno = connection.extra.rollno || connection.peers[file.userid].extra.rollno;
+            obj.classname = connection.extra.classname || connection.peers[file.userid].extra.classname;
+            obj.section = connection.extra.classname || connection.peers[file.userid].extra.section;
+            obj.file = file;
+
+
+            //var obj = {};
+
+            //obj.fileurl = file.url;
+            //obj.filename = file.name;
+
+            appendDIV_file(obj);
+            $(helper.div).empty();
+        };
+
+        function updateLabel(progress, label) {
+            if (progress.position === -1) {
+                return;
+            }
+
+            var position = +progress.position.toFixed(2).split('.')[1] || 100;
+            label.innerHTML = position + '%';
+        }
+
+
+
+
+        //End File
+
+
+        function afterConnectingSocket() {
+            connection.socket.on(connection.socketCustomEvent, function (message) {
+                console.log('custom message', message);
+
+                if (message.participants && !connection.isInitiator && !connection.extra.broadcaster) {
+                    message.participants.forEach(function (participant) {
+                        if (participant.pid === connection.userid) return;
+                        if (connection.getAllParticipants().indexOf(participant.pid) !== -1) return;
+
+                        if (!connection.extra.broadcaster && participant.broadcaster === false) return;
+
+                        console.log('I am joining:', participant.pid);
+                        connection.join(participant.pid, function (isRoomJoined, roomid, error) {
+                            if (error) {
+                                console.error('join', error, roomid);
+                                return;
+                            }
+                        });
+                    });
+                }
+
+                if (message.giveAllParticipants && connection.isInitiator) {
+                    var participants = [];
+                    connection.getAllParticipants().forEach(function (pid) {
+                        //if (!connection.isInitiator)
+                        //if (connection.peers[pid].peer.connectionState == "connected") {
+
+                        //    /**/
+                        //    /**/
+                        //    $("#no_bullet").append('<li href="#" class="clearfix"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" /><div class="about"><div class= "name" >' + connection.peers[pid].extra.userName
+                        //        //$("#no_bullet").append('<li href="#" class="list-group-item text-left"><img class="img-thumbnail" src="https://bootdey.com/img/Content/user_1.jpg" width="50" height="50"> <label class="name" style="color:green;">' + connection.peers[pid].extra.userName
+                        //        /**/
+                        //        /**/
+                        //        + ' / ' + connection.peers[pid].extra.EmailId
+                        //        + ' / ' + connection.peers[pid].extra.regno
+                        //        //+ ' / ' + connection.peers[pid].extra.rollno + '</label><div class="status"> <i class= "fa fa-circle online" ></i > online </div ><p style="position: absolute;top: 15px;right: 0px;" ><a class="btn btn-danger btn-xs glyphicon glyphicon-trash float-right" style="text-align:right;" href="#" title="Delete"></a><a class="btn btn-info btn-xs glyphicon glyphicon glyphicon-comment float-right" style="text-align:right;" href="#" title="Send message"></a></p></li>');
+                        //        + ' / ' + connection.peers[pid].extra.rollno + '</div ><div class="status"> <i class="fa fa-circle online"></i> online </div> </div ></li>');
+                        //}
+                        //else {
+                        //    $("#no_bullet").append('<li href="#" class="clearfix"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg" alt="avatar" /><div class="about"><div class= "name" >' + connection.peers[pid].extra.userName
+                        //        //$("#no_bullet").append('<li href="#" class="list-group-item text-left"><img class="img-thumbnail" src="https://bootdey.com/img/Content/user_1.jpg" width="50" height="50"> <label class="name" style="color:green;">' + connection.peers[pid].extra.userName
+                        //        /**/
+                        //        /**/
+                        //        + ' / ' + connection.peers[pid].extra.EmailId
+                        //        + ' / ' + connection.peers[pid].extra.regno
+                        //        //+ ' / ' + connection.peers[pid].extra.rollno + '</label><div class="status"> <i class= "fa fa-circle online" ></i > online </div ><p style="position: absolute;top: 15px;right: 0px;" ><a class="btn btn-danger btn-xs glyphicon glyphicon-trash float-right" style="text-align:right;" href="#" title="Delete"></a><a class="btn btn-info btn-xs glyphicon glyphicon glyphicon-comment float-right" style="text-align:right;" href="#" title="Send message"></a></p></li>');
+                        //        + ' / ' + connection.peers[pid].extra.rollno + '</div ><div class="status"> <i class="fa fa-circle offline"></i> offline </div> </div ></li>');
+                        //    //$("#no_bullet").append('<li href="#" class="list-group-item text-left"><img class= "img-thumbnail" src = "https://bootdey.com/img/Content/user_1.jpg" width="30" height="30"> <label class="name" style="color:red;">' + connection.peers[pid].extra.userName
+                        //    //    + ' / ' + connection.peers[pid].extra.EmailId
+                        //    //    + ' / ' + connection.peers[pid].extra.regno
+                        //    //    + ' / ' + connection.peers[pid].extra.rollno + '</label><div class="status"> <i class= "fa fa-circle offline" ></i > Offline </div ><p style="position: absolute;top: 15px;right: 0px;" ><a class="btn btn-danger btn-xs glyphicon glyphicon-trash float-right" href="#" style="text-align:right;" title="Delete"></a><a class="btn btn-info btn-xs glyphicon glyphicon glyphicon-comment float-right" href="#" title="Send message"></a></p></li>');
+                        //}
+                        //$("#no_bullet").append('<li><a href="#" style="color:blue">' + pid + '</a></li>');
+                        participants.push({
+                            pid: pid,
+                            broadcaster: connection.peers[pid].extra.broadcaster === true
+                        });
+                    });
+                    connection.socket.emit(connection.socketCustomEvent, {
+                        participants: participants
+                    });
+                }
+            });
+
+
+
+        }
+
+        connection.onstreamended = function (event) {
+            var mediaElement = document.getElementById(event.userid);
+            if (mediaElement) {
+                mediaElement.parentNode.removeChild(mediaElement);
+            }
+        };
+
+
+
+        ////
+
+
+        function disableInputButtons() {
+            //document.getElementById('open-broadcast').disabled = true;
+            //document.getElementById('join-broadcast').disabled = true;
+            document.getElementById('room-id').disabled = true;
+        }
+
+        // ......................................................
+        // ......................Handling Room-ID................
+        // ......................................................
+        function showRoomURL(roomid) {
+            var roomHashURL = '#' + roomid;
+            var roomQueryStringURL = '?roomid=' + roomid;
+
+            var html = '<h2>Unique URL for your room:</h2><br>';
+
+            html += 'Hash URL: <a href="' + roomHashURL + '" target="_blank">' + roomHashURL + '</a>';
+            html += '<br>';
+            html += 'QueryString URL: <a href="' + roomQueryStringURL + '" target="_blank">' + roomQueryStringURL + '</a>';
+
+            var roomURLsDiv = document.getElementById('room-urls');
+            roomURLsDiv.innerHTML = html;
+
+            roomURLsDiv.style.display = 'block';
+        }
+
+        (function () {
+            var params = {},
+                r = /([^&=]+)=?([^&]*)/g;
+
+            function d(s) {
+                return decodeURIComponent(s.replace(/\+/g, ' '));
+            }
+            var match, search = window.location.search;
+            while (match = r.exec(search.substring(1)))
+                params[d(match[1])] = d(match[2]);
+            window.params = params;
+        })();
+
+        var roomid = '';
+        if (localStorage.getItem(connection.socketMessageEvent)) {
+            roomid = localStorage.getItem(connection.socketMessageEvent);
+        } else {
+            roomid = connection.token();
+        }
+        document.getElementById('room-id').value = roomid;
+        document.getElementById('room-id').onkeyup = function () {
+            localStorage.setItem(connection.socketMessageEvent, this.value);
+        };
+
+        var hashString = location.hash.replace('#', '');
+        if (hashString.length && hashString.indexOf('comment-') == 0) {
+            hashString = '';
+        }
+
+        roomid = params.roomid;
+        if (!roomid && hashString.length) {
+            roomid = hashString;
+        }
+
+        function joinBroadcastLooper(roomid) {
+
+            connection.extra.broadcaster = false;
+            connection.dontCaptureUserMedia = true;
+            connection.session.oneway = true;
+            setUserInfo();
+
+            // join-broadcast looper
+            (function reCheckRoomPresence() {
+                connection.checkPresence(roomid, function (isRoomExist, roomid, extra) {
+                    // note: last parametr on checkPresence will be changed in future
+                    // it is expected to return "error" rather than "extra"
+                    // so you can compare: if(error === connection.errors.ROOM_FULL) {}
+                    if (extra._room) {
+                        if (extra._room.isFull) {
+                            alert('Room is full.');
+                        }
+
+                        if (extra._room.isPasswordProtected) {
+                            alert('Room is password protected');
+                        }
+                    }
+
+                    if (isRoomExist) {
+                        connection.join(roomid, function (isRoomJoined, roomid, error) {
+                            if (error) {
+                                console.error('join', error, roomid);
+                                return;
+                            }
+
+
+                            afterConnectingSocket();
+                        });
+                        return;
+                    }
+
+                    setTimeout(reCheckRoomPresence, 5000);
+                });
+            })();
+
+            disableInputButtons();
+        }
+
+        function getChromeExtensionStatus(extensionid, callback) {
+            if (connection.isFirefox) return callback('not-chrome');
+
+            if (arguments.length != 2) {
+                callback = extensionid;
+                extensionid = 'onnpnbcklmahhoajlilopflaandmlooa'; // default extension-id
+            }
+
+            try {
+                chrome.runtime.connect(extensionid);
+                callback('installed');
+            }
+            catch (err) {
+                callback('not-installed');
+            }
+
+        }
+
+
+        if (roomid && roomid.length) {
+            document.getElementById('room-id').value = roomid;
+            localStorage.setItem(connection.socketMessageEvent, roomid);
+            joinBroadcastLooper(roomid);
+        }
+
+        var btnShareScreen = document.getElementById('btnshare');
+        connection.onUserStatusChanged = function () {
+            btnShareScreen.disabled = connection.getAllParticipants().length <= 0;
+        };
+
+        btnShareScreen.onclick = function () {
+            //this.disabled = true;
+            if ($(this)[0].value == "Stop Screen") {
+                $(this)[0].value = "Share Screen";
+
+                if (!connection.extra.broadcaster) {
+                    connection.attachStreams.forEach(function (stream) {
+                        stream.getTracks().forEach(track => track.stop());
+
+                    });
+                }
+                else {
+                    //connection.attachStreams.forEach(function (stream) {
+                    //    stream.getTracks().forEach(track => track.stop());
+
+                    //});
+
+                }
+                //connection.session = {
+                //    audio: true,
+                //    video: true,
+                //    broadcast: true,
+                //    data: true
+                //};
+
+            }
+            else {
+                $(this)[0].value = "Stop Screen";
+                if (detectmob()) {
+                    connection.addStream({
+                        audio: true,
+                        oneway: true
+                    });
+                }
+                else {
+                    connection.addStream({
+                        screen: true,
+                        audio: true,
+                        oneway: true
+                    });
+                }
+            }
+            //getScreenStream(function (screen) {
+            //    var isLiveSession = connection.getAllParticipants().length > 0;
+            //    if (isLiveSession) {
+            //        replaceTrack(RMCMediaTrack.screen);
+            //    }
+
+            //    // now remove old video track from "attachStreams" array
+            //    // so that newcomers can see screen as well
+            //    connection.attachStreams.forEach(function (stream) {
+            //        stream.getVideoTracks().forEach(function (track) {
+            //            stream.removeTrack(track);
+            //        });
+
+            //        // now add screen track into that stream object
+            //        stream.addTrack(RMCMediaTrack.screen);
+
+            //        //var audioStream = captureUsingGetUserMedia();
+            //        //var audioTrack = audioStream.getAudioTracks()[0];
+            //        //// add audio tracks into screen stream
+            //        //stream.addTrack(audioTrack);
+            //    });
+            //});
+            //getChromeExtensionStatus('onnpnbcklmahhoajlilopflaandmlooa', function (status) {
+            //    if (status == 'installed-enabled') {
+            //        // chrome extension is installed & enabled.
+            //    }
+
+            //    else if (status == 'installed-disabled') {
+            //        // chrome extension is installed but disabled.
+            //    }
+
+            //    else if (status == 'not-installed') {
+            //        // chrome extension is not installed
+
+            //
+            //        //$("#extlink").click();
+            //        //chrome.webstore.install(url, successCallback, failureCallback);
+            //        chrome.webstore.install();
+
+            //        $("#extlink").click();
+
+            //    }
+
+            //    else if (status == 'not-chrome') {
+            //        // using non-chrome browser
+            //    }
+            //    else if (status == 'installed') {
+
+
+            //    }
+            //});
+
+
+        };
+
+        function successCallback(res) {
+
+        }
+
+        function failureCallback(err) {
+
+        }
+        function getScreenStream(callback) {
+            getScreenId(function (error, sourceId, screen_constraints) {
+                navigator.mediaDevices.getUserMedia(screen_constraints).then(function (screen) {
+                    RMCMediaTrack.screen = screen.getVideoTracks()[0];
+
+                    RMCMediaTrack.selfVideo.srcObject = screen;
+
+                    // in case if onedned event does not fire
+                    (function looper() {
+                        // readyState can be "live" or "ended"
+                        if (RMCMediaTrack.screen.readyState === 'ended') {
+                            RMCMediaTrack.screen.onended();
+                            return;
+                        }
+                        setTimeout(looper, 1000);
+                    })();
+
+                    var firedOnce = false;
+                    RMCMediaTrack.screen.onended = RMCMediaTrack.screen.onmute = RMCMediaTrack.screen.oninactive = function () {
+                        if (firedOnce) return;
+                        firedOnce = true;
+
+                        if (RMCMediaTrack.cameraStream.getVideoTracks()[0].readyState) {
+                            RMCMediaTrack.cameraStream.getVideoTracks().forEach(function (track) {
+                                RMCMediaTrack.cameraStream.removeTrack(track);
+                            });
+                            RMCMediaTrack.cameraStream.addTrack(RMCMediaTrack.cameraTrack);
+                        }
+
+                        RMCMediaTrack.selfVideo.srcObject = RMCMediaTrack.cameraStream;
+
+                        connection.socket && connection.socket.emit(connection.socketCustomEvent, {
+                            justStoppedMyScreen: true,
+                            userid: connection.userid
+
+                        });
+
+                        // share camera again
+                        replaceTrack(RMCMediaTrack.cameraTrack);
+
+                        // now remove old screen from "attachStreams" array
+                        connection.attachStreams = [RMCMediaTrack.cameraStream];
+
+                        // so that user can share again
+                        btnShareScreen.disabled = false;
+                    };
+
+                    connection.socket && connection.socket.emit(connection.socketCustomEvent, {
+                        justSharedMyScreen: true,
+                        userid: connection.userid
+
+                    });
+
+                    callback(screen);
+                });
+            });
+        }
+
+        function replaceTrack(videoTrack) {
+            if (!videoTrack) return;
+            if (videoTrack.readyState === 'ended') {
+                alert('Can not replace an "ended" track. track.readyState: ' + videoTrack.readyState);
+                return;
+            }
+            connection.getAllParticipants().forEach(function (pid) {
+                var peer = connection.peers[pid].peer;
+                if (!peer.getSenders) return;
+
+                var trackToReplace = videoTrack;
+
+                peer.getSenders().forEach(function (sender) {
+                    if (!sender || !sender.track) return;
+
+                    if (sender.track.kind === 'video' && trackToReplace) {
+                        sender.replaceTrack(trackToReplace);
+                        trackToReplace = null;
+                    }
+                });
+            });
+        }
+        // ......................................................
+        // ................FileSharing/TextChat Code.............
+        // ......................................................
+
+        //document.getElementById('share-file').onclick = function () {
+        //    var fileSelector = new FileSelector();
+        //    fileSelector.selectSingleFile(function (file) {
+        //        connection.send(file);
+
+        //        var obj = {};
+        //        obj.userid = file.remoteUserId;
+        //        obj.userName = connection.extra.userName;
+        //        obj.rollno = connection.extra.rollno;
+        //        obj.classname = connection.extra.classname;
+        //        obj.section = connection.extra.section;
+        //        obj.file = file;
+
+        //        //var obj = {};
+
+        //        //obj.fileurl = file.url;
+        //        //obj.filename = file.name;
+
+        //        appendDIV_file(obj);
+        //    });
+        //};
+
+        document.getElementById('input-text-chat').onkeyup = function (e) {
+            if (e.keyCode != 13) return;
+
+            // removing trailing/leading whitespace
+            sendmsg();
+        };
+
+        function sendmsg() {
+
+            var txtbox = document.getElementById('input-text-chat');
+            txtbox.value = txtbox.value.replace(/^\s+|\s+$/g, '');
+            if (!txtbox.value.length) return;
+
+            var obj = {};
+            obj.text = txtbox.value;
+            obj.userName = connection.extra.userName;
+            obj.rollno = connection.extra.rollno;
+            obj.classname = connection.extra.classname;
+            obj.section = connection.extra.section;
+            connection.send(obj);
+            appendDIV(obj);
+            txtbox.value = '';
+        }
+        document.getElementById('btn_send').onclick = sendmsg;
+
+        // ......................................................
+        // ................FileSharing/TextChat Code.............
+        // ......................................................
+
+        document.getElementById('share-file').onclick = function () {
+            var fileSelector = new FileSelector();
+            fileSelector.selectSingleFile(function (file) {
+                connection.send(file);
+            });
+        };
+
+
+        var chatContainer = document.querySelector('.chat-output');
+        function appendDIV(obj) {
+            var element = document.createElement("div");
+            var text = obj.text || obj.data.text;
+            var userName = obj.userName || obj.data.userName;
+            var classname = obj.classname || obj.data.classname;
+            var rollno = obj.rollno || obj.data.rollno;
+            var section = obj.section || obj.data.section;
+            //$("#c_hist").append('<li"> <div class= "message-data align-right"><span class="message-data-time" >(' + formatAMPM() + ')' + userName +
+            //    ' / ' + rollno + '</span><div class="float-right example">' + text + '</div></div > </li >');
+
+            $("#c_hist").append('<li"> <div class= "message-data align-right"><span class="message-data-time" >(' + formatAMPM() + ')<a style="color:Black">' + userName +
+                ' / ' + rollno + '</a></span><div class="float-right example">' + text + '</div></div ><br/> </li >');
+            document.getElementById('input-text-chat').focus();
+        }
+        function appendDIV_file(obj) {
+            ;
+            var userName = obj.userName || obj.data.userName;
+            var classname = obj.classname || obj.data.classname;
+            var rollno = obj.rollno || obj.data.rollno;
+
+
+            var file = obj.file || obj.data.file;
+
+            if (file == null) {
+                var text = obj.text || obj.data.text;
+
+                $("#c_hist").append('<li"> <div class= "message-data align-right"><span class="message-data-time" >(' + formatAMPM() + ')</span><span class="message-data-name">' + userName +
+                    ' / ' + rollno + '</span><div class="float-right example">' + text + '</div></div ><br/> </li >');
+            }
+            else {
+                $("#c_hist").append('<li> <div class= "message-data align-right" ><span class="message-data-time" >(' + formatAMPM() + ')</span><span class="message-data-name">' + userName +
+                    ' / ' + rollno + '</span> <div class="float-right example"><a href = "' + file.url + '" download = "' + file.name + '" style="color: darkcyan;">' + file.name + ' <i class="fa fa-download float-right" style="padding-left:8px;"></i></a></div></div><br/></li >');
+
+            }
+            document.getElementById('input-text-chat').focus();
+        }
+        //function formatAMPM() {
+        //    var dt;
+        //    var d = new Date(),
+        //        minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+        //        hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+        //        ampm = d.getHours() >= 12 ? 'pm' : 'am',
+        //        months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        //        dt = months[d.getMonth()] + ' ' + d.getDate() + ' ' + d.getFullYear() + ' ' + hours + ':' + minutes + ampm;
+        //    return dt;
+        //}
+        function formatAMPM() {
+            var dt;
+            var d = new Date(),
+                minutes = d.getMinutes().toString().length == 1 ? '0' + d.getMinutes() : d.getMinutes(),
+                hours = d.getHours().toString().length == 1 ? '0' + d.getHours() : d.getHours(),
+                ampm = d.getHours() >= 12 ? 'pm' : 'am',
+                //months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                dt = 'Today' + ' ' + hours + ':' + minutes + ampm;
+            return dt;
+        }
+        function myFunction(VAL) {
+            debugger;
+            var vall;
+            vall = VAL;
+            var x = document.getElementById("stud_list");
+            var y = document.getElementById("2nd_col");
+            if (vall == true) {
+                x.style.display = "block";
+                document.getElementById("btnjoin").disabled = true;
+                document.getElementById("btnnew").disabled = true;
+            }
+            else if (vall == "-") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "none";
+                document.getElementById("btnnew").disabled = true;
+                document.getElementById("btnjoin").disabled = true;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

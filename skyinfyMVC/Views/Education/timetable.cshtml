@@ -1,0 +1,200 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+
+    string cg_com_name = sgen.GetCookie(Model[0].Col15,"cg_com_name");
+    string basestr = "", imgdisplay = "", base64 = "";
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    //var ispc = false;
+    //var isms = false;
+    //var isgs = false;
+    //var isvr = false;
+    //var isbchq = false;
+
+    //var onclick = "";
+    //var imgclosedisplay = "";
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsavenew id="btnsavenew" name="command" value='@Model[0].Col100' />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" formnovalidate id="btncancel" name="command" value="Cancel" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="clearfix"></div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+     
+
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    }
+
+    {
+      
+        {
+            <table class="table table-bordered">
+
+
+
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td>
+                            @Model[i].Col21
+                            @*@Model[i].Col22*@
+                        </td>
+                        @for (int j = 0; j < Model[i].LTM1.Count; j++)
+                        {
+                        <td>
+                            @Model[i].LTM1[j].Col11
+                            @*@Model[i].LTM1[j].Col12*@
+                            @*@Model[i].LTM1[j].Col13*@
+                            @Html.DropDownListFor(model => model[i].LTM1[j].SelectedItems1, new MultiSelectList(Model[i].LTM1[j].TList1, "Value", "Text", Model[i].LTM1[j].SelectedItems1), new { @id = "ddl_teac", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @MaxLength = "20", @multiple = "multiple" })
+
+                            @*@Model[i].LTM1[j].Col14*@
+
+                        </td>
+                        }
+                    </tr>
+                }
+
+            </table>
+        }
+    }
+
+        <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+    }
+    <script type="text/javascript">
+        //debugger;
+        $(document).ready(function () {
+            @Html.Raw(ViewBag.scripCall);
+            $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        });
+
+
+
+
+        function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+        function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+
+
+        //////files
+
+        function fdelete(evt, id) {
+            //prevent the browsers default function
+            evt.preventDefault();
+            //grab the form and wrap it with jQuery
+            var $form = $("form");
+            var obj = { "value": id };
+            myMethod('@controllerName', '@viewName', "fdelete", obj, null);
+            $("#callback1").click();
+        }
+        function onsuccessdel(response) { bindFiles(); }
+        function onfailuredel(response) { }
+
+    </script>
+    <style>
+        #mapCanvas {
+            width: 100%;
+            height: 300px;
+            float: left;
+        }
+
+        #infoPanel {
+            float: left;
+            margin-left: 10px;
+        }
+
+            #infoPanel div {
+                margin-bottom: 5px;
+            }
+    </style>

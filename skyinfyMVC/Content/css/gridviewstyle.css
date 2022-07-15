@@ -1,0 +1,72 @@
+﻿
+        /* styling for gridview*/
+    .mydatagrid {
+         width: 80%;
+         /*border: 1px black;*/
+         min-width: 100%;
+            }
+    .header {
+        background-color:#2A3F54;
+        font-family: Arial;
+        color: White;
+        border: none 0px transparent;
+        height: 10px;
+        text-align: center;
+        font-size: 16px;
+           }
+   .rowsgrid {
+       background-color:#efeded;
+       font-family: Arial;
+       font-size: 14px;
+       color: #000;
+       min-height: 25px;
+       text-align: left;
+       border: none 0px transparent;
+        /*border:inherit;*/
+        }
+    .rowsgrid:hover{
+       background-color: #2534A9;
+       font-family: Arial;
+       color:#ff8000;
+       text-align: left;
+        }
+     .selectedrow{
+       background-color: #ff8000;
+       font-family: Arial;
+       color: #fff;
+       font-weight: bold;
+       text-align: left;
+         }
+	.mydatagrid a /** FOR THE PAGING ICONS  **/
+          {
+        /*background-color: Transparent;*/
+        padding: 5px 5px 5px 5px;
+        /*color: #fff;*/
+        /*text-decoration: none;*/
+        /*font-weight: bold;*/
+          }
+    .mydatagrid a:hover /** FOR THE PAGING ICONS  HOVER STYLES**/
+        {
+       background-color:#d1cccc;
+       color: #6f6d6d;
+        }
+    .mydatagrid span /** FOR THE PAGING ICONS CURRENT PAGE INDICATOR **/
+          {
+       
+        color: black;
+        padding: 5px 5px 5px 5px;
+         }
+    .pager{
+       background-color:#821392;
+	   font-family: Arial;
+	   color: black;
+	   height: 30px;
+       text-align: left;
+         }
+    .mydatagrid td {
+     padding: 5px;
+        }
+    .mydatagrid th {
+     padding: 5px;
+       }
+

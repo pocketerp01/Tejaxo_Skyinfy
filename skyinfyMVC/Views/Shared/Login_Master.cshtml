@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skyinfy-ERP</title>
+    <link rel="icon" href="../Uploads/logo.ico" type="image/ico" />
+
+    @Styles.Render("~/bundles/logincss")
+    @Scripts.Render("~/bundles/loginjs")
+  
+
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+        $(document).ready(function () {
+            sessionStorage.setItem("menuid", "l1");
+        });
+    </script>
+
+    <style>
+        .logstyle {
+            font-size: x-large;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+
+<body class="login" style="background-repeat:no-repeat;background-size:auto;background-origin:content-box;">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+            <div class="animate form login_form">
+                <section class="login_content">
+                    @RenderBody()
+                </section>
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @{
+                                    var NewVersion = (string)Session["NewVersion"];
+
+                                }
+                     <p style="text-align: right; margin-left: 460px; margin-top: 65%; width: 100%;"><span id="spn_date">Version @NewVersion  Dated 28-03-2021 22:31</span></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

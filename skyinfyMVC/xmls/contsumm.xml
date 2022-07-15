@@ -1,0 +1,167 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ACODE" type="xs:string" minOccurs="0" />
+                <xs:element name="C_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="GSTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="RRATE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMM_PER" type="xs:decimal" minOccurs="0" />
+                <xs:element name="HRS_TOT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="BAS_AMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMMISION" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OTHERS" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOT_PAYABLE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="MONTH_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="CURRYYYYMMM" type="xs:string" minOccurs="0" />
+                <xs:element name="YR" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <ACODE>203000003</ACODE>
+    <C_NAME>SURAJ</C_NAME>
+    <ADDRESS>NA</ADDRESS>
+    <PINCODE>201306</PINCODE>
+    <GSTIN>Not Registered</GSTIN>
+    <RRATE>33.12</RRATE>
+    <COMM_PER>9</COMM_PER>
+    <HRS_TOT>4221</HRS_TOT>
+    <BAS_AMT>139799.52</BAS_AMT>
+    <COMMISION>12581.96</COMMISION>
+    <OTHERS>0</OTHERS>
+    <TOT_PAYABLE>152381.48</TOT_PAYABLE>
+    <MONTH_ID>001</MONTH_ID>
+    <MONTH_NAME>January</MONTH_NAME>
+    <CURRYYYYMMM>2021001</CURRYYYYMMM>
+    <YR>2021</YR>
+  </prepcur>
+  <prepcur>
+    <ACODE>203000004</ACODE>
+    <C_NAME>VK CHAUHAN</C_NAME>
+    <ADDRESS>NA</ADDRESS>
+    <PINCODE>201306</PINCODE>
+    <GSTIN>Not Registered</GSTIN>
+    <RRATE>33.12</RRATE>
+    <COMM_PER>9</COMM_PER>
+    <HRS_TOT>4255</HRS_TOT>
+    <BAS_AMT>140925.59999999998</BAS_AMT>
+    <COMMISION>12683.303999999998</COMMISION>
+    <OTHERS>0</OTHERS>
+    <TOT_PAYABLE>153608.903999999978</TOT_PAYABLE>
+    <MONTH_ID>001</MONTH_ID>
+    <MONTH_NAME>January</MONTH_NAME>
+    <CURRYYYYMMM>2021001</CURRYYYYMMM>
+    <YR>2021</YR>
+  </prepcur>
+  <prepcur>
+    <ACODE>203000002</ACODE>
+    <C_NAME>MANISH</C_NAME>
+    <ADDRESS>NOIDA</ADDRESS>
+    <PINCODE>201306</PINCODE>
+    <GSTIN>Not Registered</GSTIN>
+    <RRATE>33.12</RRATE>
+    <COMM_PER>9</COMM_PER>
+    <HRS_TOT>4259</HRS_TOT>
+    <BAS_AMT>141058.08</BAS_AMT>
+    <COMMISION>12695.2272</COMMISION>
+    <OTHERS>0</OTHERS>
+    <TOT_PAYABLE>153753.3072</TOT_PAYABLE>
+    <MONTH_ID>001</MONTH_ID>
+    <MONTH_NAME>January</MONTH_NAME>
+    <CURRYYYYMMM>2021001</CURRYYYYMMM>
+    <YR>2021</YR>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Kesho Packaging Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDAGB NAGAR</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>09</COMPANY_STATE>
+    <COMPANY_CITY>Noida</COMPANY_CITY>
+    <COMPANY_PINCODE>201306</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>info@keshopackaging.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>keshopackaging.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1204152702</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1204152702</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>09AADCK1978R1ZN</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AADCK1978R</COM_PAN_NO>
+    <COMPANY_CIN_NO>U74950DL2007PTC168971</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>Contractor1</UNIT_NAME>
+    <UNIT_ADDRESS>Plot no 38 ecotech 2gautam budhnagar</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Uttar Pradesh</STATE_NAME>
+    <UNIT_STATE>09</UNIT_STATE>
+    <UNIT_CITY>Noida</UNIT_CITY>
+    <UNIT_PINCODE>201306</UNIT_PINCODE>
+    <UNIT_EMAIL>test@test.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>abcd.com</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>9999999999</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9999999999</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>0</UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

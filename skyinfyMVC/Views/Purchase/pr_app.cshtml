@@ -1,0 +1,887 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="clearfix">
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <label for="first-name">From Date <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_from", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", placeholder = "From Date" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">To Date <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_to", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", placeholder = "To Date" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3'>
+                            <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    <button type="button" class="btn btn-primary form-control sa-button" style="border-radius: 10px!important;" id="btn_show" onclick="setTableDatat(); showfun();" name="command" value="Show">Show</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3'>
+                            <label for="first-name"><span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="btn_app" onclick="setTableDatat();" name="command" value="Approval" />
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_cgstin" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_purtype" })
+
+    <style>
+        
+        .datepicker.dropdown-menu {
+            z-index: 99999 !important
+        }
+
+        .bootstrap-datetimepicker-widget.dropdown-menu {
+            overflow: visible;
+            height: 100%;
+        }
+    
+    </style>
+
+    if (Model.Count < 1)
+    { }
+
+    else
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            DataTable dtm = Model[i].dt1;
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="grid-container">
+                                <div class="grid">
+
+                                    @try
+                                    {
+                                        foreach (DataColumn dc in dtm.Columns)
+                                        {
+                                            int mlength = 20;
+                                            try
+                                            {
+                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                            }
+                                            catch (Exception err) { }
+                                            int k = 0;
+
+                                            if (dc.Ordinal == 0)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:25px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+
+                                                            @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk", @class = "sa-input checkbox" })
+                                                            <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 1)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:10%">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                            <label>@(k + 1)</label>
+                                                        </div>
+                                                        k++;
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 5)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:50%">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 8)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:10%;left:100px;position:sticky; z-index: 2;background: white;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 12)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 13)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        string id = "dd_loc_" + dtm.Rows.IndexOf(dr);
+
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                            <div class="row">
+                                                                <div class="col-md-10" style="display:block">
+                                                                    @{
+                                                                        id = "SearchTerm_" + dtm.Rows.IndexOf(dr);
+                                                                    }
+
+                                                                    <input type="text" id=@id value="@dr[dc].ToString()" autocomplete="off" class="search-term form-control select2-dtype" />
+                                                                    <div class="suggestions hidden" id="suggestions_@dtm.Rows.IndexOf(dr)">
+                                                                        <table class="table table-condensed table-striped suggest-grid">
+                                                                            <tbody></tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+
+                                            else if (dc.Ordinal == 14)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:250px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        string id = "dd_irate_" + dtm.Rows.IndexOf(dr);
+
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                            <div class="row">
+                                                                <div id="mtxt" class="col-md-10"> @dr[dc].ToString()</div>
+                                                                <div class="col-md-10" style="display:none">
+                                                                    @Html.TextBoxFor(m => m[0].Col22, new { id, @class = "form-control select2-dtype1" })
+                                                                </div>
+                                                                <div id="msrc" class="col-md-2"><i class="fa fa-edit" onclick="showddl(this);"></i></div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+
+                                            }
+
+                                            else
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:25%">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+
+                                        }
+                                    }
+                                    catch (Exception err)
+                                    {
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="hidden" name="hftable" id="hftable" />
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+<style>
+       /**
+    * Datetimepicker for Bootstrap v3 - Modified
+    * https://github.com/Eonasdan/bootstrap-datetimepicker/
+    */
+       .bootstrap-datetimepicker-widget.dropdown-menu {
+           z-index: 9999 !important;
+       }
+
+       .dropdown-menu {
+           z-index: 99999 !important;
+       }
+
+       .bootstrap-datetimepicker-widget {
+           top: 0;
+           left: 0;
+           width: 250px;
+           padding: 4px;
+           margin-top: 1px;
+           z-index: 9999999 !important;
+           border-radius: 4px;
+           list-style: none;
+           background-color: #fff;
+       }
+
+           /* RQI: Arrow for Bottom */
+           .bootstrap-datetimepicker-widget.bottom:before {
+               content: '';
+               display: inline-block;
+               border-left: 7px solid transparent;
+               border-right: 7px solid transparent;
+               border-bottom: 7px solid #ccc;
+               border-bottom-color: rgba(0, 0, 0, 0.2);
+               position: absolute;
+               top: -7px;
+               left: 7px;
+           }
+
+           .bootstrap-datetimepicker-widget.bottom:after {
+               content: '';
+               display: inline-block;
+               border-left: 6px solid transparent;
+               border-right: 6px solid transparent;
+               border-bottom: 6px solid white;
+               position: absolute;
+               top: -6px;
+               left: 8px;
+           }
+
+           /* RQI: Arrow for Top */
+           .bootstrap-datetimepicker-widget.top:before {
+               content: '';
+               display: inline-block;
+               border-left: 7px solid transparent;
+               border-right: 7px solid transparent;
+               border-top: 7px solid #ccc;
+               border-top-color: rgba(0, 0, 0, 0.2);
+               position: absolute;
+               bottom: -7px;
+               left: 6px;
+           }
+
+           .bootstrap-datetimepicker-widget.top:after {
+               content: '';
+               display: inline-block;
+               border-left: 6px solid transparent;
+               border-right: 6px solid transparent;
+               border-top: 6px solid white;
+               position: absolute;
+               bottom: -6px;
+               left: 7px;
+           }
+
+           /* Days Column Width */
+           .bootstrap-datetimepicker-widget .dow {
+               width: 14.2857%;
+           }
+
+           .bootstrap-datetimepicker-widget.pull-right:before {
+               left: auto;
+               right: 6px;
+           }
+
+           .bootstrap-datetimepicker-widget.pull-right:after {
+               left: auto;
+               right: 7px;
+           }
+
+           .bootstrap-datetimepicker-widget > ul {
+               list-style-type: none;
+               margin: 0;
+           }
+
+           .bootstrap-datetimepicker-widget .timepicker-hour,
+           .bootstrap-datetimepicker-widget .timepicker-minute,
+           .bootstrap-datetimepicker-widget .timepicker-second {
+               width: 100%;
+               font-size: 20px;
+           }
+
+           .bootstrap-datetimepicker-widget table[data-hour-format="12"] .separator {
+               width: 4px;
+               padding: 0;
+               margin: 0;
+           }
+
+           .bootstrap-datetimepicker-widget .datepicker > div {
+               display: none;
+           }
+
+           .bootstrap-datetimepicker-widget .picker-switch {
+               text-align: center;
+           }
+
+           .bootstrap-datetimepicker-widget table {
+               width: 100%;
+               margin: 0;
+           }
+
+           .bootstrap-datetimepicker-widget td,
+           .bootstrap-datetimepicker-widget th {
+               text-align: center;
+               border-radius: 4px;
+           }
+
+               .bootstrap-datetimepicker-widget td.day:hover,
+               .bootstrap-datetimepicker-widget td.hour:hover,
+               .bootstrap-datetimepicker-widget td.minute:hover,
+               .bootstrap-datetimepicker-widget td.second:hover {
+                   background: #eeeeee;
+                   cursor: pointer;
+               }
+
+               .bootstrap-datetimepicker-widget td.old,
+               .bootstrap-datetimepicker-widget td.new {
+                   color: #c7c7c7;
+               }
+
+               /* Today */
+               .bootstrap-datetimepicker-widget td.today {
+                   position: relative;
+               }
+
+                   .bootstrap-datetimepicker-widget td.today:before {
+                       content: '';
+                       display: inline-block;
+                       border-left: 7px solid transparent;
+                       border-bottom: 7px solid #389b98;
+                       border-top-color: rgba(0, 0, 0, 0.2);
+                       position: absolute;
+                       bottom: 4px;
+                       right: 4px;
+                   }
+
+               .bootstrap-datetimepicker-widget td.active.today:before {
+                   border-bottom-color: #fff;
+               }
+
+               .bootstrap-datetimepicker-widget td.active,
+               .bootstrap-datetimepicker-widget td.active:hover {
+                   background-color: #389b98;
+                   color: #fff;
+                   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+               }
+
+               .bootstrap-datetimepicker-widget td.disabled,
+               .bootstrap-datetimepicker-widget td.disabled:hover {
+                   background: none;
+                   color: #999999;
+                   cursor: not-allowed;
+               }
+
+               .bootstrap-datetimepicker-widget td span {
+                   display: block;
+                   width: 47px;
+                   float: left;
+                   margin: 2px;
+                   cursor: pointer;
+                   border-radius: 4px;
+                   padding: 5px 0 5px 0;
+               }
+
+                   .bootstrap-datetimepicker-widget td span:hover {
+                       background: #eeeeee;
+                   }
+
+                   .bootstrap-datetimepicker-widget td span.active {
+                       background-color: #428bca;
+                       color: #fff;
+                       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+                   }
+
+                   .bootstrap-datetimepicker-widget td span.old {
+                       color: #999999;
+                   }
+
+                   .bootstrap-datetimepicker-widget td span.disabled,
+                   .bootstrap-datetimepicker-widget td span.disabled:hover {
+                       background: none;
+                       color: #999999;
+                       cursor: not-allowed;
+                   }
+
+               .bootstrap-datetimepicker-widget th.switch {
+                   width: 145px;
+               }
+
+               .bootstrap-datetimepicker-widget th.next,
+               .bootstrap-datetimepicker-widget th.prev {
+                   font-size: 21px;
+               }
+
+               .bootstrap-datetimepicker-widget th.disabled,
+               .bootstrap-datetimepicker-widget th.disabled:hover {
+                   background: none;
+                   color: #999999;
+                   cursor: not-allowed;
+               }
+
+           .bootstrap-datetimepicker-widget thead tr:first-child th {
+               cursor: pointer;
+           }
+
+               .bootstrap-datetimepicker-widget thead tr:first-child th:hover {
+                   background: #eeeeee;
+               }
+
+       .input-group.date .input-group-addon span {
+           display: block;
+           cursor: pointer;
+           width: 16px;
+           height: 16px;
+       }
+
+       .bootstrap-datetimepicker-widget.left-oriented:before {
+           left: auto;
+           right: 6px;
+       }
+
+       .bootstrap-datetimepicker-widget.left-oriented:after {
+           left: auto;
+           right: 7px;
+       }
+
+       .bootstrap-datetimepicker-widget ul.list-unstyled li.in div.timepicker div.timepicker-picker table.table-condensed tbody > tr > td {
+           padding: 0;
+       }
+
+       /* Customized Button */
+       .btn-time, .btn-time:focus {
+           color: #389b98;
+           text-decoration: none;
+           background-color: transparent;
+       }
+
+           .btn-time i {
+               padding: 0 7px 0 7px;
+           }
+
+           .btn-time:hover {
+               color: #12615F;
+               text-decoration: none;
+               background-color: #eee;
+           }
+</style>
+@*<link href="~/Content/css/select2.css" rel="stylesheet" />
+    <script src="~/Scripts/select2.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>*@
+<script type="text/javascript">
+
+       $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+           //getfstg();
+           //GetIrate();
+
+    });
+
+    function 
+        () {
+        //debugger
+        try {
+            datatable = new Array();
+
+            var heads = $("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $("[id=row_" + r + "]");
+                var arr = new Array();
+                for (var h = 0; h < heads.length; h++) {
+                    var obj = {};
+                    var vall = "";
+                    if ($(row[h]).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").eq(0)[0] != undefined
+                        && $(row[h]).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").eq(0)[0].type == "checkbox") {
+                        vall = $(row[h]).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").eq(0)[0].checked;
+                    }
+                    else if ($(row[h]).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").length > 0) {
+                        vall = $(row[h]).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").val();
+                    }
+                    else {
+                        vall = row[h].innerText;
+                    }
+                    obj[heads[h].children[0].innerText] = vall;
+                    arr.push(obj);
+                }
+                datatable.push(arr);
+            }
+        }
+        catch (err) { alert(err); return; }
+        $("#hftable").val(JSON.stringify(datatable));
+        //PageMethods.settable(datatable);
+    }
+    function sethfval(val) {
+        $("#hfrow").val(val);
+        setTableDatat();
+    }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function showfun() {
+
+        var txt_from = $("#txt_from").val();
+        var txt_to = $("#txt_to").val();
+        var data = show_Foo('Select Indent for Approval', 'SHOW', '2', '@viewName', '@controllerName', txt_from, txt_to);
+    }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function showddl(ctrl) {
+
+        //if($(ctrl).parent().parent().siblings().is(":visible"))
+        if ($(ctrl).parent().siblings().eq(1).is(":visible")) {
+            $(ctrl).parent().siblings().eq(1).hide();
+            $(ctrl).parent().siblings().eq(0).show();
+        }
+        else {
+            $(ctrl).parent().siblings().eq(1).show();
+            $(ctrl).parent().siblings().eq(0).hide();
+        }
+
+        }
+
+
+         @*function getfstg() {
+             debugger;
+             //The url we will send our get request to
+        var attendeeUrldisc = '@Url.Action("GetFstg", "Purchase")';
+        var pageSize = 20;
+
+        $('.select2-dtype').select2(
+            {
+                placeholder: 'Select Type',
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    quietMillis: 150,
+                    url: attendeeUrldisc,
+                    dataType: 'jsonp',
+                    data: function (term, page) {
+
+
+                        var icode = $(this).parents().find('.grid').find('.grid-col').eq(4).children()[parseFloat($(this)[0].id.split('_')[$(this)[0].id.split('_').length - 1]) + 1].innerText;
+
+                        return {
+
+                            pageSize: pageSize, pageNum: page, searchTerm: term, icode:icode
+                        };
+                    },
+                    results: function (data, page) {
+                        var more = (page * pageSize) < data.Total;
+                        return { results: data.Results, more: more };
+                    }
+                }
+            }).on("change", function (e) {
+                debugger
+                var id = "", text = "";
+                if (e.added != undefined) {
+                    id = e.added.id;
+                    text = e.added.text;
+                }
+
+                var cols = $("[id$=row_" + $(this)[0].id.split('_')[2] + "]");
+                cols[12].innerText = id.split('!~!')[0].toString();
+                $(this).parent().siblings().eq(0)[0].innerText = text;
+                $(this).parent().hide();
+                $(this).parent().siblings().eq(0).show();
+            });
+    }*@
+
+
+    @*function GetIrate() {
+             debugger;
+             //The url we will send our get request to
+        var attendeeUrldisc = '@Url.Action("GetIrate", "Purchase")';
+        var pageSize = 20;
+
+        $('.select2-dtype1').select2(
+            {
+                placeholder: 'Select Type',
+                minimumInputLength: 0,
+                allowClear: true,
+                ajax: {
+                    quietMillis: 150,
+                    url: attendeeUrldisc,
+                    dataType: 'jsonp',
+                    data: function (term, page) {
+
+
+                        var acode = $(this).parents().find('.grid').find('.grid-col').eq(12).children()[parseFloat($(this)[0].id.split('_')[$(this)[0].id.split('_').length - 1]) + 1].innerText;
+                        var icode = $(this).parents().find('.grid').find('.grid-col').eq(4).children()[parseFloat($(this)[0].id.split('_')[$(this)[0].id.split('_').length - 1]) + 1].innerText;
+
+                        return {
+
+                            pageSize: pageSize, pageNum: page, searchTerm: term, icode: icode, acode:acode
+                        };
+                    },
+                    results: function (data, page) {
+                        var more = (page * pageSize) < data.Total;
+                        return { results: data.Results, more: more };
+                    }
+                }
+            }).on("change", function (e) {
+                debugger
+                var id = "", text = "";
+                if (e.added != undefined) {
+                    GetIrate
+                    id = e.added.id;
+                    text = e.added.text;
+                }
+
+                var cols = $("[id$=row_" + $(this)[0].id.split('_')[2] + "]");
+                //cols[9].innerText = id.split('!~!')[0].toString();
+                $(this).parent().siblings().eq(0)[0].innerText = text;
+                $(this).parent().hide();
+                $(this).parent().siblings().eq(0).show();
+            });
+    }*@
+
+
+
+</script>
+
+<script type="text/javascript">
+    var currctrl,currbody;
+    $(function () {
+
+        var getSelectedValue = function () {
+            var activeRow = $("tr.active");
+            var firstColumn = $("td:nth-child(1)", activeRow).text();
+            var secondColumn = $("td:nth-child(2)", activeRow).text();
+            var entry = firstColumn + " (" + secondColumn + ")";
+            return entry;
+        }
+        $("[id*=SearchTerm]")
+            .on("focusout", function (e) {
+
+                window.setTimeout(function () {
+
+                    $(this).parent().find(".suggestions").addClass("hidden");
+                }, 100);
+
+            })
+            .on("keyup keypress",
+                function (e) {
+                    var active = $("tr.active", ".suggest-grid");
+                    if (e.which === 27) {
+                        $(".suggestions").addClass("hidden");
+                    } else if (e.which === 40) {
+                        if (active.length > 0) {
+                            var next = $(active).next();
+                            $(active).removeClass("active");
+                            $(next).addClass("active");
+                        } else {
+                            $("tr:first", ".suggest-grid").addClass("active");
+                        }
+                    } else if (e.which === 38) {
+                        if (active.length > 0) {
+                            var previous = $(active).prev();
+                            $(active).removeClass("active");
+                            $(previous).addClass("active");
+                        } else {
+                            $("tr:last", ".suggest-grid").addClass("active");
+                        }
+                    } else if (e.which === 13) {
+                        e.preventDefault();
+                        debugger
+                        //var selectedValue = getSelectedValue();
+                        //$(this).val(selectedValue);
+
+                        var activerow = $(currctrl).parent().find("tr.active");
+                        var id = $("td:nth-child(1)", activerow).text();
+                        var vall = $("td:nth-child(2)", activerow).text();
+                        //$(".search-term").val(id);
+                        if (vall.trim() != "") {
+                            try {
+                                $(currctrl).val(id);
+
+                                //$(currctrl).parent().parent().parent().parent().parent().find("[id*=SearchTerm]").val(id);
+                                var rowid = $(currctrl)[0].id.split('_')[1];
+                                $(currctrl).parent().parent().parent().parent().prev().find("[id*=" + rowid + "]")[0].innerText = vall.split('!~!')[0].toString();
+                                $(currctrl).parent().parent().parent().parent().next().find("[id*=" + rowid + "]")[0].innerText = vall.split('!~!')[1].toString();
+                                
+
+                            }
+                            catch (err) { }
+                        }
+                        $(".suggestions").addClass("hidden");
+                        $(currbody).empty();
+                        return false;
+                    } else {
+                        // We have a good value w/ no special keys.
+                        var value = $(this).val();
+                        if (value === "") {
+                            $(".suggestions").addClass("hidden");
+                        } else {
+                            var uri = '@Url.Action("GetFstg", "Purchase")';
+
+                            var icode = $(this).parents().find('.grid').find('.grid-col').eq(4).children()[parseFloat($(this)[0].id.split('_')[$(this)[0].id.split('_').length - 1]) + 1].innerText;
+                            
+                            var datat = {
+                                "searchTerm": value, "pageSize": 10, "pageNum": 1, "icode": icode
+                            };
+                            //$(".suggestions").removeClass("hidden");
+                            currctrl = $(this);
+
+                            $(this).parent().find(".suggestions").removeClass("hidden");
+                            $.getJSON(uri, datat)
+                                .done(function (data) {
+                                    var grid = $(currctrl).parent().find(".suggest-grid");
+                                    currbody = $("tbody", grid);
+                                    $(currbody).empty();
+                                    //
+
+                                    for (var a = 0; a < data.Results.length; a++) {
+                                        try {
+                                            var value = data.Results[a];
+                                            var row =
+                                                "<td>" + value.text + "</td>" +
+                                                "<td>" + value.id.split('!~!-!~!')[0] + "</td>";
+                                            $("tbody", grid).append($("<tr></tr>").html(row));
+                                            // On mouse click, set the value.
+
+                                            //$("tr", grid)[a].setAttribute("onclick", "RowClick(event);");
+                                            $("tr", grid).on("click",
+                                                function (e) {
+                                                    e.preventDefault();
+                                                    // this = the row (tr)
+                                                    // Grabs the first column's value.
+
+                                                    //var selectedValue = getSelectedValue();
+                                                    var activerow = $(this).eq(0);
+                                                    var id = $("td:nth-child(1)", activerow).text();
+                                                    var vall = $("td:nth-child(2)", activerow).text();
+                                                    //$(".search-term").val(id);
+                                                    try {
+                                                        $(this).parent().parent().parent().parent().parent().find("[id*=SearchTerm]").val(id);
+                                                        var rowid = $(this).parent().parent().parent().parent().parent().parent()[0].id.split('_')[1];
+                                                        $(this).parent().parent().parent().parent().parent().parent().parent().prev().find("[id*=" + rowid + "]")[0].innerText = vall.split('!~!')[0].toString();
+                                                        $(this).parent().parent().parent().parent().parent().parent().parent().next().find("[id*=" + rowid + "]")[0].innerText = vall.split('!~!')[1].toString();
+                                                    }
+                                                    catch (err) { }
+                                                    //$("[id*=SearchTerm]").eq(0).val(id);
+                                                    $(".suggestions").addClass("hidden");
+                                                    $(currbody).empty();
+                                                });
+                                        }
+                                        catch (err) { }
+                                    }
+                                    ///
+                                });
+                        }
+                    }
+                });
+    });
+
+</script>

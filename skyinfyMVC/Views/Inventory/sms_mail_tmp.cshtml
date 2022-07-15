@@ -1,0 +1,311 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    var ispr = false;
+    var iscp = false;
+    var onclick = "";
+    var imgclosedisplay = "";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        <h3>@Model[0].Col21</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-8">
+            @*  <div class="col-sm-2">
+
+            <div class="form-group">
+                <div class='input-group'>
+                    <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vnew onclick="newfun();" style="border-radius: 10px!important;" id="btn_new" name="command" value="New" />
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+
+            <div class='col-sm-2'>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-primary form-control" @ViewBag.vedit style="border-radius: 10px!important;" id="btn_edit" onclick="editfun();" name="command" value="Edit" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btn_save" name="command" value="@Model[0].Col13" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            @*<div class='col-sm-2'>
+            <div class="form-group">
+                <div class='input-group'>
+                    <input type="button" class="btn btn-info form-control" style="border-radius: 10px!important;" onclick="viewfun();" id="btnView" name="command" value="View" />
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="submit" class="sa-btncancel form-control" formnovalidate style="border-radius: 10px!important;" onclick="cancelfun();" id="Btn_Cancel" name="command" value="Cancel">Cancel</button>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_setforid" })
+    @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_setfor" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="x_panel" style="padding: 3px 15px !important">
+                            <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                <b>E-Mail</b>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content kc">
+                                <div class="row">
+                                    <div class='col-sm-4'>
+                                        <label for="first-name">Mail Subject Heading<span class="ClientProfileLabelColor"></span></label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_sub", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", placeholder = "Mail Subject Heading" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-6'>
+                                        <label for="first-name">E-Mail ID<span class="ClientProfileLabelColor"></span></label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_sub", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", placeholder = "Multiple Gmail id Seprated By (,) Are Allowed" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <label for="first-name"> Send E-mail</label>
+                                        <div class="form-group">
+                                            <div class='input-group demo2'>
+                                                @Html.CheckBoxFor(model => model[0].Chk1, new { @id = "chk_mail", @class = "sa-input checkbox" })
+                                                <span class="input-group-addon formclass"></span>
+                                                @*<b style="padding-top:12px"> <label> Outside Phone (SMS) </label> </b>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class='col-sm-12'>
+                                        <label for="first-name">Signature<span class="ClientProfileLabelColor"></span></label>
+                                        <span class="input-group-addon formclass"></span>
+                                        <label id="lbl_sign" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextAreaFor(model => model[0].Col19, new { @id = "txt_sig", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", TextMode = "MultiLine", @Rows = "4", onkeyup = "txtsigchange(this);" })
+                                                <ajaxtoolkit:HtmlEditorExtender ID="HtmlEditorExtender1" TargetControlID="txt_sig" EnableSanitization="false" runat="server"></ajaxtoolkit:HtmlEditorExtender>
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="x_panel" style="padding: 3px 15px !important">
+                            <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep2(this);">
+                                <b>SMS</b>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a id="ahide2" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content kc">
+                                <div class="row">
+                                    <div class='col-sm-6'>
+                                        <label for="first-name">Mobile<span class="ClientProfileLabelColor"></span></label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_sub", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", placeholder = "Multiple Mobile No. Seprated By (,) Are Allowed" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="first-name">Languange Type <span class="ClientProfileLabelColor"></span></label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.RadioButtonFor(model => model[0].Col20, "1", new { @id = "rdbe", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                                <b style="padding-top:12px"> English </b>
+
+                                                @Html.RadioButtonFor(model => model[0].Col20, "2", new { @id = "rdbl", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                                <b style="padding-top:12px"> Local(Ex.हिंदी) </b>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-3'>
+                                        <label for="first-name"> Send SMS</label>
+                                        <div class="form-group">
+                                            <div class='input-group demo2'>
+                                                @Html.CheckBoxFor(model => model[0].Chk2, new { @id = "chk_sms", @class = "sa-input checkbox" })
+                                                <span class="input-group-addon formclass"></span>
+                                                @*<b style="padding-top:12px"> <label> Outside Phone (SMS) </label> </b>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row" id="Emp">
+                        <div class='col-sm-12'>
+                            @*  <label for="first-name" style="background-color:yellow">Choose Variables [account] , [person] , [mobile] , [email] eg. [account] <span class="ClientProfileLabelColor"></span></label>*@
+                            <label for="first-name">Body Text<span class="ClientProfileLabelColor"></span></label>
+                            <span class="input-group-addon formclass"></span>
+                            @*<label id="lbl_count_text" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>*@
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.TextAreaFor(model => model[0].Col18, new { @id = "txt_rmk", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @cols = 80, @Rows = 4 })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                            <label id="lbl_full_msg" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                        </div>
+                    </div>
+
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+
+
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" formnovalidate style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+      @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        bd();
+
+
+
+    });
+     //function newfun() { var data = show_Foo('Select Form', 'NEW', '1', '@viewName', '@controllerName'); }
+    function editfun() { var data = show_Foo('Select Form', 'EDIT', '1', '@viewName', '@controllerName'); }
+        //function viewfun() { var data = show_Foo('View Detail', 'VIEW', '1', '@viewName', '@controllerName'); }
+
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+    }
+    function hidep2(ctrl) {
+        var bctrl = $(ctrl).find("a[id*=ahide2]")[0];
+        hide(bctrl);
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function bd(ctrl) {
+        if (!isPostBack()) {
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    $(child).removeClass("fa-chevron-up");
+                    $(child).addClass("fa-chevron-down");
+                }
+            }
+        }
+
+    }
+
+
+</script>

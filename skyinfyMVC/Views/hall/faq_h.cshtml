@@ -1,0 +1,239 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var issp = false;
+    var imgclosedisplay = "";
+
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+}
+<style>
+    a.cke_path_item, span.cke_path_empty {
+        color: #f8f8f8 !important;
+    }
+</style>
+<script src="/Scripts/ckeditor/ckeditor.js"></script>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_setforid" })
+    @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_setfor" })
+    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+
+                        <div class="col-sm-8">
+                                <div class='col-sm-6'>
+                                    <label for="first-name">
+                                        Select Category<span class="ClientProfileLabelColor"></span>
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_man", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @onchange = "module_drpdwn_SelectedIndexChanged2();" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <div class='col-sm-4'>
+                            <label for="first-name">
+                                    Search<span class="ClientProfileLabelColor"></span>
+                                </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "Col17", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onblur = "module_drpdwn_SelectedIndexChanged();", placeholder = "Search..." })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        @if (Model.Count > 0)
+                        {
+                            for (int i = 0; i < Model.Count; i++)
+                            {
+                                //if (i != 0)
+                                //{
+                                <div class="x_panel" style="padding: 3px 15px !important">
+
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>
+
+                                            @{
+
+                                                string q = "";
+                                                if (Model[i].Col20.ToLower().Trim().StartsWith("<p>"))
+                                                {
+                                                    q = Model[i].Col20.Trim().Substring(3, Model[i].Col20.Trim().Length - 3);
+                                                    q = "<p> Que: " + q;
+
+                                                }
+                                                else
+                                                {
+                                                    q = "Que: " + Model[i].Col20.Trim();
+                                                }
+
+                                            }
+                                            <label>@Html.Raw(q)</label>
+                                            @*@Html.DisplayFor(model =>Html.Raw( model[i].Col20), new { @id = "lbl_ques", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })*@
+                                        </b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide1" class="a_panel"><i class="fa fa-minus"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content bd">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @{
+
+                                                            string q2 = "";
+                                                            if (Model[i].Col132.ToLower().Trim().StartsWith("<p>"))
+                                                            {
+                                                                q2 = Model[i].Col132.Trim().Substring(3, Model[i].Col132.Trim().Length - 3);
+                                                                q2 = "<p> Ans: " + q2;
+
+                                                            }
+                                                            else
+                                                            {
+                                                                q2 = "Ans: " + Model[i].Col20.Trim();
+                                                            }
+
+                                                        }
+                                                        <label>@Html.Raw(q2)</label>
+                                                        @Html.HiddenFor(model => model[i].Col132, new { @id = "hidd_ans" })
+                                                        @Html.HiddenFor(model => model[i].Col20, new { @id = "hidd_hues" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                //}
+                            }
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" formnovalidate style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_module" value="SEARCHBYTEXT" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_ddl" value="Search" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+      @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        @*$("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');*@
+      $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        bd();
+    });
+     function newfun() { var data = show_Foo('Select Form', 'NEW', '1', '@viewName', '@controllerName'); }
+    function editfun() { var data = show_Foo('Select Entry To Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+        //function viewfun() { var data = show_Foo('View Detail', 'VIEW', '1', '@viewName', '@controllerName'); }
+
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+    }
+    function hidep2(ctrl) {
+        var bctrl = $(ctrl).find("a[id*=ahide2]")[0];
+        hide(bctrl);
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-minus')) {
+            $(ctrl.children[0]).removeClass('fa-minus');
+            $(ctrl.children[0]).addClass('fa-plus');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-plus');
+            $(ctrl.children[0]).addClass('fa-minus');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function bd(ctrl) {
+        if (!isPostBack()) {
+            $(".fa-minus").addClass('fa-plus');
+            $(".fa-minus").removeClass('fa-minus');
+            $('.bd').hide();
+        }
+        else {
+
+            var bdd = $('.bd');
+            for (var l = 0; l < bdd.length; l++) {
+                var child = $(".bd")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-minus')) {
+                    $(".bd")[l].style.display = "none";
+                    $(child).removeClass("fa-minus");
+                    $(child).addClass("fa-plus");
+                }
+            }
+        }
+
+    }
+    function module_drpdwn_SelectedIndexChanged(ctrl) {
+        $(parent.document.getElementById('btn_module')).trigger('click');
+    }
+    function module_drpdwn_SelectedIndexChanged2(ctrl) {
+        $(parent.document.getElementById('btn_ddl')).trigger('click');
+    }
+</script>

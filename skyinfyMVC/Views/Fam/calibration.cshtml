@@ -1,0 +1,386 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid); string clr = "";
+    // ViewBag.Title = "asset_ent";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    //var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    //var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    //Session["viewName"] = viewName;
+    //Session["controllerName"] = controllerName;
+    var isep = false;
+    var ishc = false;
+    var isbc = false;
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew"  name="command"  value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-warning form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" onclick="setTableDatat();editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" onclick="setTableDatat();" name="command" value="@Model[0].Col13" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-info form-control sa-button" id="btndetail" name="command" value="View" onclick="setTableDatat();viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" id="btncancel" name="command" formnovalidate value="Cancel" onclick="setTableDatat();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-1'> <label>S No.</label> </div>
+                        <div class='col-sm-2'><label for="first-name">Asset Name<span class="ClientProfileLabelColor"></span></label></div>
+                        <div class='col-sm-1'><label for="first-name">Asset Code</label></div>
+                        <div class='col-sm-2'><label for="first-name">Asset No</label></div>
+                        <div class='col-sm-2'><label for="first-name">Due Date<span class="ClientProfileLabelColor"></span></label></div>
+                        <div class='col-sm-2'><label for="first-name">Frequency<span class="ClientProfileLabelColor"></span></label></div>
+                        <div class='col-sm-1'><label for="first-name">Calibration Period</label></div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            @*@Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+                @Html.HiddenFor(model => model[i].Col23, new { @id = "hf_new_fstr" })
+                @Html.HiddenFor(model => model[i].Col24, new { @id = "hf_prm" })*@
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding:0px 17px!important">
+                        <div class="x_content">
+                            <div class="row">
+                                @*<div class='col-sm-1'>
+            <div class="form-group">
+                <div class='input-group'>
+
+                    @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "select", @class = "sa-input checkbox" })
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+                                <div class='col-sm-1'>
+                                    <label for="first-name">@(i + 1)</label>
+                                    <div class="form-group has-success">
+                                        <div class='input-group'>
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col17, new { @id = "lbl_Asset", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Asset Name", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @*@@Html.HiddenFor(model => model[i].Col19, new { @id = "hf_client", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })
+                    @Html.HiddenFor(model => model[i].Col20, new { @id = "lbl_client_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })*@
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col18, new { @id = "lbl_Asst_code", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Asset Code", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col19, new { @id = "lbl_Asst_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Asset No", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col19, new { @id = "lbl_Asst_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Asset No", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @*@Html.HiddenFor(model => model[i].Col56, new { @id = "lbl_client_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Registration No.", @onkeydown = "return checkLength(this, 28,event);" })*@
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_duedt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory ", @onkeypress = "return checkLength(this, 28,event);" })
+                                            @*@Html.DisplayFor(model => model[i].Col20, new { @id = "lbl_Duedt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Due Date", @onkeydown = "return checkLength(this, 28,event);" })*@
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_frq" + i, @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class='col-sm-1'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_day", @onkeydown = "return isNumberKey(this);", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory ", @onkeypress = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @*<div class='col-sm-1'>
+            <div class="form-group">
+                <div class='input-group'>
+
+                    @Html.RadioButtonFor(model => model[i].Col26, "W", new { @id = "Rbt_S", @onclick = "Radio_Click(this)", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "First Half Absent" })
+                    @Html.CheckBoxFor(model => model[i].Chk3, new { @id = "Rbt_S", @class = "sa-input checkbox" })
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+}
+
+<script type="text/javascript">
+    function check_Click(myctrl) {
+        //debugger;
+
+
+        var SH_P = $(myctrl).closest(".x_content").find("input[type=check][id*=" + myctrl.id.replace('F', 'S') + "]")[0].checked = true;
+
+
+
+
+    }
+</script>
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function checkrefcode(ctrl) {
+        //debugger;
+        var obj = { "value": $(ctrl).val() };
+        var res = myMethod('@controllerName','@viewName', 'checkrefcode', obj, ctrl);
+    }
+</script>
+<script type="text/javascript">
+    var currctrl,currbody;
+    $(function () {
+
+        var getSelectedValue = function () {
+            var activeRow = $("tr.active");
+            var firstColumn = $("td:nth-child(1)", activeRow).text();
+            var secondColumn = $("td:nth-child(2)", activeRow).text();
+            var entry = firstColumn + " (" + secondColumn + ")";
+            return entry;
+        }
+        $("[id*=SearchTerm]")
+            .on("focusout", function (e) {
+
+                window.setTimeout(function () {
+
+                    $(this).parent().find(".suggestions").addClass("hidden");
+                }, 100);
+
+            })
+            .on("keyup keypress",
+                function (e) {
+                    var active = $("tr.active", ".suggest-grid");
+                    if (e.which === 27) {
+                        $(".suggestions").addClass("hidden");
+                    } else if (e.which === 40) {
+                        if (active.length > 0) {
+                            var next = $(active).next();
+                            $(active).removeClass("active");
+                            $(next).addClass("active");
+                        } else {
+                            $("tr:first", ".suggest-grid").addClass("active");
+                        }
+                    } else if (e.which === 38) {
+                        if (active.length > 0) {
+                            var previous = $(active).prev();
+                            $(active).removeClass("active");
+                            $(previous).addClass("active");
+                        } else {
+                            $("tr:last", ".suggest-grid").addClass("active");
+                        }
+                    } else if (e.which === 13) {
+                        e.preventDefault();
+                        //debugger
+                        //var selectedValue = getSelectedValue();
+                        //$(this).val(selectedValue);
+
+                        var activerow = $(currctrl).parent().find("tr.active");
+                        var id = $("td:nth-child(1)", activerow).text();
+                        var vall = $("td:nth-child(2)", activerow).text();
+                        //$(".search-term").val(id);
+                        if (vall.trim() != "") {
+                            try {
+                                $(currctrl).val(id);
+
+                                //$(currctrl).parent().parent().parent().parent().parent().find("[id*=SearchTerm]").val(id);
+                                var rowid = $(currctrl)[0].id.split('_')[1];
+                                $(currctrl).parent().parent().parent().parent().prev().find("[id*=" + rowid + "]")[0].innerText = vall;
+                            }
+                            catch (err) { }
+                        }
+                        $(".suggestions").addClass("hidden");
+                        $(currbody).empty();
+                        return false;
+                    } else {
+                        // We have a good value w/ no special keys.
+                        var value = $(this).val();
+                        if (value === "") {
+                            $(".suggestions").addClass("hidden");
+                        } else {
+                            var uri = '@Url.Action("GetLoc", "Inventory")';
+                            var datat = {
+                                "searchTerm": value, "pageSize": 10, "pageNum": 1, "icode": 'aaaa'
+                            };
+                            //$(".suggestions").removeClass("hidden");
+                            currctrl = $(this);
+
+                            $(this).parent().find(".suggestions").removeClass("hidden");
+                            $.getJSON(uri, datat)
+                                .done(function (data) {
+                                    var grid = $(currctrl).parent().find(".suggest-grid");
+                                    currbody = $("tbody", grid);
+                                    $(currbody).empty();
+                                    //
+
+                                    for (var a = 0; a < data.Results.length; a++) {
+                                        try {
+                                            var value = data.Results[a];
+                                            var row =
+                                                "<td>" + value.text + "</td>" +
+                                                "<td>" + value.id.split('!~!-!~!')[0] + "</td>";
+                                            $("tbody", grid).append($("<tr></tr>").html(row));
+                                            // On mouse click, set the value.
+
+                                            //$("tr", grid)[a].setAttribute("onclick", "RowClick(event);");
+                                            $("tr", grid).on("click",
+                                                function (e) {
+                                                    e.preventDefault();
+                                                    // this = the row (tr)
+                                                    // Grabs the first column's value.
+
+                                                    //var selectedValue = getSelectedValue();
+                                                    var activerow = $(this).eq(0);
+                                                    var id = $("td:nth-child(1)", activerow).text();
+                                                    var vall = $("td:nth-child(2)", activerow).text();
+                                                    //$(".search-term").val(id);
+                                                    try {
+                                                        $(this).parent().parent().parent().parent().parent().find("[id*=SearchTerm]").val(id);
+                                                        var rowid = $(this).parent().parent().parent().parent().parent().parent()[0].id.split('_')[1];
+                                                        $(this).parent().parent().parent().parent().parent().parent().parent().prev().find("[id*=" + rowid + "]")[0].innerText = vall;
+                                                    }
+                                                    catch (err) { }
+                                                    //$("[id*=SearchTerm]").eq(0).val(id);
+                                                    $(".suggestions").addClass("hidden");
+                                                    $(currbody).empty();
+                                                });
+                                        }
+                                        catch (err) { }
+                                    }
+                                });
+                        }
+                    }
+                });
+    });
+
+</script>

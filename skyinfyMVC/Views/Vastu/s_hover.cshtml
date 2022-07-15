@@ -1,0 +1,948 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    Cmd_Fun cmd_fun = new Cmd_Fun(MyGuid);
+
+
+
+
+    string mandatory = "sa-mandatory";
+    DataTable tmp = cmd_fun.getsessiondt(userCode, "SITE HANDOVER", "select id,param1,param2,upper(param3) param3 ,name from controls where trim(upper(param5))='SITE HANDOVER' and type='VDC'");
+    sgen.SetSession(MyGuid, "tmp_site", tmp);
+    var issp = false;
+    var imgclosedisplay = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    string cg_com_name = sgen.GetCookie(MyGuid,"cg_com_name");
+    //string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var newstyle = "style=visibility:visible;";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model[0].Col55 == "N")
+    {
+        newstyle = "style=display:none;";
+        savestyle = "style=display:none;";
+        savenewstyle = "style=display:none;";
+    }
+    if (Model[0].Col56 == "N") { editstyle = "style=display:none;"; }
+    if (Model[0].Col57 == "N")
+    {
+        viewstyle = "style=display:none;";
+        viewauth = "N";
+    }
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-2" @newstyle>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btn_new" name="command" value="New" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2' @editstyle>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btn_edit" onclick="editfun();" name="command" value="Edit" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @savestyle>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btn_save" name="command" value="@Model[0].Col13" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @savenewstyle>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsavenew id="btnsavenew" name="command" value='@Model[0].Col100' />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2' @viewstyle>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-info form-control sa-button" onclick="viewfun();" id="btnView" name="command" value="View" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-primary form-control sa-button"  id="btn_print" onclick="printfun();" name="command" value="Print" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <button type="submit" class="sa-btncancel form-control" formnovalidate style="border-radius: 10px!important;" id="Btn_Cancel" name="command" value="Cancel">Cancel</button>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"> </div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[i].Col17, new { @id = "hf_site_id" })
+        @Html.HiddenFor(model => model[i].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col55, new { @id = "hf_btnnew" })
+        @Html.HiddenFor(model => model[0].Col56, new { @id = "hf_btnedit" })
+        @Html.HiddenFor(model => model[0].Col57, new { @id = "hf_btnview" })
+
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row" id="gen">
+
+                            <h4>General Detail</h4>
+
+                        </div>
+
+                        <div class="row">
+
+                            <hr />
+
+
+                            @if (tmp.Select("param3='SITE NAME'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SITE NAME'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SITE NAME'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='SITE NAME'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='SITE NAME'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SITE NAME'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_Col18", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Site Name" })
+
+                                            <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Site" id="spn_add" onclick="PARTY();"><i class="fa fa-search"></i></span>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (tmp.Select("param3='SITE ADDRESS'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SITE ADDRESS'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SITE ADDRESS'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-8'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='SITE ADDRESS'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='SITE ADDRESS'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SITE ADDRESS'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_Col19", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Site Address" })
+                                            <span class="input-group-addon formclass"></span>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='CONTACT PERSON'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='CONTACT PERSON'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CONTACT PERSON'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='CONTACT PERSON'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='CONTACT PERSON'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CONTACT PERSON'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col43, new { @id = "txt_Col43", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Contact Person" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (tmp.Select("param3='CONTACT NO'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='CONTACT NO'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CONTACT NO'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='CONTACT NO'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='CONTACT NO'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CONTACT NO'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_Col20", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Contact No" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            @if (tmp.Select("param3='DATE_OF_MAT_DISPATCH'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='DATE_OF_MAT_DISPATCH'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_MAT_DISPATCH'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='DATE_OF_MAT_DISPATCH'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='DATE_OF_MAT_DISPATCH'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_MAT_DISPATCH'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col42, new { @id = "txt_Col42", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", placeholder = "Date of Material Dispatch" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (tmp.Select("param3='DATE_OF_INS_STD'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='DATE_OF_INS_STD'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_INS_STD'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='DATE_OF_INS_STD'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='DATE_OF_INS_STD'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_INS_STD'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_Col21", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date  " + mandatory + "", placeholder = "Date of Installation Started" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+                            @if (tmp.Select("param3='DATE_OF_INS_END'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='DATE_OF_INS_END'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_INS_END'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='DATE_OF_INS_END'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='DATE_OF_INS_END'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_INS_END'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_Col22", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", placeholder = "Date of Installation Ended" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='PERSON INSTALLING'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='PERSON INSTALLING'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='PERSON INSTALLING'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='PERSON INSTALLING'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='PERSON INSTALLING'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='PERSON INSTALLING'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_Col23", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Person Installing", @MaxLength = "48" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+                        </div>
+
+                        <div class="row" id="gen">
+                            <hr />
+                            <h4>Task To be Checked At the Time Of HandOver</h4>
+
+
+
+
+
+                            <div class='col-sm-4'>
+
+                                <h4> PARTICULARS</h4>
+
+
+                            </div>
+
+                            <div class='col-sm-4'>
+
+                                <h4> WORKING STATE (GOOD OR BAD)</h4>
+
+
+                            </div>
+
+                            <div class='col-sm-4'>
+
+                                <h4> SIGNATURE OF CLIENT</h4>
+
+
+                            </div>
+
+                            @if (tmp.Select("param3='CARCASSES'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='CARCASSES'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CARCASSES'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @tmp.Select("param3='CARCASSES'")[0]["name"].ToString()
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_Col24", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "4" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_Col25", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                            @if (tmp.Select("param3='SHUTTERS'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SHUTTERS'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SHUTTERS'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @tmp.Select("param3='SHUTTERS'")[0]["name"].ToString()
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_Col26", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "4" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_Col27", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='HANDLES'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='HANDLES'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='HANDLES'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @tmp.Select("param3='HANDLES'")[0]["name"].ToString()
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_Col28", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "4" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col29, new { @id = "txt_Col29", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='DRAWERS ALLIGNMENT'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='DRAWERS ALLIGNMENT'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DRAWERS ALLIGNMENT'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @tmp.Select("param3='DRAWERS ALLIGNMENT'")[0]["name"].ToString()
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col30, new { @id = "txt_Col30", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "4" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col31, new { @id = "txt_Col31", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='DRAWERS MOVEMENTS'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='DRAWERS MOVEMENTS'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DRAWERS MOVEMENTS'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @tmp.Select("param3='DRAWERS MOVEMENTS'")[0]["name"].ToString()
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col32, new { @id = "txt_Col32", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "4" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(model => model[i].Col33, new { @id = "txt_Col33", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                        <div class="row">
+                            <hr />
+                            <div class='col-sm-12'>
+                                <label for="first-name">
+                                    ANY TASKS WHICH ARE PENDING OR UNDER PROGRESS AT THE TIME OF HANDOVER
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextAreaFor(model => model[i].Col34, new { @id = "txt_Col34", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @Rows = 5 })
+
+                                        <span class="input-group-addon formclass"></span>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <hr />
+                            @if (tmp.Select("param3='DATE_OF_HANDOVER'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='DATE_OF_HANDOVER'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_HANDOVER'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='DATE_OF_HANDOVER'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='DATE_OF_HANDOVER'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='DATE_OF_HANDOVER'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col35, new { @id = "txt_Col35", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", placeholder = "Date of Handover" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+
+
+
+                            @if (tmp.Select("param3='SIGN_OF_CARPENTER'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SIGN_OF_CARPENTER'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_CARPENTER'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='SIGN_OF_CARPENTER'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='SIGN_OF_CARPENTER'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_CARPENTER'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_Col36", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='CARPENTER_SIGN_DATE'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='CARPENTER_SIGN_DATE'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CARPENTER_SIGN_DATE'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='CARPENTER_SIGN_DATE'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='CARPENTER_SIGN_DATE'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='CARPENTER_SIGN_DATE'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col37, new { @id = "txt_Col37", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='SIGN_OF_PERSON_TAKING_OVER'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SIGN_OF_PERSON_TAKING_OVER'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_PERSON_TAKING_OVER'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='SIGN_OF_PERSON_TAKING_OVER'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='SIGN_OF_PERSON_TAKING_OVER'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_PERSON_TAKING_OVER'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col38, new { @id = "txt_Col38", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                            @if (tmp.Select("param3='SIGN_OF_SITE_SUPERVISOR'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SIGN_OF_SITE_SUPERVISOR'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_SITE_SUPERVISOR'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-4'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='SIGN_OF_SITE_SUPERVISOR'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='SIGN_OF_SITE_SUPERVISOR'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_SITE_SUPERVISOR'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col39, new { @id = "txt_Col39", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="row">
+                            <hr />
+                            <h4>FOR OFFICE USE ONLY</h4>
+
+                            @if (tmp.Select("param3='ANY REMARK'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='ANY REMARK'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='ANY REMARK'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-12'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='ANY REMARK'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='ANY REMARK'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='ANY REMARK'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col40, new { @id = "txt_Col40", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="row">
+                            <hr />
+                            @if (tmp.Select("param3='SIGN_OF_OFFICE_REPRESENTATIVE'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='SIGN_OF_OFFICE_REPRESENTATIVE'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_OFFICE_REPRESENTATIVE'")[0]["param1"].ToString().Trim().Equals("M"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-12'>
+                                    <label for="first-name">
+                                        @tmp.Select("param3='SIGN_OF_OFFICE_REPRESENTATIVE'")[0]["name"].ToString()
+                                        @if (tmp.Select("param3='SIGN_OF_OFFICE_REPRESENTATIVE'")[0]["param1"].ToString().Trim().Equals("Y") || tmp.Select("param3='SIGN_OF_OFFICE_REPRESENTATIVE'")[0]["param1"].ToString().Trim().Equals("M"))
+
+                                        {<span class="ClientProfileLabelColor">*</span>}
+                                    </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col41, new { @id = "txt_Col41", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "23" })
+
+                                            <span class="input-group-addon formclass"></span>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+
+}
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+    });
+
+
+
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function printfun() { var data = show_Foo('Select Entry For Print', 'PRINT', '1', '@viewName', '@controllerName'); }
+    function viewfun() {
+        if ('@viewauth' == "N") {
+            showmsgJS(1, "You dont have permission for view entries of this page, please contact your admin", 2);
+            return;
+        }
+        var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName');
+    }
+        function PARTY() { var data = show_Foo('Select Account', 'PARTY', '1', '@viewName', '@controllerName'); }
+
+
+</script>
+

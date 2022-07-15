@@ -1,0 +1,383 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string clr = "";
+    string mandatory = "sa-mandatory";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+<style type="text/css">
+    .myclass {
+        vertical-align: initial;
+        min-height: 0px;
+        margin: 0px
+    }
+</style>
+@using (Html.BeginForm("ctrls", "Home", new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>
+                            @Model[0].Col9
+                            @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                        </h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-warning form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+                            @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-info form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button sa-btncancel" id="btncancel" name="command" value="Cancel" accesskey="C" onclick="cancelfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="first-name">Doc No.<span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_vchnum", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", data_placeholder = "Doc No." })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">Vch Date <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_vchdate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", data_placeholder = "Vch Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">From Date <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_fromdate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", data_placeholder = "From Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <label for="first-name">To Date <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_todate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " + mandatory + "", data_placeholder = "To Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">Class Dropdown <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new SelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1.FirstOrDefault()), new { @id = "ddl_singleselect", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">Section Multi <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { multiple = "multiple", @id = "ddl_multiselect", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 ", data_placeholder = "Choose Multiple" })
+           
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-4">
+                            <label for="first-name">Text Area <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].Col21, new { @id = "textarea", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" + mandatory + "", @rows = "4" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <label for="first-name">Checkboxes <span class="ClientProfileLabelColor">*</span> </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <b>
+                                        @Html.CheckBoxFor(model => model[0].Chk1, new { @id = "chk1", @class = "sa-input checkbox myclass", })
+                                        1.
+                                    </b>
+                                    <b>
+                                        @Html.CheckBoxFor(model => model[0].Chk2, new { @id = "chk2", @class = "sa-input checkbox myclass", })
+                                        2.
+                                    </b>
+                                    <b>
+                                        @Html.CheckBoxFor(model => model[0].Chk3, new { @id = "chk3", @class = "sa-input checkbox myclass", })
+                                        3.
+                                    </b>
+                                    <b>
+                                        @Html.CheckBoxFor(model => model[0].Chk4, new { @id = "chk4", @class = "sa-input checkbox myclass", })
+                                        4.
+                                    </b>
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <label for="first-name">
+                                English Fluency <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <b style="margin-right:5px">Poor</b>
+                                    @Html.RadioButtonFor(model => model[0].Col22, "P", new { @id = "ef_rb_poor", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                    <b style="margin-right:5px; margin-left:5px">Average</b>
+                                    @Html.RadioButtonFor(model => model[0].Col22, "A", new { @id = "ef_rb_avg", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <b style="margin-right:5px; margin-left:5px">Good</b>
+                                    @Html.RadioButtonFor(model => model[0].Col22, "G", new { @id = "ef_rb_good", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <b style="margin-right:5px; margin-left:5px">Excellent</b>
+                                    @Html.RadioButtonFor(model => model[0].Col22, "E", new { @id = "ef_rb_exe", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="first-name">
+                                Hindi Fluency <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <b style="margin-right:5px">Poor</b>
+                                    @Html.RadioButtonFor(model => model[0].Col23, "P", new { @id = "hf_rb_poor", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                    <b style="margin-right:5px; margin-left:5px">Average</b>
+                                    @Html.RadioButtonFor(model => model[0].Col23, "A", new { @id = "hf_rb_avg", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <b style="margin-right:5px; margin-left:5px">Good</b>
+                                    @Html.RadioButtonFor(model => model[0].Col23, "G", new { @id = "hf_rb_good", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    <b style="margin-right:5px; margin-left:5px">Excellent</b>
+                                    @Html.RadioButtonFor(model => model[0].Col23, "E", new { @id = "hf_rb_exe", @class = " sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*grid*@
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-2'> <label>S.No.</label> </div>
+                        <div class='col-sm-2'><label>checkbox</label></div>
+                        <div class='col-sm-2'><label>Name </label></div>
+                        <div class='col-sm-2'><label>gender</label></div>
+                        <div class='col-sm-2'><label>Class</label></div>
+                        <div class='col-sm-2'><label>Roll No</label></div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    //if (Model.Count == 1)
+    //{
+
+    //}
+    //else
+    //{
+    for (int i = 0; i < Model.Count; i++)
+    {
+                        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+                        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+                        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+                        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+                        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+                        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+                        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+                        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+
+
+
+            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important; @clr">
+                <div class="x_content">
+                    <div class="row">
+
+                        <div class='col-sm-2'>
+                            <label for="first-name">@(i + 1)</label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-2'>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.CheckBoxFor(model => model[0].Chk5, new { @id = "chk_grd",@type="checkbox", @class = "sa-input checkbox myclass", })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-2'>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_namerr", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", data_placeholder = "Name" })
+                                    @Html.HiddenFor(model => model[i].Col24, new { @id = "txt_namerr" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-2'>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    <b style="padding-top:12px">Male</b>
+                                    @Html.RadioButtonFor(model => model[i].Col25, "M", new { @id = "Rbt_m", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "Male" })
+                                    <b style="padding-top:12px; margin-right:5px">Female</b>
+                                    @Html.RadioButtonFor(model => model[i].Col25, "F", new { @id = "Rbt_f", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px ", data_toggle = "tooltip", data_placement = "top", @title = "Female" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-2'>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_classrr", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", data_placeholder = "class" })
+                                    @Html.HiddenFor(model => model[i].Col26, new { @id = "txt_classrr" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-2'>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_rollnorr", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", data_placeholder = "class" })
+                                    @Html.HiddenFor(model => model[i].Col27, new { @id = "txt_rollnorr" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+   // }
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+   //////EDIT CLICK
+    function editfun() { var data = show_Foo('Select Value For Edit', 'Edit', '1', '@viewName','@controllerName'); }
+
+    ///////// VIEW CLICK
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName','@controllerName'); }
+
+    /////// cancel click
+    function cancelfun() {
+        $("[id*=btnnew]").attr("disabled", false);
+        $("[id*=btnedit]").attr("disabled", false);
+        $("[id*=btnsave]").attr("disabled", true);
+        $("[id*=btndetail]").attr("disabled", false);
+        $("[id*=btncancel]").attr("disabled", false);
+        fillBlanks();
+        disableForm();
+    }
+
+</script>

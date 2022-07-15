@@ -1,0 +1,797 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    /**/
+
+    /**/
+
+    /**/
+
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate onclick='newfun();' id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-warning form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-success form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+
+
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+<style>
+    td {
+        width: 180px;
+    }
+</style>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart /form-data" }))
+{
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+
+                    <div class="row">
+
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Doc No.
+                                <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_docno", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Doc Date
+                                <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_docdt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Select Client Name
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_custid" })
+                                    @Html.TextBoxFor(model => model[0].Col19, new { @id = "Txt_Custno", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Account" id="spn_add"><i class="fa fa-search"></i></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                New Client Name
+                                <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_custname", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "48" })
+
+                                    <span class="input-group-addon formclass"></span>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <h3>
+
+                                Cost of Capital (Debt)
+                            </h3>
+
+                        </div>
+
+                        <div class='col-sm-6'>
+                            <h3>
+                                Cost of Preference Shares
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                        <div class='col-sm-6'>
+                            <div class="row">
+                                <table class="table-responsive-md table-active table-borderless">
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Current Interest rate
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_Col17", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Tax Rate
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_Col18", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Cost of Debt
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_Col19", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <h3 style="text-align:left;">
+                                    Cost of Equity Shares
+                                </h3>
+                            </div>
+                            <div class="row">
+
+                                <table class="table-responsive-md table-active table-borderless">
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Market Price per share
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_Col20", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Annual Dividend in Amt
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_Col21", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Issue Cost (%)
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_Col22", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Constant Growth Rate (%)
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_Col23", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Cost of Equity Share
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_Col24", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="row">
+                                <table class="table-responsive-md table-active table-borderless">
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Market Price per share
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_Col25", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Annual Dividend in Amt
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_Col26", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Issue Cost (%)
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_Col27", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Cost pf Preference Share
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_Col28", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <h3 style="text-align:left;">
+                                    Cost of Retained Earning
+                                </h3>
+                            </div>
+                            <div class="row">
+
+                                <table class="table-responsive-md table-active table-borderless">
+
+                                    <tr>
+                                        <td style="width:60%;">
+                                            <label for="first-name">
+                                                Market Price per share
+                                            </label>
+                                        </td>
+                                        <td style="width:40%;">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_Col29", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Annual Dividend in Amt
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col30, new { @id = "txt_Col30", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Constant Growth Rate (%)
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col31, new { @id = "txt_Col31", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label for="first-name">
+                                                Cost of Equity Share
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col32, new { @id = "txt_Col32", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </td>
+
+                                    </tr>
+
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+
+                        <h3 style="text-align:center;">
+
+                            Automated Weighted Average Cost of Capital
+                        </h3>
+
+
+                    </div>
+
+                    <div class="row">
+                        <table class="table-responsive-md table-active table-borderless">
+
+                            <tr>
+                                <th></th>
+                                <th>Market Value</th>
+                                <th> Cost Of Capital %</th>
+                                <th>Factor </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Debit
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col33, new { @id = "txt_Col33", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col34, new { @id = "txt_Col34", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col35, new { @id = "txt_Col35", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Preferred Shares
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col36, new { @id = "txt_Col36", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col37, new { @id = "txt_Col37", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col38, new { @id = "txt_Col38", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Common Shares
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col39, new { @id = "txt_Col39", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col40, new { @id = "txt_Col40", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col41, new { @id = "txt_Col41", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Retained Earnings
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col42, new { @id = "txt_Col42", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col43, new { @id = "txt_Col43", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col44, new { @id = "txt_Col44", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        New Fund
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col45, new { @id = "txt_Col45", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col46, new { @id = "txt_Col46", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col47, new { @id = "txt_Col47", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        WACC
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col48, new { @id = "txt_Col48", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col49, new { @id = "txt_Col49", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col50, new { @id = "txt_Col51", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            @*<tr>
+                    <th></th>
+                    <th>WACC</th>
+                    <th> 0.00 %</th>
+                    <th> </th>
+                </tr>*@
+                        </table>
+                    </div>
+                    <br />
+                    <div class="row">
+
+                        <h3 style="text-align:center;">
+
+                            Manual Entry Weighted Average Cost of Capital
+                        </h3>
+
+
+                    </div>
+
+                    <div class="row">
+                        <table class="table-responsive-md table-active table-borderless">
+
+                            <tr>
+                                <th></th>
+                                <th>Market Value</th>
+                                <th> Cost Of Capital %</th>
+                                <th>Factor </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Debit
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col52, new { @id = "txt_Col52", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col53, new { @id = "txt_Col53", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col54, new { @id = "txt_Col54", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Preferred Shares
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col55, new { @id = "txt_Col55", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col56, new { @id = "txt_Col56", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col57, new { @id = "txt_Col57", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Common Shares
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col58, new { @id = "txt_Col58", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col59, new { @id = "txt_Col59", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col60, new { @id = "txt_Col60", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        Retained Earnings
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col61, new { @id = "txt_Col61", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col62, new { @id = "txt_Col62", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        New Fund
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="first-name">
+                                        WACC
+                                    </label>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col63, new { @id = "txt_Col63", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onkeydown = "return isDecimalKey(event);" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+}

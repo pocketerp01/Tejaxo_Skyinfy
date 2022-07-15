@@ -1,0 +1,372 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode"); string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(MyGuid, "viewName", viewName);
+    sgen.SetSession(MyGuid, "controllerName", controllerName);
+    <link href="~/Content/css/multi_acord.css" rel="stylesheet" />
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "totlib" })
+    @Html.HiddenFor(model => model[0].Col17, new { @id = "totast" })
+    @Html.HiddenFor(model => model[0].Col18, new { @id = "totpl" })
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_rd" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_pid" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="demoGrid" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Liability</th>
+                                        <th>Closing</th>
+                                        <th>Assets</th>
+                                        <th>Closing</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*@if (Model[0].dt1 != null)
+                                        {
+                                            for (int i = 0; i < Model[0].dt1.Rows.Count; i++)
+                                            {
+                                                <tr>
+                                                    <td style="cursor:pointer;" onclick="getlb('@Model[0].dt1.Rows[i]["lbfstr"].ToString()');"><b>@Model[0].dt1.Rows[i]["lbname"].ToString()</b></td>
+                                                    <td style="cursor:pointer;" onclick="getlb('@Model[0].dt1.Rows[i]["lbfstr"].ToString()');">@Model[0].dt1.Rows[i]["lbcl"].ToString()</td>
+                                                    <td style="cursor:pointer;" onclick="getas('@Model[0].dt1.Rows[i]["asfstr"].ToString()');"><b>@Model[0].dt1.Rows[i]["asname"].ToString()</b></td>
+                                                    <td style="cursor:pointer;" onclick="getas('@Model[0].dt1.Rows[i]["asfstr"].ToString()');">@Model[0].dt1.Rows[i]["ascl"].ToString()</td>
+                                                </tr>
+                                            }
+                                        }*@
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="ac">
+                                <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" />
+                                <label class="ac-label" for="ac-1">Liability<span style="margin-left:300px;">@Model[0].Col16</span></label>
+                                <article class="ac-text">
+                                    @foreach (DataRow dr1 in Model[0].dt1.Rows)
+                                    {
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-2" name="ac-2" type="checkbox" />
+                                            <label class="ac-label" for="ac-2" onclick="filtypes('@dr1[0].ToString()',this,'1');"><span class="col-md-6">@dr1[1].ToString()</span><span class="col-md-6">@dr1[2].ToString()</span> </label>
+                                            <article class="ac-sub-text">
+                                                @*   <div class="col-md-6">@dr1[1].ToString()</div><div class="col-md-6">@dr1[2].ToString()</div>*@
+                                            </article>
+                                        </div>
+                                    }
+
+                                </article>
+                                <!--/ac-text-->
+                            </div>
+                            <!--/ac-->
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="ac">
+                                <input class="ac-input" id="ac-5" name="ac-5" type="checkbox" />
+                                <label class="ac-label" for="ac-5">Assets<span style="margin-left:300px;">@Model[0].Col17</span></label>
+                                <article class="ac-text">
+                                    @foreach (DataRow dr1 in Model[0].dt2.Rows)
+                                    {
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-6" name="ac-6" type="checkbox" />
+                                            <label class="ac-label" for="ac-6" onclick="filtypes('@dr1[0].ToString()',this,'1');"><span class="col-md-6">@dr1[1].ToString()</span><span class="col-md-6">@dr1[2].ToString()</span> </label>
+                                            <article class="ac-sub-text">
+                                                @*  <div class="col-md-6">@dr1[1].ToString()</div><div class="col-md-6">@dr1[2].ToString()</div>*@
+                                            </article>
+                                        </div>
+                                    }
+                                </article>
+                                <!--/ac-text-->
+
+                            </div>
+                            <!--/ac-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="ac">
+                                <input class="ac-input" id="ac-9" name="ac-9" type="checkbox" />
+                                <label class="ac-label" for="ac-9">Profit And Loss<span style="margin-left:300px;">@Model[0].Col18</span></label>
+                                <article class="ac-text">
+                                    @foreach (DataRow dr1 in Model[0].dt3.Rows)
+                                    {
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-10" name="ac-10" type="checkbox" />
+                                            <label class="ac-label" for="ac-10" onclick="filtypes('@dr1[0].ToString()',this,'1');"><span class="col-md-6">@dr1[1].ToString()</span><span class="col-md-6">@dr1[2].ToString()</span> </label>
+                                            <article class="ac-sub-text">
+                                                @*  <div class="col-md-6">@dr1[1].ToString()</div><div class="col-md-6">@dr1[2].ToString()</div>*@
+                                            </article>
+                                        </div>
+                                    }
+                                </article>
+                                <!--/ac-text-->
+
+                            </div>
+                            <!--/ac-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="btn_back" value="Back" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="callback2" value="Callback2" formnovalidate name="Command" title="callback2" style="visibility:hidden" class="btn btn-primary" />
+}
+<style>
+    #t3.ac-label:after, .ac-input:checked + .ac-label:after {
+        content: "" !important;
+    }
+
+    body {
+        font-family: 'Source Sans Pro', sans-serif;
+        line-height: inherit !important;
+    }
+    .ac-label {
+        background-color:transparent!important;
+    }
+
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+    $(document).keyup(function (e) {
+        if (e.key === "Escape") {
+            $('#btn_back').click();
+        }
+    });
+    function getlb(val) {
+        
+        var btnval = "";
+        if (val.trim().includes('.')) btnval = "GETPL";
+        else btnval = "GETLB";
+        var data = show_Foo('Detail', btnval, '1', '@viewName', '@controllerName', val);
+    }
+    function getasset(val) {
+        
+        var btnval = "";
+        if (val.trim().includes('.')) btnval = "GETPL";
+        else btnval = "GETLB";
+        var data = show_Foo('Detail', btnval, '1', '@viewName', '@controllerName', val);
+    }
+    function getas(val) { var data = show_Foo('Detail', 'GETAS', '1', '@viewName', '@controllerName',val); }
+   var tctrl;
+   var tlvl;
+   function filtypes(fstr, ctrl,lvl) {
+       tctrl = ctrl;
+       tlvl = parseInt(lvl) + 1;
+       try {
+           showwait();
+           $.ajax({
+               type: "GET",
+               url: "/Account/getdrills?lvl=" + lvl + "&&fstr=" + fstr + "&&Myguid=" + @MyGuid,
+               success: function (pageContents) {
+
+                   var xmlDoc = $.parseXML(pageContents);
+                   var xml = $(xmlDoc);
+                   var customers = xml.find("MainData");
+                   var htstr = "";
+                   customers.each(function () {
+                       var customer = $(this);
+                       
+                       if (tlvl == 3) {
+                           htstr += "<div class='ac-sub'>";
+                           if (tlvl < 3) htstr += "<input class='ac-input' id = 'ac-" + tlvl + "' name = 'ac-" + tlvl + "' type = 'checkbox' /> ";
+                           htstr += "<label class='ac-label' for= 'ac-" + tlvl + "' onclick = 'getvouchers(" + customer[0].children[0].textContent + ",this," + tlvl + ");' >" +
+                               "<span class='col-md-6'>" + customer[0].children[1].textContent + "</span> " +
+                               "<span class='col-md-6'>" + customer[0].children[2].textContent + "</span > " +
+                               "</label>" +
+                               "<article class='ac-sub-text'>" +
+                               "<div class='col-md-6'></div><div class='col-md-6'></div>" +
+                               "</article>" +
+                               "</div>";
+                       }
+                       else {
+                           htstr += "<div class='ac-sub'>";
+                           if (tlvl < 3) htstr += "<input class='ac-input' id = 'ac-" + tlvl + "' name = 'ac-" + tlvl + "' type = 'checkbox' /> ";
+                           htstr += "<label class='ac-label' for= 'ac-" + tlvl + "' onclick = 'filtypes(" + customer[0].children[0].textContent + ",this," + tlvl + ");' >" +
+                               "<span class='col-md-6'>" + customer[0].children[1].textContent + "</span> " +
+                               "<span class='col-md-6'>" + customer[0].children[2].textContent + "</span > " +
+                               "</label>" +
+                               "<article class='ac-sub-text'>" +
+                               "<div class='col-md-6'></div><div class='col-md-6'></div>" +
+                               "</article>" +
+                               "</div>";
+                       }
+                   });
+                   $(tctrl).parent().find("article").html(htstr);
+                   $(".ac-sub").children().height('auto');
+                   $(".ac-sub").children().css('opacity', 1)
+                   hidewait();
+               },
+               error: function (err) {
+                   hidewait();
+               }
+           });
+       }
+       catch (err) {
+           showwait();
+       }
+   }
+    function getvouchers(fstr, ctrl,lvl) {
+       tctrl = ctrl;
+       tlvl = parseInt(lvl) + 1;
+        try {
+            var data = show_Foo('Balance Sheet', 'LDG', '1', '@viewName', '@controllerName', fstr);
+        }
+       catch (err) {
+           showwait();
+       }
+    }
+   @*function filtypesasset(fstr, ctrl, lvl) {
+       tctrl = ctrl;
+       tlvl = parseInt(lvl) + 1;
+       try {
+           showwait();
+           $.ajax({
+               type: "GET",
+               url: "/Account/getdrills?lvl=" + lvl + "&&fstr=" + fstr + "&&Myguid=" + @MyGuid,
+               success: function (pageContents) {
+
+                   var xmlDoc = $.parseXML(pageContents);
+                   var xml = $(xmlDoc);
+                   var customers = xml.find("MainData");
+                   var htstr = "";
+                   customers.each(function () {
+                       var customer = $(this);
+                       
+                       htstr += "<div class='ac-sub'>";
+                       if (tlvl < 3) htstr += "<input class='ac-input' id = 'ac-" + tlvl + 5 + "' name = 'ac-" + tlvl + 5 + "' type = 'checkbox' /> ";
+                       htstr +="<label class='ac-label' for= 'ac-" + tlvl + "' onclick = 'filtypes(" + customer[0].children[0].textContent + ",this," + tlvl + ");' >" +
+                           "<span class='col-md-6'>" + customer[0].children[1].textContent + "</span> " +
+                           "<span class='col-md-6' >" + customer[0].children[2].textContent + "</span > " +
+                           "</label>" +
+                           "<article class='ac-sub-text'>" +
+                           "<div class='col-md-6'></div><div class='col-md-6'></div>" +
+                           "</article>" +
+                           "</div>";
+
+                   });
+                   $(tctrl).parent().find("article").html(htstr);
+                   $(".ac-sub").children().height('auto');
+                   $(".ac-sub").children().css('opacity', 1)
+                   hidewait();
+               },
+               error: function (err) {
+                   hidewait();
+               }
+           });
+       }
+       catch (err) {
+
+           showwait();
+       }
+   }*@
+   @*function filpl(fstr, ctrl, lvl) {
+       tctrl = ctrl;
+       tlvl = parseInt(lvl) + 1;
+       try {
+           showwait();
+           $.ajax({
+               type: "GET",
+               url: "/Account/getdrills?lvl=" + lvl + "&&fstr=" + fstr + "&&Myguid=" + @MyGuid,
+               success: function (pageContents) {
+
+                   var xmlDoc = $.parseXML(pageContents);
+                   var xml = $(xmlDoc);
+                   var customers = xml.find("MainData");
+                   var htstr = "";
+                   customers.each(function () {
+                       var customer = $(this);
+                       
+                       htstr += "<div class='ac-sub'><input class='ac-input' id = 'ac-" + tlvl + 9 + "' name = 'ac-" + tlvl + 9 + "' type = 'checkbox' />  " +
+                           "<label class='ac-label' for= 'ac-" + tlvl+9 + "' onclick = 'filtypes(" + customer[0].children[0].textContent + ",this," + tlvl + ");' > " +
+                           "<span class='col-md-6'>" + customer[0].children[1].textContent + "</span> " +
+                           "<span class='col-md-6' >" + customer[0].children[2].textContent + "</span > " +
+                           "</label>" +
+                           "<article class='ac-sub-text'>" +
+                           "<div class='col-md-6'></div><div class='col-md-6'></div>" +
+                           "</article>" +
+                           "</div>";
+
+                   });
+                   $(tctrl).parent().find("article").html(htstr);
+                   $(".ac-sub").children().height('auto');
+                   $(".ac-sub").children().css('opacity', 1)
+                   hidewait();
+               },
+               error: function (err) {
+                   hidewait();
+               }
+           });
+       }
+       catch (err) {
+
+           showwait();
+       }
+   }*@
+
+</script>

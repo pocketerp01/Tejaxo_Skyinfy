@@ -1,0 +1,381 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Cmd_Fun cmd_fun;
+    cmd_fun = new Cmd_Fun(MyGuid);
+    string mandatory = "sa-mandatory";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string m_module3 = sgen.GetCookie(MyGuid, "m_module3");
+    string ulevel_mst = sgen.GetCookie(MyGuid, "ulevel_mst");
+    string userid_mst = sgen.GetCookie(MyGuid, "ulevel_mst");
+    string role_mst = sgen.GetCookie(MyGuid, "role_mst");
+
+    if (Model[0].Col50 == "ok") { Layout = ""; }
+    else { Layout = "~/Views/Shared/_MasterPage.cshtml"; }
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    DataTable dtb = new DataTable();
+    var newstyle = "style=visibility:visible;";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+
+    string pgid = "master_ctrl";
+    string pgurl = "/" + controllerName + "/" + viewName + "";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data", id = pgid }))
+{
+    if (Model[0].Col30 == "N" && Model[0].Col31 == "Y")
+    {
+        newstyle = "style=display:none;";
+        savenewstyle = "style=display:none;";
+    }
+    if (Model[0].Col30 == "Y" && Model[0].Col31 == "N")
+    {
+        editstyle = "style=display:none;";
+    }
+    if (Model[0].Col30 == "N" && Model[0].Col31 == "N")
+    {
+        newstyle = "style=display:none;";
+        savenewstyle = "style=display:none;";
+        savestyle = "style=display:none;";
+        editstyle = "style=display:none;";
+    }
+    if (Model[0].Col32 == "N")
+    {
+        viewstyle = "style=display:none;";
+        viewauth = "N";
+    }
+    if (Model[0].Col33 == "N") { extstyle = "style=display:none;"; }
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="row">
+                                @if (Model[0].Col14 != "11005.2")
+                                {
+                                    <div class="col-sm-6" @newstyle>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                <button type="button" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" formnovalidate name="command" value="New" accesskey="N" onclick="getmst(this, '@pgid', '@pgurl',event);"><u>N</u>ew</button>
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class='col-sm-6' @editstyle>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <button type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="I" onclick="editfun();">Ed<u>i</u>t</button>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="row">
+                                <div class='col-sm-2' @savestyle>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <button type="button" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey='@Model[0].Col121' onclick="getmst(this,'@pgid','@pgurl',event);">@Html.Raw(Model[0].Col122)</button>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (Model[0].Col14 != "11005.2")
+                                {
+                                    <div class='col-sm-4'>
+                                        <div class="form-group" @savenewstyle>
+                                            <div class='input-group'>
+                                                <button type="button" class="btn btn-primary form-control sa-button" @ViewBag.vsavenew id="btnsavenew" name="command" value='@Model[0].Col100' accesskey="W" onclick="getmst(this,'@pgid','@pgurl');">@Html.Raw(Model[0].Col123)</button>
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class='col-sm-2' @viewstyle>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <button type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="viewfun();"><u>V</u>iew</button>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if ((ViewBag.showextend == "Y") && (Model[0].Col14 != "11005.2"))
+                                {
+                                    <div class='col-sm-2' @extstyle>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                <button type="button" class="btn btn-primary form-control sa-button" onclick="extfun();" id="btnext" name="command" value="Extend" accesskey="X">E<u>x</u>tend</button>
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <button type="button" class="form-control sa-button sa-btncancel" formnovalidate id="btncancel" name="command" value="Cancel" accesskey="C" onclick="getmst(this,'@pgid','@pgurl');"><u>C</u>ancel</button>
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[i].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[i].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[i].Col123, new { @id = "savenew" })
+        @Html.HiddenFor(model => model[i].Col99, new { @id = "localcur" })
+
+        @Html.HiddenFor(model => model[i].Col30, new { @id = "hf_btnnew" })
+        @Html.HiddenFor(model => model[i].Col31, new { @id = "hf_btnedit" })
+        @Html.HiddenFor(model => model[i].Col32, new { @id = "hf_btnview" })
+        @Html.HiddenFor(model => model[i].Col33, new { @id = "hf_btnext" })
+        @Html.HiddenFor(model => model[i].Col50, new { @id = "hf_layout" })
+        @Html.HiddenFor(model => model[i].Col143, new { @id = "hf_session" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div id="div_form" data-parsley-validate="" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-1 col-sm-1 col-xs-12 col-sm-offset-2">Doc No. <span class="ClientProfileLabelColor"></span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_vchnum", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Doc No." })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">@Model[i].Col19 <span class="ClientProfileLabelColor">*</span></label>
+                                @Html.HiddenFor(model => model[i].Col19, new { @id = "hf_headname" })
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @if (Model[i].Col14.Equals("7004.1.8") && Model[i].Col20 != null)
+                                    {
+                                        if (Model[i].Col20.Trim().Equals("Assembly") || Model[i].Col20.Trim().Equals("Break"))
+                                        {
+                                            @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", readOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "60" })
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "60" })
+                                        }
+                                    }
+                                    else if ((Model[i].Col14.Equals("28005.5") || Model[i].Col14.Equals("22007.4") || Model[i].Col14.Equals("20006.4")) && Model[i].Col16 == Model[i].Col99)
+                                    {
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", readOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "60" })
+                                    }
+                                    else if (Model[i].Col14.Equals("11005.2"))
+                                    {
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", readOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "60" })
+                                    }
+                                    else if (Model[i].Col14.Equals("39001.16"))
+                                    {
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "60", onkeypress = "return isNumberKey(event);" })
+                                    }
+                                    else if (Model[i].Col14.Equals("17001.23"))
+                                    {
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "15" })
+                                    }                                    
+                                    else
+                                    {
+                                    @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_valname", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Enter Name", @MaxLength = "60" })
+                                    }
+                                </div>
+                            </div>
+
+
+                            @if (Model[i].Col14.Equals("7004.1.4") || Model[i].Col14.Equals("7004.1.6") || Model[i].Col14.Equals("4007.8") || Model[i].Col14.Equals("16000.1.4") || Model[i].Col14.Equals("12003.8") ||
+                            Model[i].Col14.Equals("11004.1") || Model[i].Col14.Equals("20006.7") || Model[i].Col14.Equals("20006.2") || Model[i].Col14.Equals("29001.3.1") || Model[i].Col14.Equals("7004.1.9") || Model[i].Col14.Equals("7004.1.7") ||
+                            Model[i].Col14.Equals("21001.1") || Model[i].Col14.Equals("17001.1") || Model[i].Col14.Equals("28004.5") || Model[i].Col14.Equals("41005.3") || Model[i].Col14.Equals("28004.5") || Model[i].Col14.Equals("40001.10") ||
+                            Model[i].Col14.Equals("28007") || Model[i].Col14.Equals("1008.15") || Model[i].Col14.Equals("9003.3.10") || Model[i].Col14.Equals("2003.1") || Model[i].Col14.Equals("2003.2") || Model[i].Col14.Equals("40001.13") || Model[i].Col14.Equals("35004.4") ||
+                            Model[i].Col14.Equals("21001.7") || Model[i].Col14.Equals("28004.11") || Model[i].Col14.Equals("22007.4") || Model[i].Col14.Equals("2003.3") || Model[i].Col14.Equals("2003.4") || Model[i].Col14.Equals("35001.1") ||
+                            Model[i].Col14.Equals("22007.1") || Model[i].Col14.Equals("22007.2") || Model[i].Col14.Equals("41001.2") || Model[i].Col14.Equals("12003.6") || Model[i].Col14.Equals("12003.2") || Model[i].Col14.Equals("17001.14") || Model[i].Col14.Equals("41005.4") ||
+                    Model[i].Col14.Equals("26001.1") || Model[i].Col14.Equals("17001.15") || Model[i].Col14.Equals("12003.7") || Model[i].Col14.Equals("12003.5") || Model[i].Col14.Equals("12003.3") || Model[i].Col14.Equals("12003.4") ||
+                    Model[i].Col14.Equals("40001.6") || Model[i].Col14.Equals("20006.1") || Model[i].Col14.Equals("27008") || Model[i].Col14.Equals("39001.13") || Model[i].Col14.Equals("28005.3") || Model[i].Col14.Equals("41001.1") ||
+                    Model[i].Col14.Equals("20006.6") || Model[i].Col14.Equals("20005.8") || Model[i].Col14.Equals("39001.4") || Model[i].Col14.Equals("28004.9") || Model[i].Col14.Equals("28004.10") || Model[i].Col14.Equals("7002.16") ||
+                    Model[i].Col14.Equals("20006.4") || Model[i].Col14.Equals("28005.4") || Model[i].Col14.Equals("28005.5") || Model[i].Col14.Equals("28004.8") || Model[i].Col14.Equals("10001.1") || Model[i].Col14.Equals("17001.26") ||
+                     Model[i].Col14.Equals("9003.3.10") || Model[i].Col14.Equals("40001.3") || Model[i].Col14.Equals("40001.4") || Model[i].Col14.Equals("40001.5") || Model[i].Col14.Equals("10001.2") || Model[i].Col14.Equals("1008.9") || Model[i].Col14.Equals("1008.10") ||
+                    Model[i].Col14.Equals("28005.6") || Model[i].Col14.Equals("39001.9") || Model[i].Col14.Equals("39001.10") || Model[i].Col14.Equals("41001.3") || Model[i].Col14.Equals("41001.4") || Model[i].Col14.Equals("40001.11") ||
+                    Model[i].Col14.Equals("17001.22") || Model[i].Col14.Equals("39001.8") || Model[i].Col14.Equals("17001.23") || Model[i].Col14.Equals("190004.1") || Model[i].Col14.Equals("40001.8") || Model[i].Col14.Equals("39001.15")
+                    || Model[i].Col14.Equals("28004.13") || Model[i].Col14.Equals("39001.16") || Model[i].Col14.Equals("9003.3.12") || Model[i].Col14.Equals("35001.3") || Model[i].Col14.Equals("5002.2") || Model[i].Col14.Equals("35001.5") || Model[i].Col14.Equals("11005.1")
+                    || Model[i].Col14.Equals("11005.2") || Model[i].Col14.Equals("35001.6") || Model[i].Col14.Equals("35001.7") || Model[i].Col14.Equals("40001.1") || Model[i].Col14.Equals("40001.2") ||
+                    Model[i].Col14.Equals("40001.9") || Model[i].Col14.Equals("24001.1")|| Model[i].Col14.Equals("24001.3")|| Model[i].Col14.Equals("24001.4")|| Model[i].Col14.Equals("24001.2")||
+                    Model[i].Col14.Equals("24001.5")|| Model[i].Col14.Equals("8003.1") || Model[i].Col14.Equals("400011.1") ||
+                    Model[i].Col14.Equals("400011.2") || Model[i].Col14.Equals("400011.3") || Model[i].Col14.Equals("400011.5") || Model[i].Col14.Equals("33002.10") || Model[i].Col14.Equals("400011.6") || Model[i].Col14.Equals("40006.2") 
+                    || Model[i].Col14.Equals("2003.7") || Model[i].Col14.Equals("2003.8") || Model[i].Col14.Equals("2003.9") || Model[i].Col14.Equals("2003.10"))
+                            {
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">@Model[i].Col17 </label>
+                                    @Html.HiddenFor(model => model[i].Col17, new { @id = "hf_headabbr" })
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_valabbr", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Enter Description", @MaxLength = "60" })
+                                    </div>
+                                </div>
+                            }
+                            @if (Model[0].Col14.Equals("17001.26"))
+                            {
+                                <div class="row">
+                                    <div class="form-group">
+                                        <a causesvalidation="false" data-toggle="tooltip" data-placement="top" title="Select Account" id="spn_add" tooltip="Select Account" onclick="selectparty(this);"><i class="fa fa-search"></i></a>
+                                        <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">Account Code<span class="ClientProfileLabelColor">*</span></label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_accode", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", placeholder = "Account Code", onkeydown = "return false;", @MaxLength = "60" })
+                                            @*<span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Account" id="spn_add" onclick="selectparty(this);"><i class="fa fa-search"></i></span>*@
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                            @if (Model[i].Col14.Equals("22007.4") || Model[i].Col14.Equals("20006.4") || Model[i].Col14.Equals("28005.5"))
+                            {
+                                <div class="form-group">
+                                    <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">Currency Digit (Including Decimal) </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_digit", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Currency Digit", @onkeypress = "return isNumberKey(this);" })
+                                    </div>
+                                </div>
+                            }
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2 col-sm-2 col-xs-12 col-sm-offset-1">Default </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk_df", @class = "sa-input checkbox" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1 col-sm-1 col-xs-12 col-sm-offset-2" for="first-name">Status <span class="ClientProfileLabelColor"></span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @if (Model[i].Col14.Equals("7004.1.8") && Model[i].Col20 != null)
+                                    {
+                                        if (Model[i].Col20.Trim().Equals("Assembly") || Model[i].Col20.Trim().Equals("Break"))
+                                        {
+                                            <b style="padding-top:12px">Active</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @onclick = "return false;", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                            <b style="padding-top:12px">Inactive</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @onclick = "return false;", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        }
+                                        else
+                                        {
+                                            <b style="padding-top:12px">Active</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                            <b style="padding-top:12px">Inactive</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        }
+                                    }
+                                    else if ((Model[i].Col14.Equals("28005.5") || Model[i].Col14.Equals("22007.4") || Model[i].Col14.Equals("20006.4")) && Model[i].Col16 == Model[i].Col99)
+                                    {
+                                        <b style="padding-top:12px">Active</b>
+                                        @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @onclick = "return false;", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <b style="padding-top:12px">Inactive</b>
+                                        @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @onclick = "return false;", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    }
+                                    else
+                                    {
+                                        <b style="padding-top:12px"> Active </b>
+                                        @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <b style="padding-top:12px"> Inactive </b>
+                                        @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" formnovalidate />
+}
+
+@*<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>*@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
+@*<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>*@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+
+
+<script type="text/javascript">
+
+    function stopRKey(evt) {
+        var evt = (evt) ? evt : ((event) ? event : null);
+        var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null);
+        if ((evt.keyCode == 13) && (node.type == "text")) { return false; }
+    }
+    document.onkeypress = stopRKey;
+
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $(".sa-mandatory").attr("required", "required");
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function editfun() { var data = show_Foo('Select Value For Edit', 'Edit', '1', '@viewName', '@controllerName'); }
+
+    function viewfun() {
+         if ('@viewauth'== "N") {
+            showmsgJS(1, "You dont have permission for view voucher, please contact your admin", 2);
+            return;
+        }
+        var data = show_Foo('View Detail', 'DETAIL', '0', '@viewName', '@controllerName');
+    }
+
+    function extfun() { var data = show_Foo('Extend To Unit', 'EXT', '2', '@viewName', '@controllerName'); }
+    function selectparty() { var data = show_Foo('Select Account', 'PARTY', '1', '@viewName', '@controllerName'); }
+
+</script>

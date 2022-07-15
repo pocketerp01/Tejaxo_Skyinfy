@@ -1,0 +1,494 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clr = "";
+    // ViewBag.Title = "ESI";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editclick();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>ESI Setting</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Doc No. </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_vchnum", @AutoCompleteType = "Disabled", @Readonly = "ture", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Copy From </label>
+                                                <div class="form-group">
+                                                    <div class='input-group demo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_unit", @Readonly = "ture", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="AREA" clientidmode="static" id="a_unit" onclick="getarea(this);">
+                                                            <i class="fa fa-search"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Applicable <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_applicable", @onchange = "disablectrl(this);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Company ESI Number <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_comesino", @onkeydown = "return checkLength(this, 18,event);", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">ESI Local Office </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_esiloffce", @onkeydown = "return checkLength(this, 18,event);", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Deposit ESI of Employee Whose Salary is on Hold </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_desiewsh", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Deduct ESI on OT </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[i].SelectedItems3), new { @id = "ddl_desiot", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Deduct ESI on Arrear </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[i].SelectedItems4), new { @id = "ddl_desiarrear", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label for="first-name">Emp Round Value <span class="ClientProfileLabelColor">*</span></label>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.DropDownListFor(model => model[i].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[i].SelectedItems5), new { @id = "ddl_eroff", @onkeydown = "return checkLength(this, 20,event);", @style = "100%", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-6'>
+                                                        <label for="first-name">Amount <span class="ClientProfileLabelColor">*</span></label>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_eroundamt", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", })
+
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Round off ESI Amount Separately on Arrear ESI Gross </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[i].SelectedItems6), new { @id = "ddl_roesias", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label for="first-name">Empr Round Value <span class="ClientProfileLabelColor">*</span></label>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.DropDownListFor(model => model[i].SelectedItems7, new MultiSelectList(Model[0].TList7, "Value", "Text", Model[i].SelectedItems7), new { @id = "ddl_erro", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-6'>
+                                                        <label for="first-name">Amount <span class="ClientProfileLabelColor">*</span></label>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_erroundamt", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Employee (%) <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_emp", @MaxLength = "5", @onchange = "per(this);", @AutoCompleteType = "Disabled", @onkeypress = "return isDecimalKey(event);", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox  sa-mandatory Percent" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Employer (%) <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_empr", @onchange = "per(this);", @AutoCompleteType = "Disabled", @MaxLength = "5", @onkeypress = "return isDecimalKey(event);", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox  sa-mandatory Percent" })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Employee State Insurance Limit</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_esil", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox  sa-mandatory", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Deduct ESI on ESI Limit </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems8, new MultiSelectList(Model[0].TList8, "Value", "Text", Model[i].SelectedItems8), new { @id = "ddl_desil", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Do Not Deduct ESI on Arrear Alone, Deduct ESI Cumulatively in Salary Process </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems9, new MultiSelectList(Model[0].TList9, "Value", "Text", Model[i].SelectedItems9), new { @id = "ddl_dnesiaa", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b data-toggle="tooltip" data-placement="top" title="Selected Means ..ESI of employee will be deducted continuosly Uptill the Current Half Yearly Return">
+                                                            @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk_esirule", @class = "sa-input checkbox" })
+                                                            Half Yearly ESI Deduction Applicable
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Employee State Insurance (ESI) Info</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide4" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Registration Date<span class="ClientProfileLabelColor">*</span> </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_regdtesi", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group demo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_signameesi", @AutoCompleteType = "Disabled", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", })
+                                                        @Html.HiddenFor(model => model[i].Col30, new { @id = "hf_esisigid" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Signatory Name" clientidmode="static" id="a_sigesi" onclick="getsing(this);">
+                                                            <i class="fa fa-search"></i>
+
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory Designation</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_sigdesigesi", @AutoCompleteType = "Disabled", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory's Father's Name </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_sigfnameesi", @AutoCompleteType = "Disabled", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Signatory Address </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col29, new { @id = "txt_sigaddesi", @AutoCompleteType = "Disabled", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <asp:HiddenField runat="server" ID="hf_edmode" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        if (!isPostBack()) {
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    //child.classList.remove = "fa-chevron-up";
+                    //child.classList.add = "fa-chevron-down";
+                    $(child).removeClass("fa-chevron-up");
+                    $(child).addClass("fa-chevron-down");
+                }
+            }
+        }
+    });
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function getarea() { var data = show_Foo('Area ', 'UNITS', '1', '@viewName', '@controllerName'); }
+    function getsing() { var data = show_Foo('Signatory Name', 'ESISIG', '1', '@viewName', '@controllerName'); }
+    function per(ctrl) {
+        //debugger;
+        var txt = ctrl;
+        if (txt.value.length > 0) {
+            if (!txt.value.endsWith('%')) {
+                if (txt.value > 100) {
+                    showmsgJS(1, "Percentage cannot greater than 100 ", 2);
+                    txt.value = "";
+                    return false;
+                }
+                txt.value = txt.value + "%";
+            }
+            else {
+                if (txt.value.endsWith('%')) {
+                    var a = txt.value.split('%')[0];
+                    if (a > 100) {
+                        showmsgJS(1, "Percentage cannot greater than 100 ", 2);
+                        txt.value = "";
+                        return false;
+                    }
+                    txt.value = txt.value
+                }
+            }
+        }
+        else { txt.value = "0" + "%" }
+    }
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function disablectrl(ctrl) {
+        //debugger;
+        var vall = $(ctrl).val();
+        if (vall == "Yes") $(ctrl).parents().find(".body").find("input[type=text],select").not(ctrl).prop("disabled", false);
+        else $(ctrl).parents().find(".body").find("input[type=text],select").not(ctrl).prop("disabled", true);
+    }
+    function editclick(ctrl) {
+        var vch = $("#txt_vchnum")[0].value;
+        if (vch == "" || vch == undefined) {
+            disableForm();
+        }
+        else {
+            enableForm();
+        }
+    }
+</script>

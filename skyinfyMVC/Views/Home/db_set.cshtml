@@ -1,0 +1,292 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { id = "soordtemp", enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" onclick="bdnewfun();" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-warning form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" accesskey="S" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-info form-control sa-button" id="btndetail" name="command" value="View List" accesskey="V" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div id="div" data-parsley-validate="" class="form-horizontal">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Sr No.</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model[0].Col16, new { @id = "txtvchnum", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Doc No.", Readonly = true })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chart No.</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_chrtno", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Chart No.", Readonly = true })
+                            </div>
+                            @if (Model[0].Col12 == "DBU")
+                            {
+                                <div class="col-md-1 col-sm-1" id="div_search" runat="server" visible="false">
+                                    <a causesvalidation="false" data-toggle="tooltip" data-placement="top" title="Select Chart No" runat="server" id="btncharts" tooltip="Select Chart No" onclick="btncharts_ServerClick();"><i class="fa fa-search"></i></a>
+                                </div>
+                            }
+                            </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", data_placeholder = "Name" })
+
+                                @*<asp:TextBox runat="server" ID="txt_name" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " Enabled="false"></asp:TextBox>*@
+                                @*   <asp:RequiredFieldValidator runat="server" ID="rq_name" ForeColor="Red" ErrorMessage="*" ControlToValidate="txt_name" Display="Dynamic"></asp:RequiredFieldValidator>*@
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Level</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_level", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @style = "width:100%", @multiple = "multiple",@ViewBag.btncond })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Module</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_module", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", @multiple = "multiple",@ViewBag.btncond })
+
+                                @*<asp:DropDownList runat="server" ID="ddl_module" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" Enabled="false"></asp:DropDownList>*@
+                            </div>
+                        </div>
+
+                        @if (Model[0].Col12 == "DBU")
+                        {
+                        <div class="form-group" runat="server" id="div_onmodule" visible="false">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">On Module</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_onmodule", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", placeholder = "Select On Module", clientidmode = "Static", @multiple = "multiple" })
+                            </div>
+                        </div>
+                        }
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Drill Level <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_drilllevel", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", @multiple = "multiple" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Chart Type <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_chrttype", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", @multiple = "multiple", @ViewBag.btncond })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Status <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[0].SelectedItems6), new { @id = "ddl_status", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", @multiple = "multiple", @ViewBag.btncond })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_save" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "vch_num" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_typedesc" })
+    @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_onmodule" })
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+<script>
+    //function selectionIndexChange(ctrl) {
+    //    javascript: __doPostBack(ctrl.id, '');
+    //}
+
+    //function blankselects() {
+    //    $(".select2").val(null).trigger('change.select2');
+    //}
+
+</script>
+
+@*<script src="../css/select2/select2.full.min.js"></script>*@
+
+<script>
+    //$(function () {
+
+    //    //Initialize Select2 Elements
+    //    //$('.select2').select2();
+    //    //$('.select2').tagsinput('items');
+    //    $("#ddl_onmodule").select2({
+    //        tags: true,
+    //        tokenSeparators: [",", ";", " "],
+    //        templateSelection: function (data, container) {
+    //            var myHidden = document.getElementById('<%= hf_onmodule.ClientID %>');
+    //            myHidden.value = $('#ddl_onmodule').val().toString();
+    //            return data.text;
+    //        },
+    //    });
+    //});
+
+    $(document).ready(function () {
+
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        //bdbset();
+    });
+
+    //$(document).ready(function () {
+    //    //ddl_grp===================================================================================
+
+    //    var myHidden = document.getElementById('<%= hf_onmodule.ClientID %>');
+
+    //    if (!myHidden.value == "") {
+    //        var newStateVal = myHidden.value.split(',');
+    //        var local = false; var localnames = "";
+    //        var extra = false; var extranames = "";
+    //        for (i = 0; i < newStateVal.length; i++) {
+    //            // Set the value, creating a new option if necessary
+    //            if ($("#ddl_onmodule").find("option[value='" + newStateVal[i] + "']").length) {
+    //                if (localnames == "") localnames = newStateVal[i];
+    //                else localnames = localnames + "," + newStateVal[i];
+    //                local = true;
+
+    //            }
+    //            else if (!$("#ddl_onmodule").find("option[value='" + newStateVal[i] + "']").length) {
+    //                if (extranames == "") extranames = newStateVal[i];
+    //                else extranames = extranames + "," + newStateVal[i];
+    //                extra = true;
+    //            }
+    //        }
+    //        if (local) {
+
+    //            $("#ddl_onmodule").val(localnames.split(',')).trigger('change.select2');
+    //        }
+    //        if (extra) {
+    //            // Create the DOM option that is pre-selected by default
+    //            //for (i = 0; i < extranames.split(',').length; i++) {
+    //            //    debugger;
+    //            //    $("#ddl_grp").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+    //            //    // Append it to the select
+    //            //    //$("#ContentPlaceHolder1_email").append(newState);
+    //            //}
+    //        }
+    //    }
+    //    else $("#ddl_onmodule").val(null).trigger('change.select2');
+
+    //    //$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+    //    //$("#ddl_grp").trigger('change');
+    //});
+
+        function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function btncharts_ServerClick() { var data = show_Foo('Select Chart No.', 'CHARTS', '1', '@viewName', '@controllerName'); }
+
+    function bdnewfun() {
+        debugger;
+        var usertype = $("#hf_mid")[0].value;
+        if (usertype == "1011.2")
+        {
+            $("#txtvchnum").prop('disabled', true);
+            $("#txt_chrtno").prop('disabled', true);
+            $("#txt_name").prop('disabled', true);
+            $("#ddl_level").prop('disabled', true);
+            $("#ddl_module").prop('disabled', true);
+            $("#ddl_drilllevel").prop('disabled', true);
+            $("#ddl_chrttype").prop('disabled', true);
+            $("#ddl_status").prop('disabled', true);
+            $("#ddl_onmodule").prop('disabled', false);
+        }
+    }
+    //function bdbset(evt, id) {
+    //    debugger;
+    //        var typ = "";
+    //        typ = $("#hf_type")[0].value
+    //        if (typ == "DBA") {
+    //            $("[id*=div_search]").hide();
+    //            $("[id*=div_onmodule]").hide();
+    //        }
+    //        else if (typ == "DBU") {
+    //            $("[id*=div_search]").show();
+    //            $("[id*=div_onmodule]").show();
+    //        }
+    //        else {
+    //            $("[id*=div_search]").hide();
+    //            $("[id*=div_onmodule]").hide();
+    //        }
+    //}
+</script>

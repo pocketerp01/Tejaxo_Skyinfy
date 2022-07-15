@@ -1,0 +1,122 @@
+﻿.grdrow
+{width:auto; color:#0A5E7E; font-family:Arial, Helvetica, sans-serif; font-size:small; padding-left:5px; border-right:1px solid #9abbe1;  border-bottom:1px solid #9abbe1;  font-weight:normal;cursor:default;}
+.grdrow:hover
+{width:auto; color:#0A5E7E; font-family:Arial, Helvetica, sans-serif; font-size:small; padding-left:5px; background:#fbf6d9; border-right:1px solid #9abbe1;  border-bottom:1px solid #9abbe1; margin:10; cursor:pointer}
+.btnshine
+{
+	background-color:#e94f31;color: #ffffff;
+	text-shadow: 0 -1px 1px #751d0c;
+	font-weight:bold;
+	
+}
+.btnshine:hover
+{
+position:relative;
+background-color:#ba2f14; cursor:pointer;
+top:1px;
+}
+
+.txtcss2
+{
+padding: 5px 2px 5px 2px;
+border-radius: 3px; 
+border: 1px solid #CCC; 
+} 
+ .txtcss2:focus { 
+outline-color: #54B4AD; 
+}
+.btnyes
+{
+	border: 1px solid #A1DCF2;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+	background-color:#157dec;color: #ffffff;
+	text-shadow: 0 -1px 1px #751d0c;
+	font-weight:bold;	
+}
+.btnyes:hover
+{
+	background-color:#1589ff;
+	position:relative;
+	cursor:pointer;
+}
+.btnno
+{
+	border: 1px solid #A1DCF2;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            overflow: hidden;
+	background-color:#e42217;color: #ffffff;
+	text-shadow: 0 -1px 1px #751d0c;
+	font-weight:bold;	
+}
+.btnno:hover
+{
+	background-color:#f62217;
+	position:relative;
+	cursor:pointer;
+}
+#updprocess {
+    position: absolute;
+    width:100%; height:100%;
+    top: 0px;
+    left: 0px;
+    background: url(../Images/overlay.png) repeat center center;
+    background-color: #e4e4e6;
+    opacity: 0.9;
+    overflow: hidden;
+}
+.trv_node:hover
+{color:#000000;background:#fbf6d9; font-weight:bold;cursor:pointer;}
+.trv_selected
+{color:#000000; font-weight:bold;cursor:pointer; text-decoration:underline;}
+.font_css
+{
+	font-family: Arial, Helvetica, sans-serif; font-weight: 700; color:#474646; font-size:12px;
+}
+.myButton 
+{
+	border: 1px solid #456f9a;
+background: #5e87b0;
+color: #fff;
+background-image:-gradient(linear,left top,left bottom,from(#6facd5),to(#497bae));
+border-radius:4px;				
+width:100px;
+height:24px;	
+cursor:pointer;
+	/*background: #fff;
+	color: #a18d6c;
+	font-family: 'Exo', sans-serif;*/
+}
+.myButton:hover 
+{
+	opacity: 0.9;
+}
+.myButton:disabled {
+  opacity: 0.5;
+  cursor:inherit;
+}
+.header {
+    height:25px;
+    background:#414246;
+    border:1px solid #CCC;
+    margin:0px auto;
+    font-size: large; font-family: Arial, Helvetica, sans-serif; font-weight: 700; color: #FFFFFF;
+    text-align: center;
+    border: 2px solid #F2F5FF;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+                        overflow: hidden;
+            border-radius: 8px;
+}
+		.clearable{
+          background: #fff url(../images/cross-red.gif) no-repeat right -12px center;
+          border: 1px solid #999;
+          padding: 0 0 0 0;     /* Use the same right padding (18) in jQ! */
+          transition: background 0.4s;
+        }
+        .clearable.x  { background-position: right 4px center; } /* (jQ) Show icon */
+        .clearable.onX{ cursor: pointer; }        

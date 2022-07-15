@@ -1,0 +1,425 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Cmd_Fun cmd_fun = new Cmd_Fun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+    string mandatory = "sa-mandatory";
+
+    //DataTable tmp = cmd_fun.getsessiondt(userCode, "LEAD MASTER", "select id,param1,param2,upper(param3) param3 ,name from controls where trim(upper(param5))='LEAD MASTER' and type='VDC'");
+    //Session["tmp_lead"] = tmp;
+    var issp = false;
+    var imgclosedisplay = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var path = "";
+
+    var newstyle = "style=visibility:visible;";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model[0].Col133 == "N")
+    {
+        newstyle = "style=display:none;";
+        savestyle = "style=display:none;";
+        // savenewstyle = "style=display:none;";
+    }
+    if (Model[0].Col134 == "N") { editstyle = "style=display:none;"; }
+   
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+
+
+                <div class='col-sm-2' @savestyle>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" accesskey='@Model[0].Col121'>@Html.Raw(Model[0].Col122)</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="form-control sa-button sa-btncancel" formnovalidate id="btncancel" name="command" value="Cancel" accesskey="C"><u>C</u>ancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="clearfix"></div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+        @Html.HiddenFor(model => model[0].Col133, new { @id = "hf_btnnew" })
+        @Html.HiddenFor(model => model[0].Col134, new { @id = "hf_btnedit" })
+        @Html.HiddenFor(model => model[i].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[i].Col122, new { @id = "Save" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Employee Code
+                                    <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_ecd", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-6'>
+                                <label for="first-name">
+                                    Employee Name
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_enm", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", Readonly = true })
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Department
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_dpt", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Designation
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_desig", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Date Of Joining
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_doj", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Service Age Till Date
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_sr", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">Date Of Birth<span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_dob", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Date Of Anniversary
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_doa", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Office Email Id
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_eml", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-email" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Personal Email Id
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_peml", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-email" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Mobile No.
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_mno", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mobile" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Alternate No.
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_amno", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mobile" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Emergency Cont Person
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col35, new { @id = "txt_cperson", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Emergency Cont No.
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col34, new { @id = "txt_emcont", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Relation
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_rel", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    PAN No
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col29, new { @id = "txt_panno", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-panno", @MaxLength = "11" })
+
+
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Bank Name
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col30, new { @id = "txt_bnk", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Bank Account No
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col31, new { @id = "txt_bacc", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Bank IFSC No.
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col33, new { @id = "txt_ifsc", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <label for="first-name">
+                                    Address As Per Company Record
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextAreaFor(model => model[i].Col32, new { @id = "txt_cmpnyadd", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox",@readonly=true })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <label for="first-name">
+                                    Address As Per Employee
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextAreaFor(model => model[i].Col37, new { @id = "txt_empadd", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}

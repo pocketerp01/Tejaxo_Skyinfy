@@ -1,0 +1,136 @@
+﻿@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+
+    int i = 0;
+}
+<div class="row">
+    <div class='col-sm-3'>
+        <label for="first-name">
+            ITEM CODE
+            <span class="ClientProfileLabelColor">*</span>
+
+        </label>
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_vchnum", @ReadOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 " +
+               "sa-textbox sa-mandatory", placeholder = "Item Code" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class='col-sm-6'>
+        <label for="first-name">
+            ITEM SUB GROUP
+            <span class="ClientProfileLabelColor">*</span>
+        </label>
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_subgrp", @onkeydown = "return false;", @class = "form-control col-md-12 col-sm-12 " +
+               "col-xs-12 sa-textbox sa-mandatory", placeholder = "Sub Group", autocomplete = "off" })
+                @Html.HiddenFor(model => model[i].Col37, new { @id = "hf_subgrp" })
+                @if (Model[i].Col8 != null)
+                {
+                    if (Model[i].Col111 == null || Model[i].Col111.Trim().Equals("") || Model[i].Col111.Trim().Equals("N"))
+                    {
+                        <span class="input-group-addon sa-cursor" data-toggle="tooltip" data-placement="top" title="Select Item Sub Group"
+                              id="spn_subgrp" onclick="get_subgrp(this);"><i class="fa fa-search"></i></span>
+                    }
+                    else
+                    {
+                        <span class="input-group-addon formclass" id="spn_subgrp"></span>
+                    }
+                }
+                else
+                {
+                    <span class="input-group-addon formclass"></span>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class='col-sm-6'>
+        <label for="first-name">
+
+            ITEM NAME
+            <span class="ClientProfileLabelColor">*</span>
+
+
+        </label>
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_item_name", @onkeypress = "return checkLength(this, 140,event);",
+               @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Item Name", autocomplete = "off" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='col-sm-3'>
+        <label for="first-name">
+
+            HSN/SAC NO
+            <span class="ClientProfileLabelColor">*</span>
+        </label>
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new
+           { @id = "ddl_hsn_sac_no", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory",
+               @multiple = "multiple", @onchange = "gettaxrate(this);" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class='col-sm-3'>
+        <label for="first-name">
+
+            TAX RATE<span class="ClientProfileLabelColor">*</span>
+
+        </label>
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_txtrate", @ReadOnly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12" +
+               " sa-textbox", placeholder = "Tax Rate" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class='col-sm-3'>
+        <label for="first-name">
+            PRIMARY UNIT
+            <span class="ClientProfileLabelColor">*</span>
+
+        </label>
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.DropDownListFor(model => model[i].SelectedItems5, new MultiSelectList(Model[i].TList5, "Value", "Text", Model[i].SelectedItems5), new
+           { @id = "ddl_um1", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class='col-sm-2'>
+        <div class='form-group'>
+            <div class='input-group'>
+                <button type='button' class='btn btn-primary form-control sa-button' id='btnsave' name='command' value="Save"
+                        accesskey='S' onclick='SaveItem()'>
+                    Save
+                </button>
+                <span class='input-group-addon formclass'></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,66 @@
+﻿@using System.Data;
+@model List<skyinfyMVC.Models.Tmodelmain>
+@{
+                /**/
+
+                ViewBag.Title = "SortPageAndFilter";
+                Layout = "~/Views/Shared/_MasterPage.cshtml";
+}
+
+
+<h2>Sortable, Paged and Filterable Products Grid</h2>
+<p>
+    This view lists the filtered products in a sortable, paged grid.
+</p>
+<p>
+    <i>You are viewing page @Model.CurrentPageIndex  of @Model.PageCount ...</i>
+</p>
+@using (Html.BeginForm("SortPageAndFilter", "Products", FormMethod.Get))
+{
+<fieldset class="filtering">
+    <legend>Filter Product Results</legend>
+    <div>
+        <b>Show Products In:</b>
+        @
+
+        <b>Minimum Price:</b>
+        $@
+
+        <b>Omit Discontinued?</b>
+        @
+
+        @
+        @
+
+        <input type="submit" value="Filter Results" />
+    </div>
+</fieldset>
+                /**/
+
+<table class="grid">
+    <tr>
+        @foreach (DataColumn dc in Model[0].dt1.Columns)
+        {
+            <th>@Html.Partial("_SmartLink", Model, new ViewDataDictionary { { "ColumnName", dc.ColumnName }, { "DisplayName", dc.ColumnName } })</th>
+        }
+
+    </tr>
+
+    @foreach (DataRow dr in Model[0].dt1.Rows)
+    {
+    <tr>
+        @foreach (DataColumn dc in Model[0].dt1.Columns)
+        {
+        <td class="left">@dr[dc].ToString()</td>
+           
+        }
+    </tr>
+    }
+    <tr>
+        <td class="pager" colspan="5">
+            @Html.Partial("_Pager", Model)
+        </td>
+    </tr>
+
+</table>
+

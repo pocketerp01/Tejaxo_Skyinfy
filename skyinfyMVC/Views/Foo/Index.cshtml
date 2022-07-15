@@ -1,0 +1,102 @@
+﻿<h2>View</h2>
+
+@{
+    ViewBag.Title = "View";
+    Layout = null;
+}
+
+
+<br />
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<!-- Display Column List for Dynamically Select-->
+<link href="~/Scripts/choosen/style.css" rel="stylesheet" />
+<link href="~/Scripts/choosen/prism.css" rel="stylesheet" />
+<link href="~/Scripts/choosen/chosen.css" rel="stylesheet" />
+
+<script src="~/Scripts/choosen/chosen.jquery.js"></script>
+<script src="~/Scripts/choosen/prism.js"></script>
+<script src="~/Scripts/choosen/init.js"></script>
+<span>Columns</span>
+<div>
+    @*@foreach (var column in ViewBag.Columns)
+        {
+            <div class="checkbox">
+                <label><input type="checkbox" value="@column" id="@column" class="columnCheckBox">@column</label>
+            </div>
+        }*@
+</div>
+<input id="displayTable" type="submit" value="Display Table" />
+<br />
+<div id="tableDiv"></div>
+<div id="page-selection" class="pull-right"></div>
+<div>
+    @Html.ListBox(
+        "text",
+        ViewBag.Skills as MultiSelectList,
+        new { @class = "chzn-select", data_placeholder = "Choose a Country..." }
+    )
+    @*@Html.DropDownList("Skills", "Select country")*@
+</div>
+<script>$(".chzn-select").chosen({ no_results_text: "Oops, nothing found!" });</script>
+<script type="text/javascript">
+
+   var sortBy = $(".columnCheckBox").first().val();
+   var sortDirection = '';
+   var skip = 0;
+   var take = 10;
+   $(document).ready(function () {
+     // init bootpag
+     @*$('#page-selection').bootpag({
+       total: '@((int)ViewBag.GridViewPageCount)',
+       maxVisible: 10,
+       page: 1
+     }).on("page", function (event, num) {
+       skip = (num - 1) * 10;
+       take = 10;
+       getCampaign(skip, take, sortBy, sortDirection);
+     });*@
+     // display table click event
+     $("#displayTable").click(function () {
+       // set page 1 after new search.
+       //$('#page-selection').bootpag({
+       //  page: 1
+       //});
+       // call get campaign function.
+       getCampaign(0, 10, sortBy, sortDirection);
+     });
+   });
+   // get campaign function.
+   function getCampaign(skip, take, sortByColum, sortDirection) {
+     $.ajaxSetup({ cache: false });
+     $("#tableDiv").empty();
+     // get filter columns.
+     var filterList = [];
+     //$('.columnCheckBox').each(function () {
+     //  if ($(this).prop('checked')) {
+     //    filterList.push($(this).val());
+     //  }
+     //});
+     //if (filterList.length <= 0)
+     //{
+     //  alert("You have not selected any columns");
+     //  return false;
+     //}
+       // call partial view
+       debugger
+     $.ajax({
+       url: '/Foo/GetCampaignsByAjax',
+       data: { filterColumns: filterList, skip: skip, take: take, sortByColum: sortByColum, sortDirection: sortDirection },
+       datatype: "json",
+       type: "post",
+       contenttype: 'application/json; charset=utf-8',
+       async: true,
+         success: function (data) {
+             debugger
+         $("#tableDiv").html(data);
+       },
+       error: function (xhr) {
+         alert('error');
+       }
+     });
+   }
+</script>

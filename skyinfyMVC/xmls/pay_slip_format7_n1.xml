@@ -1,0 +1,289 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="DOJ" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="IFSC_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="ACCOUNT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="OTHRS" type="xs:decimal" minOccurs="0" />
+                <xs:element name="SALARY_YR" type="xs:string" minOccurs="0" />
+                <xs:element name="PF_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="PF_UAN" type="xs:string" minOccurs="0" />
+                <xs:element name="ESI_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EXTERNAL_EMPNO" type="xs:string" minOccurs="0" />
+                <xs:element name="OLD_EMPCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPT" type="xs:string" minOccurs="0" />
+                <xs:element name="DESIG" type="xs:string" minOccurs="0" />
+                <xs:element name="F_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_DAYS" type="xs:short" minOccurs="0" />
+                <xs:element name="PAID_DAYS" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OT" type="xs:double" minOccurs="0" />
+                <xs:element name="ESI_OT" type="xs:double" minOccurs="0" />
+                <xs:element name="ER1" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE1" type="xs:double" minOccurs="0" />
+                <xs:element name="ER2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE2" type="xs:double" minOccurs="0" />
+                <xs:element name="ER3" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE3" type="xs:double" minOccurs="0" />
+                <xs:element name="ER4" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE4" type="xs:double" minOccurs="0" />
+                <xs:element name="ER5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE5" type="xs:double" minOccurs="0" />
+                <xs:element name="ER6" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE6" type="xs:double" minOccurs="0" />
+                <xs:element name="ER7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE7" type="xs:double" minOccurs="0" />
+                <xs:element name="ER8" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE8" type="xs:double" minOccurs="0" />
+                <xs:element name="ER9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE9" type="xs:double" minOccurs="0" />
+                <xs:element name="ER10" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE10" type="xs:double" minOccurs="0" />
+                <xs:element name="ER11" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE11" type="xs:double" minOccurs="0" />
+                <xs:element name="ER12" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE12" type="xs:double" minOccurs="0" />
+                <xs:element name="ER13" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE13" type="xs:double" minOccurs="0" />
+                <xs:element name="ER14" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE14" type="xs:double" minOccurs="0" />
+                <xs:element name="ER15" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE15" type="xs:double" minOccurs="0" />
+                <xs:element name="ER16" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ERRATE16" type="xs:double" minOccurs="0" />
+                <xs:element name="DED1" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED3" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED4" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED6" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED8" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DED10" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TOTEARN" type="xs:double" minOccurs="0" />
+                <xs:element name="TOTDED" type="xs:double" minOccurs="0" />
+                <xs:element name="NETSALARY" type="xs:double" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="earn_head">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ER1" type="xs:string" minOccurs="0" />
+                <xs:element name="ER2" type="xs:string" minOccurs="0" />
+                <xs:element name="ER3" type="xs:string" minOccurs="0" />
+                <xs:element name="ER4" type="xs:string" minOccurs="0" />
+                <xs:element name="ER5" type="xs:string" minOccurs="0" />
+                <xs:element name="ER6" type="xs:string" minOccurs="0" />
+                <xs:element name="ER7" type="xs:string" minOccurs="0" />
+                <xs:element name="ER8" type="xs:string" minOccurs="0" />
+                <xs:element name="ER9" type="xs:string" minOccurs="0" />
+                <xs:element name="ER10" type="xs:string" minOccurs="0" />
+                <xs:element name="ER11" type="xs:string" minOccurs="0" />
+                <xs:element name="ER12" type="xs:string" minOccurs="0" />
+                <xs:element name="ER13" type="xs:string" minOccurs="0" />
+                <xs:element name="ER14" type="xs:string" minOccurs="0" />
+                <xs:element name="ER15" type="xs:string" minOccurs="0" />
+                <xs:element name="ER16" type="xs:string" minOccurs="0" />
+                <xs:element name="DED1" type="xs:string" minOccurs="0" />
+                <xs:element name="DED2" type="xs:string" minOccurs="0" />
+                <xs:element name="DED3" type="xs:string" minOccurs="0" />
+                <xs:element name="DED4" type="xs:string" minOccurs="0" />
+                <xs:element name="DED5" type="xs:string" minOccurs="0" />
+                <xs:element name="DED6" type="xs:string" minOccurs="0" />
+                <xs:element name="DED7" type="xs:string" minOccurs="0" />
+                <xs:element name="DED8" type="xs:string" minOccurs="0" />
+                <xs:element name="DED9" type="xs:string" minOccurs="0" />
+                <xs:element name="DED10" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <DOJ>01/05/2014</DOJ>
+    <BANK_NAME>-</BANK_NAME>
+    <IFSC_CODE>0</IFSC_CODE>
+    <ACCOUNT_NO>0</ACCOUNT_NO>
+    <OTHRS>36</OTHRS>
+    <SALARY_YR>2020</SALARY_YR>
+    <PF_NO>28106</PF_NO>
+    <PF_UAN>100056401646</PF_UAN>
+    <ESI_NO>1309502716</ESI_NO>
+    <EMP_CODE>GMC011344</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>2366</OLD_EMPCODE>
+    <EMP_NAME>HARENDER PARTAP</EMP_NAME>
+    <DEPT>Accounts</DEPT>
+    <DESIG>Executive</DESIG>
+    <F_NAME>SH TILAK DHARI</F_NAME>
+    <MONTH_NAME>september</MONTH_NAME>
+    <MONTH_DAYS>30</MONTH_DAYS>
+    <PAID_DAYS>27</PAID_DAYS>
+    <OT>2708</OT>
+    <ESI_OT>21</ESI_OT>
+    <ER1>8123</ER1>
+    <ERRATE1>9025</ERRATE1>
+    <ER2>0</ER2>
+    <ERRATE2>0</ERRATE2>
+    <ER3>0</ER3>
+    <ERRATE3>0</ERRATE3>
+    <ER4>0</ER4>
+    <ERRATE4>0</ERRATE4>
+    <ER5>0</ER5>
+    <ERRATE5>0</ERRATE5>
+    <ER6>0</ER6>
+    <ERRATE6>0</ERRATE6>
+    <ER7>0</ER7>
+    <ERRATE7>0</ERRATE7>
+    <ER8>0</ER8>
+    <ERRATE8>0</ERRATE8>
+    <ER9>0</ER9>
+    <ERRATE9>0</ERRATE9>
+    <ER10>0</ER10>
+    <ERRATE10>0</ERRATE10>
+    <ER11>0</ER11>
+    <ERRATE11>0</ERRATE11>
+    <ER12>0</ER12>
+    <ERRATE12>0</ERRATE12>
+    <ER13>0</ER13>
+    <ERRATE13>0</ERRATE13>
+    <ER14>0</ER14>
+    <ERRATE14>0</ERRATE14>
+    <ER15>0</ER15>
+    <ERRATE15>0</ERRATE15>
+    <ER16>0</ER16>
+    <ERRATE16>0</ERRATE16>
+    <DED1>975</DED1>
+    <DED2>61</DED2>
+    <DED3>0</DED3>
+    <DED4>16</DED4>
+    <DED5>0</DED5>
+    <DED6>0</DED6>
+    <DED7>0</DED7>
+    <DED8>0</DED8>
+    <DED9>0</DED9>
+    <DED10>0</DED10>
+    <TOTEARN>8123</TOTEARN>
+    <TOTDED>1052</TOTDED>
+    <NETSALARY>7071</NETSALARY>
+  </prepcur>
+  <earn_head>
+    <ER1>BASIC</ER1>
+    <ER2>HRA</ER2>
+    <ER3>CONVEY</ER3>
+    <ER4>ATTN</ER4>
+    <ER5>PUNC</ER5>
+    <ER6>MED</ER6>
+    <ER7>CANTEEN</ER7>
+    <ER8>OTHER</ER8>
+    <ER9>-</ER9>
+    <ER10>-</ER10>
+    <ER11>-</ER11>
+    <ER12>-</ER12>
+    <ER13>-</ER13>
+    <ER14>-</ER14>
+    <ER15>-</ER15>
+    <ER16>-</ER16>
+    <DED1>EPF</DED1>
+    <DED2>EMP_ESI</DED2>
+    <DED3>VPF</DED3>
+    <DED4>EMP_LWF</DED4>
+    <DED5>CANT_DED</DED5>
+    <DED6>OTHR_DED</DED6>
+    <DED7>PT</DED7>
+    <DED8>MEDIC</DED8>
+    <DED9>ADV</DED9>
+    <DED10>-</DED10>
+  </earn_head>
+  <Company_Detail>
+    <COMPANY_NAME>Gloval Management Consultants Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>B 331,332,Third floor ,Nehru Ground,Oppsite PNB Bank</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>06</COMPANY_STATE>
+    <COMPANY_CITY>Faridabad</COMPANY_CITY>
+    <COMPANY_PINCODE>121003</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>abc@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>abc.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1234567890</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1234567890</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>29ABCDE1234F2Z5</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AAAAA9999A</COM_PAN_NO>
+    <COMPANY_CIN_NO>U12345MH2014PTC123707</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>MARATHON ELECTRIC INDIA PVT. LTD. SUB CONTRACTOR  ( UNIT-I )</UNIT_NAME>
+    <UNIT_ADDRESS>MODEL TOWN, SEC-11, NIT FARIDABAD,HARYANA</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121006</UNIT_PINCODE>
+    <UNIT_EMAIL>MARATHON.ELECTRIC@GMAIL.COM</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>9999024661</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9999024661</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>Deployed At</SEPTR>
+    <UNIT_GSTIN_NO>06AAACG5525H1ZU</UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

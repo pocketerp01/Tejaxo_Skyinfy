@@ -1,0 +1,371 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ACODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UOM" type="xs:string" minOccurs="0" />
+                <xs:element name="HSN" type="xs:string" minOccurs="0" />
+                <xs:element name="COND" type="xs:string" minOccurs="0" />
+                <xs:element name="VCH_NUM" type="xs:string" minOccurs="0" />
+                <xs:element name="ICODE" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYSTK" type="xs:decimal" minOccurs="0" />
+                <xs:element name="QTYORD" type="xs:decimal" minOccurs="0" />
+                <xs:element name="IRATE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DISCRATE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="IAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TAXAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DISCAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="LINEAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="IREMARK" type="xs:string" minOccurs="0" />
+                <xs:element name="INDNO" type="xs:string" minOccurs="0" />
+                <xs:element name="TOTREMARK" type="xs:string" minOccurs="0" />
+                <xs:element name="BASICAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GDISC" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GFREIGHT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="INSURANCE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GINSTLCHRG" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GSERCHRG" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GAMC" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GLOADCHRG" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GOTHRCHRG" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GTAXAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="IGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="SGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="NETAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="VCH_DATE1" type="xs:string" minOccurs="0" />
+                <xs:element name="DLV_DATE1" type="xs:string" minOccurs="0" />
+                <xs:element name="INDDATE1" type="xs:string" minOccurs="0" />
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="CONT_PER" type="xs:string" minOccurs="0" />
+                <xs:element name="CPCONT" type="xs:string" minOccurs="0" />
+                <xs:element name="CPEMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="GSTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="ADDR" type="xs:string" minOccurs="0" />
+                <xs:element name="TOR" type="xs:string" minOccurs="0" />
+                <xs:element name="ORG_MOBILE" type="xs:string" minOccurs="0" />
+                <xs:element name="SF_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="SF_GSTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="SF_ADDR" type="xs:string" minOccurs="0" />
+                <xs:element name="SF_TOR" type="xs:string" minOccurs="0" />
+                <xs:element name="SF_CONTACT" type="xs:string" minOccurs="0" />
+                <xs:element name="ST_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="TF_GSTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="ST_ADDR" type="xs:string" minOccurs="0" />
+                <xs:element name="ST_TOR" type="xs:string" minOccurs="0" />
+                <xs:element name="ST_CONTACT" type="xs:string" minOccurs="0" />
+                <xs:element name="PY_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="PR_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="TRANS" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEM_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="TERMS_COND" type="xs:string" minOccurs="0" />
+                <xs:element name="DOC_CONTROL_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="CURRENCY" type="xs:string" minOccurs="0" />
+                <xs:element name="INS_BY" type="xs:string" minOccurs="0" />
+                <xs:element name="SHPTVAL" type="xs:string" minOccurs="0" />
+                <xs:element name="SHPFVAL" type="xs:string" minOccurs="0" />
+                <xs:element name="DELIVERY_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_" type="xs:string" minOccurs="0" />
+                <xs:element name="WARRANTY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="prepcur2">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CHRGNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COL1" type="xs:string" minOccurs="0" />
+                <xs:element name="COL2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL3" type="xs:string" minOccurs="0" />
+                <xs:element name="COL4" type="xs:string" minOccurs="0" />
+                <xs:element name="COL5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL6" type="xs:string" minOccurs="0" />
+                <xs:element name="COL7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL8" type="xs:string" minOccurs="0" />
+                <xs:element name="COL9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL10" type="xs:string" minOccurs="0" />
+                <xs:element name="R_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <ACODE>203000137</ACODE>
+    <UOM>NOS</UOM>
+    <HSN>3923</HSN>
+    <COND>0</COND>
+    <VCH_NUM>000072</VCH_NUM>
+    <ICODE>1032300007</ICODE>
+    <TAXRATE>18</TAXRATE>
+    <QTYSTK>0</QTYSTK>
+    <QTYORD>5000</QTYORD>
+    <IRATE>0.3</IRATE>
+    <DISCRATE>0</DISCRATE>
+    <IAMOUNT>1500</IAMOUNT>
+    <TAXAMT>270</TAXAMT>
+    <DISCAMT>0</DISCAMT>
+    <LINEAMOUNT>1770</LINEAMOUNT>
+    <IREMARK>0</IREMARK>
+    <INDNO>0</INDNO>
+    <TOTREMARK>0</TOTREMARK>
+    <BASICAMT>2800</BASICAMT>
+    <GDISC>0</GDISC>
+    <GFREIGHT>0</GFREIGHT>
+    <INSURANCE>0</INSURANCE>
+    <GINSTLCHRG>0</GINSTLCHRG>
+    <GSERCHRG>0</GSERCHRG>
+    <GAMC>0</GAMC>
+    <GLOADCHRG>0</GLOADCHRG>
+    <GOTHRCHRG>0</GOTHRCHRG>
+    <GTAXAMT>0</GTAXAMT>
+    <IGST>0</IGST>
+    <CGST>252</CGST>
+    <SGST>252</SGST>
+    <GAMT>2800</GAMT>
+    <NETAMT>3304</NETAMT>
+    <VCH_DATE1>13/08/2020</VCH_DATE1>
+    <DLV_DATE1>29/10/2020</DLV_DATE1>
+    <INDDATE1>29/10/2020</INDDATE1>
+    <NAME>GAUTAM PLASTIC &amp; ENGINEERS</NAME>
+    <CONT_PER>0</CONT_PER>
+    <CPCONT>0000000000</CPCONT>
+    <CPEMAIL>ab@ab.ab</CPEMAIL>
+    <GSTIN>06AJYPG5185F1ZS</GSTIN>
+    <ADDR>OLD FBD, FARIDABAD</ADDR>
+    <TOR>R</TOR>
+    <ORG_MOBILE>0</ORG_MOBILE>
+    <SF_NAME>0</SF_NAME>
+    <SF_GSTIN>0</SF_GSTIN>
+    <SF_ADDR>0</SF_ADDR>
+    <SF_TOR>0</SF_TOR>
+    <SF_CONTACT>0</SF_CONTACT>
+    <ST_NAME>0</ST_NAME>
+    <TF_GSTIN>0</TF_GSTIN>
+    <ST_ADDR>0</ST_ADDR>
+    <ST_TOR>0</ST_TOR>
+    <ST_CONTACT>0</ST_CONTACT>
+    <PY_TERM>60 DAYS</PY_TERM>
+    <PR_TERM>Catalogue</PR_TERM>
+    <TRANS>BY HAND</TRANS>
+    <PARTNO>0</PARTNO>
+    <ITEM_NAME>PVC CAP M8/1(THREAD)</ITEM_NAME>
+    <CURRENCY>-</CURRENCY>
+    <INS_BY>-</INS_BY>
+    <SHPTVAL>0</SHPTVAL>
+    <SHPFVAL>0</SHPFVAL>
+    <DELIVERY_TERM>2 DAYS BEFORE</DELIVERY_TERM>
+    <NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_>0</NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_>
+    <WARRANTY>29/10/2020</WARRANTY>
+  </prepcur>
+  <prepcur>
+    <ACODE>203000137</ACODE>
+    <UOM>NOS</UOM>
+    <HSN>3923</HSN>
+    <COND>0</COND>
+    <VCH_NUM>000072</VCH_NUM>
+    <ICODE>1032300008</ICODE>
+    <TAXRATE>18</TAXRATE>
+    <QTYSTK>0</QTYSTK>
+    <QTYORD>2000</QTYORD>
+    <IRATE>0.4</IRATE>
+    <DISCRATE>0</DISCRATE>
+    <IAMOUNT>800</IAMOUNT>
+    <TAXAMT>144</TAXAMT>
+    <DISCAMT>0</DISCAMT>
+    <LINEAMOUNT>944</LINEAMOUNT>
+    <IREMARK>0</IREMARK>
+    <INDNO>0</INDNO>
+    <TOTREMARK>0</TOTREMARK>
+    <BASICAMT>2800</BASICAMT>
+    <GDISC>0</GDISC>
+    <GFREIGHT>0</GFREIGHT>
+    <INSURANCE>0</INSURANCE>
+    <GINSTLCHRG>0</GINSTLCHRG>
+    <GSERCHRG>0</GSERCHRG>
+    <GAMC>0</GAMC>
+    <GLOADCHRG>0</GLOADCHRG>
+    <GOTHRCHRG>0</GOTHRCHRG>
+    <GTAXAMT>0</GTAXAMT>
+    <IGST>0</IGST>
+    <CGST>252</CGST>
+    <SGST>252</SGST>
+    <GAMT>2800</GAMT>
+    <NETAMT>3304</NETAMT>
+    <VCH_DATE1>13/08/2020</VCH_DATE1>
+    <DLV_DATE1>29/10/2020</DLV_DATE1>
+    <INDDATE1>29/10/2020</INDDATE1>
+    <NAME>GAUTAM PLASTIC &amp; ENGINEERS</NAME>
+    <CONT_PER>0</CONT_PER>
+    <CPCONT>0000000000</CPCONT>
+    <CPEMAIL>ab@ab.ab</CPEMAIL>
+    <GSTIN>06AJYPG5185F1ZS</GSTIN>
+    <ADDR>OLD FBD, FARIDABAD</ADDR>
+    <TOR>R</TOR>
+    <ORG_MOBILE>0</ORG_MOBILE>
+    <SF_NAME>0</SF_NAME>
+    <SF_GSTIN>0</SF_GSTIN>
+    <SF_ADDR>0</SF_ADDR>
+    <SF_TOR>0</SF_TOR>
+    <SF_CONTACT>0</SF_CONTACT>
+    <ST_NAME>0</ST_NAME>
+    <TF_GSTIN>0</TF_GSTIN>
+    <ST_ADDR>0</ST_ADDR>
+    <ST_TOR>0</ST_TOR>
+    <ST_CONTACT>0</ST_CONTACT>
+    <PY_TERM>60 DAYS</PY_TERM>
+    <PR_TERM>Catalogue</PR_TERM>
+    <TRANS>BY HAND</TRANS>
+    <PARTNO>0</PARTNO>
+    <ITEM_NAME>PVC CAP M10X1(THREAD)</ITEM_NAME>
+    <CURRENCY>-</CURRENCY>
+    <INS_BY>-</INS_BY>
+    <SHPTVAL>0</SHPTVAL>
+    <SHPFVAL>0</SHPFVAL>
+    <DELIVERY_TERM>2 DAYS BEFORE</DELIVERY_TERM>
+    <NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_>0</NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_>
+    <WARRANTY>29/10/2020</WARRANTY>
+  </prepcur>
+  <prepcur>
+    <ACODE>203000137</ACODE>
+    <UOM>NOS</UOM>
+    <HSN>3923</HSN>
+    <COND>0</COND>
+    <VCH_NUM>000072</VCH_NUM>
+    <ICODE>1032300006</ICODE>
+    <TAXRATE>18</TAXRATE>
+    <QTYSTK>0</QTYSTK>
+    <QTYORD>2000</QTYORD>
+    <IRATE>0.25</IRATE>
+    <DISCRATE>0</DISCRATE>
+    <IAMOUNT>500</IAMOUNT>
+    <TAXAMT>90</TAXAMT>
+    <DISCAMT>0</DISCAMT>
+    <LINEAMOUNT>590</LINEAMOUNT>
+    <IREMARK>0</IREMARK>
+    <INDNO>0</INDNO>
+    <TOTREMARK>0</TOTREMARK>
+    <BASICAMT>2800</BASICAMT>
+    <GDISC>0</GDISC>
+    <GFREIGHT>0</GFREIGHT>
+    <INSURANCE>0</INSURANCE>
+    <GINSTLCHRG>0</GINSTLCHRG>
+    <GSERCHRG>0</GSERCHRG>
+    <GAMC>0</GAMC>
+    <GLOADCHRG>0</GLOADCHRG>
+    <GOTHRCHRG>0</GOTHRCHRG>
+    <GTAXAMT>0</GTAXAMT>
+    <IGST>0</IGST>
+    <CGST>252</CGST>
+    <SGST>252</SGST>
+    <GAMT>2800</GAMT>
+    <NETAMT>3304</NETAMT>
+    <VCH_DATE1>13/08/2020</VCH_DATE1>
+    <DLV_DATE1>29/10/2020</DLV_DATE1>
+    <INDDATE1>29/10/2020</INDDATE1>
+    <NAME>GAUTAM PLASTIC &amp; ENGINEERS</NAME>
+    <CONT_PER>0</CONT_PER>
+    <CPCONT>0000000000</CPCONT>
+    <CPEMAIL>ab@ab.ab</CPEMAIL>
+    <GSTIN>06AJYPG5185F1ZS</GSTIN>
+    <ADDR>OLD FBD, FARIDABAD</ADDR>
+    <TOR>R</TOR>
+    <ORG_MOBILE>0</ORG_MOBILE>
+    <SF_NAME>0</SF_NAME>
+    <SF_GSTIN>0</SF_GSTIN>
+    <SF_ADDR>0</SF_ADDR>
+    <SF_TOR>0</SF_TOR>
+    <SF_CONTACT>0</SF_CONTACT>
+    <ST_NAME>0</ST_NAME>
+    <TF_GSTIN>0</TF_GSTIN>
+    <ST_ADDR>0</ST_ADDR>
+    <ST_TOR>0</ST_TOR>
+    <ST_CONTACT>0</ST_CONTACT>
+    <PY_TERM>60 DAYS</PY_TERM>
+    <PR_TERM>Catalogue</PR_TERM>
+    <TRANS>BY HAND</TRANS>
+    <PARTNO>0</PARTNO>
+    <ITEM_NAME>PVC CAP 6X1(W/OUT THREAD)</ITEM_NAME>
+    <CURRENCY>-</CURRENCY>
+    <INS_BY>-</INS_BY>
+    <SHPTVAL>0</SHPTVAL>
+    <SHPFVAL>0</SHPFVAL>
+    <DELIVERY_TERM>2 DAYS BEFORE</DELIVERY_TERM>
+    <NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_>0</NVL_x0028_A.TCREMARK_x002C__x0027_-_x0027__x0029_>
+    <WARRANTY>29/10/2020</WARRANTY>
+  </prepcur>
+  <Branch_Detail>
+    <UNIT_NAME>UNIT 1</UNIT_NAME>
+    <UNIT_ADDRESS>Plot No-2,15/1,Main Mathura Road,Near sector-28 Metro Station,Pillar No-599,Faridabad</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121003</UNIT_PINCODE>
+    <UNIT_EMAIL>info@krsmultilub.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>www.krsmultilub.com</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>0</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>0</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>06AAGCK0295E2ZO</UNIT_GSTIN_NO>
+    <BANK_NAME>South Indian Bank</BANK_NAME>
+    <BANK_BRANCH>Faridabad-121003 (Hr.)</BANK_BRANCH>
+    <BANK_ACC>0555083000000014</BANK_ACC>
+    <BANK_IFSC>SIBL0000555</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

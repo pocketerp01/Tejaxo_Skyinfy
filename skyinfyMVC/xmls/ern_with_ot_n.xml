@@ -1,0 +1,2058 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="SALARY_YR" type="xs:string" minOccurs="0" />
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="F_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="EMP_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="EXTERNAL_EMPNO" type="xs:string" minOccurs="0" />
+                <xs:element name="OLD_EMPCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="MONTH_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="NETPAY" type="xs:decimal" minOccurs="0" />
+                <xs:element name="OT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="BAL" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ESI_OT" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DEEPAK</NAME>
+    <F_NAME>ANIL</F_NAME>
+    <EMP_CODE>GMC000258</EMP_CODE>
+    <EXTERNAL_EMPNO>000428</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>8459</NETPAY>
+    <OT>2244</OT>
+    <BAL>6232</BAL>
+    <ESI_OT>17</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PANKAJ KUMAR</NAME>
+    <F_NAME>SH. BANI SINGH</F_NAME>
+    <EMP_CODE>GMC000028</EMP_CODE>
+    <EXTERNAL_EMPNO>0025</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0097</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>25171</NETPAY>
+    <OT>0</OT>
+    <BAL>25171</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MUDSSIR</NAME>
+    <F_NAME>LT. SH. AJMOODIN</F_NAME>
+    <EMP_CODE>GMC000184</EMP_CODE>
+    <EXTERNAL_EMPNO>000375</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0426</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10242</NETPAY>
+    <OT>3124</OT>
+    <BAL>7141</BAL>
+    <ESI_OT>23</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>NAVEEN CHANDRA</NAME>
+    <F_NAME>SH. BHUWAN CHANDRA</F_NAME>
+    <EMP_CODE>GMC000017</EMP_CODE>
+    <EXTERNAL_EMPNO>009</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0238</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>61124</NETPAY>
+    <OT>0</OT>
+    <BAL>61124</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ARPIT  SHARMA</NAME>
+    <F_NAME>SH. DINESH SHARMA</F_NAME>
+    <EMP_CODE>GMC000205</EMP_CODE>
+    <EXTERNAL_EMPNO>000390</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0447</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>8818</NETPAY>
+    <OT>539</OT>
+    <BAL>8283</BAL>
+    <ESI_OT>4</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>IMTYAJ ANSARI</NAME>
+    <F_NAME>SH. MUKHTAR ANASARI</F_NAME>
+    <EMP_CODE>GMC000150</EMP_CODE>
+    <EXTERNAL_EMPNO>000356</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0410</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14144</NETPAY>
+    <OT>6248</OT>
+    <BAL>7943</BAL>
+    <ESI_OT>47</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>FARMAN KHAN</NAME>
+    <F_NAME>SH. ZAMIRULLAH KHAN</F_NAME>
+    <EMP_CODE>GMC000039</EMP_CODE>
+    <EXTERNAL_EMPNO>00027</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0021</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>55210</NETPAY>
+    <OT>0</OT>
+    <BAL>55210</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>GULVESH</NAME>
+    <F_NAME>SH. BRIJ LAL</F_NAME>
+    <EMP_CODE>GMC000052</EMP_CODE>
+    <EXTERNAL_EMPNO>00237</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0237</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>36447</NETPAY>
+    <OT>0</OT>
+    <BAL>36447</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>IFTKHARUL  HASAN</NAME>
+    <F_NAME>SH. IZHARUL HASAN</F_NAME>
+    <EMP_CODE>GMC000196</EMP_CODE>
+    <EXTERNAL_EMPNO>000387</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0438</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>8227</NETPAY>
+    <OT>3038</OT>
+    <BAL>5212</BAL>
+    <ESI_OT>23</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>INDERJEET VERMA</NAME>
+    <F_NAME>SH. RAM KUMAR VERMA</F_NAME>
+    <EMP_CODE>GMC000015</EMP_CODE>
+    <EXTERNAL_EMPNO>00231</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0005</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>35364</NETPAY>
+    <OT>0</OT>
+    <BAL>35364</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KAMAL SINGH MEHRA</NAME>
+    <F_NAME>GOPAL SINGH MEHRA</F_NAME>
+    <EMP_CODE>GMC000109</EMP_CODE>
+    <EXTERNAL_EMPNO>000118</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0195</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14004</NETPAY>
+    <OT>0</OT>
+    <BAL>14004</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KUMAR SAHIB</NAME>
+    <F_NAME>SH. SHATRUAGHN SINGH</F_NAME>
+    <EMP_CODE>GMC000156</EMP_CODE>
+    <EXTERNAL_EMPNO>00014</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0196</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>18864</NETPAY>
+    <OT>2800</OT>
+    <BAL>16085</BAL>
+    <ESI_OT>21</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MONTI</NAME>
+    <F_NAME>SH. KAMAL SINGH</F_NAME>
+    <EMP_CODE>GMC000125</EMP_CODE>
+    <EXTERNAL_EMPNO>000364</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0415</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9161</NETPAY>
+    <OT>2726</OT>
+    <BAL>6455</BAL>
+    <ESI_OT>20</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PAWAN  SHUKLA</NAME>
+    <F_NAME>SH. MATASHANKAR SHUKLA</F_NAME>
+    <EMP_CODE>GMC000207</EMP_CODE>
+    <EXTERNAL_EMPNO>000392</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0253</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>24702</NETPAY>
+    <OT>2964</OT>
+    <BAL>21738</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VINOD GUPTA</NAME>
+    <F_NAME>LT. SH. O P GUPTA</F_NAME>
+    <EMP_CODE>GMC000031</EMP_CODE>
+    <EXTERNAL_EMPNO>002</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0004</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>26034</NETPAY>
+    <OT>0</OT>
+    <BAL>26034</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SALAUDDIN ANSARI</NAME>
+    <F_NAME>SH. ISLAM ANSARI</F_NAME>
+    <EMP_CODE>GMC000106</EMP_CODE>
+    <EXTERNAL_EMPNO>000326</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0243</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>0</NETPAY>
+    <OT>0</OT>
+    <BAL>0</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANDEEP KUMAR</NAME>
+    <F_NAME>SH. SURAJ PAL SINGH</F_NAME>
+    <EMP_CODE>GMC000006</EMP_CODE>
+    <EXTERNAL_EMPNO>0096</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0249</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>19462</NETPAY>
+    <OT>0</OT>
+    <BAL>19462</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>GAURAV  TIWARI</NAME>
+    <F_NAME>SH. RAMESH TIWARI</F_NAME>
+    <EMP_CODE>GMC000227</EMP_CODE>
+    <EXTERNAL_EMPNO>000408</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0463</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10349</NETPAY>
+    <OT>4067</OT>
+    <BAL>6313</BAL>
+    <ESI_OT>31</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHIV DUTT SHARMA</NAME>
+    <F_NAME>SH. BAL KISHAN SHARMA</F_NAME>
+    <EMP_CODE>GMC000024</EMP_CODE>
+    <EXTERNAL_EMPNO>00180</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0228</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>25179</NETPAY>
+    <OT>0</OT>
+    <BAL>25179</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHIVAM</NAME>
+    <F_NAME>SH. RAJESH KUMAR</F_NAME>
+    <EMP_CODE>GMC000135</EMP_CODE>
+    <EXTERNAL_EMPNO>000315</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0358</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>7320</NETPAY>
+    <OT>1628</OT>
+    <BAL>5704</BAL>
+    <ESI_OT>12</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHRI HARI UPADHYAY</NAME>
+    <F_NAME>SH. S N UPADHYAY</F_NAME>
+    <EMP_CODE>GMC000032</EMP_CODE>
+    <EXTERNAL_EMPNO>005</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0008</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>45829</NETPAY>
+    <OT>0</OT>
+    <BAL>45829</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PREM SHARMA</NAME>
+    <F_NAME>SH. JASWANT SHARMA</F_NAME>
+    <EMP_CODE>GMC000012</EMP_CODE>
+    <EXTERNAL_EMPNO>0005</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0110</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>28550</NETPAY>
+    <OT>0</OT>
+    <BAL>28550</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PUSHPENDRA KUMAR</NAME>
+    <F_NAME>SH. SHADI LAL</F_NAME>
+    <EMP_CODE>GMC000105</EMP_CODE>
+    <EXTERNAL_EMPNO>000319</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0239</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>24404</NETPAY>
+    <OT>1507</OT>
+    <BAL>22897</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>NADEEM  KHAN</NAME>
+    <F_NAME>TAHSEEN KHAN</F_NAME>
+    <EMP_CODE>GMC000099</EMP_CODE>
+    <EXTERNAL_EMPNO>000131</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0174</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>11271</NETPAY>
+    <OT>2622</OT>
+    <BAL>8669</BAL>
+    <ESI_OT>20</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BABALU</NAME>
+    <F_NAME>SH. MANIK CHAND</F_NAME>
+    <EMP_CODE>GMC000094</EMP_CODE>
+    <EXTERNAL_EMPNO>00068</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0122</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5194</NETPAY>
+    <OT>1100</OT>
+    <BAL>4102</BAL>
+    <ESI_OT>8</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>YOGESH CHANDRA SATI</NAME>
+    <F_NAME>SH. K D SATI</F_NAME>
+    <EMP_CODE>GMC000016</EMP_CODE>
+    <EXTERNAL_EMPNO>0044</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0221</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>57552</NETPAY>
+    <OT>0</OT>
+    <BAL>57552</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PRADEEP KUMAR</NAME>
+    <F_NAME>SH. HARISH CHAND GUPTA</F_NAME>
+    <EMP_CODE>GMC000047</EMP_CODE>
+    <EXTERNAL_EMPNO>0035</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0094</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17468</NETPAY>
+    <OT>0</OT>
+    <BAL>17468</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PREM BAHADUR</NAME>
+    <F_NAME>CHANDRA BAHADUR</F_NAME>
+    <EMP_CODE>GMC000110</EMP_CODE>
+    <EXTERNAL_EMPNO>000112</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0167</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12603</NETPAY>
+    <OT>0</OT>
+    <BAL>12603</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PUNAM</NAME>
+    <F_NAME>SH. ASHOK KUMAR</F_NAME>
+    <EMP_CODE>GMC000020</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0099</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>40381</NETPAY>
+    <OT>0</OT>
+    <BAL>40381</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJKUMAR  PAL</NAME>
+    <F_NAME>SH. MAHESH PAL</F_NAME>
+    <EMP_CODE>GMC000179</EMP_CODE>
+    <EXTERNAL_EMPNO>000371</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0427</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>2096</NETPAY>
+    <OT>572</OT>
+    <BAL>1528</BAL>
+    <ESI_OT>4</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJESH KUMAR</NAME>
+    <F_NAME>SH. GOPI NATH</F_NAME>
+    <EMP_CODE>GMC000027</EMP_CODE>
+    <EXTERNAL_EMPNO>0023</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0039</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>55316</NETPAY>
+    <OT>0</OT>
+    <BAL>55316</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VINOD  KUMAR</NAME>
+    <F_NAME>LT. SH. RAMLAL</F_NAME>
+    <EMP_CODE>GMC000029</EMP_CODE>
+    <EXTERNAL_EMPNO>00013</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0235</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>23205</NETPAY>
+    <OT>0</OT>
+    <BAL>23205</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ROOP LAL</NAME>
+    <F_NAME>SH. SIDAAR</F_NAME>
+    <EMP_CODE>GMC000185</EMP_CODE>
+    <EXTERNAL_EMPNO>000372</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0430</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10671</NETPAY>
+    <OT>2992</OT>
+    <BAL>7701</BAL>
+    <ESI_OT>22</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PRADEEP KUMAR</NAME>
+    <F_NAME>SH. YAAD RAM SINGH</F_NAME>
+    <EMP_CODE>GMC000043</EMP_CODE>
+    <EXTERNAL_EMPNO>00226</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0303</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17477</NETPAY>
+    <OT>0</OT>
+    <BAL>17477</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANJAY KUMAR</NAME>
+    <F_NAME>LT. SH. MOMRAJ SINGH</F_NAME>
+    <EMP_CODE>GMC000035</EMP_CODE>
+    <EXTERNAL_EMPNO>003</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0022</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>56415</NETPAY>
+    <OT>0</OT>
+    <BAL>56415</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHIVI KUMAR</NAME>
+    <F_NAME>NAHAR SINGH</F_NAME>
+    <EMP_CODE>GMC000103</EMP_CODE>
+    <EXTERNAL_EMPNO>000215</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0246</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14395</NETPAY>
+    <OT>1040</OT>
+    <BAL>13363</BAL>
+    <ESI_OT>8</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SUKHVIR</NAME>
+    <F_NAME>SH. HET SINGH</F_NAME>
+    <EMP_CODE>GMC000138</EMP_CODE>
+    <EXTERNAL_EMPNO>000325</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0372</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9310</NETPAY>
+    <OT>3162</OT>
+    <BAL>6172</BAL>
+    <ESI_OT>24</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>GOVIND SHARMA</NAME>
+    <F_NAME>LT. SH. MAHESH SHARMA</F_NAME>
+    <EMP_CODE>GMC000018</EMP_CODE>
+    <EXTERNAL_EMPNO>00245</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0250</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>61349</NETPAY>
+    <OT>0</OT>
+    <BAL>61349</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>INDERJEET  TIWARI</NAME>
+    <F_NAME>SH. CHANDRA BHAN TIWARI</F_NAME>
+    <EMP_CODE>GMC000019</EMP_CODE>
+    <EXTERNAL_EMPNO>0095</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0106</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>22835</NETPAY>
+    <OT>0</OT>
+    <BAL>22835</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIKRAM</NAME>
+    <F_NAME>INDRAJEET</F_NAME>
+    <EMP_CODE>GMC000259</EMP_CODE>
+    <EXTERNAL_EMPNO>000430</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>2868</NETPAY>
+    <OT>1140</OT>
+    <BAL>1737</BAL>
+    <ESI_OT>9</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>UMESH CHANDRA</NAME>
+    <F_NAME>LT. SH. HIRA LAL</F_NAME>
+    <EMP_CODE>GMC000048</EMP_CODE>
+    <EXTERNAL_EMPNO>0048</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0060</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14023</NETPAY>
+    <OT>0</OT>
+    <BAL>14023</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SURESH</NAME>
+    <F_NAME>BHOLA</F_NAME>
+    <EMP_CODE>GMC000115</EMP_CODE>
+    <EXTERNAL_EMPNO>000149</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0183</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9690</NETPAY>
+    <OT>2508</OT>
+    <BAL>7201</BAL>
+    <ESI_OT>19</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIDUR KUMAR</NAME>
+    <F_NAME>SH. HARI KISHAN SHARMA</F_NAME>
+    <EMP_CODE>GMC000041</EMP_CODE>
+    <EXTERNAL_EMPNO>0054</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0074</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>36000</NETPAY>
+    <OT>0</OT>
+    <BAL>36000</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIJAY KUMAR YADAV</NAME>
+    <F_NAME>SH. RAM LAKHAN YADAV</F_NAME>
+    <EMP_CODE>GMC000049</EMP_CODE>
+    <EXTERNAL_EMPNO>0056</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0219</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>30217</NETPAY>
+    <OT>0</OT>
+    <BAL>30217</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SUMIT PRATAP SINGH</NAME>
+    <F_NAME>MAHENDRA SINGH CHAUHAN</F_NAME>
+    <EMP_CODE>GMC000237</EMP_CODE>
+    <EXTERNAL_EMPNO>000414</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0471</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12332</NETPAY>
+    <OT>1008</OT>
+    <BAL>11332</BAL>
+    <ESI_OT>8</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SACHIN</NAME>
+    <F_NAME>RAJESH</F_NAME>
+    <EMP_CODE>GMC000260</EMP_CODE>
+    <EXTERNAL_EMPNO>000429</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10229</NETPAY>
+    <OT>4232</OT>
+    <BAL>6029</BAL>
+    <ESI_OT>32</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHYAM SUNDER</NAME>
+    <F_NAME>SH. HARI MOHAN</F_NAME>
+    <EMP_CODE>GMC000042</EMP_CODE>
+    <EXTERNAL_EMPNO>00150</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0262</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>22331</NETPAY>
+    <OT>0</OT>
+    <BAL>22331</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIJENDRA</NAME>
+    <F_NAME>NANHE LAL</F_NAME>
+    <EMP_CODE>GMC000078</EMP_CODE>
+    <EXTERNAL_EMPNO>000216</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0260</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>6684</NETPAY>
+    <OT>836</OT>
+    <BAL>5854</BAL>
+    <ESI_OT>6</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJU</NAME>
+    <F_NAME>SH. SAHAB SINGH</F_NAME>
+    <EMP_CODE>GMC000167</EMP_CODE>
+    <EXTERNAL_EMPNO>000144</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0241</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>22508</NETPAY>
+    <OT>1808</OT>
+    <BAL>20700</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJENDRA  KUMAR</NAME>
+    <F_NAME>LT. SH. MEGHASINGH</F_NAME>
+    <EMP_CODE>GMC000203</EMP_CODE>
+    <EXTERNAL_EMPNO>000385</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0445</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>8586</NETPAY>
+    <OT>2508</OT>
+    <BAL>6097</BAL>
+    <ESI_OT>19</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>HARDVARI  LAL</NAME>
+    <F_NAME>LT. SH. MAHENDRA SINGH</F_NAME>
+    <EMP_CODE>GMC000195</EMP_CODE>
+    <EXTERNAL_EMPNO>000386</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0437</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>2844</NETPAY>
+    <OT>836</OT>
+    <BAL>2014</BAL>
+    <ESI_OT>6</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SUJEET KUMAR SRIVASTAVA</NAME>
+    <F_NAME>LT. SH. GIRIS KUMAR</F_NAME>
+    <EMP_CODE>GMC000120</EMP_CODE>
+    <EXTERNAL_EMPNO>000291</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0327</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>25215</NETPAY>
+    <OT>1968</OT>
+    <BAL>23247</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>AARIF</NAME>
+    <F_NAME>SH. SHOKIN</F_NAME>
+    <EMP_CODE>GMC000008</EMP_CODE>
+    <EXTERNAL_EMPNO>00235</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0345</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>16485</NETPAY>
+    <OT>0</OT>
+    <BAL>16485</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>APOORV GUPTA</NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <EMP_CODE>GMC000059</EMP_CODE>
+    <EXTERNAL_EMPNO>0072</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0091</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>77252</NETPAY>
+    <OT>0</OT>
+    <BAL>77252</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>AKSHAY KUMAR</NAME>
+    <F_NAME>SH. SHIVSHANKAR RAM</F_NAME>
+    <EMP_CODE>GMC000092</EMP_CODE>
+    <EXTERNAL_EMPNO>000311</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0350</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>15642</NETPAY>
+    <OT>4526</OT>
+    <BAL>11150</BAL>
+    <ESI_OT>34</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BANKELAL</NAME>
+    <F_NAME>RAM SARAN</F_NAME>
+    <EMP_CODE>GMC000071</EMP_CODE>
+    <EXTERNAL_EMPNO>000298</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0330</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>15100</NETPAY>
+    <OT>7049</OT>
+    <BAL>8104</BAL>
+    <ESI_OT>53</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHER SINGH</NAME>
+    <F_NAME>SH. BALRAM SINGH</F_NAME>
+    <EMP_CODE>GMC000050</EMP_CODE>
+    <EXTERNAL_EMPNO>00218</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0288</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12900</NETPAY>
+    <OT>0</OT>
+    <BAL>12900</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ARJUN  SINGH</NAME>
+    <F_NAME>SH. MAHENDRA PAL</F_NAME>
+    <EMP_CODE>GMC000215</EMP_CODE>
+    <EXTERNAL_EMPNO>000397</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0452</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5070</NETPAY>
+    <OT>1320</OT>
+    <BAL>3760</BAL>
+    <ESI_OT>10</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHIV KUMAR</NAME>
+    <F_NAME>LT SH BANI RAM</F_NAME>
+    <EMP_CODE>GMC000114</EMP_CODE>
+    <EXTERNAL_EMPNO>000198</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0226</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9961</NETPAY>
+    <OT>2596</OT>
+    <BAL>7384</BAL>
+    <ESI_OT>19</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANJAY SINGH</NAME>
+    <F_NAME>SH. KUNWAR PAL SINGH</F_NAME>
+    <EMP_CODE>GMC000069</EMP_CODE>
+    <EXTERNAL_EMPNO>000220</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0263</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>30503</NETPAY>
+    <OT>5904</OT>
+    <BAL>24599</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SARIKA VERMA</NAME>
+    <F_NAME>SH. INDRAJEET VERMA</F_NAME>
+    <EMP_CODE>GMC000023</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0104</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>38000</NETPAY>
+    <OT>0</OT>
+    <BAL>38000</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANTOSH  KUMAR</NAME>
+    <F_NAME>RAMAKANT</F_NAME>
+    <EMP_CODE>GMC000245</EMP_CODE>
+    <EXTERNAL_EMPNO>000420</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>24013</NETPAY>
+    <OT>1932</OT>
+    <BAL>22081</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>UDAY RAJ GUPTA</NAME>
+    <F_NAME>FAUJDAR GUPTA</F_NAME>
+    <EMP_CODE>GMC000255</EMP_CODE>
+    <EXTERNAL_EMPNO>000424</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10294</NETPAY>
+    <OT>2499</OT>
+    <BAL>7814</BAL>
+    <ESI_OT>19</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>UMESH</NAME>
+    <F_NAME>SH. SURESH</F_NAME>
+    <EMP_CODE>GMC000198</EMP_CODE>
+    <EXTERNAL_EMPNO>000380</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0440</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>11226</NETPAY>
+    <OT>3652</OT>
+    <BAL>7601</BAL>
+    <ESI_OT>27</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VEER SINGH</NAME>
+    <F_NAME>LALA RAM</F_NAME>
+    <EMP_CODE>GMC000116</EMP_CODE>
+    <EXTERNAL_EMPNO>000151</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0185</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9618</NETPAY>
+    <OT>2420</OT>
+    <BAL>7216</BAL>
+    <ESI_OT>18</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SAURABH</NAME>
+    <F_NAME>RADHEY SHYAM</F_NAME>
+    <EMP_CODE>GMC000122</EMP_CODE>
+    <EXTERNAL_EMPNO>000310</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0352</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>0</NETPAY>
+    <OT>0</OT>
+    <BAL>0</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ASHOK  KUMAR</NAME>
+    <F_NAME>SH. UDAI VIR SINGH</F_NAME>
+    <EMP_CODE>GMC000234</EMP_CODE>
+    <EXTERNAL_EMPNO>00250</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0256</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>86923</NETPAY>
+    <OT>0</OT>
+    <BAL>86923</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAMESH CHAND</NAME>
+    <F_NAME>SH. UDAL SINGH</F_NAME>
+    <EMP_CODE>GMC000111</EMP_CODE>
+    <EXTERNAL_EMPNO>0004</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0072</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>13203</NETPAY>
+    <OT>3933</OT>
+    <BAL>9299</BAL>
+    <ESI_OT>29</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DEEPAK SHARMA</NAME>
+    <F_NAME>SHISHPAL</F_NAME>
+    <EMP_CODE>GMC000068</EMP_CODE>
+    <EXTERNAL_EMPNO>000163</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0197</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17544</NETPAY>
+    <OT>6052</OT>
+    <BAL>11537</BAL>
+    <ESI_OT>45</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIKRANT CHAUHAN</NAME>
+    <F_NAME>SH. VIRENDAR CHAUHAN</F_NAME>
+    <EMP_CODE>GMC000037</EMP_CODE>
+    <EXTERNAL_EMPNO>00112</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0278</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>24120</NETPAY>
+    <OT>0</OT>
+    <BAL>24120</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PINKI</NAME>
+    <F_NAME>SH. SANJAY DHALAN</F_NAME>
+    <EMP_CODE>GMC000004</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0017</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>44400</NETPAY>
+    <OT>0</OT>
+    <BAL>44400</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIJAY PATEL</NAME>
+    <F_NAME>AMARJEET PATEL</F_NAME>
+    <EMP_CODE>GMC000070</EMP_CODE>
+    <EXTERNAL_EMPNO>000218</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0261</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17217</NETPAY>
+    <OT>6890</OT>
+    <BAL>10379</BAL>
+    <ESI_OT>52</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIKAS KUMAR SIROHI</NAME>
+    <F_NAME>RAJKUMAR SINGH</F_NAME>
+    <EMP_CODE>GMC000163</EMP_CODE>
+    <EXTERNAL_EMPNO>00012</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0008</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>24352</NETPAY>
+    <OT>924</OT>
+    <BAL>23428</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SONU  KUMAR</NAME>
+    <F_NAME>SH. KALLAN PRASAD</F_NAME>
+    <EMP_CODE>GMC000186</EMP_CODE>
+    <EXTERNAL_EMPNO>000374</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0432</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9909</NETPAY>
+    <OT>2728</OT>
+    <BAL>7201</BAL>
+    <ESI_OT>20</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIJAY KUMAR MAHATO</NAME>
+    <F_NAME>SH. SHANKER MEHTO</F_NAME>
+    <EMP_CODE>GMC000045</EMP_CODE>
+    <EXTERNAL_EMPNO>0020</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0031</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>11788</NETPAY>
+    <OT>0</OT>
+    <BAL>11788</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VINIT KUMAR</NAME>
+    <F_NAME>SH. JAIVEER SHARMA</F_NAME>
+    <EMP_CODE>GMC000154</EMP_CODE>
+    <EXTERNAL_EMPNO>000354</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0412</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5507</NETPAY>
+    <OT>1760</OT>
+    <BAL>3760</BAL>
+    <ESI_OT>13</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VIPIN  YADAV</NAME>
+    <F_NAME>SH. KIRAN PAL YADAV</F_NAME>
+    <EMP_CODE>GMC000181</EMP_CODE>
+    <EXTERNAL_EMPNO>000368</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0424</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>13425</NETPAY>
+    <OT>1872</OT>
+    <BAL>11567</BAL>
+    <ESI_OT>14</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PRAMOD KUMAR YADAV</NAME>
+    <F_NAME>SH. RAM BARAN YADAV</F_NAME>
+    <EMP_CODE>GMC000218</EMP_CODE>
+    <EXTERNAL_EMPNO>000400</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0455</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>4747</NETPAY>
+    <OT>1170</OT>
+    <BAL>3586</BAL>
+    <ESI_OT>9</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PANKAJ KUMAR SINGH</NAME>
+    <F_NAME>SH. AMRENDRA PRASAD SINGH</F_NAME>
+    <EMP_CODE>GMC000056</EMP_CODE>
+    <EXTERNAL_EMPNO>00241</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0363</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17369</NETPAY>
+    <OT>0</OT>
+    <BAL>17369</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KARAN GIRI</NAME>
+    <F_NAME>SH. DINESH GIRI</F_NAME>
+    <EMP_CODE>GMC000155</EMP_CODE>
+    <EXTERNAL_EMPNO>000212</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0275</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>22073</NETPAY>
+    <OT>0</OT>
+    <BAL>22073</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>NAVEEN</NAME>
+    <F_NAME>SH. INDERPAL SINGH</F_NAME>
+    <EMP_CODE>GMC000033</EMP_CODE>
+    <EXTERNAL_EMPNO>0081</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0113</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>56462</NETPAY>
+    <OT>0</OT>
+    <BAL>56462</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJ KUMAR</NAME>
+    <F_NAME>SITARAM</F_NAME>
+    <EMP_CODE>GMC000208</EMP_CODE>
+    <EXTERNAL_EMPNO>000139</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0254</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5925</NETPAY>
+    <OT>0</OT>
+    <BAL>5925</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RANJAY SAH</NAME>
+    <F_NAME>SH RAMAPATI SAH</F_NAME>
+    <EMP_CODE>GMC000160</EMP_CODE>
+    <EXTERNAL_EMPNO>000205</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0228</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>3160</NETPAY>
+    <OT>360</OT>
+    <BAL>2803</BAL>
+    <ESI_OT>3</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>AJAY KUMAR</NAME>
+    <F_NAME>LT. SH. VEDRAM</F_NAME>
+    <EMP_CODE>GMC000107</EMP_CODE>
+    <EXTERNAL_EMPNO>000329</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0376</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>16491</NETPAY>
+    <OT>6052</OT>
+    <BAL>10484</BAL>
+    <ESI_OT>45</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MANJU  AGARWAL</NAME>
+    <F_NAME>0</F_NAME>
+    <EMP_CODE>GMC000210</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0096</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>60000</NETPAY>
+    <OT>0</OT>
+    <BAL>60000</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>GAURAV TYAGI</NAME>
+    <F_NAME>SH. SHIV KUMAR TYAGI</F_NAME>
+    <EMP_CODE>GMC000060</EMP_CODE>
+    <EXTERNAL_EMPNO>00102</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0253</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>30895</NETPAY>
+    <OT>0</OT>
+    <BAL>30895</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BADLU</NAME>
+    <F_NAME>JAGGA</F_NAME>
+    <EMP_CODE>GMC000112</EMP_CODE>
+    <EXTERNAL_EMPNO>000259</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0290</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>4353</NETPAY>
+    <OT>1012</OT>
+    <BAL>3349</BAL>
+    <ESI_OT>8</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>HIMANSHU SHARMA</NAME>
+    <F_NAME>LT. SH. JITENDRA SHARMA</F_NAME>
+    <EMP_CODE>GMC000038</EMP_CODE>
+    <EXTERNAL_EMPNO>00229</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0321</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>19254</NETPAY>
+    <OT>0</OT>
+    <BAL>19254</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SUKESH RAJPUT LODHI</NAME>
+    <F_NAME>LAKHAN RAJPUT</F_NAME>
+    <EMP_CODE>GMC000248</EMP_CODE>
+    <EXTERNAL_EMPNO>000422</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5334</NETPAY>
+    <OT>1643</OT>
+    <BAL>3703</BAL>
+    <ESI_OT>12</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BABLU</NAME>
+    <F_NAME>DEEP CHAND</F_NAME>
+    <EMP_CODE>GMC000091</EMP_CODE>
+    <EXTERNAL_EMPNO>000170</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0206</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>15007</NETPAY>
+    <OT>4736</OT>
+    <BAL>10307</BAL>
+    <ESI_OT>36</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJESH KUMAR</NAME>
+    <F_NAME>RAM CHARAN</F_NAME>
+    <EMP_CODE>GMC000113</EMP_CODE>
+    <EXTERNAL_EMPNO>000152</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0184</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10583</NETPAY>
+    <OT>2904</OT>
+    <BAL>7701</BAL>
+    <ESI_OT>22</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANJAY KUMAR</NAME>
+    <F_NAME>SHANKAR MAHATO</F_NAME>
+    <EMP_CODE>GMC000101</EMP_CODE>
+    <EXTERNAL_EMPNO>00018</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0040</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>23434</NETPAY>
+    <OT>1056</OT>
+    <BAL>22378</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RISHI PAL SINGH</NAME>
+    <F_NAME>DHARMVEER SINGH</F_NAME>
+    <EMP_CODE>GMC000161</EMP_CODE>
+    <EXTERNAL_EMPNO>000308</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0347</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>23135</NETPAY>
+    <OT>2280</OT>
+    <BAL>20855</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SHRIPAL  SINGH</NAME>
+    <F_NAME>LT. SH. GYAN SINGH</F_NAME>
+    <EMP_CODE>GMC000219</EMP_CODE>
+    <EXTERNAL_EMPNO>000401</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0456</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12604</NETPAY>
+    <OT>5016</OT>
+    <BAL>7626</BAL>
+    <ESI_OT>38</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ADESH  TYAGI</NAME>
+    <F_NAME>LT SH TRILOK CHAND TYAGI</F_NAME>
+    <EMP_CODE>GMC000229</EMP_CODE>
+    <EXTERNAL_EMPNO>00251</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0467</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14996</NETPAY>
+    <OT>0</OT>
+    <BAL>14996</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MAHESH KUMAR</NAME>
+    <F_NAME>DULI CHAND</F_NAME>
+    <EMP_CODE>GMC000065</EMP_CODE>
+    <EXTERNAL_EMPNO>000122</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0101</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>23849</NETPAY>
+    <OT>0</OT>
+    <BAL>23849</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MANGAL SINGH</NAME>
+    <F_NAME>SH. RAM PAL PAL</F_NAME>
+    <EMP_CODE>GMC000136</EMP_CODE>
+    <EXTERNAL_EMPNO>000321</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0367</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14669</NETPAY>
+    <OT>1392</OT>
+    <BAL>13287</BAL>
+    <ESI_OT>10</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>LAKSHMI NARAYAN GUPTA</NAME>
+    <F_NAME>BHAGWAN DAS GUPTA</F_NAME>
+    <EMP_CODE>GMC000240</EMP_CODE>
+    <EXTERNAL_EMPNO>00252</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0257</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>48757</NETPAY>
+    <OT>0</OT>
+    <BAL>48757</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MUNNA KUMAR RAY</NAME>
+    <F_NAME>SH. SUNARSHI RAY</F_NAME>
+    <EMP_CODE>GMC000134</EMP_CODE>
+    <EXTERNAL_EMPNO>000213</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0357</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>1981</NETPAY>
+    <OT>294</OT>
+    <BAL>1689</BAL>
+    <ESI_OT>2</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MOHAMMMAD SHAQIB</NAME>
+    <F_NAME>SH. SHAUQEEN</F_NAME>
+    <EMP_CODE>GMC000148</EMP_CODE>
+    <EXTERNAL_EMPNO>000353</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0408</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12173</NETPAY>
+    <OT>3724</OT>
+    <BAL>8477</BAL>
+    <ESI_OT>28</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>UDHAM  SHARMA</NAME>
+    <F_NAME>BRHAM DUTT SHARMA</F_NAME>
+    <EMP_CODE>GMC000238</EMP_CODE>
+    <EXTERNAL_EMPNO>000417</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0473</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>6300</NETPAY>
+    <OT>1408</OT>
+    <BAL>4903</BAL>
+    <ESI_OT>11</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>GUDDU</NAME>
+    <F_NAME>SH. DAROGA SINGH</F_NAME>
+    <EMP_CODE>GMC000097</EMP_CODE>
+    <EXTERNAL_EMPNO>000302</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0341</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>25919</NETPAY>
+    <OT>756</OT>
+    <BAL>25163</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SILKI  GUPTA</NAME>
+    <F_NAME>0</F_NAME>
+    <EMP_CODE>GMC000211</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0108</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>30000</NETPAY>
+    <OT>0</OT>
+    <BAL>30000</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>JITENDRA KUMAR SAH</NAME>
+    <F_NAME>RAMJI</F_NAME>
+    <EMP_CODE>GMC000253</EMP_CODE>
+    <EXTERNAL_EMPNO>000425</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>7644</NETPAY>
+    <OT>2450</OT>
+    <BAL>5212</BAL>
+    <ESI_OT>18</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>OMPARKASH KUMAR RAY</NAME>
+    <F_NAME>VIGAN RAY</F_NAME>
+    <EMP_CODE>GMC000251</EMP_CODE>
+    <EXTERNAL_EMPNO>000275</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5334</NETPAY>
+    <OT>2124</OT>
+    <BAL>3226</BAL>
+    <ESI_OT>16</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANJAY  KUMAR</NAME>
+    <F_NAME>SH. HARI SINGH</F_NAME>
+    <EMP_CODE>GMC000230</EMP_CODE>
+    <EXTERNAL_EMPNO>00211</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0469</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>20842</NETPAY>
+    <OT>0</OT>
+    <BAL>20842</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJESH  KUMAR</NAME>
+    <F_NAME>SH. SHYAM BIHARI</F_NAME>
+    <EMP_CODE>GMC000124</EMP_CODE>
+    <EXTERNAL_EMPNO>000173</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0362</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>7677</NETPAY>
+    <OT>2068</OT>
+    <BAL>5625</BAL>
+    <ESI_OT>16</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KAPIL  KUMAR</NAME>
+    <F_NAME>SURENDRA SINGH</F_NAME>
+    <EMP_CODE>GMC000254</EMP_CODE>
+    <EXTERNAL_EMPNO>00020</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14043</NETPAY>
+    <OT>4896</OT>
+    <BAL>9184</BAL>
+    <ESI_OT>37</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RINKU  KUMAR</NAME>
+    <F_NAME>SH. SURENDRA SINGH</F_NAME>
+    <EMP_CODE>GMC000002</EMP_CODE>
+    <EXTERNAL_EMPNO>0018</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0029</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>30120</NETPAY>
+    <OT>0</OT>
+    <BAL>30120</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PUJA BANSAL</NAME>
+    <F_NAME>SH. AMIT GUPTA</F_NAME>
+    <EMP_CODE>GMC000014</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0016</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>48619</NETPAY>
+    <OT>0</OT>
+    <BAL>48619</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KULDEEP  KUMAR</NAME>
+    <F_NAME>SH. TOTARAM</F_NAME>
+    <EMP_CODE>GMC000232</EMP_CODE>
+    <EXTERNAL_EMPNO>000412</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0466</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>3991</NETPAY>
+    <OT>748</OT>
+    <BAL>3249</BAL>
+    <ESI_OT>6</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAJ KUMAR</NAME>
+    <F_NAME>LALLAN SINGH</F_NAME>
+    <EMP_CODE>GMC000066</EMP_CODE>
+    <EXTERNAL_EMPNO>000264</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0292</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>23775</NETPAY>
+    <OT>0</OT>
+    <BAL>23775</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VISHAL PAL</NAME>
+    <F_NAME>SH. VINOD KUMAR PAL</F_NAME>
+    <EMP_CODE>GMC000067</EMP_CODE>
+    <EXTERNAL_EMPNO>000258</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0289</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>23375</NETPAY>
+    <OT>0</OT>
+    <BAL>23375</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RADHEY  SHYAM</NAME>
+    <F_NAME>SATVEER SINGH</F_NAME>
+    <EMP_CODE>GMC000242</EMP_CODE>
+    <EXTERNAL_EMPNO>000419</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>15492</NETPAY>
+    <OT>0</OT>
+    <BAL>15492</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PRAMOD KUMAR YADAV</NAME>
+    <F_NAME>SH. KAILASH YADAV</F_NAME>
+    <EMP_CODE>GMC000063</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0066</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>26000</NETPAY>
+    <OT>0</OT>
+    <BAL>26000</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>NEERAJ</NAME>
+    <F_NAME>SH. MATHURA PRASAD</F_NAME>
+    <EMP_CODE>GMC000199</EMP_CODE>
+    <EXTERNAL_EMPNO>000381</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0441</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9773</NETPAY>
+    <OT>3080</OT>
+    <BAL>6716</BAL>
+    <ESI_OT>23</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ANKUR TYAGI</NAME>
+    <F_NAME>SH. VIRENDRA SINGH</F_NAME>
+    <EMP_CODE>GMC000055</EMP_CODE>
+    <EXTERNAL_EMPNO>0088</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0207</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>20018</NETPAY>
+    <OT>0</OT>
+    <BAL>20018</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ASHOK KUMAR</NAME>
+    <F_NAME>SH. BALEY RAM</F_NAME>
+    <EMP_CODE>GMC000030</EMP_CODE>
+    <EXTERNAL_EMPNO>0074</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0098</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>44599</NETPAY>
+    <OT>0</OT>
+    <BAL>44599</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DEEPAK KUMAR</NAME>
+    <F_NAME>JITENDRA SINGH</F_NAME>
+    <EMP_CODE>GMC000073</EMP_CODE>
+    <EXTERNAL_EMPNO>00050</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0095</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>34351</NETPAY>
+    <OT>4832</OT>
+    <BAL>29519</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DIVYANSHU TIWARI</NAME>
+    <F_NAME>SH. VED NARAYAN TIWARI</F_NAME>
+    <EMP_CODE>GMC000021</EMP_CODE>
+    <EXTERNAL_EMPNO>0075</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0100</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>40357</NETPAY>
+    <OT>0</OT>
+    <BAL>40357</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>GAURAV KUMAR</NAME>
+    <F_NAME>MAHENDRA SINGH</F_NAME>
+    <EMP_CODE>GMC000096</EMP_CODE>
+    <EXTERNAL_EMPNO>000190</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0220</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>16309</NETPAY>
+    <OT>1261</OT>
+    <BAL>15057</BAL>
+    <ESI_OT>9</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>CHANDRAMANI</NAME>
+    <F_NAME>AMAR SINGH</F_NAME>
+    <EMP_CODE>GMC000236</EMP_CODE>
+    <EXTERNAL_EMPNO>000416</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0472</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>10413</NETPAY>
+    <OT>3136</OT>
+    <BAL>7301</BAL>
+    <ESI_OT>24</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SEKAR  GANESAN</NAME>
+    <F_NAME>GANESAN</F_NAME>
+    <EMP_CODE>GMC000241</EMP_CODE>
+    <EXTERNAL_EMPNO>00257</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0258</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>153829</NETPAY>
+    <OT>0</OT>
+    <BAL>153829</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MOHMMAD AFJAL HASAN</NAME>
+    <F_NAME>NAJMUL HASAN</F_NAME>
+    <EMP_CODE>GMC000157</EMP_CODE>
+    <EXTERNAL_EMPNO>000276</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0307</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>15011</NETPAY>
+    <OT>1836</OT>
+    <BAL>13175</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>HARIOM  TIWARI</NAME>
+    <F_NAME>UMA KANT TIWARI</F_NAME>
+    <EMP_CODE>GMC000247</EMP_CODE>
+    <EXTERNAL_EMPNO>00253</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>43792</NETPAY>
+    <OT>0</OT>
+    <BAL>43792</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SANTRAM</NAME>
+    <F_NAME>HARLAL</F_NAME>
+    <EMP_CODE>GMC000249</EMP_CODE>
+    <EXTERNAL_EMPNO>000423</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>9361</NETPAY>
+    <OT>2244</OT>
+    <BAL>7134</BAL>
+    <ESI_OT>17</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ARENDRA KUMAR</NAME>
+    <F_NAME>MADHAO RAM</F_NAME>
+    <EMP_CODE>GMC000072</EMP_CODE>
+    <EXTERNAL_EMPNO>0007</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0194</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>25905</NETPAY>
+    <OT>10880</OT>
+    <BAL>15107</BAL>
+    <ESI_OT>82</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ASHOK KUMAR</NAME>
+    <F_NAME>SH. HARI SINGH</F_NAME>
+    <EMP_CODE>GMC000046</EMP_CODE>
+    <EXTERNAL_EMPNO>0019</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0026</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>34246</NETPAY>
+    <OT>0</OT>
+    <BAL>34246</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ASIF</NAME>
+    <F_NAME>SH. ISLAMUDDIN</F_NAME>
+    <EMP_CODE>GMC000143</EMP_CODE>
+    <EXTERNAL_EMPNO>000346</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0395</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>5922</NETPAY>
+    <OT>1716</OT>
+    <BAL>4219</BAL>
+    <ESI_OT>13</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BICKY THAKUR</NAME>
+    <F_NAME>ANIL THAKUR</F_NAME>
+    <EMP_CODE>GMC000151</EMP_CODE>
+    <EXTERNAL_EMPNO>000283</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0317</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>8106</NETPAY>
+    <OT>0</OT>
+    <BAL>8106</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KAMLESH  CHOUBEY</NAME>
+    <F_NAME>SH. JAWAHAR CHOUBEY</F_NAME>
+    <EMP_CODE>GMC000187</EMP_CODE>
+    <EXTERNAL_EMPNO>000379</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0431</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>7198</NETPAY>
+    <OT>2244</OT>
+    <BAL>4971</BAL>
+    <ESI_OT>17</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>MAMTA GUPTA</NAME>
+    <F_NAME>SH. VINOD GUPTA</F_NAME>
+    <EMP_CODE>GMC000005</EMP_CODE>
+    <EXTERNAL_EMPNO>0</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0018</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>56000</NETPAY>
+    <OT>0</OT>
+    <BAL>56000</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>AMIT KUMAR</NAME>
+    <F_NAME>SH. SHREE PAL</F_NAME>
+    <EMP_CODE>GMC000074</EMP_CODE>
+    <EXTERNAL_EMPNO>000307</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0390</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>34098</NETPAY>
+    <OT>13568</OT>
+    <BAL>20632</BAL>
+    <ESI_OT>102</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RAHUL  TIWARI</NAME>
+    <F_NAME>RAJESH TIWARI</F_NAME>
+    <EMP_CODE>GMC000233</EMP_CODE>
+    <EXTERNAL_EMPNO>000413</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0468</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>4272</NETPAY>
+    <OT>880</OT>
+    <BAL>3399</BAL>
+    <ESI_OT>7</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>SURAJ  UPADHAYAY</NAME>
+    <F_NAME>SHIV DARSHAN</F_NAME>
+    <EMP_CODE>GMC000257</EMP_CODE>
+    <EXTERNAL_EMPNO>000427</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>8675</NETPAY>
+    <OT>1160</OT>
+    <BAL>7524</BAL>
+    <ESI_OT>9</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>VINAY  SHARMA</NAME>
+    <F_NAME>RAJ KUMAR SHARMA</F_NAME>
+    <EMP_CODE>GMC000252</EMP_CODE>
+    <EXTERNAL_EMPNO>00261</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>0</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>13032</NETPAY>
+    <OT>0</OT>
+    <BAL>13032</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BHOLE</NAME>
+    <F_NAME>LT. SH. MANVEER</F_NAME>
+    <EMP_CODE>GMC000095</EMP_CODE>
+    <EXTERNAL_EMPNO>000114</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0159</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>19522</NETPAY>
+    <OT>1800</OT>
+    <BAL>17736</BAL>
+    <ESI_OT>14</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DEVENDRA SINGH</NAME>
+    <F_NAME>HAKIM SINGH</F_NAME>
+    <EMP_CODE>GMC000129</EMP_CODE>
+    <EXTERNAL_EMPNO>000260</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0293</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12569</NETPAY>
+    <OT>5005</OT>
+    <BAL>7602</BAL>
+    <ESI_OT>38</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ANIL KUMAR SAH</NAME>
+    <F_NAME>RAM CHANDRA SAHU</F_NAME>
+    <EMP_CODE>GMC000093</EMP_CODE>
+    <EXTERNAL_EMPNO>000141</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0179</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>11775</NETPAY>
+    <OT>3599</OT>
+    <BAL>8203</BAL>
+    <ESI_OT>27</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>ASHOK KUMAR</NAME>
+    <F_NAME>AMAR SINGH</F_NAME>
+    <EMP_CODE>GMC000127</EMP_CODE>
+    <EXTERNAL_EMPNO>000297</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0331</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>0</NETPAY>
+    <OT>0</OT>
+    <BAL>0</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DANISH</NAME>
+    <F_NAME>SH. SAHAJAD ALI</F_NAME>
+    <EMP_CODE>GMC000128</EMP_CODE>
+    <EXTERNAL_EMPNO>000312</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0351</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>0</NETPAY>
+    <OT>0</OT>
+    <BAL>0</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>PAPPU SINGH</NAME>
+    <F_NAME>SH. RAGHURAJ SINGH</F_NAME>
+    <EMP_CODE>GMC000083</EMP_CODE>
+    <EXTERNAL_EMPNO>000339</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0391</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14419</NETPAY>
+    <OT>7314</OT>
+    <BAL>7160</BAL>
+    <ESI_OT>55</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>BRAJESH KUMAR SHARMA</NAME>
+    <F_NAME>SH. RAJENDRA PAL SHARMA</F_NAME>
+    <EMP_CODE>GMC000003</EMP_CODE>
+    <EXTERNAL_EMPNO>0065</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0105</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>20889</NETPAY>
+    <OT>0</OT>
+    <BAL>20889</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>RANJEET KUMAR</NAME>
+    <F_NAME>AMAR SINGH</F_NAME>
+    <EMP_CODE>GMC000132</EMP_CODE>
+    <EXTERNAL_EMPNO>000286</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0319</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12022</NETPAY>
+    <OT>3350</OT>
+    <BAL>8697</BAL>
+    <ESI_OT>25</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>DASHRATH KUMAR</NAME>
+    <F_NAME>SH. LAGAN DEV PASWAN</F_NAME>
+    <EMP_CODE>GMC000164</EMP_CODE>
+    <EXTERNAL_EMPNO>000316</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0359</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>4243</NETPAY>
+    <OT>0</OT>
+    <BAL>4243</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>JAGEND</NAME>
+    <F_NAME>BALAKRAM</F_NAME>
+    <EMP_CODE>GMC000152</EMP_CODE>
+    <EXTERNAL_EMPNO>000282</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0316</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>12730</NETPAY>
+    <OT>4374</OT>
+    <BAL>8389</BAL>
+    <ESI_OT>33</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>JITENDRA SHARMA</NAME>
+    <F_NAME>JAI PAL SHARMA</F_NAME>
+    <EMP_CODE>GMC000098</EMP_CODE>
+    <EXTERNAL_EMPNO>000254</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0284</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17539</NETPAY>
+    <OT>3375</OT>
+    <BAL>14189</BAL>
+    <ESI_OT>25</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KAPIL SHARMA</NAME>
+    <F_NAME>SH. KISHAN SHARMA</F_NAME>
+    <EMP_CODE>GMC000044</EMP_CODE>
+    <EXTERNAL_EMPNO>0034</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0051</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>40164</NETPAY>
+    <OT>0</OT>
+    <BAL>40164</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>KUVENDRA</NAME>
+    <F_NAME>SHADILAL</F_NAME>
+    <EMP_CODE>GMC000131</EMP_CODE>
+    <EXTERNAL_EMPNO>000305</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>B0343</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>14478</NETPAY>
+    <OT>4608</OT>
+    <BAL>9905</BAL>
+    <ESI_OT>35</ESI_OT>
+  </prepcur>
+  <prepcur>
+    <SALARY_YR>2021</SALARY_YR>
+    <NAME>LOKESH KUMAR</NAME>
+    <F_NAME>SH. MOHAN LAL SINGH</F_NAME>
+    <EMP_CODE>GMC000009</EMP_CODE>
+    <EXTERNAL_EMPNO>0057</EXTERNAL_EMPNO>
+    <OLD_EMPCODE>A0083</OLD_EMPCODE>
+    <MONTH_NAME>november </MONTH_NAME>
+    <NETPAY>17820</NETPAY>
+    <OT>0</OT>
+    <BAL>17820</BAL>
+    <ESI_OT>0</ESI_OT>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Kesho Packaging Pvt Ltd</COMPANY_NAME>
+    <COMPANY_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDAGB NAGAR</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>09</COMPANY_STATE>
+    <COMPANY_CITY>Noida</COMPANY_CITY>
+    <COMPANY_PINCODE>201306</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>info@keshopackaging.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>keshopackaging.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>1204152702</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>1204152702</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>09AADCK1978R1ZN</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>AADCK1978R</COM_PAN_NO>
+    <COMPANY_CIN_NO>U74950DL2007PTC168971</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>KESHO PACKAGING PVT. LTD.</UNIT_NAME>
+    <UNIT_ADDRESS>PLOT NO 38,ECOTECH-II, G NOIDA,GB NAGAR</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Uttar Pradesh</STATE_NAME>
+    <UNIT_STATE>09</UNIT_STATE>
+    <UNIT_CITY>Noida</UNIT_CITY>
+    <UNIT_PINCODE>201306</UNIT_PINCODE>
+    <UNIT_EMAIL>INFO@KESHOPACKAGING.COM</UNIT_EMAIL>
+    <UNIT_WEBSITE>WWW.KESHOPACKAGING.COM</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>1204152701</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>1204152702</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+    <UNIT_GSTIN_NO>09AADCK1978R1ZN</UNIT_GSTIN_NO>
+    <BANK_NAME>0</BANK_NAME>
+    <BANK_BRANCH>0</BANK_BRANCH>
+    <BANK_ACC>911020043295952</BANK_ACC>
+    <BANK_IFSC>0</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

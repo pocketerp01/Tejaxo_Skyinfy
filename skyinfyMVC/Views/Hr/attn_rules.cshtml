@@ -1,0 +1,651 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+                            @Html.HiddenFor(m => m[0].Col13);
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" onclick="editclick();" name="command" value="Edit" accesskey="E" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" id="btncancel" name="command" value="Cancel" accesskey="C" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Attendance In/Out Time</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Doc.No <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_vchnum", @AutoCompleteType = "Disabled", @Readonly = "ture", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Copy From </label>
+                                                <div class="form-group">
+                                                    <div class='input-group demo2'>
+                                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "txt_unit", @AutoCompleteType = "Disabled", @Readonly = "ture", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Copy Attendence Rules setting from other unit" clientidmode="static" id="spn_add" onclick="getcompany(this);">
+                                                            <i class="fa fa-search"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the working begin time. Format[HH:MM]">Begin Time  <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txt_begintime", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Begin Time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the working end time. Format[HH:MM]">End Time <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txt_endtime", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "end Time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the whether to calculate attendance by only First and Last Punch else by all punches">Hours Process Time <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_hrprocess", @onkeydown = "return checkLength(this, 20,event);", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If there is missed out punch it will make out punch according to shift end time or standard end time else discard last in punch">Neglect Last In Punch (For Missed Out Punch)<span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk1, new { @id = "chk_neglastpunch", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If employee has night shift">Multiple Span Days </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk2, new { @id = "chk_multispandays", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the Std. hours to be worked for full a day. Format[HH:MM]">Standard Working Hours </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txt_stdwhr", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Standard Working Hours" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the min. hours to be worked to consider present for full a day. Format[HH:MM]">Min. Hours For Full Day </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_minhrfd", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Min. Hours For Full Day" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the min. hours to be worked to consider present for half a day. Format[HH:MM]">Min. Hours For Half Day </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "txt_minhrhd", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Min. Hours For Half Day" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the min.hours to be worked to consider present for official half day. Format[HH:MM]">Min. Hours To Work Full Day On Official Half Day</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col23, new { @id = "txt_minhrfdoff", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the min.hours to be worked to consider half day present for official half day. Format[HH:MM]">Min. Hours To Work Half Day On Official Half Day</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col24, new { @id = "txt_minhrhdoff", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Professional Tax (PT) Info</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide5" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="a)OT is not applicable to ignore OT.b)out punch –shift end time calculate OT by subtracting out time (last out punch) from shift end time if out time is greater than shift end time.c)Total duration-shift duration will calculate OT by subtracting shift duration from total work duration.">OT Formula</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[i].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_otformula", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the minimum number of minutes to calculate over time. Format[HH:MM]">Minimum OT</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col25, new { @id = "txt_minot", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Minimum OT" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">OT Block Time</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col26, new { @id = "txt_otblocktime", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "OT Block Time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the whether to take Punches before Shift Begin Time or not">Consider Early Coming Punch </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk3, new { @id = "chk_considerep", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the whether to take Punches after Shift End Time or not.">Consider Late Going Punch </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk4, new { @id = "chk_considerlp", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Late Coming</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide3" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If process late by is checked then late occurace calculation happens.">Process Late By </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk5, new { @id = "chk_processltby", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the minimum grace minutes to eliminate late occurace. Format[HH:MM]">Grace Time <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col27, new { @id = "txt_gracetime", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Grace Time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If Time entered if employee log out time less than this will be
+                                                    marked half day for first session by overriding ‘Minimum hours for half day’. Format [HH:MM]">
+                                                    Time Limit For Late Half Day <span class="ClientProfileLabelColor">*</span>
+                                                </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col28, new { @id = "txt_timelmtlhd", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Time Limit For Late Half Day" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Format[HH:MM]">First Late Hour <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col29, new { @id = "txt_firstlhr", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "First Late Hour" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Format[HH:MM]">Second Late Hour <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col30, new { @id = "txt_secondlhr", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Second Late Hour" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the minimum days to be deducted in case of late occurace.">Deduct No. Of Days <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col38, new { @id = "txt_deductnoofdy", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Deduct No. Of Days" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the number of instances to deduct in case of late occurance.">No. Of Instances <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col31, new { @id = "txt_noofins", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "No. Of Instances" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If this true, then multiples deduct number of days calculation happens.">Multiples </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk6, new { @id = "chk_multi", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If worked hours are greater than standard working hours then escalate that instance.">Over Rule If Total Hrs Greater than Std Working Hrs</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk7, new { @id = "chk_overrule", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <table class="table table-responsive table-bordered table-striped" style="width: 30%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Select</th>
+                                                        <th>Leave</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model[i].Chk8, new { @id = "chk_selectlt", @class = "sa-input checkbox" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(model => model[i].SelectedItems3, new MultiSelectList(Model[i].TList3, "Value", "Text", Model[i].SelectedItems3), new { @id = "ddl_lt", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model[i].Chk9, new { @id = "chk_selectlt1", @class = "sa-input checkbox" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(model => model[i].SelectedItems4, new MultiSelectList(Model[i].TList4, "Value", "Text", Model[i].SelectedItems4), new { @id = "ddl_lt1", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model[i].Chk10, new { @id = "chk_selectlt2", @class = "sa-input checkbox" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(model => model[i].SelectedItems5, new MultiSelectList(Model[i].TList5, "Value", "Text", Model[i].SelectedItems5), new { @id = "ddl_lt2", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Early Going</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide4" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If process late by is checked then early going calculation happens.">Process Early Going </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk11, new { @id = "chk_processeg", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the minimum grace minutes to eliminate early going. Format [HH:MM]">Grace Time <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col32, new { @id = "txt_gracetimeeg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Grace Time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If Time entered if employee login time greater than this will be marked half
+                                                     day for first session by overriding ‘Minimum hours for half day’. . Format[HH:MM]">
+                                                    Time Limit For Early Half Day <span class="ClientProfileLabelColor">*</span>
+                                                </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col33, new { @id = "txt_timelmteheg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Time Limit For Early Half Day" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Format [HH:MM]">First Early Hour <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col34, new { @id = "txt_firstehreg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "First Early Hour" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Format [HH:MM]">Second Early Hour <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col35, new { @id = "txt_secondehreg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Second Early Hour" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the minimum days to be deducted in case of early going.">Deduct No. Of Days <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col36, new { @id = "txt_deductnodyseg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Deduct No. Of Days" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the number of instances to deduct in case of early going.">No. Of Instances <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[i].Col37, new { @id = "txt_noofinseg", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "No. Of Instances" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="Specify the number of instances to deduct in case of late occurance.">Multiples </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk12, new { @id = "chk_multieg", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="If worked hours are greater than standard working hours then escalate that instance.">Over Rule If Total Hrs Greater than Std Working Hrs</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk13, new { @id = "chk_overruleeg", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" data-placement="top" title="To deduct number of days automatically from the leave balance, consider both late coming and early going and multiples as usual.">Deduct Late Occurrence and Early Going From Leave Balance </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk14, new { @id = "chk_dlo", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr />
+                                        <div class="row">
+                                            <table class="table table-responsive table-bordered table-striped" style="width: 30%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Select</th>
+                                                        <th>Leave</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model[i].Chk15, new { @id = "chk_selectlteg", @class = "sa-input checkbox" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(model => model[i].SelectedItems6, new MultiSelectList(Model[i].TList6, "Value", "Text", Model[i].SelectedItems6), new { @id = "ddl_lteg", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model[i].Chk16, new { @id = "chk_selectlteg1", @class = "sa-input checkbox" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(model => model[i].SelectedItems7, new MultiSelectList(Model[i].TList7, "Value", "Text", Model[i].SelectedItems7), new { @id = "ddl_lteg1", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.CheckBoxFor(model => model[i].Chk17, new { @id = "chk_selectlteg2", @class = "sa-input checkbox" })
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(model => model[i].SelectedItems8, new MultiSelectList(Model[i].TList8, "Value", "Text", Model[i].SelectedItems8), new { @id = "ddl_lteg2", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <asp:HiddenField runat="server" ID="hf_edmode" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //debugger;
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        if (!isPostBack()) {
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    //child.classList.remove = "fa-chevron-up";
+                    //child.classList.add = "fa-chevron-down";
+                    $(child).removeClass("fa-chevron-up")
+                    $(child).addClass("fa-chevron-down")
+                }
+            }
+        }
+    });
+
+   // function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', 'viewName', 'controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function getcompany() { var data = show_Foo('UNIT Copy', 'UNITS', '1', '@viewName', '@controllerName'); }
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function editclick(ctrl) {
+        enableForm();
+        //$(ctrl).parents().find(".body").find("input[type=text],select").not(ctrl).prop("disabled", false);
+    }
+</script>

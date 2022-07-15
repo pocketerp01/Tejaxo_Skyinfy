@@ -1,0 +1,51 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur2">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="HSN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="QTY" type="xs:decimal" minOccurs="0" />
+                <xs:element name="LINEAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TAXRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="IGST_RT" type="xs:string" minOccurs="0" />
+                <xs:element name="CGST_RT" type="xs:string" minOccurs="0" />
+                <xs:element name="SGST_RT" type="xs:string" minOccurs="0" />
+                <xs:element name="CGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="SGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TAXAMT" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur2>
+    <HSN_NO>84138190</HSN_NO>
+    <QTY>2</QTY>
+    <LINEAMOUNT>6000</LINEAMOUNT>
+    <TAXRATE>18%</TAXRATE>
+    <IGST_RT>0%</IGST_RT>
+    <CGST_RT>9</CGST_RT>
+    <SGST_RT>9</SGST_RT>
+    <CGST>2520</CGST>
+    <SGST>2520</SGST>
+    <TAXAMT>1080</TAXAMT>
+  </prepcur2>
+  <prepcur2>
+    <HSN_NO>84139190</HSN_NO>
+    <QTY>2</QTY>
+    <LINEAMOUNT>22000</LINEAMOUNT>
+    <TAXRATE>18%</TAXRATE>
+    <IGST_RT>0%</IGST_RT>
+    <CGST_RT>9</CGST_RT>
+    <SGST_RT>9</SGST_RT>
+    <CGST>2520</CGST>
+    <SGST>2520</SGST>
+    <TAXAMT>3960</TAXAMT>
+  </prepcur2>
+</NewDataSet>

@@ -1,0 +1,39 @@
+﻿@model skyinfyMVC.Models.TableResultModel
+@for (int a = 0; a < Model.filters.Count; a++)
+{
+<div class="row">
+    <div class='col-sm-3'>
+        Select Column to Filter
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.DropDownListFor(m => m.filters[a].ddnamesSelected, new SelectList(Model.filters[a].ddnames, "Value", "Text", Model.filters[a].ddnamesSelected.FirstOrDefault()), new { @id = "ddnames", @style = "width: 100%", @class = "form-control" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-2'>
+        Select Operator
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.DropDownListFor(m => m.filters[a].ddoperatorsSelected, new SelectList(Model.filters[a].ddoperators, "Value", "Text", Model.filters[a].ddoperatorsSelected.FirstOrDefault()), new { id = "ddoperators", @style = "width: 100%", @class = "form-control" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-3'>
+        Enter Match String
+        <div class="form-group">
+            <div class='input-group'>
+                @Html.TextBoxFor(m => m.filters[a].txtsval, new { ID = "txtsval", @class = "form-control col-lg-12", @style = "width: 100%", placeholder = "Search Here" })
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+    <div class='col-sm-4'>
+        <a onclick="Showfilters()">Add Filter</a>
+    </div>
+</div>
+    @*<div class='col-sm-4'>
+            @Ajax.ActionLink("Add Filter", "RefreshItems", new AjaxOptions() { UpdateTargetId = "ItemList", HttpMethod = "Post" })
+        </div>*@
+}

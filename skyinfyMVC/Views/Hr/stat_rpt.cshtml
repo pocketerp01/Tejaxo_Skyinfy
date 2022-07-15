@@ -1,0 +1,584 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col11;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col11), @mid = EncryptDecrypt.Encrypt(Model[0].Col10) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @*@Html.AntiForgeryToken();*@
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+
+                    @switch (Model[0].Col10)
+                    {
+                        case "9011.2":<!-------ESI Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptESI1" name="command" value="Monthly Statement" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Statement');" accesskey="M" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" style="display:none;">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptESI2" name="command" value="Half Yearly Return Form-5" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Half Yearly Return Form-5');" accesskey="H" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" style="display:none;">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrpt_xlESI" name="command" value="ESI XL Report" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','ESI XL Report');" accesskey="ESIXL" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptESI4" name="command" value="Company Wise Total" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Company Wise Total');" accesskey="C" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptESI4" name="command" value="ESI VIEW (XLS)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','ESI VIEW (XLS)');" accesskey="E" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnnonesi" name="command" value="Company Wise Non-ESI" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Company Wise Non-ESI');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnnonesi" name="command" value="Company Wise ESI and Non-ESI" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Company Wise ESI and Non-ESI');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.1": <!-------PF Report------>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPF1" name="command" value="Form No-5" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Form No-5');" accesskey="5" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPF2" name="command" value="Form No-10" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Form No-10');" accesskey="10" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPF5" name="command" value="PF Statement" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','PF Statement');" accesskey="pfch" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPF6" name="command" value="PF Statement New" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','PF Statement2');" accesskey="pfch2" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPF3" name="command" value="Form No-3A" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Form No-3A');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" style="display:none;">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPF4" name="command" value="Form No-6A" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Form No-6A');" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4" style="display:none;">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrpt_xlPF" name="command" value="PF XL Report" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','PF XL Report');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrpt_xlPFW" name="command" value="PF VIEW (XLS)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','PF VIEW (XLS)');" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            break;
+                        case "9011.3": <!-------PT Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptPT" name="command" value="PT Tax Challan" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','PT Tax Challan');" accesskey="P" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.4": <!-------IT Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptIT" name="command" value="IT Tax Challan" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','IT Tax Challan');" accesskey="I" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.13": <!-------Gratuity Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptIT" name="command" value="Form F" onclick="EMP();" accesskey="I" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.5": <!-------LWF Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptLWF" name="command" value="LWF Monthly Statement" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','LWF Monthly Statement');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptLWF" name="command" value="LWF Yearly Statement" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','LWF Yearly Statement');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrpt_xlLWF" name="command" value="LWF Yearly XL Challan" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','LWF Yearly XL Challan');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="lwf_mxlchl" name="command" value="LWF Monthly XL Challan" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','LWF Monthly XL Challan');" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4" style="display:none;">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptLWF" name="command" value="LWF Monthly View" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','LWF Monthly View');" accesskey="LWF" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.6": <!-------Loan Detail Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptLD" name="command" value="Loan Detail" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Loan Detail');" accesskey="LD" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptLD" name="command"
+                                               value="Advance Ledger" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Advance Ledger');" accesskey="LD" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.7": <!-------OT Report------>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptOT1" name="command" value="Monthly OT Report" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly OT Report');" accesskey="OT1" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptOT2" name="command" value="Netpay With OT" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Netpay With OT');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptOT3" name="command" value="Company Wise Total OT" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Company Wise Total OT');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btncmot" name="command" value="Contractor Monthly OT" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Contractor Monthly OT');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.8":<!-------Salary Report------>
+                            if (userCode.ToUpper().Equals("SKYKESHO"))
+                            {
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptMSL" name="command" value="Monthly Salary (Total)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Salary (Total)');" accesskey="MSL" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptASL" name="command" value="Actual Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Actual Salary');" accesskey="ASL" />
+                                    </div>
+                                </div>
+                                @*<div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptadv" name="command" value="Advance Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Advance Salary');" accesskey="ADV" />
+                                    </div>
+                                </div>*@
+                                <div class="col-sm-4" style="display:none">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptYL" name="command" value="Yearly Leaves" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Yearly Leaves');" accesskey="YL" />
+                                    </div>
+                                </div>
+                            </div>
+                                <br />
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                            <input type="button" class="btn btn-success form-control sa-button" id="btnrptAMS" name="command" value="Actual Monthly Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Actual Monthly Salary');" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                            <input type="button" class="btn btn-success form-control sa-button" id="btnrptdp" name="command" value="Monthly Salary (Dept/Desig)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Salary (Dept/Desig)');" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                            <input type="button" class="btn btn-success form-control sa-button" id="btnrptMS2" name="command" value="Monthly Salary Register" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Salary Register');" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                            <input type="button" class="btn btn-success form-control sa-button" id="btnrptAMS" name="command" value="Contractor Salary Summary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Contractor Salary Summary');" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Monthly Arrear Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Arrear Salary');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr2" name="command" value="Monthly Arrear Salary (Stamp)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Arrear Salary (Stamp)');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr3" name="command" value="Monthly Arrear Salary (Stamp)-Legel" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Arrear Salary (Stamp)-Legel');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptTSL" name="command" value="Monthly Transfer Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Transfer Salary');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptTSL" name="command" value="Monthly Transfer OT" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Transfer OT');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptTSL" name="command" value="Monthly Transfer Total" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Transfer Total');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptdp_new" name="command" value="Monthly Salary New (Decimal)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Salary New (Decimal)');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptdp_new2" name="command" value="Monthly Salary Statement (Stamp)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Monthly Salary Statement (Stamp)');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Salary Statement With Leaves" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Salary Statement');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Salary Statement With Round Off" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Salary Statement 2');" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Salary Pay Days Report" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Salary_days');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Leave Reg" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','leave_reg');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnleave" name="command" value="Leave Details" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','leave_det');" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br />
+                            <div class="row" style="display:none">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_emp_lv" name="command" value="Emp Leave" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Employee Leave');" accesskey="" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4" style="display:none">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnrptYS" name="command" value="Yearly Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Yearly Salary');" accesskey="YS" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4 hidectrl">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_comp_sa" name="command" value="Company Wise Total Monthly Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Company Wise Total Monthly Salary');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Company Wise Total Salary (Round)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Merged_Report');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnarr" name="command" value="Company Wise Total Salary (Summed)" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Merged_Report');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_cms" name="command" value="Contractor Monthly Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Contractor Monthly Salary');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_cms" name="command" value="Yearly Projected Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Yearly Projected Salary');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_cms" name="command" value="Yearly Actual Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Yearly Actual Salary');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            if (userCode.Trim().ToUpper().Equals("KESHO"))
+                            {
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                            <input type="button" class="btn btn-success form-control sa-button" id="btnrptASL" name="command" value="Actual Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Actual Salary');" accesskey="ASL" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                            <input type="button" class="btn btn-success form-control sa-button" id="btnrptAMS" name="command" value="Actual Monthly Salary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Actual Monthly Salary');" accesskey="AMS" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            break;
+                        case "9011.9": <!-------check duplicate------>
+
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnpfchk" name="command" value="PF Check" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','PF Check');" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnuanchk" name="command" value="UAN Check" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','UAN Check');" />
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnesichk" name="command" value="ESI Check" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','ESI Check');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnadhchk" name="command" value="Adhaar Check" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Adhaar Check');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.11":
+                            //new salary variance reports
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvarsum" name="command" value="Variance Summary" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Summary');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvaremp" name="command" value="Variance Employee" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Employee');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvardept" name="command" value="Variance Dept Wise" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Dept Wise');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvardesig" name="command" value="Variance Desig Wise" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Desig Wise');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvarsumc" name="command" value="Variance Summary Company" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Summary Company');" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvardeptc" name="command" value="Variance Dept Wise Company" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Dept Wise Company');" />
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btnvardesigc" name="command" value="Variance Desig Wise Company" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Variance Desig Wise Company');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9011.12":
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_xleprob" name="command" value="Employee Under Probation" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Employee Under Probation');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9012.1":
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_gt" name="command" value="Gratuity" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Gratuity');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                        case "9012.2":
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;">
+                                        <input type="button" class="btn btn-success form-control sa-button" id="btn_lven" name="command" value="Leave Encashment" onclick="call_filterfrm('@Model[0].Col9','@Model[0].Col10','@Model[0].Col11','Leave Encashment');" />
+                                    </div>
+                                </div>
+                            </div>
+                            break;
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+                        @Html.Raw(ViewBag.scripCall)
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function callFoodemo(title, headid, mid, m_id, btnid) {
+        var url = "";
+        if (title == "Var Filter Form") url = "/Hr/varfilter_form";
+        else url = "/Hr/filter_form";
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid, "Myguid": '@MyGuid' },
+            success: function (pageContents) {
+                $('#myModal').width('50%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+                hidewait();
+            },
+            error: function (err) {
+                hidewait();
+            }
+        });
+    }
+
+    function call_filterfrm(headid, mid, m_id, btnid) {
+        debugger;
+        var title = "Filter Form";
+        if (mid.trim() == "9011.11") { title = "Var Filter Form"; }
+        if (btnid.trim() == "Yearly Projected Salary") { title = "Var Filter Form"; }
+        else if (btnid.trim() == "Yearly Actual Salary") { title = "Var Filter Form"; }
+        callFoodemo(title, headid, mid, m_id, btnid);
+    }
+
+    function EMP() { var data = show_Foo('Select Employee', 'EMP', '1', '@viewName', '@controllerName'); }
+
+</script>
+

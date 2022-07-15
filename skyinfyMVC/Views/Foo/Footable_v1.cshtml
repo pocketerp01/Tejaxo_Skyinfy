@@ -1,0 +1,1480 @@
+﻿@model skyinfyMVC.Models.TableResultModel
+
+@using System.Data
+
+@{
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+
+    ViewBag.Title = "Footable_v1";
+    Layout = null;
+    sgenFun sgen = new sgenFun(MyGuid);
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(MyGuid, "viewName", viewName);
+    sgen.SetSession(MyGuid, "controllerName", controllerName);
+}
+
+
+
+@using (Html.BeginForm("Footable_v1", "Foo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div id="Content1">
+
+    <script src="~/erp/adminlite/js/adminlte.min.js"></script>
+    <link href="~/erp/adminlite/dist/css/AdminLTE.min.css" rel="stylesheet" />    
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+            function close_pop() {
+
+                //create below button on Parent page
+                //<asp:Button runat="server" ID="callback1" clientIDMode="Static" Style="display:none" OnClick="callback1_Click" />
+                var mm = '@sgen.GetSession(MyGuid, "parentname")';
+                if (mm == "master") { $(parent.document.getElementById('callback0')).trigger('click'); }
+                else if (mm == "MVC") { parent.callback(); }
+                else if ($(parent.document.getElementById('callback1'))[0].tagName == "A") $(parent.document.getElementById('callback1'))[0].click();
+                else $(parent.document.getElementById('callback1')).trigger('click');
+
+                OnlyClose();
+
+            }
+
+
+            $(document).ready(function () {
+                var checktype = '@sgen.GetSession(MyGuid, "CHECKTYPE").ToString()';
+                if (checktype !== 2) {
+                    $("[type=checkbox][id=cbSelectAll]").hide();
+                }
+                else $("[type=checkbox][id=cbSelectAll]").show();
+
+                //    $(this).find(".checkbox").prop('checked', true);
+            });
+            //$(this).find(".checkbox").change(function () {
+            //
+            //    if (this.checked) {
+            //        alert('Ram');
+            //    }
+            //});
+            function CheckUncheckChildNodesForFoo1(childContainer, check) {
+
+
+                //if ($("[type=checkbox][id=cbSelectAll]:first").is("checked")}
+                if (check) {
+                    $("[type=checkbox][id=cbSelect]").prop('checked', true);
+                    $("[type=checkbox][id=cbSelectAll]").prop('checked', true);
+                }
+                else {
+                    $("[type=checkbox][id=cbSelect]").prop('checked', false);
+                    $("[type=checkbox][id=cbSelectAll]").prop('checked', false);
+                }
+
+            }
+
+
+            function CheckUncheckChildNodesForFoo2(childContainer, check, ctrl) {
+
+
+                var checktype = '@sgen.GetSession(MyGuid, "CHECKTYPE").ToString()';
+                if (checktype != 2) {
+
+                    $("[type=checkbox][id=cbSelect]").prop('checked', false);
+                    $(ctrl).prop("checked", check);
+                    document.getElementsByName(ctrl.name)[0].checked = check;
+
+                }
+                else {
+
+                    var seeklimit = '@sgen.GetSession(MyGuid, "SEEKLIMIT").ToString()';
+                    var checkall = true;
+                    document.getElementsByName(ctrl.name)[0].checked = check;
+                    var childChkBoxes = $(childContainer)[0].getElementsByTagName("input")
+                    var childChkBoxCount = childChkBoxes.length;
+                    for (var i = 1; i < childChkBoxCount; i++) {
+                        if ($(childChkBoxes[i]).children.length > 0)
+                            checkall = $(childChkBoxes[i])[0].checked;
+                        else checkall = $(childChkBoxes[i]).checked;
+                        if (!checkall) break;
+                    }
+                    $("[type=checkbox][id=cbSelectAll]").prop('checked', checkall);
+
+                }
+
+
+            }
+
+            function hidemain(ctrl) {
+
+
+                if (ctrl.children[1].children[0].children[0].classList.contains('fa-plus')) {
+                    $(ctrl.children[1].children[0].children[0]).removeClass('fa-plus');
+                    $(ctrl.children[1].children[0].children[0]).addClass('fa-minus');
+                    ctrl.parentElement.children[1].style.display = 'block';
+
+                }
+                else {
+                    $(ctrl.children[1].children[0].children[0]).removeClass('fa-minus');
+                    $(ctrl.children[1].children[0].children[0]).addClass('fa-plus');
+
+                    ctrl.parentElement.children[1].style.display = 'none';
+                }
+            }
+
+    </script>
+    <style>
+
+        ::-webkit-scrollbar {
+            width: 11px;
+            height: auto;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: black;
+            border: 0px none #ffffff;
+            border-radius: 50px;
+            /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0.00, #b6e2fd), color-stop(0.20, #91bae4), color-stop(0.50, #8fbff0), color-stop(0.51, #6ba8e4), color-stop(0.75, #87c2fb), color-stop(1.00, #bcf4fd));
+            background: -webkit-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+            background: -moz-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+            background: -o-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+            background: -ms-linear-gradient(top, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);
+            background: linear-gradient(to bottom, #b6e2fd 0%, #91bae4 20%, #8fbff0 50%, #6ba8e4 51%, #87c2fb 75%, #bcf4fd 100%);*/
+        }
+
+            ::-webkit-scrollbar-thumb:hover {
+                background: #2E9AFE;
+            }
+
+            ::-webkit-scrollbar-thumb:active {
+                background: #555;
+            }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-corner {
+            background: transparent;
+        }
+    </style>
+
+
+</div>
+    <div id="Content2">
+        <div style="margin: 10px; margin-top: 30px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12" style="margin-top: 10px!important; width: 100%">
+                        <div class="box box-default collapsed-box" style="height: auto!important; background-color: transparent!important">
+                            <div class="box-header with-border" onclick="hidemain(this);">
+                                <h3 class="box-title">Report Options</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-plus"></i>
+                                    </button>
+                                </div>
+                                <!-- /.box-tools -->
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body">
+
+                                <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+
+                                    <div class="panel">
+                                        <a class="panel-heading collapsed" role="tab" id="headingTwo" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <h4 class="panel-title">Filter Options</h4>
+                                        </a>
+                                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                            <div class="panel-body">
+                                                <div class="container">
+                                                    <div class="row">
+                                                        <div class='col-sm-3'>
+                                                            Select Column to Filter
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    @Html.DropDownListFor(m => m.ddnamesSelected, new SelectList(Model.ddnames, "Value", "Text", Model.ddnamesSelected.FirstOrDefault()), new { @id = "ddnames", @style = "width: 100%", @class = "form-control" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class='col-sm-2'>
+                                                            Select Operator
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    @*<select id="ddoperators" clientidmode="Static" runat="server" style="width: 100%" class="form-control"></select>*@
+                                                                    @Html.DropDownListFor(m => m.ddoperatorsSelected, new SelectList(Model.ddoperators, "Value", "Text", Model.ddnamesSelected.FirstOrDefault()), new { id = "ddoperators", @style = "width: 100%", @class = "form-control" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-3'>
+                                                            Enter Match String
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    <asp:TextBox runat="server" ID="txtsval" CssClass="form-control col-lg-12" placeholder="Search Here"></asp:TextBox>
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class='col-sm-4'>
+                                                            Order By
+                                                            <div class="form-group">
+                                                                <div class='input-group'>
+                                                                    @Html.ListBoxFor(m => m.ddorderbySelected, new SelectList(Model.ddorderby, "Value", "Text", Model.ddorderbySelected), new { id = "ddorderby", @style = "width: 100%", @class = "form-control" })
+                                                                    @*<select id="ddorderby" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control"></select>*@
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel">
+                                        <a class="panel-heading collapsed" role="tab" id="headingThree" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <h4 class="panel-title">View / Export Options</h4>
+                                        </a>
+                                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                                            <div class="panel-body">
+
+                                                <div class="container">
+                                                    <div class="row" style="align-items: center!important">
+                                                        <div class='col-sm-3' style="margin: auto!important">
+                                                            Select Records to View(Max 9999)
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <select id="ddpages" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control">
+                                                                        <option>10</option>
+                                                                        <option>20</option>
+                                                                        <option>30</option>
+                                                                        <option>40</option>
+                                                                        <option>50</option>
+                                                                        <option>100</option>
+                                                                    </select>
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class='col-sm-4' style="margin: auto!important">
+
+                                                            @*<%-- Select Export Option--%>*@
+                                                            <div class="form-group">
+                                                                <div class="input-group">
+                                                                    <a id="exppdf" runat="server" onserverclick="exppdf_ServerClick">
+                                                                        <img src="~/images/pdf_icon.png" style="max-height: 64px; max-width: 64px" />
+                                                                    </a>
+                                                                    <a id="expword" runat="server" onserverclick="expword_ServerClick">
+                                                                        <img src="~/images/word_icon.png" style="max-height: 64px; max-width: 64px" runat="server" />
+                                                                    </a>
+                                                                    <a id="expxls" runat="server" onserverclick="expxls_ServerClick">
+                                                                        <img src="~/images/xls_icon.ico" style="max-height: 64px; max-width: 64px" />
+                                                                    </a>
+                                                                    <a id="expcsv" runat="server" onserverclick="expcsv_ServerClick">
+                                                                        <img src="~/images/csv_icon.png" style="max-height: 64px; max-width: 64px" />
+                                                                    </a>
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-5'>
+                                                            <div class="row">
+                                                                <div class='col-sm-12'>
+                                                                    Selected Column Export
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @*<select id="ddcolumns" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control"></select>*@
+                                                                            @Html.ListBoxFor(m => m.ddcolumnsSelected, new SelectList(Model.ddcolumns, "Value", "Text", Model.ddcolumnsSelected), new { id = "ddcolumns", @style = "width: 100%", @class = "form-control" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class='col-sm-12'>
+                                                                    Select Columns to Show
+                                                                    <div class="form-group">
+                                                                        <div class='input-group'>
+                                                                            @*<select id="ddshowcols" clientidmode="Static" runat="server" style="width: 100%" multiple="true" class="form-control"></select>*@
+                                                                            @Html.ListBoxFor(m => m.ddshowcolsSelected, new SelectList(Model.ddshowcols, "Value", "Text", Model.ddshowcolsSelected), new { id = "ddshowcols", @style = "width: 100%", @class = "form-control" })
+                                                                            <span class="input-group-addon formclass"></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                @if (Model.divtempl)
+                                {
+                                    @:<div class="row" id="divtempl" style="display:block">
+                                    }
+                                else
+                                {
+                                        @:<div class="row" id="divtempl" style="display:none">
+                                        }
+
+
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <div class="title_left">
+                                                <h3 class="box-title">Saving & Selection Options</h3>
+                                            </div>
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="row">
+
+                                        <div class='col-sm-6'>
+                                            Template Name
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    <asp:TextBox runat="server" ID="txttname" CssClass="form-control col-lg-12 sa-textbox" placeholder="Template Name"></asp:TextBox>
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <asp:Label runat="server" Text="." Style="color: white"></asp:Label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    <input type="button" class="btn btn-success form-control" onclick="savetempl();" id="btn_save" style="border-radius: 10px!important;" value="Save As Template" />
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+
+
+                <div class="col-md-12" style="float: none!important">
+                    <div style="height: 10pt">
+                    </div>
+                </div>
+
+
+
+                <div class='col-sm-8'>
+                    Search Any String Here :
+                    <label id="lbltotrecords">@Model.lbltotrecords</label>
+                    @Html.HiddenFor(m => m.lbltotrecords)
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @Html.TextBoxFor(m => m.txtsearch, new { id = "txtsearch", @Class = "form-control", Width = "100%", placeholder = "Search Here" })
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="divsbtn" class='col-sm-4'>
+                    <label runat="server" Text="." Style="color: white"></label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" ID="Button1" name="command" value="Search" onClick="Searchbtn();" class="btn btn-primary btn-block margin-bottom" />
+                            @*@Html.ActionLink("Footable_v1", "Footable_v1");*@
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div id="divokbtn" class='col-sm-2'>
+                    <asp:Label runat="server" Text="." Style="color: white"></asp:Label>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" id="btnOk"  value="Get Selected" class="btn btn-primary btn-block margin-bottom" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body no-padding firstdiv" style="width: 98%;">
+                    <div class="table-responsive col-md-12" style="overflow-x: inherit!important; align-items: center;">
+                        <div id="dvGrid">
+
+
+                            <table id="grdviewnew" class="footable table toggle-medium">
+                                <thead>
+                                    <tr class="GridViewScrollHeader">
+                                        @if (Convert.ToInt16(sgen.GetSession(MyGuid, "SEEKTYPE").ToString()) == 2)
+                                        {
+                                            <th>
+                                                <input type="checkbox" runat="server" class="sa-input checkbox" id="cbSelectAll" onclick="CheckUncheckChildNodesForFoo1('#grdviewnew', this.checked);" />
+                                            </th>
+                                        }
+                                        @*@foreach (var headerValue in Model.CampaignDataTable.Columns)*@
+                                        @for (int h = 2; h < Model.CampaignDataTable.Columns.Count; h++)
+                                        {
+                                            <th class="tHeaderCell" col_name="@Model.CampaignDataTable.Columns[h].ColumnName" sort_direction='@((string.IsNullOrEmpty(Model.SortDirection)) ? "" : (@Model.CampaignDataTable.Columns[h].ColumnName.ToString() == Model.SortColumn ? (Model.SortDirection == "ASC" ? "DESC" : "ASC") : ""))'>@Model.CampaignDataTable.Columns[h].ColumnName</th>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.CampaignDataTable.Rows.Count; i++)
+                                    {
+                                        <tr>
+                                            @if (Convert.ToInt16(Session["SEEKTYPE"].ToString()) == 2)
+                                            {
+                                                <td>
+                                                    <input runat="server" type="checkbox" class="sa-input checkbox" onclick="CheckUncheckChildNodesForFoo2('#grdviewnew', this.checked, this);" id="cbSelect" checked='@Convert.ToInt16(Model.CampaignDataTable.Rows[i]["chk"])==1?true:false' />
+
+                                                </td>
+                                            }
+                                            @for (int c = 2; c < Model.CampaignDataTable.Rows[i].ItemArray.Count(); c++)
+                                            {
+
+
+                                                <td>@Model.CampaignDataTable.Rows[i].ItemArray.ElementAt(c)</td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        @Html.HiddenFor(m => m.hforderby)
+        @Html.HiddenFor(m => m.hfddcolumns)
+        @Html.HiddenFor(m => m.hfddshowcols)
+        @Html.HiddenFor(m => m.hfddpages)
+        @Html.HiddenFor(m => m.hfGridView1SV)
+        @Html.HiddenFor(m => m.hfGridView1SH)
+
+    </div>
+</div>
+</div>
+}
+
+
+<link href="~/erp/js/GridViewScroll-master/css/web.css" rel="stylesheet" />
+<script src="~/erp/js/GridViewScroll-master/js/gridviewscroll.js"></script>
+
+
+<link href="~/erp/directlink/footable.min.css" rel="stylesheet" />
+<script src="~/erp/directlink/footable.js"></script>
+
+
+
+<script type="text/javascript">
+
+
+
+    function getScrollPosition() {
+        var position = gridViewScroll.scrollPosition;
+        alert("scrollTop: " + position.scrollTop + ", scrollLeft: " + position.scrollLeft);
+    }
+    function setScrollPosition(top, left) {
+        var scrollPosition = { scrollTop: top, scrollLeft: left };
+
+        gridViewScroll.scrollPosition = scrollPosition;
+    }
+
+
+    function enhancegrid() {
+
+        var lastpos = 0;
+        gridViewScroll = new GridViewScroll({
+            elementID: "grdviewnew",
+            width: $(".firstdiv")[0].clientWidth,
+            height: 450,
+            startVertical: $("#hfGridView1S").val(),
+            startHorizontal: $("#hfGridView1SH").val(),
+            onScrollVertical: function (delta) {
+                $("#hfGridView1SV").val(delta);
+            },
+            onScrollHorizontal: function (delta) {
+                $("#hfGridView1SH").val(delta);
+            },
+
+            freezeColumn: false,
+            freezeFooter: false,
+            freezeColumnCssClass: "",
+            freezeFooterCssClass: "",
+            freezeHeaderRowCount: 1,
+            freezeColumnCount: 1,
+            onscroll: function (scrollTop, scrollLeft) {
+
+                console.log(scrollTop + " - " + scrollLeft);
+                var $o = gridViewScroll;
+
+                if (scrollTop + $o["Content"].offsetHeight >= $o["ContentGrid"].clientHeight && scrollTop + $o["Content"].offsetHeight >= lastpos) {
+                    if (lastpos < scrollTop + $o["Content"].offsetHeight) lastpos = scrollTop + $o["Content"].offsetHeight + 100;
+                    GetRecords();
+
+                    //alert('end reached');
+                }
+
+                //if ($o[0].scrollHeight - $o.scrollTop() <= $o.outerHeight()) {
+                //    console.log("pos:" + $o.scrollPosition + " S height" + $o[0].scrollHeight + " S top" + $o.scrollTop() + "O heig " + $o.outerHeight());
+
+                //}
+                //else alert('you scrolled');
+            }
+        });
+        gridViewScroll.enhance();
+
+
+
+
+        function offset(el) {
+            var rect = el.getBoundingClientRect(),
+                scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+        }
+
+        try {
+            var val = $("#grdviewnew_Header_Fixed")[0].offsetTop + "px";
+            $("#grdviewnew_Header_Freeze")[0].style.top = val;
+        } catch (err) { }
+
+
+    }
+
+
+    $(document).ready(function () {
+
+
+        //$('[id*=grdviewnew] tr :last').closest('table').closest('tr').on('click', function () {
+        //    $(this).next('tr').hide();
+        //});
+        $('.footable-row-detail-name').click(function () {
+            alert('hohoho');
+        });
+
+        $("tr.footable-row-detail").on('click', function (e) {
+
+            alert('ok report');
+            //$('table').footable().trigger('footable_collapse_all');
+            //alert("Single" + $(this)[0].sectionRowIndex);
+        });
+
+        $("table tr").on('click', function (e) {
+
+            //$('table').footable().trigger('footable_collapse_all');
+            //alert("Single" + $(this)[0].sectionRowIndex);
+        });
+        $("table tr").on('dblclick', function (e) {
+            //alert("Double" + $(this)[0].sectionRowIndex);
+        });
+
+
+        //$(".footable-row-detail").click(function (e) {
+        //    alert("Single cell" + $(this)[0].sectionRowIndex);
+        //});
+        //$('tr').dblclick(function () {
+        //
+        //    var id = $(this).attr('id');
+        //    alert("Double" + id);
+        //});
+
+
+        var seektype = '@Session["SEEKTYPE"].ToString()';
+
+        if (seektype == 2) {
+
+            $("#divsbtn")[0].classList.remove("col-sm-4");
+            $("#divsbtn")[0].classList.add("col-sm-2");
+            $("#divokbtn")[0].style.display = 'block';
+        }
+        else { $("#divokbtn")[0].style.display = 'none'; }
+
+        try {
+            var element = $(".modal-backdrop");
+            element[0].classList.remove("modal-backdrop");
+        } catch (err) { }
+
+        //try {
+        //    $("[id*=snav]").hide();
+        //    $(".left_col")[0].style.display = 'none';
+        //    $(".top_nav")[0].style.display = 'none';
+        //    $(".right_col")[0].classList.remove("right_col");
+        //    //$("#aspnetForm")[0].children[9].children[1].children[0].children[0].style.display='none'
+        //    $("#aspnetForm")[0].children[9].children[1].children[0].children[3].style.display = 'none';
+
+        //}
+        //catch (er) { }
+
+        if (!detectmob()) { enhancegrid(); }
+        else {
+
+            $('[id*=grdviewnew]').footable();
+            $('[id*=grdviewnew] tr :last').closest('table').closest('tr').find('td').show();
+            $(window).resize(function () {
+                location.reload();
+            });
+            $('[id*=grdviewnew] tr :last').closest('table').closest('tr').on('click', function () {
+
+                $(this).next('tr').hide();
+            });
+            //$('[id*=grdviewnew]').footable({
+            //    "paging": {
+            //        "enabled": true
+            //    },
+            //    "filtering": {
+            //        "enabled": true
+            //    },
+            //    "sorting": {
+            //        "enabled": true
+            //    }
+            //});
+            //Load GridView Rows when DIV is scrolled
+            var divv = document.getElementById('dvGrid');
+            divv.style.width = '100%';
+            divv.style.overflow = 'auto';
+            divv.style.height = '400px';
+
+            $("[id$=dvGrid]").on("scroll", function (e) {
+                var $o = $(e.currentTarget);
+                if ($o[0].scrollHeight - $o.scrollTop() <= $o.outerHeight()) {
+                    GetRecords();
+
+                }
+            });
+        }
+    });
+    var gridviewID = "grdviewnew";
+    var gridview = null;
+    var gridviewFreeze = null;
+    var selectedRowIndex = -1;
+
+    $(document).ready(function () {
+        gridview = $('#' + gridviewID);
+        gridviewFreeze = $('#' + gridviewID + '_Content_Freeze');
+    });
+
+    function RowMouseOver(rowIndex) {
+
+        if (selectedRowIndex == rowIndex) return;
+        try {
+            gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItemHover';
+
+            if (gridviewFreeze[0])
+                if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].addClass = 'GridviewScrollItemHover';
+        }
+        catch (err) { }
+    }
+
+    function RowMouseOut(rowIndex) {
+
+        if (selectedRowIndex == rowIndex) return;
+        try {
+            gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItem';
+
+            if (gridviewFreeze[0])
+                if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'GridViewScrollItemFreeze';
+        }
+        catch (err) { }
+    }
+
+    function RowSelect(rowIndex) {
+
+        //return;
+        //if (detectmob()) { return; }
+        if (selectedRowIndex == rowIndex) return;
+
+        RowReset(selectedRowIndex);
+
+        selectedRowIndex = rowIndex;
+        //alert(rowIndex + 1 + "Clicked");
+        //var rowss = getselection(rowIndex);
+
+        //PageMethods.Setvalues(rowss, sucs, fail);
+        //javascript: __doPostBack("grdviewnew", rowIndex);
+        gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItemSelected';
+
+        if (gridviewFreeze[0])
+            if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'GridviewScrollItemSelected';
+    }
+    function DblRowSelect(rowIndex) {
+
+        var seektype = '@Session["SEEKTYPE"].ToString()';
+        if (seektype == "0") return;
+
+        RowReset(selectedRowIndex);
+
+        selectedRowIndex = rowIndex;
+        //alert(rowIndex + 1 + "Clicked");
+
+
+
+        var rowss = getselection(selectedRowIndex);
+        if (rowss === "") {
+            alert('Please Select Atleat One Row');
+            return;
+        }
+        var obj = { "idxs": rowss };
+        myMethod_C('@controllerName', '@viewName', 'Setvalues', obj, sucs, fail);
+        //PageMethods.Setvalues(rowss, sucs, fail);
+        javascript: __doPostBack("grdviewnew", "");
+        gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItemSelected';
+        if (gridviewFreeze[0])
+            if (gridviewFreeze[0].children[0].rows[rowIndex + 1] != undefined) gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'GridviewScrollItemSelected';
+    }
+
+    function btnokclick(selectedindex) {
+
+
+        var seektype = '@Session["SEEKTYPE"].ToString()';
+        if (seektype == "0") return;
+        var seeklimit = '@Session["SEEKLIMIT"].ToString()';
+        var rowss = getselection(selectedindex);
+        if (rowss === "") {
+            alert('Please Select Atleat One Row');
+            return;
+        }
+
+        var cnt = 1;
+        try {
+            var cnt = rowss.split(',').length;
+        }
+        catch (err) { }
+        if (cnt > seeklimit) {
+            alert('Maximum Selection Limit is ' + seeklimit + ' and You have selected ' + cnt + '.Please Change Selection');
+        }
+        else {
+             var obj = { "idxs": rowss };
+        myMethod_C('@controllerName', '@viewName', 'Setvalues', obj, sucs, fail);
+            //PageMethods.Setvalues(rowss, sucs, fail);
+            javascript: __doPostBack("grdviewnew", "");
+        }
+
+
+
+    }
+
+    function getselection(selectedindex) {
+
+        var idxs = "";
+        var selected;
+        var seektype = '@Session["SEEKTYPE"].ToString()';
+        if (seektype == "0") return idxs;
+        var trs = $("[id$=grdviewnew] tr");
+        if (detectmob()) trs = $("[id$=grdviewnew] tr[onmouseout*=RowMouseOut]");
+        for (var t = 1; t < trs.length; t++) {
+            var chk;
+            if (detectmob()) chk = trs[t - 1].children[0].children[1];
+            else {
+                chk = trs[t].children[0].children[0];
+                if (t === 1) chk = trs[t].children[0].children[0].children[0];
+            } if (chk.children.length > 0)
+                selected = chk.children[0].checked;
+            else selected = chk.checked;
+
+            if (selected) {
+                if (idxs === "") idxs = (t - 1);
+                else idxs = idxs + "," + (t - 1);
+
+            }
+        }
+        if (idxs === "") {
+            idxs = selectedindex;
+        }
+        return idxs;
+    }
+    function sucs() {
+        hidewait();
+    }
+    function fail() { hidewait();}
+
+    function savetempl() {
+
+        try {
+            showwait();
+
+
+            var colfil = $("[id*=ddnames]").val().toString();
+            var oper = $("[id*=ddoperators]").val().toString();
+            var filtstr = $("[id*=txtsval]").val().toString();
+            var ordr = $("[id*=hforderby]").val().toString();
+            var records = $("[id*=hfddpages]").val().toString();
+            var colexp = $("[id*=hfddcolumns]").val().toString();
+            var colsshow = $("[id*=hfddshowcols]").val().toString();
+            var tempname = $("[id*=txttname]").val().toString();
+            if (tempname == "") {
+                hidewait();
+                alert('Template Name can not be Blank');
+                return;
+            }
+            var obj = {
+                "colfil": colfil, "oper": oper, "filtstr": filtstr, "ordr": ordr, "records": records, "colexp": colexp, "tempname": tempname, "colsshow": colsshow
+            };
+            myMethod_C('@controllerName', '@viewName', 'Save_template', obj, sucst, failt);
+            //PageMethods.Save_template(colfil, oper, filtstr, ordr, records, colexp, tempname, colsshow, sucst, failt);
+        }
+        catch (err) {
+
+            hidewait();
+            alert('Something Went Wrong .Please Check');
+        }
+    }
+    function sucst(response) {
+
+        hidewait();
+        if (response == "True") {
+            alert('Template Saved');
+        }
+        else if (response == "0") {
+            alert('Template Name Already Exist');
+
+        }
+        else {
+            alert('Error in Saving');
+        }
+    }
+    function failt(response) {
+        hidewait();
+        alert('Error in Saving');
+    }
+    function RowReset(rowIndex) {
+        gridview[0].rows[rowIndex + 1].className = 'GridviewScrollItem';
+        if (gridviewFreeze[0])
+            gridviewFreeze[0].children[0].rows[rowIndex + 1].className = 'GridViewScrollItemFreeze';
+    }
+    function GridCellClick(Rownum, CellNumber) {
+        alert("Row " + Rownum + " cell " + CellNumber);
+    }
+    function Searchbtn() {
+      //  debugger
+        showwait();
+        var searchval = $("[id$=txtsearch]")[0].value;
+        var obj = { "searchval": searchval };
+        myMethod_C('@controllerName', '@viewName', 'SetSearch', obj, sucs, fail);
+        //PageMethods.SetSearch(searchval);
+        var seektype = '@Session["SEEKTYPE"].ToString()';
+        //if (seektype != 2) {
+
+
+        //    return;
+        //}
+        var rowss = getselection("");
+
+        var opname = $("[id$=ddoperators]")[0].value;
+        var colname = $("[id$=ddnames]")[0].value;
+        var sval = $("[id$=txtsval]")[0].value;
+        searchval = $("[id$=txtsearch]")[0].value;
+
+        var colctrls = $("[id$=ddnames] option");
+        var cnts = colctrls.length;
+        var cols = "", cond = "", orderby = "";
+
+        colctrls.each(function () {
+
+            var opt = $(this);
+            if (cols == "") cols = "cast(" + opt[0].value + "  AS CHAR CHARACTER SET utf8)";
+            else cols = cols + ", cast(" + opt[0].value + " AS CHAR CHARACTER SET utf8)";
+        });
+
+
+        if (!sval == "") {
+            if (opname == "Equals To") cond = " and " + colname + " = " + sval;
+            else if (opname == "Contains") cond = " and instr(" + colname + ",'" + sval.toLowerCase() + "')>0";
+            else if (opname == "Smaller Than") cond = " and " + colname + " < '" + sval + "'";
+            else if (opname == "Greater Than") cond = " and " + colname + " > '" + sval + "'";
+        }
+        //string where = " where CONCAT(" + cols + ") LIKE '%" + txtsearch.Text.Trim() + "%' " + cond;
+
+        var where = " where INSTR(lower(CONCAT(" + cols + ")), '" + searchval.toLowerCase() + "') > 0 " + cond;
+        var hrorder = document.getElementById('hforderby').value;
+        if (hrorder == "") orderby = "sr_no";
+        else orderby = hrorder;
+        var showcols = "*";
+        var hfshowcols = document.getElementById('hfddshowcols').value;
+        if (hfshowcols == "") showcols = "*";
+        else showcols = hfshowcols;
+
+
+        if ($("[id$=grdviewnew].loader").length == 0) {
+            var row = $("[id$=grdviewnew] tr").eq(0).clone(true);
+            row.addClass("loader");
+            row.children().remove();
+            row.append('<td colspan = "999" style = "background-color:white"><img id="loader" alt="" src="/images/103.gif" /></td>');
+            $("[id$=grdviewnew]").append(row);
+        }
+        var obj1 = {
+            "idxs": rowss, "pageIndex": "1",
+            "where": where, "orderby": orderby, "showcols": showcols
+        };
+        myMethod_C('@controllerName', '@viewName', 'SearchClick', obj1, SearchSucs, onfailure);
+        //PageMethods.Setvalues(rowss, sucs, fail);
+    }
+
+    function SearchSucs(response) {
+
+        $(this).html(response);
+    }
+</script>
+
+<script type="text/javascript">
+        var pageIndex = 1;
+        var pageCount;
+
+
+        //Function to make AJAX call to the Web Method
+        function GetRecords() {
+
+            pageIndex++;
+            if (pageIndex == 2 || pageIndex <= pageCount) {
+
+                //Show Loader
+
+
+                var opname = $("[id$=ddoperators]")[0].value;
+                var colname = $("[id$=ddnames]")[0].value;
+                var sval = $("[id$=txtsval]")[0].value;
+                var searchval = $("[id$=txtsearch]")[0].value;
+
+                var colctrls = $("[id$=ddnames] option");
+                var cnts = colctrls.length;
+                var cols = "", cond = "", orderby = "";
+
+                colctrls.each(function () {
+
+                    var opt = $(this);
+                    if (cols == "") cols = "cast(" + opt[0].value + "  AS CHAR CHARACTER SET utf8)";
+                    else cols = cols + ", cast(" + opt[0].value + " AS CHAR CHARACTER SET utf8)";
+                });
+
+
+                if (!sval == "") {
+                    if (opname == "Equals To") cond = " and " + colname + " = " + sval;
+                    else if (opname == "Contains") cond = " and instr(" + colname + ",'" + sval.toLowerCase() + "')>0";
+                    else if (opname == "Smaller Than") cond = " and " + colname + " < '" + sval + "'";
+                    else if (opname == "Greater Than") cond = " and " + colname + " > '" + sval + "'";
+                }
+                //string where = " where CONCAT(" + cols + ") LIKE '%" + txtsearch.Text.Trim() + "%' " + cond;
+
+                var where = " where INSTR(lower(CONCAT(" + cols + ")), '" + searchval.toLowerCase() + "') > 0 " + cond;
+                var hrorder = document.getElementById('hforderby').value;
+                if (hrorder == "") orderby = "sr_no";
+                else orderby = hrorder;
+                var showcols = "*";
+                var hfshowcols = document.getElementById('hfddshowcols').value;
+                if (hfshowcols == "") showcols = "*";
+                else showcols = hfshowcols;
+
+
+                if ($("[id$=grdviewnew].loader").length == 0) {
+                    var row = $("[id$=grdviewnew] tr").eq(0).clone(true);
+                    row.addClass("loader");
+                    row.children().remove();
+                    row.append('<td colspan = "999" style = "background-color:white"><img id="loader" alt="" src="/images/103.gif" /></td>');
+                    $("[id$=grdviewnew]").append(row);
+                }
+                showwait();
+                var obj = {
+                    "pageIndex": pageIndex,
+                    "where": where, "orderby": orderby, "showcols": showcols
+                };
+              //  debugger
+                myMethod_C('@controllerName', '@viewName', 'getdata', obj, OnSuccess, onfailure);
+                //PageMethods.getdata(pageIndex, where, orderby, showcols, OnSuccess, onfailure);
+            }
+            else { alert('No More Data to Load'); }
+        }
+
+        //Function to recieve XML response append rows to GridView
+        var totrecords = "";
+    function OnSuccess(response) {
+
+      //  debugger
+        var isnew = false;
+        var pref = response.split('!~!~!')[0];
+
+        if (pref === "searchclick") {
+            isnew = true;
+        }
+
+
+
+
+        response = response.split('!~!~!')[1];
+
+        var xmlDoc = $.parseXML(response);
+        var xml = $(xmlDoc);
+        pageCount = parseInt(xml.find("PageCount").eq(0).find("PageCount").text());
+        totrecords = parseInt(xml.find("Totals").eq(0).find("Total").text());
+        var curritems = $("[id$=grdviewnew] tr").length - 2;
+        var customers = xml.find("MainData");
+        $("[id$=grdviewnew] .loader").remove();
+        var kk = 0;
+
+        customers.each(function () {
+          //  debugger
+            var customer = $(this);
+            kk++;
+            var cols = customer[0].children.length;
+            var row = $("[id$=grdviewnew] tr").eq(3).clone(true);
+            var seektype = '@Session["SEEKTYPE"].ToString()';
+            if (seektype == 2) {
+                var tctl = "ctl" + (curritems + kk + 1).toString().padStart(2, '0');
+                var tar;
+                var obj;
+                try {
+                    tar = $(row)[0].children[0].children[0].children[0].name.split('$');
+                    obj = $(row)[0].children[0].children[0].children[0];
+                }
+                catch (err) {
+
+                    tar = $(row)[0].children[0].children[0].name.split('$');
+                    obj = $(row)[0].children[0].children[0];
+
+                }
+                var tl = tar.length - 2;
+                tar.splice(tl, tl + 2);
+                var newname = tar.join("$");
+                newname = newname + "$" + tctl + "$cbSelect";
+                obj.name = newname;
+            }
+
+            var ss = false;
+            var ii = 0;
+            for (i = 0; i < cols; i++) {
+                var txt = "";
+
+                if (i == 0) {
+                    if (seektype == 2) {
+                        if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                            $(row[0].children[i].children[0])[0].children[0].checked = false;
+                        }
+                        else $(row[0].children[i])[0].children[0].checked = false;
+                    }
+                    else {
+                        ii = i + 1;
+                        txt = customer[0].children[ii].textContent;
+                        if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                            $(row[0].children[i].children[0]).html(txt);
+                        }
+                        else $(row[0].children[i]).html(txt);
+                    }
+                }
+                else if (i > 1) {
+                    if (seektype != 2 && i >= 2) ii = i + 2;
+                    else if (seektype == 2 && i >= 2) ii = i + 1;
+                    //else if (seektype != 2 && i == 2) ii = 3;
+                    else ii = i;
+                    if (ii < cols) {
+
+                        txt = customer[0].children[ii].textContent;
+                        if (!detectmob() && i == 0) $(row[0].children[i].children[0]).html(txt);
+                        else $(row[0].children[i]).html(txt);
+                    }
+                }
+
+                else if (i == 1) {
+                    if (seektype != 2) ii = i + 2;
+                    else ii = i;
+                    txt = customer[0].children[ii].textContent;
+                    if (!detectmob() && i == 0) $(row[0].children[i].children[0]).html(txt);
+                    else $(row[0].children[i]).html(txt);
+                }
+                else {
+
+                    if (seektype == 2) {
+                        if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                            $(row[0].children[i].children[0])[0].checked = false;
+                        }
+                        else $(row[0].children[i])[0].children[0].checked = false;
+                    }
+                    else {
+                        txt = customer[0].children[i].textContent;
+                        if (!detectmob() && i == 0 && gridViewScroll.IsHorizontalScrollbarEnabled && gridViewScroll.FreezeColumn) {
+                            $(row[0].children[i].children[0]).html(txt);
+                        }
+                        else $(row[0].children[i]).html(txt);
+                    }
+                }
+
+            }
+
+            //seektype
+            //$(".name", row).html(customer.find("ContactName").text());
+            //$(".city", row).html(customer.find("City").text());
+            //$(".postal", row).html(customer.find("PostalCode").text());
+            //$(".country", row).html(customer.find("Country").text());
+
+            var ind = (curritems * 1 + kk * 1) - 1;
+            //$(row[0])[0].setAttribute("onmouseover", "RowMouseOver(" + ind + ");");
+            //$(row[0])[0].setAttribute("onmouseout", "RowMouseOut(" + ind + ");");
+            //if (seektype==2)$(row[0])[0].setAttribute("ondblclick", "DblRowSelect(" + ind + ");");
+            //else $(row[0])[0].setAttribute("onclick", "RowSelect(" + ind + ");");
+
+            //$(row[0])[0].setAttribute("onmouseover", "RowMouseOver(" + ind + ");");
+            //$(row[0])[0].setAttribute("onmouseout", "RowMouseOut(" + ind + ");");
+            $(row[0])[0].setAttribute("ondblclick", "btnokclick(" + ind + ");");
+            $(row[0])[0].setAttribute("onclick", "RowSelect(" + ind + ");");
+            $(row[0])[0].setAttribute("data-id", ind);
+
+
+            //var childs = $(row[0])[0].children;
+            //for (var c = 0; c < childs.length; c++) {
+            //
+            //    var cell = childs[c];
+            //    //cell.off('onclick');
+            //    $(cell).setAttribute("onclick", "javascript: GridCellClick('" + ind + "','" + c + "');");
+            //}
+            if (isnew == true) {
+              //  debugger
+                var tr1 = $("[id$=grdviewnew] tbody tr").eq(0).clone();
+                $("[id$=grdviewnew] tbody").empty();
+                for (var rr = 0; rr < $(row).children().length; rr++) {
+                    var val = row.children()[rr].innerText;
+                    var div = $(tr1).children(rr).find("div")[rr];
+                    try {
+                        $(div)[0].innerText = val;
+                        $(row.children()[rr]).html(div);
+                    }
+                    catch (err) {
+                        $(row.children()[rr]).html(val);
+                    }
+                    isnew = false;
+                }
+            }
+            $("[id$=grdviewnew]").append(row);
+        });
+        //gridViewScroll.undo();
+     //   debugger
+            var curlen = $("[id$=grdviewnew] tr").length - 1;
+            var lblp = document.getElementById('lbltotrecords');
+            lblp.innerText = "Showing " + curlen + " of Total " + totrecords;
+
+        if (!detectmob()) {
+            gridViewScroll.enhance();
+
+            try {
+                var val = $("#grdviewnew_Header_Fixed")[0].offsetTop + "px";
+                $("#grdviewnew_Header_Freeze")[0].style.top = val;
+            } catch (err) { }
+
+
+            setScrollPosition(750 * (pageIndex - 1), 0);
+        }
+            //enhancegrid();
+            //Hide Loader
+            //$("#loader").hide();
+            hidewait();
+        }
+        function onfailure(response) {
+           // debugger
+            pageIndex--;
+            hidewait();
+            //alert(response + "Failure");
+        }
+
+</script>
+<style>
+    .select2-selection__choice {
+        color: white;
+    }
+
+    .no-search .select2-search {
+        display: none
+    }
+
+    .footable-row-detail-value {
+        word-wrap: break-word !important;
+        width: 200px !important;
+    }
+</style>
+
+<script src="~/erp/css/select2/select2_4.0.6.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var myHidden = document.getElementById('hfddpages');
+        if (!myHidden.value == "") {
+            var newStateVal = myHidden.value.split(',');
+            var local = false; var localnames = "";
+            var extra = false; var extranames = "";
+            for (i = 0; i < newStateVal.length; i++) {
+                // Set the value, creating a new option if necessary
+                if ($("#ddpages").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (localnames == "") localnames = newStateVal[i];
+                    else localnames = localnames + "," + newStateVal[i];
+                    local = true;
+                    var element = $("#ddpages").find("option[value='" + newStateVal[i] + "']")[0];
+                    var $element = $(element);
+                    $element.detach();
+                    $("#ddpages").append($element);
+
+
+                }
+                else if (!$("#ddpages").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (extranames == "") extranames = newStateVal[i];
+                    else extranames = extranames + "," + newStateVal[i];
+                    extra = true;
+                }
+            }
+            if (local) {
+
+                $("#ddpages").val(localnames.split(',')).trigger('change.select2');
+            }
+            if (extra) {
+                // Create the DOM option that is pre-selected by default
+                for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddpages").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                    // Append it to the select
+                    //$("#ContentPlaceHolder1_email").append(newState);
+                }
+            }
+        }
+        else $("#ddpages").val(null).trigger('change.select2');
+
+        //$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+        $("#ddpages").trigger('change');
+
+        var myHidden = document.getElementById('hfddcolumns');
+        if (!myHidden.value == "") {
+            var newStateVal = myHidden.value.split(',');
+            var local = false; var localnames = "";
+            var extra = false; var extranames = "";
+            for (i = 0; i < newStateVal.length; i++) {
+                // Set the value, creating a new option if necessary
+                if ($("#ddcolumns").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (localnames == "") localnames = newStateVal[i];
+                    else localnames = localnames + "," + newStateVal[i];
+                    local = true;
+                    var element = $("#ddcolumns").find("option[value='" + newStateVal[i] + "']")[0];
+                    var $element = $(element);
+                    $element.detach();
+                    $("#ddcolumns").append($element);
+                }
+                else if (!$("#ddcolumns").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (extranames == "") extranames = newStateVal[i];
+                    else extranames = extranames + "," + newStateVal[i];
+                    extra = true;
+                }
+            }
+            if (local) {
+
+                $("#ddcolumns").val(localnames.split(',')).trigger('change.select2');
+            }
+            if (extra) {
+                // Create the DOM option that is pre-selected by default
+                for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddcolumns").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                    // Append it to the select
+                    //$("#ContentPlaceHolder1_email").append(newState);
+                }
+            }
+        }
+
+        var myHidden = document.getElementById('hfddshowcols');
+        if (!myHidden.value == "") {
+            var newStateVal = myHidden.value.split(',');
+            var local = false; var localnames = "";
+            var extra = false; var extranames = "";
+            for (i = 0; i < newStateVal.length; i++) {
+                // Set the value, creating a new option if necessary
+                if ($("#ddshowcols").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (localnames == "") localnames = newStateVal[i];
+                    else localnames = localnames + "," + newStateVal[i];
+                    local = true;
+                    var element = $("#ddshowcols").find("option[value='" + newStateVal[i] + "']")[0];
+                    var $element = $(element);
+                    $element.detach();
+                    $("#ddshowcols").append($element);
+                }
+                else if (!$("#ddshowcols").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (extranames == "") extranames = newStateVal[i];
+                    else extranames = extranames + "," + newStateVal[i];
+                    extra = true;
+                }
+            }
+            if (local) {
+
+                $("#ddshowcols").val(localnames.split(',')).trigger('change.select2');
+            }
+            if (extra) {
+                // Create the DOM option that is pre-selected by default
+                for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddshowcols").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                    // Append it to the select
+                    //$("#ContentPlaceHolder1_email").append(newState);
+                }
+            }
+        }
+
+        var myHidden = document.getElementById('hforderby');
+        if (!myHidden.value == "") {
+            var newStateVal = myHidden.value.split(',');
+            var local = false; var localnames = "";
+            var extra = false; var extranames = "";
+            for (i = 0; i < newStateVal.length; i++) {
+                // Set the value, creating a new option if necessary
+                if ($("#ddorderby").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (localnames == "") localnames = newStateVal[i];
+                    else localnames = localnames + "," + newStateVal[i];
+                    local = true;
+                    var element = $("#ddorderby").find("option[value='" + newStateVal[i] + "']")[0];
+                    var $element = $(element);
+                    $element.detach();
+                    $("#ddorderby").append($element);
+                }
+                else if (!$("#ddorderby").find("option[value='" + newStateVal[i] + "']").length) {
+                    if (extranames == "") extranames = newStateVal[i];
+                    else extranames = extranames + "," + newStateVal[i];
+                    extra = true;
+                }
+            }
+            if (local) {
+
+                $("#ddorderby").val(localnames.split(',')).trigger('change.select2');
+            }
+            if (extra) {
+                // Create the DOM option that is pre-selected by default
+                for (i = 0; i < extranames.split(',').length; i++) {
+
+                    $("#ddorderby").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                    // Append it to the select
+                    //$("#ContentPlaceHolder1_email").append(newState);
+                }
+            }
+        }
+        else $("#ddorderby").val(null).trigger('change.select2');
+
+        //$("#ContentPlaceHolder1_email").append('<option value="foo" data-select2-tag="true" selected="selected">Foo</option>');
+        $("#ddorderby").trigger('change');
+
+
+
+
+        $("#ddorderby,#ddcolumns").select2({
+            tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+                var myHidden = document.getElementById('hforderby');
+                myHidden.value = $('#ddorderby').val().toString();
+
+                if ($("#ddorderby,ddcolumn option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+                }
+                else {
+
+                    $(container).css("background-color", "red");
+                }
+
+                return data.text;
+            },
+            multiple: true,
+
+        });
+
+
+        $("#ddcolumns").select2({
+            tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+                var myHidden = document.getElementById('hfddcolumns');
+                myHidden.value = $('#ddcolumns').val().toString();
+
+                if ($("#ddcolumns option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+                }
+                else {
+
+                    $(container).css("background-color", "red");
+                }
+
+                return data.text;
+            },
+            multiple: true,
+
+        }).on('select2:unselecting', function (e) {
+            var myHidden = document.getElementById('hfddcolumns');
+            list = myHidden.value.split(',');
+            list.splice(list.indexOf(e.params.args.data.id), 1);
+            list.join(',');
+            myHidden.value = list.join(',');
+        });
+
+        $("#ddshowcols").select2({
+            tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+                var myHidden = document.getElementById('hfddshowcols');
+                myHidden.value = $('#ddshowcols').val().toString();
+
+                if ($("#ddshowcols option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+                }
+                else {
+
+                    $(container).css("background-color", "red");
+                }
+
+                return data.text;
+            },
+            multiple: true,
+
+        }).on('select2:unselecting', function (e) {
+            var myHidden = document.getElementById('hfddshowcols');
+            list = myHidden.value.split(',');
+            list.splice(list.indexOf(e.params.args.data.id), 1);
+            list.join(',');
+            myHidden.value = list.join(',');
+        });
+
+
+        $("#ddorderby,#ddcolumns,#ddshowcols").on("select2:select", function (evt) {
+            var element = evt.params.data.element;
+            var $element = $(element);
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+        });
+
+        $("#ddpages").select2({
+            tags: true,
+            tokenSeparators: [",", ";", " "],
+            templateSelection: function (data, container) {
+                var myHidden = document.getElementById('hfddpages');
+                myHidden.value = $('#ddpages').val().toString();
+
+                if ($("#ddpages option[value='" + data.text + "']").not("[data-select2-tag='true']").length > 0) {
+                    $(container).css("background-color", "blue");
+                }
+                else {
+
+                    $(container).css("background-color", "blue");
+                }
+
+                return data.text;
+            },
+            multiple: true,
+            maximumSelectionLength: 1,
+        });
+
+        $("#ddpages").on('select2:open', function () {
+            $('.select2-search__field').attr('maxlength', 5);
+        });
+
+    });
+
+</script>
+

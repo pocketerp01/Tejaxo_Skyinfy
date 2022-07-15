@@ -1,0 +1,216 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                           <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @if (Model[0].Col14 == "8001.4")
+                            {
+                                <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="editfun();" />
+                            }
+                            else
+                            {
+                                <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="JOINEDITFUN();" />
+                            }
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                @*<div class='col-sm-2'>
+                        <div class="form-group">
+                            <div class='input-group'>
+                                <button type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsavenew id="btnsavenew" name="command" value='@Model[0].Col100' accesskey="W">@Model[0].Col100</button>
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>*@
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            @if (Model[0].Col14 == "8001.4")
+                            {
+                                <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="viewfun();" />
+                            }
+                            else if (Model[0].Col14 == "9003.3.9")
+                            {
+                                <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="JOINVIEWFUN();" />
+                            }
+                            else
+                            {
+                                <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="EXPVIEWFUN();" />
+                            }
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn form-control sa-button sa-btncancel" id="btncancel" formnovalidate name="command" value="Cancel" accesskey="C" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url1" })
+
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab1" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_lable1" })
+    @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_lable2" })
+    @Html.HiddenFor(model => model[0].Col21, new { @id = "hf_lable3" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_lable4" })
+    @Html.HiddenFor(model => model[0].Col23, new { @id = "hf_msttype" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name" id="lbl_vchno" runat="server">Doc no.<span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_vchno", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc Number", @ReadOnly = "true" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @if (Model[0].Col14 == "9003.3.9")
+                        {
+                            <div class='col-sm-4' id="div_ddl1" runat="server" visible="false">
+                                <label for="first-name" id="lbl_app_user" runat="server">@Model[0].Col19<span class="ClientProfileLabelColor"> *</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_user", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (Model[0].Col14 == "8001.2")
+                        {
+                            <div class='col-sm-4' id="div_ddl2" runat="server" visible="false">
+                                <label for="first-name" id="lbl_app_admin" runat="server">@Model[0].Col20<span class="ClientProfileLabelColor"> *</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_approve_admin", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @style = "width:100%", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                            @if (Model[0].Col14 == "9003.3.9" || Model[0].Col14 == "8001.1")
+                            {
+                                <div class='col-sm-4' id="div_txt1" runat="server" visible="false">
+                                    <label for="first-name" id="lbl_noe" runat="server">@Model[0].Col21<span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col17, new { @id = "expense_txt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                            @*<asp:TextBox ID="expense_txt" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" Enabled="false"></asp:TextBox>*@
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (Model[0].Col14 == "8001.1")
+                            {
+                                <div class='col-sm-4' id="div_txt2" runat="server" visible="false">
+                                    <label for="first-name" id="lbl_code" runat="server">@Model[0].Col22<span class="ClientProfileLabelColor">*</span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col18, new { @id = "expense_code_txt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                            @*<asp:TextBox ID="expense_code_txt" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" Enabled="false"></asp:TextBox>*@
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+    var shown = true;
+
+    $(document).ready(function () {
+        debugger;
+         @Html.Raw(ViewBag.scripCall);
+         $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+    function editfun() { var data = show_Foo('Select Entry to Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function JOINEDITFUN() { var data = show_Foo('Select Entry to Edit', 'JEDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function EXPVIEWFUN() { var data = show_Foo('Nature Of Expense','EXPVIEW', '0','@viewName', '@controllerName'); }
+    function JOINVIEWFUN() { var data = show_Foo('List of Joining Age Master','JVIEW', '0','@viewName', '@controllerName'); }
+
+</script>
+
+

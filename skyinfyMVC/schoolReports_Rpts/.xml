@@ -1,0 +1,229 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="SGTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="REC_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="CREATED_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="VCH_NUM" type="xs:string" minOccurs="0" />
+                <xs:element name="VCH_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="TYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="CLIENT_UNIT_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="ENT_BY" type="xs:string" minOccurs="0" />
+                <xs:element name="ENT_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="EDIT_BY" type="xs:string" minOccurs="0" />
+                <xs:element name="INAME" type="xs:string" minOccurs="0" />
+                <xs:element name="ICODE" type="xs:string" minOccurs="0" />
+                <xs:element name="ACODE" type="xs:string" minOccurs="0" />
+                <xs:element name="ANAME" type="xs:string" minOccurs="0" />
+                <xs:element name="CHLNO" type="xs:string" minOccurs="0" />
+                <xs:element name="CHLDATE" type="xs:string" minOccurs="0" />
+                <xs:element name="INVNO" type="xs:string" minOccurs="0" />
+                <xs:element name="INVDATE" type="xs:string" minOccurs="0" />
+                <xs:element name="EWAYNO" type="xs:string" minOccurs="0" />
+                <xs:element name="EWAYDATE" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYSTK" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYIN" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYOUT" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYCHL" type="xs:string" minOccurs="0" />
+                <xs:element name="UOM" type="xs:string" minOccurs="0" />
+                <xs:element name="UOM2" type="xs:string" minOccurs="0" />
+                <xs:element name="IRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="PONO" type="xs:string" minOccurs="0" />
+                <xs:element name="PODATE" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYPO" type="xs:string" minOccurs="0" />
+                <xs:element name="INSPECTED" type="xs:string" minOccurs="0" />
+                <xs:element name="QTYBAL" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="DEPTNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="IAMOUNT" type="xs:string" minOccurs="0" />
+                <xs:element name="RGPTYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="TOTREMARK" type="xs:string" minOccurs="0" />
+                <xs:element name="CONTACTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="DATE1" type="xs:string" minOccurs="0" />
+                <xs:element name="DATE2" type="xs:string" minOccurs="0" />
+                <xs:element name="DESIG" type="xs:string" minOccurs="0" />
+                <xs:element name="IREMARK" type="xs:string" minOccurs="0" />
+                <xs:element name="PAY_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="PRICE_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="HSNO" type="xs:string" minOccurs="0" />
+                <xs:element name="IGST" type="xs:string" minOccurs="0" />
+                <xs:element name="CGST" type="xs:string" minOccurs="0" />
+                <xs:element name="SGST" type="xs:string" minOccurs="0" />
+                <xs:element name="SHIPFROM" type="xs:string" minOccurs="0" />
+                <xs:element name="SHIPTO" type="xs:string" minOccurs="0" />
+                <xs:element name="CPARTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="ORDQTY" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="DISCTYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="DISCAMT" type="xs:string" minOccurs="0" />
+                <xs:element name="LINEAMOUNT" type="xs:string" minOccurs="0" />
+                <xs:element name="COND" type="xs:string" minOccurs="0" />
+                <xs:element name="BASICAMT" type="xs:string" minOccurs="0" />
+                <xs:element name="GDISC" type="xs:string" minOccurs="0" />
+                <xs:element name="GFREIGHT" type="xs:string" minOccurs="0" />
+                <xs:element name="INSURANCE" type="xs:string" minOccurs="0" />
+                <xs:element name="GINSTLCHRG" type="xs:string" minOccurs="0" />
+                <xs:element name="GSERCHRG" type="xs:string" minOccurs="0" />
+                <xs:element name="GAMC" type="xs:string" minOccurs="0" />
+                <xs:element name="GLOADCHRG" type="xs:string" minOccurs="0" />
+                <xs:element name="GOTHRCHRG" type="xs:string" minOccurs="0" />
+                <xs:element name="GTAXAMT" type="xs:string" minOccurs="0" />
+                <xs:element name="GAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="POTYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="STORE" type="xs:string" minOccurs="0" />
+                <xs:element name="TMODE" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="VCH_DATE1" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <NAME>name</NAME>
+    <SGTIN>gstin</SGTIN>
+    <ADDRESS>address</ADDRESS>
+    <REC_ID>rec_id</REC_ID>
+    <CREATED_DATE>created_date</CREATED_DATE>
+    <VCH_NUM>vch_num</VCH_NUM>
+    <VCH_DATE>vch_date</VCH_DATE>
+    <TYPE>type</TYPE>
+    <CLIENT_ID>client_id</CLIENT_ID>
+    <CLIENT_UNIT_ID>client_unit_id</CLIENT_UNIT_ID>
+    <ENT_BY>ent_by</ENT_BY>
+    <ENT_DATE>ent_date</ENT_DATE>
+    <EDIT_BY>edit_by</EDIT_BY>
+    <INAME>iname</INAME>
+    <ICODE>icode</ICODE>
+    <ACODE>acode</ACODE>
+    <ANAME>aname</ANAME>
+    <CHLNO>chlno</CHLNO>
+    <CHLDATE>chldate</CHLDATE>
+    <INVNO>invno</INVNO>
+    <INVDATE>invdate</INVDATE>
+    <EWAYNO>ewayno</EWAYNO>
+    <EWAYDATE>ewaydate</EWAYDATE>
+    <QTYSTK>qtystk</QTYSTK>
+    <QTYIN>qtyin</QTYIN>
+    <QTYOUT>qtyout</QTYOUT>
+    <QTYCHL>qtychl</QTYCHL>
+    <UOM>uom</UOM>
+    <UOM2>uom2</UOM2>
+    <IRATE>irate</IRATE>
+    <PONO>pono</PONO>
+    <PODATE>podate</PODATE>
+    <QTYPO>qtypo</QTYPO>
+    <INSPECTED>inspected</INSPECTED>
+    <QTYBAL>qtybal</QTYBAL>
+    <DEPTNO>deptno</DEPTNO>
+    <DEPTNAME>deptname</DEPTNAME>
+    <IAMOUNT>iamount</IAMOUNT>
+    <RGPTYPE>rgptype</RGPTYPE>
+    <TOTREMARK>totremark</TOTREMARK>
+    <CONTACTNO>contactno</CONTACTNO>
+    <DATE1>date1</DATE1>
+    <DATE2>date2</DATE2>
+    <DESIG>desig</DESIG>
+    <IREMARK>iremark</IREMARK>
+    <PAY_TERM>pay_term</PAY_TERM>
+    <PRICE_TERM>price_term</PRICE_TERM>
+    <HSNO>hsno</HSNO>
+    <IGST>igst</IGST>
+    <CGST>cgst</CGST>
+    <SGST>sgst</SGST>
+    <SHIPFROM>shipfrom</SHIPFROM>
+    <SHIPTO>shipto</SHIPTO>
+    <CPARTNO>cpartno</CPARTNO>
+    <ORDQTY>ordqty</ORDQTY>
+    <TAXRATE>taxrate</TAXRATE>
+    <DISCTYPE>disctype</DISCTYPE>
+    <DISCAMT>discamt</DISCAMT>
+    <LINEAMOUNT>lineamount</LINEAMOUNT>
+    <COND>cond</COND>
+    <BASICAMT>basicamt</BASICAMT>
+    <GDISC>gdisc</GDISC>
+    <GFREIGHT>gfreight</GFREIGHT>
+    <INSURANCE>insurance</INSURANCE>
+    <GINSTLCHRG>ginstlchrg</GINSTLCHRG>
+    <GSERCHRG>gserchrg</GSERCHRG>
+    <GAMC>gamc</GAMC>
+    <GLOADCHRG>gloadchrg</GLOADCHRG>
+    <GOTHRCHRG>gothrchrg</GOTHRCHRG>
+    <GTAXAMT>gtaxamt</GTAXAMT>
+    <GAMT>0</GAMT>
+    <POTYPE>potype</POTYPE>
+    <STORE>store</STORE>
+    <TMODE>tmode</TMODE>
+    <PARTNO>partno</PARTNO>
+    <VCH_DATE1>vch_date1</VCH_DATE1>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Demo International School</COMPANY_NAME>
+    <COMPANY_ADDRESS>sec 31demo address</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>07</COMPANY_STATE>
+    <COMPANY_CITY>Delhi Cantt.</COMPANY_CITY>
+    <COMPANY_PINCODE>121001</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>satest39@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>demo.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>8989898989</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>8989898989</COMPANY_ALTERNATE_CONTACT_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>unit1</UNIT_NAME>
+    <UNIT_ADDRESS>sec 31</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121001</UNIT_PINCODE>
+    <UNIT_EMAIL>satest39@gmail.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>9090909090</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9090909090</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>-</SEPTR>
+  </Branch_Detail>
+</NewDataSet>

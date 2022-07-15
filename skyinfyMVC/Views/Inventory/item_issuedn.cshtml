@@ -1,0 +1,1204 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var newstyle = "style=visibility:visible;";
+    var newauth = "";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    DataTable tmp = sgen.getdata(userCode, "select * from controls where trim(upper(param5))='MATERIAL ISSUANCE' and type='VDC'");
+    string vis = "";
+    string mandatory = "sa-mandatory";
+    #region
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2' " + newstyle + " >" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " id='btnnew' onclick='setTableDatat(); newfun();' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + editstyle + ">" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id ='btnedit' onclick='setTableDatat();editfun();' name='command' value='Edit' accesskey='I'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + savestyle + " >" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id ='btnsave' onclick='setTableDatat();' name='command' value='" + Model[0].Col13 + "' accesskey= '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + savenewstyle + " >" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " onclick ='setTableDatat();' id='btnsavenew' name='command' value='" + Model[0].Col100 + "' accesskey='W'>" + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' " + viewstyle + ">" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' onclick='setTableDatat();viewfun();' id='btndetail' name='command' value='View' accesskey='V'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='sa-btncancel form-control sa-button' formnovalidate onclick='setTableDatat();' id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' formnovalidate onclick='printfun();' id='btnprint' name='command' value='Print' accesskey='P'><u>P</u>rint</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (Model[0].Col133 == "N")
+    {
+        newstyle = "style=display:none;";
+        savestyle = "style=display:none;";
+        savenewstyle = "style=display:none;";
+        newauth = "N";
+    }
+    if (Model[0].Col134 == "N") { editstyle = "style=display:none;"; }
+    if (Model[0].Col135 == "N")
+    {
+        viewstyle = "style=display:none;";
+        viewauth = "N";
+    }
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>MATERIAL ISSUANCE</h3>
+                        <h5>@Model[0].Col9</h5>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "" })
+    @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_rno" })
+    @Html.HiddenFor(model => model[0].Col28, new { @id = "m_module3" })
+    @Html.HiddenFor(model => model[0].Col50, new { @id = "hf_mrsfstr" })
+    @Html.HiddenFor(model => model[0].Col60, new { @id = "hf_cf1" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+    @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+    @Html.HiddenFor(model => model[0].Col133, new { @id = "hf_btnnew" })
+    @Html.HiddenFor(model => model[0].Col134, new { @id = "hf_btnedit" })
+    @Html.HiddenFor(model => model[0].Col135, new { @id = "hf_btnview" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        @if (tmp.Select("param3='Doc No'")[0]["param2"].ToString() == "Y")
+                        {
+                            if (tmp.Select("param3='Doc No'")[0]["param1"].ToString().Trim().Equals("Y"))
+                            {
+                                mandatory = "sa-mandatory";
+                            }
+                            else { mandatory = ""; }
+                            <div class='col-sm-3'>
+                                <label for="first-name">@tmp.Select("param3='Doc No'")[0]["name"].ToString() <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_docno", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @readonly = true })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (tmp.Select("param3='Issued Date'")[0]["param2"].ToString() == "Y")
+                        {
+                            if (tmp.Select("param3='Issued Date'")[0]["param1"].ToString().Trim().Equals("Y"))
+                            {
+                                mandatory = "sa-mandatory";
+                            }
+                            else { mandatory = ""; }
+                            <div class='col-sm-3'>
+                                <label for="first-name">@tmp.Select("param3='Issued Date'")[0]["name"].ToString()<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_indentdate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date " + mandatory + "" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (tmp.Select("param3='Department'")[0]["param2"].ToString() == "Y")
+                        {
+                            if (tmp.Select("param3='Department'")[0]["param1"].ToString().Trim().Equals("Y"))
+                            {
+                                mandatory = "sa-mandatory";
+                            }
+                            else { mandatory = ""; }
+                            <div class='col-sm-3'>
+                                <label for="first-name">@tmp.Select("param3='Department'")[0]["name"].ToString()<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_department", @class = "sa-select2-multiple col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "20", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        @if (tmp.Select("param3='Designation'")[0]["param2"].ToString() == "Y")
+                        {
+                            if (tmp.Select("param3='Designation'")[0]["param1"].ToString().Trim().Equals("Y"))
+                            {
+                                mandatory = "sa-mandatory";
+                            }
+                            else { mandatory = ""; }
+                            <div class='col-sm-3'>
+                                <label for="first-name">@tmp.Select("param3='Designation'")[0]["name"].ToString()<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_desig", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "", @MaxLength = "20", @multiple = "multiple" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="row">
+
+                        @if (Model[0].Col28 == "bhmain")
+                        {
+                            if (tmp.Select("param3='Select_Function'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='Select_Function'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='Select_Function'")[0]["name"].ToString()</label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_fun", @onkeydown = "return false;", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" + mandatory + "", placeholder = "" + @tmp.Select("param3='Select_Function'")[0]["name"].ToString() + "", autocomplete = "off" })
+                                            <span class="input-group-addon sa-cursor" data-toggle="tooltip" data-placement="top" title="Select Function" id="btn_str" onclick="selectfun(this);"><i class="fa fa-search"></i></span>
+
+                                            @*<span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Func" id="spn_add" onclick="selectfun(this);"><i class="fa fa-search"></i></span>*@
+                                            @*<a id="btn_str" data-toggle="tooltip" data-placement="top" title="Select Function" onclick="selectfun(this)"><i class="fa fa-search"></i></a>*@
+
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            if (tmp.Select("param3='Order Id'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='Order Id'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='Order Id'")[0]["name"].ToString()</label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_ord", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        @if (tmp.Select("param3='Movement Type'")[0]["param2"].ToString() == "Y")
+                        {
+                            if (tmp.Select("param3='Movement Type'")[0]["param1"].ToString().Trim().Equals("Y"))
+                            {
+                                mandatory = "sa-mandatory";
+                            }
+                            else { mandatory = ""; }
+                            <div class='col-sm-3'>
+                                <label for="first-name">@tmp.Select("param3='Movement Type'")[0]["name"].ToString()</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @*@Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_mmt", @class = "sa-select2-single col-md-12 col-sm-12 col-xs-12 sa-textbox" + mandatory + "", @MaxLength = "20", @multiple = "multiple", onchange = "getfloc();" })*@
+                                        @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_mmt", @class = "sa-select2-single col-md-12 col-sm-12 col-xs-12 sa-textbox" + mandatory + "", @MaxLength = "20", @multiple = "multiple" })
+                                        @*@Html.CheckBoxFor(model => model[0].Chk1, new { @id = "chk_consume", @class = "sa-input checkbox consm", onclick = "getfloc();" })*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @*<div class='col-sm-3' style="display:none" id="div_floc">
+                                <label for="first-name">Location</label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_floc", @class = "sa-select2-multiple col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @multiple = "multiple", style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>*@
+
+                        @if (tmp.Select("param3='Remark'")[0]["param2"].ToString() == "Y")
+                        {
+                            if (tmp.Select("param3='Remark'")[0]["param1"].ToString().Trim().Equals("Y"))
+                            {
+                                mandatory = "sa-mandatory";
+                            }
+                            else { mandatory = ""; }
+                            <div class='col-sm-3'>
+                                <label for="first-name">@tmp.Select("param3='Remark'")[0]["name"].ToString()<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="form-group ">
+                                    <div class='input-group'>
+                                        @Html.TextAreaFor(model => model[0].Col21, new { @id = "txt_remark", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    @if (Model[0].Col28 == "bhmain")
+                    {
+                        <div class="row">
+                            @if (tmp.Select("param3='Total_Paxes'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='Total_Paxes'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='Total_Paxes'")[0]["name"].ToString()<span class="ClientProfileLabelColor"></span></label>
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_tot_pax", @readonly = true, @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (tmp.Select("param3='Total_Pax_Amount'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='Total_Pax_Amount'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='Total_Pax_Amount'")[0]["name"].ToString()<span class="ClientProfileLabelColor"></span></label>
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_tot_amt", @readonly = true, @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            @if (tmp.Select("param3='Cost_Per_Pax'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='Cost_Per_Pax'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='Cost_Per_Pax'")[0]["name"].ToString()<span class="ClientProfileLabelColor"></span></label>
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_cost", @readonly = true, @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    <div class="row">
+                        @if (Model[0].Col12 == null || Model[0].Col12 == "30") { }
+                        else
+                        {
+                            if (tmp.Select("param3='MRS_No'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='MRS_No'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='MRS_No'")[0]["name"].ToString()</label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_mrsno", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox " + mandatory + "" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            if (tmp.Select("param3='MRS_Date'")[0]["param2"].ToString() == "Y")
+                            {
+                                if (tmp.Select("param3='MRS_Date'")[0]["param1"].ToString().Trim().Equals("Y"))
+                                {
+                                    mandatory = "sa-mandatory";
+                                }
+                                else { mandatory = ""; }
+                                <div class='col-sm-3'>
+                                    <label for="first-name">@tmp.Select("param3='MRS_Date'")[0]["name"].ToString()</label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_mrsdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        <div class="col-sm-2">
+                            <label for="first-name"></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="btnloc" onclick="setTableDatat();" @ViewBag.vfill name="command" value="Fill Location" />
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">Total Qty Req :</div>
+        <div class="col-sm-1" id="div_qtyreq"></div>
+        <div class="col-sm-2">Total Qty Issue :</div>
+        <div class="col-sm-1" id="div_qtyissue"></div>
+        <div class="col-sm-2">Total Qty Req Bal :</div>
+        <div class="col-sm-1" id="div_qtyreqbal"></div>
+        <div class="col-sm-2">Total No. Of Pkt :</div>
+        <div class="col-sm-1" id="div_pktno"></div>
+    </div>
+    <hr />
+
+    if (Model.Count < 1)
+    { }
+    else
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            DataTable dtm = Model[i].dt1;
+            if (dtm != null)
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+
+                        <div class="x_content">
+                            <div class="row">
+                                <h5>Select Mrs Item</h5>
+
+                                <div class="grid-container">
+                                    <div class="grid" id="grd1">
+
+                                        @foreach (DataColumn dc in dtm.Columns)
+                                        {
+                                            int mlength = 20;
+                                            try
+                                            {
+                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                            }
+                                            catch (Exception err) { }
+                                            int k = 0;
+                                            if (dc.Ordinal == 0)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:70px;z-index:10;left:0px;position:sticky;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' data-sakeys="gloval">
+                                                            <label>@(k + 1)</label>
+                                                            @*@if (dr[dc].ToString().Trim().Length < 20)
+                                                                {*@
+                                                            <input name="command" onclick="sethfval('@k');getitem();" type="button" value="+" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate data-toggle="tooltip" title="Add More" />
+                                                            <button name="command" onclick="sethfval('@k');" type="submit" value="-" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate>-</button>
+                                                            @*}*@
+                                                            <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                        </div>
+                                                        k++;
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 1)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:140px;z-index:10;left:100px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 2)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:200px;z-index:50;left:240px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 6)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" onblur="calcreq();" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 7)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" onblur="calcissue();" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 11)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 12)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 13)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @*if (Model[0].Col12 == "32")
+                        {
+                            dtm = Model[i].dt2;
+                                   if (dtm != null)
+                                   {
+                                   <div class="col-md-12 col-sm-12 col-xs-12">
+                                       <div class="x_panel" style="padding: 3px 15px !important">
+
+                                           <div class="x_content">
+                                               <div class="row">
+                                                   <h5>Select MRS Item Batchwise For Issue</h5>
+
+                                                   <div class="grid-container">
+                                                       <div class="grid" id="grd2">
+
+                                                           @foreach (DataColumn dc in dtm.Columns)
+                                                           {
+                                                               int mlength = 20;
+                                                               try
+                                                               {
+                                                                   mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                                               }
+                                                               catch (Exception err) { }
+                                                               int k = 0;
+                                                               if (dc.Ordinal == 0)
+                                                               {
+                                                                   <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:70px;z-index:10;left:0px;position:sticky;">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' data-sakeys="gloval">
+                                                                               <label>@(k + 1)</label>
+
+                                                                               <input name="command" onclick="sethfval('@k');getitem2();" type="button" value="+" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate data-toggle="tooltip" title="Add More" />
+                                                                               <button name="command" onclick="sethfval('@k');" type="submit" value="-" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate>-</button>
+
+                                                                               <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                                           </div>
+                                                                           k++;
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 1)
+                                                               {
+                                                                   <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:140px;z-index:10;left:100px">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 2)
+                                                               {
+                                                                   <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:200px;z-index:50;left:240px">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 6)
+                                                               {
+                                                                   <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" onblur="calcreq2();" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 7)
+                                                               {
+                                                                   <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" onblur="calcissue2();" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 11)
+                                                               {
+                                                                   <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 12)
+                                                               {
+                                                                   <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else if (dc.Ordinal == 13)
+                                                               {
+                                                                   <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                               else
+                                                               {
+                                                                   <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                                       <div class="grid-item grid-item--header">
+                                                                           <p>@dc.ColumnName.ToString()</p>
+                                                                       </div>
+                                                                       @foreach (DataRow dr in dtm.Rows)
+                                                                       {
+                                                                           <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                                                                               @dr[dc].ToString()
+                                                                           </div>
+                                                                       }
+                                                                   </div>
+                                                               }
+                                                           }
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                }
+                }*@
+
+            dtm = Model[i].dt2;
+            if (dtm != null)
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding: 3px 15px !important">
+                        <div class="x_content">
+                            <div class="row">
+                                <h5>Select Location Of Above Items</h5>
+                                <div class="grid-container">
+                                    <div class="grid" id="grd3">
+                                        @foreach (DataColumn dc in dtm.Columns)
+                                        {
+                                            int mlength = 20;
+                                            try
+                                            {
+                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                            }
+                                            catch (Exception err) { }
+
+                                            int k = 0;
+                                            if (dc.Ordinal == 0)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:80px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                            <label>@(k + 1)</label>
+                                                            <input name="command" onclick="sethfval('@k');getitem3();" type="button" value="+" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate data-toggle="tooltip" title="Add More" />
+                                                            <button name="command" onclick="sethfval('@k');" type="submit" value="2-" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate>-</button>
+                                                            <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                        </div>
+                                                        k++;
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 2)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 6)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else if (dc.Ordinal == 7)
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" data-sakeys="gloval">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    }
+    <div class="row">
+        <div class="col-sm-4">
+        </div>
+        @Html.Raw(buttons)
+    </div>
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="hidden" name="hftable" id="hftable" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" onclick="setTableDatat();" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+
+    function calcreq() {
+        try {
+
+            var grds1 = $("[id*=grd1]");
+            var gr1 = grds1.eq(0);
+            var heads = $(gr1).find("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $(heads).find("[id=row_" + r + "]");
+                var qtystk = parseFloat(row[5].innerText);
+                var qtychl = Math.abs(parseFloat(row[6].innerText));
+                var qtyout = Math.abs(parseFloat(row[7].innerText.trim()));
+                if (qtyout > qtystk) {
+                    if (!shown) {
+                        alert('Issue Qty can not be more than Stock Qty');
+                        row[7].innerText = "";
+                        shown = true;
+                    }
+                    else { shown = false; }
+                    return;
+                }
+                var qtybal = qtychl - qtyout;
+                row[8].innerText = qtybal;
+                row[7].innerText = qtyout;
+            }
+            calcamt();
+        }
+        catch (err) { alert(err); return; }
+    }
+    //function calcreq2() {
+    //    try {
+
+    //        var grds1 = $("[id*=grd2]");
+    //        var gr1 = grds1.eq(0);
+    //        var heads = $(gr1).find("[id*=col_]");
+    //        var rows = $(heads).eq(0).find("[id*=row_]");
+    //        for (var r = 0; r < rows.length; r++) {
+    //            var row = $(heads).find("[id=row_" + r + "]");
+    //            var qtystk = parseFloat(row[5].innerText);
+    //            var qtychl = Math.abs(parseFloat(row[6].innerText));
+    //            var qtyout = Math.abs(parseFloat(row[7].innerText.trim()));
+    //            if (qtyout > qtystk) {
+    //                if (!shown) {
+    //                    alert('Issue Qty can not be more than Stock Qty');
+    //                    row[7].innerText = "";
+    //                    shown = true;
+    //                }
+    //                else { shown = false; }
+    //                return;
+    //            }
+    //            var qtybal = qtychl - qtyout;
+    //            row[8].innerText = qtybal;
+    //            row[7].innerText = qtyout;
+    //        }
+    //        calcamt();
+    //    }
+    //    catch (err) { alert(err); return; }
+    //}
+    var shown = true;
+    function calcissue() {
+        try {
+            var grds1 = $("[id*=grd1]");
+            var gr1 = grds1.eq(0);
+            var heads = $(gr1).find("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $(heads).find("[id=row_" + r + "]");
+                var qtystk = parseFloat(row[5].innerText);
+                var qtychl = Math.abs(parseFloat(row[6].innerText));
+                var qtyout = Math.abs(parseFloat(row[7].innerText.trim()));
+                if (qtyout > qtystk) {
+                    if (!shown) {
+                        alert('Issue Qty can not be more than Stock Qty');
+                        row[7].innerText = "";
+                        shown = true;
+                    }
+                    else { shown = false; }
+                    return;
+                }
+                var qtybal = qtychl - qtyout;
+                row[8].innerText = qtybal;
+                row[7].innerText = qtyout;
+            }
+            calcamt();
+        }
+        catch (err) { alert(err); return; }
+    }
+    //function calcissue2() {
+    //    try {
+    //        var grds1 = $("[id*=grd2]");
+    //        var gr1 = grds1.eq(0);
+    //        var heads = $(gr1).find("[id*=col_]");
+    //        var rows = $(heads).eq(0).find("[id*=row_]");
+    //        for (var r = 0; r < rows.length; r++) {
+    //            var row = $(heads).find("[id=row_" + r + "]");
+    //            var qtystk = parseFloat(row[5].innerText);
+    //            var qtychl = Math.abs(parseFloat(row[6].innerText));
+    //            var qtyout = Math.abs(parseFloat(row[7].innerText.trim()));
+    //            if (qtyout > qtystk) {
+    //                if (!shown) {
+    //                    alert('Issue Qty can not be more than Stock Qty');
+    //                    row[7].innerText = "";
+    //                    shown = true;
+    //                }
+    //                else { shown = false; }
+    //                return;
+    //            }
+    //            var qtybal = qtychl - qtyout;
+    //            row[8].innerText = qtybal;
+    //            row[7].innerText = qtyout;
+    //        }
+    //    }
+    //    catch (err) { alert(err); return; }
+    //}
+
+    $(document).ready(function () {
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        calcamt();
+    });
+
+    function calcamt() {
+        try {
+            var sumqtyreq = 0, sumqtyissue = 0, sumqtyreqbal = 0,sumpkt=0;
+            var grds1 = $("[id*=grd1]");
+            var gr1 = grds1.eq(0);
+            var heads = $(gr1).find("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $(heads).find("[id=row_" + r + "]");
+                var qtyreq = parseFloat(row[6].innerText);
+                var qtyissue = parseFloat(row[7].innerText);
+                var qtyreqbal = parseFloat(row[8].innerText);
+                var pkt = parseFloat(row[13].innerText);
+
+                sumqtyreq = sumqtyreq + qtyreq
+                sumqtyissue = sumqtyissue + qtyissue;
+                sumqtyreqbal = sumqtyreqbal + qtyreqbal;
+                sumpkt = sumpkt + pkt;
+            }
+
+            $("#div_qtyreq")[0].innerText = sumqtyreq.toFixed(2);
+            $("#div_qtyissue")[0].innerText = sumqtyissue.toFixed(2);
+            $("#div_qtyreqbal")[0].innerText = sumqtyreqbal.toFixed(2);
+            $("#div_pktno")[0].innerText = sumpkt.toFixed(2);
+        }
+        catch (err) { alert(err); return; }
+    }
+    function setTableDatat() {
+        datatable = new Array();
+        var tstr = "";
+        var grids = $("[id*=grd]");
+        for (var g = 0; g < grids.length; g++) {
+            try {
+                var grid = grids.eq(g);
+                datatable = new Array();
+
+                var heads = $(grid).find("[id*=col_]");
+                var rows = $(heads).eq(0).find("[id*=row_]");
+                for (var r = 0; r < rows.length; r++) {
+                    var row = $(heads).find("[id=row_" + r + "]");
+                    var arr = new Array();
+                    for (var h = 0; h < heads.length; h++) {
+                        var obj = {};
+                        var val = "";
+                        if (h == 0) {
+                            val = row.eq(0).find("[id*=fstr]").val().trim();
+                        }
+                        else {
+                            val = row[h].innerText;
+                        }
+                        obj[heads[h].children[0].innerText] = val;
+                        arr.push(obj);
+                    }
+                    datatable.push(arr);
+                }
+            }
+            catch (err) { alert(err); return; }
+            if (tstr.trim() == "") { tstr = JSON.stringify(datatable); }
+            else {
+                tstr = tstr + "!~!~!~!" + JSON.stringify(datatable);
+            }
+        }
+        //PageMethods.settable(datatable);
+
+        $("#hftable").val(tstr);
+    }
+    function sethfval(val)
+    {
+        $("#hfrow").val(val);
+        setTableDatat();
+    }
+
+    function newfun() {
+        if ('@newauth' == "N") {
+            showmsgJS(1, "You dont have permission for New Dispatch, please contact your admin", 2);
+            return;
+        }
+        var data = show_Foo('Select Item Issued Type', 'NEW', '1', '@viewName', '@controllerName');
+    }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() {
+         if ('@viewauth' == "N") {
+            showmsgJS(1, "You dont have permission for View Dispatch Details, please contact your admin", 2);
+            return;
+        }
+        var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName');
+    }
+    function printfun() { var data = show_Foo('Select Entry For Print', 'PRINT', '1', '@viewName', '@controllerName'); }
+    function selectfun() { var data = show_Foo('Select Function', 'FUN', '2', '@viewName', '@controllerName'); }
+
+    function getitem() {
+        //debugger;
+        var icode = "", chkcode = "", btnval = "ITEM", mrscond = "";
+        var type = $("#hf_type")[0].value;
+        var vchdate = $("#txt_indentdate")[0].value;
+        //var dept = $("#ddl_department")[0].value;
+        if (type.trim() == "32") {
+            btnval = "IMRS";
+            //mrscond = $("#txt_mrsno")[0].value.trim();
+            mrscond = $("#hf_mrsfstr")[0].value.trim();
+        }
+
+        var grds1 = $("[id*=grd1]");
+        var gr1 = grds1.eq(0);
+        var heads = $(gr1).find("[id*=col_]");
+        var rows = $(heads).eq(0).find("[id*=row_]");
+        for (var r = 0; r < rows.length; r++) {
+
+            var row = $(heads).find("[id=row_" + r + "]");
+            chkcode = row.eq(0).find("[id*=fstr]").val().trim();
+            //chkcode = row[1].innerText.trim();
+            if (chkcode != "-") {
+                icode = icode + chkcode + ",";
+            }
+        }
+
+        icode = icode + "!~~!~~!~~!" + vchdate;
+
+        var data = show_Foo('Select Items', btnval, '2', '@viewName', '@controllerName', icode, mrscond);
+    }
+
+      @*function getitem2() {
+        //debugger;
+        var icode = "", chkcode = "", btnval = "", mrscond = "";
+        var type = $("#hf_type")[0].value;
+        var vchdate = $("#txt_indentdate")[0].value;
+        if (type.trim() == "32") {
+            btnval = "IMRSBTCH";
+            mrscond = $("#hf_mrsfstr")[0].value.trim();
+        }
+
+        var grds1 = $("[id*=grd2]");
+        var gr1 = grds1.eq(0);
+        var heads = $(gr1).find("[id*=col_]");
+        var rows = $(heads).eq(0).find("[id*=row_]");
+        for (var r = 0; r < rows.length; r++) {
+
+            var row = $(heads).find("[id=row_" + r + "]");
+            chkcode = row.eq(0).find("[id*=fstr]").val().trim();
+            if (chkcode != "-") {
+                icode = icode + chkcode + ",";
+            }
+        }
+
+        icode = icode + "!~~!~~!~~!" + vchdate;
+
+        var data = show_Foo('Select Items', btnval, '2', '@viewName', '@controllerName', icode, mrscond);
+    }*@
+
+    function getitem3() {
+
+        var icode2 = "", chkcode2 = "", icode1 = "", chkcode1 = "";
+
+        var grds2 = $("[id*=grd3]");
+        var gr2 = grds2.eq(0);
+        var heads2 = $(gr2).find("[id*=col_]");
+        var rows2 = $(heads2).eq(0).find("[id*=row_]");
+        for (var r = 0; r < rows2.length; r++) {
+
+            var row2 = $(heads2).find("[id=row_" + r + "]");
+            //chkcode2 = row2.eq(0).find("[id*=fstr]").val().trim();
+            chkcode2 = row2[1].innerText.trim();
+            if (chkcode2 != "-") {
+                icode2 = icode2 + chkcode2 + ",";
+            }
+        }
+
+        var grds1 = $("[id*=grd1]");
+        var gr1 = grds1.eq(0);
+        var heads1 = $(gr1).find("[id*=col_]");
+        var rows1 = $(heads1).eq(0).find("[id*=row_]");
+        for (var r = 0; r < rows1.length; r++) {
+
+            var row1 = $(heads1).find("[id=row_" + r + "]");
+            //chkcode1 = row1.eq(0).find("[id*=fstr]").val().trim();
+            chkcode1 = row1[1].innerText.trim();
+            if (chkcode1 != "-") {
+                icode1 = icode1 + chkcode1 + ",";
+            }
+        }
+
+        var data = show_Foo('Select Items', 'ITEM2', '2', '@viewName', '@controllerName', icode2, icode1);
+    }
+
+
+</script>
+

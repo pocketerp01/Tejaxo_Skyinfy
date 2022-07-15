@@ -1,0 +1,1364 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+
+    <title>Skyinfy-ERP </title>
+
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <link href="~/Content/css/Gridmvc.css" rel="stylesheet" />
+    <script src="~/Scripts/gridmvc.min.js"></script>
+    <link href="~/Content/css/Gridmvc.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://botmonster.com/jquery-bootpag/jquery.bootpag.js"></script>
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/sgen.css" rel="stylesheet" />
+    <script src="~/Scripts/sgen.js"></script>
+    <link href="~/Content/css/sgen.css" rel="stylesheet" />
+    <link href="~/Content/css/colorbox.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.colorbox-min.js"></script>
+    <script src="~/Scripts/jquery.colorbox.js"></script>
+    <link href="~/Scripts/choosen/style.css" rel="stylesheet" />
+    <link href="~/Scripts/choosen/prism.css" rel="stylesheet" />
+    <link href="~/Scripts/choosen/chosen.css" rel="stylesheet" />
+
+    <script src="~/Scripts/choosen/chosen.jquery.js"></script>
+    <script src="~/Scripts/choosen/prism.js"></script>
+    <script src="~/Scripts/choosen/init.js"></script>
+    @*/////*@
+
+    <link href="~/Content/css/monthly.css" rel="stylesheet" />
+
+    <link href="~/Content/css/bootstrap-toggle.min.css" rel="stylesheet" />
+    <!-- jQuery -->
+
+    <link href="~/Content/css/passwordstrength.css" rel="stylesheet" />
+
+    @*<script src="../../../../../../../erp/vendors/jquery/dist/jquery.min.js"></script>*@
+
+
+    <script src="~/Scripts/monthly.js"></script>
+
+
+
+    <script src="~/Scripts/bootstrap-toggle.min.js"></script>
+    <!-- notification popup -->
+    <script src="~/Scripts/jquery.toaster.js"></script>
+
+
+
+    <!-- bootstrap-datetimepicker -->
+    <link href="~/Content/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <!-- bootstrap-datetimepicker -->
+    @*<script src="../../../erp/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>*@
+
+
+    <script src="~/Scripts/highcharts/highcharts.js"></script>
+    <script src="~/Scripts/highcharts/highcharts-3d.js"></script>
+    <script src="~/Scripts/highcharts/exporting.js"></script>
+    <script src="~/Scripts/highcharts/export-data.js"></script>
+    <script src="~/Scripts/highcharts/highcharts-more.js"></script>
+    <!-- Font Awesome -->
+    <link href="~/Scripts/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <!-- Custom Theme Style -->
+    <link href="~/Content/css/custom.min.css" rel="stylesheet" />
+    <!-- grid view style -->
+    <link href="~/Content/css/gridviewstyle.css" rel="stylesheet" />
+
+    <!----datatable---->
+    @*<link href="~/erp/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+        <link href="~/erp/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+        <link href="~/erp/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet" />
+        <link href="~/erp/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
+        <link href="~/erp/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet" />*@
+
+
+
+
+    @*<link href="~/erp/Scripts/fastselect/fastselect.min.css" rel="stylesheet" />
+        <script src="../../../../erp/Scripts/fastselect/fastselect.standalone.js"></script>*@
+
+
+    <!-- disable back-->
+
+
+
+    <link href=~/Content/css/std_reg.css rel="stylesheet" />
+    <script src="~/Scripts/jquery-migrate-1.2.1.min.js"></script>
+
+    <script type="text/javascript">
+
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+
+        //set active menu
+
+        function setactive() {
+
+            var url = window.location;
+            // Will only work if string in href matches with location
+            $('.treeview-menu li a[href="' + url + '"]').parent().addClass('active');
+            // Will also work for relative and absolute hrefs
+            $('.treeview-menu li a').filter(function () {
+                return this.href == url;
+            }).parent().parent().parent().addClass('active');
+
+        }
+
+    </script>
+
+
+    <!----session anfd post back---->
+
+    <script type="text/javascript">
+
+        window.onload = function () { hidewait(); }
+        function checkvalidations() {
+
+            var mandatories = $(".sa-mandatory");
+            for (var m = 0; m < mandatories.length; m++) {
+                var text = $(mandatories).find("input")[m].value;
+                var holder = $(mandatories)[m].parentElement.children[0].innerText;
+                if ($(mandatories)[m].classList.contains("has-error")) {
+                    if ($(mandatories)[m].classList.contains("sa-mobile")) { showmsgJS(3, "Please fill Mobile Number in " + holder, 2); return false; }
+                    else if ($(mandatories)[m].classList.contains("sa-email")) { showmsgJS(3, "Please fill Proper Email Id in " + holder, 2); return false; }
+                    else if ($(mandatories)[m].classList.contains("sa-panno")) { showmsgJS(3, "Please fill Proper PAN No in " + holder, 2); return false; }
+                    else if ($(mandatories)[m].classList.contains("sa-tanno")) { showmsgJS(3, "Please fill Proper TAN No in " + holder, 2); return false; }
+                    else if ($(mandatories)[m].classList.contains("sa-gstno")) { showmsgJS(3, "Please fill Proper GST No in " + holder, 2); return false; }
+                    else if ($(mandatories)[m].classList.contains("sa-pincode")) { showmsgJS(3, "Please fill Proper Pincode in " + holder, 2); return false; }
+                    else if ($(mandatories)[m].classList.contains("sa-text")) { showmsgJS(3, "Please fill  " + holder, 2); return false; }
+                    else { showmsgJS(3, "Please fill " + holder, 2); return false; }
+
+                }
+            }
+            return true;
+        }
+
+
+        var mandatories = $(".sa-mandatory").attr("onkeyup", "return checkvalidations();");
+
+        var seti1 = 0;
+        var seti2 = 1;
+
+        var timezone = getCookie("timezone");
+        var dateformat = getCookie("dateformat");
+        var timeformat = getCookie("timeformat");
+        var datetimeformat = getCookie("datetimeformat");
+        var Ac_from_dt = moment(getCookie("Ac_From_Date"), dformat(datetimeformat));
+        var Ac_to_dt = moment(getCookie("Ac_To_Date"), dformat(datetimeformat));
+
+        var today = moment();
+        var fy_from_dt = moment(getCookie("year_from"), dformat(datetimeformat));
+        var fy_to_dt = moment(getCookie("year_to"), dformat(datetimeformat));
+
+        $(document).ready(function () {
+
+
+            $(".sa-mandatory").addClass("has-error");
+            $(".sa-mandatory.sa-pincode").find("input").keyup(function () {
+                $(this)[0].setAttribute("maxlength", "6");
+                var val = $(this).val();
+                if (/^\d{6}$/.test(val)) {
+                    $(this).closest(".sa-mandatory").removeClass("has-error");
+                    $(this).closest(".sa-mandatory").addClass("has-success");
+                }
+                else {
+                    $(this).closest(".sa-mandatory").addClass("has-error");
+                    $(this).closest(".sa-mandatory").removeClass("has-success");
+                }
+
+            });
+
+
+
+            $(".sa-mandatory.sa-tanno").find("input").keyup(function () {
+                var reg = /[a-zA-z]{5}\d{4}[a-zA-Z]{1}/;
+                var val = $(this).val();
+                if (reg.test(val) == true) {
+                    $(this).closest(".sa-mandatory").removeClass("has-error");
+                    $(this).closest(".sa-mandatory").addClass("has-success");
+                }
+                else {
+                    $(this).closest(".sa-mandatory").addClass("has-error");
+                    $(this).closest(".sa-mandatory").removeClass("has-success");
+                }
+            });
+            $(".sa-mandatory.sa-mobile").find("input").keyup(function () {
+                $(this)[0].setAttribute("maxlength", "10");
+                var val = $(this).val();
+                if (/^\d{10}$/.test(val)) {
+                    $(this).closest(".sa-mandatory").removeClass("has-error");
+                    $(this).closest(".sa-mandatory").addClass("has-success");
+                }
+                else {
+                    $(this).closest(".sa-mandatory").addClass("has-error");
+                    $(this).closest(".sa-mandatory").removeClass("has-success");
+                }
+
+            });
+          
+            $(".sa-mandatory.sa-text").find("input").keyup(function () {
+                var val = $(this).val();
+                if (val.length > 2) {
+                    $(this).closest(".sa-mandatory").removeClass("has-error");
+                    $(this).closest(".sa-mandatory").addClass("has-success");
+                }
+                else {
+                    $(this).closest(".sa-mandatory").addClass("has-error");
+                    $(this).closest(".sa-mandatory").removeClass("has-success");
+                }
+            });
+
+
+            $(".sa-mandatory.sa-panno").find("input").keyup(function () {
+                $(this)[0].setAttribute("maxlength", "10");
+                var regpan = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+                var val = $(this).val();
+                if (regpan.test(val) == true) {
+                    $(this).closest(".sa-mandatory").removeClass("has-error");
+                    $(this).closest(".sa-mandatory").addClass("has-success");
+                }
+                else {
+                    $(this).closest(".sa-mandatory").addClass("has-error");
+                    $(this).closest(".sa-mandatory").removeClass("has-success");
+                }
+            });
+
+            $(".sa-mandatory.sa-gstno").find("input").keyup(function () {
+                $(this)[0].setAttribute("maxlength", "15");
+                var reggst = /^([0][1-9]|[1-2][0-9]|[3][0-5])([a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9a-zA-Z]{1}[zZ]{1}[0-9a-zA-Z]{1})+$/;
+                var val = $(this).val();
+                if (reggst.test(val) == true) {
+                    $(this).closest(".sa-mandatory").removeClass("has-error");
+                    $(this).closest(".sa-mandatory").addClass("has-success");
+                }
+                else {
+                    $(this).closest(".sa-mandatory").addClass("has-error");
+                    $(this).closest(".sa-mandatory").removeClass("has-success");
+                }
+            });
+
+
+
+
+            //seti1 = setInterval(function () { getDatag() }, 7000);
+            if (detectmob()) {
+
+                var lihide = $(".lihide");
+                lihide.each(function () {
+                    $(this).hide();
+                });
+
+            }
+
+
+
+            $(".sa-date-dob,.sa-ac-time,.sa-fy-time,.sa-fy-datetime,.sa-fy-date,.sa-ac-datetime,.sa-ac-date,.sa-fy-datetime-today,.sa-fy-date-today,.sa-date,.sa-date-dob").attr("onkeydown", "return false;");
+
+            $(".sa-date-dob").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(dateformat),
+                // maxDate: today
+
+            });
+
+
+
+
+            $(".sa-fy-date-today").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(dateformat),
+                maxDate: fy_to_dt,
+                minDate: 0
+            });
+
+            $(".sa-fy-datetime-today").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(datetimeformat),
+                maxDate: fy_to_dt,
+                minDate: 0
+            });
+
+            $(".sa-date").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(dateformat),
+            });
+
+
+
+            $(".sa-ac-date").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(dateformat),
+
+            });
+
+            $(".sa-ac-datetime").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(datetimeformat),
+
+            });
+
+            $(".sa-fy-date").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(dateformat),
+
+            });
+            $(".sa-fy-datetime").datetimepicker({
+                ignoreReadonly: true,
+                format: dformat(datetimeformat),
+
+
+            });
+
+            //$(".sa-ac-date").datetimepicker({
+            //    ignoreReadonly: true,
+            //    format: dformat(dateformat),
+            //    maxDate: Ac_to_dt,
+            //    minDate: Ac_from_dt
+            //});
+
+            //$(".sa-ac-datetime").datetimepicker({
+            //    ignoreReadonly: true,
+            //    format: dformat(datetimeformat),
+            //    maxDate: Ac_to_dt,
+            //    minDate: Ac_from_dt
+            //});
+
+            //$(".sa-fy-date").datetimepicker({
+            //    ignoreReadonly: true,
+            //    format: dformat(dateformat),
+            //    maxDate: fy_to_dt,
+            //    minDate: fy_from_dt
+            //});
+            //$(".sa-fy-datetime").datetimepicker({
+            //    ignoreReadonly: true,
+            //    format: dformat(datetimeformat),
+            //    maxDate: fy_to_dt,
+            //    minDate: fy_from_dt
+
+            //});
+
+            $(".sa-ac-time").datetimepicker({
+                format: dformat(timeformat)
+
+            });
+            $(".sa-fy-time").datetimepicker({
+                format: dformat(timeformat)
+
+            });
+
+
+
+            var hffocus = document.getElementById('hffocus');
+            if (hffocus === "undefined") { }
+            else {
+                var elem = document.getElementById(hffocus.value);
+                try {
+                    elem.focus();
+                }
+                catch (err) { }
+            }
+
+
+        });
+
+        //$(function () {
+        //    seti2 = setInterval("updateActiveElement();", 500);
+        //});
+
+        function updateActiveElement() {
+
+            //
+            //alert($(document.activeElement).attr('id'));
+            //$('#celement').innerHTML($(document.activeElement).attr('id'));
+
+            var hffocus = document.getElementById('hffocus');
+            var val = $(document.activeElement).attr('id');
+
+            if (val === "undefined") {
+
+            }
+            else { hffocus.value = $(document.activeElement).attr('id'); }
+        }
+
+        function showerror() {
+
+            $('#mybtn').trigger('click');
+        }
+
+
+        function showmsgJS(msgtype, msg, alert_type) {
+            try {
+                //var lblmsg = $("[id=msgp]");
+                document.getElementById("msgp").innerHTML = msg;
+                //lblmsg.innerHTML = msg;
+                if (msgtype == 1) {
+                    $("[id=btnyes]").hide();
+                    $("[id=btnno]").hide();
+
+                    switch (alert_type) {
+                        case 0:
+                            $("[id=dtitle]").style.backgroundColor = "#E74C3C";
+                            document.getElementById("title_type").innerHTML = "Error";
+                            break;
+                        case 1:
+                            document.getElementById("dtitle").style.backgroundColor = "#1ABB9C";
+                            document.getElementById("title_type").innerHTML = "Success";
+                            break;
+                        case 2:
+                            document.getElementById("dtitle").style.backgroundColor = "#f0ad4e";
+                            document.getElementById("title_type").innerHTML = "Warning";
+                            break;
+                    }
+
+                }
+
+                else if (msgtype == 2) {
+                    $("[id=btnok]").hide();
+
+                    document.getElementById("title_type").innerHTML = "Confirmation";
+                    document.getElementById("dtitle").style.backgroundColor = "#f0ad4e";
+                } else if (msgtype == 3) {
+                    $("[id=btnyes]").hide();
+                    $("[id=btnno]").hide();
+                    $("[id=btnok]").hide();
+
+                    switch (alert_type) {
+                        case 0:
+                            $("[id=dtitle]").style.backgroundColor = "#E74C3C";
+                            document.getElementById("title_type").innerHTML = "Error";
+                            break;
+                        case 1:
+                            document.getElementById("dtitle").style.backgroundColor = "#1ABB9C";
+                            document.getElementById("title_type").innerHTML = "Success";
+                            break;
+                        case 2:
+                            document.getElementById("dtitle").style.backgroundColor = "#f0ad4e";
+                            document.getElementById("title_type").innerHTML = "Warning";
+                            break;
+                    }
+
+                }
+
+
+                showerror();
+            }
+
+            catch (eerre) {
+                alert(msg);
+
+            }
+
+
+
+        }
+        function showsession() {
+
+            $('#mybtn2').trigger('click');
+        }
+
+        function showfilter() {
+
+            $.fancybox.open({
+                modal: true,
+                src: '../../../../../../erp/common/Frm_Filter1.aspx',
+                type: 'iframe'
+            });
+
+            $(".fancybox-content")[0].style.maxHeight = '600px';
+            $(".fancybox-content")[0].style.maxWidth = '60%';
+
+
+        }
+
+        function showRpt() {
+
+            $.fancybox.open({
+                modal: false,
+                src: '../../../../../../erp/schoolReports_Rpts/Filter_Report_Viewer.aspx',
+                type: 'iframe'
+            });
+
+            $(".fancybox-content")[0].style.maxHeight = '600px';
+            $(".fancybox-content")[0].style.maxWidth = '100%';
+
+        }
+
+        //function close_fancybox() {
+        //    $.fancybox.close();
+        //}
+    </script>
+
+    <style>
+        .fancybox-content {
+            max-width: 70% !important;
+            max-height: 600px !important;
+        }
+    </style>
+
+
+    <!--- toast notification---->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            // setInterval(function () { getDatag() }, 7000);
+            //getDatag();
+        });
+
+        //for popup notification
+
+        //$.toaster('Your message here');
+        //
+        //function getDatag() {
+        //    $.ajax({
+        //        //The URL to process the request
+        //        'url': '../../../../../../erp/Handler_for_reminder.ashx',
+        //        //The type of request, also known as the "method" in HTML forms
+        //        //Can be 'GET' or 'POST'
+        //        'type': 'POST',
+        //        //Any post-data/get-data parameters
+        //        //This is optional
+        //        'data': {
+        //        },
+        //        //The response from the server
+        //        'success': function (response) {
+        //            //You can use any jQuery/JavaScript here!!!
+        //            //alert("Data: " + JSON.stringify(response));
+        //            $.each(response, function (i, item) {
+        //                $.toaster({
+        //                    // toast message
+        //                    message: item.message,
+        //                    // toast title
+        //                    title: item.title,
+        //                    // or 'success', 'info', 'warning', 'danger'
+        //                    priority: 'info'
+        //                });
+
+        //                /// do stuff
+        //                //  alert(i.title);
+
+        //            });
+
+        //        }
+        //    });
+        //}
+
+        //function myFunction() {
+        //
+        //    var input, filter, ul, li, a, i;
+        //    input = document.getElementById("mySearch");
+        //    filter = input.value.toUpperCase();
+        //    ul = document.getElementById("myMenu");
+        //    li = ul.getElementsByTagName("li,ul");
+        //    for (i = 0; i < li.length; i++) {
+        //        a = li[i].getElementsByTagName("a")[0];
+        //        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        //            li[i].style.display = "";
+        //        } else {
+        //            li[i].style.display = "none";
+        //        }
+        //    }
+        //}
+
+
+        //search menus
+        function searchmenus(e) {
+
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myMenu");
+
+            var anchs = $(ul).find("li").find("a");
+            for (var i = 0; i < anchs.length; i++) {
+                var a = anchs[i];
+                var pare = $(a).parents();
+                var cnt = 0;
+                for (var o = 0; o < pare.length; o++) {
+                    if (pare[o].id == "myMenu") { break; }
+                    if (pare[o].innerHTML.toUpperCase().includes(filter)) {
+                        cnt++;
+                    }
+                }
+                if (cnt == 0) {
+                    $(a).parent()[0].style.display = "none";
+                }
+                else { $(a).parent()[0].style.display = ""; }
+            }
+
+            if (e.keyCode === 13) {
+                return false;
+            }
+            else return true;
+        }
+
+
+    </script>
+
+    <!----disable ctrl 'a', 'n', 'c', 'x', 'u', 'j', 'w', 'i', 's', right click---->
+
+    <script type="text/javascript">
+        function showwait() {
+            var options = { "backdrop": "static", keyboard: true };
+            $('#DemoModal').modal(options);
+            $('#DemoModal').modal('show');
+        }
+        function hidewait() {
+
+            $('#DemoModal').modal('hide');
+        }
+
+        $(document).ready(function () {
+
+            var ctrlDown = false,
+                ctrlKey = 17,
+                cmdKey = 91,
+                vKey = 86,
+                cKey = 67;
+
+            $(document).keydown(function (e) {
+
+                if (e.keyCode == ctrlKey || e.keyCode == cmdKey) {
+
+
+                    ctrlDown = true;
+                }
+            }).keyup(function (e) {
+
+                if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+            });
+
+            $("input").keydown(function (e) {
+                if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) {
+
+
+                }
+            }).keyup(function (e) {
+
+                if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) {
+
+
+                }
+            });
+            $("input").change(function (e) {
+
+                if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) {
+
+
+                }
+            });
+            $("input").blur(function (e) {
+
+                $(e.target).trigger("onkeypress");
+                if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) {
+
+
+                }
+            });
+        });
+        //////////F12 disable code////////////////////////
+        document.onkeypress = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                //alert('No F-12');
+                return false;
+            }
+        }
+        document.onmousedown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                //alert('No F-keys');
+                return false;
+            }
+        }
+        document.onkeydown = function (event) {
+            event = (event || window.event);
+            if (event.keyCode == 123) {
+                //alert('No F-keys');
+                return false;
+            }
+        }
+        /////////////////////end///////////////////////
+
+
+        //Disable right click script
+        //visit http://www.rainbow.arch.scriptmania.com/scripts/
+        //        var message = "Sorry, right-click has been disabled";
+        //        ///////////////////////////////////
+        //        function clickIE() { if (document.all) { (message); return false; } }
+        //        function clickNS(e) {
+        //            if
+        //(document.layers || (document.getElementById && !document.all)) {
+        //                if (e.which == 2 || e.which == 3) { (message); return false; }
+        //            }
+        //        }
+        //        if (document.layers) { document.captureEvents(Event.MOUSEDOWN); document.onmousedown = clickNS; }
+        //        else { document.onmouseup = clickNS; document.oncontextmenu = clickIE; }
+        //        document.oncontextmenu = new Function("return false");
+
+
+
+
+    </script>
+
+   <!--- page loader-->
+
+    @*<script type="text/javascript">
+        document.onreadystatechange = function () {
+            var state = document.readyState
+            if (state == 'interactive') {
+                document.getElementById('contents').style.visibility = "hidden";
+            } else if (state == 'complete') {
+                setTimeout(function () {
+                    document.getElementById('interactive');
+                    document.getElementById('load').style.visibility = "hidden";
+                    document.getElementById('contents').style.visibility = "visible";
+                }, 100);
+            }
+        }
+
+    </script>*@
+
+    <!--- page loader-->
+
+    @*<style type="text/css">
+        #load {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 9999;
+            background: url("../../../../../Uploads/ajax-loader-img.gif") no-repeat center center rgba(0,0,0,0.25);
+            background-size: 100px 100px;
+        }
+    </style>*@
+
+    <!--dropdown hover-->
+
+    <style>
+        .dropdown-content {
+            display: none;
+            min-width: 220px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /*<!-- extender popup--->*/
+        .containerClass .ajax__html_editor_extender_container {
+            width: 100% !important; /*important is really important at here*/
+            min-height: 300px
+        }
+    </style>
+
+  
+    @*<script>
+        jQuery(document).ready(function ($) {
+
+            if (window.history && window.history.pushState) {
+
+                $(window).on('popstate', function () {
+
+                    var hashLocation = location.hash;
+                    var hashSplit = hashLocation.split("#!/");
+                    var hashName = hashSplit[1];
+
+                    if (hashName !== '') {
+                        var hash = window.location.hash;
+                        if (hash === '') {
+                            alert('Back button was pressed.');
+                        }
+                    }
+                });
+
+                window.history.pushState('forward', null, '../erp/login_main.aspx');
+            }
+
+        });
+    </script>*@
+
+    <style type="text/css">
+        .search {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+            .search * {
+                outline: none;
+                box-sizing: border-box;
+            }
+
+        .search__wrapper {
+            position: relative;
+        }
+
+        .search__field {
+            width: 50px;
+            height: 50px;
+            color: transparent;
+            font-family: Lato, sans-serif;
+            font-size: 1.35em;
+            padding: 0.35em 50px 0.35em 0;
+            border: 1px solid transparent;
+            border-radius: 0;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+            .search__field:focus {
+                border-bottom-color: #ccc;
+                width: 50vw;
+                color: #2b2b2b;
+                cursor: default;
+            }
+
+                .search__field:focus ~ .search__icon {
+                    background-color: transparent;
+                    cursor: pointer;
+                    pointer-events: auto;
+                }
+
+        .search__icon {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #e9f1f4;
+            width: 50px;
+            height: 50px;
+            font-size: 1.35em;
+            text-align: center;
+            border-color: transparent;
+            border-radius: 50%;
+            pointer-events: none;
+            display: inline-block;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .search__field::-webkit-input-placeholder {
+            position: relative;
+            top: 0;
+            left: 0;
+            transition-property: top, color;
+            transition-duration: .1s;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        .search__field:-moz-placeholder {
+            position: relative;
+            top: 0;
+            left: 0;
+            transition-property: top, color;
+            transition-duration: .1s;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        .search__field::-moz-placeholder {
+            position: relative;
+            top: 0;
+            left: 0;
+            transition-property: top, color;
+            transition-duration: .1s;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        .search__field:-ms-input-placeholder {
+            position: relative;
+            top: 0;
+            left: 0;
+            transition-property: top, color;
+            transition-duration: .1s;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000;
+            perspective: 1000;
+        }
+
+        .search__field::-webkit-input-placeholder[style*=hidden] {
+            color: #83b0c1;
+            font-size: .65em;
+            font-weight: normal;
+            top: -20px;
+            opacity: 1;
+            visibility: visible !important;
+        }
+
+        .search__field:-moz-placeholder[style*=hidden] {
+            color: #83b0c1;
+            font-size: .65em;
+            font-weight: normal;
+            top: -20px;
+            opacity: 1;
+            visibility: visible !important;
+        }
+
+        .search__field::-moz-placeholder[style*=hidden] {
+            color: #83b0c1;
+            font-size: .65em;
+            font-weight: normal;
+            top: -20px;
+            opacity: 1;
+            visibility: visible !important;
+        }
+
+        .search__field:-ms-input-placeholder[style*=hidden] {
+            color: #83b0c1;
+            font-size: .65em;
+            font-weight: normal;
+            top: -20px;
+            opacity: 1;
+            visibility: visible !important;
+        }
+    </style>
+    <style>
+        /* SideNav.css by Mohamed Abo El-Ghranek */
+
+
+        /* For Demo only */
+
+
+
+
+        body {
+            background-color: #333;
+        }
+
+        /* LTR CSS */
+
+
+        #snav.en {
+            right: 0;
+            text-align: right;
+        }
+
+            #snav.en li span {
+                right: -100px;
+            }
+
+            #snav.en li a:hover span {
+                right: 35px;
+            }
+
+        /* RTL CSS */
+
+
+        #snav.ar {
+            right: 0;
+            text-align: right;
+        }
+
+            #snav.ar li span {
+                right: -100px;
+            }
+
+            #snav.ar li a:hover span {
+                right: 35px;
+            }
+
+        /* main SideNav.css styles */
+
+
+        #snav {
+            position: fixed;
+            top: 40%;
+            z-index: 9999;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+            #snav ul {
+                list-style: none;
+            }
+
+            #snav * {
+                margin: 0;
+                padding: 0;
+                outline: 0;
+                transition: all .5s ease;
+                -webkit-transition: all .5s ease;
+                -moz-transition: all .5s ease;
+                -o-transition: all .5s ease;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            #snav li a {
+                text-decoration: none;
+                color: #fff;
+                display: block;
+                position: relative;
+            }
+
+            #snav .fa {
+                vertical-align: middle;
+                font-size: 18px;
+                width: 35px;
+                height: 35px;
+                line-height: 35px;
+                text-align: center;
+                position: relative;
+                z-index: 4;
+            }
+
+            #snav li span {
+                font-size: 15px;
+                vertical-align: middle;
+                height: 35px;
+                line-height: 35px;
+                width: auto;
+                white-space: nowrap;
+                overflow: hidden;
+                display: block;
+                padding: 0 15px;
+                position: absolute;
+                top: 0;
+                visibility: hidden;
+                z-index: 3;
+            }
+
+            #snav li a:hover .fa {
+                transform: rotate(720deg);
+            }
+
+            #snav li a:hover span {
+                visibility: visible;
+            }
+
+            /* colors styles */
+
+            /* menu items title background used for browsers not supporting :nth-child */
+
+
+            #snav li span {
+                background-color: #555;
+            }
+
+            /* icons color and background before hover  */
+
+
+            #snav li .fa {
+                background-color: #EEE;
+                color: #555
+            }
+
+            /* icons hover color */
+
+
+            #snav li a:hover .fa {
+                color: #fff;
+            }
+
+            /* repeated colors from 1 to 10 each hover color repeated after 10 menu items */
+
+
+            #snav li:nth-child(10n+1) span,
+            #snav li:nth-child(10n+1) a:hover .fa {
+                background-color: #8350DD;
+            }
+
+            #snav li:nth-child(10n+2) span,
+            #snav li:nth-child(10n+2) a:hover .fa {
+                background-color: #4EC5DB;
+            }
+
+            #snav li:nth-child(10n+3) span,
+            #snav li:nth-child(10n+3) a:hover .fa {
+                background-color: #3DC25D;
+            }
+
+            #snav li:nth-child(10n+4) span,
+            #snav li:nth-child(10n+4) a:hover .fa {
+                background-color: #99BE24;
+            }
+
+            #snav li:nth-child(10n+5) span,
+            #snav li:nth-child(10n+5) a:hover .fa {
+                background-color: #38c;
+            }
+
+            #snav li:nth-child(10n+6) span,
+            #snav li:nth-child(10n+6) a:hover .fa {
+                background-color: #ff0000;
+            }
+
+            #snav li:nth-child(10n+7) span,
+            #snav li:nth-child(10n+7) a:hover .fa {
+                background-color: #000;
+            }
+
+            #snav li:nth-child(10n+8) span,
+            #snav li:nth-child(10n+8) a:hover .fa {
+                background-color: #F1A111;
+            }
+
+            #snav li:nth-child(10n+9) span,
+            #snav li:nth-child(10n+9) a:hover .fa {
+                background-color: #777;
+            }
+
+            #snav li:nth-child(10n+10) span,
+            #snav li:nth-child(10n+10) a:hover .fa {
+                background-color: #30555C;
+            }
+        ul li {
+            
+             margin-left: 0em!important; 
+             margin-bottom: 0em!important; 
+        }
+        .nav.side-menu > li > a {
+            /* margin-bottom: 6px; */
+            font-size: 10pt!important;
+        }
+
+        .nav > li > a {
+            padding: 6px 15px 12px!important;
+        }
+        .navbar-brand, .navbar-nav > li > a {
+            font-weight: 500;
+             line-height: 20px!important; 
+            font-size: 10pt!important;
+        }
+        .top_nav .navbar-right {
+            margin: 0;
+             width: 90%!important; 
+            float: left!important;
+        }
+    </style>
+
+</head>
+<body class="nav-md footer_fixed" onkeypress="return disableCtrlKeyCombination(event);" onkeydown="return disableCtrlKeyCombination(event);">
+    @*<div id="load"></div>
+    <div id="contents"></div>*@
+    <div>
+        <div class="container body">
+            <div class="main_container">
+                <div class="col-md-3 left_col" style="padding-bottom: 10px!important">
+                    <div class="left_col scroll-view">
+                        <div class="navbar nav_title" style="border: 0;">
+                            <a href="http://skyinfy.com/" class="site_title"><span>SA Techology Solution</span></a>
+                        </div>
+                        <div class="clearfix"></div>
+                        <!-- menu profile quick info -->
+                        <div class="profile clearfix">
+                            <div class="profile_pic">
+                                <img id="ctl00_logo" class="img-circle profile_img" src="~/Content/images/logo.jpg">
+                            </div>
+                            <div class="profile_info">
+                                <span>Welcome</span>
+
+                            </div>
+                        </div>
+                        <!-- /menu profile quick info -->
+                        <br>
+                        <!-- Sidebar Search -->
+                        <div style="padding: 0px 39px; margin-left: -24px;" class="hidden-xs">
+                            <div class="form-group pmd-textfield pmd-textfield-floating-label">
+                                <input id="mySearch" class="form-control" onkeypress="return searchmenus(event);" onkeyup="return searchmenus(event);" type="text" placeholder="Search Menu">
+                            </div>
+                        </div>
+                        <!--sidebar-search -->
+                        <!-- sidebar menu -->
+                        <div id="sidebar-menu" class="main_menu_side hidden-print  main_menu">
+                            <div id="ctl00_menudiv" class="menu_section active">
+
+                                <ul id="myMenu" class="nav side-menu"><li id="l1" onclick="givemyid(this)"> <a runat="server" id="m1001" onclick="showwait();menuclick(this);" '=""><i class="fa fa-dashboard"></i>Dashboard</a></li><li id="l2" onclick="givemyid(this)"> <a runat="server" id="m7034" onclick="showwait();menuclick(this);"><i class="fa fa-thumb-tack"></i>Conversation</a></li><li id="l3"> <a id="a3"><i class="fa fa-thumb-tack"></i>My Task<span class="fa fa-chevron-down"></span></a><ul id="u3" class="nav child_menu"><li id="l4" onclick="givemyid(this)"> <a runat="server" id="m1004.1" onclick="showwait();menuclick(this);"><i class=""></i>Calender</a></li><li id="l5" onclick="givemyid(this)"> <a runat="server" id="m1004.2" onclick="showwait();menuclick(this);"><i class=""></i>To Do List</a></li> </ul></li><li id="l6" onclick="givemyid(this)"> <a runat="server" id="m1005" onclick="showwait();menuclick(this);" ' =""><i class="fa fa-bell"></i>Notification</a></li><li id="l7"> <a id="a7"><i class="fa fa-envelope"></i>Mail<span class="fa fa-chevron-down"></span></a><ul id="u7" class="nav child_menu"><li id="l8" onclick="givemyid(this)"> <a runat="server" id="m1007.1" onclick="showwait();menuclick(this);"><i class=""></i>Compose</a></li><li id="l9" onclick="givemyid(this)"> <a runat="server" id="m1007.2" onclick="showwait();menuclick(this);"><i class=""></i>Inbox</a></li><li id="l10" onclick="givemyid(this)"> <a runat="server" id="m1007.3" onclick="showwait();menuclick(this);"><i class=""></i>Sent</a></li><li id="l11" onclick="givemyid(this)"> <a runat="server" id="m1007.4" onclick="showwait();menuclick(this);"><i class=""></i>Draft</a></li><li id="l12" onclick="givemyid(this)"> <a runat="server" id="m1007.5" onclick="showwait();menuclick(this);"><i class=""></i>Archieve</a></li><li id="l13" onclick="givemyid(this)"> <a runat="server" id="m1007.6" onclick="showwait();menuclick(this);"><i class=""></i>Trash</a></li> </ul></li><li id="l14"> <a id="a14"><i class="fa fa-gears"></i>Utility<span class="fa fa-chevron-down"></span></a><ul id="u14" class="nav child_menu"><li id="l15" onclick="givemyid(this)"> <a runat="server" id="m10010.1" onclick="showwait();menuclick(this);"><i class=""></i>Scientific Calculator</a></li><li id="l16" onclick="givemyid(this)"> <a runat="server" id="m10010.2" onclick="showwait();menuclick(this);"><i class=""></i>Cheque Printing</a></li> </ul></li><li id="l17"> <a id="a17"><i class="fa fa-gears"></i>Admin Setting<span class="fa fa-chevron-down"></span></a><ul id="u17" class="nav child_menu"><li id="l18" onclick="givemyid(this)"> <a runat="server" id="m1008.1" onclick="showwait();menuclick(this);"><i class=""></i>Create User</a></li><li id="l19" onclick="givemyid(this)"> <a runat="server" id="m1008.2" onclick="showwait();menuclick(this);"><i class=""></i>Create Company </a></li><li id="l20" onclick="givemyid(this)"> <a runat="server" id="m1008.3" onclick="showwait();menuclick(this);"><i class=""></i>Change Menu Order</a></li><li id="l21" onclick="givemyid(this)"> <a runat="server" id="m1008.4" onclick="showwait();menuclick(this);"><i class=""></i>Create Unit</a></li><li id="l22" onclick="givemyid(this)"> <a runat="server" id="m1008.7" onclick="showwait();menuclick(this);"><i class=""></i>Config</a></li><li id="l23" onclick="givemyid(this)"> <a runat="server" id="m1008.9" onclick="showwait();menuclick(this);"><i class=""></i>Department</a></li><li id="l24" onclick="givemyid(this)"> <a runat="server" id="m1008.10" onclick="showwait();menuclick(this);"><i class=""></i>Designation</a></li><li id="l25" onclick="givemyid(this)"> <a runat="server" id="m1008.12" onclick="showwait();menuclick(this);"><i class=""></i>Bank Master</a></li><li id="l26" onclick="givemyid(this)"> <a runat="server" id="m1008.11" onclick="showwait();menuclick(this);"><i class=""></i>Company Logo</a></li> </ul></li><li id="l27"> <a id="a27"><i class="fa fa-gear"></i>User Setting<span class="fa fa-chevron-down"></span></a><ul id="u27" class="nav child_menu"><li id="l28" onclick="givemyid(this)"> <a runat="server" id="m1011.1" onclick="showwait();menuclick(this);"><i class=""></i>Mail Setup</a></li><li id="l29" onclick="givemyid(this)"> <a runat="server" id="m1011.2" onclick="showwait();menuclick(this);"><i class=""></i>Dashboard Setting</a></li><li id="l30" onclick="givemyid(this)"> <a runat="server" id="m1011.3" onclick="showwait();menuclick(this);"><i class=""></i>Admin Setting</a></li> </ul></li><li id="l31"> <a id="a31"><i class="fa fa-sign-in"></i>Admission Process<span class="fa fa-chevron-down"></span></a><ul id="u31" class="nav child_menu"><li id="l32" onclick="givemyid(this)"> <a runat="server" id="m7005.1" onclick="showwait();menuclick(this);"><i class=""></i>Registration</a></li><li id="l33" onclick="givemyid(this)"> <a runat="server" id="m7005.2" onclick="showwait();menuclick(this);"><i class=""></i>Registration Confirmed</a></li><li id="l34" onclick="givemyid(this)"> <a runat="server" id="m7005.3" onclick="showwait();menuclick(this);"><i class=""></i>Section Allocation</a></li><li id="l35" onclick="givemyid(this)"> <a runat="server" id="m7005.4" onclick="showwait();menuclick(this);"><i class=""></i>Generate Roll No.</a></li><li id="l36" onclick="givemyid(this)"> <a runat="server" id="m7005.6" onclick="showwait();menuclick(this);"><i class=""></i>List of Students</a></li><li id="l37" onclick="givemyid(this)"> <a runat="server" id="m7005.7" onclick="showwait();menuclick(this);"><i class=""></i>List Of Blocked Students</a></li><li id="l38" onclick="givemyid(this)"> <a runat="server" id="m7005.5" onclick="showwait();menuclick(this);"><i class=""></i>List Of Pending Applicants</a></li> </ul></li><li id="l39"> <a id="a39"><i class="fa fa-check-square-o"></i>Attendance<span class="fa fa-chevron-down"></span></a><ul id="u39" class="nav child_menu"><li id="l40" onclick="givemyid(this)"> <a runat="server" id="m7015.1" onclick="showwait();menuclick(this);"><i class=""></i>Attendence</a></li><li id="l41" onclick="givemyid(this)"> <a runat="server" id="m7015.2" onclick="showwait();menuclick(this);"><i class=""></i>Leave Apply</a></li><li id="l42" onclick="givemyid(this)"> <a runat="server" id="m7015.3" onclick="showwait();menuclick(this);"><i class=""></i>Leave Confirmation</a></li> </ul></li><li id="l43"> <a id="a43"><i class="fa fa-exclamation-circle"></i>Home Work<span class="fa fa-chevron-down"></span></a><ul id="u43" class="nav child_menu"><li id="l44" onclick="givemyid(this)"> <a runat="server" id="m7037.1" onclick="showwait();menuclick(this);"><i class=""></i>Add Home Work</a></li><li id="l45" onclick="givemyid(this)"> <a runat="server" id="m7037.2" onclick="showwait();menuclick(this);"><i class=""></i>Print Home Work</a></li> </ul></li><li id="l46" onclick="givemyid(this)"> <a runat="server" id="m7016" onclick="showwait();menuclick(this);" '=""><i class="fa fa-calendar"></i>Time Table</a></li><li id="l47"> <a id="a47"><i class="fa fa-user"></i>Common<span class="fa fa-chevron-down"></span></a><ul id="u47" class="nav child_menu"> </ul></li><li id="l48"> <a id="a48"><i class="fa fa-female"></i>Teacher Detail<span class="fa fa-chevron-down"></span></a><ul id="u48" class="nav child_menu"><li id="l49" onclick="givemyid(this)"> <a runat="server" id="m7021.1" onclick="showwait();menuclick(this);"><i class=""></i>Weekly Off</a></li><li id="l50" onclick="givemyid(this)"> <a runat="server" id="m7021.2" onclick="showwait();menuclick(this);"><i class=""></i>Subject Allocation</a></li><li id="l51" onclick="givemyid(this)"> <a runat="server" id="m7021.3" onclick="showwait();menuclick(this);"><i class=""></i>Class Time Table</a></li><li id="l52" onclick="givemyid(this)"> <a runat="server" id="m7021.4" onclick="showwait();menuclick(this);"><i class=""></i>Time Table Reportatr</a></li> </ul></li><li id="l53"> <a id="a53"><i class="fa fa-money"></i>Fee Receipt<span class="fa fa-chevron-down"></span></a><ul id="u53" class="nav child_menu"><li id="l54" onclick="givemyid(this)"> <a runat="server" id="m7019.2" onclick="showwait();menuclick(this);"><i class=""></i>Admission Fee</a></li><li id="l55" onclick="givemyid(this)"> <a runat="server" id="m7019.3" onclick="showwait();menuclick(this);"><i class=""></i>Admission Fee Approval</a></li><li id="l56" onclick="givemyid(this)"> <a runat="server" id="m7019.1" onclick="showwait();menuclick(this);"><i class=""></i>Regular Fee</a></li><li id="l57" onclick="givemyid(this)"> <a runat="server" id="m7019.5" onclick="showwait();menuclick(this);"><i class=""></i>Regular Fee (Group)</a></li><li id="l58" onclick="givemyid(this)"> <a runat="server" id="m7019.6" onclick="showwait();menuclick(this);"><i class=""></i>Regular Fee Concession</a></li><li id="l59" onclick="givemyid(this)"> <a runat="server" id="m7019.7" onclick="showwait();menuclick(this);"><i class=""></i>Regular Fee Consession Group</a></li><li id="l60" onclick="givemyid(this)"> <a runat="server" id="m7019.9" onclick="showwait();menuclick(this);"><i class=""></i>Mis. Fees</a></li><li id="l61" onclick="givemyid(this)"> <a runat="server" id="m7019.8" onclick="showwait();menuclick(this);"><i class=""></i>Fee Reversal</a></li> </ul></li><li id="l62"> <a id="a62"><i class="fa fa-mortar-board"></i>Results &amp; Promotions<span class="fa fa-chevron-down"></span></a><ul id="u62" class="nav child_menu"><li id="l63" onclick="givemyid(this)"> <a runat="server" id="m7014.1" onclick="showwait();menuclick(this);"><i class=""></i>Result Entry</a></li><li id="l64" onclick="givemyid(this)"> <a runat="server" id="m7014.2" onclick="showwait();menuclick(this);"><i class=""></i>Promoted To Next Class</a></li> </ul></li><li id="l65" onclick="givemyid(this)"> <a runat="server" id="m7036" onclick="showwait();menuclick(this);" ' =""><i class="fa fa-exclamation-circle"></i>Health Checkup</a></li><li id="l66"> <a id="a66"><i class="fa fa-briefcase"></i>Reports<span class="fa fa-chevron-down"></span></a><ul id="u66" class="nav child_menu"><li id="l67" onclick="givemyid(this)"> <a runat="server" id="m7020.1" onclick="showwait();menuclick(this);"><i class=""></i>Applicant Detail</a></li><li id="l68" onclick="givemyid(this)"> <a runat="server" id="m7020.3" onclick="showwait();menuclick(this);"><i class=""></i>Student Attendance</a></li><li id="l69" onclick="givemyid(this)"> <a runat="server" id="m7020.4" onclick="showwait();menuclick(this);"><i class=""></i>Student Fee </a></li><li id="l70" onclick="givemyid(this)"> <a runat="server" id="m7020.2" onclick="showwait();menuclick(this);"><i class=""></i>Student ICard</a></li> </ul></li><li id="l71"> <a id="a71"><i class="fa fa-wrench"></i>School Master<span class="fa fa-chevron-down"></span></a><ul id="u71" class="nav child_menu"><li id="l&#39;72&#39;"> <a id="a72"><i class=""></i>Admission Master<span class="fa fa-chevron-down"></span></a><ul id="u72" class="nav child_menu"><li id="l73" onclick="givemyid(this)"> <a runat="server" id="m7004.3.1" onclick="showwait();menuclick(this);"><i class=""></i>Registration No.pattern/Settings</a></li><li id="l74" onclick="givemyid(this)"> <a runat="server" id="m7004.3.2" onclick="showwait();menuclick(this);"><i class=""></i>Roll No.pattern/Settings</a></li> </ul></li><li id="l&#39;75&#39;"> <a id="a75"><i class=""></i>User Id Pattern<span class="fa fa-chevron-down"></span></a><ul id="u75" class="nav child_menu"><li id="l76" onclick="givemyid(this)"> <a runat="server" id="m7004.8.1" onclick="showwait();menuclick(this);"><i class=""></i>User Id Pattern</a></li> </ul></li><li id="l&#39;77&#39;"> <a id="a77"><i class=""></i>Category &amp; Type<span class="fa fa-chevron-down"></span></a><ul id="u77" class="nav child_menu"><li id="l78" onclick="givemyid(this)"> <a runat="server" id="m7004.1.1" onclick="showwait();menuclick(this);"><i class=""></i>Education Category</a></li><li id="l79" onclick="givemyid(this)"> <a runat="server" id="m7004.1.9" onclick="showwait();menuclick(this);"><i class=""></i>Health Checkup Type</a></li><li id="l80" onclick="givemyid(this)"> <a runat="server" id="m7004.1.7" onclick="showwait();menuclick(this);"><i class=""></i>Qualification</a></li><li id="l81" onclick="givemyid(this)"> <a runat="server" id="m7004.1.8" onclick="showwait();menuclick(this);"><i class=""></i>Lecture Type</a></li><li id="l82" onclick="givemyid(this)"> <a runat="server" id="m7004.1.3" onclick="showwait();menuclick(this);"><i class=""></i>Lunch Timings</a></li><li id="l83" onclick="givemyid(this)"> <a runat="server" id="m7004.1.4" onclick="showwait();menuclick(this);"><i class=""></i>Section</a></li><li id="l84" onclick="givemyid(this)"> <a runat="server" id="m7004.1.6" onclick="showwait();menuclick(this);"><i class=""></i>Subject</a></li> </ul></li><li id="l&#39;85&#39;"> <a id="a85"><i class=""></i>Class Master<span class="fa fa-chevron-down"></span></a><ul id="u85" class="nav child_menu"><li id="l86" onclick="givemyid(this)"> <a runat="server" id="m7004.6.1" onclick="showwait();menuclick(this);"><i class=""></i>Class Master</a></li> </ul></li><li id="l&#39;87&#39;"> <a id="a87"><i class=""></i>Section Strength<span class="fa fa-chevron-down"></span></a><ul id="u87" class="nav child_menu"><li id="l88" onclick="givemyid(this)"> <a runat="server" id="m7004.7.1" onclick="showwait();menuclick(this);"><i class=""></i>Section Strength</a></li> </ul></li><li id="l&#39;89&#39;"> <a id="a89"><i class=""></i>ClassWise Subject<span class="fa fa-chevron-down"></span></a><ul id="u89" class="nav child_menu"><li id="l90" onclick="givemyid(this)"> <a runat="server" id="m7004.10.1" onclick="showwait();menuclick(this);"><i class=""></i>Subjects Detail</a></li> </ul></li><li id="l&#39;91&#39;"> <a id="a91"><i class=""></i>Holiday Master<span class="fa fa-chevron-down"></span></a><ul id="u91" class="nav child_menu"><li id="l92" onclick="givemyid(this)"> <a runat="server" id="m7004.4.1" onclick="showwait();menuclick(this);"><i class=""></i>Holiday  Detail</a></li> </ul></li><li id="l93" onclick="givemyid(this)"> <a runat="server" id="m7004.12" onclick="showwait();menuclick(this);"><i class=""></i>Leave Reason Master</a></li><li id="l&#39;94&#39;"> <a id="a94"><i class=""></i>Question Master<span class="fa fa-chevron-down"></span></a><ul id="u94" class="nav child_menu"><li id="l95" onclick="givemyid(this)"> <a runat="server" id="m7004.11.1" onclick="showwait();menuclick(this);"><i class=""></i>Question Type</a></li><li id="l96" onclick="givemyid(this)"> <a runat="server" id="m7004.11.2" onclick="showwait();menuclick(this);"><i class=""></i>Title Master</a></li> </ul></li><li id="l97" onclick="givemyid(this)"> <a runat="server" id="m7004.13" onclick="showwait();menuclick(this);"><i class=""></i>Room Master</a></li><li id="l98" onclick="givemyid(this)"> <a runat="server" id="m7004.5" onclick="showwait();menuclick(this);"><i class=""></i>Tehsil Master</a></li><li id="l99" onclick="givemyid(this)"> <a runat="server" id="m7004.9" onclick="showwait();menuclick(this);"><i class=""></i>Village Master</a></li><li id="l100" onclick="givemyid(this)"> <a runat="server" id="m7004.2" onclick="showwait();menuclick(this);"><i class=""></i>Academic Year</a></li> </ul></li><li id="l101"> <a id="a101"><i class="fa fa-calculator"></i>Fee Master<span class="fa fa-chevron-down"></span></a><ul id="u101" class="nav child_menu"><li id="l102" onclick="givemyid(this)"> <a runat="server" id="m7002.1" onclick="showwait();menuclick(this);"><i class=""></i>Fee Settings</a></li><li id="l103" onclick="givemyid(this)"> <a runat="server" id="m7002.4" onclick="showwait();menuclick(this);"><i class=""></i>Receipt No.pattern/Settings</a></li><li id="l104" onclick="givemyid(this)"> <a runat="server" id="m7002.2" onclick="showwait();menuclick(this);"><i class=""></i>Create Fee Master</a></li><li id="l105" onclick="givemyid(this)"> <a runat="server" id="m7002.3" onclick="showwait();menuclick(this);"><i class=""></i>Fee Structure</a></li><li id="l106" onclick="givemyid(this)"> <a runat="server" id="m7002.5" onclick="showwait();menuclick(this);"><i class=""></i>Fees Fine Setting &amp; Slab</a></li><li id="l107" onclick="givemyid(this)"> <a runat="server" id="m7002.8" onclick="showwait();menuclick(this);"><i class=""></i>Mis. Fee Type</a></li><li id="l108" onclick="givemyid(this)"> <a runat="server" id="m7002.9" onclick="showwait();menuclick(this);"><i class=""></i>Mis. Fee Head</a></li><li id="l109" onclick="givemyid(this)"> <a runat="server" id="m7002.6" onclick="showwait();menuclick(this);"><i class=""></i>Fees Wave Off</a></li><li id="l110" onclick="givemyid(this)"> <a runat="server" id="m7002.10" onclick="showwait();menuclick(this);"><i class=""></i>Mis. Fee Structure</a></li><li id="l111" onclick="givemyid(this)"> <a runat="server" id="m7002.7" onclick="showwait();menuclick(this);"><i class=""></i>Student Fees Wave Off</a></li> </ul></li><li id="l112"> <a id="a112"><i class="fa fa-trophy"></i>Result Master<span class="fa fa-chevron-down"></span></a><ul id="u112" class="nav child_menu"><li id="l113" onclick="givemyid(this)"> <a runat="server" id="m7003.1" onclick="showwait();menuclick(this);"><i class=""></i>Result Master</a></li><li id="l114" onclick="givemyid(this)"> <a runat="server" id="m7003.2" onclick="showwait();menuclick(this);"><i class=""></i>Exam Name</a></li> </ul></li><li id="l115"> <a id="a115"><i class="fa fa-certificate"></i>Template Master<span class="fa fa-chevron-down"></span></a><ul id="u115" class="nav child_menu"><li id="l116" onclick="givemyid(this)"> <a runat="server" id="m7017.3" onclick="showwait();menuclick(this);"><i class=""></i>Header Master</a></li><li id="l117" onclick="givemyid(this)"> <a runat="server" id="m7017.1" onclick="showwait();menuclick(this);"><i class=""></i>Template Master</a></li><li id="l118" onclick="givemyid(this)"> <a runat="server" id="m7017.2" onclick="showwait();menuclick(this);"><i class=""></i>Create Certificate</a></li><li id="l119" onclick="givemyid(this)"> <a runat="server" id="m7017.4" onclick="showwait();menuclick(this);"><i class=""></i>Home Work Template</a></li> </ul></li><li id="l120" onclick="givemyid(this)"> <a runat="server" id="m999999" onclick="showwait();menuclick(this);"><i class="fa fa-power-off"></i>Logout</a></li> </ul>
+                            </div>
+                        </div>
+                        <!-- /sidebar menu -->
+                    </div>
+                </div>
+                <!-- top navigation -->
+                <div class="top_nav">
+                    <div class="nav_menu">
+                        <nav>
+                            <div class="nav toggle">
+                                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                            </div>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="user-profile dropdown-toggle">
+                                        <img id="ctl00_ProfileImage" class="img-circle" src="~/Content/images/person-icon.png">
+                                       
+                                        <span style="position: absolute" id="ctl00_userid">nameadmin</span>
+                                        <span class=" fa fa-angle-down"></span>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-usermenu pull-right dropdown-content">
+                                        <li><a href="http://localhost:46405/erp/Profile.apsx">My Profile</a></li>
+                                        <li><a href="http://localhost:46405/erp/change_company_unit.aspx">Change Company / Unit</a></li>
+                                        <li><a href="http://localhost:46405/erp/landing/Landing_Page4.aspx">Change Module</a></li>
+                                        <li><a href="http://localhost:46405/erp/ResetPassword.aspx">Reset Password</a></li>
+                                        <li>
+                                            <a id="ctl00_logout" href="javascript:__doPostBack(&#39;ctl00$logout&#39;,&#39;&#39;)"><i class="fa fa-sign-out pull-right"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="lihide">
+                                    <a href="http://localhost:46405/erp/directlink/menueditor.aspx#" style="color: white">
+                                        <span id="ctl00_lbl_modulename">Education</span>
+                                    </a>
+                                </li>
+                                <li class="lihide">
+                                    <a href="http://localhost:46405/erp/directlink/menueditor.aspx#" style="color: white">
+                                        <span id="ctl00_company_code">unit1(001001)</span>
+                                    </a>
+                                </li>
+                                <li class="lihide">
+                                    <a href="http://localhost:46405/erp/directlink/menueditor.aspx#" style="color: white">
+                                        <span id="ctl00_company_name">Demo International School(001)</span>
+                                    </a>
+                                </li>
+                                <li class="lihide">
+                                    <a style="color: white" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl27&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">
+                                        <span id="ctl00_lblacyear">2018 2019</span>
+                                    </a>
+                                </li>
+
+
+                                <li><a id="ctl00_stickynotes" data-placement="top" title="Sticky Notes" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$stickynotes&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))"><i class="fa fa-th-list"></i></a></li>
+                                <li class="lihide">
+                                    <a style="color: white" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ctl28&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">
+                                        <span id="ctl00_lbldate">08/10/2018 11:10:17</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+
+
+                        <div id="mynotes" class="modal fade stickynotes" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-md">
+                                <div class="modal-content">
+                                    <div id="ctl00_Div2" class="modal-header" style="background-color: #2A3F54; color: white">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 class="modal-title" id="H2">Notes</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="containerClass">
+                                            <div id="ctl00_message$HtmlEditorExtenderBehavior_ExtenderContainer" class="unselectable ajax__html_editor_extender_container" style="width: 0px; height: 0px;"><textarea name="ctl00$message" rows="10" cols="20" id="ctl00_message" class="col-md-12 col-sm-12 col-xs-12" style="display: none; visibility: hidden;"></textarea><div id="ctl00_message$HtmlEditorExtenderBehavior_ExtenderButtonContainer" class="ajax__html_editor_extender_buttoncontainer"><input type="button" id="ctl00_HtmlEditorExtender2Undo" name="Undo" title="Undo" class="ajax__html_editor_extender_button ajax__html_editor_extender_Undo" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Redo" name="Redo" title="Redo" class="ajax__html_editor_extender_button ajax__html_editor_extender_Redo" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Bold" name="Bold" title="Bold" class="ajax__html_editor_extender_button ajax__html_editor_extender_Bold" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Italic" name="Italic" title="Italic" class="ajax__html_editor_extender_button ajax__html_editor_extender_Italic" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Underline" name="Underline" title="Underline" class="ajax__html_editor_extender_button ajax__html_editor_extender_Underline" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2StrikeThrough" name="StrikeThrough" title="Strike Through" class="ajax__html_editor_extender_button ajax__html_editor_extender_StrikeThrough" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Subscript" name="Subscript" title="Sub Script" class="ajax__html_editor_extender_button ajax__html_editor_extender_Subscript" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Superscript" name="Superscript" title="Super Script" class="ajax__html_editor_extender_button ajax__html_editor_extender_Superscript" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2JustifyLeft" name="JustifyLeft" title="Justify Left" class="ajax__html_editor_extender_button ajax__html_editor_extender_JustifyLeft" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2JustifyCenter" name="JustifyCenter" title="Justify Center" class="ajax__html_editor_extender_button ajax__html_editor_extender_JustifyCenter" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2JustifyRight" name="JustifyRight" title="Justify Right" class="ajax__html_editor_extender_button ajax__html_editor_extender_JustifyRight" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2JustifyFull" name="JustifyFull" title="Justify Full" class="ajax__html_editor_extender_button ajax__html_editor_extender_JustifyFull" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2insertOrderedList" name="insertOrderedList" title="Insert Ordered List" class="ajax__html_editor_extender_button ajax__html_editor_extender_insertOrderedList" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2insertUnorderedList" name="insertUnorderedList" title="Insert Unordered List" class="ajax__html_editor_extender_button ajax__html_editor_extender_insertUnorderedList" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2createLink" name="createLink" title="Create Link" class="ajax__html_editor_extender_button ajax__html_editor_extender_createLink" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2UnLink" name="UnLink" title="UnLink" class="ajax__html_editor_extender_button ajax__html_editor_extender_UnLink" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2RemoveFormat" name="RemoveFormat" title="Remove Format" class="ajax__html_editor_extender_button ajax__html_editor_extender_RemoveFormat" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2SelectAll" name="SelectAll" title="Select All" class="ajax__html_editor_extender_button ajax__html_editor_extender_SelectAll" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2UnSelect" name="UnSelect" title="UnSelect" class="ajax__html_editor_extender_button ajax__html_editor_extender_UnSelect" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Delete" name="Delete" title="Delete" class="ajax__html_editor_extender_button ajax__html_editor_extender_Delete" unselectable="on" style="width: 23px; height: 21px;"><span class="backcolorclass" unselectable="on" style="background-color: rgb(255, 0, 0); border: 1px solid rgb(194, 194, 194); display: block; float: left;"><input type="button" id="ctl00_HtmlEditorExtender2BackColor" name="BackColor" title="Back Color" class="ajax__html_editor_extender_button ajax__html_editor_extender_BackColor" unselectable="on" style="background-color: transparent; width: 21px; height: 19px; color: transparent;"></span><span class="forecolorclass" unselectable="on" style="background-color: rgb(255, 0, 0); border: 1px solid rgb(194, 194, 194); display: block; float: left;"><input type="button" id="ctl00_HtmlEditorExtender2ForeColor" name="ForeColor" title="Fore Color" class="ajax__html_editor_extender_button ajax__html_editor_extender_ForeColor" unselectable="on" style="background-color: transparent; width: 21px; height: 19px; color: transparent;"></span><nobr class="fontnameclass" style="float: left; font-size: 11px;"><span style="padding-left: 5px; font-weight: bold;">Font </span><select id="ctl00_HtmlEditorExtender2FontName" name="FontName" title="Font Name" unselectable="on" style="font-size: 9px; font-family: Arial; height: 20px; width: 90px;"><option value="arial,helvetica,sans-serif">Arial</option><option value="courier new,courier,monospace">Courier New</option><option value="georgia,times new roman,times,serif">Georgia</option><option value="tahoma,arial,helvetica,sans-serif">Tahoma</option><option value="times new roman,times,serif">Times New Roman</option><option value="verdana,arial,helvetica,sans-serif">Verdana</option><option value="impact">Impact</option><option value="wingdings">WingDings</option></select></nobr><nobr class="fontsizeclass" style="float: left; font-size: 11px;"><span style="padding-left: 5px; font-weight: bold;">Size </span><select id="ctl00_HtmlEditorExtender2FontSize" name="FontSize" title="Font Size" unselectable="on" style="font-size: 11px; font-family: Arial; height: 20px; width: 50px;"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option></select></nobr><input type="button" id="ctl00_HtmlEditorExtender2Indent" name="Indent" title="Indent" class="ajax__html_editor_extender_button ajax__html_editor_extender_Indent" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2Outdent" name="Outdent" title="Outdent" class="ajax__html_editor_extender_button ajax__html_editor_extender_Outdent" unselectable="on" style="width: 23px; height: 21px;"><input type="button" id="ctl00_HtmlEditorExtender2InsertHorizontalRule" name="InsertHorizontalRule" title="Insert Horizontal Rule" class="ajax__html_editor_extender_button ajax__html_editor_extender_InsertHorizontalRule" unselectable="on" style="width: 23px; height: 21px;"><span class="ajax__html_editor_extender_separator"></span></div><div id="ctl00_HtmlEditorExtender2_ExtenderContentEditable" contenteditable="true" class="ajax__html_editor_extender_texteditor" style="overflow: auto; clear: both;"></div><div id="ctl00_HtmlEditorExtender2_ExtenderSourceView" contenteditable="true" class="ajax__html_editor_extender_texteditor" style="overflow: auto; clear: both; display: none; visibility: hidden;"></div><div id="ctl00_message$HtmlEditorExtenderBehavior_ExtenderButtonContainer2" class="ajax__html_editor_extender_buttoncontainer2" style="clear: both;"><input type="button" class="ajax__html_editor_extender_button ajax__html_editor_extender_content" style="width: 23px; height: 21px;"><input type="button" class="ajax__html_editor_extender_button ajax__html_editor_extender_source" style="width: 23px; height: 21px;"></div></div>
+                                            <input type="hidden" name="ctl00$HtmlEditorExtender2_ClientState" id="ctl00_HtmlEditorExtender2_ClientState"><div id="ctl00_HtmlEditorExtender2_popupDiv" style="opacity: 0; display: none; visibility: hidden; position: absolute;" class="popupDiv"><div id="ctl00_HtmlEditorExtender2_btnCancel" style="float: right; position:relative; padding-left: 20px; top:10px; width: 55px; border-color:black;border-style: solid; border-width: 1px;cursor:pointer;" float="right" unselectable="on">Cancel</div></div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Small modal -->
+                        <button type="button" id="mybtn" class="btn btn-primary" style="display: none" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+                        <div id="MYID" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div id="dtitle" class="modal-header" style="background-color: red; color: white">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 id="title_type" class="modal-title"></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="msgp"></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="btnyes" type="button" onclick="yesclick();" class="btn btn-default" data-dismiss="modal">Yes</button>
+                                        <button id="btnok" type="button" onclick="okclick();" class="btn btn-primary" data-dismiss="modal">Ok</button>
+                                        <button id="btnno" type="button" onclick="noclick();" class="btn btn-primary" data-dismiss="modal">No</button>
+                                        <button id="btnok1" clientidmode="static" type="button" style="display: none" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /modals -->
+                        <!-- session out popup -->
+                        <button type="button" id="mybtn2" class="btn btn-primary" style="display: none" data-toggle="modal" data-target=".sessonerror">Small modal</button>
+                        <div id="MYID2" class="modal fade sessonerror" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+                                    <div id="ctl00_Div1" class="modal-header" style="background-color: red; color: white">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <h4 id="ctl00_H1" class="modal-title">Session Error</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p id="ctl00_P1"></p>
+                                        <p>
+                                            Your Session will expire in&nbsp;<span id="seconds"></span>&nbsp;seconds.<br>
+                                            Do you want to reset?
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button id="ctl00_Button1" type="button" onclick="ResetSession();" class="btn btn-default" data-dismiss="modal">Yes</button>
+                                        <button id="ctl00_Button3" type="button" onclick="Noselect();" class="btn btn-primary" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /modals -->
+
+                    </div>
+                </div>
+                <!-- /top navigation -->
+                <!-- page content -->
+                <div class="right_col" role="main" style="background-color: white; min-height: 1376px;">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+    <asp:HiddenField runat="server" ClientIDMode="Static" ID="hffocus" />
+
+    <div id="DemoModal" class="modal fade" data-keyboard="false">
+        <div style="position: fixed; width: 100%; height: 100%; z-index: 10002; background-color: Gray; filter: alpha(opacity=70); opacity: 0.7;">
+            &nbsp;
+        </div>
+        <table style="position: fixed; width: 100%; height: 100%; z-index: 10003;">
+            <tr>
+                <td align="center" valign="middle">
+                    <div style="color: Black; font-weight: bolder; background-color: White; padding: 15px; width: 200px;">
+                        <asp:Image ID="Image3" runat="server" ImageUrl="~/content/images/ajax-loader.gif" />
+                        Processing....
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

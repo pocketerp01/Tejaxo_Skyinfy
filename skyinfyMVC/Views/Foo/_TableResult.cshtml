@@ -1,0 +1,45 @@
+﻿
+@model skyinfyMVC.Models.TableResultModel
+
+@using System.Data
+@if (Model != null && Model.CampaignDataTable != null)
+{
+    <table id="tblResult" class="table table-striped">
+        <thead>
+            <tr>
+                @foreach (var headerValue in Model.CampaignDataTable.Columns)
+                {
+                    <th class="tHeaderCell" col_name="@headerValue" sort_direction='@((string.IsNullOrEmpty(Model.SortDirection)) ? "" : (headerValue.ToString() == Model.SortColumn ? (Model.SortDirection == "ASC" ? "DESC" : "ASC") : ""))'>@headerValue</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.CampaignDataTable.Rows.Count; i++)
+            {
+                <tr>
+                    @foreach (var cellValue in Model.CampaignDataTable.Rows[i].ItemArray)
+                    {
+                        <td>@cellValue</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+<script type="text/javascript">
+
+   $(document).ready(function () {
+     $.ajaxSetup({ cache: false })
+     // header column click event.
+     $(".tHeaderCell").click(function (e) {
+       $.ajaxSetup({ cache: false })
+       var col_name = $(this).attr('col_name');
+       var sort_direction = $(this).attr('sort_direction');
+       if (sort_direction == '')
+         sort_direction = 'ASC';
+       // call get campaign function. This has been implemented in the Index.cshtml page.
+       getCampaign(skip, take, col_name, sort_direction);
+     });
+   });
+</script>

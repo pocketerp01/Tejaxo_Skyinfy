@@ -1,0 +1,468 @@
+﻿@using System.Data;
+@using System.Web.Configuration;
+@using System.Configuration;
+@using skyinfyMVC.Models;
+@Styles.Render("~/bundles/linkedcss")
+@Styles.Render("~/bundles/sgencss")
+@Styles.Render("~/bundles/skyinfycss")
+
+@Scripts.Render("~/bundles/linkedjs")
+@Scripts.Render("~/bundles/sgenjs")
+@Scripts.Render("~/bundles/monthlyjs")
+@*@Scripts.Render("~/bundles/skyinfyjs")*@
+
+@Styles.Render("~/bundles/foocss")
+@Scripts.Render("~/bundles/foojs")
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@using System.Data;
+@using skyinfyMVC.Models;
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen = new sgenFun(MyGuid);
+    //string serverpath = Server.MapPath("~/Uploads/name/name.jpg");
+    //string serverpath = HttpContext.Current.Server.MapPath("/Uploads/stud_icon.png");
+    Multiton multiton = Multiton.GetInstance(MyGuid);
+    string userCode = multiton.UserCode;
+    Layout = null;
+    Cmd_Fun cmd_fun = new Cmd_Fun(MyGuid);
+    string clientid_mst = sgen.GetCookie(MyGuid, "clientid_mst");
+    string unitid_mst = sgen.GetCookie(MyGuid, "unitid_mst");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    string sessionname = "tck_mom_u_" + userCode + "_" + unitid_mst + "";
+    DataTable tmp = cmd_fun.getsessiondt(userCode, sessionname, "select id,param1,param2,upper(param3) param3 ,name from controls where client_id='" + clientid_mst + "' and param5='CUSTOMER DETAIL' and  param3='ORGANISATION NAME' ");
+
+}
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="~/Scripts/skyinfyjs.js"></script>
+    @*<link href="~/erp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+        <script src="..../../../../../Scripts/jquery-3.1.1.min.js"></script>
+        <script src="../../../../../../../erp/vendors/jquery/dist/jquery.min.js"></script>
+
+
+        <script src="../../../erp/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <link href="~/erp/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+        <script src="../../../../Scripts/sgen.js"></script>
+        <link href="~/Content/css/sgen.css" rel="stylesheet" />
+        <link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />
+
+        <script src="../../../../Content/css/select2/select2_4.0.6.min.js"></script>*@
+
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+
+
+            if (detectmob()) {
+
+                var lihide = $(".lihide");
+                lihide.each(function () {
+                    $(this).hide();
+                });
+
+            }
+
+        });
+
+
+
+
+        function replaceAll(inputString, fromval, toval) {
+            var res = inputString.replace("/" + fromval + "/gi", toval);
+            return res;
+        }
+        $(document).ready(function () {
+            $(".sa-select2-single").select2({
+
+
+                maximumSelectionLength: 1,
+                //placeholder: $(this).attr("placeholder"),
+                //multiple: true,
+
+                allowClear: true
+            })
+
+            //$(".sa-select2-multiple").select2({ placeholder: "Select a state"});
+            $(".sa-select2-multiple").select2();
+
+
+            //for cell focus, tab key, arrow key work
+        });
+
+
+    </script>
+   
+</head>
+
+
+<body style="background-color:white">
+    <script src="/Scripts/ckeditor/ckeditor.js"></script>
+    @using (Html.BeginForm("web_ticket", "Vastu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+    <div class="container" style="padding:20px;">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <div class='input-group'>
+                        <div class="title_left">
+                            <h3 style="font-weight:bold;">WEB TICKET</h3>
+                        </div>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control" style="border-radius: 10px!important;"
+                                   id="btnsave" name="command" value="Save" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" style="border-radius: 10px!important;"
+                                   id="btncance" name="command" value="Cancel" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        @Html.HiddenFor(m => m[0].Col10, new { id = "table_Name" })
+        @Html.HiddenFor(m => m[0].Col11, new { id = "type" })
+        @Html.HiddenFor(m => m[0].Col12, new { id = "where" })
+  
+      
+        @*@Html.HiddenFor(m => m[0].Col24, new { id = "Classid" })
+        @Html.HiddenFor(m => m[0].Col25, new { id = "sectionid" })
+        @Html.HiddenFor(m => m[0].Col21, new { id = "client_id" })
+        @Html.HiddenFor(m => m[0].Col22, new { id = "unit_id" })
+        @Html.HiddenFor(m => m[0].Col23, new { id = "utype" })*@
+        @Html.HiddenFor(m => m[0].Col14, new { id = "m_id" })
+        @Html.HiddenFor(m => m[0].Col15, new { id = "mid" })
+        @Html.HiddenFor(m => m[0].Col30, new { id = "hf_lead_app" })
+
+        <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden;" class="btn btn-primary" />
+        <input type="hidden" id="hffocus" value="" />
+        <div class="row">
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Doc No.<span class="ClientProfileLabelColor"> </span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[0].Col16, new { @id = "Txt_doc", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Doc Date<span class="ClientProfileLabelColor"> *</span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.TextBoxFor(model => model[0].Col29, new { @id = "doc_dt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory" })
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Ticket Type<span class="ClientProfileLabelColor"> </span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_type", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Subject<span class="ClientProfileLabelColor"> *</span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.TextBoxFor(model => model[0].Col21, new { @id = "Txt_Cust", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" id="cnt">
+
+            <div class="col-sm-3">
+                <label for="first-name">
+                    @tmp.Select("param3='ORGANISATION NAME'")[0]["name"].ToString()
+
+                    <span class="ClientProfileLabelColor"></span>
+
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[0].Col24, new { @id = "Txt_accna", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Contact Name<span class="ClientProfileLabelColor"> *</span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_ctid" })
+                        @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_accc" })
+                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "Txt_Cust", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Contact" id="spn_add" onclick="CONTACT();"><i class="fa fa-search"></i></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Email Id<span class="ClientProfileLabelColor"></span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_email" })
+                        @Html.TextBoxFor(model => model[0].Col22, new { @id = "Txt_email", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-3'>
+                <label for="first-name">
+                    Mobile No.<span class="ClientProfileLabelColor"></span>
+                </label>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        @Html.TextBoxFor(model => model[0].Col23, new { @id = "Txt_ph", @Readonly = "true", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+
+                        <span class="input-group-addon formclass"></span>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class='col-sm-12'>
+                <label for="first-name">Message <span class="ClientProfileLabelColor">  *</span></label>
+                <span class="input-group-addon formclass"></span>
+                <label id="lbl_count_text" for="first-name" style="color:red"><span class="ClientProfileLabelColor"></span></label>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <div ass="col-md-10">
+                            @Html.TextAreaFor(model => model[0].Col20, new { @id = "FullDescription", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @rows = "5" })
+                            <script>
+                                CKEDITOR.replace("FullDescription");
+                            </script>
+                        </div>
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id='myModal' class='modal' style="width:100%">
+            <div class="modal-dialog" style="width:80%">
+                <div class="modal-header" style="max-height: 10px;border-radius: 5px;border-bottom: transparent;">
+                    <button type="button" class="close" id="btnclose" onclick="closemodal();" style="font-size:24px; margin-top: -10px;">x</button>
+                    <button type="button" class="close" id="btnexp" onclick="expandme('1');" style="font-size:24px;margin-top: -10px;">+</button>
+
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center;font-size: 18px;margin-top: -10px;">FriendsInfo</h4>
+                </div>
+                <div class="modal-content" id="mymodelcont" style="-webkit-margin-top-collapse: discard">
+                    <div id='myModalContent'></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="DemoModal" class="modal">
+            <div style="position: fixed; width: 100%; height: 100%; z-index: 10002; background-color: Gray; filter: alpha(opacity=70); opacity: 0.7;">
+                &nbsp;
+            </div>
+            <table style="position: fixed; width: 100%; height: 100%; z-index: 10003;">
+                <tr>
+                    <td align="center" valign="middle">
+                        <div style="color: Black; font-weight: bolder; background-color: White; padding: 15px; width: 200px;">
+                            <asp:Image ID="Image3" runat="server" ImageUrl="~/content/images/ajax-loader.gif" />
+                            Processing....
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    }
+
+
+    @*<script src="~/dist/RTCMultiConnection.js"></script>
+        <script src="~/dist/RTCMultiConnection.min.js"></script>
+
+        <script src="~/socket.io/socket.io.js"></script>*@
+
+    @*<link rel="stylesheet" href="~/dev/getHTMLMediaElement.css">
+        <script src="~/dev/getHTMLMediaElement.js"></script>
+        <script src="~/node_modules/recordrtc/RecordRTC.js"></script>
+        <script src="~/node_modules/webrtc-screen-capturing/getScreenId.js"></script>
+        <script src="~/node_modules/fbr/FileBufferReader.js"></script>
+        <script src="~/dist/list.js"></script>*@
+
+
+    <script>
+        debugger
+        var timezone = getCookie('@MyGuid', "timezone");
+        var dateformat = getCookie('@MyGuid',"dateformat");
+        var timeformat = getCookie('@MyGuid',"timeformat");
+        var datetimeformat = getCookie('@MyGuid',"datetimeformat");
+        var Ac_from_dt = moment(getCookie('@MyGuid',"Ac_From_Date"), dformat(datetimeformat));
+        var Ac_to_dt = moment(getCookie('@MyGuid',"Ac_To_Date"), dformat(datetimeformat));
+        var today = moment();
+        var fy_from_dt = moment(getCookie('@MyGuid',"year_from"), dformat(datetimeformat));
+        var fy_to_dt = moment(getCookie('@MyGuid',"year_to"), dformat(datetimeformat));
+        //$("video")[0].style.maxheight = "100%";
+        // ......................................................
+        // .......................UI Code........................
+        // ......................................................
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+                  $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        });
+        var options = { "backdrop": "static", keyboard: true };
+          function callFoo(title) {
+            try {
+                //showwait();
+                $.ajax({
+                    type: "GET",
+                    url: "/foo/footable_v2?Myguid=" + @MyGuid,
+                    success: function (pageContents) {
+                        $('#myModal').width('100%');
+                        $('#myModalContent').html(pageContents);
+                        $('#myModalLabel')[0].innerText = title;
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                        enhancegrid();
+                        $(".tHeaderCell").on("click", function (evt) {
+                            Sortbtn(evt);
+                        });
+                        //var grdwidth = $(".firstdiv")[0].clientWidth;
+                        //$("#grdviewnew_Header,#grdviewnew_Header_Fixed,#grdviewnew_Content,#grdviewnew_Content_Fixed").css("width", grdwidth + "px");
+                        hidewait();
+
+                    },
+                    error: function (err) {
+
+                        hidewait();
+                    }
+                });
+            }
+            catch (err) {
+
+                //showwait();
+            }
+        }
+        function show_Foo(title, btnval, seektype, viewName, controllerName) {
+            //
+            //showwait();
+            try {
+                ;
+                $("#btnval").val(btnval);
+                if (btnval == "EDIT") $("#edmode").val("Y");
+                //var id = $buttonClicked.attr('data-id');
+
+                var TeamDetailPostBackURL = "/" + controllerName + "/Make_query";
+                $.ajax({
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "viewname": viewName, "title": title, "btnval": btnval, "seektype": seektype },
+                    datatype: "json",
+                    success: function () {
+                        //showwait();
+                        //OpenSingle('../../../../../erp/directlink/footable_v8.aspx', '80%', '800px', title);
+                        callFoo(title);
+
+                    },
+                    error: function (err) {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            }
+            catch (err) { hidewait(); }
+        }
+
+
+           function CONTACT() { var data = show_Foo('Select Account', 'CONTACT', '1', '@viewName', '@controllerName'); }
+
+
+        function successCallback(res) {
+
+        }
+
+        function failureCallback(err) {
+
+        }
+
+
+        function showwait() {
+
+            var options = { "backdrop": "static", keyboard: true };
+            $('#DemoModal').modal(options);
+            $('#DemoModal').modal('show');
+        }
+        function hidewait() {
+
+            $('#DemoModal').modal('hide');
+        }
+
+
+    </script>
+
+</body>
+
+</html>

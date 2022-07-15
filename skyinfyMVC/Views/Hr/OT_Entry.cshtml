@@ -1,0 +1,322 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    //   ViewBag.Title = "OVERTIME ENTRY";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew style="border-radius: 10px!important;" id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control" @ViewBag.vedit style="border-radius: 10px!important;" id="btnedit" onclick="editfun();" accesskey="i" name="command" value="Edit" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control" @ViewBag.vsave style="border-radius: 10px!important;" id="btnsave" accesskey="s" name="command" value="Save" />
+                            @*@Html.HiddenFor(model => model[0].Col3, new { @id = "hf_btntext"   })*@
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control" style="border-radius: 10px!important;" onclick="viewfun();" id="btndetail" accesskey="V" name="command" value="View" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="sa-btncancel form-control" style="border-radius: 10px!important;" id="btncancel" name="command" value="Cancel" accesskey="C">C<u>a</u>ncel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-3'>
+                            <div class="row">
+                                <div class='col-sm-10'>
+                                    <label for="first-name">Department</label>
+                                    <div class="form-group has-success">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { multiple = "multiple", @id = "ddl_dept", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12", placeholder = "Choose Department", @MaxLength = "10" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <label for="first-name">All </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <input clientidmode="Static" id="chk_dept" runat="server" type="checkbox" class="all sa-input checkbox" onchange="selectall(this);" />
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-3'>
+                            <div class="row">
+                                <div class='col-sm-10'>
+                                    <label for="first-name">Designation</label>
+                                    <div class="form-group has-success">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { multiple = "multiple", @id = "ddl_desig", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12", placeholder = "Choose Designation", @MaxLength = "10" })
+                                            @*@Html.DropDownListFor(model => model[0].SelectedItems2, Model[0].TList2, new { multiple = "multiple", @id = "ddl_desig", @class = "sa-selectfast form-control col-md-12 col-sm-12 col-xs-12 ", data_placeholder = "Choose Designation" })*@
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <label for="first-name">All </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <input clientidmode="Static" id="chk_desig" runat="server" type="checkbox" class="all sa-input checkbox" onchange="selectall(this);" />
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-2'>
+                            <label for="first-name">Employee Category</label>
+                            <div class="form-group has-success">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { multiple = "multiple", @id = "ddl_empcategory", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12", placeholder = "Choose a Employee Category", @MaxLength = "10" })
+                                    @*@Html.DropDownListFor(model => model[0].SelectedItems3, Model[0].TList3, new { @id = "ddl_empcategory", style = "border-color: silver;", @class = " sa-textbox form-control col-md-12 col-sm-12 col-xs-12", data_placeholder = "Choose a Employee Category" })*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-2'>
+                            <label for="first-name">Month</label>
+                            <div class="form-group has-success">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { multiple = "multiple", @id = "ddl_month", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12", placeholder = "Month", @MaxLength = "10" })
+                                    @*@Html.DropDownListFor(model => model[0].SelectedItems4, Model[0].TList4, new { @id = "ddl_month", style = "border-color: silver;", @class = "sa-textbox form-control col-md-12 col-sm-12 col-xs-12", data_placeholder = "Month" })*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-2'>
+                            <label for="first-name"></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control" style="border-radius: 10px!important;" name="command" value="Fill Data" id="btn_Fill" accesskey="F" />
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-1'> <label>S.No.</label> </div>
+
+                        <div class='col-sm-3'><label for="first-name">Employee Name</label></div>
+
+                        <div class='col-sm-2'><label for="first-name">Designation <span class="ClientProfileLabelColor"></span></label></div>
+
+                        <div class='col-sm-2'><label for="first-name">Department<span class="ClientProfileLabelColor"></span></label></div>
+
+                        <div class='col-sm-2'><label for="first-name">Employee Category<span class="ClientProfileLabelColor"></span></label></div>
+
+                        <div class='col-sm-2'><label for="first-name">OT In Hrs.<span class="ClientProfileLabelColor"></span></label></div>
+                    </div>
+                </div>
+            </div>
+
+            @Html.HiddenFor(model => model[0].Col1, new { @id = "lbl_empid", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp id", @onkeydown = "return checkLength(this, 28,event);" })
+
+
+        </div>
+    </div>
+    if (Model.Count == 1 && Model[0].Col17.Equals(""))
+    { }
+    else
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel" style="padding:0px 17px!important">
+                        <div class="x_content">
+                            <div class="row">
+
+                                <div class='col-sm-1'>
+                                    <label for="first-name">@(i + 1)</label>
+                                    <div class="form-group has-success">
+                                        <div class='input-group'>
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-3'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.HiddenFor(model => model[i].Col16, new { @id = "lbl_empid", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp id", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col15, new { @id = "lbl_entby", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp id", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col14, new { @id = "lbl_entdt", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp id", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col13, new { @id = "lbl_vch", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp id", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(model => model[i].Col12, new { @id = "lbl_url", @class = "form-control  col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp id", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.DisplayFor(model => model[i].Col17, new { @id = "lbl_empname", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Emp Name", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col18, new { @id = "lbl_desig", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col19, new { @id = "lbl_dept", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Department", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(model => model[i].Col20, new { @id = "lbl_cate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Employee Category", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class='col-sm-2'>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.TextBoxFor(model => model[i].Col21, new { @id = "txt_othrs", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "OT In Hrs", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        }
+
+    }
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+           @Html.Raw(ViewBag.scripCall)
+          $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        $('#module_drpdwn').change(function () {
+
+            //alert(chose_get_value(this) + ' : ' + chose_get_text(this));
+        });
+    });
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail Of OT Entry', 'VIEW', '0', '@viewName', '@controllerName'); }
+
+    function selectall(ctrl) {
+        //debugger;
+        var ddl = "", chk = "";
+        chk = ctrl.id;
+        if (chk == "chk_dept") ddl = "ddl_dept";
+        else if (chk == "chk_desig") ddl = "ddl_desig";
+
+        if ($(".all").is(':checked')) {
+            $("#" + ddl + " > option").prop("selected", "selected");
+            $("#" + ddl + "").trigger("change");
+        } else {
+            $("#" + ddl + " > option").removeAttr("selected");
+            $("#" + ddl + "").trigger("change");
+        }
+    }
+</script>
+
+<style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+        box-sizing: border-box;
+        list-style: none;
+        margin: 0;
+        padding: 0 5px;
+        width: 100%;
+        max-height: 10rem;
+        overflow: auto;
+        cursor: pointer;
+    }
+</style>

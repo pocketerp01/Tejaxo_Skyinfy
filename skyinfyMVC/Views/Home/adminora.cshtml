@@ -1,0 +1,175 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{    
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid,"userCode");
+
+    ViewBag.Title = "Login";
+    Layout = "";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Skyinfy - ERP</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="../erp/Styles/colorbox.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    @*<script src="../Scripts/jquery-1.7.1.min.js" type="text/javascript"></script>*@
+    <script src="../Scripts/jquery.colorbox.js" type="text/javascript"></script>
+    <script src="../Scripts/sgen.js" type="text/javascript"></script>
+    <link rel="icon" href="../Uploads/logo.ico" type="image/ico" />
+    <title>Skyinfy-ERP</title>
+    <!-- Bootstrap -->
+    <link href="~/erp/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link href="~/erp/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- Animate.css -->
+    <link href="~/erp/vendors/animate.css/animate.min.css" rel="stylesheet" />
+    <!-- Custom Theme Style -->
+    <link href="~/erp/build/css/custom.min.css" rel="stylesheet" />
+    <link href="~/Content/sgen.css" rel="stylesheet" />
+    <script>
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+
+        $(document).ready(function () {
+            sessionStorage.setItem("menuid", "l1");
+        });
+    </script>
+
+    <style>
+        .logstyle {
+            font-size: x-large;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+<body class="login" style="background-image: url(../../../../Uploads/12.jpg);background-repeat:repeat-x;background-size:auto;background-origin:content-box;">
+    <div>
+        <a class="hiddenanchor" id="signup"></a>
+        <a class="hiddenanchor" id="signin"></a>
+        <div style="right: 0;   margin: 5% auto 0;    max-width: 1050px;    position: relative;">
+            <div class="animate form login_form">
+                <section class="">
+                    <form action="/home/adminora" id="adminora" method="post" style="background-color:white" enctype = "multipart/form-data">
+
+                        <p class="logstyle">
+
+                        </p>
+                        <h1 class="login_content" style="padding:0px">  LOGIN  ( @Model[0].Col21 )</h1>
+                        @Html.HiddenFor(model => model[0].Col21, new { @id = "username_lgn", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "USERNAME", })
+                        <br />
+                        <div class="row">
+                            Import Data
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <div class='input-group '>
+                                        <img id="imgupd1" src="../../images/file-upload-button.png" onclick="imgclick(this);" style="max-width: 120px" />
+                                        <input id="upd1" runat="server" onchange="fileselected(this);" style="visibility: hidden; height: 0; width: 0" multiple="multiple" name="upd1" type="file" />
+                                        <span ClientIDMode="Static" onclick="imgclick(this);" ID="spanupd1">@Model[0].Col22</span>
+                                        @Html.HiddenFor(model => model[0].Col22, new { @id = "username_lgn", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "USERNAME", })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                               
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary sa-button" style="border-radius: 10px!important;" id="Btn2_login" name="command" value="Import" accesskey="E">Import Backup</button>
+                            </div>
+                        </div>
+
+                        <br />
+
+                        <label id="lbl_msg" style="color:red">@Model[0].Col16</label>
+
+                        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_msg", @style = "color:red" })
+                        <div>
+                            <a class="reset_pass" href="login">Login</a>
+                            <a class="reset_pass" href="">@Model[0].Col25</a>
+                        </div>
+                    </form>
+
+                </section>
+                <section>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                @*<%--<p style="text-align: right; margin-left: 460px; margin-top: 65%; width: 100%;">ver - <span runat="server" id="spn_ver"></span></p>--%>*@
+                                <p style="text-align: right; margin-left: 460px; margin-top: 65%; width: 100%;"> <span id="spn_date">06-08-2019 17:30 PM </span></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+<script type="text/javascript">
+    function fileselected(ctrl) {
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 40) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 38 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            switch (ext.toString().toUpperCase()) {
+                case 'DMP':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only DMP file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+            var filesize = file.size / 1024 / 1024;
+            if (filesize < 100) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 100MB';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+    }
+    function imgclick(ctrl) {
+        $(ctrl).closest('div').find("input[type=file]").click();
+    }
+
+</script>

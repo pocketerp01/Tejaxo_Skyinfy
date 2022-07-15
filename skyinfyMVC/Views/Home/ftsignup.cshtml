@@ -1,0 +1,47 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{    
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Login_Master.cshtml";
+    var viewName = Convert.ToString(sgen.GetSession(MyGuid, "viewName"));
+    var controllerName = Convert.ToString(sgen.GetSession(MyGuid, "controllerName"));    
+}
+
+<form action="/home/ftsignup" id="ftsignup" method="post">
+    <p class="logstyle">
+        SIGN UP NOW TO START YOUR FREE TRIAL
+    </p>
+    <h1 class="login_content" style="padding:0px"> SIGN UP </h1>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_fname", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "First Name" })
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_lname", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Last Name" })
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_email", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Email" })
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_phone", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Phone" })
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_company", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "Company" })
+    </div>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_emp", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "No. of Employees" })
+    </div>
+    <br />
+       
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_msg", @style = "color:red" })
+    <div>
+        <input type="submit" class="btn btn-primary sa-button" style="border-radius: 10px!important;" id="Btn2_login" name="command" value="Login" accesskey="L" />
+        <a class="reset_pass" href="@Url.RouteUrl(new { Controller = "Home", Action = "forgot_pswd" , m_id = EncryptDecrypt.Encrypt(MyGuid) })">Forgot Password?</a>
+        <a class="reset_pass" href="adminora">Admin</a>
+        <button type="submit" value="clear" name="command" class="reset_pass" href="adminora">Clear Session</button>
+    </div>
+</form>

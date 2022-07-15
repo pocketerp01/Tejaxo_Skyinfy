@@ -1,0 +1,56 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{    
+    string end = EncryptDecrypt.Decrypt("vYFMn4tiBoQQ5jr43T7B5H4L9ozZ2vzp");
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/Login_Master.cshtml";
+    var viewName = Convert.ToString(sgen.GetSession(MyGuid, "viewName"));
+    var controllerName = Convert.ToString(sgen.GetSession(MyGuid, "controllerName"));
+    string msg = "";
+
+}
+
+<form action="/home/login" id="login" method="post">
+    <p class="logstyle">
+        @Html.DisplayFor(model => model[0].Col11, new { @id = "lbl_company", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_company" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_version" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_SAversion" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "guid" })
+    </p>
+    <h1 class="login_content" style="padding:0px">  LOGIN  </h1>
+    <div>
+        @Html.TextBoxFor(model => model[0].Col21, new { @id = "username_lgn", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "USERNAME", })
+    </div>  
+    <div>
+        @Html.TextBoxFor(model => model[0].Col22, new { @id = "password_lgn", @type = "password", @autocomplete = "off", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "PASSWORD", })
+    </div>
+    <div>
+        @ViewBag.vcaptcha
+    </div>
+    <br />
+
+
+    @if (sgen.GetSession(MyGuid, "loginmsg") != null)
+    {
+        msg = sgen.GetSession(MyGuid, "loginmsg").ToString();
+        sgen.SetSession(MyGuid, "loginmsg", null);  
+    }
+    else
+    {
+        msg = Model[0].Col16;
+    }
+    <label id="lbl_msg" style="color:red"> @msg</label>
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_msg", @style = "color:red" })
+    <div>
+        <input type="submit" class="btn btn-primary sa-button" style="border-radius: 10px!important;" id="Btn2_login" name="command" value="Login" accesskey="L" />
+        <a class="reset_pass" href="@Url.RouteUrl(new { Controller = "Home", Action = "forgot_pswd" , m_id = EncryptDecrypt.Encrypt(MyGuid) })">Forgot Password?</a>
+        <a class="reset_pass" href="adminora">Admin</a>
+        <button type="submit" value="clear" name="command" class="reset_pass" href="adminora">Clear Session</button>
+    </div>
+</form>

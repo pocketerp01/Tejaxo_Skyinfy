@@ -1,0 +1,68 @@
+﻿@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    ViewBag.Title = "--";
+    Layout = null;
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+<style>
+    .reportsDiv {
+        border: 1px #000 solid;
+        min-height: 900px;
+        width: 100%;
+    }
+</style>
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div id="exp">
+        <div style="height:40px"></div>
+
+    </div>
+    <div align="start" id="divmainx">
+        <div class="reportsDiv" id="reportsDiv" align="center" style="display:none">
+        </div>
+
+    </div>
+}
+
+<script src="..../../../../../Scripts/jquery-3.1.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        debugger
+        var fview = sessionStorage.getItem("f_view").toString();
+        var urrl="";
+        switch (fview) {
+            case "s_party":
+                urrl = "/vastu/s_party?m_id=@EncryptDecrypt.Encrypt(MyGuid)&mid=j0Uly54yjiVQyihTGBvoGQ==&smst=0";
+                break;
+            case "asst_mst":
+                urrl = "/hall/serc_master?m_id=@EncryptDecrypt.Encrypt(MyGuid)&mid=@EncryptDecrypt.Encrypt("42001.2")&smst=0";
+                break;
+        }
+        var jqXHR = $.ajax({
+            type: "get",
+            url: urrl,
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            async: false
+        });
+
+        $('#reportsDiv').html(jqXHR.responseText);
+        //$('#reportsDiv').load('/vastu/s_party?m_id=@EncryptDecrypt.Encrypt(MyGuid)&mid=j0Uly54yjiVQyihTGBvoGQ==').find(".left_col").hide();
+        //$('#reportsDiv').find(".left_col").hide();
+        //$('#reportsDiv').find(".top_nav").hide();        
+        //$('#reportsDiv').find(".main_container").css("margin-top", "30px");
+        $('#reportsDiv').show();
+
+
+        //$("#reportsIframe").width($("#divmainx").width());
+
+    });
+
+</script>

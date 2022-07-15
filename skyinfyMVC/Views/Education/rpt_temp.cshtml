@@ -1,0 +1,468 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(Model[0].Col15, "viewName", viewName);
+    sgen.SetSession(Model[0].Col15, "controllerName", controllerName);
+    string cond = "";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_m_dule" })
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    if (Model[0].Col22 == "edumain")
+    {
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+
+                    <div class="row">
+
+                        <div class='col-sm-2'>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <label for="first-name" style="margin-left:15px">Fee Receipt Format</label>
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+
+                            <div class="form-group">
+                                <div class='input-group'>
+
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { multiple = "multiple", @id = "ddl_rec", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    <label for="first-name" style="margin-left:20px ">Preview</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    <span class="input-group" data-toggle="tooltip" data-placement="top" clientidmode="static" id="receipt" onclick="PRRECEIPT(this);"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-2'>
+
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="Btn_receipt" name="command" value="@Model[0].Col13" accesskey="N" />
+
+                                    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+
+                    <div class="row">
+
+                        <div class='col-sm-2'>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <label for="first-name" style="margin-left:15px">Result Format</label>
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { multiple = "multiple", @id = "ddl_result", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 " })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    <label for="first-name" style="margin-left:20px ">Preview</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    @*<span class="input-group" data-toggle="tooltip" style="margin-left:5px ; margin-top:5px" data-placement="top" clientidmode="static" id="result" onclick="PRRESULT(this);"><i class="fa fa-search"></i></span>*@
+                                    <span class="input-group" data-toggle="tooltip" data-placement="top" clientidmode="static" id="result" onclick="PRRESULT(this);"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='col-sm-2'>
+
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="Btn_Result" name="command" value="@Model[0].Col18" accesskey="N" />
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+
+                    <div class="row">
+
+                        <div class='col-sm-2'>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <label for="first-name" style="margin-left:15px">Admit Card Format</label>
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { multiple = "multiple", @id = "ddl_ad", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 " })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    <label for="first-name" style="margin-left:20px ">Preview</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    @*<span class="input-group" data-toggle="tooltip" style="margin-left:5px ; margin-top:5px" data-placement="top" clientidmode="static" id="result" onclick="PRRESULT(this);"><i class="fa fa-search"></i></span>*@
+                                    <span class="input-group" data-toggle="tooltip" data-placement="top" clientidmode="static" id="result" onclick="PRADMIT(this);"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='col-sm-2'>
+
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="Btn_admit" name="command" value="@Model[0].Col19" accesskey="N" />
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+
+                    <div class="row">
+
+                        <div class='col-sm-2'>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <label for="first-name" style="margin-left:15px">ICard Format</label>
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { multiple = "multiple", @id = "ddl_ic", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 " })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    <label for="first-name" style="margin-left:20px ">Preview</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    @*<span class="input-group" data-toggle="tooltip" style="margin-left:5px ; margin-top:5px" data-placement="top" clientidmode="static" id="result" onclick="PRRESULT(this);"><i class="fa fa-search"></i></span>*@
+                                    <span class="input-group" data-toggle="tooltip" data-placement="top" clientidmode="static" id="result" onclick="PRICARD(this);"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='col-sm-2'>
+
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="Btn_admit" name="command" value="@Model[0].Col20" accesskey="N" />
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+    else
+    {
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+
+                    <div class="row">
+
+                        <div class='col-sm-2'>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <label for="first-name" style="margin-left:15px">Master Invoice Format</label>
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { multiple = "multiple", @id = "ddl_invt", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 " })
+
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    <label for="first-name" style="margin-left:20px ">Preview</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-1'>
+
+                            <div class="form-group">
+                                <div class='input-group demo2'>
+                                    @*<span class="input-group" data-toggle="tooltip" style="margin-left:5px ; margin-top:5px" data-placement="top" clientidmode="static" id="result" onclick="PRRESULT(this);"><i class="fa fa-search"></i></span>*@
+                                    <span class="input-group" data-toggle="tooltip" data-placement="top" clientidmode="static" id="result" onclick="PRINV(this);"><i class="fa fa-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class='col-sm-2'>
+
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <input type="submit" class="btn btn-primary form-control sa-button" id="btn_Invoice" name="command" value="@Model[0].Col21" accesskey="N" />
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_Receipt" value="Receipt" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_Invoice2" value="Invoice" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_Result" value="Result" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_Admit" value="Admit" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_Icard" value="Icard" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+
+        });
+
+        function editfun() {
+
+            var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName','@controllerName');
+        }
+
+        function viewfun() {
+        var data = show_Foo('View Detail', 'VIEW', '0', '@viewName','@controllerName');
+        }
+        @*function RECEIPT() { var data = show_Foo('Select Student', 'RECEIPT', '1', '@viewName', '@controllerName'); }
+        function RESULT() { var data = show_Foo('Select Student', 'RESULT', '1', '@viewName', '@controllerName'); }*@
+
+    function PRRESULT(ctrl) {
+
+        $(parent.document.getElementById('btn_Result')).trigger('click');
+
+    }
+
+    function PRRECEIPT(ctrl) {
+
+
+        $(parent.document.getElementById('btn_Receipt')).trigger('click');
+
+    }
+
+    function PRRADMIT(ctrl) {
+
+
+        $(parent.document.getElementById('btn_Admit')).trigger('click');
+
+    }
+
+    function PRICARD(ctrl) {
+
+
+        $(parent.document.getElementById('btn_Icard')).trigger('click');
+
+    }
+    function PRINV(ctrl) {
+      //  debugger;
+        $(parent.document.getElementById('btn_Invoice2')).trigger('click');
+
+    }
+
+
+
+
+
+
+</script>

@@ -1,0 +1,129 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="PARTY_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="GSTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="TOR" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="CITY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="DOC_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="DOC_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="DRAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CRAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CLOSING" type="xs:decimal" minOccurs="0" />
+                <xs:element name="FROM_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="TO_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="VOUTYPE" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <PARTY_CODE>203000001</PARTY_CODE>
+    <PARTY_NAME>SHREENIVAS ENTERPRISES</PARTY_NAME>
+    <GSTIN>GDYT68976876000</GSTIN>
+    <ADDRESS>PLOT NO 55-56</ADDRESS>
+    <TOR>R</TOR>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Uttar Pradesh</STATE_NAME>
+    <CITY_NAME>Mathura</CITY_NAME>
+    <DOC_NO>000004</DOC_NO>
+    <DOC_DATE>03/10/2020</DOC_DATE>
+    <DRAMOUNT>0</DRAMOUNT>
+    <CRAMOUNT>40000</CRAMOUNT>
+    <CLOSING>-40000</CLOSING>
+    <FROM_DATE>01/04/2020</FROM_DATE>
+    <TO_DATE>03/10/2020</TO_DATE>
+    <VOUTYPE>10</VOUTYPE>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>Demo International Limited</COMPANY_NAME>
+    <COMPANY_ADDRESS>sec 31demo address</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>07</COMPANY_STATE>
+    <COMPANY_CITY>Delhi Cantt.</COMPANY_CITY>
+    <COMPANY_PINCODE>121001</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>gsthelp001@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>demo.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>8989898989</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>8989898989</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>10AAAAA0000A1ZA</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>DRMPP1798A</COM_PAN_NO>
+    <COMPANY_CIN_NO>CIN69798798</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>unit1</UNIT_NAME>
+    <UNIT_ADDRESS>sec 31</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121001</UNIT_PINCODE>
+    <UNIT_EMAIL>satest39@gmail.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>8070605040</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9090909090</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>100</SEPTR>
+    <UNIT_GSTIN_NO>06AAGCK0295E2ZO</UNIT_GSTIN_NO>
+    <BANK_NAME>UNION BANK OF INDIA</BANK_NAME>
+    <BANK_BRANCH>FARIDABAD</BANK_BRANCH>
+    <BANK_ACC>090908090809</BANK_ACC>
+    <BANK_IFSC>UBIN098909</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

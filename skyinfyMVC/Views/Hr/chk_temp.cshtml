@@ -1,0 +1,343 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string mandatory = "sa-mandatory";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsavenew id="btnsavenew" name="command" value='@Model[0].Col100' />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" id="btncancel" name="command" value="Cancel"  />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @*@Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })*@
+        @*@Html.HiddenFor(model => model[i].Col35, new { @id = "Aera_vch_num" })
+        @Html.HiddenFor(model => model[i].Col36, new { @id = "hf_file_entdate" })
+        @Html.HiddenFor(model => model[i].Col37, new { @id = "hf_file_date" })
+        @Html.HiddenFor(model => model[i].Col38, new { @id = "hf_tab_name" })*@
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+
+
+                        <div id="div" data-parsley-validate="" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Doc No. <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_no", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Doc Date <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_date", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory sa-date", data_placeholder = "Date" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Created Date <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_c_date", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory sa-date", data_placeholder = "Date" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Created By <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_c_by", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory sa-date", data_placeholder = "Created By " })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Owner<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_owner", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Frequency<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_freq", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Due On<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_due_on", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Start Days before<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_strt_days", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Intervales days for remainder<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_int_days", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", style = "width: 100%" })
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Remark<span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @Html.TextAreaFor(model => model[0].Col20, new { @id = "txt_remark", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", data_placeholder = "Remark" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-1 col-sm-1 col-xs-12 col-sm-offset-2" for="first-name">Status <span class="ClientProfileLabelColor">*</span></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    @*@if (Model[i].Col14.Equals("7004.1.8") && Model[i].Col20 != null)
+                                    {
+                                        if (Model[i].Col20.Trim().Equals("Assembly") || Model[i].Col20.Trim().Equals("Break"))
+                                        {
+                                            <b style="padding-top:12px">Active</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @onclick = "return false;", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                            <b style="padding-top:12px">Inactive</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @onclick = "return false;", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        }
+                                        else
+                                        {
+                                            <b style="padding-top:12px">Active</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                            <b style="padding-top:12px">Inactive</b>
+                                            @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        }
+                                    }
+                                    else
+                                    {*@
+                                        <b style="padding-top:12px">Active</b>
+                                        @Html.RadioButtonFor(model => model[i].Col21, "Active", new { @id = "rd_Active", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <b style="padding-top:12px">Inactive</b>
+                                        @Html.RadioButtonFor(model => model[i].Col21, "Inactive", new { @id = "rd_Inactive", @class = " sa-input radio " + mandatory + "", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                    @*}*@
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    @*<input type="submit" id="btn_class" formnovalidate value="Class" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />*@
+}
+
+
+<script type="text/javascript">
+    //debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        onchange_warr('ddl_frnwarranty');
+    });
+
+
+
+
+    //function newfun()
+    //{
+    //    enableForm();
+    //    $("[id*=btnsave]").attr("disabled", false);
+    //    $("[id*=btnnew]").attr("disabled", true);
+    //    $("[id*=btnedit]").attr("disabled", true);
+    //}
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+     function Menu() { var data = show_Foo('Select Menu', 'MENUS', '1', '@viewName', '@controllerName'); }
+     function Client() { var data = show_Foo('Select Menu', 'CLIENT', '1', '@viewName', '@controllerName'); }
+
+
+    function setTableDatat() {
+        try {
+            // calcamt();
+            datatable = new Array();
+
+            var heads = $("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $("[id=row_" + r + "]");
+                var arr = new Array();
+                for (var h = 0; h < heads.length; h++) {
+                    var obj = {};
+                    obj[heads[h].children[0].innerText] = row[h].innerText;
+                    arr.push(obj);
+                }
+                datatable.push(arr);
+            }
+        }
+        catch (err) { alert(err); return; }
+        $("#hftable").val(JSON.stringify(datatable));
+        //PageMethods.settable(datatable);
+
+
+    }
+
+
+
+    //function cancelfun()
+    //{
+    //    $("[id*=btnnew]").attr("disabled", false);
+    //    $("[id*=btnedit]").attr("disabled", false);
+    //    $("[id*=btnsave]").attr("disabled", true);
+    //    $("[id*=btndetail]").attr("disabled", false);
+    //    $("[id*=btncancel]").attr("disabled", false);
+    //    fillBlanks();
+    //    disableForm();
+    //}
+
+
+
+
+
+</script>
+<script>
+    function selectionIndexChange(ctrl) {
+        //debugger;
+        javascript: __doPostBack(ctrl.id, '');
+    }
+
+    function onchange_warr(ctrl) {
+        //debugger;
+
+        if ((ctrl.value == "") || (ctrl.value == "N")) {
+            $("#ddlcur").hide();
+        }
+
+        else { $("#ddlcur").show(); }
+    }
+    function warrt() {
+        //debugger
+        var icode = "", chkcode = "", ptype = "";
+        ptype = "";
+        var acode = $("#ddl_frnwarranty")[0].value;
+        if (acode == "") { showmsgJS(1, "Please select Condition", 2); return; }
+        else { $("#ddlcur").show(); }
+    }
+</script>
+
+

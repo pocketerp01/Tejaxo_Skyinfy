@@ -1,0 +1,304 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode"); string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(MyGuid, "viewName", viewName);
+    sgen.SetSession(MyGuid, "controllerName", controllerName);
+    <link href="~/Content/css/multi_acord.css" rel="stylesheet" />
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "totlib" })
+    @Html.HiddenFor(model => model[0].Col17, new { @id = "totast" })
+    @Html.HiddenFor(model => model[0].Col18, new { @id = "totpl" })
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <style>
+        #t3.ac-label:after, .ac-input:checked + .ac-label:after {
+            content: "" !important;
+        }
+
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            line-height: inherit !important;
+        }
+
+        .ac-label {
+            background-color: transparent !important;
+        }
+    </style>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_rd" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_pid" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="ac">
+                                <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" />
+                                <label class="ac-label" for="ac-1">Income<span style="margin-left:360px;">@Model[0].Col16</span></label>
+                                <article class="ac-text">
+                                    @foreach (DataRow dr1 in Model[0].dt1.Rows)
+                                    {
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-2" name="ac-2" type="checkbox" />
+                                            <label class="ac-label" for="ac-2" onclick="filtypes('@dr1[0].ToString()',this,'1');"><span class="col-md-6">@dr1[1].ToString()</span><span class="col-md-6">@dr1[2].ToString()</span> </label>
+                                            <article class="ac-sub-text"></article>
+                                        </div>
+                                    }
+
+                                </article>
+                                <!--/ac-text-->
+                            </div>
+                            <!--/ac-->
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="ac">
+                                <input class="ac-input" id="ac-5" name="ac-5" type="checkbox" />
+                                <label class="ac-label" for="ac-5">Expenses<span style="margin-left:350px;">@Model[0].Col17</span></label>
+                                <article class="ac-text">
+                                    @foreach (DataRow dr1 in Model[0].dt2.Rows)
+                                    {
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-6" name="ac-6" type="checkbox" />
+                                            <label class="ac-label" for="ac-6" onclick="filtypes('@dr1[0].ToString()',this,'1');"><span class="col-md-6">@dr1[1].ToString()</span><span class="col-md-6">@dr1[2].ToString()</span> </label>
+                                            <article class="ac-sub-text"></article>
+                                        </div>
+                                    }
+                                </article>
+                                <!--/ac-text-->
+
+                            </div>
+                            <!--/ac-->
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h4><b>Difference : </b></h4>
+                        </div>
+                        <div class="col-sm-3">
+                            <h4><b>@Model[0].Col18</b></h4>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                            <section class="container">
+
+                                <h1>CSS Accordions</h1>
+                                <h3>Because we can.</h3>
+
+                                <div class="ac">
+
+                                    <input class="ac-input" id="ac-1" name="ac-1" type="checkbox" />
+                                    <label class="ac-label" for="ac-1">Item 1</label>
+
+                                    <article class="ac-text">
+
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-2" name="ac-2" type="checkbox" />
+                                            <label class="ac-label" for="ac-2">I love jelly donuts</label>
+                                            <article class="ac-sub-text">
+                                                <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its own off-spring; worse than the Persian host who murdered his own guests; sparing not the creatures which itself hath spawned. Like a savage tigress that tossing in the jungle overlays her own cubs, so the sea dashes even the mightiest whales against the rocks, and leaves them there side by side with the split wrecks of ships. No mercy, no power but its own controls it. Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean overruns the globe.</p>
+
+                                                <p>Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part, and treacherously hidden beneath the loveliest tints of azure. Consider also the devilish brilliance and beauty of many of its most remorseless tribes, as the dainty embellished shape of many species of sharks. Consider, once more, the universal cannibalism of the sea; all whose creatures prey upon each other, carrying on eternal war since the world began.</p>
+                                            </article>
+                                        </div>
+
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-3" name="ac-3" type="checkbox" />
+                                            <label class="ac-label" for="ac-3">They are so delicious</label>
+                                            <article class="ac-sub-text">
+                                                <p>My younger brother was in London when the Martians fell at Woking. He was a medical student working for an imminent examination, and he heard nothing of the arrival until Saturday morning.  The morning papers on Saturday contained, in addition to lengthy special articles on the planet Mars, on life in the planets, and so forth, a brief and vaguely worded telegram, all the more striking for its brevity.</p>
+
+                                                <p>The Martians, alarmed by the approach of a crowd, had killed a number of people with a quick-firing gun, so the story ran.  The telegram concluded with the words: "Formidable as they seem to be, the Martians have not moved from the pit into which they have fallen, and, indeed, seem incapable of doing so.  Probably this is due to the relative strength of the earth's gravitational energy."  On that last text their leader-writer expanded very comfortingly.</p>
+                                            </article>
+                                        </div>
+
+                                    </article><!--/ac-text-->
+
+                                </div><!--/ac-->
+
+
+
+                                <div class="ac">
+
+                                    <input class="ac-input" id="ac-4" name="ac-4" type="checkbox" />
+                                    <label class="ac-label" for="ac-4">Item 2</label>
+
+                                    <article class="ac-text">
+
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-5" name="ac-5" type="checkbox" />
+                                            <label class="ac-label" for="ac-5">I also love regular donuts</label>
+                                            <article class="ac-sub-text">
+                                                <p>But not only is the sea such a foe to man who is an alien to it, but it is also a fiend to its own off-spring; worse than the Persian host who murdered his own guests; sparing not the creatures which itself hath spawned. Like a savage tigress that tossing in the jungle overlays her own cubs, so the sea dashes even the mightiest whales against the rocks, and leaves them there side by side with the split wrecks of ships. No mercy, no power but its own controls it. Panting and snorting like a mad battle steed that has lost its rider, the masterless ocean overruns the globe.</p>
+
+                                                <p>Consider the subtleness of the sea; how its most dreaded creatures glide under water, unapparent for the most part, and treacherously hidden beneath the loveliest tints of azure. Consider also the devilish brilliance and beauty of many of its most remorseless tribes, as the dainty embellished shape of many species of sharks. Consider, once more, the universal cannibalism of the sea; all whose creatures prey upon each other, carrying on eternal war since the world began.</p>
+                                            </article>
+                                        </div>
+
+                                        <div class="ac-sub">
+                                            <input class="ac-input" id="ac-6" name="ac-6" type="checkbox" />
+                                            <label class="ac-label" for="ac-6">They are also delicious</label>
+                                            <article class="ac-sub-text">
+                                                <p>My younger brother was in London when the Martians fell at Woking. He was a medical student working for an imminent examination, and he heard nothing of the arrival until Saturday morning.  The morning papers on Saturday contained, in addition to lengthy special articles on the planet Mars, on life in the planets, and so forth, a brief and vaguely worded telegram, all the more striking for its brevity.</p>
+
+                                                <p>The Martians, alarmed by the approach of a crowd, had killed a number of people with a quick-firing gun, so the story ran.  The telegram concluded with the words: "Formidable as they seem to be, the Martians have not moved from the pit into which they have fallen, and, indeed, seem incapable of doing so.  Probably this is due to the relative strength of the earth's gravitational energy."  On that last text their leader-writer expanded very comfortingly.</p>
+                                            </article>
+                                        </div>
+
+                                    </article><!--/ac-text-->
+
+                                </div><!--/ac-->
+
+
+                            </section>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" id="btn_back" value="Back" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="callback2" value="Callback2" formnovalidate name="Command" title="callback2" style="visibility:hidden" class="btn btn-primary" />
+
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+    function getlb(val) {
+        debugger
+        var btnval = "";
+        if (val.trim().includes('.')) btnval = "GETPL";
+        else btnval = "GETLB";
+        var data = show_Foo('Detail', btnval, '1', '@viewName', '@controllerName', val);
+    }
+       function filtypes(fstr, ctrl,lvl) {
+       tctrl = ctrl;
+       tlvl = parseInt(lvl) + 1;
+       try {
+           showwait();
+           $.ajax({
+               type: "GET",
+               url: "/Account/getdrills?lvl=" + lvl + "&&fstr=" + fstr + "&&Myguid=" + @MyGuid,
+               success: function (pageContents) {
+
+                   var xmlDoc = $.parseXML(pageContents);
+                   var xml = $(xmlDoc);
+                   var customers = xml.find("MainData");
+                   var htstr = "";
+                   customers.each(function () {
+                       var customer = $(this);
+                       debugger
+                       if (tlvl == 3) {
+                           htstr += "<div class='ac-sub'>";
+                           if (tlvl < 3) htstr += "<input class='ac-input' id = 'ac-" + tlvl + "' name = 'ac-" + tlvl + "' type = 'checkbox' /> ";
+                           htstr += "<label class='ac-label' for= 'ac-" + tlvl + "' onclick = 'getvouchers(" + customer[0].children[0].textContent + ",this," + tlvl + ");' >" +
+                               "<span class='col-md-6'>" + customer[0].children[1].textContent + "</span> " +
+                               "<span class='col-md-6'>" + customer[0].children[2].textContent + "</span > " +
+                               "</label>" +
+                               "<article class='ac-sub-text'>" +
+                               "<div class='col-md-6'></div><div class='col-md-6'></div>" +
+                               "</article>" +
+                               "</div>";
+                       }
+                       else {
+                           htstr += "<div class='ac-sub'>";
+                           if (tlvl < 3) htstr += "<input class='ac-input' id = 'ac-" + tlvl + "' name = 'ac-" + tlvl + "' type = 'checkbox' /> ";
+                           htstr += "<label class='ac-label' for= 'ac-" + tlvl + "' onclick = 'filtypes(" + customer[0].children[0].textContent + ",this," + tlvl + ");' >" +
+                               "<span class='col-md-6'>" + customer[0].children[1].textContent + "</span> " +
+                               "<span class='col-md-6'>" + customer[0].children[2].textContent + "</span > " +
+                               "</label>" +
+                               "<article class='ac-sub-text'>" +
+                               "<div class='col-md-6'></div><div class='col-md-6'></div>" +
+                               "</article>" +
+                               "</div>";
+                       }
+                   });
+                   $(tctrl).parent().find("article").html(htstr);
+                   $(".ac-sub").children().height('auto');
+                   $(".ac-sub").children().css('opacity', 1)
+                   hidewait();
+               },
+               error: function (err) {
+                   hidewait();
+               }
+           });
+       }
+       catch (err) {
+           showwait();
+       }
+   }
+     function getvouchers(fstr, ctrl,lvl) {
+       tctrl = ctrl;
+       tlvl = parseInt(lvl) + 1;
+        try {
+            var data = show_Foo('Balance Sheet', 'LDG', '1', '@viewName', '@controllerName', fstr);
+        }
+       catch (err) {
+           showwait();
+       }
+    }
+    $(document).keyup(function (e) {
+        if (e.key === "Escape") {
+            $('#btn_back').click();
+        }
+    });
+</script>

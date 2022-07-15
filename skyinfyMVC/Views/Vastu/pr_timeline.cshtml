@@ -1,0 +1,451 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    if (MyGuid == "") { MyGuid = Model[0].Col15; }
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    Layout = "";
+
+    string clr = "";
+
+
+
+
+
+
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+
+}
+@*@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+
+<div class="col-sm-6">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        @*<h4 class="text-primary"><b>FOLLOW CUSTOMER</b></h4>*@
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-success form-control" @ViewBag.vfsave style="border-radius: 10px!important;" id="btnsave" onclick="updatedfollow();" name="command" value="Save" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix">
+    </div>
+
+    @*@Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "" })*@
+    @Html.HiddenFor(model => model[0].LTM2[0].Col19, new { @id = "hf_cust_id" })
+    @Html.HiddenFor(model => model[0].LTM2[0].Col27, new { @id = "hf_chk1title" })
+    @Html.HiddenFor(model => model[0].LTM2[0].Col28, new { @id = "hf_reasontitle" })
+    @*@for (int i = 0; i < Model.Count; i++)*@
+
+
+
+
+
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <label for="first-name">Follow Up Date </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].LTM2[0].Col18, new { @id = "txt_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+
+                            <label for="first-name">Today Follow Up Remark </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].LTM2[0].Col17, new { @id = "txt_rmrk", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <label for="first-name">Agent </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].LTM2[0].SelectedItems1, new MultiSelectList(Model[0].LTM2[0].TList1, "Value", "Text", Model[0].LTM2[0].SelectedItems1), new { @id = "ddl_assg", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <label for="first-name">Group </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+
+                                    @Html.DropDownListFor(model => model[0].LTM2[0].SelectedItems4, new MultiSelectList(Model[0].LTM2[0].TList4, "Value", "Text", Model[0].LTM2[0].SelectedItems4), new { @id = "ddl_grpp", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <label for="first-name">Parent Account </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @*@Html.DropDownListFor(model => model[0].LTM2[0].SelectedItems2, new MultiSelectList(Model[0].LTM2[0].TList2, "Value", "Text", Model[0].LTM2[0].SelectedItems2), new { @id = "ddl_rel", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })*@
+                                    @Html.TextBoxFor(model => model[0].LTM2[0].Col29, new { @id = "txt_parent", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Readonly = "true" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <label for="first-name">Related To(Account) </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @*@Html.DropDownListFor(model => model[0].LTM2[0].SelectedItems2, new MultiSelectList(Model[0].LTM2[0].TList2, "Value", "Text", Model[0].LTM2[0].SelectedItems2), new { @id = "ddl_rel", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })*@
+                                    @Html.TextBoxFor(model => model[0].LTM2[0].Col30, new { @id = "txt_rel", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Readonly = "true" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <label for="first-name">Next Follow Up Date </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].LTM2[0].Col20, new { @id = "txt_next_dt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date " })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-6'>
+                            <label for="first-name">Next Action </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM2[0].SelectedItems2, new MultiSelectList(Model[0].LTM2[0].TList2, "Value", "Text", Model[0].LTM2[0].SelectedItems2), new { @id = "ddl_action", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-6'>
+
+                            <label for="first-name">Next Follow Up Remark </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].LTM2[0].Col31, new { @id = "txt_rmrk", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <label for="first-name"> </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.CheckBoxFor(model => model[0].LTM2[0].Chk1, new { @id = "isclosed", @class = "sa-input checkbox" })
+                                    <b style="padding-top:20px">
+                                        <label>
+                                            @Model[0].LTM2[0].Col27
+                                        </label>
+                                    </b>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-6'>
+                            <label for="first-name">  @Model[0].LTM2[0].Col27 By </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].LTM2[0].SelectedItems3, new MultiSelectList(Model[0].LTM2[0].TList3, "Value", "Text", Model[0].LTM2[0].SelectedItems3), new { @id = "ddl_act", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", multiple = "multiple", @style = "width:100%" })
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-12'>
+                            <label for="first-name"> @Model[0].LTM2[0].Col28 </label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].LTM2[0].Col26, new { @id = "txt_rmrk", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @*<input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />*@
+
+</div>
+
+<div class="col-sm-6" style="height: 600px;  overflow: scroll;">
+
+    <div class="container mt-5 mb-5">
+        @*<div class="row">*@
+        @*<div class="col-md-6 offset-md-3">*@
+        <h4>Activity Timeline</h4>
+        <div class="row">
+            <h5 style="float:left">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCurrent Activity</h5>
+            <h5 style="float:right">Next Activity</h5>
+        </div>
+        <ul class="timeline">
+            @for (int i = 0; i < Model[0].LTM2.Count; i++)
+            {
+                @Html.HiddenFor(model => model[0].LTM2[i].Col29, new { @id = "hf_parent" })
+                @Html.HiddenFor(model => model[0].LTM2[i].Col21, new { @id = "hf_user" })
+                @Html.HiddenFor(model => model[0].LTM2[i].Col22, new { @id = "hf_rmk" })
+                @Html.HiddenFor(model => model[0].LTM2[i].Col24, new { @id = "hf_nxtdt" })
+                @Html.HiddenFor(model => model[0].LTM2[i].Col25, new { @id = "hf_nxtf" })
+                @Html.HiddenFor(model => model[0].LTM2[i].Col32, new { @id = "hf_dt" })
+                @Html.HiddenFor(model => model[0].LTM2[i].Col33, new { @id = "hf_dt" })
+            <li>
+                @*<a target="_blank" href="#" style="color:#22c0e8">@Model[0].LTM2[i].Col21 @Model[0].LTM2[i].Col20</a>*@
+                <a target="_blank" href="#" style="color:#22c0e8">@Model[0].LTM2[i].Col21 @Model[0].LTM2[i].Col32</a>
+                <a href="#" style="float:right; color :#22c0e8"> @Model[0].LTM2[i].Col24</a>
+                <div>
+                 
+                    
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            @*<p style="float:left">@Model[0].LTM2[i].Col23 </p>*@
+                            <p style="float:left ;max-width: -webkit-fill-available;word-break: break-all;">@Model[0].LTM2[i].Col23</p>
+
+                        </div>
+
+                        <div class="col-md-6" style="float:right">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="float:right ;max-width: -webkit-fill-available;word-break: break-all;">@Model[0].LTM2[i].Col25</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="float:right;max-width: -webkit-fill-available;word-break: break-all;">@Model[0].LTM2[i].Col33</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </li>
+            }
+
+        </ul>
+    </div>
+    @*</div>*@
+</div>
+
+
+@*</div>*@
+<style>
+
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
+
+        ul.timeline > li {
+            margin: 10px 0;
+            padding-left: 30px;
+        }
+
+            ul.timeline > li:before {
+                content: ' ';
+                background: white;
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #22c0e8;
+                left: -20px;
+                width: 20px;
+                height: 20px;
+                z-index: 400;
+            }
+</style>
+<script type="text/javascript">
+
+
+    debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+        //function assign_change(ctrl) {
+        //    debugger;
+        //    $("[id*=ddl_con]").val(ctrl.value).trigger('change.select2');
+        //}
+    //function removetempfile(ctrl) {
+    //    debugger;
+    //    var cnt = ctrl.id.split('e')[1];33
+    //    $("#upd" + cnt + "")[0].value = "";
+    //    $("#spanupd" + cnt + "")[0].innerText = "";
+    //    $("#thumbnil" + cnt + "")[0].src = "";
+    //    $("#thumbnil" + cnt + "").hide();
+    //    $(ctrl).hide();
+    //}
+
+    @*function editfun() { showwait();var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { showwait(); var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }*@
+    @*function selectadd() { showwait();var data = show_Foo('Select Customer', 'CUST', '1', '@viewName', '@controllerName'); }*@
+
+     @*function updatedfollow() {
+         debugger;
+
+        var url = '@Url.Action("pr_followup", "vastu")';
+        var keyWord = $('#Keyword').val();
+         var $ff = $('#pr_leadfl :input');
+        var gg = $ff.serialize();
+
+
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            data: {
+                "model1": gg, "name": keyWord
+            },
+            contentType: "application/json; charset=utf-8",
+            datatype: "json",
+            traditional: true,
+            success: function (data) {
+                //hidewait();
+                debugger
+                $('#pr_leadfl').empty();
+                $('#pr_leadfl').append(data);
+                //$('#myModal').modal(options);
+                //$('#myModal').modal('show');
+
+            },
+            error: function (err) {
+
+                alert("Dynamic content load failed.");
+            }
+        });
+    }*@
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+<style>
+    #mapCanvas {
+        width: 100%;
+        height: 300px;
+        float: left;
+    }
+
+    #infoPanel {
+        float: left;
+        margin-left: 10px;
+    }
+
+        #infoPanel div {
+            margin-bottom: 5px;
+        }
+</style>
+
+
+
+
+
+

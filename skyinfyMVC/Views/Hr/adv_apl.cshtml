@@ -1,0 +1,649 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    string mandatory = "sa-mandatory";
+    var issp = false;
+    var imgclosedisplay = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="@Model[0].Col13" accesskey='B'>@Model[0].Col13</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="form-control sa-button sa-btncancel" formnovalidate id="btncancel" name="command" value="Cancel" accesskey="C"><u>C</u>ancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="clearfix"></div>
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Employee Code
+                                    <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "em_code", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-6'>
+                                <label for="first-name">
+                                    Employee Name
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "empname", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Father Name
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "fthername", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Date Of Joining
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col21, new { @id = "doj", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Date Of Birth
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "empdob", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Age
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col23, new { @id = "empage", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Gender
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col22, new { @id = "empgender", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <h4>Name Of Dependent</h4>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Mother
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col24, new { @id = "mother", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <label for="first-name">
+                                    Date Of Birth
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col26, new { @id = "mthdob", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", @onblur = "DateSelectionChangedmother();" })
+                                        <span class="input-group-addon formclass"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Age
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col27, new { @id = "mthage", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", Readonly = "True" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-6">
+                                    <label for="first-name">Blood Group </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[i].SelectedItems1, new MultiSelectList(Model[i].TList1, "Value", "Text", Model[i].SelectedItems1), new { @id = "ddl_bloodgrp1", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @multiple = "multiple", @style = "width:100%" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Father
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col28, new { @id = "father", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <label for="first-name">
+                                    Date Of Birth
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col30, new { @id = "fthdob", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", @onblur = "DateSelectionChangedfather();" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Age
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col31, new { @id = "fthage", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", Readonly = "True" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-6">
+                                    <label for="first-name">Blood Group </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[i].SelectedItems2, new MultiSelectList(Model[i].TList2, "Value", "Text", Model[i].SelectedItems2), new { @id = "ddl_bloodgrp2", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @multiple = "multiple", @style = "width:100%" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6"></div>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Spouse
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col32, new { @id = "spouse", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <label for="first-name">
+                                    Date Of Birth
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col34, new { @id = "spdob", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", @onblur = "DateSelectionChangedspouse();" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Age
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col35, new { @id = "spage", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", Readonly = "True" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-6">
+                                    <label for="first-name">Blood Group </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[i].SelectedItems3, new MultiSelectList(Model[i].TList3, "Value", "Text", Model[i].SelectedItems3), new { @id = "ddl_bloodgrp3", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @multiple = "multiple", @style = "width:100%" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6"></div>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    First Child
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col36, new { @id = "firstchild", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <label for="first-name">
+                                    Date Of Birth
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col38, new { @id = "fcdob", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", @onblur = "DateSelectionChangedfirst();" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Age
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col39, new { @id = "fcage", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", Readonly = "True" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-6">
+                                    <label for="first-name">Blood Group </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[i].SelectedItems4, new MultiSelectList(Model[i].TList4, "Value", "Text", Model[i].SelectedItems4), new { @id = "ddl_bloodgrp4", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @multiple = "multiple", @style = "width:100%" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="first-name">  Gender<span class="ClientProfileLabelColor"></span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <b>Male </b>
+                                            @Html.RadioButtonFor(m => m[i].Col37, "M", new { @id = "genderm", @class = "sa-input radio myclass" })
+                                            <b>Female </b>
+                                            @Html.RadioButtonFor(m => m[i].Col37, "F", new { @id = "genderf", @class = "sa-input radio myclass" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Second  Child
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col40, new { @id = "secchild", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'>
+                                <label for="first-name">
+                                    Date Of Birth
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col42, new { @id = "scdob", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", @onblur = "DateSelectionChangedsecond();" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class='col-sm-3'>
+                                <label for="first-name">
+                                    Age
+                                    <span class="ClientProfileLabelColor"></span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col43, new { @id = "scage", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", Readonly = "True" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="col-sm-6">
+                                    <label for="first-name">Blood Group </label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            @Html.DropDownListFor(model => model[i].SelectedItems5, new MultiSelectList(Model[i].TList5, "Value", "Text", Model[i].SelectedItems5), new { @id = "ddl_bloodgrp5", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @MaxLength = "20", @multiple = "multiple", @style = "width:100%" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="first-name">  Gender<span class="ClientProfileLabelColor"></span></label>
+                                    <div class="form-group">
+                                        <div class='input-group'>
+                                            <b>Male </b>
+                                            @Html.RadioButtonFor(m => m[i].Col41, "M", new { @id = "scgenderm", @class = "sa-input radio myclass" })
+                                            <b>Female </b>
+                                            @Html.RadioButtonFor(m => m[i].Col41, "F", new { @id = "scgenderf", @class = "sa-input radio myclass" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class='col-sm-4 col-xs-4'>
+                                <label for="first-name">Are You Want <span class="ClientProfileLabelColor"></span></label>
+                                <div class="form-group">
+                                    <div class='input-group' style="width: 100%">
+                                        <b>Company Policy </b>
+                                        @Html.RadioButtonFor(model => model[i].Col44, "C", new { @id = "rdCP", @class = "sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <b style="margin-left:5px">Personal Policy </b>
+                                        @Html.RadioButtonFor(model => model[i].Col44, "P", new { @id = "rdPP", @class = "sa-input radio sa-mandatory", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+
+<script>
+
+         $(document).ready(function () {
+            @Html.Raw(ViewBag.scripCall);
+            $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+         $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        });
+
+    function DateSelectionChangedsecond()
+    {
+            var today_date = new Date();
+           var txtdob = $("#scdob")[0].value;
+            //var txtdob = document.getElementById('scdob');
+            if (txtdob.value == "") {
+               // $("[id=hf_chkacct]").val().innerText = "";
+                $("#scage")[0].value = "";
+               // document.getElementById("scage").innerText = "";
+            }
+            else {
+                var dob = moment(txtdob, dformat(dateformat));
+                var diff_date = moment() - dob - 1;
+                if (diff_date < 0) {
+                    alert('Date of Birth Can Not Be Greater Than Today');
+                    txtdob = "";
+                    return;
+                }
+                var num_years = diff_date / 31536000000;
+                var num_months = (diff_date % 31536000000) / 2628000000;
+                var num_days = ((diff_date % 31536000000) % 2628000000) / 86400000;
+
+                var yearString = "";
+                if (num_years > 1) yearString = " years";
+                else yearString = Math.floor(num_years) + "Years ,";
+                if (num_months > 1) monthString = " months";
+                else yearString = yearString + Math.floor(num_months) + "Months,";
+                if (num_days > 1) yearString = yearString + Math.floor(num_days) + "Days";
+                else yearString = "0 day";
+                //document.getElementById("scage").innerText = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+                $("#scage")[0].value = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+            }
+        }
+        function DateSelectionChangedfirst()
+    {
+            var today_date = new Date();
+           var txtdob = $("#fcdob")[0].value;
+            //var txtdob = document.getElementById('scdob');
+            if (txtdob.value == "") {
+               // $("[id=hf_chkacct]").val().innerText = "";
+                $("#fcage")[0].value = "";
+               // document.getElementById("scage").innerText = "";
+            }
+            else {
+                var dob = moment(txtdob, dformat(dateformat));
+                var diff_date = moment() - dob - 1;
+                if (diff_date < 0) {
+                    alert('Date of Birth Can Not Be Greater Than Today');
+                    txtdob = "";
+                    return;
+                }
+                var num_years = diff_date / 31536000000;
+                var num_months = (diff_date % 31536000000) / 2628000000;
+                var num_days = ((diff_date % 31536000000) % 2628000000) / 86400000;
+                var yearString = "";
+                if (num_years > 1) yearString = " years";
+                else yearString = Math.floor(num_years) + "Years ,";
+                if (num_months > 1) monthString = " months";
+                else yearString = yearString + Math.floor(num_months) + "Months,";
+                if (num_days > 1) yearString = yearString + Math.floor(num_days) + "Days";
+                else yearString = "0 day";
+                //document.getElementById("scage").innerText = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+                $("#fcage")[0].value = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+            }
+        }
+     function DateSelectionChangedspouse()
+    {
+            var today_date = new Date();
+           var txtdob = $("#spdob")[0].value;
+            //var txtdob = document.getElementById('scdob');
+            if (txtdob.value == "") {
+               // $("[id=hf_chkacct]").val().innerText = "";
+                $("#spage")[0].value = "";
+               // document.getElementById("scage").innerText = "";
+            }
+            else {
+                var dob = moment(txtdob, dformat(dateformat));
+                var diff_date = moment() - dob - 1;
+                if (diff_date < 0) {
+                    alert('Date of Birth Can Not Be Greater Than Today');
+                    txtdob = "";
+                    return;
+                }
+                var num_years = diff_date / 31536000000;
+                var num_months = (diff_date % 31536000000) / 2628000000;
+                var num_days = ((diff_date % 31536000000) % 2628000000) / 86400000;
+
+                var yearString = "";
+                if (num_years > 1) yearString = " years";
+                else yearString = Math.floor(num_years) + "Years ,";
+                if (num_months > 1) monthString = " months";
+                else yearString = yearString + Math.floor(num_months) + "Months,";
+                if (num_days > 1) yearString = yearString + Math.floor(num_days) + "Days";
+                else yearString = "0 day";
+                //document.getElementById("scage").innerText = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+                $("#spage")[0].value = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+            }
+        }
+        function DateSelectionChangedfather()
+    {
+            var today_date = new Date();
+           var txtdob = $("#fthdob")[0].value;
+            //var txtdob = document.getElementById('scdob');
+            if (txtdob.value == "") {
+               // $("[id=hf_chkacct]").val().innerText = "";
+                $("#fthage")[0].value = "";
+               // document.getElementById("scage").innerText = "";
+            }
+            else {
+                var dob = moment(txtdob, dformat(dateformat));
+                var diff_date = moment() - dob - 1;
+                if (diff_date < 0) {
+                    alert('Date of Birth Can Not Be Greater Than Today');
+                    txtdob = "";
+                    return;
+                }
+                var num_years = diff_date / 31536000000;
+                var num_months = (diff_date % 31536000000) / 2628000000;
+                var num_days = ((diff_date % 31536000000) % 2628000000) / 86400000;
+
+                var yearString = "";
+                if (num_years > 1) yearString = " years";
+                else yearString = Math.floor(num_years) + "Years ,";
+                if (num_months > 1) monthString = " months";
+                else yearString = yearString + Math.floor(num_months) + "Months,";
+                if (num_days > 1) yearString = yearString + Math.floor(num_days) + "Days";
+                else yearString = "0 day";
+                //document.getElementById("scage").innerText = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+                $("#fthage")[0].value = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+            }
+        }
+        function DateSelectionChangedmother()
+    {
+            var today_date = new Date();
+           var txtdob = $("#mthdob")[0].value;
+            //var txtdob = document.getElementById('scdob');
+            if (txtdob.value == "") {
+               // $("[id=hf_chkacct]").val().innerText = "";
+                $("#mthage")[0].value = "";
+               // document.getElementById("scage").innerText = "";
+            }
+            else {
+                var dob = moment(txtdob, dformat(dateformat));
+                var diff_date = moment() - dob - 1;
+                if (diff_date < 0) {
+                    alert('Date of Birth Can Not Be Greater Than Today');
+                    txtdob = "";
+                    return;
+                }
+                var num_years = diff_date / 31536000000;
+                var num_months = (diff_date % 31536000000) / 2628000000;
+                var num_days = ((diff_date % 31536000000) % 2628000000) / 86400000;
+
+                var yearString = "";
+                if (num_years > 1) yearString = " years";
+                else yearString = Math.floor(num_years) + "Years ,";
+                if (num_months > 1) monthString = " months";
+                else yearString = yearString + Math.floor(num_months) + "Months,";
+                if (num_days > 1) yearString = yearString + Math.floor(num_days) + "Days";
+                else yearString = "0 day";
+                //document.getElementById("scage").innerText = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+                $("#mthage")[0].value = Math.floor(num_years) + "Years, " + Math.floor(num_months) + "Months, " + Math.floor(num_days) + "Days";
+            }
+        }
+</script>

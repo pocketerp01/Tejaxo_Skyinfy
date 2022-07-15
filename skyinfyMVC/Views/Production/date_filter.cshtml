@@ -1,0 +1,367 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col11;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    ViewBag.Title = "DATE FILTER";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    var userCode = sgen.GetCookie(MyGuid,"userCode");
+    var currdate = sgen.server_datetime_local(userCode);
+}
+<form action="/Production/date_filter" id="date_filter" method="post">
+    <div id="Content1">
+        <link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />
+        <script src="~/Content/css/select2/select2_4.0.6.min.js"></script>
+
+        <script type="text/javascript">
+
+            function close_pop() {
+                var mm = "";
+                //create below button on Parent page
+                //<asp:Button runat="server" ID="callback1" clientIDMode="Static" Style="display:none" OnClick="callback1_Click" />
+                @if (sgen.GetSession(MyGuid, "parentname") != null)
+                {
+                    @:mm = '@sgen.GetSession(MyGuid, "parentname").ToString()';
+
+                    }
+
+                if (mm == "master") { $(parent.document.getElementById('callback0')).trigger('click'); }
+                else if (mm == "MVC") { parent.callback(); }
+                else if ($(parent.document.getElementById('callback1'))[0].tagName == "A") $(parent.document.getElementById('callback1'))[0].click();
+                else $(parent.document.getElementById('callback1')).trigger('click');
+                $("#myModal").modal('hide');
+            }
+
+            $(document).ready(function () {
+                //debugger
+                $(".sa-date").datetimepicker({
+                    ignoreReadonly: true,
+                    format: dformat(dateformat),
+                });
+                var myHidden = document.getElementById('hfddlcom');
+                $(".sa-select2-multiple").select2();
+            });
+
+            function btnokclick(selectedindex, evt) {
+                //prevent the browsers default function
+                evt.preventDefault();
+                //grab the form and wrap it with jQuery
+                var $form = $("#date_filter");
+                //if client side validation fails, don't do anything
+                //if (!$form.valid()) return;
+                //send your ajax request
+                $.ajax({
+                    type: "POST",
+                    url: "/Production/date_filter",
+                    data: $form.serialize() + "&command=Search",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+                        close_pop();
+                    },
+                    error: function (err) {
+                        close_pop();
+                    }
+                });
+            }
+
+
+
+        </script>
+    </div>
+    <div id="Content2">
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_btnid" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+
+                        <div class="row">
+                            <div class='col-sm-5'>
+                                <div class="row">
+                                    <div class='col-sm-12'>
+                                        <label for="first-name">From Date </label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_fdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", placeholder = "From Date" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-12'>
+                                        <label for="first-name">To Date </label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_tdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory", placeholder = "To Date" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <label for="first-name"> </label>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                <input type="button" id="btnOk" value="Search" name="command" onclick="btnokclick('', event);"  class="btn btn-primary form-control sa-button fa-search" />
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-7'>
+                                <div class="row">
+                                    <div class='col-sm-7'>
+                                        <div class="row">
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "001", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Y.T.D (Year To Date)
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "002", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                M.T.D (Month To Date)
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "003", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Q.T.D (Qtr To Date)
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "004", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                H.T.D (Half To Date)
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "005", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Previous Month
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "006", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Next Month
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "007", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Yesterday
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-5'>
+                                        <div class="row">
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "008", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Today
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "009", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                First Qtr
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "010", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Second Qtr
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "011", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Third Qtr
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "012", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Fourth Qtr
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "013", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                First Half
+                                            </div>
+                                            <div class='col-sm-12'>
+                                                @Html.RadioButtonFor(model => model[0].Col19, "014", new { @id = "rd_dt", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onclick = "getdt(this);" })
+                                                Second Half
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+<script type="text/javascript">   
+
+    function padlc(value, length) {
+        value = String(value);
+        length = length - value.length;
+        return ('0'.repeat(length) + value)
+    }
+
+    function getdt(ctrl) {
+      //  debugger;
+        var fdt = "", tdt = "";
+        if (ctrl.checked == true)
+        {
+         //   debugger;
+            var datetimeformat = getCookie('@MyGuid',"datetimeformat");
+            var Ac_from_dt = moment(getCookie('@MyGuid',"Ac_From_Date"), dformat(datetimeformat));
+            var Ac_to_dt = moment(getCookie('@MyGuid',"Ac_To_Date"), dformat(datetimeformat));
+        
+            var fy_from_dt = moment(getCookie('@MyGuid',"year_from"), dformat(datetimeformat));
+            var fy_to_dt = moment(getCookie('@MyGuid',"year_to"), dformat(datetimeformat));
+
+            var today_dt = moment('@currdate', dformat(datetimeformat));
+            var today_str = today_dt.format('DD/MM/YYYY');
+            var val = ctrl.value;
+            var qtr = today_dt.quarters();
+            var yr = fy_from_dt.year();
+        
+            switch (val) {
+                case "001"://ytd
+                    fdt = fy_from_dt.format('DD/MM/YYYY');
+                    tdt = today_str;
+                    break;
+                case "002"://mtd
+                    fdt = today_dt.startOf('month').format('DD/MM/YYYY');
+                    tdt = today_str;
+                    break;
+                case "003"://qtd  
+                    if (qtr == 1) {
+                        qtr = 4;
+                        yr = yr + 1;
+                    }
+                    else {
+                        qtr = qtr - 1;
+                        yr = yr;
+                    }
+                    var fmnth = (qtr * 3) + 1;
+                    if (qtr == 4) fmnth = 1;
+                    var tdt = today_dt.date();
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr; 
+
+                    fdt = fmdt;
+                    tdt = today_str;
+                    break;
+                case "004"://htd
+                    if (qtr == 1) {
+                        qtr = 4;
+                    }
+                    if (qtr == 2 || qtr == 4) { qtr = qtr - 1; }
+                    var fmnth = (qtr * 3) + 1;
+                    var tdt = today_dt.date();
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr;
+
+                    fdt = fmdt;
+                    tdt = today_str;                                        
+                    break;
+                case "005"://previous month
+                    var pmdt = today_dt.subtract('1', 'months');
+                    fdt = pmdt.startOf('month').format('DD/MM/YYYY');
+                    tdt = pmdt.endOf('month').format('DD/MM/YYYY');
+                    break;
+                case "006"://next month
+                    var nmdt = today_dt.add('1', 'months');
+                    fdt = nmdt.startOf('month').format('DD/MM/YYYY');
+                    tdt = nmdt.endOf('month').format('DD/MM/YYYY');
+                    break;
+                case "007"://yesterday
+                    var pday = today_dt.subtract('1', 'days');
+                    fdt = pday.format('DD/MM/YYYY');
+                    tdt = pday.format('DD/MM/YYYY');
+                    break;
+                case "008"://today
+                    fdt = today_str;
+                    tdt = today_str;
+                    break;
+                case "009"://first qtr  
+                    qtr = 1;
+                    var fmnth = (qtr * 3) + 1;
+                    var lmnth = fmnth + 2;
+                    var tdt = today_dt.date();
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr;
+                    var lmdt = "01/" + padlc(lmnth.toString(), 2) + "/" + yr;
+                    lmdt = moment(lmdt, "DD/MM/YYYY");
+                    lmdt = lmdt.endOf('month').format('DD/MM/YYYY');
+                    fdt = fmdt;
+                    tdt = lmdt;
+                    break;
+                case "010"://second qtr
+                    qtr = 2;
+                    var fmnth = (qtr * 3) + 1;
+                    var lmnth = fmnth + 2;
+                    var tdt = today_dt.date();
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr;
+                    var lmdt = "01/" + padlc(lmnth.toString(), 2) + "/" + yr;
+                    lmdt = moment(lmdt, "DD/MM/YYYY");
+                    lmdt = lmdt.endOf('month').format('DD/MM/YYYY');
+                    fdt = fmdt;
+                    tdt = lmdt;                    
+                    break;
+                case "011"://third qtr
+                    qtr = 3;
+                    var fmnth = (qtr * 3) + 1;
+                    var lmnth = fmnth + 2;
+                    var tdt = today_dt.date();
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr;
+                    var lmdt = "01/" + padlc(lmnth.toString(), 2) + "/" + yr;
+                    lmdt = moment(lmdt, "DD/MM/YYYY");
+                    lmdt = lmdt.endOf('month').format('DD/MM/YYYY');
+                    fdt = fmdt;
+                    tdt = lmdt;
+                    break;
+                case "012"://fourth qtr
+                    qtr = 4;
+                    if (qtr == 4) { yr = yr + 1; }
+                    var fmnth = (qtr * 3) + 1;
+                    if (fmnth > 12) {
+                        fmnth = fmnth - 12;
+                    }
+                    var lmnth = fmnth + 2;
+                    var tdt = today_dt.date();
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr;
+                    var lmdt ="01/" + padlc(lmnth.toString(), 2) + "/" + yr;
+                    lmdt = moment(lmdt, "DD/MM/YYYY");
+                    lmdt = lmdt.endOf('month').format('DD/MM/YYYY');
+                    fdt = fmdt;
+                    tdt = lmdt;
+                    break;
+                case "013"://first half
+                    qtr = 1;
+                    var fmnth = (qtr * 3) + 1;
+                    lmnth = fmnth + 5;
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + yr;
+                    var lmdt = "01/" + padlc(lmnth.toString(), 2) + "/" + yr;
+                    lmdt = moment(lmdt, "DD/MM/YYYY");
+                    lmdt = lmdt.endOf('month').format('DD/MM/YYYY');
+                    fdt = fy_from_dt.format('DD/MM/YYYY');
+                    tdt = lmdt;
+                    break;
+                case "014"://second half
+                    var fmnth = fy_from_dt.month() + 1 + 6;
+                    lmnth = fmnth + 5;
+                    if (lmnth > 12) {
+                        lmnth = lmnth - 12;
+                        yr = yr + 1;
+                    }
+                    var fmdt = "01/" + padlc(fmnth.toString(), 2) + "/" + (yr-1);
+                    var lmdt = "01/" + padlc(lmnth.toString(), 2) + "/" + yr;
+                    lmdt = moment(lmdt, "DD/MM/YYYY");
+                    lmdt = lmdt.endOf('month').format('DD/MM/YYYY');
+                    fdt = fmdt;
+                    tdt = lmdt;
+                    break;
+            }
+
+            $("#txt_fdt").val(fdt);
+            $("#txt_tdt").val(tdt);
+        }
+    }
+
+</script>

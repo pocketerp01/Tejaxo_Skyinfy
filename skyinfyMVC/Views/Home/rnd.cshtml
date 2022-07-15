@@ -1,0 +1,982 @@
+﻿@using System.Data;
+@using System.Web.Mvc;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    //MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+
+    // string userCode = sgen.GetCookie(MyGuid,"userCode");
+    string clr = "";
+    ViewBag.Title = "rnd";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+
+    string idpre = "";
+    bool mydisabled = false;
+    // DataTable dt = ((DataTable)Session["dtcopy"]);
+}
+
+
+<script type="text/javascript">
+    var times = [
+        "12:00 am",
+        "1:00 am",
+        "2:00 am",
+        "3:00 am",
+        "4:00 am",
+        "5:00 am",
+        "6:00 am",
+        "7:00 am",
+        "8:00 am",
+        "9:00 am",
+        "10:00 am",
+        "11:00 am",
+        "12:00 pm",
+        "1:00 pm",
+        "2:00 pm",
+        "3:00 pm",
+        "4:00 pm",
+        "5:00 pm",
+        "6:00 pm",
+        "7:00 pm",
+        "8:00 pm",
+        "9:00 pm",
+        "10:00 pm",
+        "11:00 pm"
+    ];
+
+$(function(){
+	$("#example").DataTable({
+    	"columns":[
+        	null,
+        	{
+            	"render": function(d,t,r){
+                	var $select = $("<select></select>", {
+                    	"id": r[0]+"start",
+                        "value": d
+                    });
+                	$.each(times, function(k,v){
+                    	var $option = $("<option></option>", {
+                        	"text": v,
+                            "value": v
+                        });
+                        if(d === v){
+                        	$option.attr("selected", "selected")
+                        }
+                    	$select.append($option);
+                    });
+                    return $select.prop("outerHTML");
+                }
+            },
+            {
+            	"render": function(d,t,r){
+                	var $select = $("<select></select>", {
+                    	"id": r[0]+"start",
+                        "value": d
+                    });
+                	$.each(times, function(k,v){
+                    	var $option = $("<option></option>", {
+                        	"text": v,
+                            "value": v
+                        });
+                        if(d === v){
+                        	$option.attr("selected", "selected")
+                        }
+                    	$select.append($option);
+                    });
+                    return $select.prop("outerHTML");
+                }
+            }
+        ]
+    });
+});
+
+
+</script>
+@*<style>
+        /*---for calender---*/
+        .bootstrap-datetimepicker-widget {
+            z-index: 999 !important;
+            overflow: visible !important;
+        }
+        /*---for calender---*/
+
+        .grid-container {
+            display: grid; /* This is a (hacky) way to make the .grid element size to fit its content */
+            overflow: auto;
+            height: 300px;
+            /*width: 600px;*/
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .grid-col {
+            width: 100px;
+            min-width: 100px;
+        }
+
+        .grid-item--header {
+            height: 35px;
+            min-height: 35px;
+            z-index: 1;
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            /*font-weight: bold;*/
+            color: #ECF0F1;
+            background: rgba(52,73,94,.94);
+        }
+
+        .grid-col--fixed-left {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background: white;
+        }
+
+        .grid-col--fixed-right {
+            position: sticky;
+            right: 0;
+            z-index: 9998;
+            background: white;
+        }
+
+        .grid-item {
+            height: 35px;
+            border: 1px solid gray;
+            /*color: #999;*/
+            border: 1px solid #eee;
+            padding-left: 5px;
+            border-collapse: collapse;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif";
+        }
+
+        .grid-container::-webkit-scrollbar-thumb {
+            background: #555;
+            border: 0px none #ffffff;
+            border-radius: 50px;
+        }
+
+            .grid-container::-webkit-scrollbar-thumb:hover {
+                background: #ffffff;
+            }
+
+            .grid-container::-webkit-scrollbar-thumb:active {
+                background: #555;
+            }
+
+        .grid-container::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        .grid-container::-webkit-scrollbar-corner {
+            background: #ffffff;
+        }
+
+        .datepicker.dropdown-menu {
+            z-index: 99999 !important
+        }
+
+        .bootstrap-datetimepicker-widget.dropdown-menu {
+            overflow: visible;
+            height: 100%;
+        }
+        /*.grid-item:hover {
+                background: #4E5066;
+                color: #FFFFFF;
+                border-top: 1px solid #22262e;
+            }*/
+    </style>
+    <style>
+
+        ul[role="tree"] {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+            ul[role="tree"] li {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            ul[role="tree"] a {
+                text-decoration: underline;
+                border-color: transparent;
+            }
+
+        [role="treeitem"] ul {
+            margin: 0;
+            padding: 0;
+            margin-left: 0.9em;
+        }
+
+        [role="treeitem"][aria-expanded="false"] > ul {
+            display: none;
+        }
+
+        [role="treeitem"][aria-expanded="true"] > ul {
+            display: block;
+        }
+
+        [role="treeitem"][aria-expanded="false"] > span::before {
+            content: url(../images/right-arrow-brown.png);
+            height: 10px;
+            position: relative;
+            left: -0.25em;
+        }
+
+        [role="treeitem"][aria-expanded="true"] > span::before {
+            content: url(../images/down-arrow-brown.png);
+            position: relative;
+            left: -0.25em;
+        }
+
+        [role="treeitem"],
+        [role="treeitem"] span {
+            width: 16em;
+            margin: 0;
+            padding: 0.125em;
+            border: 2px transparent solid;
+            display: block;
+        }
+
+            /* disable default keyboard focus styling for treeitems
+        Keyboard focus is styled with the following CSS */
+            [role="treeitem"]:focus {
+                outline: 0;
+            }
+
+            [role="treeitem"].focus,
+            [role="treeitem"] span.focus {
+                border-color: black;
+                background-color: #eee;
+            }
+
+            [role="treeitem"].hover,
+            [role="treeitem"] span.hover {
+                background-color: #ddd;
+            }
+    </style>*@
+@*<script src="treeitemLinks.js"></script>
+    <script src="treeLinks.js"></script>*@
+
+<h2>rnd</h2>
+@using (Html.BeginForm("rnd", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<div class="row">
+    <div class="md-6">
+        <input type="button" class="btn btn-success form-control sa-button" id="btnrun" name="command" value="run" />
+
+    </div>
+    <div class="md-6">
+        <input type="submit" class="btn btn-success form-control sa-button" id="btnrun" name="command" value="Tally Connect" />
+
+    </div>
+    <div class="md-6">
+        <input type="submit" class="btn btn-success form-control sa-button" id="btnrun" name="command" value="IndiaMart" />
+
+    </div>
+    <div class="md-6">
+        <input type="submit" class="btn btn-success form-control sa-button" id="btnrun" name="command" value="99Acres" />
+
+    </div>
+    <div class="md-6">
+        <input type="submit" class="btn btn-success form-control sa-button" id="btnrun" name="command" value="sess" />
+
+    </div>
+    <div class="md-6">
+        @Html.LabelFor(model => model[0].Col21, Model[0].Col21, new { @id = "username_lgn", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", placeholder = "USERNAME", })
+    </div>
+</div>
+
+    @*<div class="row">
+        <div class="col-md-12">
+            <h3 id="tree1">
+                Foods
+            </h3>*@
+    @*<div class="grid">
+        <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+            <div class="grid-item grid-item--header">
+                <p>@dc.ColumnName.ToString()</p>
+            </div>
+
+                <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" data-sakeys="gloval">
+                    @dr[dc].ToString()
+                </div>
+
+        </div>
+        </div>*@
+    @*<div class="row">
+            <ul role="tree" aria-labelledby="tree1">
+                <li role="treeitem" aria-expanded="false">
+
+                    <span>
+                        Vegetables
+                    </span>
+                    <input type="checkbox" />
+                    <input type="checkbox" />
+                    <input type="checkbox" />
+                    <ul role="group">
+                        <li role="treeitem" aria-expanded="false">
+                            <span>
+                                Podded Vegetables
+                            </span>
+                            <input type="checkbox" />
+                            <input type="checkbox" />
+                            <input type="checkbox" />
+                            <ul role="group">
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Lentil">
+                                        Lentil
+                                    </a>
+                                    <input type="checkbox" />
+                                    <input type="checkbox" />
+                                    <input type="checkbox" />
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Pea">
+                                        Pea
+                                    </a>
+                                    <input type="checkbox" />
+                                    <input type="checkbox" />
+                                    <input type="checkbox" />
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Peanut">
+                                        Peanut
+                                    </a>
+                                    <input type="checkbox" />
+                                    <input type="checkbox" />
+                                    <input type="checkbox" />
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="treeitem" aria-expanded="false">
+                            <span>
+                                Bulb and Stem Vegetables
+                            </span>
+                            <ul role="group">
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Asparagus">
+                                        Asparagus
+                                    </a>
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Celery">
+                                        Celery
+                                    </a>
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Leek">
+                                        Leek
+                                    </a>
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Onion">
+                                        Onion
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="treeitem" aria-expanded="false">
+                            <span>
+                                Root and Tuberous Vegetables
+                            </span>
+                            <ul role="group">
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Carrot">
+                                        Carrot
+                                    </a>
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Ginger">
+                                        Ginger
+                                    </a>
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Parsnip">
+                                        Parsnip
+                                    </a>
+                                </li>
+                                <li role="none">
+                                    <a role="treeitem" href="https://en.wikipedia.org/wiki/Potato">
+                                        Potato
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+                <ul role="tree" aria-labelledby="tree1">
+                    <li role="treeitem" aria-expanded="false">
+                        <input type="checkbox" />
+
+                        Fruits
+
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <ul>
+                            <li role="none">
+                                <a role="treeitem" href="https://en.wikipedia.org/wiki/Orange_%28fruit%29">
+                                    Oranges
+                                </a>
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                            </li>
+                            <li role="none">
+                                <a role="treeitem" href="https://en.wikipedia.org/wiki/Pineapple">
+                                    Pineapple
+                                </a>
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                            </li>
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Apples
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29">
+                                            Macintosh
+                                        </a>
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Granny_Smith">
+                                            Granny Smith
+                                        </a>
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Fuji_(apple)">
+                                            Fuji
+                                        </a>
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                    </li>
+                                </ul>
+                            </li>
+                            <li role="none">
+                                <a role="treeitem" href="https://en.wikipedia.org/wiki/Banana">
+                                    Bananas
+                                </a>
+                            </li>
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Pears
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/D%27Anjou">
+                                            Anjou
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Williams_pear">
+                                            Bartlett
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Bosc_pear">
+                                            Bosc
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                                            Concorde
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                                            Seckel
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                                            Starkrimson
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li role="treeitem" aria-expanded="false">
+                        <span>
+                            Vegetables
+                        </span>
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <input type="checkbox" />
+                        <ul role="group">
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Podded Vegetables
+                                </span>
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                                <input type="checkbox" />
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Lentil">
+                                            Lentil
+                                        </a>
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Pea">
+                                            Pea
+                                        </a>
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Peanut">
+                                            Peanut
+                                        </a>
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                        <input type="checkbox" />
+                                    </li>
+                                </ul>
+                            </li>
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Bulb and Stem Vegetables
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Asparagus">
+                                            Asparagus
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Celery">
+                                            Celery
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Leek">
+                                            Leek
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Onion">
+                                            Onion
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Root and Tuberous Vegetables
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Carrot">
+                                            Carrot
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Ginger">
+                                            Ginger
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Parsnip">
+                                            Parsnip
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Potato">
+                                            Potato
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li role="treeitem" aria-expanded="false">
+                        <span>
+                            Grains
+                        </span>
+                        <ul role="group">
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Cereal Grains
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Barley">
+                                            Barley
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Oats">
+                                            Oats
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Rice">
+                                            Rice
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Pseudocereal Grains
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Amaranth">
+                                            Amaranth
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Buckwheat">
+                                            Bucketwheat
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Salvia_hispanica">
+                                            Chia
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Quinoa">
+                                            Quinoa
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li role="treeitem" aria-expanded="false">
+                                <span>
+                                    Oilseeds
+                                </span>
+                                <ul role="group">
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Brassica_juncea">
+                                            India Mustard
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Safflower">
+                                            Safflower
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Flax_seed">
+                                            Flax Seed
+                                        </a>
+                                    </li>
+                                    <li role="none">
+                                        <a role="treeitem" href="https://en.wikipedia.org/wiki/Poppy_seed">
+                                            Poppy Seed
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>*@
+    <style>
+        table td {
+            border: 1px solid #eee;
+        }
+        .collapse {
+    /* display: block; */
+}
+
+.collapse {
+    /* display: none; */
+}
+        .level1 td:first-child {
+            padding-left: 15px;
+        }
+
+        .level2 td:first-child {
+            padding-left: 30px;
+        }
+
+        .collapse-ram .toggle {
+            background: url("http://mleibman.github.com/SlickGrid/images/collapse.gif");
+            background-repeat: no-repeat;
+        }
+
+        .expand .toggle {
+            background: url("http://mleibman.github.com/SlickGrid/images/expand.gif");
+            background-repeat: no-repeat;
+        }
+
+        .toggle {
+            height: 7px;
+            width: 7px;
+            display: inline-block;
+        }
+
+        /*.collapse-ram {
+            display: block;
+        }*/
+    </style>
+
+    <div class="container">
+       
+        <table id="mytable" class="table table-responsive" style="width:100%">
+            <thead>
+                <tr>
+                    <td name="t1">Name</td>
+                    <td name="t2">Link</td>
+                    <td name="t2">Module1</td>
+                    <td name="t2">Module2</td>
+                    <td name="t2">Module3</td>
+                    <td name="t2">Submenu</td>
+                    <td name="t3">BTN_NEW</td>
+                    <td name="t4">BTN_EDIT</td>
+                    <td name="t4">BTN_SAVE</td>
+                    <td name="t4">BTN_SAVE_AND_NEW</td>
+                    <td name="t4">BTN_VIEW</td>
+                    <td name="t4">BTN_EXTEND</td>
+                </tr>
+            </thead>
+            @*<tbody>
+                @for (int a = 0; a < dt.Rows.Count; a++)
+                {
+                    string pd = (sgen.Make_decimal(dt.Rows[a]["m_level"].ToString()) * 20) + "px";
+
+                    if (dt.Rows[a]["m_submenu"].ToString() == "1")
+                    {
+                        <tr data-depth="@dt.Rows[a]["m_level"].ToString().Trim()" class="collapse-ram">
+                            <td name="t1" style="padding-left:@pd"><span class="toggle collapse-ram"></span>@dt.Rows[a]["m_name"].ToString().Trim()</td>
+                            <td name="t2">@dt.Rows[a]["m_link"].ToString().Trim()</td>
+                            <td name="m1">@dt.Rows[a]["m_module1"].ToString().Trim()</td>
+                            <td name="m2">@dt.Rows[a]["m_module2"].ToString().Trim()</td>
+                            <td name="m3">@dt.Rows[a]["m_module3"].ToString().Trim()</td>
+                            <td name="m4">@dt.Rows[a]["m_submenu"].ToString().Trim()</td>
+                            <td name="c1"><input type="checkbox" onclick="checkme(this);" /></td>
+                            <td name="c2"><input type="checkbox" onclick="checkme(this);" /></td>
+                            <td name="c3"><input type="checkbox" onclick="checkme(this);" /></td>
+                            <td name="c4"><input type="checkbox" onclick="checkme(this);" /></td>
+                            <td name="c5"><input type="checkbox" onclick="checkme(this);" /></td>
+                            <td name="c6"><input type="checkbox" onclick="checkme(this);" /></td>
+                        </tr>
+                    }
+                    else
+                    {
+
+            <tr data-depth="@dt.Rows[a]["m_level"].ToString().Trim()" class="collapse-ram">
+                <td name="t1" style="padding-left:@pd">@dt.Rows[a]["m_name"].ToString().Trim()</td>
+                <td name="t2">@dt.Rows[a]["m_link"].ToString().Trim()</td>
+                <td name="m1">@dt.Rows[a]["m_module1"].ToString().Trim()</td>
+                <td name="m2">@dt.Rows[a]["m_module2"].ToString().Trim()</td>
+                <td name="m3">@dt.Rows[a]["m_module3"].ToString().Trim()</td>
+                <td name="m4">@dt.Rows[a]["m_submenu"].ToString().Trim()</td>
+                <td name="c1"><input type="checkbox" onclick="checkme(this);" /></td>
+                <td name="c2"><input type="checkbox" onclick="checkme(this);" /></td>
+                <td name="c3"><input type="checkbox" onclick="checkme(this);" /></td>
+                <td name="c4"><input type="checkbox" onclick="checkme(this);" /></td>
+                <td name="c5"><input type="checkbox" onclick="checkme(this);" /></td>
+                <td name="c6"><input type="checkbox" onclick="checkme(this);" /></td>
+            </tr>
+
+                    }
+
+                }
+            </tbody>*@
+
+        </table>
+
+
+</div>
+        <script>
+            function setTableDatat() {
+                try {
+               
+                    datatable = new Array();
+
+                    var heads = $("#mytable thead td");
+                    var rows = $("#mytable tbody tr");
+                    for (var r = 0; r < rows.length-1; r++) {
+                        var row = $(rows).eq(r);
+                        var arr = new Array();
+                        for (var h = 0; h < heads.length-1; h++) {
+                            var obj = {};
+                            var vall = "";
+                            if (h == 16) {
+                                val = $(row).find("td").eq(h).eq(0).find("input").val();
+                            }
+                            if ($(row).find("td").eq(h).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").eq(0)[0] != undefined
+                                && $(row).find("td").eq(h).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").eq(0)[0].type == "checkbox") {
+                                vall = $(row).find("td").eq(h).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").eq(0)[0].checked;
+                            }
+                            else if ($(row).find("td").eq(h).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").length > 0) {
+                                vall = $(row).find("td").eq(h).find("input").not("[type=button],[type=submit],[id^=dd_item],[id^=s2id]").val();
+                            }
+                            else if ($(row).find("td").eq(h).find("select").length > 0) {
+                                vall = $(row).find("td").eq(h).find("select").val();
+                            }
+                            else {
+                                vall = $(row).find("td").eq(h)[0].innerText;
+                            }
+                            obj[heads[h].innerText] = vall;
+                            arr.push(obj);
+                        }
+                        datatable.push(arr);
+                    }
+                }
+                catch (err) { alert(err); return; }
+             
+                $("#hftable").val(JSON.stringify(datatable));
+            }
+            function checkme(ctrl) {
+
+
+                var a = "l";
+                var module1 = $(ctrl).parents("tbody tr").children()[2].innerText;
+                var module2 = $(ctrl).parents("tbody tr").children()[3].innerText;
+                var module3 = $(ctrl).parents("tbody tr").children()[4].innerText;
+                var mlevel = $(ctrl).parents("tbody tr").attr("data-depth");
+                var ischecked = $(ctrl)[0].checked;
+                var cnum = $(ctrl).parent().attr("name").replace("c", "");
+                getP(mlevel, module2, ischecked, cnum);
+                getC(mlevel, module1, ischecked, cnum);
+
+
+            }      
+            function getP(tlevel, vall, ischecked, cnum) {
+                var rows = $("#mytable tbody tr[data-depth=" + (parseInt(tlevel) - 1).toString() + "]").filter(function () {
+
+                    return $(this).children().eq(2).text() === vall;
+
+                });
+                for (var a = 0; a < $(rows).length; a++) {
+                    try {
+                        var row = $(rows).eq(a);
+                        if (tlevel == undefined) { }
+                        else {
+                            var clevel = $(row).attr("data-depth");
+                            var submenu = $(row).children()[5].innerText;
+                            var tmodule = $(row).children()[3].innerText;
+                             {
+                                if ($(row).attr("data-depth") == (parseInt(tlevel) - 1).toString() && $(row).children().eq(2).text() === vall) {
+                                    if (ischecked) {
+                                        $(row).children("td[name=c" + cnum + "]").find("input").prop('checked', true);
+                                        if (submenu == "1") {
+                                            getP(clevel, tmodule, ischecked, cnum);
+                                        }
+                                    }
+                                    else {
+                                        var anycheck = $("#mytable tbody tr[data-depth=3]").filter(function () { return $(this).children().eq(3).text() === vall; }).find("[name=c"+cnum+"]").find("input:checkbox").is(':checked');
+                                        if (!anycheck) {
+                                            $(row).children("td[name=c" + cnum + "]").find("input").prop('checked', false);
+                                            if (submenu == "1") {
+                                                getP(clevel, tmodule, ischecked, cnum);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (err) { }
+                }
+            }
+            function getC(tlevel, vall, ischecked,cnum) {
+
+
+                //var rows = $("tbody tr[data-depth=" + (parseInt(tlevel) + 1).toString() + "]");
+
+                var rows = $("#mytable tbody tr[data-depth=" + (parseInt(tlevel) + 1).toString() + "]").filter(function () {
+
+                    return $(this).children().eq(3).text() === vall;
+
+                });
+                for (var a = 0; a < $(rows).length; a++) {
+                    try {
+                        var row = $(rows).eq(a);
+                        if (tlevel == undefined) { }
+                        else {
+                            var clevel = $(row).attr("data-depth");
+                            var submenu = $(row).children()[5].innerText;
+                            var tmodule = $(row).children()[2].innerText;
+                           {
+                                if ($(row).attr("data-depth") == (parseInt(tlevel) + 1).toString() && $(row).children().eq(3).text() === vall) {
+                                    if (ischecked) {
+                                        $(row).children("td[name=c" + cnum + "]").find("input").prop('checked', true);
+
+                                    }
+                                    else {
+                                        $(row).children("td[name=c" + cnum + "]").find("input").prop('checked', false);
+
+                                    }
+                                    if (submenu == "1") {
+                                        getC(clevel, tmodule, ischecked, cnum);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch (err) { }
+                }
+            }
+            $(function () {
+                $('#mytable').on('click', '.toggle', function () {
+
+                    var findChildren = function (tr) {
+                        var depth = tr.data('depth');
+                        return tr.nextUntil($('tr').filter(function () {
+                            return $(this).data('depth') <= depth;
+                        }));
+                    };
+
+                    var el = $(this);
+                    var tr = el.closest('tr');
+                    var children = findChildren(tr);
+                    var subnodes = children.filter('.expand');
+                    subnodes.each(function () {
+                        var subnode = $(this);
+                        var subnodeChildren = findChildren(subnode);
+                        children = children.not(subnodeChildren);
+                    });
+
+
+                    if (tr.hasClass('collapse')) {
+                        tr.removeClass('collapse').addClass('expand');
+                        children.hide();
+                    } else {
+                        tr.removeClass('expand').addClass('collapse');
+                        tr.show();
+                        children.show();
+                    }
+                    var max = 0;
+
+                    return children;
+                });
+                //$('.toggle').click();
+            });
+        </script>
+
+}

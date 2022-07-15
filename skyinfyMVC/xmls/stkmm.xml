@@ -1,0 +1,165 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FSTR" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEM_CODE" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEM_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="MAINGRP" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEMGRP" type="xs:string" minOccurs="0" />
+                <xs:element name="ITEMSUBGRP" type="xs:string" minOccurs="0" />
+                <xs:element name="DOCNO" type="xs:string" minOccurs="0" />
+                <xs:element name="DATED" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="TYPE" type="xs:string" minOccurs="0" />
+                <xs:element name="RECEIVED" type="xs:decimal" minOccurs="0" />
+                <xs:element name="ISSUED" type="xs:decimal" minOccurs="0" />
+                <xs:element name="RATE" type="xs:decimal" minOccurs="0" />
+                <xs:element name="AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DEPARTMENT" type="xs:string" minOccurs="0" />
+                <xs:element name="PKTNO" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <FSTR>1040100003</FSTR>
+    <ITEM_CODE>1040100003</ITEM_CODE>
+    <ITEM_NAME>Gasket 1</ITEM_NAME>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Gasket</ITEMGRP>
+    <ITEMSUBGRP>Thermal Break</ITEMSUBGRP>
+    <DOCNO>000004</DOCNO>
+    <DATED>21/05/2020</DATED>
+    <PARTNO>1</PARTNO>
+    <TYPE>37</TYPE>
+    <RECEIVED>50000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+    <DEPARTMENT>-</DEPARTMENT>
+    <PKTNO>-500</PKTNO>
+  </prepcur>
+  <prepcur>
+    <FSTR>1040100003</FSTR>
+    <ITEM_CODE>1040100003</ITEM_CODE>
+    <ITEM_NAME>Gasket 1</ITEM_NAME>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Gasket</ITEMGRP>
+    <ITEMSUBGRP>Thermal Break</ITEMSUBGRP>
+    <DOCNO>000001</DOCNO>
+    <DATED>21/05/2020</DATED>
+    <PARTNO>1</PARTNO>
+    <TYPE>Q01</TYPE>
+    <RECEIVED>10000</RECEIVED>
+    <ISSUED>0</ISSUED>
+    <RATE>100</RATE>
+    <AMOUNT>1000000</AMOUNT>
+    <DEPARTMENT>-</DEPARTMENT>
+    <PKTNO>100</PKTNO>
+  </prepcur>
+  <prepcur>
+    <FSTR>1040100003</FSTR>
+    <ITEM_CODE>1040100003</ITEM_CODE>
+    <ITEM_NAME>Gasket 1</ITEM_NAME>
+    <MAINGRP>Raw Materials</MAINGRP>
+    <ITEMGRP>Gasket</ITEMGRP>
+    <ITEMSUBGRP>Thermal Break</ITEMSUBGRP>
+    <DOCNO>000001</DOCNO>
+    <DATED>21/05/2020</DATED>
+    <PARTNO>1</PARTNO>
+    <TYPE>30</TYPE>
+    <RECEIVED>0</RECEIVED>
+    <ISSUED>40000</ISSUED>
+    <RATE>0</RATE>
+    <AMOUNT>0</AMOUNT>
+    <DEPARTMENT>-</DEPARTMENT>
+    <PKTNO>400</PKTNO>
+  </prepcur>
+  <Company_Detail>
+    <COMPANY_NAME>test 100</COMPANY_NAME>
+    <COMPANY_ADDRESS>FBD</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>0</COMPANY_COUNTRY>
+    <COMPANY_STATE>0</COMPANY_STATE>
+    <COMPANY_CITY>0</COMPANY_CITY>
+    <COMPANY_PINCODE>-</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>shiv@skyinfy.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>0</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>9999999999</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>0</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>0</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>0</COM_PAN_NO>
+    <COMPANY_CIN_NO>0</COMPANY_CIN_NO>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>Rahul</UNIT_NAME>
+    <UNIT_ADDRESS>Srs Towerfaridabad</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121001</UNIT_PINCODE>
+    <UNIT_EMAIL>gsthlp001@gmail.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>web.com</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>7841524126</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9563524152</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>01</SEPTR>
+    <UNIT_GSTIN_NO>29AAAAA00001Z5</UNIT_GSTIN_NO>
+    <BANK_NAME>-</BANK_NAME>
+    <BANK_BRANCH>-</BANK_BRANCH>
+    <BANK_ACC>-</BANK_ACC>
+    <BANK_IFSC>-</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

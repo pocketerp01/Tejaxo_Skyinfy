@@ -1,0 +1,541 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        @Html.Raw(buttons)
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[i].Col26, new { @id = "hf_master" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Location No. <span class="ClientProfileLabelColor"></span></label>
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col16, new { @id = "txt_datesale", @AutoCompleteType = "Disabled", @Readonly = "ture", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-8'>
+                                <label for="first-name">Location Name <span class="ClientProfileLabelColor">*</span></label>
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col17, new { @id = "tt_name", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @MaxLength = "98" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-2' style="display: none">
+                                <label for="first-name">Conv.Charges <span class="ClientProfileLabelColor">*</span></label>
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[i].Col18, new { @id = "txtcharges", @MaxLength = "10", @onkeydown = "return isNumberKey(event);", @AutoCompleteType = "Disabled", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-4'>
+                                <label for="first-name">Lat-Long <span class="ClientProfileLabelColor">*</span></label>
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col19, new { @id = "txtlat", placeholder = "Lat-Long", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return false;", @MaxLength = "78" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-8'>
+                                <label for="first-name">google Address <span class="ClientProfileLabelColor">*</span></label>
+
+                                <div class="form-group">
+                                    <div class='input-group'>
+
+                                        @Html.TextBoxFor(model => model[i].Col20, new { @id = "txtaddr1", placeholder = "Google Address", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return false;", @MaxLength = "298" })
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12" runat="server" id="div1">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="col-sm-3">
+                            <h3>
+                                Locate Your Location   <small>
+                                    <br />
+                                    Used for your Driving Location
+                                </small>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="form-group">
+                            @*<label>Search Here</label>*@
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-male"></i></div>
+                                <input id="txtsearch" type="text" class="form-control sa-textbox" placeholder="Enter your Location" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="x_content">
+
+                    <div class="form-group">
+                        <div style="height: 300px">
+                            <div style="width: 100%" id="mapCanvas"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+<script type="text/javascript">
+   // debugger;
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+
+
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function getcopy() { var data = show_Foo('COPY FORM', 'COPY', '1', '@viewName', '@controllerName'); }
+
+
+
+</script>
+
+<script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,places&key=AIzaSyBccgatgVcUJK-BAqG_8ab0USdEqtkSy1c"></script>
+<script type="text/javascript">
+
+    //Define a variable with all map points.
+    //Define a DirectionsRenderer variable.
+
+    var geocoder = new google.maps.Geocoder();
+
+    function geocodePosition(pos) {
+        geocoder.geocode({
+            latLng: pos
+        }, function (responses) {
+            if (responses && responses.length > 0) {
+                updateMarkerAddress(responses[0].formatted_address);
+            } else {
+                updateMarkerAddress('Cannot determine address at this location.');
+            }
+        });
+    }
+
+    function updateMarkerStatus(str) {
+        //document.getElementById('markerStatus').innerHTML = str;
+    }
+
+    function updateMarkerPosition(latLng) {
+        document.getElementById('txtlat').value = [
+            latLng.lat(),
+            latLng.lng()
+        ].join(', ');
+
+        //    <% -- var myHidden = document.getElementById('<%= txtlat.ClientID %>');
+
+        //if (myHidden)//checking whether it is found on DOM, but not necessary
+        //{
+        //    myHidden.value = latLng.value;
+        //} --%>
+        //<% --var myHidden1 = document.getElementById('<%= hflng.ClientID %>');
+
+        //if (myHidden1)//checking whether it is found on DOM, but not necessary
+        //{
+        //    myHidden1.value = latLng.lng();
+        //} --%>
+    }
+
+    function updateMarkerAddress(str) {
+        document.getElementById('txtaddr1').value = str;
+    }
+
+    function geolocationError(positionError) {
+
+    }
+    var _mapPoints = new Array();
+    var _directionsRenderer = '';
+    var map, marker = new google.maps.Marker();
+    directionsService = new google.maps.DirectionsService;
+    function initialize(lat, long) {
+
+        var lat = lat;
+        var long = long;
+        //  var city = position.coords.locality;
+        var latLng = new google.maps.LatLng(lat, long);
+
+        //create map Options
+        var mapOptions = {
+            center: latLng,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        //end Map option
+        map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+
+        //set services
+
+
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+        _directionsRenderer = new google.maps.DirectionsRenderer();
+
+        //Set the map for directionsRenderer
+        _directionsRenderer.setMap(map);
+        //Set different options for DirectionsRenderer mehtods.
+        //draggable option will used to drag the route.
+        _directionsRenderer.setOptions({
+            draggable: true
+        });
+
+        // Update current position info.
+        updateMarkerPosition(latLng);
+        geocodePosition(latLng);
+        snapToRoad(latLng);
+
+        //Search Feature Started
+        var input = document.getElementById('txtsearch');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+        var infowindow = new google.maps.InfoWindow();
+
+        google.maps.event.addListener(autocomplete, 'place_changed', function () {
+            infowindow.close();
+            marker.setVisible(false);
+            var place = autocomplete.getPlace();
+            if (!place.geometry) {
+                return;
+            }
+
+            // If the place has a geometry, then present it on a map.
+            if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+            } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(15); // Why 17? Because it looks good.
+            }
+            //updateMarkerPosition(place.geometry.location);
+            //geocodePosition(place.geometry.location);
+            snapToRoad(place.geometry.location);
+            //fx(new google.maps.LatLng(place.geometry.location, place.geometry.location));
+
+        });
+    }
+
+    function snapToRoad(latLng) {
+
+        var image = new google.maps.MarkerImage(
+            'http://maps.google.com/mapfiles/ms/micons/green-dot.png',
+            new google.maps.Size(32, 32),   // size
+            new google.maps.Point(0, 0), // origin
+            new google.maps.Point(16, 32)   // anchor
+        );
+
+        var shadow = new google.maps.MarkerImage(
+            'http://maps.google.com/mapfiles/ms/micons/msmarker.shadow.png',
+            new google.maps.Size(59, 32),   // size
+            new google.maps.Point(0, 0), // origin
+            new google.maps.Point(16, 32)   // anchor
+        );
+
+
+        directionsService.route({ origin: latLng, destination: latLng, travelMode: google.maps.DirectionsTravelMode.DRIVING }, function (response, status) {
+            ;
+            if (status == google.maps.DirectionsStatus.OK) {
+                marker = new google.maps.Marker({
+                    position: response.routes[0].legs[0].start_location,
+                    map: map,
+                    title: "Check this cool location",
+                    icon: image,
+                    draggable: true,
+                    shadow: shadow
+                });
+
+
+            } else {
+                marker = new google.maps.Marker({
+                    position: response.routes[0].legs[0].start_location,
+                    map: map,
+                    title: "Check this cool location",
+                    icon: image,
+                    draggable: true,
+                    shadow: shadow,
+
+                });
+
+            }
+            updateMarkerPosition(response.routes[0].legs[0].start_location);
+            geocodePosition(response.routes[0].legs[0].start_location);
+
+            google.maps.event.addListener(marker, 'dragstart', function () {
+                updateMarkerAddress('Dragging...');
+                //snapToRoad(marker.getPosition());
+            });
+
+            google.maps.event.addListener(marker, 'drag', function () {
+                updateMarkerStatus('Dragging...');
+                updateMarkerPosition(marker.getPosition());
+                geocodePosition(marker.getPosition());
+                //snapToRoad(marker.getPosition());
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function () {
+                updateMarkerStatus('Drag ended');
+                geocodePosition(marker.getPosition());
+                marker.setMap(null);
+                snapToRoad(marker.getPosition());
+
+            });
+        });
+    }
+    function AutocompleteDirectionsHandler(map) {
+
+        this.map = map;
+        this.originPlaceId = null;
+        this.destinationPlaceId = null;
+        this.travelMode = 'DRIVING';
+        var originInput = document.getElementById('txtsearch');
+        //var destinationInput = document.getElementById('destination-input');
+        //var modeSelector = document.getElementById('mode-selector');
+        this.directionsService = new google.maps.DirectionsService;
+        this.directionsDisplay = new google.maps.DirectionsRenderer;
+        this.directionsDisplay.setMap(map);
+
+        var originAutocomplete = new google.maps.places.Autocomplete(
+            originInput, { placeIdOnly: true });
+        //var destinationAutocomplete = new google.maps.places.Autocomplete(
+        //    destinationInput, { placeIdOnly: true });
+
+        //this.setupClickListener('changemode-walking', 'WALKING');
+        //this.setupClickListener('changemode-transit', 'TRANSIT');
+        //this.setupClickListener('changemode-driving', 'DRIVING');
+
+        this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+        //this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+        //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+        //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+        //this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+    }
+
+    AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+        ;
+        var me = this;
+        autocomplete.bindTo('bounds', this.map);
+        autocomplete.addListener('place_changed', function () {
+            var place = autocomplete.getPlace();
+            if (!place.place_id) {
+                window.alert("Please select an option from the dropdown list.");
+                return;
+            }
+            if (mode === 'ORIG') {
+                me.originPlaceId = place.place_id;
+            } else {
+                me.destinationPlaceId = place.place_id;
+            }
+            me.route();
+
+        });
+
+    };
+
+    AutocompleteDirectionsHandler.prototype.route = function () {
+        ;
+        if (!this.originPlaceId || !this.destinationPlaceId) {
+            return;
+        }
+        var me = this;
+
+        this.directionsService.route({
+            origin: { 'placeId': this.originPlaceId },
+            destination: { 'placeId': this.destinationPlaceId },
+            travelMode: this.travelMode
+        }, function (response, status) {
+            if (status === 'OK') {
+                me.directionsDisplay.setDirections(response);
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    };
+
+    function drawRoute(originAddress, destinationAddress, _waypoints) {
+        //Define a request variable for route .
+        var _request = '';
+        ;
+        //This is for more then two locatins
+        if (_waypoints.length > 0) {
+            _request = {
+                origin: originAddress,
+                destination: destinationAddress,
+                waypoints: _waypoints, //an array of waypoints
+                optimizeWaypoints: true, //set to true if you want google to determine the shortest route or false to use the order specified.
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+        } else {
+            //This is for one or two locations. Here noway point is used.
+            _request = {
+                origin: originAddress,
+                destination: destinationAddress,
+                travelMode: google.maps.DirectionsTravelMode.DRIVING
+            };
+        }
+
+        //This will take the request and draw the route and return response and status as output
+        directionsService.route(_request, function (_response, _status) {
+            if (_status == google.maps.DirectionsStatus.OK) {
+                _directionsRenderer.setDirections(_response);
+            }
+        });
+    }
+    // Onload handler to fire off the app.
+    // google.maps.event.addDomListener(window, 'load', initialize);
+
+    function myfun() {
+
+    }
+</script>
+<style>
+    #mapCanvas {
+        width: 100%;
+        height: 300px;
+        float: left;
+    }
+
+    #infoPanel {
+        float: left;
+        margin-left: 10px;
+    }
+
+        #infoPanel div {
+            margin-bottom: 5px;
+        }
+</style>
+

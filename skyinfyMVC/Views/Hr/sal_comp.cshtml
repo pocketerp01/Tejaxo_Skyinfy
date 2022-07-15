@@ -1,0 +1,816 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    string clr = "";
+    // ViewBag.Title = "ESI";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" name="command" value="New" accesskey="N" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vedit id="btnedit" name="command" value="Edit" accesskey="E" onclick="editfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value=@Model[0].Col13 accesskey="S" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" id="btndetail" name="command" value="View" accesskey="V" onclick="viewfun();" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="form-control sa-button sa-btncancel" id="btncancel" name="command" value="Cancel" formnovalidate accesskey="C" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    for (int i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="x_panel" style="padding: 3px 15px !important">
+                                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                                        <b>Copy Components From Other Company</b>
+                                                        <ul class="nav navbar-right panel_toolbox">
+                                                            <li><a id="ahide5" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                                        </ul>
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content kc">
+                                                        <div class="row">
+                                                            <div class='col-sm-4'>
+                                                                <label for="first-name">Select Company </label>
+                                                                <div class="form-group">
+                                                                    <div class='input-group'>
+                                                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_units", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                                        <span class="input-group-addon formclass"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <label for="first-name"></label>
+                                                                <div class="form-group">
+                                                                    <div class='input-group'>
+                                                                        <input type="submit" class="btn btn-primary form-control sa-button" causesvalidation="false" name="command" @ViewBag.vfill value="COPYUNIT" id="btn_copyhead" accesskey="F" />
+                                                                        @*<button type="submit" class="btn btn-primary form-control sa-button" causesvalidation="false" runat="server" id="btn_copyhead" onserverclick="btn_copyhead_ServerClick" accesskey="N"><u>C</u>opy Fixed Components</button>*@
+                                                                        <span class="input-group-addon formclass"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Add Salary Component</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Doc No. </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_vchnum", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = true, placeholder = "Doc No." })
+
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Name <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_name", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Name", onkeypress = "return checkLength(this, 23,event);", onblur = "return checkhead(this);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name" data-toggle="tooltip" title="Please Write like er1 or er1 for earning and ded1 or ded2 for Deduction">JV Code <span class="ClientProfileLabelColor">*</span> </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_jvcode", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "JV Code" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Abbreviation <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_abbreviation", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Abbreviation", onkeypress = "return checkLength(this, 23,event);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Map To <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_mapto", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Effective Date <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_effdt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "Effective Date" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">End Date <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_enddt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "End Date" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <label for="first-name">Round Value <span class="ClientProfileLabelColor">*</span></label>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_roundoff", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class='col-sm-6'>
+                                                        <label for="first-name">Amount <span class="ClientProfileLabelColor">*</span></label>
+                                                        <div class="form-group">
+                                                            <div class='input-group'>
+                                                                @Html.TextBoxFor(model => model[0].Col22, new { @id = "txt_roundamt", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Amount" })
+                                                                <span class="input-group-addon formclass"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk1, new { @id = "chk_pdcomp", @class = "sa-input checkbox" })
+                                                            Paid Component
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>Variable Component </b>
+                                                        @Html.RadioButtonFor(model => model[0].Col23, "Variable", new { @id = "rd_vcomp", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                                        <b>Fixed Component </b>
+                                                        @Html.RadioButtonFor(model => model[0].Col23, "Fixed", new { @id = "rd_fcomp", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Pay Type <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems10, new MultiSelectList(Model[0].TList10, "Value", "Text", Model[0].SelectedItems10), new { @id = "ddl_paytype", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @onchange = "ddl10(this);", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>Taxable </b>
+                                                        @Html.RadioButtonFor(model => model[0].Col24, "tax", new { @id = "rd_taxable", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                                        <b>Non Taxable </b>
+                                                        @Html.RadioButtonFor(model => model[0].Col24, "non", new { @id = "rd_nontaxable", @class = "sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top:0px;" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk2, new { @id = "chk_taxdistri_atyr", @class = "sa-input checkbox" })
+                                                            Tax Is Distributed Across The Year
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Calculation Type </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_calctype", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Payable if an employee joined on or before </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_paybef", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Due Frequency </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[0].SelectedItems6), new { @id = "ddl_duefreq", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple", onchange = "duefrequency(this);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4 hidectrl' id="div_paymonth">
+                                                <label for="first-name">Payment Month </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems7, new MultiSelectList(Model[0].TList7, "Value", "Text", Model[0].SelectedItems7), new { @id = "ddl_paymonth", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4 '>
+                                                <label for="first-name">Order <span class="ClientProfileLabelColor">*</span></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems8, new MultiSelectList(Model[0].TList8, "Value", "Text", Model[0].SelectedItems8), new { @id = "ddl_order", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple"})
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Is Editable</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[0].Chk3, new { @id = "chk_iseditable", @class = "sa-input checkbox" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk4, new { @id = "chk_fbpcomp", @class = "sa-input checkbox" })
+                                                            Is an FBP component
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk5, new { @id = "chk_attdep", @class = "sa-input checkbox" })
+                                                            Attendance Dependent
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk6, new { @id = "chk_partctc", @class = "sa-input checkbox" })
+                                                            Part Of CTC
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b data-toggle="tooltip" data-placement="top" title="If checked, items such as Basic arrears/recovery, HRA arrears/recovery get auto created in cases of increments">
+                                                            @Html.CheckBoxFor(model => model[0].Chk7, new { @id = "chk_depcomp", @class = "sa-input checkbox" })
+                                                            Create dependent component
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk8, new { @id = "chk_active", @class = "sa-input checkbox" })
+                                                            Active
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk9, new { @id = "chk_fsscomp", @class = "sa-input checkbox" })
+                                                            Is an FSS component
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk10, new { @id = "chk_paylop", @class = "sa-input checkbox" })
+                                                            Payable if full month LOP
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk11, new { @id = "chk_gross", @class = "sa-input checkbox" })
+                                                            Part Of Gross
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk12, new { @id = "chk_pfgross", @class = "sa-input checkbox" })
+                                                            Part Of PF Gross
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk13, new { @id = "chk_esigross", @class = "sa-input checkbox" })
+                                                            Part Of ESI Gross
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk14, new { @id = "chk_ptgross", @class = "sa-input checkbox" })
+                                                            Part Of PT Gross
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk15, new { @id = "chk_arrear", @class = "sa-input checkbox" })
+                                                            Part Of Arrear
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk16, new { @id = "chk_lwfgross", @class = "sa-input checkbox" })
+                                                            Part Of LWF Gross
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk18, new { @id = "chk_ispt", @class = "sa-input checkbox" })
+                                                            Is Professional Tax
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Slab Based</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide2" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">From Value </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_fromval", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "From Value" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">To Value </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_toval", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "To Value" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Amount </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_amount", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Amount" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Reimbursement</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide3" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name"></label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <b>
+                                                            @Html.CheckBoxFor(model => model[0].Chk17, new { @id = "chk_carryfor", @class = "sa-input checkbox" })
+                                                            Carry forward required
+                                                        </b>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Max Limit Per Month </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col28, new { @id = "txt_maxlimit", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max Limit Per Month" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Overtime</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide4" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Overtime Calculation Unit </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.DropDownListFor(model => model[0].SelectedItems9, new MultiSelectList(Model[0].TList9, "Value", "Text", Model[0].SelectedItems9), new { @id = "ddl_otcalunit", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Max Unit Of Over Time </label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col29, new { @id = "txt_maxunitot", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Max Unit Of Over Time" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="x_panel" style="padding: 3px 15px !important">
+                                    <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important" onclick="hidep(this);">
+                                        <b>Accounting Treatment</b>
+                                        <ul class="nav navbar-right panel_toolbox">
+                                            <li><a id="ahide6" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                        </ul>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div class="x_content kc">
+                                        <div class="row">
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Debit Ledger</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col30, new { @id = "TextBox2", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "",@readonly=true })
+                                                        @Html.HiddenFor(model => model[0].Col32, new { @id = "hf_debit" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Accounting Ledger" onclick="drledger();" id="dr_unit"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-4'>
+                                                <label for="first-name">Credit Ledger</label>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.TextBoxFor(model => model[0].Col31, new { @id = "TextBox1", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "",@readonly = true })
+                                                        @Html.HiddenFor(model => model[0].Col33, new { @id = "hf_credit" })
+                                                        <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Accounting Ledger" onclick="crledger();" id="cr_unit"><i class="fa fa-search"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+<script type="text/javascript">
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('List Of salary componants', 'DETAIL', '0', '@viewName', '@controllerName'); }
+    function crledger() { var data = show_Foo('Select Credit Ledger', 'CLEDGER', '1', '@viewName', '@controllerName'); }
+    function drledger() { var data = show_Foo('Select Debit Ledger', 'DLEDGER', '1', '@viewName', '@controllerName'); }
+
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+         $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        ddl10();
+        if (!isPostBack()) {
+            $(".fa-chevron-up").addClass('fa-chevron-down');
+            $(".fa-chevron-up").removeClass('fa-chevron-up');
+            $('.kc').hide();
+        }
+        else {
+            var kcs = $('.kc');
+            for (var l = 0; l < kcs.length; l++) {
+                var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+                if (child.classList.contains('fa-chevron-up')) {
+                    $(".kc")[l].style.display = "none";
+                    //child.classList.remove = "fa-chevron-up";
+                    //child.classList.add = "fa-chevron-down";
+                    $(child).removeClass("fa-chevron-up");
+                    $(child).addClass("fa-chevron-down");
+                }
+            }
+        }
+
+        var ctrl = $("[id*=ddl_duefreq]")[0].value;
+        if (ctrl != "") { $("[id*=div_paymonth]").show(); }
+        else $("[id*=div_paymonth]").hide();
+    });
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }
+    function hide1(ctrl, check) {
+
+        if (check) {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+
+        }
+        else {
+
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+        }
+    }
+    function duefrequency(ctrl) {
+        if (ctrl.value != "") { $("[id*=div_paymonth]").show() }
+        else $("[id*=div_paymonth]").hide();
+    }
+    function checkhead(ctrl) { PageMethods.checkhead(ctrl.value, onsuccess); }
+    function onsuccess(Response) {
+        if (Response == "Y") {
+            showmsgJS(1, "Component is already exist", 2);
+            $("[id*=txt_name]")[0].value = "";
+            $("[id*=txt_name]")[0].focus();
+        }
+    }
+
+    function ddl10(ctrl) {
+        debugger;
+        var vall = $(ctrl).val();
+        if (vall == undefined)
+        {
+            vall = $("#ddl_paytype").select2().val();
+        }
+        if (vall == "Deduction") {
+            $("#chk_partctc").attr("disabled", "disabled")
+            $("#chk_gross").attr("disabled", "disabled")
+            $("#chk_ptgross").attr("disabled", "disabled")
+            $("#chk_pfgross").attr("disabled", "disabled")
+            $("#chk_esigross").attr("disabled", "disabled")
+            $("#chk_lwfgross").attr("disabled", "disabled")
+            $("#chk_pfgross").attr("disabled", "disabled")
+            $("#chk_pfgross").attr("disabled", "disabled")
+        }
+        else {
+            $("#chk_partctc").attr("disabled", false)
+            $("#chk_gross").attr("disabled", false)
+            $("#chk_ptgross").attr("disabled", false)
+            $("#chk_pfgross").attr("disabled", false)
+            $("#chk_esigross").attr("disabled", false)
+            $("#chk_lwfgross").attr("disabled", false)
+            $("#chk_pfgross").attr("disabled", false)
+            $("#chk_pfgross").attr("disabled", false)
+        }
+    }
+</script>

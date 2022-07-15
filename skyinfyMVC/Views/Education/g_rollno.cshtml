@@ -1,0 +1,459 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+    string cg_com_name = sgen.GetCookie(Model[0].Col15,"cg_com_name");
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+    var ispr = false;
+    var iscp = false;
+    var onclick = "";
+    var imgclosedisplay = "";
+}
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+    @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_RollNo" })
+    @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_RollNumber" })
+
+
+
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                Class <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_class", @class = "select2 sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", onchange = "selectionIndexChangeclass(this);" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-6">
+                                Section <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_sec", @class = "select2 sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-mandatory", @multiple = "multiple", onchange = "selectionIndexChangesection(this);" })
+
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-md-3 col-sm-3 col-xs-12">
+                               @* <input type="submit" class="btn btn-primary form-control sa-button" name="command"  value="Generate Roll No" id="Btn_Submit_Click" accesskey="F" />*@
+                                <button type="submit" class="btn btn-primary form-control sa-button" name="command" value="Generate Roll No" id="Btn_Submit_Click" accesskey="G"><u>G</u>enerate Roll No</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div style="overflow:scroll">
+        <style>
+            .grid-container {
+                display: grid; /* This is a (hacky) way to make the .grid element size to fit its content */
+                overflow: auto;
+                height: 300px;
+                /*width: 600px;*/
+            }
+
+            .grid {
+                display: flex;
+                flex-wrap: nowrap;
+            }
+
+            .grid-col {
+                width: 100px;
+                min-width: 100px;
+            }
+
+            .grid-item--header {
+                height: 35px;
+                min-height: 35px;
+                z-index: 1;
+                position: sticky;
+                position: -webkit-sticky;
+                top: 0;
+                text-transform: uppercase;
+                font-size: 12px;
+                /*font-weight: bold;*/
+                color: #ECF0F1;
+                background: rgba(52,73,94,.94);
+            }
+
+            .grid-col--fixed-left {
+                position: sticky;
+                left: 0;
+                z-index: 2;
+                background: white;
+            }
+
+            .grid-col--fixed-right {
+                position: sticky;
+                right: 0;
+                z-index: 9998;
+                background: white;
+            }
+
+            .grid-item {
+                height: 35px;
+                border: 1px solid gray;
+                /*color: #999;*/
+                border: 1px solid #eee;
+                padding-left: 5px;
+                border-collapse: collapse;
+                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif";
+            }
+
+            .grid-container::-webkit-scrollbar-thumb {
+                background: #555;
+                border: 0px none #ffffff;
+                border-radius: 50px;
+            }
+
+                .grid-container::-webkit-scrollbar-thumb:hover {
+                    background: #ffffff;
+                }
+
+                .grid-container::-webkit-scrollbar-thumb:active {
+                    background: #555;
+                }
+
+            .grid-container::-webkit-scrollbar-track {
+                background: #ffffff;
+            }
+
+            .grid-container::-webkit-scrollbar-corner {
+                background: #ffffff;
+            }
+
+            .datepicker.dropdown-menu {
+                z-index: 99999 !important
+            }
+
+            .bootstrap-datetimepicker-widget.dropdown-menu {
+                overflow: visible;
+                height: 100%;
+            }
+            /*.grid-item:hover {
+                        background: #4E5066;
+                        color: #FFFFFF;
+                        border-top: 1px solid #22262e;
+                    }*/
+        </style>
+
+
+        @if (Model[0].dt1 != null)
+        {
+            DataTable dtm = Model[0].dt1;
+
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="grid-container">
+                                <div class="grid">
+
+                                    @try
+                                    {
+                                        foreach (DataColumn dc in dtm.Columns)
+                                        {
+                                            int mlength = 20;
+                                            try
+                                            {
+                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                            }
+                                            catch (Exception err) { }
+                                            int k = 0;
+
+
+                                            if (dc.Ordinal == 0)
+                                            {
+                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:10%">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                            <label>@(k + 1)</label>
+                                                        </div>
+                                                        k++;
+                                                    }
+                                                </div>
+                                            }
+
+
+
+                                            else
+                                            {
+                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:30%">
+                                                    <div class="grid-item grid-item--header">
+                                                        <p>@dc.ColumnName.ToString()</p>
+                                                    </div>
+                                                    @foreach (DataRow dr in dtm.Rows)
+                                                    {
+                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                            @dr[dc].ToString()
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+                                        }
+                                    }
+                                    catch (Exception err)
+                                    {
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row" style="width:100%">
+            <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                    <div class="x_content">
+                        <div class="row">
+                            <div class='col-sm-1'>
+                                <div class='col-sm-6'>
+                                    @Html.CheckBoxFor(model => model[0].Chk1, new { @id = "cbSelectAll", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo1('#Table1', this);" })
+                                </div>
+                                <div class='col-sm-6'>
+                                    <label>S.No.</label>
+                                </div>
+                            </div>
+                            <div class='col-sm-2'><label for="first-name">Reg Number</label></div>
+                            <div class='col-sm-2'><label for="first-name">Student Name</label></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        @if (Model.Count > 0)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                if ((Model[i].Col18 != null)&&(Model[i].Col18 != ""))
+                {
+                    <div class="row" style="width:100%">
+                        <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                            <div class="x_panel" style="padding:0px 17px!important">
+                                <div class="x_content">
+                                    <div class="row" id="Table1">
+                                        <div class='col-sm-1'>
+                                            <div class='col-sm-6'>
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        @Html.CheckBoxFor(model => model[i].Chk2, new { @id = "cbSelect", @class = "sa-input checkbox", onclick = "CheckUncheckChildNodesForFoo2('#Table1', this);" })
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-sm-6'>
+                                                <label for="first-name">@(i + 1)</label>
+                                                <div class="form-group has-success">
+                                                    <div class='input-group'>
+                                                        <span class="input-group-addon formclass"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.DisplayFor(model => model[i].Col21, new { @id = "reg_no", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                    @Html.HiddenFor(model => model[i].Col21, new { @id = "hf_reg_no" })
+
+
+
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.DisplayFor(model => model[i].Col18, new { @id = "std_name", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @onkeydown = "return checkLength(this, 28,event);" })
+                                                    @Html.HiddenFor(model => model[i].Col18, new { @id = "hf_std_name" })
+                                                    @Html.HiddenFor(model => model[i].Col17, new { @id = "hf_vch_num" })
+
+
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            }
+        }
+
+
+    </div>
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_class" value="Class" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_section" value="Section" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+    });
+
+        function selectionIndexChangeclass(ctrl) {
+            //debugger;
+
+            $(parent.document.getElementById('btn_class')).trigger('click');
+    }
+
+     function selectionIndexChangesection(ctrl) {
+            //debugger;
+
+         $(parent.document.getElementById('btn_section')).trigger('click');
+    }
+
+    function CheckUncheckChildNodesForFoo1(childContainer, checkbox) {
+
+        var check = $(checkbox)[0].checked;
+
+        var checks = $("[type=checkbox][id=cbSelect]");
+        var cnt = checks.length;
+        for (var i = 0; i < cnt; i++) {
+            var chk = "";
+            //chk = $(checks[i]).closest('tr').find("[id*=hd_chk]").val();
+            if (check) {
+
+                if (chk == "") { checks.eq(i).prop('checked', true); }
+            }
+            else {
+                if (chk == "") { checks.eq(i).prop('checked', false); }
+            }
+
+        }
+
+        if (check) {
+            //$("[type=checkbox][id=cbSelect]").prop('checked', true);
+            $("[type=checkbox][id=cbSelectAll]").prop('checked', true);
+        }
+        else {
+            //$("[type=checkbox][id=cbSelect]").prop('checked', false);
+            $("[type=checkbox][id=cbSelectAll]").prop('checked', false);
+        }
+
+    }
+
+    function CheckUncheckChildNodesForFoo2(childContainer, check, ctrl) {
+
+
+        var checktype = 2;
+        if (checktype != 2) {
+
+            $("[type=checkbox][id=cbSelect]").prop('checked', false);
+            $(ctrl).prop("checked", check);
+            document.getElementsByName(ctrl.name)[0].checked = check;
+
+        }
+        else {
+
+            var seeklimit = '<%= Session["SEEKLIMIT"] %>';
+            var checkall = true;
+            document.getElementsByName(ctrl.name)[0].checked = check;
+            var childChkBoxes = $(childContainer)[0].getElementsByTagName("input")
+            var childChkBoxCount = childChkBoxes.length;
+            for (var i = 1; i < childChkBoxCount; i++) {
+                if ($(childChkBoxes[i]).children.length > 0)
+                    checkall = $(childChkBoxes[i])[0].checked;
+                else checkall = $(childChkBoxes[i]).checked;
+                if (!checkall) break;
+            }
+            $("[type=checkbox][id=cbSelectAll]").prop('checked', checkall);
+
+        }
+
+
+    }
+
+
+
+
+</script>

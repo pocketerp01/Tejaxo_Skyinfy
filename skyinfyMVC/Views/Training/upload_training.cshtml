@@ -1,0 +1,663 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+
+    ViewBag.Title = "Upload Training";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    string cg_com_name = sgen.GetCookie(MyGuid, "cg_com_name");
+    var issp = false;
+    var imgclosedisplay = "";
+    string path = "";
+    string basestr = "", imgdisplay = "", base64 = "";
+    string serverpath = Server.MapPath("~/Uploads/" + cg_com_name.Replace(" ", "") + "/");
+
+    #region Buttons
+    var newstyle = "style=visibility:visible;";
+    var editstyle = "style=visibility:visible;";
+    var savestyle = "style=visibility:visible;";
+    var savenewstyle = "style=visibility:visible;";
+    var viewstyle = "style=visibility:visible;";
+    var viewauth = "";
+    var extstyle = "style=visibility:visible;";
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2' >" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btn_new' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'  > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'  > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' onclick ='return callme(event);' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group' > " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' onclick ='return callme(event);' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@{
+
+
+
+    //DataTable dt = new DataTable();
+    //dt = sgen.getdata(userCode, "select mod_id as m_id,mod_name as m_name from module where type='TMD' where 1=2");
+    //if (dt.Rows.Count > 0)
+    //{
+    //}
+
+    //List<SelectListItem> mod = new List<SelectListItem>();
+    //foreach (DataRow dr in dt.Rows)
+    //{
+    //    var newItem = new SelectListItem { Text = dr["m_name"].ToString(), Value = dr["m_id"].ToString() };
+    //    mod.Add(newItem);
+    //}
+    List<SelectListItem> mod = new List<SelectListItem>();
+    var newItem2 = new MultiSelectList(mod, "value", "text", mod, new List<int>() { 1 });
+    ViewBag.listitem = newItem2;
+
+
+}
+@functions{
+
+
+    List<SelectListItem> filltrn()
+    {
+        List<SelectListItem> mod1 = new List<SelectListItem>();
+        mod1.Add(new SelectListItem { Text = "Select", Value = "0", Selected = true });
+        mod1.Add(new SelectListItem { Text = "Beginners", Value = "1" });
+        mod1.Add(new SelectListItem { Text = "Intermediate", Value = "2" });
+        mod1.Add(new SelectListItem { Text = "Advance", Value = "3" });
+        mod1.Add(new SelectListItem { Text = "Expert", Value = "4" });
+
+        //MultiSelectList newItem3 = new MultiSelectList(mod1, "value", "text");
+
+        return mod1;
+    }
+}
+@*@using (Html.BeginForm(viewName, controllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+
+        @Html.Raw(buttons)
+       
+    </div>
+    <div class="clearfix"></div>
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "vch_num" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_col1" })
+    @Html.HiddenFor(model => model[0].Col25, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col26, new { @id = "hf_file_path" })
+    @Html.HiddenFor(model => model[0].Col28, new { @id = "hf_ffstr" })
+    @Html.HiddenFor(model => model[0].Col29, new { @id = "hf_file_name" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+    @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+    @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+    @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+
+
+
+                        <div id="demo-form2" data-parsley-validate="" class="form-horizontal">
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Module <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12 input-group" style="padding-left:13px;">
+
+
+                                    @Html.HiddenFor(model => model[i].Col17, new { @class = " form-control col-md-12 col-sm-12 col-xs-12", data_placeholder = "Choose a Module" })
+                                    @Html.TextBoxFor(model => model[i].Col18, new { @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Readonly = true, data_placeholder = "Choose a Module" })
+                                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Choose a Module" id="spn_mod" onclick="aselect();"><i class="fa fa-search"></i></span>
+
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Category <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                                    @Html.HiddenFor(model => model[i].Col19, new { @class = " form-control col-md-12 col-sm-12 col-xs-12", data_placeholder = "Choose a Module" })
+                                    @Html.TextBoxFor(model => model[i].Col20, new { @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Readonly = true, data_placeholder = "Choose a Category" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Course Title <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.HiddenFor(model => model[i].Col21, new { @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Choose a Module" })
+                                    @Html.TextBoxFor(model => model[0].Col22, new { @id = "Txt_title", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Choose a Module" })
+                                    @*<input type="button" id="btnShow" onclick="addcourse();" value="Add Course" class="btn btn-primary" style="margin-top: 10px" borderstyle="Solid">*@
+                                    <span class="input-group-addon formclass"></span>
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Reference Code
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[i].Col23, new { @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Readonly = true })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Upload Files <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                                    <div class="row">
+                                        <div class='col-sm-7'>
+
+                                            @try
+                                            {
+                                                var splist = Model.Where(m => m.LTM1[0].Col2 == "UPD TRAIN").ToList();
+                                                issp = splist.Count > 0;
+                                                imgdisplay = "none";
+                                                imgclosedisplay = "none";
+
+                                                if (issp)
+                                                {
+                                                    base64 = sgen.imgtobase64(serverpath + splist[0].LTM1[0].Col4);
+                                                    basestr = "data: image/png;base64," + base64;
+                                                    imgdisplay = "block";
+                                                }
+                                            }
+                                            catch (Exception err) { imgdisplay = "none"; imgclosedisplay = "none"; }
+
+                                            @if (issp)
+                                            {
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <label>File Already Attached</label>
+                                                    </div>
+                                                </div>
+                                            }
+                                            @if (!issp)
+                                            {
+                                                <div class="form-group">
+                                                    <div class='input-group'>
+                                                        <img id="imgupd1" src="data:image/png;base64,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" onclick="imgclick(this);" style="max-width: 120px" />
+                                                        @*<img id="imgupd1" src="../../images/file-upload-button.png" onclick="imgclick(this);" style="max-width: 120px" />*@
+                                                        <input id="upd1" onchange="fileselected(this);" style="visibility: hidden; height: 0; width: 0" multiple="multiple" name="upd1" type="file" />
+                                                        <span onclick="imgclick(this);" ID="spanupd1">@Model[0].Col27</span>
+                                                        <span class="input-group-addon formclass"></span>
+                                                        @Html.HiddenFor(model => model[i].Col27, new { @id = "hf_sp" })
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class='col-sm-5'>
+                                            <img id="thumbnil1" style="width: 120px; height: 120px; margin-top: 10px; display: @imgdisplay" data-pdf-thumbnail-file="@basestr" src="@basestr" alt="" />
+                                            <span id="img_close1" style="border: 1px solid white;padding: 3px;cursor:pointer;display:@imgclosedisplay" onclick="removetempfile(this);"><i class="fa fa-close"></i></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Training Duration in Minutes  <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+                                    @Html.TextBoxFor(model => model[i].Col24, new { @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @Maxlength = "10", @onkeydown = "return isNumberKey(event)" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">
+                                    Training Level <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+
+
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new SelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1.FirstOrDefault()), new { @id = "trn_levelddl", style = "border-color: silver;", @class = "sa-textbox form-control col-md-12 col-sm-12 col-xs-12" })
+
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <asp:button id="Save_btn" runat="server" cssclass="btn btn-success" text="Save" onclick="Save_btn_Click">
+                                        <asp:label id="lbl_msg" runat="server" text=""></asp:label>
+                                    </asp:button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-xs-4">
+                                    <table id="filetable" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>File Name</th>
+                                                @*<th>File Title</th>
+                            <th>File Description</th>*@
+                                                <th colspan="3">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @if (Model[0].LTM1 != null)
+                                            {
+                                                for (int f = 0; f < Model[0].LTM1.Count; f++)
+                                                {
+                                                    @Html.HiddenFor(model => model[0].LTM1[f].Col1, new { @id = "hf_ltm1" })
+                                                    @Html.HiddenFor(model => model[0].LTM1[f].Col2, new { @id = "hf_ltm2" })
+                                                    @Html.HiddenFor(model => model[0].LTM1[f].Col3, new { @id = "hf_ltm3" })
+                                                    @Html.HiddenFor(model => model[0].LTM1[f].Col4, new { @id = "hf_ltm4" })
+                                                    @Html.HiddenFor(model => model[0].LTM1[f].Col5, new { @id = "hf_ltm5" })
+                                                    @Html.HiddenFor(model => model[0].LTM1[f].Col6, new { @id = "hf_ltm6" })
+                                                    <tr>
+                                                        <td>
+                                                            <label Width="170px" Style="word-wrap: normal; word-break: break-all;" ID="lbl_filename">@Model[0].LTM1[f].Col1</label>
+                                                        </td>
+                                                        @*<td>
+                                        <label Style="word-wrap: break-word" ID="lbl_filetitle">@Model[0].LTM1[f].Col6</label>
+                                    </td>
+                                    <td>
+                                        <label Style="word-wrap: break-word" ID="lbl_filetitle">@Model[0].LTM1[f].Col5</label>
+                                    </td>*@
+
+                                                        <td><a href="@Url.RouteUrl(new { Controller = "Training", Action = "fdown", value = Model[0].LTM1[f].Col3, typ = Model[0].Col12,Myguid=MyGuid ,tab_name="file_tab"})"><i class="fa fa-download"></i></a></td>
+
+                                                        <td><a onclick="fdelete(event,'@Model[0].LTM1[f].Col3');"><i class="fa fa-close"></i></a></td>
+
+                                                        <td>
+                                                            @{
+                                                                try
+                                                                {
+                                                                    path = "data:" + Model[0].LTM1[f].Col5 + ";base64," + Convert.ToBase64String(File.ReadAllBytes(HttpContext.Current.Server.MapPath("/Uploads/" + userCode + "/" + Model[0].LTM1[f].Col4)));
+                                                                }
+                                                                catch { }
+                                                            }
+                                                            @if (Model[0].LTM1[f].Col5.Contains("image"))
+                                                            {
+                                                                <a class="fancybox" rel="ligthbox" href='@path'>
+                                                                    <i class="fa fa-eye"></i>
+
+                                                                </a>
+                                                            }
+                                                            else
+                                                            {
+                                                                <a class="fancybox" rel="ligthbox" onclick="renderPDF('@path', document.getElementById('holder'));">
+                                                                    <i class="fa fa-eye"></i>
+                                                                    <div id="holder"></div>
+                                                                </a>
+                                                            }
+
+                                                        </td>
+
+                                                    </tr>
+                                                }
+                                            }
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+       
+
+    }
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+@Styles.Render("~/bundles/updcss")
+@Scripts.Render("~/bundles/updjs")
+
+<script type="text/javascript">
+
+    function renderPDF(url, canvasContainer, options) {
+        //debugger
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+        // The workerSrc property shall be specified.
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'js/pdf.worker.js';
+
+        var options = options || { scale: 1 };
+
+        function renderPage(page) {
+            var viewport = page.getViewport(options.scale);
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            var renderContext = {
+                canvasContext: ctx,
+                viewport: viewport
+            };
+
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            canvasContainer.appendChild(canvas);
+            page.render(renderContext);
+        }
+
+        function renderPages(pdfDoc) {
+            for (var num = 1; num <= pdfDoc.numPages; num++)
+                pdfDoc.getPage(num).then(renderPage);
+        }
+
+        pdfjsLib.disableWorker = true;
+        pdfjsLib.getDocument(url).then(renderPages);
+
+    }
+</script>
+<script type="text/javascript">
+
+   $(document).ready(function () {
+            @Html.Raw(ViewBag.scripCall);
+            $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+            //FANCYBOX
+            //https://github.com/fancyapps/fancyBox
+            $(".fancybox").fancybox({
+                openEffect: "none",
+                closeEffect: "none"
+            });
+
+
+
+        });
+
+    function addcourse() {
+        var options = { "backdrop": "static", keyboard: true };
+        $('#Panel').modal(options);
+        $('#Panel').modal('show');
+
+    }
+
+    function savefun() {
+
+
+        //var name=$("[id*=txt_name]")[0].Value;
+        //datatable = new Array();
+        //var rows = 1;
+        //for (var r = 0; r < rows.length; r++) {
+        //    var row = rows[r];
+        //    datatable.push([{ srno: row.children[0].children[0].innerText }
+        //        , { locname: row.children[1].children[0].innerText }
+        //    ]);
+        //}
+        $.ajax({
+            type: "POST",
+            url: "/Home/invoice_config",
+            data: JSON.stringify(invoice),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                alert(r + " Data Inserted Successfully");
+            }
+        });
+    }
+
+
+
+
+    function aselect() { var data = show_Foo('Select Module', 'MODULE', '1', '@viewName', '@controllerName'); }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+
+        function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    @*function newfun() {
+        debugger
+        enableForm();
+        $("[id*=btnsave]").attr("disabled", false);
+        $("[id*=btnnew]").attr("disabled", true);
+        $("[id*=btnedit]").attr("disabled", true);
+
+        var mq = '@EncryptDecrypt.Encrypt_new("select mod_id,mod_name from module where type='TMD'")';
+
+
+        fillDdl('module_drpdwn', mq);
+
+    }
+    function editfun() {
+        var data = show_Foo('Select Module', 'EDIT', '1', '@viewName','@controllerName');}
+    function detailfun() {
+        var data = show_Foo('Select Module', 'EDIT', '0', '@viewName','@controllerName');
+    }*@
+
+    //function viewfun() { }
+    //function cancelfun() {
+    //    $("[id*=btnnew]").attr("disabled", false);
+    //    $("[id*=btnedit]").attr("disabled", false);
+    //    $("[id*=btnsave]").attr("disabled", true);
+    //    $("[id*=btndetail]").attr("disabled", false);
+    //    $("[id*=btncancel]").attr("disabled", false);
+    //    fillBlanks();
+    //    disableForm();
+    //}
+    @*$(document).ready(function () {
+           $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        //$("[id*=module_drpdwn]").chosen().change(function () {
+        //    debugger;
+        //    var id = $(this).val();
+        //});
+        $('#module_drpdwn').change(function () {
+
+            //alert(chose_get_value(this) + ' : ' + chose_get_text(this));
+        });
+    });*@
+
+
+
+
+    //function clearFileInput(id) {
+    //    var oldInput = document.getElementById(id);
+
+    //    var newInput = document.createElement("input");
+
+    //    newInput.type = "file";
+    //    newInput.id = oldInput.id;
+    //    newInput.setAttribute("onchange", "fileselected(this);");
+    //    newInput.name = oldInput.name;
+    //    newInput.className = oldInput.className;
+    //    newInput.style.cssText = oldInput.style.cssText;
+    //    // TODO: copy any other relevant attributes
+
+    //    oldInput.parentNode.replaceChild(newInput, oldInput);
+    //}
+
+    function removetempfile(ctrl) {
+        //debugger;
+        var cnt = ctrl.id.split('e')[1];
+        $("#upd" + cnt + "")[0].value = "";
+        $("#spanupd" + cnt + "")[0].innerText = "";
+        $("#thumbnil" + cnt + "")[0].src = "";
+        $("#thumbnil" + cnt + "").hide();
+        $(ctrl).hide();
+    }
+
+    function fileselected(ctrl) {
+
+        var files = ctrl.files;
+        var cnts = files.length;
+        $(ctrl).parent().parent().find("span").css("color", "blue");
+        for (var k = 0; k < cnts; k++) {
+
+            var file = files[k];
+            var namelen = file.name.length;
+            if (namelen > 20) {
+                $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! The file name can not be more than 15 Chars";
+                $(ctrl).parent().parent().find("span").css("color", "red");
+                return;
+            }
+            var ext = file.name.match(/\.(.+)$/)[1];
+            //debugger;
+            switch (ext) {
+                case 'pdf':
+                case 'PDF':
+                case 'jpg':
+                case 'JPG':
+                case 'jpeg':
+                case 'JPEG':
+                case 'png':
+                case 'PNG':
+                case 'bmp':
+                case 'BMP':
+                    break
+                default:
+                    $(ctrl).parent().parent().find("span")[0].innerText = "Sorry!! Upload only pdf,,jpg,jpeg,png file";
+                    $(ctrl).parent().parent().find("span").css("color", "red");
+                    return;
+                    break;
+            }
+
+            //var filesize = file.size / 1024 / 1024;
+          //  var filesize = file.size / 1024;
+            var filesize = file.size / 1024 / 1024;
+            if (filesize < 5) {
+                var filenme = file.name.split('\\');
+                var lenn = filenme.length;
+                var namee = filenme[lenn - 1];
+                if (cnts > 1) {
+                    $(ctrl).parent().parent().find("span")[0].innerText = cnts + " File Selected";
+                }
+                else { $(ctrl).parent().parent().find("span")[0].innerText = namee; }
+            }
+            else {
+                $(ctrl).parent().parent().find("span")[0].innerText = 'Sorry!! This file size is:' + filesize + 'Kb Max. Allowed size is 5 MB';
+                $(ctrl).parent().parent().find("span").css("color", "red");
+            }
+        }
+
+
+        var files = ctrl.files;
+        var thmbcnt = ctrl.id.split('d')[1].trim();
+        for (var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var imageType = /image.*/;
+            if (!file.type.match(imageType)) {
+                //continue;
+            }
+
+            var img = document.getElementById("thumbnil" + thmbcnt + "");
+            img.file = file;
+            var reader = new FileReader();
+            reader.onload = (function (aImg) {
+                return function (e) {
+                    //debugger
+                    aImg.src = e.target.result;
+                    aImg.setAttribute("data-pdf-thumbnail-file", e.target.result);
+                    //createPDFThumbnails();
+                };
+            })(img);
+            reader.readAsDataURL(file);
+            $("#thumbnil" + thmbcnt + "").show();
+            $("#img_close" + thmbcnt + "").show();
+
+        }
+    }
+    function imgclick(ctrl) { $(ctrl).closest('div').find("input[type=file]").click(); }
+
+    function onsuccessdown(response) { window.location.href = response; }
+    function onfailuredown(response) { }
+
+    function fdelete(evt, id) {
+        //debugger;
+                //prevent the browsers default function
+        evt.preventDefault();
+        //grab the form and wrap it with jQuery
+        var $form = $("form");
+        var obj = { "value": id };
+        myMethod('@controllerName', '@viewName', "fdelete", obj, null);
+        $("#callback1").click();
+    }
+    function onsuccessdel(response) { bindFiles(); }
+    function onfailuredel(response) { }
+
+</script>
+

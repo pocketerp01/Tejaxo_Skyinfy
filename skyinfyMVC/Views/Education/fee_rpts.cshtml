@@ -1,0 +1,209 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+
+                    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+                    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_m_id" })
+                    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Fee Structure');" class="btn btn-primary form-control sa-button" id="Btn_Fee_Structure" name="command" value="Fee Structure" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Fee Collection');" class="btn btn-primary form-control sa-button" id="Btn_coll" name="command" value="Fee Collection" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Student Due Fee');" class="btn btn-primary form-control sa-button" id="Btn_due" name="command" value="Student Due Fee" />
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+                                <input type="button" class="btn btn-primary form-control sa-button" id="Btn_Fee_Structure" onclick="receipt();" name="command" value="Fee Receipt Report" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Student Fee Receipt(With Con.)');" class="btn btn-primary form-control sa-button" id="Btn_rcc" name="command" value="Student Fee Receipt(With Con.)" />
+
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Student Fee Receipt(WithOut Con.)');" class="btn btn-primary form-control sa-button" id="Btn_rcwc" name="command" value="Student Fee Receipt(WithOut Con.)" />
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Head Wise Receipt (With Con.)');" class="btn btn-primary form-control sa-button" id="Btn_rhc" name="command" value="Head Wise Receipt (With Con.)" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Head Wise Receipt (WithOut Con.)');" class="btn btn-primary form-control sa-button" id="Btn_rhwc" name="command" value="Head Wise Receipt (WithOut Con.)" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+                                <input type="button" class="btn btn-primary form-control sa-button" id="Btn_due" name="command" onclick="ledger()" value="Student Fee Ledger" />
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Fee Reminder');" class="btn btn-primary form-control sa-button" id="Btn_rhwc" name="command" value="Fee Reminder" />
+
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div style="border: 1px solid; font-size: 15px; font-weight: 800; padding: 30px;padding-bottom: 20px;">
+
+
+                                <input type="button" onclick="call_filterfrm( 'edu rpt','@Model[0].Col14','@Model[0].Col15','Family Due Fee');" class="btn btn-primary form-control sa-button" id="Btn_fdue" name="command" value="Family Due Fee" />
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+
+}
+
+<script type="text/javascript">
+
+    var options = { "backdrop": "static", keyboard: true };
+    $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+    });
+
+    function receipt() { var data = show_Foo('Select Receipt Number For Print', 'RECEIPT', '1', '@viewName', '@controllerName'); }
+    function ledger() { var data = show_Foo('Select Student Name', 'LEDGER', '1', '@viewName', '@controllerName'); }
+    function callFoodemo(title, headid, mid, m_id, btnid) {
+        debugger;
+
+        var urls = "";
+        if (title == "Filter") { urls = "/Education/filter2"; }
+        else urls = "/Education/filter2";
+
+        $.ajax({
+            type: "GET",
+            url: urls,
+            data: {
+                "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid,"myguid":'@MyGuid'},
+            success: function (pageContents) {
+                debugger
+                $('#myModal').width('70%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+
+                hidewait();
+            },
+            error: function (err) {
+                //debugger
+                hidewait();
+            }
+        });
+    }
+    function call_filterfrm(headid, mid, m_id, btnid) {
+        debugger
+        var title = btnid;
+        //if (btnid == "Previous Message") { title = "Date Filter"; }
+        //else title = "Date Filter";
+
+        callFoodemo(title, headid, mid, m_id, btnid);
+    }
+
+</script>
+

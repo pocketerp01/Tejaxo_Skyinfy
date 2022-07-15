@@ -1,0 +1,672 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid); string mandatory = "sa-mandatory";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    #region buttons
+    string buttons = "";
+    buttons += "<div class='col-md-8'>" +
+"        <div class='row'>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vnew + " formnovalidate id='btnnew' name='command' value='New' accesskey='N'><u>N</u>ew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' " + ViewBag.vedit + " id='btnedit' name='command' value='Edit' accesskey='I' onclick='editfun();'>Ed<u>i</u>t</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'> " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsave + " id='btnsave' name='command' value= '" + Model[0].Col13 + "' accesskey = '" + Model[0].Col121 + "' > " + Html.Raw(Model[0].Col122) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'> " +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='btn btn-primary form-control sa-button' " + ViewBag.vsavenew + " id='btnsavenew' name='command' value= '" + Model[0].Col100 + "' accesskey ='W'> " + Html.Raw(Model[0].Col123) + "</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2' > " +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='button' class='btn btn-primary form-control sa-button' id='btndetail' name='command' value='View' accesskey='V' onclick='viewfun();'><u>V</u>iew</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"            <div class='col-sm-2'>" +
+"                <div class='form-group'>" +
+"                    <div class='input-group'>" +
+"                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>" +
+"                        <span class='input-group-addon formclass'></span>" +
+"                    </div>" +
+"                </div>" +
+"            </div>" +
+"        </div>" +
+"    </div>";
+    #endregion
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3 id="hd_title">@Model[0].Col9</h3>
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>@Html.Raw(buttons)
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.RadioButtonFor(model => model[0].Col17, "CNV", new { @id = "Rbt_CNV", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", @onclick = "chktc();", data_toggle = "tooltip", data_placement = "top", @title = "Conveyance" })
+                                    <b style="padding-top:12px;margin-right:20px;margin-left:6px">Conveyance</b>
+                                    @Html.RadioButtonFor(model => model[0].Col17, "TXI", new { @id = "Rbt_TXI", @class = " sa-input radio", @onclick = "chktc();", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "Taxi" })
+                                    <b style="padding-top:12px;margin-right:20px; margin-left:6px">Taxi</b>
+                                    @Html.RadioButtonFor(model => model[0].Col17, "TRV", new { @id = "Rbt_TRV", @class = " sa-input radio", @onclick = "chktc();", @style = "vertical-align:initial;min-height:0px;margin:0px ", data_toggle = "tooltip", data_placement = "top", @title = "Travel" })
+                                    <b style="padding-top:12px; margin-right:20px;margin-left:6px">Travel</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <label for="first-name">
+                                Date<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "Txt_date", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "Date" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                User Name<span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col22, new { @id = "uname", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox",@readonly="true"})
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4' id="travel_div">
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.RadioButtonFor(model => model[0].Col19, "JRN", new { @id = "Rbt_journ", @class = " sa-input radio", @onclick = "chktc2();", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "Journey" })
+                                    <b style="padding-top:12px;margin-right:20px;margin-left:6px">Journey</b>
+                                    @Html.RadioButtonFor(model => model[0].Col19, "DLY", new { @id = "Rbt_daily", @class = " sa-input radio", @onclick = "chktc2();", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "Daily" })
+                                    <b style="padding-top:12px;margin-left:6px">Daily</b>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" id="divjourney">
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Type<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_type", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Class<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_class", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Location (From) <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems3, new MultiSelectList(Model[0].TList3, "Value", "Text", Model[0].SelectedItems3), new { @id = "ddl_locfrom_", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Location (To) <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_locto_", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Date Time (from)<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_datefrom", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-datetime", placeholder = "Date Time (from)" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-3'>
+                            <label for="first-name">
+                                Date Time (To)<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col21, new { @id = "txt_dateto", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-datetime", placeholder = "Date Time (To)" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-2">Total Hours :</div>
+                        @*<div class="col-sm-1" id="div_tothrs">*@
+                        <div class="col-sm-1">
+                            @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_totalhs", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly="true" })
+                        </div>
+                        <div class="col-sm-2">Total Amount :</div>
+                        @*<div class="col-sm-1" id="div_totamt">*@
+                        <div class="col-sm-1">
+                            @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_totalamt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly= "true" })
+
+                        </div>
+                    </div>
+                    <hr />
+                    @for (int k = 0; k < Model[0].LTM2.Count; k++)
+                    {
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @Html.HiddenFor(m => m[0].LTM2[k].Col1,new { id="row_count"})
+                            <div class="x_panel" style="padding: 3px 15px !important">
+                                <div class="x_title" style="padding: 0px !important">
+                                    <!-- tools box -->
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><input name="command" onclick="sethfval('@k');" type="submit" value="Add" class="fa fa-plus" formnovalidate data-toggle="tooltip" title="Add More" /> </li>
+                                        <li><input name="command" onclick="sethfval('@k');" type="submit" value="Remove" class="fa fa-close" formnovalidate data-toggle="tooltip" title="Remove" /> </li>
+                                    </ul>
+                                    <div class="clearfix" id="diclear"></div>
+                                </div>
+                                <div class="x_content">
+                                    <div class="row">
+                                      
+                                    </div>
+                                    <div class="row" id="divdaily">
+                                        <div class="col-sm-3">
+                                            <label for="first-name">
+                                                Assignment Code<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.DropDownListFor(model => model[0].LTM2[k].SelectedItems1, new MultiSelectList(Model[0].LTM2[k].TList1, "Value", "Text", Model[0].LTM2[k].SelectedItems1), new { @id = "ddl_acode" + k + "", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-3'>
+                                            <label for="first-name">
+                                                Location<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.DropDownListFor(model => model[0].LTM2[k].SelectedItems2, new MultiSelectList(Model[0].LTM2[k].TList2, "Value", "Text", Model[0].LTM2[k].SelectedItems2), new { @id = "ddl_loc" + k + "", @style = "width: 100%;", @class = "sa-select2-single form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @multiple = "multiple" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <label for="first-name">
+                                                Time In<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col17, new { @id = "txt_t_in" + k + "", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Time In" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <label for="first-name">
+                                                Time Out<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col29, new { @id = "txt_t_out" + k + "", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-time", placeholder = "Time Out", @readonly = "true" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-2'>
+                                            <label for="first-name">
+                                                HRS Spent<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col18, new { @id = "txt_othr_" + k + "", onkeyup = "calchrs(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", onblur = "calspent();", placeholder = "Hours Spent"})
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-top:5px">
+                                        <div class="col-sm-6">
+                                            <label for="first-name">
+                                                Expense Head<span class="ClientProfileLabelColor">*</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="first-name">
+                                                Amount<span class="ClientProfileLabelColor">*</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="conv_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Fix Conveyance<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col19, new { @id = "txt_fix_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Fix Conveyance" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="conv_div">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Additional Conveyance<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col20, new { @id = "txt_addi_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Additional Conveyance" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="taxi_div" style="padding-top:5px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Taxi Charges<span class="ClientProfileLabelColor">*</span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col21, new { @id = "txt_taxi_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Taxi Charges" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Fare (For Tickets Done By Us)<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col22, new { @id = "txt_fare_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Fare (For Tickets Done By Us)" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Conveyance<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col23, new { @id = "txt_conv_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Conveyance" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                DA <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col24, new { @id = "txt_da_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "DA" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Fooding At Client <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col25, new { @id = "txt_foc_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Fooding At Client" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Mobile <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col26, new { @id = "txt_mob_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Mobile" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Laundry Charges <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col27, new { @id = "txt_ldc_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Laundry Charges" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="travel_div" style="padding-top:15px">
+                                        <div class='col-sm-6'>
+                                            <label for="first-name">
+                                                Others <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                        </div>
+                                        <div class='col-sm-6'>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].LTM2[k].Col28, new { @id = "txt_othrs_" + k + "", onkeyup = "calcamt(" + @k + ");", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Others" })
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    {
+        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+        @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+        @Html.HiddenFor(model => model[0].Col121, new { @id = "Update" })
+        @Html.HiddenFor(model => model[0].Col122, new { @id = "Save" })
+        @Html.HiddenFor(model => model[0].Col123, new { @id = "savenew" })
+        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_vch_num" })
+
+    }
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+        chktc();
+        chktc2();
+        //var val =  $("#hfrow").val();
+        //calchrs(val);
+        calchrs();
+        calcamt();
+        //calcamt(val);
+
+    });
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    @*function printfun() { var data = show_Foo('Select Entry For Print', 'PRINT', '1', '@viewName', '@controllerName'); }*@
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '1', '@viewName', '@controllerName'); }
+    function PARTY() { var data = show_Foo('Select Party', 'PARTY', '1', '@viewName', '@controllerName'); }
+    function sethfval(val) { $("#hfrow").val(val); }
+    function getconvblank() {
+        $('#conv_div').find(':input').val('');
+
+    }
+    function gettaxiblank() {
+        $('#taxi_div').find(':input').val('');
+    }
+    function gettrvlblank() {
+        $('#travel_div').find(':input').val('');
+    }
+    function chktc() {
+        if ($("#Rbt_CNV")[0].checked == true) {
+            $("[id*=conv_div]").show();
+            $("[id*=taxi_div]").hide();
+            $("[id*=travel_div]").hide();
+            gettaxiblank();
+            gettrvlblank();
+        }
+        else if ($("#Rbt_TXI")[0].checked == true) {
+            $("[id*=conv_div]").hide();
+            $("[id*=taxi_div]").show();
+            $("[id*=travel_div]").hide();
+            gettrvlblank();
+            getconvblank();
+
+        }
+        else if ($("#Rbt_TRV")[0].checked == true) {
+            $("[id*=conv_div]").hide();
+            $("[id*=taxi_div]").hide();
+            $("[id*=travel_div]").show();
+            gettaxiblank();
+            getconvblank();
+        }
+        else {
+            $("[id*=conv_div]").hide();
+            $("[id*=taxi_div]").hide();
+            $("[id*=travel_div]").hide();
+            gettaxiblank();
+            getconvblank();
+            gettrvlblank();
+        }
+    }
+    function chktc2() {
+        if ($("#Rbt_journ")[0].checked == true) {
+            $("[id*=divdaily]").hide();
+            $("[id*=divjourney]").show();
+        }
+        else if ($("#Rbt_daily")[0].checked == true) {
+            $("[id*=divdaily]").show();
+            $("[id*=divjourney]").hide();
+        }
+        else {
+            $("[id*=divdaily]").show();
+            $("[id*=divjourney]").hide();
+        }
+    }
+    function calchrs() {
+        var hrs = 0, tot_hrs = 0;
+        var row_cnt = $("[id*=row_count]");
+        var len = row_cnt.length;
+        for (var i = 0; i < len; i++) {
+        //for (var i = 0; i <= val; i++) {
+            if ($("#txt_othr_" + i + "").val() == undefined || $("#txt_othr_" + i + "").val() == "") {
+                hrs = 0;
+            }
+            else {
+                hrs = parseFloat($("#txt_othr_" + i + "").val());
+            }
+            tot_hrs += hrs;
+            //$("#div_tothrs")[0].innerText = parseFloat(tot_hrs);
+            //$("#txt_totalhs").val(parseFloat(tot_hrs));
+            $("#txt_totalhs")[0].value = parseFloat(tot_hrs);
+
+        }
+    }
+    function calspent() {
+        debugger;
+        var hrs = 0, tot_hrs = 0;
+        var row_cnt = $("[id*=row_count]");
+        var len = row_cnt.length;
+        for (var i = 0; i < len; i++) {
+            if ($("#txt_t_in" + i + "").val() == undefined || $("#txt_t_in" + i + "").val() == "") {
+                showmsgJS(1, "Please select Time In First !", 2); return;
+            }
+            var value_start = $("#txt_t_in" + i + "").val().split(':')[0];
+            var value_end = $("#txt_othr_" + i + "").val();
+            tot_hrs = parseFloat(value_end) + parseFloat(value_start);
+            $("#txt_t_out" + i + "").val(tot_hrs + ":" + $("#txt_t_in" + i + "").val().split(':')[1] + ":" + $("#txt_t_in" + i + "").val().split(':')[2]);
+        }
+    }
+    function calcamt() {
+        var tot_amount = 0, fare = 0, conv = 0, foc = 0, da = 0, mob = 0, lond = 0, othrs = 0, fix = 0, additional = 0, taxi = 0;
+        var row_cnt = $("[id*=row_count]");
+        var len = row_cnt.length;
+        for (var i = 0; i < len; i++) {
+        //for (var i = 0; i <= val; i++) {
+            if ($("#txt_fix_" + i + "").val() == undefined || $("#txt_fix_" + i + "").val() == "")
+            {
+                fix = 0;
+            }
+            else {
+                fix = parseFloat($("#txt_fix_" + i + "").val());
+            }
+            if ($("#txt_addi_" + i + "").val() == undefined || $("#txt_addi_" + i + "").val() == "") {
+                additional = 0;
+            }
+            else {
+                additional = parseFloat($("#txt_addi_" + i + "").val());
+            }
+            if ($("#txt_taxi_" + i + "").val() == undefined || $("#txt_taxi_" + i + "").val() == "") {
+                taxi = 0;
+            }
+            else {
+                taxi = parseFloat($("#txt_taxi_" + i + "").val());
+            }
+            if ($("#txt_fare_" + i + "").val() == undefined || $("#txt_fare_" + i + "").val() == "") {
+                fare = 0;
+            }
+            else {
+                fare = parseFloat($("#txt_fare_" + i + "").val());
+            }
+            if ($("#txt_conv_" + i + "").val() == undefined || $("#txt_conv_" + i + "").val() == "") {
+                conv = 0;
+            }
+            else {
+                conv = parseFloat($("#txt_conv_" + i + "").val());
+            }
+            if ($("#txt_da_" + i + "").val() == undefined || $("#txt_da_" + i + "").val() == "") {
+                da = 0;
+            }
+            else {
+                da = parseFloat($("#txt_da_" + i + "").val());
+            }
+            if ($("#txt_foc_" + i + "").val() == undefined || $("#txt_foc_" + i + "").val() == "") {
+                foc = 0;
+            }
+            else {
+                foc = parseFloat($("#txt_foc_" + i + "").val());
+            }
+            if ($("#txt_mob_" + i + "").val() == undefined || $("#txt_mob_" + i + "").val() == "") {
+                mob = 0;
+            }
+            else {
+                mob = parseFloat($("#txt_mob_" + i + "").val());
+            }
+            if ($("#txt_ldc_" + i + "").val() == undefined || $("#txt_ldc_" + i + "").val() == "") {
+                lond = 0;
+            }
+            else {
+                lond = parseFloat($("#txt_ldc_" + i + "").val());
+            }
+            if ($("#txt_othrs_" + i + "").val() == undefined || $("#txt_othrs_" + i + "").val() == "") {
+                othrs = 0;
+            }
+            else {
+                othrs = parseFloat($("#txt_othrs_" + i + "").val());
+            }
+            tot_amount += fix + additional + taxi + fare + foc + conv + da + mob + lond + othrs;
+            //$("#div_totamt")[0].innerText = parseFloat(tot_amount);
+            debugger
+            //$("#txt_totalamt")[0].innerText = parseFloat(tot_amount);
+            $("#txt_totalamt")[0].value = parseFloat(tot_amount);
+        }
+    }
+</script>

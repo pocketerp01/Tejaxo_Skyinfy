@@ -1,0 +1,300 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    try { MyGuid = Model[0].Col11; }
+    catch (Exception err) { }
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    ViewBag.Title = "VARIANCE FILTER FORM";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+<form action="/Hr/varfilter_form" id="varfilter_form" method="post">
+    <div id="Content1">
+        <link href="~/Content/css/select2/select2.min.css" rel="stylesheet" />
+        <script src="~/Content/css/select2/select2_4.0.6.min.js"></script>       
+        @Html.HiddenFor(m => m[0].Col31, new { id = "hfddlcom" })
+
+        <script type="text/javascript">
+
+              function close_pop() {
+                //create below button on Parent page
+                //<asp:Button runat="server" ID="callback1" clientIDMode="Static" Style="display:none" OnClick="callback1_Click" />
+                var mm = '@Session["parentname"]';
+                if (mm == "master") { $(parent.document.getElementById('callback0')).trigger('click'); }
+                else if (mm == "MVC") { parent.callback(); }
+                else if ($(parent.document.getElementById('callback1'))[0].tagName == "A") $(parent.document.getElementById('callback1'))[0].click();
+                else $(parent.document.getElementById('callback1')).trigger('click');
+                $("#myModal").modal('hide');
+            }
+            $(document).ready(function () {
+                //debugger
+                $(".sa-date").datetimepicker({
+                    ignoreReadonly: true,
+                    format: dformat(dateformat),
+                });
+                var myHidden = document.getElementById('hfddlcom');
+                if (!myHidden.value == "") {
+                    var newStateVal = myHidden.value.split(',');
+                    var local = false; var localnames = "";
+                    var extra = false; var extranames = "";
+                    for (i = 0; i < newStateVal.length; i++) {
+                        // Set the value, creating a new option if necessary
+                        if ($("#ddlcom").find("option[value='" + newStateVal[i] + "']").length) {
+                            if (localnames == "") localnames = newStateVal[i];
+                            else localnames = localnames + "," + newStateVal[i];
+                            local = true;
+                            var element = $("#ddlcom").find("option[value='" + newStateVal[i] + "']")[0];
+                            var $element = $(element);
+                            $element.detach();
+                            $("#ddlcom").append($element);
+                        }
+                        else if (!$("#ddlcom").find("option[value='" + newStateVal[i] + "']").length) {
+                            if (extranames == "") extranames = newStateVal[i];
+                            else extranames = extranames + "," + newStateVal[i];
+                            extra = true;
+                        }
+                    }
+                    if (local) {
+
+                        $("#ddlcom").val(localnames.split(',')).trigger('change.select2');
+                    }
+                    if (extra) {
+                        // Create the DOM option that is pre-selected by default
+                        for (i = 0; i < extranames.split(',').length; i++) {
+
+                            $("#ddlcom").append('<option value="' + extranames.split(',')[i] + '" data-select2-tag="true" selected="selected">' + extranames.split(',')[i] + '</option>');
+                            // Append it to the select
+                            //$("#ContentPlaceHolder1_email").append(newState);
+                        }
+                    }
+                }
+
+                $(".sa-select2-multiple").select2();
+                $("#ddlcom").on("select2:select", function (evt) {
+                    ddl_fillunit(evt, this);
+                });
+            });
+            function ddl_fillunit(evt, ctrl) {
+                //debugger;
+                //prevent the browsers default function
+                evt.preventDefault();
+                //grab the form and wrap it with jQuery
+                var $form = $("#varfilter_form");
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Hr/varfilter_form",
+                    data: $form.serialize() + "&command=DDL_CHANGE",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+                        //debugger
+                        document.body.innerHTML = response;
+                    },
+                    error: function (err) {
+                        //debugger
+
+                        $('#myModalContent').html(err.responseText);
+                    }
+                });
+            }
+            function btnokclick(selectedindex, evt) {
+                debugger;
+                //prevent the browsers default function
+                evt.preventDefault();
+                //grab the form and wrap it with jQuery
+                var $form = $("#varfilter_form");
+                //if client side validation fails, don't do anything
+                //if (!$form.valid()) return;
+                //send your ajax request
+                $.ajax({
+                    type: "POST",
+                    url: "/Hr/varfilter_form",
+                    data: $form.serialize() + "&command=Search",
+                    dataType: "json",
+                    traditional: true,
+                    success: function (response) {
+                        close_pop();
+                    },
+                    error: function (err) {
+                        close_pop();
+                    }
+                });
+            }
+        </script>
+    </div>
+    <div id="Content2">
+        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_head" })
+        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_mid" })
+        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_m_id" })
+        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_btnid" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content">
+                        <div class="row">
+                            <div class='col-sm-12'>
+                                <label for="first-name">Company </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @multiple = "multiple", @class = "sa-select2-multiple form-control", @id = "ddlcom", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-11'>
+                                <label for="first-name">Unit </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems2, new MultiSelectList(Model[0].TList2, "Value", "Text", Model[0].SelectedItems2), new { @id = "ddl_unit", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @multiple = "multiple", @MaxLength = "20", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-1'>
+                                <label for="first-name">All </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input clientidmode="Static" id="chk_units" runat="server" type="checkbox" class="all sa-input checkbox" onchange="selectall(this);" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-6'>
+                                <label for="first-name">Period 1 </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col16, new { @id = "txt_pd1", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "Period 1", MaxLength = "20", autocomplete = "off" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-6'>
+                                <label for="first-name">Period 2 </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_pd2", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date", placeholder = "Period 2", MaxLength = "20", autocomplete = "off" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-11'>
+                                <label for="first-name">Department </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems4, new MultiSelectList(Model[0].TList4, "Value", "Text", Model[0].SelectedItems4), new { @id = "ddl_dept", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", multiple = "multiple", @MaxLength = "20", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-1'>
+                                <label for="first-name">All </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input clientidmode="Static" id="chk_dept" runat="server" type="checkbox" class="all sa-input checkbox" onchange="selectall(this);" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class='col-sm-11'>
+                                <label for="first-name">Designation </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems5, new MultiSelectList(Model[0].TList5, "Value", "Text", Model[0].SelectedItems5), new { @id = "ddl_desig", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", multiple = "multiple", @MaxLength = "20", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-1'>
+                                <label for="first-name">All </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input clientidmode="Static" id="chk_desig" runat="server" type="checkbox" class="all sa-input checkbox" onchange="selectall(this);" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class='col-sm-8'>
+                                <label for="first-name">Emp.Category </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.DropDownListFor(model => model[0].SelectedItems6, new MultiSelectList(Model[0].TList6, "Value", "Text", Model[0].SelectedItems6), new { @id = "ddl_cat", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", multiple = "multiple", @MaxLength = "20", @style = "width:100%" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-4'>
+                                <label for="first-name">Include Zero Difference </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.CheckBoxFor(model => model[0].Chk1, new { @id = "chk_zero", @class = "sa-input checkbox myclass" })
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <label for="first-name"> </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <input type="button" id="btnOk" value="Search" name="command" onclick="btnokclick('', event);" class="btn btn-primary form-control sa-button fa-search" />
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+<script type="text/javascript">
+    function selectall(ctrl) {
+        //debugger;
+        var ddl = "", chk = "";
+        chk = ctrl.id;
+        if (chk == "chk_units") ddl = "ddl_unit";       
+        else if (chk == "chk_dept") ddl = "ddl_dept";       
+        else if (chk == "chk_desig") ddl = "ddl_desig";       
+        
+        if ($(".all").is(':checked')) {
+            $("#" + ddl + " > option").prop("selected", "selected");
+            $("#" + ddl + "").trigger("change");
+        } else {
+            $("#" + ddl + " > option").removeAttr("selected");
+            $("#" + ddl + "").trigger("change");
+        }
+    }
+</script>
+
+<style type="text/css">
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered {
+        box-sizing: border-box;
+        list-style: none;
+        margin: 0;
+        padding: 0 5px;
+        width: 100%;
+        max-height: 10rem;
+        overflow: auto;
+        cursor: pointer;
+    }
+</style>

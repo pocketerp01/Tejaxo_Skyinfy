@@ -1,0 +1,29 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur2">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CHRGNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COL1" type="xs:string" minOccurs="0" />
+                <xs:element name="COL2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL3" type="xs:string" minOccurs="0" />
+                <xs:element name="COL4" type="xs:string" minOccurs="0" />
+                <xs:element name="COL5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL6" type="xs:string" minOccurs="0" />
+                <xs:element name="COL7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL8" type="xs:string" minOccurs="0" />
+                <xs:element name="COL9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL10" type="xs:string" minOccurs="0" />
+                <xs:element name="R_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+</NewDataSet>

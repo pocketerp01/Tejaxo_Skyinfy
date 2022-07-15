@@ -1,0 +1,196 @@
+/* CSS Document */
+
+img {behavior: url(iepngfix.htc); background:url(.htaccess)}
+
+/**************************************************** login *****************************************************************/
+
+#main_body_login{width: 950px; height: 485px; margin: 0 0 0 0; padding: 0; float: left;background: url(../images/1px_rep.gif) repeat-x;  border-left: 1px solid #d7dbe4; border-right: 1px solid #d7dbe4;}
+.dotted-line {width:530px; height:9px; margin:25px 0 0 0; padding:0; float:left; background:url(../images/doted-line.gif) repeat-x;}
+.announce-sec {width:545px; height:auto; margin:0 0 0 -10px; padding:0; float:left;}
+.announce-sec-top {width:545px; height:29px; margin:0; padding:0; float:left; background:url(../images/announcement-sec.gif) no-repeat top left;}
+.announce-sec-mid {width:490px; height:auto; margin:0; padding:0 25px 0 30px; float:left; background:url(../Images/announcement-sec-mid.gif) repeat-y; font:12px Arial, Helvetica, sans-serif; color:#000000;}
+.announce-sec-bottom {width:545px; height:45px; margin:0; padding:0; float:left; background:url(../Images/announcement-sec.gif) no-repeat bottom left;}
+.login-content1 {width: 489px; height: 425px; margin: 30px 49px 0 20px; padding: 0; float: left;}
+.signin-area {width: 298px; height:auto; margin: 60px 18px 0 0; padding: 0; float: right;}
+.signin-area1 {width: 309px; height:auto; margin: 31px 18px 0 0; padding: 0; float: right;}
+.top-signin {width: 298px; height:8px; margin:0; padding:0; float:left; background:url(../Images/topsignin.gif) no-repeat;}
+.mid-signin {width: 268px; height:auto; margin:0; padding:15px 15px; float:left; background:url(../Images/midsignin.gif) repeat-y;}
+.bottom-signin {width: 298px; height:8px; margin:0; padding:0; float:left; background:url(../Images/bottomsignin.gif) no-repeat;}
+.signin-textfield {width: 249px; height:23px; margin:0 0 16px 0; padding:2px 5px; float:left; background:url(../Images/textfield-signin.gif) no-repeat;}
+.id-textfield {width: 180px; height:30px; margin:0 0 16px 0; padding:2px 5px; float:left; background:url(../Images/role-top.gif) no-repeat;}
+.name-textfield {width: 340px; height:23px; margin:0 0 16px 0; padding:2px 5px; float:left; background:url(../Images/textfield-signin.gif) no-repeat;}
+
+.sign-text {font-family:arial; font-size:18px; color:#0c54a3; font-weight:normal;}
+.login-in-botn {width: 58px; height: 27px; margin:10px 0; padding:0; float: left; background:#c60808; border:1px solid #000000; font-family:Arial; color:#ffffff; text-decoration:none; font-weight:bold; cursor:pointer;}
+.login-in-botn:hover {width: 58px; height: 27px; margin:10px 0; padding:0; float: left; background:#F50B0B; border:1px solid #000000; font-family:Arial; color:#ffffff; text-decoration:none; font-weight:bold; cursor:pointer;}
+.form_button {width: 58px; height: 27px; margin:5px 0; padding:0; background:#F0F8FF; border:1px solid #000000; font-family:Arial; color:#000000; text-decoration:none; font-weight:bold; cursor:pointer;}
+.form_button:hover {width: 58px; height: 27px; margin:5px 0; padding:0; background:red; border:1px solid gray; font-family:Arial; color:white; text-decoration:none; font-weight:bold; cursor:pointer;}
+.login-in-botn1 {width: 95px; height: 27px; margin:10px 0; padding:0; float: left; background:#c60808; border:1px solid #000000; font-family:Arial; color:#ffffff; text-decoration:none; font-weight:bold; cursor:pointer;}
+.new-user {font-family:Arial; color:#0a73b2; text-decoration:none; padding:15px 0 0 15px; float:left; width:auto; margin:0 0 0 0;}
+.new-user a {text-decoration:none; color:#a73b2;}
+.new-user a:hover {text-decoration:none; color:#000000;}
+.forget {color:#000000; width:100%; line-height:22px; float:left;}
+.forget a {color:#000000; text-decoration:none;}
+.forget a:hover {color:#848383; text-decoration:none;}
+
+.reduse {color:#FF0000;}
+.reduse a{color:#FF0000; text-decoration:underline;}
+.reduse a:hover {color:#FF0000; text-decoration:none;}
+.dootedline {width:480px; height:3px; margin:0 0 12px 0; padding:0; float:left; background:url(../Images/doted2.gif) repeat-x;}
+.browser-area {width:283px; height: auto; margin:14px 24px 0 0; padding:0; float:right; font:12px/22px Arial, Helvetica, sans-serif; color:#c60808; font-weight:bold; text-align:center;}
+.dotted-line {width:517px; height:9px; margin:25px 0 0 0; padding:0; float:left; background:url(../Images/doted-line.gif) repeat-x;}
+.red-text-use {font:15px/18px Arial, Helvetica, sans-serif; color:#c60808; margin:15px 0 0 0; padding:0; font-weight:bold; float:left;}
+
+.progress-bar {width:185px; height:23px; margin:2px 10px 0 18px; padding:0; border:1px solid #a15a43; float:right;}
+.sub-progress {width:9px; height:19px; margin:2px 2px 2px 2px; padding:0; background:#b15b12; float:left; display:inline;}
+
+.rounded-area {width:294px; height:126px; margin:0; padding:0; float:left;}
+.rounded-area-top {width:294px; height:22px; margin:0; padding:0; float:left; background:url(../images/rounder-area.gif) no-repeat top left;}
+.rounded-area-mid {width:292px; height:auto; margin:0; padding:0; float:left; border-left:1px solid #ced2dc; border-right:1px solid #ced2dc;}
+.rounded-area-bottom {width:294px; height:8px; margin:0; padding:0; float:left; background:url(../images/rounder-area.gif) no-repeat bottom left;}
+
+/********************************************** login-end **********************************************/
+
+.question-box-white
+{
+    width: 170px;
+    height: 22px;
+    margin: 1% 1% 0 0;
+    padding: 7px 0 0 6px;
+    float: left;
+    background: url(../Images/white-question-bg.gif) no-repeat;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 13px;
+    color: #000000;
+}
+.click-here {width:210px; height:34px; margin:0 0 0 0; padding:0; background:url(../Images/click-here.gif) no-repeat; border:none; cursor:pointer;}
+
+.bottom-exam-area {width:800px; height:auto; margin:20px 0 30px 30px; padding:0; float:left;}
+.attempt-color {color:#2f73c1;}
+.instruction {width:auto; height:auto; margin:0; padding:0; font-size:13px;}
+.instruction ul {list-style:none;}
+.instruction ul li {display:block; text-decoration:none; background-position:0 6px;}
+.instruction ul li span{text-decoration:none; width:100%; height:22px; margin:0; padding:0; color:#3b5998; float:left; font-size:12px; font-family:Arial, Helvetica, sans-serif;  background:url(../Images/tic-btn.gif); background-repeat:no-repeat;}
+.instruction ul li a:hover {color:#5476de; text-decoration:none;}
+
+.start-date-left
+{
+    width: 300px;
+    height: auto;
+    margin: 25px 0 20px 10px;
+    padding: 0;
+    float: left;
+}
+.end-date-right
+{
+    width: 278px;
+    height: auto;
+    margin: 0 0 20px 10;
+    padding: 0;
+    float: right;
+    position: relative;
+    top: 25px;
+}
+.exam-top-area {width:97%; height:auto; margin:5px 9px; padding:0; float:left;}
+.end-time-right {width:auto; height:auto; margin:0 0 5px 0; padding:0; float:right; position:relative; top:25px;}
+.grey-bg-area {width:894px; height:auto; margin:14px 0 20px 8px; padding:0; float:left;}
+.grey-bg-top {width:894px; height:9px; line-height:9px; margin:0; padding:0; float:left; background:url(../Images/examination-top.gif) no-repeat;}
+.grey-bg-mid {width:894px; height:200px; margin:0; padding:0; float:left; background:url(../Images/examination-mid.gif) repeat-y;}
+.grey-bg-bottom {width:894px; height:9px; margin:0; padding:0; float:left; background:url(../Images/examination-bottom.gif) no-repeat;}
+.examination-text {color:#000000; margin-left:18px; margin-top:2px;}
+.dotted {width:868px; height:5px; margin:0 auto; padding:0; border-bottom:1px dotted #000000;}
+.mark-color {color:#d40000; font-family:Arial; font-size:12px; float:right; margin:3px 15px 0 0; padding:0; font-weight:bold;}
+
+.examination-box {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #A8C4DE -moz-use-text-color #A8C4DE #A8C4DE;
+    border-image: none;
+    border-style: solid none solid solid;
+    border-width: 1px medium 1px 1px;
+    float: left;
+    height: auto;
+    margin: 15px auto;
+    padding: 0;
+    width: 100%;
+}
+.cell1 {
+    background: none repeat scroll 0 0 #D2E5FB;
+    border-bottom: 1px solid #A8C4DE;
+    border-right: 1px solid #A8C4DE;
+    color: #000000;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    margin: 0;
+    padding: 4px 0 0 2%;
+    width: 27%;
+}
+.cell2 {
+    background: none repeat scroll 0 0 #D2E5FB;
+    border-bottom: 1px solid #A8C4DE;
+    border-right: 1px solid #A8C4DE;
+    color: #000000;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    margin: 0;
+    padding: 4px 0 0 2%;
+    width: 18.6%;
+}
+.cell3 {
+    background: none repeat scroll 0 0 #E6F2FF;
+    border-bottom: 1px solid #A8C4DE;
+    border-right: 1px solid #A8C4DE;
+    color: #000000;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    margin: 0;
+    padding: 4px 0 0 2%;
+    width: 27%;
+}
+.cell4 {
+    background: none repeat scroll 0 0 #E6F2FF;
+    border-bottom: 1px solid #A8C4DE;
+    border-right: 1px solid #A8C4DE;
+    color: #000000;
+    float: left;
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    margin: 0;
+    padding: 4px 0 0 2%;
+    width: 18.6%;
+}
+
+.total-mark-area {width:58px; height:18px; margin:0; padding:0; float:left; border:1px solid #ced2dc;}
+.login-header
+{
+    font-family: arial;
+    font-size: 18px;
+    color: #0c54a3;
+    font-weight: bold;
+}
+.login-content-text
+{
+    font-family: Arial;
+    font-size: 12px;
+    font-weight: normal;
+    float: left;
+    margin: 0;
+    padding: 0;
+    color: #000000;
+	text-align:justify;
+	width:auto;
+}

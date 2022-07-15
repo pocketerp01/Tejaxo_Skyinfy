@@ -1,0 +1,620 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    sgen.SetSession(Model[0].Col15, "viewName", viewName);
+    sgen.SetSession(Model[0].Col15, "controllerName", controllerName);
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-primary form-control sa-button" @ViewBag.vnew id="btnnew" onclick="setTableDatat(); newfun();" name="command" value="New" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-warning form-control sa-button" @ViewBag.vedit id="btnedit" onclick="setTableDatat();editfun();" name="command" value="Edit" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsave id="btnsave" onclick="setTableDatat();" name="command" value="@Model[0].Col13" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class='col-sm-2'>
+            <div class="form-group">
+                <div class='input-group'>
+                    <input type="submit" class="btn btn-success form-control sa-button" @ViewBag.vsavenew id="btnsavenew" onclick="setTableDatat();" name="command" value='@Model[0].Col100' />
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="button" class="btn btn-info form-control sa-button" onclick="setTableDatat();viewfun();" id="btndetail" name="command" value="View" />
+
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <button type="submit" class="sa-btncancel form-control sa-button" formnovalidate onclick="setTableDatat();" id="btncancel" name="command" value="Cancel">Cancel</button>
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class='col-sm-2'>
+            <div class="form-group">
+                <div class='input-group'>
+                    <button type="button" class="btn btn-success form-control" style="border-radius: 10px!important;" formnovalidate onclick="printfun();" id="btnprint" name="command" value="Print">Print</button>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>*@
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+    @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+    @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+    @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+    @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+    @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+    @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+    @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+    @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+    @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+    @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+    @Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+    @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+    @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+    @Html.HiddenFor(model => model[0].Col16, new { @id = "" })
+    @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_rno" })
+    @Html.HiddenFor(model => model[0].Col22, new { @id = "hf_l1" })
+    @Html.HiddenFor(model => model[0].Col24, new { @id = "hf_l2" })
+    @Html.HiddenFor(model => model[0].Col26, new { @id = "hf_l3" })
+    @Html.HiddenFor(model => model[0].Col28, new { @id = "hf_reg" })
+    @Html.HiddenFor(model => model[0].Col29, new { @id = "hf_issueto" })
+    @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">Doc No <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_docno", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @readonly = true })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">Issued Date <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col20, new { @id = "txt_indentdate", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-date sa-mandatory" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+
+                            <label for="first-name">@Model[0].Col22 <span class="ClientProfileLabelColor">*</span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col23, new { @id = "txt_std", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" id="spn_add" onclick="showwait(); REG(); setTableDatat();"><i class="fa fa-search"></i></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class='col-sm-4'>
+                            <label for="first-name">@Model[0].Col24 <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col25, new { @id = "txt_mem", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class='col-sm-4'>
+                            <label for="first-name">@Model[0].Col26 <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_class_sec", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class='col-sm-4'>
+                            <label for="first-name">Remark <span class="ClientProfileLabelColor"></span></label>
+                            <div class="form-group ">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].Col21, new { @id = "txt_remark", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        .grid-container {
+            display: grid; /* This is a (hacky) way to make the .grid element size to fit its content */
+            overflow: auto;
+            height: 300px;
+            /*width: 600px;*/
+        }
+
+        .grid {
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        .grid-col {
+            width: 100px;
+            min-width: 100px;
+            z-index: 3;
+        }
+
+        .grid-item--header {
+            height: 35px;
+            min-height: 35px;
+            z-index: 1;
+            position: sticky;
+            position: -webkit-sticky;
+            top: 0;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            color: #ECF0F1;
+            background: rgba(52,73,94,.94);
+        }
+
+        .grid-col--fixed-left {
+            position: sticky;
+            left: 0;
+            z-index: 2;
+            background: white;
+        }
+
+        .grid-col--fixed-right {
+            position: sticky;
+            right: 0;
+            z-index: 9998;
+            background: white;
+        }
+
+        .grid-item {
+            height: 35px;
+            border: 1px solid gray;
+            /*color: #999;*/
+            border: 1px solid #eee;
+            padding-left: 5px;
+            border-collapse: collapse;
+            font-family: "Helvetica Neue",Helvetica,Arial,sans-serif";
+        }
+
+        .grid-container::-webkit-scrollbar-thumb {
+            background: #555;
+            border: 0px none #ffffff;
+            border-radius: 50px;
+        }
+
+            .grid-container::-webkit-scrollbar-thumb:hover {
+                background: #ffffff;
+            }
+
+            .grid-container::-webkit-scrollbar-thumb:active {
+                background: #555;
+            }
+
+        .grid-container::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        .grid-container::-webkit-scrollbar-corner {
+            background: #ffffff;
+        }
+        /*.grid-item:hover {
+            background: #4E5066;
+            color: #FFFFFF;
+            border-top: 1px solid #22262e;
+        }*/
+        .suggestions {
+            border: 1px solid #CCC;
+            background-color: #FFF;
+            /*width: 300px;*/
+            z-index: 10000;
+            top: 30px;
+            left: 15px;
+            width: fit-content;
+        }
+
+        .suggest-grid tr.active td {
+            background-color: #777 !important;
+            color: #FFF;
+            z-index: 10000;
+        }
+    </style>
+    if (Model.Count < 1)
+    { }
+    else
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            DataTable dtm = Model[i].dt1;
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="padding: 3px 15px !important">
+
+                    <div class="x_content">
+                        <div class="row">
+                            <div class="grid-container">
+                                <div class="grid">
+
+                                    @foreach (DataColumn dc in dtm.Columns)
+                                    {
+                                        int mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                        int k = 0;
+                                        if (dc.Ordinal == 0)
+                                        {
+                                            <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:80px">
+                                                <div class="grid-item grid-item--header">
+                                                    <p>@dc.ColumnName.ToString()</p>
+                                                </div>
+
+                                                @foreach (DataRow dr in dtm.Rows)
+                                                {
+                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                        <label>@(k + 1)</label>
+                                                        <input name="command" onclick="sethfval('@k');getitem();" type="button" value="+" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate data-toggle="tooltip" title="Add More" />
+                                                        <input name="command" onclick="sethfval('@k');" type="submit" value="-" style="max-height: 20px;padding-top: 0px;" class="btn btn-info btn-sm" formnovalidate data-toggle="tooltip" title="Hide" />
+                                                        <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                    </div>
+                                                    k++;
+                                                }
+                                            </div>
+                                        }
+                                        else if (dc.Ordinal == 6)
+                                        {
+                                            <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px;left:100px;">
+                                                <div class="grid-item grid-item--header">
+                                                    <p>@dc.ColumnName.ToString()</p>
+                                                </div>
+                                                @foreach (DataRow dr in dtm.Rows)
+                                                {
+                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="true" onblur="calcamt();">
+                                                        @dr[dc].ToString()
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                        @*else if (dc.Ordinal == 7)
+                                        {
+                                            <div class="grid-col" id="col_@dc.Ordinal" style="width:300px">
+                                                <div class="grid-item grid-item--header">
+                                                    <p>@dc.ColumnName.ToString()</p>
+                                                </div>
+
+                                                @foreach (DataRow dr in dtm.Rows)
+                                                {
+                                                    string id = "kcdate_" + dtm.Rows.IndexOf(dr);
+
+                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                        <div class="row">
+                                                            <div id="mtxt" class="col-md-10 input-group">
+                                                                @Html.TextBoxFor(m => m[0].Col30, new { @class = "form-control sa-date-pre", @id, @value = @dr[dc].ToString(), @style = "position:relative;z-index:1000;width: 70%;left:30px;" })
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }*@
+
+                                        else if (dc.Ordinal == 7)
+                                        {
+                                            <div class="grid-col" id="col_@dc.Ordinal" style="width:180px">
+                                                <div class="grid-item grid-item--header">
+                                                    <p>@dc.ColumnName.ToString()</p>
+                                                </div>
+
+                                                @foreach (DataRow dr in dtm.Rows)
+                                                {
+                                                    string id = "kcdate_" + dtm.Rows.IndexOf(dr);
+
+                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                        <div class="row">
+                                                            <div id="mtxt" class="col-md-10 input-group">
+                                                                <input type="text" @id class="form-control sa-date" value=@dr[dc].ToString() style="position:relative;z-index:1000;width: 80%;left:30px;" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+
+                                        else
+                                        {
+                                            <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                <div class="grid-item grid-item--header">
+                                                    <p>@dc.ColumnName.ToString()</p>
+                                                </div>
+                                                @foreach (DataRow dr in dtm.Rows)
+                                                {
+                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false">
+                                                        @dr[dc].ToString()
+                                                    </div>
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+
+
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="hidden" name="hftable" id="hftable" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+
+}
+
+<script type="text/javascript">
+
+
+    function calcamt() {
+        try {
+
+
+            var heads = $("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $("[id=row_" + r + "]");
+                var qtystk = parseFloat(row[5].innerText);
+                var qtyout = Math.abs(parseFloat(row[6].innerText));
+
+
+                if (qtyout > qtystk) {
+                    row[6].innerText = "0";
+                    alert('Issue Qty can not be more than Stock Qty');
+                    return;
+                }
+
+            }
+        }
+        catch (err) { alert(err); return; }
+    }
+
+    $(document).ready(function () {
+
+     @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+    });
+    function setTableDatat() {
+        try {
+
+            datatable = new Array();
+
+            var heads = $("[id*=col_]");
+            var rows = $(heads).eq(0).find("[id*=row_]");
+            for (var r = 0; r < rows.length; r++) {
+                var row = $("[id=row_" + r + "]");
+                var arr = new Array();
+                for (var h = 0; h < heads.length; h++) {
+                    var obj = {};
+                    var val = "";
+                    if (h == 0) {
+                        val = row.eq(0).find("[id*=fstr]").val().trim();
+                    }
+                    else {
+                        val = row[h].innerText;
+                    }
+                    if (h == 7) { val = $(row[h]).eq(0).find("input").val(); }
+                    else {
+                        val = row[h].innerText;
+                    }
+
+                    obj[heads[h].children[0].innerText] = val;
+                    arr.push(obj);
+                }
+                datatable.push(arr);
+            }
+        }
+        catch (err) { alert(err); return; }
+        $("#hftable").val(JSON.stringify(datatable));
+        //PageMethods.settable(datatable);
+    }
+    function sethfval(val) {
+
+        $("#hfrow").val(val);
+        setTableDatat();
+    }
+
+    function newfun() { var data = show_Foo('Select Item Issued Type', 'NEW', '1', '@viewName', '@controllerName'); }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function anjali() { var data = show_Foo('Select Indent', 'INDENT', '1', '@viewName', '@controllerName'); }
+    function printfun() {  var data =show_Foo('Select Entry For Print', 'PRINT', '1', '@viewName', '@controllerName'); }
+    function REG() { var data = show_Foo('Select', 'REG', '1', '@viewName', '@controllerName'); }
+    function getitem() {
+        debugger
+        var icode = "", chkcode = "";
+        var std_id = $("#hf_reg")[0].value;
+
+        var heads = $("[id*=col_]");
+        var rows = $(heads).eq(0).find("[id*=row_]");
+        for (var r = 0; r < rows.length; r++) {
+
+            var row = $("[id=row_" + r + "]");
+            chkcode = row.eq(0).find("[id*=fstr]").val().trim();
+            //else if (type = "30") chkcode = row[1].innerText.trim();
+            if (chkcode != "-") {
+                icode = icode + chkcode + ",";
+            }
+        }
+
+        var data = show_Foo('Select Items', 'ITEM', '2', '@viewName', '@controllerName', icode, std_id);
+
+    }
+
+    $(function () {
+
+        var getSelectedValue = function (e) {
+            var activeRow = $(e.target).parent();
+            var firstColumn = $("td:nth-child(1)", activeRow).text();
+            var secondColumn = $("td:nth-child(2)", activeRow).text();
+            var entry = firstColumn + " (" + secondColumn + ")";
+            return entry;
+        }
+        $("#SearchTerm")
+            //.on("focusout", function (e) {
+            //    $(".suggestions").addClass("hidden");
+            //    $(".suggestions").parent().parent()[0].style.zIndex = 1;
+            //})
+            .on("keyup keypress",
+                function (e) {
+                    var active = $("tr.active", ".suggest-grid");
+                    if (e.which === 27) {
+                        $(".suggestions").addClass("hidden");
+                        $(".suggestions").parent().parent()[0].style.zIndex = 1;
+                    } else if (e.which === 40) {
+                        if (active.length > 0) {
+                            var next = $(active).next();
+                            $(active).removeClass("active");
+                            $(next).addClass("active");
+                        } else {
+                            $("tr:first", ".suggest-grid").addClass("active");
+                        }
+                    } else if (e.which === 38) {
+                        if (active.length > 0) {
+                            var previous = $(active).prev();
+                            $(active).removeClass("active");
+                            $(previous).addClass("active");
+                        } else {
+                            $("tr:last", ".suggest-grid").addClass("active");
+                        }
+                    } else if (e.which === 13) {
+                        e.preventDefault();
+                        var selectedValue = getSelectedValue(e);
+                        $(this).val(selectedValue);
+                        $(".suggestions").addClass("hidden");
+                        $(".suggestions").parent().parent()[0].style.zIndex = 1;
+                        return false;
+                    } else {
+                        // We have a good value w/o no special keys.
+                        var value = $("#SearchTerm").val();
+                        var icode = "1001000001";
+                        if (value === "") {
+                            $(".suggestions").addClass("hidden");
+                            $(".suggestions").parent().parent()[0].style.zIndex = 1;
+                        } else {
+                            //var uri = "/api/search/for/" + value;
+                            var uri = "/Inventory/getjsondata";
+
+                            $(".suggestions").removeClass("hidden");
+                            $(".suggestions").parent().parent()[0].style.zIndex = 3;
+                            var valdata = {
+                                searchTerm: value,
+                                icode: icode
+
+                            };
+                            $.getJSON(uri, valdata)
+                                .done(function (data) {
+
+                                    var grid = $(".suggest-grid");
+                                    $("tbody", grid).empty();
+
+                                    $.each(data,
+                                        function (key, value) {
+                                            var row =
+                                                "<td>" + value.Col3 + "</td>" +
+                                                "<td>" + value.Col4 + "</td>"+
+                                                "<td>" + value.Col2 + "</td>";
+                                            $("tbody", grid).append($("<tr></tr>").html(row));
+
+                                            // On mouse click, set the value.
+                                            $("tr", grid).on("click",
+                                                function (e) {
+
+                                                    e.preventDefault();
+                                                    // this = the row (tr)
+                                                    // Grabs the first column's value.
+                                                    var activeRow = $(e.target).parent();
+                                                    var firstColumn = $("td:nth-child(1)", activeRow).text();
+                                                    var secondColumn = $("td:nth-child(2)", activeRow).text();
+
+                                                    $(".search-term").val(secondColumn);
+                                                    $(".suggestions").addClass("hidden");
+                                                    $(".suggestions").parent().parent()[0].style.zIndex = 1;
+                                                });
+                                        });
+                                });
+                            //start
+
+
+                            ////end
+
+                        }
+                    }
+                });
+    });
+
+
+</script>

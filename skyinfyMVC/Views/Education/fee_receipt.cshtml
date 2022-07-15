@@ -1,0 +1,1768 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+
+    string idpre = "";
+    bool mydisabled = false;
+
+
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class='col-sm-5'>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        <button type='button' class='btn btn-primary form-control sa-button' onclick='Detailfun();' formnovalidate id='btn_rpt' name='command' value='Detail Report' accesskey='R'>Detail <u>R</u>eport</button>
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm-4'>
+                <div class="form-group">
+                    <div class='input-group'>
+
+                        <button type='submit' class='form-control sa-button sa-btncancel' formnovalidate id='btncancel' name='command' value='Cancel' accesskey='C'><u>C</u>ancel</button>
+
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="clearfix"></div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="clearfix"></div>
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                                <div class="clearfix"></div>
+                                <label ID="lbl_msg" runat="server" Text="" ForeColor="#ff0000"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+
+                        @if ((Model[0].Col9 == "FEE WAIVE OFF FOR MID TERM JOINING") || (Model[0].Col9 == "FEE REVERSAL") || (Model[0].Col9 == "CONCESSION REVERSAL"))
+                        {
+                            <div class="col-sm-3" runat="server" id="Div_Rdg">
+                                <label for="first-name">
+                                    Fee Type
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <p>
+
+                                            Single
+                                            @Html.RadioButtonFor(model => model[0].Col52, "S", new { @id = "Rbt_single", @onclick = "return false;", @class = " sa-input radio ", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onblur = "return chkfeetype(this);" })
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+
+                        @if ((Model[0].Col9 == "ADMISSION FEES RECEIPT"))
+                        {<div class="col-sm-3" runat="server" id="Div_Rdg">
+                                <label for="first-name">
+                                    Fee Type
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        <p>
+
+                                            Single
+                                            @Html.RadioButtonFor(model => model[0].Col52, "A", new { @id = "Rbt_single", @onclick = "return false;", @class = " sa-input radio ", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onblur = "return chkfeetype(this);" })
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        @if ((Model[0].Col9 != "FEE WAIVE OFF FOR MID TERM JOINING") && (Model[0].Col9 != "FEE REVERSAL") && (Model[0].Col9 != "CONCESSION REVERSAL") && (Model[0].Col9 != "ADMISSION FEES RECEIPT"))
+                        {
+                            <div class="col-sm-3" runat="server" id="Div_Rdg">
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label for="first-name">
+                                                Fee Type
+                                            </label>
+                                            <div class='input-group'>
+                                                <p>
+                                                    Grp
+                                                    @Html.RadioButtonFor(model => model[0].Col52, "G", new { @id = "Rbt_grp", @class = " sa-input radio ", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onblur = "return chkfeetype(this);" })
+
+                                                    Sgl
+                                                    @Html.RadioButtonFor(model => model[0].Col52, "S", new { @id = "Rbt_single", @class = " sa-input radio ", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;", @onblur = "return chkfeetype(this);" })
+
+                                                </p>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="first-name">
+                                                Fine Calculation
+                                            </label>
+                                            <div class='input-group'>
+                                                <p>
+                                                    Yes
+                                                    @Html.RadioButtonFor(model => model[0].Col62, "Y", new { @id = "Rbt_fyes", @class = " sa-input radio ", @name = "ff", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                                    No
+                                                    @Html.RadioButtonFor(model => model[0].Col62, "N", new { @id = "Rbt_fno", @class = " sa-input radio ", @name = "ff", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                                </p>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-sm-3">
+                            <label for="first-name" id="lbl_family_id">
+                                @Model[0].Col53<span class="ClientProfileLabelColor"> *</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col16, new { @id = "Txt_reg", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "  Registration No." })
+                                    @*<asp:TextBox ID="Txt_reg" runat="server" ReadOnly="true" CssClass="form-control sa-textbox"></asp:TextBox>*@
+                                    <span class="input-group-addon" data-toggle="tooltip" data-placement="top" title="Select Student" id="spn_add" onclick="showwait(); REG();"><i class="fa fa-search"></i></span>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (Model[0].Col14 == "13000.8")
+                        {
+
+                            <div class="col-sm-3">
+
+                                <label for="first-name" runat="server" id="lbl_total_due_fees">
+                                    @Model[0].Col54<span class="ClientProfileLabelColor"> *</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col25, new { @id = "Txttotalgrp", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Total Due Fees" })
+                                        @*<asp:TextBox ID="Txttotalgrp" onkeydown="return false;" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3" runat="server" id="Div_Rd">
+                                <div class="form-group">
+                                    <span class="ClientProfileLabelColor" style="color:white">.</span>
+                                    <div class='input-group'>
+                                        <p>
+                                            All
+                                            @Html.RadioButtonFor(model => model[0].Col22, "1", new { @id = "Rbt_All", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                            Due
+                                            @Html.RadioButtonFor(model => model[0].Col22, "0", new { @id = "Rbt_due", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                            Not Due
+                                            @Html.RadioButtonFor(model => model[0].Col22, " 3 ", new { @id = "rd_notdue", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                            Paid
+                                            @Html.RadioButtonFor(model => model[0].Col22, "2", new { @id = "Rbt_Paid", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        @if (Model[0].Col14 != "13000.8")
+                        {
+                            <div class="col-sm-3">
+                                <label for="first-name">
+                                    Receipt No. <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col17, new { @id = "Txt_ReceiptNo", @ReadOnly = "true", @Enabled = "false", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Receipt No." })
+                                        @* <asp:TextBox ID="Txt_ReceiptNo" runat="server" Enabled="false" ReadOnly="true" CssClass="form-control sa-textbox"></asp:TextBox>*@
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label for="first-name">
+                                    Receipt Date <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col18, new { @id = "Txt_Receipt_dt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date ", data_placeholder = " Receipt Date" })
+                                        @* <asp:TextBox ID="Txt_Receipt_dt" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-ac-date sa-textbox"></asp:TextBox>*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        }
+
+
+
+
+
+
+                    </div>
+                    @if (Model[0].Col14 != "13000.8")
+                    { 
+                        <div class="row">
+
+                            <div class="col-sm-3">
+                                <label for="first-name">
+                                    Commitment Date <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col24, new { @id = "txt_cmt", @Enabled = "false", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox sa-ac-date ", data_placeholder = "Commitment Date" })
+                                        @*<asp:TextBox ID="txt_cmt" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-ac-date sa-textbox"></asp:TextBox>*@
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="col-sm-3">
+
+                                <label for="first-name" runat="server" id="lbl_total_due_fees">
+                                    @Model[0].Col54<span class="ClientProfileLabelColor"> *</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col25, new { @id = "Txttotalgrp", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Total Due Fees" })
+                                        @*<asp:TextBox ID="Txttotalgrp" onkeydown="return false;" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label for="first-name" runat="server" id="lbl_receiving">
+                                    @Model[0].Col58<span class="ClientProfileLabelColor"> *</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col26, new { @id = "txt_grptotal", style = "background-color:azure;", @onkeydown = "return isNumberKey(event)", @onkeyup = "return TxtTotalchnge();", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Receiving Amount" })
+                                        @*<asp:TextBox ID="txt_grptotal" onkeypress="return isNumberKey(event)" onkeyup="return TextchangefeeGrp();" BackColor="Azure" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-3">
+                                <label for="first-name" runat="server" id="lbl_total_due_fees_bal">
+                                    Balance Amount <span class="ClientProfileLabelColor">*</span>
+                                </label>
+                                <div class="form-group">
+                                    <div class='input-group'>
+                                        @Html.TextBoxFor(model => model[0].Col55, new { @id = "Txttotalgrp_bal", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Balance Fees" })
+                                        @*<asp:TextBox ID="Txttotalgrp" onkeydown="return false;" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+
+                                        <span class="input-group-addon formclass"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Mode Of Payment <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @*ddl_modeofpayment_main*@
+                                    @Html.DropDownListFor(model => model[0].SelectedItems1, new MultiSelectList(Model[0].TList1, "Value", "Text", Model[0].SelectedItems1), new { @id = "ddl_mop", @class = "sa-select2-multiple form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    @*<asp:DropDownList ID="ddl_modeofpayment_main" onchange="ddlcheck(this);" CssClass="form-control sa-textbox" runat="server"></asp:DropDownList>*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Chq. No / Ref. No<span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col27, new { @id = "txt_chqq", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", @MaxLength = "13", data_placeholder = "Chq. No/Ref. No" })
+                                    @*<asp:TextBox ID="txt_chqq" CssClass="form-control sa-textbox" runat="server"></asp:TextBox>*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        @if (Model[0].Col50 == "P")
+                        {
+                            <div class="col-sm-4" runat="server" id="Div_Rd">
+                                <div class="form-group">
+                                    <span class="ClientProfileLabelColor" style="color:white">.</span>
+                                    <div class='input-group'>
+                                        <p>
+                                            All
+                                            @Html.RadioButtonFor(model => model[0].Col22, "1", new { @id = "Rbt_All", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                            Due
+                                            @Html.RadioButtonFor(model => model[0].Col22, "0", new { @id = "Rbt_due", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                            Not Due
+                                            @Html.RadioButtonFor(model => model[0].Col22, " 3 ", new { @id = "rd_notdue", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                            Paid
+                                            @Html.RadioButtonFor(model => model[0].Col22, "2", new { @id = "Rbt_Paid", @class = " sa-input radio ", name = "A", @style = "vertical-align:initial;min-height:0px;margin:0px;padding-top: 0px;" })
+
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+
+                        <div class="col-sm-2">
+                            <span class="ClientProfileLabelColor" style="color:white">.</span>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @*<input type="Submit" class="btn btn-primary form-control sa-button" id="Btn_Submit" name="command" value="Submit" accesskey="N" />*@
+                                    @*<input type="Submit" class="btn btn-primary form-control sa-button" id="Btn_Submit" onclick="return SaveVal();" name="command" value="Submit" accesskey="S" />*@
+                                    <button type='submit' class="btn btn-primary form-control sa-button" id='Btn_Submit' onclick="return SaveVal();"  name='command' value='Submit' accesskey='S'><u>S</u>ubmit</button>
+
+
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Student Type <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col59, new { @id = "txt_std_type", @onkeydown = "return false;", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @rows = "1" })
+                                    @*<asp:TextBox ID="txt_Rmk" MaxLength="300" TextMode="MultiLine" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-3">
+                            <label for="first-name">
+                                Phone No <span class="ClientProfileLabelColor">*</span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextBoxFor(model => model[0].Col60, new { @id = "txt_ph", @onkeydown = "return false;", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                    @*<asp:TextBox ID="txt_Rmk" MaxLength="300" TextMode="MultiLine" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="first-name">
+                                Remarks <span class="ClientProfileLabelColor"></span>
+                            </label>
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    @Html.TextAreaFor(model => model[0].Col23, new { @id = "txt_Rmk", @TextMode = "MultiLine", @MaxLength = "298", @class = "form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", @rows = "1" })
+                                    @*<asp:TextBox ID="txt_Rmk" MaxLength="300" TextMode="MultiLine" runat="server" CssClass="form-control sa-textbox"></asp:TextBox>*@
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                    @if (Model[0].Col50 == "P")
+                    {
+                        <div class="col-md-12 col-sm-12 col-xs-12" runat="server" id="Div_sum">
+                            <div class="x_panel" style="padding: 3px 15px !important">
+                                <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important">
+                                    <b style="color:red">Total Fee Summary For The Academic Year </b>
+                                    <ul class="nav navbar-right panel_toolbox">
+                                        <li><a id="ahide9" class="a_panel" onclick="hide(this);"><i class="fa fa-chevron-up"></i></a></li>
+                                    </ul>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="x_content kc">
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fee Receipt<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col28, new { @id = "lbl_Receipt_Amount", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Fee Receipt", data_toggle = "tooltip", data_placement = "top" })
+                                                    @*<asp:Label ID="lbl_Receipt_Amount" runat="server" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fine Receipt <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col31, new { @id = "lbl_late_Recep", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Fine Receipt" })
+                                                    @*<asp:Label ID="lbl_late_Recep" runat="server" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Total Receipt Inc Fine <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col35, new { @id = "lbl_tot_rec", @onkeydown = "return false;", @ToolTip = "Sum Of Fee Receipt & Fine Receipt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "  Net Receipt Amount" })
+                                                    @*<asp:Label ID="lbl_tot_rec" runat="server" ToolTip="Sum Of Fee Receipt & Fine Receipt" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fee Concession <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col29, new { @id = "lbl_Con_Amount", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Concession Amount" })
+                                                    @*<asp:Label ID="lbl_Con_Amount" runat="server" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fine Concession  <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col32, new { @id = "lbl_fine_concession", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Fine Concession" })
+                                                    @*<asp:Label ID="lbl_fine_concession" runat="server" ToolTip="Fine Concession" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Total Con. Inc Fine  <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col56, new { @id = "lbl_fine_concessionn", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Fine Concession" })
+                                                    @*<asp:Label ID="lbl_fine_concession" runat="server" ToolTip="Fine Concession" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fees Due<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col30, new { @id = "lbl_Due_Amount", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Fees Due" })
+                                                    @*<asp:Label ID="lbl_Due_Amount" runat="server" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fine Due  <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col33, new { @id = "lbl_late_Due", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Fine Due" })
+                                                    @*<asp:Label ID="lbl_late_Due" runat="server" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Total Due Inc Fine <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col36, new { @id = "lbl_tot_due", @onkeydown = "return false;", @ToolTip = "Sum Of Fees Due & Fine Due", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Net Due Amount" })
+                                                    @*<asp:Label ID="lbl_tot_due" runat="server" ToolTip="Sum Of Fees Due & Fine Due" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Fees Not Due  <span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col37, new { @id = "lbl_Not_Due_Amount", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = " Fees Not Due " })
+                                                    @*<asp:Label ID="lbl_Not_Due_Amount" runat="server" CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Total Fee Amount<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col57, new { @id = "lbl_Total_Amountt", @onkeydown = "return false;", @ToolTip = "Sum Of Fee Receipt,Concession Amount,Fees Due,Fees Not Due,Fine Receipt,Fine Due ", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Total Amount" })
+                                                    @*<asp:Label ID="lbl_Total_Amount" runat="server" ToolTip="Sum Of Fee Receipt,Concession Amount,Fees Due,Fees Not Due,Fine Receipt,Fine Due " CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="first-name">
+                                                Total Amount Inc. Fine<span class="ClientProfileLabelColor"></span>
+                                            </label>
+                                            <div class="form-group">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(model => model[0].Col34, new { @id = "lbl_Total_Amount", @onkeydown = "return false;", @ToolTip = "Sum Of Fee Receipt,Concession Amount,Fees Due,Fees Not Due,Fine Receipt,Fine Due ", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", data_placeholder = "Total Amount" })
+                                                    @*<asp:Label ID="lbl_Total_Amount" runat="server" ToolTip="Sum Of Fee Receipt,Concession Amount,Fees Due,Fees Not Due,Fine Receipt,Fine Due " CssClass="form-control sa-textbox"></asp:Label>*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-sm-offset-4 col-sm-3">
+                            @Html.Label("YourLabel", "Pending Fees For Early Year(s)", new { @id = "lbl_pending", @class = "control-label col-md-3 col-sm-3 col-xs-6", style = "display:none;" })
+                            @*<label runat="server" id="lbl_pending" visible="false" class="control-label col-md-3 col-sm-3 col-xs-6">
+                    Pending Fees For Early Year(s) <span class="required"></span>
+                </label>*@
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label runat="server" id="Label2" class="control-label col-md-3 col-sm-3 col-xs-6">
+                                Current Year Fees <span class="required"></span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                <div class="x_content">
+                    <div class="row">
+
+                        <div class='col-sm-1'>@*<img ID="img_rpt" Style="cursor: pointer" src='/Uploads/plus1.png' />*@ </div>
+                        <div class='col-sm-2'> <label>Student Name</label> </div>
+                        <div class='col-sm-1'> <label>Class Section</label> </div>
+                        <div class='col-sm-1'><label>Total Amount</label></div>
+                        <div class='col-sm-1'><label>Con. Amount</label></div>
+                        <div class='col-sm-1'><label>Er.Rcpt.Amt.</label></div>
+                        <div class="col-sm-5">
+                            <div class="row">
+                                <div class='col-sm-4'><label>Balance Amount</label></div>
+                                @if (Model[0].Col50 == "P")
+                                {
+                                    <div class='col-sm-4'><label>Receipt Amount</label></div>
+                                }
+
+                                @if (Model[0].Col50 == "N")
+                                {
+                                    <div class='col-sm-4'><label>Reversible Amount</label></div>
+                                }
+                                <div class='col-sm-4'><label>Balance Due Amount</label></div>
+                            </div>
+                        </div>
+
+
+                        <div class='col-sm-2' style="display:none"><label>Ref No</label></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {
+        @Html.HiddenFor(model => model[0].Col39, new { @id = "rpt" })
+        @Html.HiddenFor(model => model[0].Col38, new { @id = "Txt_format" })
+        for (int i = 0; i < Model.Count; i++)
+        {
+
+            @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+            @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+            @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+            @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+            @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+            @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+            @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+            @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+            @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+            @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+            @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+            @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+            @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+            @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+            @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+            @Html.HiddenFor(model => model[i].Col50, new { @id = "hf_Rec_amt" })
+            @Html.HiddenFor(model => model[i].Col51, new { @id = "hf_Reg_numric" })
+            @Html.HiddenFor(model => model[i].Col52, new { @id = "hf_feetype" })
+            @Html.HiddenFor(model => model[i].Col53, new { @id = "hf_lbl_reg" })
+            @Html.HiddenFor(model => model[i].Col54, new { @id = "hf_lbl_f_grp_total" })
+            @Html.HiddenFor(model => model[i].Col22, new { @id = "hf_radio" })
+            @Html.HiddenFor(model => model[i].Col58, new { @id = "hf_radio" })
+            if (Model[i].LTM1 != null)
+            {
+
+                for (int g = 0; g < Model[i].LTM1.Count; g++)
+                {
+                    idpre = "Fee_grp_" + g;
+                    <div class="x_panel" id="maindiv" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+
+                        <div class="x_title">
+                            <div id="Fee_grp_@g" class="row table-responsive" style="background-color:azure">
+
+
+                                <div class='col-sm-1'>
+
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            <img ID="img_rpt" Style="cursor: pointer" alt="" data-month_id='@Model[i].LTM1[g].Col1' src='/Uploads/plus1.png' />
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2'>
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+
+                                            @Html.DisplayFor(m => m[i].LTM1[g].Col1, new { @id = idpre + "_lbl_fee_Installment", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col1, new { @id = idpre + "_hf_lbl_fee_Installment", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col2, new { @id = idpre + "_lbl_grpid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col3, new { @id = idpre + "_lbl_student_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col4, new { @id = idpre + "_lbl_rollno", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col5, new { @id = idpre + "_lbl_section_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col6, new { @id = idpre + "_lbl_Class_id", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col7, new { @id = idpre + "_lbl_RegNumber", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col8, new { @id = idpre + "_lbl_Status_Pending", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col9, new { @id = idpre + "_lbl_scholarshiptype", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col60, new { @id = idpre + "_lbl_Email", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col61, new { @id = idpre + "_lbl_phone", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-1'>
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(m => m[i].LTM1[g].Col18, new { @id = idpre + "_lbl_classsection", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-1'>
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(m => m[i].LTM1[g].Col10, new { @id = idpre + "_lbl_Fee_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col10, new { @id = idpre + "_hf_lbl_Fee_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-1'>
+
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(m => m[i].LTM1[g].Col11, new { @id = idpre + "_lbl_concession", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col11, new { @id = idpre + "_hf_lbl_concession", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-1'>
+
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+                                            @Html.DisplayFor(m => m[i].LTM1[g].Col12, new { @id = idpre + "_lbl_total_paid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col12, new { @id = idpre + "_hf_lbl_total_paid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="row">
+                                        <div class='col-sm-4'>
+
+                                            <div class="form-group ">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(m => m[i].LTM1[g].Col13, new { @id = idpre + "_lbl_total_bal", @ReadOnly = "true", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                    @*@Html.HiddenFor(m => m[i].LTM1[g].Col13, new { @id = idpre + "_hf_lbl_total_bal", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })*@
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-4'>
+
+                                            <div class="form-group ">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(m => m[i].LTM1[g].Col14, new { @id = idpre + "_Txt_Receipt_amt", @onkeydown = "return isNumberKey(event)", @onkeyup = "return TextchangefeeGrp(this)", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='col-sm-4'>
+
+                                            <div class="form-group ">
+                                                <div class='input-group'>
+                                                    @Html.TextBoxFor(m => m[i].LTM1[g].Col15, new { @id = idpre + "_lbl_Bal_Due_Amount", @onkeydown = "return false;", @class = " form-control col-md-12 col-sm-12 col-xs-12", style = "width:100%;border:none" })
+                                                    @*@Html.HiddenFor(m => m[i].LTM1[g].Col15, new { @id = idpre + "_hf_lbl_Bal_Due_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })*@
+
+
+                                                    <span class="input-group-addon formclass"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class='col-sm-2' style="display:none">
+
+                                    <div class="form-group ">
+                                        <div class='input-group'>
+
+                                            @Html.TextBoxFor(m => m[i].LTM1[g].Col16, new { @id = idpre + "_Txt_Refno", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+                                            @Html.HiddenFor(m => m[i].LTM1[g].Col17, new { @id = idpre + "_lbl_hideamt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+
+
+                                            <span class="input-group-addon formclass"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="x_content" style="display:none">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                    <div class="row">
+
+                                        <div class='col-sm-1'> </div>
+                                        <div class='col-sm-2'> <label>Month</label> </div>
+                                        <div class='col-sm-1'><label>Total Amount</label></div>
+                                        <div class='col-sm-1'><label>Con. Amount</label></div>
+                                        <div class='col-sm-1'><label>Er.Rcpt.Amt.</label></div>
+                                        <div class='col-sm-2'><label>Balance Amount</label></div>
+                                        @if (Model[0].Col50 == "P")
+                                        {
+                                            <div class='col-sm-2'><label>Receipt Amount</label></div>
+                                        }
+
+                                        @if (Model[0].Col50 == "N")
+                                        {
+                                            <div class='col-sm-2'><label>Reversible Amount</label></div>
+                                        }
+                                        <div class='col-sm-2'><label>Balance Due Amount</label></div>
+                                        <div class='col-sm-2' style="display:none"><label>Ref No</label></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @for (int h = 0; h < Model[i].LTM1[g].LTM1.Count; h++)
+                                    {
+                                        idpre = "Fee_grp_" + g + "_" + "FeeRepeater_" + h;
+
+                                        <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                                            <div class="x_title">
+
+                                                <div class="col-md-12">
+                                                    <div id="FeeRepeater_@h" class="row" style="background-color:aqua">
+
+
+                                                        <div class='col-sm-1'>
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    <img ID="img_rpt" Style="cursor: pointer" alt="" data-month_id='@Model[i].LTM1[g].LTM1[h].Col1' src='/Uploads/plus1.png' />
+
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-2'>
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+
+                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].Col2, new { @id = idpre + "_lbl_fee_Installment", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col2, new { @id = idpre + "_hf_lbl_fee_Installment" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col3, new { @id = idpre + "_Fee_Month" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col1, new { @id = idpre + "_Month_id" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col2, new { @id = idpre + "_Month_name" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col4, new { @id = idpre + "_lbl_Status_Pending" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col5, new { @id = idpre + "_lbl_scholarshiptype" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col6, new { @id = idpre + "_grpid" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col7, new { @id = idpre + "_student_id" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col8, new { @id = idpre + "_rollno" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col9, new { @id = idpre + "_section_id" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col10, new { @id = idpre + "_Class_id" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col11, new { @id = idpre + "_RegNumber" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-1'>
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].Col12, new { @id = idpre + "_lbl_Fee_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col12, new { @id = idpre + "_hf_lbl_Fee_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-1'>
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].Col13, new { @id = idpre + "_lbl_concession", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col13, new { @id = idpre + "_hf_lbl_concession", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-1'>
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].Col14, new { @id = idpre + "_lbl_total_paid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col14, new { @id = idpre + "_hf_lbl_total_paid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-2'>
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].Col15, new { @id = idpre + "_lbl_total_bal", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col15, new { @id = idpre + "_hf_lbl_total_bal", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-2'>
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    @Html.TextBoxFor(m => m[i].LTM1[g].LTM1[h].Col16, new { @id = idpre + "_Txt_Receipt_amt", @onkeydown = "return isNumberKey(event)", @onkeyup = "return Textchange(this)", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+
+
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-2'>
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+                                                                    @Html.TextBoxFor(m => m[i].LTM1[g].LTM1[h].Col17, new { @id = idpre + "_lbl_Bal_Due_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12", @onkeydown = "return false;", style = "width:100%;border:none" })
+                                                                    @*@Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col17, new { @id = idpre + "_hf_lbl_Bal_Due_Amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })*@
+
+
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class='col-sm-2' style="display:none">
+
+                                                            <div class="form-group ">
+                                                                <div class='input-group'>
+
+                                                                    @Html.TextBoxFor(m => m[i].LTM1[g].LTM1[h].Col18, new { @id = idpre + "_Txt_Refno", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].Col19, new { @id = idpre + "_lbl_hideamt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+
+
+                                                                    <span class="input-group-addon formclass"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="x_content" style="display:none">
+                                                <div class="row">
+                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+                                                        <div class="row">
+                                                            <div class='col-sm-1'> <label>S.No.</label> </div>
+                                                            <div class='col-sm-1'><label>Fee Type</label></div>
+                                                            <div class='col-sm-1'><label>Fee Head</label></div>
+                                                            <div class='col-sm-1'><label>Due Date</label></div>
+                                                            <div class='col-sm-1'><label>End Date</label></div>
+                                                            <div class='col-sm-1'><label>Fee Amount</label></div>
+                                                            <div class='col-sm-1'><label>Con. Amount</label></div>
+                                                            <div class='col-sm-1'><label>Er.Rcpt.Amt.</label></div>
+                                                            <div class='col-sm-2'><label>Net Due Amount</label></div>
+                                                            @if (Model[0].Col50 == "P")
+                                                            {
+                                                                <div class='col-sm-2'><label>Receipt Amount</label></div>
+                                                            }
+                                                            @if (Model[0].Col50 == "N")
+                                                            {
+                                                                <div class='col-sm-2'><label>Reversible Amount</label></div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+
+                                                    @for (int k = 0; k < Model[i].LTM1[g].LTM1[h].LTM1.Count; k++)
+                                                    {
+                                                        idpre = "Fee_grp_" + g + "_" + "FeeRepeater_" + h + "_rptDetail_" + k;
+                                                        if (sgen.Make_decimal(Model[i].LTM1[g].LTM1[h].LTM1[k].Col21) <= 0)
+                                                        {
+                                                            if (sgen.GetSession(Model[0].Col15, "Rpt_Menuid").ToString() == "7019.8" || sgen.GetSession(Model[0].Col15, "Rpt_Menuid").ToString() == "7019.11")
+                                                            {
+
+                                                            }
+                                                            else { mydisabled = true; }
+
+                                                            @:<div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color: lightgray;">
+                                                            }
+                                                            if (sgen.Make_decimal(Model[i].LTM1[g].LTM1[h].LTM1[k].Col21) > 0)
+                                                            {
+                                                                mydisabled = false;
+                                                                @:<div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;">
+                                                                }
+
+
+                                                                <div class="x_content">
+                                                                    <div id="rptDetail_@k" class="row">
+                                                                        <div class='col-sm-1'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+
+                                                                                    <label for="first-name">@(k + 1)</label>
+
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class='col-sm-1'>
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col13, new { @id = idpre + "_lbl_FeeType_Id" })
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col14, new { @id = idpre + "_lbl_FeeTypeName", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col14, new { @id = idpre + "_hf_lbl_FeeTypeName" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-1'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col15, new { @id = idpre + "_lbl_FeeHead_Id" })
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col16, new { @id = idpre + "_lbl_HeadName", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col16, new { @id = idpre + "_hf_lbl_HeadName" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-1'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col17, new { @id = idpre + "_lbl_Due_dt", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col17, new { @id = idpre + "_hf_lbl_Due_dt" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-1'>
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col1, new { @id = idpre + "_lbl_Frequency_Id" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col2, new { @id = idpre + "_lbl_Status_Detail" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col3, new { @id = idpre + "_lbl_monthid" })
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col26, new { @id = idpre + "_lbl_overdue", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col26, new { @id = idpre + "_hf_overdue", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col4, new { @id = idpre + "_hf_lbl_FrequencyName" })
+
+
+
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col5, new { @id = idpre + "_lbl_Intial" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col6, new { @id = idpre + "_lbl_scholarshiptype" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col7, new { @id = idpre + "_lbl_grpid" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col8, new { @id = idpre + "_lbl_student_id" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col9, new { @id = idpre + "_lbl_rollno" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col10, new { @id = idpre + "_lbl_section_id" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col11, new { @id = idpre + "_lbl_Class_id" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col12, new { @id = idpre + "_lbl_RegNumber" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-1'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col18, new { @id = idpre + "_lbl_Fee_Amount_detail", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col18, new { @id = idpre + "_hf_lbl_Fee_Amount_detail" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-1'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col19, new { @id = idpre + "_lbl_concession", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col19, new { @id = idpre + "_hf_lbl_concession" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-1'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col20, new { @id = idpre + "_lbl_paid", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col20, new { @id = idpre + "_hf_lbl_paid" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-2'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @Html.DisplayFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col21, new { @id = idpre + "_lbl_balance", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col21, new { @id = idpre + "_lbl_balance" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col21, new { @id = idpre + "_Txt_FeeAmount" })
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class='col-sm-2'>
+
+                                                                            <div class="form-group ">
+                                                                                <div class='input-group'>
+                                                                                    @if (mydisabled)
+                                                                                    {
+                                                                                        @Html.TextBoxFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col22, new { @id = idpre + "_Txt_Receipt", @disabled = "disabled", @onkeydown = "return isNumberKey(event)", @onkeyup = "javascript:Txtchnge(this)", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+                                                                                        @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col22, new { @id = idpre + "_Txt_Receipt_h" })
+                                                                                    }
+                                                                                    @if (!mydisabled)
+                                                                                    {
+                                                                                        @Html.TextBoxFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col22, new { @id = idpre + "_Txt_Receipt", @onkeydown = "return isNumberKey(event)", @onkeyup = "javascript:Txtchnge(this)", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox ", style = "width:100%" })
+                                                                                        @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col22, new { @id = idpre + "_Txt_Receipt_h" })
+                                                                                    }
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col23, new { @id = idpre + "_lbl_Chequeno" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col24, new { @id = idpre + "_Txt_payment" })
+                                                                                    @Html.HiddenFor(m => m[i].LTM1[g].LTM1[h].LTM1[k].Col25, new { @id = idpre + "_chk_payment" })
+
+
+                                                                                    <span class="input-group-addon formclass"></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+
+                                                            @:</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                        }
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                }
+
+            }
+
+        }
+    }
+
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="hfbtnyes" value="hfbtnyes" name="Command" title="hfbtnyes" style="visibility:hidden" class="btn btn-primary" />
+}
+
+
+<script type="text/javascript">
+
+        $(document).ready(function () {
+
+            @Html.Raw(ViewBag.scripCall);
+            $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+            $("input:radio[name='[0].Col22'],input:radio[name='[0].Col62']").on('change', function () {
+
+                $(parent.document.getElementById('callback1')).trigger('click');
+            });
+
+
+        });
+
+        function chkfeetype(ctrl) {
+
+            var obj = { "value": $(ctrl).val() };
+
+            var res = myMethod('@controllerName', '@viewName', "chkfeetype", obj, ctrl);
+
+            //if (obj = 'S') {
+            //    $("[id$=lbl_total_due_fees]").innerHtml = "Total Due Fees"
+            //}
+
+            //if (obj = 'G') {
+            //    $("[id$=lbl_family_id]").innerHtml = "Family Group Total Due Fees"
+            //}
+    }
+
+
+
+
+        function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+        function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+        function add2() { var data = show_Foo('Select Category And Module', 'ADD2', '1', '@viewName', '@controllerName'); }
+
+
+        function REG() { var data = show_Foo('Select Student', 'REG', '1', '@viewName', '@controllerName'); }
+        function Detailfun() { var data = show_Foo('VIEW DETAIL REPORT', 'DETAIL', '0', '@viewName', '@controllerName'); }
+        function FORMAT() { var data = show_Foo('Select Fee Receipt Format', 'FORMAT', '1', '@viewName', '@controllerName'); }
+</script>
+
+<script>
+    function ddlcheck(ctrl) {
+        var modeofpy = $(ctrl).val();
+        $("[id*=ddl_modeofpayment]").val(modeofpy);
+
+    }
+
+    $(document).ready(function () {
+
+        TxtTotalchnge();
+
+
+
+
+
+
+    });
+
+
+
+
+
+</script>
+
+<script type="text/javascript">
+
+                    $("body").on("click", "[src*=plus1]", function () {
+                        //
+
+                        //$(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
+                        $(this).attr("src", "../../../Uploads/minus1.png");
+                        var $row = $(this).closest(".x_title").next(".x_content").show();
+
+
+                        //var $pnl = $row.find('pnlOrders');
+                        //$pnl.style.display = 'none';
+                    });
+
+
+
+                    $("body").on("click", "[src*=minus1]", function () {
+
+
+                        $(this).attr("src", "../../../Uploads/plus1.png");
+
+                        var $row = $(this).closest(".x_title").next(".x_content").hide();
+
+                    });
+
+
+
+                    $("body").on("click", "[src*=plusall]", function () {
+                        //
+
+                        //$(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
+                        $(this).attr("src", "../../../Uploads/minusall.png");
+
+                        $("#tbl_fee").find("tr[id$=tr_rpt]").show();
+                        //var $pnl = $row.find('pnlOrders');
+                        //$pnl.style.display = 'none';
+                    });
+
+
+                    $("body").on("click", "[src*=minusall]", function () {
+
+                        $(this).attr("src", "../../../Uploads/plusall.png");
+                        $("#tbl_fee").find("tr[id$=tr_rpt]").hide();
+
+                    });
+
+
+
+
+
+                    function TextchangefeeGrp(myctrl) {
+
+                            var menuid = '@sgen.GetSession(Model[0].Col15, "Rpt_Menuid").ToString()';
+
+                        var totgrp = $(myctrl)[0].value;
+
+                            var rec_amount = $(myctrl).closest('.x_title').next('.x_content').find("[id*=FeeRepeater]").find("[id*=Txt_Receipt_amt]");
+
+                            var Bal_amount = $(myctrl).closest('.x_title').next('.x_content').find("[id*=FeeRepeater]").find("[id*=lbl_total_bal]");
+
+                            if (menuid == "7019.8") {
+
+                                Bal_amount = $(myctrl).closest('.x_title').next('.x_content').find("[id*=FeeRepeater]").find("[id*=lbl_total_paid]");
+
+                            }
+                            if ( menuid == "7019.11") {
+
+                                Bal_amount = $(myctrl).closest('.x_title').next('.x_content').find("[id*=FeeRepeater]").find("[id*=lbl_concession]");
+
+                            }
+
+
+                            var fee_amount = $(myctrl).closest('.x_title').next('.x_content').find("[id*=FeeRepeater]").find("[id*=lbl_Fee_Amount]");
+
+                            var Bal_due_amount = $(myctrl).closest('.x_title').next('.x_content').find("[id*=FeeRepeater]").find("[id*=lbl_Bal_Due_Amount]");
+                            //if (isNaN(rec_amount)) { rec_amount = 0; }
+                            //$(rec_amount[0]).change();
+
+                            var totamt = 0;
+                            if (isNaN(parseFloat(totgrp))) totamt = 0;
+                            else totamt = totgrp;
+
+                            var cnts = rec_amount.length;
+                        $(rec_amount).val(0);
+                        $(Bal_due_amount).val(0);
+
+                            var thisba = $(myctrl).closest(".x_title").find("[id*=lbl_Bal_Due_Amount]");
+                            var baval = $(myctrl).closest(".x_title").find("[id*=lbl_total_bal]")[0].value;
+                            if (menuid == "7019.8") {
+                                var baval = $(myctrl).closest(".x_title").find("[id*=lbl_total_paid]")[0].value;
+
+                            }
+                            if (menuid == "7019.11") {
+                                var baval = $(myctrl).closest(".x_title").find("[id*=lbl_concession]")[0].value;
+
+                            }
+
+                            if (parseFloat(baval) < parseFloat(totgrp)) {
+                            alert("Receipt Amount Should be equal or less than Due Amount ");
+                            $(myctrl)[0].value = baval;
+
+
+                        }
+                        var b = 0;
+                        if (isNaN((parseFloat(baval) - parseFloat(totgrp)))) b = baval;
+                        else b = (parseFloat(baval) - parseFloat(totgrp));
+                        $(thisba)[0].value = b;
+
+
+                        for (var l = 0; l < cnts; l++) {
+
+                            var receipt = parseFloat(rec_amount[l].value);
+                            var bal = parseFloat(Bal_amount[l].value);
+                            var due = parseFloat(Bal_due_amount[l].value);
+
+                            Bal_due_amount[l].value = bal - receipt;
+                            $(rec_amount[l]).closest('.x_title').next('.x_content').find("[id*=rptDetail]").find("[id$=Txt_Receipt_amt]").val(0);
+                            //$(rec_amount[l]).closest('tr').next('tr').find("tr[id*=rptDetail]").find("[id$=Txt_Receipt_amt]").val(0);
+                            //$(rec_amount[l]).closest('tr').next('tr').find("tr[id*=rptDetail]").find("[id*=chk_payment]").val(0);
+                            Textchange(rec_amount[l]);
+                        }
+                        for (var l = 0; l < cnts; l++) {
+                            var receipt = parseFloat(rec_amount[l].value);
+                            var bal = parseFloat(Bal_amount[l].value);
+                            var due = parseFloat(Bal_due_amount[l].value);
+                            Bal_due_amount[l].value = bal - receipt;
+                            if (totamt > bal) {
+
+                                rec_amount[l].value = bal;
+
+                                totamt = totamt - bal;
+                                Textchange(rec_amount[l]);
+
+
+                            } else if (totamt <= bal) {
+                                rec_amount[l].value = totamt;
+
+                                Textchange(rec_amount[l]);
+                                break;
+                            }
+                            else {
+
+
+                            }
+                        }
+
+                    }
+                    function Textchange(myctrl) {
+
+                            var menuid = '@sgen.GetSession(Model[0].Col15, "Rpt_Menuid").ToString()';
+                        var rec_amount = parseFloat($(myctrl).closest('.x_title').find("input[type=text][id*=Txt_Receipt_amt]")[0].value);
+                            var Bal_amount = parseFloat($(myctrl).closest('.x_title').find("[id*=lbl_total_bal]")[0].value);
+
+                            if (menuid == "7019.8") {
+
+                                Bal_amount = parseFloat($(myctrl).closest('.x_title').find("[id*=lbl_total_paid]")[0].value);
+
+                            }
+                            if (menuid == "7019.11") {
+
+                                Bal_amount = parseFloat($(myctrl).closest('.x_title').find("[id*=lbl_concession]")[0].value);
+
+                            }
+
+                            var fee_amount = parseFloat($(myctrl).closest('.x_title').find("[id*=lbl_Fee_Amount]")[0].value);
+                            var Bal_due_amount = parseFloat($(myctrl).closest('.x_title').find("[id*=lbl_Bal_Due_Amount]")[0].value);
+                            if (isNaN(rec_amount)) { rec_amount = 0; }
+                            if (rec_amount > Bal_amount) {
+
+                                alert("Receipt Amount Cant be More Than Balance Amount");
+                            $(myctrl).closest('.x_title').find("input[type=text][id*=Txt_Receipt_amt]")[0].value = Bal_amount;
+                                rec_amount = parseFloat($(myctrl).closest('.x_title').find("input[type=text][id*=Txt_Receipt_amt]")[0].value);
+                                Bal_due_amount = Bal_amount - rec_amount;
+                            $(myctrl).closest('.x_title').find("[id*=lbl_Bal_Due_Amount]")[0].value = Bal_due_amount;
+
+                            }
+                        $(myctrl).closest('.x_title').find("[id*=lbl_hideamt]")[0].value = $(myctrl).closest('.x_title').find("input[type=text][id*=Txt_Receipt_amt]")[0].value;
+                            Bal_due_amount = Bal_amount - rec_amount;
+                        $(myctrl).closest('.x_title').find("[id*=lbl_Bal_Due_Amount]")[0].value = Bal_due_amount;
+
+
+                            var rows = $(myctrl).closest('.x_title').next('.x_content').find("div[id*=rptDetail]");
+                            for (var k = 0; k < rows.length; k++) {
+                            $(rows[k].children[9]).find("[id*=Txt_Receipt]")[0].value = 0;
+                            var due = parseFloat($(rows[k].children[8]).find("[id*=lbl_balance]")[0].value);
+
+                            if (menuid == "7019.8") {
+                                due = parseFloat($(rows[k].children[7]).find("[id*=hf_lbl_paid]")[0].value);
+                            }
+                            if (menuid == "7019.11") {
+                                due = parseFloat($(rows[k]).find("[id*=hf_lbl_concession]")[0].value);
+                            }
+
+
+                            if (rec_amount > due) {
+
+                                $(rows[k].children[9]).find("[id*=Txt_Receipt]")[0].value = due;
+                                rec_amount = rec_amount - due;
+                                var recp_amount = $(rows[k].children[9]).find("[id*=Txt_Receipt]")[0].value;
+                                if (recp_amount > 0) {
+
+                                    $(rows[k].children[9]).find("[id*=chk_payment]")[0].value = "1";
+
+                                }
+                            }
+                            else if (rec_amount == 0) {
+
+                                $(rows[k].children[9]).find("[id*=chk_payment]")[0].value = "0"
+                            }
+                            else {
+                                $(rows[k].children[9]).find("[id*=Txt_Receipt]")[0].value = rec_amount;
+                                if (rec_amount > 0) {
+                                    $(rows[k].children[9]).find("[id*=chk_payment]")[0].value = "1";
+                                }
+                                rec_amount = 0;
+                            }
+                            //rows[k].children[8].children[0].innerText=parseFloat(rows[k].children[8].children[0].innerText)-parseFloat(rows[k].children[9].children[0].value)
+                            var chk = $(rows[k].children[9]).find("[id*=chk_payment]")[0].value;
+
+                        }
+
+
+                    }
+
+                   function Txtchnge(myctrl) {
+
+
+                        var menuid = '@sgen.GetSession(Model[0].Col15, "Rpt_Menuid").ToString()';
+                        var Amount = 0;
+                        var rec_amount = parseFloat($(myctrl)[0].value);
+                        if (menuid == "7019.8") {
+                            Amount = parseFloat($(myctrl).closest('.x_content').find("[id*=hf_lbl_paid]").val());
+                        }
+
+                        if (menuid == "7019.11") {
+                            Amount = parseFloat($(myctrl).closest('.x_content').find("[id*=lbl_concession]").val());
+                        }
+                        else {
+                            Amount = parseFloat($(myctrl).closest('.x_content').find("[id*=Txt_FeeAmount]").val());
+                        }
+
+
+                        $(myctrl).closest('.x_content').find("[id*=chk_payment]").val(0);
+
+
+
+                        if (isNaN(rec_amount)) { rec_amount = 0; }
+
+                        $(myctrl).closest('.x_content').find("[id*=chk_payment]").val(0);
+                        if (parseFloat(rec_amount) > 0) {
+                            $(myctrl).closest('.x_content').find("[id*=chk_payment]").val(1);
+                        }
+
+                        if (parseFloat(Amount) < parseFloat(rec_amount)) {
+
+
+                               $(myctrl).closest('.x_content').find("[id*=chk_payment]").val(0);
+
+                               alert("Receipt Amount Cant be More Than Balance Amount");
+                               $(myctrl)[0].value = Amount;
+                            return;
+                        }
+
+                        chk = parseFloat($(myctrl).closest('.x_content').find("[id*=chk_payment]").val());
+
+
+
+                    }
+
+                    function AllowNumeric(key) {
+                        var keycode = (key.which) ? key.which : key.keyCode;
+                        if (!(keycode == 8 || keycode == 46) && (keycode < 48 || keycode > 57)) {
+
+                            return false;
+                        }
+                        else {
+                            return true;
+                        }
+                    }
+
+                    function ValidateNumStar(event) {
+                        var regex = new RegExp("^[0-9*,]+$");
+                        var key = String.fromCharCode(event.charCode ? event.which : event.charCode);
+                        if (!regex.test(key)) {
+                            event.preventDefault();
+                            return false;
+                        }
+                    }
+
+
+                    function lpad(number, width, padwith) {
+                        width -= number.toString().length;
+                        if (width > 0) {
+                            return new Array(width + (/\./.test(number) ? 2 : 1)).join(padwith) + number;
+                        }
+                        return number + ""; // always return a string
+                    }
+
+
+                    function SaveVal() {
+
+                        var gdada = $("[id*=txt_grptotal]")[0].value;
+                        var dadas = $("[id*=Txt_Receipt_amt]").not("[id*=FeeRepeater]");
+                        var totdada = 0;
+                        for (var d = 0; d < dadas.length; d++) {
+                            var dada = dadas[d].value;
+                            totdada = parseFloat(totdada) + parseFloat(dada);
+
+                            //var papas = $("div[id*=Fee_grp_" + lpad(d + 1, 2, '0') + "]").find("input[type=text][id*=_Txt_Receipt_amt]");
+                            var papas = $(dadas[d]).parents(".x_title").siblings(".x_content").find(".x_title").find("[id*=FeeRepeater]").find("[id*=Txt_Receipt_amt]");
+
+
+                            var totpapa = 0;
+                            for (var p = 0; p < papas.length; p++) {
+                                var papa = papas[p].value;
+                                totpapa = parseFloat(totpapa) + parseFloat(papa);
+                                //var munnas = $("div[id*=Fee_grp" + lpad(d + 1, 2, '0') + "FeeRepeater" + lpad(p + 1, 2, '0') + "]").find("[id*=Txt_Receipt]");
+                                var munnas = $(papas[p]).parents(".x_title").siblings(".x_content").find(".x_content").find("[id$=Txt_Receipt]");
+                                var totmunna = 0;
+                                for (var m = 0; m < munnas.length; m++) {
+                                    totmunna = parseFloat(totmunna) + parseFloat(munnas[m].value);
+                                }
+
+
+                                if (parseFloat(totmunna) < parseFloat(papa)) { alert('Total is below than Head Detail  '); return false; }
+                                if (parseFloat(totmunna) > parseFloat(papa)) { alert('Total is Greater than Head Detail'); return false; }
+                            }
+
+
+                            if (parseFloat(totpapa) < parseFloat(dada)) { alert('Total is below than Month Detail'); return false; }
+                            if (parseFloat(totpapa) > parseFloat(dada)) { alert('Total is Greater than Month Detail'); return false; }
+                        }
+
+
+                        if (parseFloat(totdada) < parseFloat(gdada)) { alert('Total is below than Name Detail'); return false; }
+                        if (parseFloat(totdada) > parseFloat(gdada)) { alert('Total is Greater than Name Detail'); return false; }
+
+
+
+                        return true;
+                    }
+
+                    function TxtTotalchnge() {
+
+                        var menuid = '@sgen.GetSession(Model[0].Col15, "Rpt_Menuid").ToString()';
+
+
+                        var tot = $("[id*=Txttotalgrp]").val();
+                        var totgrp = $("[id*=txt_grptotal]").val();
+
+
+
+                        var rec_amount = $("[id*=Txt_Receipt_amt]").not("[id*=FeeRepeater]");
+
+                        var Bal_amount = $("[id*=lbl_total_bal]").not("[id*=FeeRepeater]");
+
+                        if (menuid == "7019.8" ) {
+                            Bal_amount = $("[id*=lbl_total_paid]").not("[id*=FeeRepeater]");
+
+                        }
+                        if (menuid == "7019.11") {
+                            Bal_amount = $("[id*=lbl_concession]").not("[id*=FeeRepeater]");
+
+                        }
+                        var fee_amount = $("[id*=lbl_Fee_Amount]").not("[id*=FeeRepeater]");
+                        var Bal_due_amount = $("[id*=lbl_Bal_Due_Amount]").not("[id*=FeeRepeater]");
+                        //$(rec_amount[0]).change();
+                        var totamt = totgrp;
+                        var cnts = rec_amount.length;
+                        $(rec_amount).val(0);
+                        $(Bal_due_amount).val(0);
+
+                        if (parseFloat(tot) < parseFloat(totgrp)) {
+                            alert("Receipt Amount Should be equal or less than Due Amount ");
+                            $("[id*=txt_grptotal]").val(tot);
+
+                            $("[id*=Txttotalgrp_bal]").val(0);
+
+                        }
+                        if (parseFloat(tot) >= parseFloat(totgrp)) {
+                            $("[id*=Txttotalgrp_bal]").val(parseFloat(tot) - parseFloat(totgrp));
+                        }
+                        for (var l = 0; l < cnts; l++) {
+
+                            var receipt = parseFloat(rec_amount[l].value);
+                            var bal = parseFloat(Bal_amount[l].value);
+                            var due = parseFloat(Bal_due_amount[l].value);
+                            Bal_due_amount[l].value = bal - receipt;
+                            $(rec_amount[l]).closest('.x_title').next('.x_content').find("[id*=rptDetail]").find("[id$=Txt_Receipt]").val(0);
+                            $(rec_amount[l]).closest('.x_title').next('.x_content').find("[id*=rptDetail]").find("[id$=chk_payment]").val(0);
+                            //$(rec_amount[l]).closest('tr').next('tr').find("tr[id*=rptDetail]").find("[id$=Txt_Receipt]").val(0);
+                            //$(rec_amount[l]).closest('tr').next('tr').find("tr[id*=rptDetail]").find("[id*=chk_payment]").val(0);
+
+                            TextchangefeeGrp(rec_amount[l]);
+                        }
+                        for (var l = 0; l < cnts; l++) {
+                            var receipt = parseFloat(rec_amount[l].value);
+                            var bal = parseFloat(Bal_amount[l].value);
+                            var due = parseFloat(Bal_due_amount[l].value);
+
+                            if (totamt > bal) {
+
+                                rec_amount[l].value = bal;
+                                Bal_due_amount[l].value = bal - bal;
+                                totamt = totamt - bal;
+                                TextchangefeeGrp(rec_amount[l]);
+
+                            } else if (totamt <= bal) {
+                                rec_amount[l].value = totamt;
+                                Bal_due_amount[l].value = bal - totamt;
+                                TextchangefeeGrp(rec_amount[l]);
+                                break;
+                            }
+                        }
+                    }
+
+                    function checkedchanged(ctrl) {
+                        javascript: __doPostBack(ctrl.id, '');
+
+                    }
+
+                    function hide(ctrl) {
+
+                        //$(ctrl).closest("div.x_content").hide();
+
+                        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+                            $(ctrl.children[0]).removeClass('fa-chevron-up');
+                            $(ctrl.children[0]).addClass('fa-chevron-down');
+                            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+                        }
+                        else {
+                            $(ctrl.children[0]).removeClass('fa-chevron-down');
+                            $(ctrl.children[0]).addClass('fa-chevron-up');
+                            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+                        }
+
+                    }
+
+                                             /*   if (!isPostBack())*/ {
+                        $(".fa-chevron-up").addClass('fa-chevron-down');
+                        $(".fa-chevron-up").removeClass('fa-chevron-up');
+                        $('.kc').hide();
+                    }
+
+                    $("#Txt_Receipt_dt").on("dp.change", function (e) {
+
+
+                        var today_date = new Date();
+                        var recp_dt = document.getElementById('Txt_Receipt_dt');
+
+                        var dt = moment(recp_dt.value, dformat(dateformat));
+
+                        var diff_date = moment() - dt - 1;
+
+                        if (diff_date < 0) {
+
+                            alert('Receipt Date Can Not Be Greater Than Today');
+                            return;
+                        }
+                    });
+
+
+
+</script>

@@ -1,0 +1,83 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+
+@using (Html.BeginForm(viewName, controllerName, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@ViewBag.Title</h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-primary form-control sa-button" @ViewBag.vsave id="btnsave" name="command" value="Save" accesskey="S" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    for (int i = 0; i < Model.Count; i++)
+    {
+        <div class=" clearfix"></div>
+
+        @Html.HiddenFor(model => model[i].Col1, new { @id = "lbl_entby" })
+        @Html.HiddenFor(model => model[i].Col2, new { @id = "lbl_entdt" })
+        @Html.HiddenFor(model => model[i].Col3, new { @id = "lbl_vch_num" })
+        @Html.HiddenFor(model => model[i].Col4, new { @id = "lbl_client_id" })
+        @Html.HiddenFor(model => model[i].Col5, new { @id = "lbl_client_unit_id" })
+        @Html.HiddenFor(model => model[i].Col6, new { @id = "lbl_url" })
+        @Html.HiddenFor(model => model[i].Col7, new { @id = "lbl_recid" })
+        @Html.HiddenFor(model => model[i].Col8, new { @id = "" })
+        @Html.HiddenFor(model => model[i].Col9, new { @id = "" })
+        @Html.HiddenFor(model => model[i].Col10, new { @id = "" })
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_content">
+                        
+                        <div class="row">
+                       
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <input type="submit" id="callback1" value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+     $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+        $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+    });
+
+</script>
+

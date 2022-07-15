@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "CRM";
+    string MyGuid = "";
+    MyGuid = Model[0].Col15;
+    sgenFun sgen;
+    sgen = new sgenFun(MyGuid);
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+}
+
+<h2>CRM REPORTS</h2>
+
+
+                    <div class="row top_tiles">
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" 
+                             onclick=" show_Foo('New Clients Aded', '11', '0', '@viewName','@controllerName');">
+                            <div class="tile-stats">
+                                <h3>New Clients Added</h3>
+                                <p>All Schools List.</p>
+                            </div>
+                        </div>
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12"  
+                              onclick=" show_Foo('Clients Visited', '12', '0', '@viewName','@controllerName');">
+                            <div class="tile-stats">
+                                <h3>Clients Visited</h3>
+                                <p>School FeedBack Recorded</p>
+                            </div>
+                        </div>
+
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12"
+                              onclick=" show_Foo('Interested Clients', '13', '0',' @viewName','@controllerName');">
+                            <div class="tile-stats">
+                                <h3>Interested Clients</h3>
+                                <p>Clients which may be converted</p>
+                            </div>
+                        </div>
+
+                        <div class="animated flipInY col-lg-3 col-md-3 col-sm-6 col-xs-12" 
+                              onclick=" show_Foo('Rude Clients', '14', '0', '@viewName','@controllerName');">
+                            <div class="tile-stats">
+                                <h3>Rude Clients</h3>
+                                <p>Clients Not Interested</p>
+                            </div>
+                        </div>
+                    </div>
+
+
+            

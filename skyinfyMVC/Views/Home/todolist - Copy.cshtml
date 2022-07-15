@@ -1,0 +1,936 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    sgenFun sgen = new sgenFun();
+    string userCode = sgen.getcookie("userCode");
+    if (Model[0].Col17 == "ok") { Layout = ""; }
+    else { Layout = "~/Views/Shared/_MasterPage.cshtml"; }    
+    var controllerName = @ViewContext.RouteData.Values["Controller"].ToString();
+    var viewName = @Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath));
+    Session["viewName"] = viewName;
+    Session["controllerName"] = controllerName;
+
+    string pgid = "todolist";
+    string pgurl = "/" + controllerName + "/" + viewName + "";
+}
+<style type="text/css">
+    .xpan {
+        padding: 3px 15px !important;
+    }
+    .xtit {
+        padding: 0px !important; 
+        border-bottom: 0px !important;
+    }
+</style>
+
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart/form-data", id = pgid }))
+{
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>@Model[0].Col9</h3>
+                        @Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <a href="@Url.RouteUrl(new { Controller = controllerName, Action = "mytodo", m_id =  EncryptDecrypt.Encrypt(Model[0].Col15),mid= EncryptDecrypt.Encrypt(Model[0].Col14),fstr = EncryptDecrypt.Encrypt("NEW") })" accesskey="T" class="btn btn-primary form-control sa-button">Add Task</a>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 hidectrl">
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <button type="button" class="btn btn-primary form-control sa-button" id="btn_spt" onclick="setTableDatat();" name="command" value="spt">Self Pending Task</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <button type="button" class="btn btn-primary form-control sa-button" id="btn_sct" onclick="setTableDatat(); callgrd(this, '@pgid', '@pgurl');" name="command" value="sct">Self Completed Task</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <button type="button" class="btn btn-primary form-control sa-button" id="btn_opt" onclick="setTableDatat();callgrd(this, '@pgid', '@pgurl');" name="command" value="opt">Others Pending Task</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <div class='input-group'>
+                                    <button type="button" class="btn btn-primary form-control sa-button" id="btn_oct" onclick="setTableDatat();callgrd(this, '@pgid', '@pgurl');" name="command" value="oct">Others Completed Task</button>
+                                    <span class="input-group-addon formclass"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        @Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+                        @Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+                        @Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+                        @Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+                        @Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+                        @Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+                        @Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+                        @Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+                        @Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+                        @Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+                        @Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+                        @Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+                        @Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+                        @Html.HiddenFor(model => model[0].Col16, new { @id = "hf_row" })
+                        @Html.HiddenFor(model => model[0].Col17, new { @id = "hf_layout" })
+                        @Html.HiddenFor(model => model[0].Col18, new { @id = "hf_sct" })
+                        @Html.HiddenFor(model => model[0].Col19, new { @id = "hf_opt" })
+                        @Html.HiddenFor(model => model[0].Col20, new { @id = "hf_oct" })
+
+                        @if (Model.Count < 1)
+                        { }
+                        else
+                        {
+                            for (int i = 0; i < Model.Count; i++)
+                            {
+                                DataTable dtm = Model[i].dt1;
+                                if (dtm != null)
+                                {
+                                    <div class="x_panel xpan" id="div_spt">
+                                        <div class="x_title xtit" onclick="hidep(this);">
+                                            <b>List of Self Pending Task</b>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a id="ahide1" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>                                        
+                                        <div class="x_content">
+                                            <div class="row">
+                                                <div class="grid-container">
+                                                    <div class="grid" id="grd1">
+                                                        @foreach (DataColumn dc in dtm.Columns)
+                                                        {
+                                                            var style = "";
+                                                            int mlength = 10;
+                                                            try
+                                                            {
+                                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                                            }
+                                                            catch (Exception err) { }
+                                                            int k = 0;
+
+                                                            if (dc.Ordinal == 0)
+                                                            {
+                                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:250px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                                        <label>@(k + 1) - </label>
+                                                                        <a href="@Url.RouteUrl(new { Controller = controllerName, Action = "mytodo", m_id = EncryptDecrypt.Encrypt(Model[0].Col15), mid = EncryptDecrypt.Encrypt(Model[0].Col14), fstr = EncryptDecrypt.Encrypt(dr[dc].ToString()) })" class="btn btn-warning" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat();rdel(event,'@dr[dc].ToString()');" class="btn btn-danger" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat(); setst('@k','@dr[dc].ToString()','grd1');" class="btn btn-success" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-strikethrough" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Completed/Pending"></i></a>
+                                                                        <a onclick="setTableDatat(); getdetail('@k','@dr[dc].ToString()');" class="btn btn-primary" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Detail"></i></a>
+                                                                        <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                                    </div>
+                                                                        k++;
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 1)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px;">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C") { style = "style=text-decoration:line-through;"; }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 5)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 6)
+                                                            {
+                                                            }
+                                                            else if (dc.Ordinal == 7)
+                                                            {
+                                                            }
+                                                            else if (dc.Ordinal == 8)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:30px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                }
+
+                                dtm = Model[i].dt2;
+                                if (dtm != null)
+                                {
+                                    <div class="x_panel xpan hidectrl" id="div_sct">
+                                        <div class="x_title xtit" onclick="hidep(this);">
+                                            <b>List of Self Completed Task</b>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a id="ahide2" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>                                        
+                                        <div class="x_content kc">
+                                            <div class="row">
+                                                <div class="grid-container">
+                                                    <div class="grid" id="grd2">
+                                                        @foreach (DataColumn dc in dtm.Columns)
+                                                        {
+                                                            var style = "";
+                                                            int mlength = 10;
+                                                            try
+                                                            {
+                                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                                            }
+                                                            catch (Exception err) { }
+                                                            int k = 0;
+
+                                                            if (dc.Ordinal == 0)
+                                                            {
+                                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:250px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                                        <label>@(k + 1) - </label>
+                                                                        <a href="@Url.RouteUrl(new { Controller = controllerName, Action = "mytodo", m_id = EncryptDecrypt.Encrypt(Model[0].Col15), mid = EncryptDecrypt.Encrypt(Model[0].Col14), fstr = EncryptDecrypt.Encrypt(dr[dc].ToString()) })" class="btn btn-warning" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat();rdel(event,'@dr[dc].ToString()');" class="btn btn-danger" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat(); setst('@k','@dr[dc].ToString()','grd2');" class="btn btn-success" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-strikethrough" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Completed/Pending"></i></a>
+                                                                        <a onclick="setTableDatat(); getdetail('@k','@dr[dc].ToString()');" class="btn btn-primary" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Detail"></i></a>
+                                                                        <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                                    </div>
+                                                                        k++;
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 1)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px;">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C") { style = "style=text-decoration:line-through;"; }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 5)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 6)
+                                                            {
+                                                            }
+                                                            else if (dc.Ordinal == 7)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 8)
+                                                            {
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                }
+
+                                dtm = Model[i].dt3;
+                                if (dtm != null)
+                                {
+                                    <div class="x_panel xpan hidectrl" id="div_opt">
+                                        <div class="x_title xtit" onclick="hidep(this);">
+                                            <b>List of Others Pending Task</b>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a id="ahide3" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>                                 
+                                        <div class="x_content kc">
+                                            <div class="row">
+                                                <div class="grid-container">
+                                                    <div class="grid" id="grd3">
+                                                        @foreach (DataColumn dc in dtm.Columns)
+                                                        {
+                                                            var style = "";
+                                                            int mlength = 10;
+                                                            try
+                                                            {
+                                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                                            }
+                                                            catch (Exception err) { }
+                                                            int k = 0;
+
+                                                            if (dc.Ordinal == 0)
+                                                            {
+                                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:250px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                                        <label>@(k + 1) - </label>
+                                                                        <a href="@Url.RouteUrl(new { Controller = controllerName, Action = "mytodo", m_id = EncryptDecrypt.Encrypt(Model[0].Col15), mid = EncryptDecrypt.Encrypt(Model[0].Col14), fstr = EncryptDecrypt.Encrypt(dr[dc].ToString()) })" class="btn btn-warning" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat();rdel(event,'@dr[dc].ToString()');" class="btn btn-danger" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat(); setst('@k','@dr[dc].ToString()','grd3');" class="btn btn-success" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-strikethrough" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Completed/Pending"></i></a>
+                                                                        <a onclick="setTableDatat(); getdetail('@k','@dr[dc].ToString()');" class="btn btn-primary" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Detail"></i></a>
+                                                                        <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                                    </div>
+                                                                        k++;
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 1)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px;">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C") { style = "style=text-decoration:line-through;"; }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 5)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 6)
+                                                            {
+                                                            }
+                                                            else if (dc.Ordinal == 7)
+                                                            {
+                                                            }
+                                                            else if (dc.Ordinal == 8)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:30px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 9)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                    <hr />
+                                }
+
+                                dtm = Model[i].dt4;
+                                if (dtm != null)
+                                {
+                                    <div class="x_panel xpan hidectrl" id="div_oct">
+                                        <div class="x_title xtit" onclick="hidep(this);">
+                                            <b>List of Others Completed Task</b>
+                                            <ul class="nav navbar-right panel_toolbox">
+                                                <li><a id="ahide4" class="a_panel"><i class="fa fa-chevron-up"></i></a></li>
+                                            </ul>
+                                            <div class="clearfix"></div>
+                                        </div>                                  
+                                        <div class="x_content kc">
+                                            <div class="row">
+                                                <div class="grid-container">
+                                                    <div class="grid" id="grd4">
+                                                        @foreach (DataColumn dc in dtm.Columns)
+                                                        {
+                                                            var style = "";
+                                                            int mlength = 10;
+                                                            try
+                                                            {
+                                                                mlength = dtm.Select("[" + dc.ColumnName + "] = MAX([" + dc.ColumnName + "])")[0][dc.ColumnName].ToString().Length;
+                                                            }
+                                                            catch (Exception err) { }
+                                                            int k = 0;
+
+                                                            if (dc.Ordinal == 0)
+                                                            {
+                                                                <div class="grid-col grid-col--fixed-left" id="col_@dc.Ordinal" style="width:250px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                    <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)'>
+                                                                        <label>@(k + 1) - </label>
+                                                                        <a href="@Url.RouteUrl(new { Controller = controllerName, Action = "mytodo", m_id = EncryptDecrypt.Encrypt(Model[0].Col15), mid = EncryptDecrypt.Encrypt(Model[0].Col14), fstr = EncryptDecrypt.Encrypt(dr[dc].ToString()) })" class="btn btn-warning" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat();rdel(event,'@dr[dc].ToString()');" class="btn btn-danger" style="max-height: 20px;padding-top: 0px;max-width:36px" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                                                        <a onclick="setTableDatat(); setst('@k','@dr[dc].ToString()','grd4');" class="btn btn-success" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-strikethrough" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Completed/Pending"></i></a>
+                                                                        <a onclick="setTableDatat(); getdetail('@k','@dr[dc].ToString()');" class="btn btn-primary" style="max-height: 20px;padding-top: 0px;max-width:36px"><i class="fa fa-eye" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Detail"></i></a>
+                                                                        <input type="hidden" value="@dr[dc].ToString()" id="fstr_@dc.Ordinal" />
+                                                                    </div>
+                                                                        k++;
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 1)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px;">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C") { style = "style=text-decoration:line-through;"; }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 5)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:200px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 6)
+                                                            {
+                                                            }
+                                                            else if (dc.Ordinal == 7)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:140px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 8)
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:30px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                            else if (dc.Ordinal == 9)
+                                                            {
+                                                            }
+                                                            else
+                                                            {
+                                                                <div class="grid-col" id="col_@dc.Ordinal" style="width:@(mlength * 8)px">
+                                                                    <div class="grid-item grid-item--header">
+                                                                        <p>@dc.ColumnName.ToString()</p>
+                                                                    </div>
+                                                                    @foreach (DataRow dr in dtm.Rows)
+                                                                    {
+                                                                        style = "";
+                                                                        if (dr[6].ToString() == "C")
+                                                                        {
+                                                                            style = "style=text-decoration:line-through;";
+                                                                        }
+                                                                        <div class="grid-item" id='row_@dtm.Rows.IndexOf(dr)' contenteditable="false" @style>
+                                                                            @dr[dc].ToString()
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                    
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" name="hfrow" id="hfrow" />
+    <input type="hidden" name="hftable" id="hftable" />
+    <input type="submit" id="callback1" value="Callback" formnovalidate name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+}
+
+<script type="text/javascript">
+ $(document).ready(function () {
+        @Html.Raw(ViewBag.scripCall);
+        $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+     $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+     if (!isPostBack()) {
+         $(".fa-chevron-up").addClass('fa-chevron-down');
+         $(".fa-chevron-up").removeClass('fa-chevron-up');
+         $('.kc').hide();
+     }
+     else {
+
+         var kcs = $('.kc');
+         for (var l = 0; l < kcs.length; l++) {
+
+             var child = $(".kc")[l].parentElement.children[0].children[1].children[0].children[0].children[0];
+             if (child.classList.contains('fa-chevron-up')) {
+                 $(".kc")[l].style.display = "none";
+                 $(child).removeClass("fa-chevron-up");
+                 $(child).addClass("fa-chevron-down");
+             }
+         }
+     }
+
+     var hf_sct = $("#hf_sct")[0].value;
+     var hf_opt = $("#hf_opt")[0].value;
+     var hf_oct = $("#hf_oct")[0].value;
+     if (hf_sct == "Y") $("#div_sct").show();
+     if (hf_opt == "Y") $("#div_opt").show();
+     if (hf_oct == "Y") $("#div_oct").show();
+    });
+    function setTableDatat() {
+        debugger
+        datatable = new Array();
+        var tstr = "";
+        var grids = $("[id*=grd]");
+        for (var g = 0; g < grids.length; g++) {
+            try {
+                var grid = grids.eq(g);
+                datatable = new Array();
+
+                var heads = $(grid).find("[id*=col_]");
+                var rows = $(heads).eq(0).find("[id*=row_]");
+                for (var r = 0; r < rows.length; r++) {
+                    var row = $(heads).find("[id=row_" + r + "]");
+                    var arr = new Array();
+                    for (var h = 0; h < heads.length; h++) {
+                        var obj = {};
+                        var val = "";
+                        if (h == 0) {
+                            val = row.eq(0).find("[id*=fstr]").val();
+                        }
+                        else {
+                            val = row[h].innerText;
+                        }
+                        obj[heads[h].children[0].innerText] = val;
+                        arr.push(obj);
+                    }
+                    datatable.push(arr);
+                }
+            }
+            catch (err) { alert(err); return; }
+            if (tstr.trim() == "") { tstr = JSON.stringify(datatable); }
+            else {
+                tstr = tstr + "!~!~!~!" + JSON.stringify(datatable);
+            }
+        }
+        $("#hftable").val(tstr);
+    }
+    function sethfval(val)
+    {
+        $("#hfrow").val(val);
+        setTableDatat();
+    }
+    function editfun() { var data = show_Foo('Select Entry For Edit', 'EDIT', '1', '@viewName', '@controllerName'); }
+    function viewfun() { var data = show_Foo('View Detail', 'VIEW', '0', '@viewName', '@controllerName'); }
+    function rdel(evt, id) {
+        debugger;
+        var cnfrm = confirm("Are you sure, you want to delete permanently?");
+        if (cnfrm == true) {
+            //prevent the browsers default function
+            evt.preventDefault();
+            //grab the form and wrap it with jQuery
+            var $form = $("form");
+            var obj = { "value": id };
+            myMethod('@controllerName', '@viewName', "rdel", obj, null);
+            $("#callback1").click();
+        }
+    }
+    function onsuccessdel(response) { }
+    function onfailuredel(response) { }
+
+    function setst(val,vchnum,grd) {
+        debugger
+        $("#hfrow").val(val);
+
+        var grds1 = $("[id*=" + grd + "]");
+        var gr1 = grds1.eq(0);
+        var heads = $(gr1).find("[id*=col_]");
+        //var heads = $("[id*=col_]");
+        for (var r = 1; r < heads.length; r++) {
+            var rows = $(heads).eq(r).find("[id*=row_]").eq(val);
+            if (rows[0].style.textDecoration == "line-through") {
+                rows[0].style.textDecoration = "none";
+            }
+            else { rows[0].style.textDecoration = "line-through"; }
+        }
+        var obj = { "val": val, "vchnum": vchnum };
+        var res = myMethod("@controllerName", "@viewName", "setst", obj, val);
+    }
+
+    function getdetail(val, vchnum) {
+        debugger
+        var obj = { "val": val, "vchnum": vchnum };
+        $.ajax({
+            type: "post",
+            async: true,
+            url: "/Home/getdetail",
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(obj),
+            datatype: "json",
+            success: function (response) {
+                debugger
+                $('#myModal').width('50%');
+                $('#myModal').height('100%');
+                $('#myModal')[0].style.marginLeft = "400px";
+                //$('#myModal')[0].style.textAlign = "center";
+                $("#myModalContent")[0].style.padding = "30px"
+                var txt = "<b>From Date:</b> " + response[2] + "</br> <b>To Date:</b> " + response[3] + "</br> <b>Posted Date:</b> " + response[4] + "</br> <b>Description:</b> " + response[1];
+                $('#myModalContent').html(txt);
+                $('#myModalLabel')[0].innerText = response[0];
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+            }, error: function (response) {
+                alert(response);
+            }
+        });
+    }
+
+    function hidep(ctrl) {
+        var actrl = $(ctrl).find("a[id*=ahide]")[0];
+        hide(actrl);
+    }
+    function hide(ctrl) {
+
+        //$(ctrl).closest("div.x_content").hide();
+
+        if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+        }
+        else {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+        }
+
+    }   
+    
+    function callgrd(ctrl, pgid, pgurl) {
+        debugger;      
+        var ctval = "";
+        var val = ctrl.value;               
+        var $form = $("#" + pgid);        
+        var hftable = $("#hftable")[0].value;
+        var hfrow = $("#hfrow")[0].value;
+        
+        $.ajax({
+            type: "POST",
+            url: pgurl,
+            data: $form.serialize() + "&command=" + val + "&layout=ok&hfrow=''&hftable=" + hftable + "",
+            dataType: "json",
+            traditional: true,
+            success: function (response) {
+                debugger
+                $(".right_col").html(response.responseText);
+                ctval = $($("#div_" + val));
+                ctval.show();
+            },
+            error: function (response) {
+                debugger
+                $(".right_col").html(response.responseText);
+                ctval = $($("#div_" + val));
+                ctval.show();
+            }
+        });
+
+
+
+
+
+
+
+        //data.append("strmd", JSON.stringify($form.serialize()));
+        //data.append("command", val);
+        //data.append("layout", "ok");
+        //data.append("hfrow", hfrow);
+        //data.append("hftable", hftable);
+
+        //$.ajax({                       
+        //    url: pgurl, type: "POST", processData: false,
+        //    data: data,
+        //    dataType: 'json',
+        //    contentType: false,
+        //    success: function (response) {
+        //        debugger
+        //        $(".right_col").html(response.responseText);
+        //        ctval.show();
+        //        //$(".sa-select2-single").select2({
+        //        //    maximumSelectionLength: 1,
+        //        //    allowClear: true
+        //        //})
+        //        //$(".sa-select2-multiple").select2();
+        //    },
+        //    error: function (response) {
+        //        debugger
+        //        $(".right_col").html(response.responseText);
+        //        ctval.hide();
+        //        //$(".sa-select2-single").select2({
+        //        //    maximumSelectionLength: 1,
+        //        //    allowClear: true
+        //        //})
+        //        //$(".sa-select2-multiple").select2();
+        //    }
+        //});
+    }
+
+</script>

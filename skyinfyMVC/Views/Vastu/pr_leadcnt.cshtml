@@ -1,0 +1,145 @@
+﻿
+@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    /**/
+
+    string MyGuid = EncryptDecrypt.Decrypt(Request.QueryString["m_id"]);
+    sgenFun sgen = new sgenFun(MyGuid);
+    string userCode = sgen.GetCookie(MyGuid, "userCode");
+    var viewName = sgen.GetSession(MyGuid, "viewName").ToString();
+    var controllerName = sgen.GetSession(MyGuid, "controllerName").ToString();
+    
+
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <div class='input-group'>
+                <div class="title_left">
+
+                    <h4 class="text-primary"><b>CONVERT LEAD</b></h4>
+                </div>
+
+                <span class="input-group-addon formclass"></span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@Html.HiddenFor(model => model[0].Col1, new { @id = "hf_clientid" })
+@Html.HiddenFor(model => model[0].Col2, new { @id = "hf_clientunitid" })
+@Html.HiddenFor(model => model[0].Col3, new { @id = "hf_entby" })
+@Html.HiddenFor(model => model[0].Col4, new { @id = "hf_entdate" })
+@Html.HiddenFor(model => model[0].Col5, new { @id = "hf_editby" })
+@Html.HiddenFor(model => model[0].Col6, new { @id = "hf_editdate" })
+@Html.HiddenFor(model => model[0].Col7, new { @id = "hf_recid" })
+@Html.HiddenFor(model => model[0].Col8, new { @id = "hf_url" })
+@Html.HiddenFor(model => model[0].Col9, new { @id = "hf_title" })
+@Html.HiddenFor(model => model[0].Col10, new { @id = "hf_tab_name" })
+@Html.HiddenFor(model => model[0].Col11, new { @id = "hf_where" })
+@Html.HiddenFor(model => model[0].Col12, new { @id = "hf_type" })
+@Html.HiddenFor(model => model[0].Col13, new { @id = "hf_btn_text" })
+@Html.HiddenFor(model => model[0].Col14, new { @id = "hf_mid" })
+@Html.HiddenFor(model => model[0].Col15, new { @id = "hf_m_id" })
+@Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel" style="padding: 3px 15px !important">
+            <div class="x_title" style="padding: 0px !important; border-bottom: 0px !important">
+                <b>Book Information</b>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a id="ahide1" class="a_panel" onclick="hide(this);"><i class="fa fa-chevron-up"></i></a></li>
+                </ul>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class='col-sm-3' id="div_top1">
+                        <label for="first-name">Doc No.</label>
+                        <div class="form-group">
+                            <div class='input-group demo2'>
+                                <asp:TextBox ID="Txt_VchNo" ReadOnly="true" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" Enabled="false"></asp:TextBox>
+                                @Html.TextBoxFor(model => model[0].Col16, new { @id = "Txt_VchNo", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Doc No." })
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-3' id="div_top2">
+                        <label for="first-name">Title</label><span class="ClientProfileLabelColor">*</span>
+                        <div class="form-group">
+                            <div class='input-group demo2'>
+                                @Html.TextBoxFor(model => model[0].Col17, new { @id = "txt_title", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Title" })
+
+                                @*<asp:TextBox ID="txt_title" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox"></asp:TextBox>*@
+                                @*<%--<select class="form-control select2 col-md-12 col-sm-12 col-xs-12 sa-select2-multiple" id="ddl_class" clientidmode="Static" runat="server" multiple="true" style="width: 100%; border-radius: 0px;"></select>--%>*@
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-3' id="div_top3">
+                        <label for="first-name">Author</label><span class="ClientProfileLabelColor">*</span>
+                        <div class="form-group">
+                            <div class='input-group demo2'>
+                                @Html.TextBoxFor(model => model[0].Col18, new { @id = "txt_author1", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Author 1" })
+
+                                @*<asp:TextBox ID="txt_author1" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox"></asp:TextBox>*@
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class='col-sm-3'>
+                        <label for="first-name">Author 2</label>
+                        <div class="form-group">
+                            <div class='input-group demo2'>
+                                @Html.TextBoxFor(model => model[0].Col19, new { @id = "txt_author2", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", placeholder = "Author 2" })
+
+                                @*<asp:TextBox ID="txt_author2" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 sa-textbox"></asp:TextBox>*@
+                                <span class="input-group-addon formclass"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script>>
+        function hide(ctrl) {
+            if (ctrl.children[0].classList.contains('fa-chevron-up')) {
+                $(ctrl.children[0]).removeClass('fa-chevron-up');
+                $(ctrl.children[0]).addClass('fa-chevron-down');
+                ctrl.closest("div").parentElement.children[1].style.display = 'none';
+
+            }
+            else {
+                $(ctrl.children[0]).removeClass('fa-chevron-down');
+                $(ctrl.children[0]).addClass('fa-chevron-up');
+                ctrl.closest("div").parentElement.children[1].style.display = 'block';
+            }
+
+        }
+    function hide1(ctrl, check) {
+
+        if (check) {
+            $(ctrl.children[0]).removeClass('fa-chevron-down');
+            $(ctrl.children[0]).addClass('fa-chevron-up');
+            ctrl.closest("div").parentElement.children[1].style.display = 'block';
+
+        }
+        else {
+
+            $(ctrl.children[0]).removeClass('fa-chevron-up');
+            $(ctrl.children[0]).addClass('fa-chevron-down');
+            ctrl.closest("div").parentElement.children[1].style.display = 'none';
+        }
+    }
+    </script>

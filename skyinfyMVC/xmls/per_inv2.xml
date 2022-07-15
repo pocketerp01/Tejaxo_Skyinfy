@@ -1,0 +1,1324 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="prepcur">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="FSTR" type="xs:string" minOccurs="0" />
+                <xs:element name="PAY_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="PRICE_TERM" type="xs:string" minOccurs="0" />
+                <xs:element name="CPARTNO" type="xs:string" minOccurs="0" />
+                <xs:element name="TRPT_MODE" type="xs:string" minOccurs="0" />
+                <xs:element name="LINEAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="REMARK" type="xs:string" minOccurs="0" />
+                <xs:element name="UOM" type="xs:string" minOccurs="0" />
+                <xs:element name="IRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="TAXAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="INVOICE_NUMBER" type="xs:string" minOccurs="0" />
+                <xs:element name="INVOICE_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="INV_QTY" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TAXABLE_AMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="DEL_NOTE" type="xs:string" minOccurs="0" />
+                <xs:element name="HSN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="INAME" type="xs:string" minOccurs="0" />
+                <xs:element name="ICODE" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTY_GSTIN" type="xs:string" minOccurs="0" />
+                <xs:element name="PARTY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="DISCRATE" type="xs:string" minOccurs="0" />
+                <xs:element name="DISCAMT" type="xs:string" minOccurs="0" />
+                <xs:element name="IAMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TERMS_OF_DEL" type="xs:string" minOccurs="0" />
+                <xs:element name="PO_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="PO_DATE" type="xs:string" minOccurs="0" />
+                <xs:element name="IGST" type="xs:string" minOccurs="0" />
+                <xs:element name="SGST" type="xs:string" minOccurs="0" />
+                <xs:element name="CGST" type="xs:string" minOccurs="0" />
+                <xs:element name="BASICAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="GROSSAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="NET_AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TERMS_COND" type="xs:string" minOccurs="0" />
+                <xs:element name="DOC_CONTROL_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="IREMARK" type="xs:string" minOccurs="0" />
+                <xs:element name="TXBLEAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CTITLE" type="xs:string" minOccurs="0" />
+                <xs:element name="CTITLENO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="prepcur2">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="TAXABLEAMT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="IGSTR" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CGSTR" type="xs:decimal" minOccurs="0" />
+                <xs:element name="SGSTR" type="xs:decimal" minOccurs="0" />
+                <xs:element name="IGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="CGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="SGST" type="xs:decimal" minOccurs="0" />
+                <xs:element name="HSNO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="prepcur3">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="CHRGNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COL1" type="xs:string" minOccurs="0" />
+                <xs:element name="COL2" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL3" type="xs:string" minOccurs="0" />
+                <xs:element name="COL4" type="xs:string" minOccurs="0" />
+                <xs:element name="COL5" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL6" type="xs:string" minOccurs="0" />
+                <xs:element name="COL7" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL8" type="xs:string" minOccurs="0" />
+                <xs:element name="COL9" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COL10" type="xs:string" minOccurs="0" />
+                <xs:element name="R_NO" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="prepcur4">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="AMOUNT" type="xs:decimal" minOccurs="0" />
+                <xs:element name="TAXNAME" type="xs:string" minOccurs="0" />
+                <xs:element name="RATE" type="xs:decimal" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Company_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="COMPANY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_EMAIL_ID" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="COMPANY_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COM_PAN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="COMPANY_CIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="mLogo" type="xs:base64Binary" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="Branch_Detail">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="UNIT_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_ADDRESS" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_COUNTRY" type="xs:string" minOccurs="0" />
+                <xs:element name="COUNTRY_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="STATE_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_STATE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CITY" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_PINCODE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_EMAIL" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_WEBSITE" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CONTACT_NO" type="xs:decimal" minOccurs="0" />
+                <xs:element name="UNIT_ALTERNATE_CONTACT_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="SEPTR" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_GSTIN_NO" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_NAME" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_BRANCH" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_ACC" type="xs:string" minOccurs="0" />
+                <xs:element name="BANK_IFSC" type="xs:string" minOccurs="0" />
+                <xs:element name="UNIT_CURRENCY" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1624</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>LITER</UOM>
+    <IRATE>20</IRATE>
+    <TAXRATE>16</TAXRATE>
+    <TAXAMT>224</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>100</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>Hsn1</HSN_NO>
+    <INAME>KEETON</INAME>
+    <ICODE>9050100002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>30</DISCRATE>
+    <DISCAMT>600.00</DISCAMT>
+    <IAMOUNT>2000</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1400</TXBLEAMT>
+    <CTITLE>Original for Buyer</CTITLE>
+    <CTITLENO>1</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>3</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1180</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>NOS</UOM>
+    <IRATE>25</IRATE>
+    <TAXRATE>18</TAXRATE>
+    <TAXAMT>180</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>50</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>84799090</HSN_NO>
+    <INAME>PLUG M8X1</INAME>
+    <ICODE>9580200003</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>20</DISCRATE>
+    <DISCAMT>250.00</DISCAMT>
+    <IAMOUNT>1250</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1000</TXBLEAMT>
+    <CTITLE>Original for Buyer</CTITLE>
+    <CTITLENO>1</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>419.58</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Gigameter</UOM>
+    <IRATE>21</IRATE>
+    <TAXRATE>11</TAXRATE>
+    <TAXAMT>41.58</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>20</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</DEL_NOTE>
+    <HSN_NO>KIO55</HSN_NO>
+    <INAME>MARTENSITE</INAME>
+    <ICODE>9050100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>10</DISCRATE>
+    <DISCAMT>42.00</DISCAMT>
+    <IAMOUNT>420</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</IREMARK>
+    <TXBLEAMT>378</TXBLEAMT>
+    <CTITLE>Original for Buyer</CTITLE>
+    <CTITLENO>1</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>203</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2281.22</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Decimeter</UOM>
+    <IRATE>32</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>244.42</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>67</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>1469</HSN_NO>
+    <INAME>AK203</INAME>
+    <ICODE>9040100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>5</DISCRATE>
+    <DISCAMT>107.20</DISCAMT>
+    <IAMOUNT>2144</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2036.8</TXBLEAMT>
+    <CTITLE>Original for Buyer</CTITLE>
+    <CTITLENO>1</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>3251.4</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>pcs</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>348.36</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>56</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>0051</HSN_NO>
+    <INAME>FILLER GAUGE</INAME>
+    <ICODE>1010200001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>4</DISCRATE>
+    <DISCAMT>120.96</DISCAMT>
+    <IAMOUNT>3024</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2903.04</TXBLEAMT>
+    <CTITLE>Original for Buyer</CTITLE>
+    <CTITLENO>1</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>20</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2592.81</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Kg</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>10</TAXRATE>
+    <TAXAMT>235.71</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>45</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>rre</DEL_NOTE>
+    <HSN_NO>0052</HSN_NO>
+    <INAME>POTENT HULL</INAME>
+    <ICODE>1010200002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>3</DISCRATE>
+    <DISCAMT>72.90</DISCAMT>
+    <IAMOUNT>2430</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>rre</IREMARK>
+    <TXBLEAMT>2357.1</TXBLEAMT>
+    <CTITLE>Original for Buyer</CTITLE>
+    <CTITLENO>1</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1624</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>LITER</UOM>
+    <IRATE>20</IRATE>
+    <TAXRATE>16</TAXRATE>
+    <TAXAMT>224</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>100</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>Hsn1</HSN_NO>
+    <INAME>KEETON</INAME>
+    <ICODE>9050100002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>30</DISCRATE>
+    <DISCAMT>600.00</DISCAMT>
+    <IAMOUNT>2000</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1400</TXBLEAMT>
+    <CTITLE>Duplicate for Transporter</CTITLE>
+    <CTITLENO>2</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>3</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1180</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>NOS</UOM>
+    <IRATE>25</IRATE>
+    <TAXRATE>18</TAXRATE>
+    <TAXAMT>180</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>50</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>84799090</HSN_NO>
+    <INAME>PLUG M8X1</INAME>
+    <ICODE>9580200003</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>20</DISCRATE>
+    <DISCAMT>250.00</DISCAMT>
+    <IAMOUNT>1250</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1000</TXBLEAMT>
+    <CTITLE>Duplicate for Transporter</CTITLE>
+    <CTITLENO>2</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>419.58</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Gigameter</UOM>
+    <IRATE>21</IRATE>
+    <TAXRATE>11</TAXRATE>
+    <TAXAMT>41.58</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>20</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</DEL_NOTE>
+    <HSN_NO>KIO55</HSN_NO>
+    <INAME>MARTENSITE</INAME>
+    <ICODE>9050100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>10</DISCRATE>
+    <DISCAMT>42.00</DISCAMT>
+    <IAMOUNT>420</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</IREMARK>
+    <TXBLEAMT>378</TXBLEAMT>
+    <CTITLE>Duplicate for Transporter</CTITLE>
+    <CTITLENO>2</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>203</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2281.22</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Decimeter</UOM>
+    <IRATE>32</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>244.42</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>67</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>1469</HSN_NO>
+    <INAME>AK203</INAME>
+    <ICODE>9040100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>5</DISCRATE>
+    <DISCAMT>107.20</DISCAMT>
+    <IAMOUNT>2144</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2036.8</TXBLEAMT>
+    <CTITLE>Duplicate for Transporter</CTITLE>
+    <CTITLENO>2</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>3251.4</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>pcs</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>348.36</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>56</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>0051</HSN_NO>
+    <INAME>FILLER GAUGE</INAME>
+    <ICODE>1010200001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>4</DISCRATE>
+    <DISCAMT>120.96</DISCAMT>
+    <IAMOUNT>3024</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2903.04</TXBLEAMT>
+    <CTITLE>Duplicate for Transporter</CTITLE>
+    <CTITLENO>2</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>20</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2592.81</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Kg</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>10</TAXRATE>
+    <TAXAMT>235.71</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>45</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>rre</DEL_NOTE>
+    <HSN_NO>0052</HSN_NO>
+    <INAME>POTENT HULL</INAME>
+    <ICODE>1010200002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>3</DISCRATE>
+    <DISCAMT>72.90</DISCAMT>
+    <IAMOUNT>2430</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>rre</IREMARK>
+    <TXBLEAMT>2357.1</TXBLEAMT>
+    <CTITLE>Duplicate for Transporter</CTITLE>
+    <CTITLENO>2</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1624</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>LITER</UOM>
+    <IRATE>20</IRATE>
+    <TAXRATE>16</TAXRATE>
+    <TAXAMT>224</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>100</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>Hsn1</HSN_NO>
+    <INAME>KEETON</INAME>
+    <ICODE>9050100002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>30</DISCRATE>
+    <DISCAMT>600.00</DISCAMT>
+    <IAMOUNT>2000</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1400</TXBLEAMT>
+    <CTITLE>Triplicate for Supplier</CTITLE>
+    <CTITLENO>3</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>3</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1180</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>NOS</UOM>
+    <IRATE>25</IRATE>
+    <TAXRATE>18</TAXRATE>
+    <TAXAMT>180</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>50</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>84799090</HSN_NO>
+    <INAME>PLUG M8X1</INAME>
+    <ICODE>9580200003</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>20</DISCRATE>
+    <DISCAMT>250.00</DISCAMT>
+    <IAMOUNT>1250</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1000</TXBLEAMT>
+    <CTITLE>Triplicate for Supplier</CTITLE>
+    <CTITLENO>3</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>419.58</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Gigameter</UOM>
+    <IRATE>21</IRATE>
+    <TAXRATE>11</TAXRATE>
+    <TAXAMT>41.58</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>20</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</DEL_NOTE>
+    <HSN_NO>KIO55</HSN_NO>
+    <INAME>MARTENSITE</INAME>
+    <ICODE>9050100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>10</DISCRATE>
+    <DISCAMT>42.00</DISCAMT>
+    <IAMOUNT>420</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</IREMARK>
+    <TXBLEAMT>378</TXBLEAMT>
+    <CTITLE>Triplicate for Supplier</CTITLE>
+    <CTITLENO>3</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>203</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2281.22</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Decimeter</UOM>
+    <IRATE>32</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>244.42</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>67</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>1469</HSN_NO>
+    <INAME>AK203</INAME>
+    <ICODE>9040100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>5</DISCRATE>
+    <DISCAMT>107.20</DISCAMT>
+    <IAMOUNT>2144</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2036.8</TXBLEAMT>
+    <CTITLE>Triplicate for Supplier</CTITLE>
+    <CTITLENO>3</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>3251.4</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>pcs</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>348.36</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>56</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>0051</HSN_NO>
+    <INAME>FILLER GAUGE</INAME>
+    <ICODE>1010200001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>4</DISCRATE>
+    <DISCAMT>120.96</DISCAMT>
+    <IAMOUNT>3024</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2903.04</TXBLEAMT>
+    <CTITLE>Triplicate for Supplier</CTITLE>
+    <CTITLENO>3</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>20</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2592.81</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Kg</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>10</TAXRATE>
+    <TAXAMT>235.71</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>45</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>rre</DEL_NOTE>
+    <HSN_NO>0052</HSN_NO>
+    <INAME>POTENT HULL</INAME>
+    <ICODE>1010200002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>3</DISCRATE>
+    <DISCAMT>72.90</DISCAMT>
+    <IAMOUNT>2430</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>rre</IREMARK>
+    <TXBLEAMT>2357.1</TXBLEAMT>
+    <CTITLE>Triplicate for Supplier</CTITLE>
+    <CTITLENO>3</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1624</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>LITER</UOM>
+    <IRATE>20</IRATE>
+    <TAXRATE>16</TAXRATE>
+    <TAXAMT>224</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>100</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>Hsn1</HSN_NO>
+    <INAME>KEETON</INAME>
+    <ICODE>9050100002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>30</DISCRATE>
+    <DISCAMT>600.00</DISCAMT>
+    <IAMOUNT>2000</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1400</TXBLEAMT>
+    <CTITLE>Extra Copy</CTITLE>
+    <CTITLENO>4</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>3</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>1180</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>NOS</UOM>
+    <IRATE>25</IRATE>
+    <TAXRATE>18</TAXRATE>
+    <TAXAMT>180</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>50</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>0</DEL_NOTE>
+    <HSN_NO>84799090</HSN_NO>
+    <INAME>PLUG M8X1</INAME>
+    <ICODE>9580200003</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>20</DISCRATE>
+    <DISCAMT>250.00</DISCAMT>
+    <IAMOUNT>1250</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>0</IREMARK>
+    <TXBLEAMT>1000</TXBLEAMT>
+    <CTITLE>Extra Copy</CTITLE>
+    <CTITLENO>4</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>419.58</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Gigameter</UOM>
+    <IRATE>21</IRATE>
+    <TAXRATE>11</TAXRATE>
+    <TAXAMT>41.58</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>20</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</DEL_NOTE>
+    <HSN_NO>KIO55</HSN_NO>
+    <INAME>MARTENSITE</INAME>
+    <ICODE>9050100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>10</DISCRATE>
+    <DISCAMT>42.00</DISCAMT>
+    <IAMOUNT>420</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>okokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokokkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</IREMARK>
+    <TXBLEAMT>378</TXBLEAMT>
+    <CTITLE>Extra Copy</CTITLE>
+    <CTITLENO>4</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>203</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2281.22</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Decimeter</UOM>
+    <IRATE>32</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>244.42</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>67</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>1469</HSN_NO>
+    <INAME>AK203</INAME>
+    <ICODE>9040100001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>5</DISCRATE>
+    <DISCAMT>107.20</DISCAMT>
+    <IAMOUNT>2144</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2036.8</TXBLEAMT>
+    <CTITLE>Extra Copy</CTITLE>
+    <CTITLENO>4</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>-</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>3251.4</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>pcs</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>12</TAXRATE>
+    <TAXAMT>348.36</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>56</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>re</DEL_NOTE>
+    <HSN_NO>0051</HSN_NO>
+    <INAME>FILLER GAUGE</INAME>
+    <ICODE>1010200001</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>4</DISCRATE>
+    <DISCAMT>120.96</DISCAMT>
+    <IAMOUNT>3024</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>re</IREMARK>
+    <TXBLEAMT>2903.04</TXBLEAMT>
+    <CTITLE>Extra Copy</CTITLE>
+    <CTITLENO>4</CTITLENO>
+  </prepcur>
+  <prepcur>
+    <FSTR>0010010010000342020112040</FSTR>
+    <PAY_TERM>PAYMENT 26</PAY_TERM>
+    <PRICE_TERM>HUMT</PRICE_TERM>
+    <CPARTNO>20</CPARTNO>
+    <TRPT_MODE>SAFEXPRESS</TRPT_MODE>
+    <LINEAMOUNT>2592.81</LINEAMOUNT>
+    <REMARK>-</REMARK>
+    <UOM>Kg</UOM>
+    <IRATE>54</IRATE>
+    <TAXRATE>10</TAXRATE>
+    <TAXAMT>235.71</TAXAMT>
+    <INVOICE_NUMBER>000034</INVOICE_NUMBER>
+    <INVOICE_DATE>20/11/2020</INVOICE_DATE>
+    <INV_QTY>45</INV_QTY>
+    <TAXABLE_AMT>11193.13</TAXABLE_AMT>
+    <DEL_NOTE>rre</DEL_NOTE>
+    <HSN_NO>0052</HSN_NO>
+    <INAME>POTENT HULL</INAME>
+    <ICODE>1010200002</ICODE>
+    <PARTY_NAME>B1</PARTY_NAME>
+    <PARTY_GSTIN>10AAAAA000090za</PARTY_GSTIN>
+    <PARTY_ADDRESS>FBD</PARTY_ADDRESS>
+    <DISCRATE>3</DISCRATE>
+    <DISCAMT>72.90</DISCAMT>
+    <IAMOUNT>2430</IAMOUNT>
+    <TERMS_OF_DEL>-</TERMS_OF_DEL>
+    <PO_NO>POnousddshsdsd bjfdfwifhfddsf</PO_NO>
+    <PO_DATE>15/11/2020</PO_DATE>
+    <IGST>1450.95</IGST>
+    <SGST>0.00</SGST>
+    <CGST>0.00</CGST>
+    <BASICAMT>10074.94</BASICAMT>
+    <GROSSAMT>11193.13</GROSSAMT>
+    <NET_AMOUNT>12644.08</NET_AMOUNT>
+    <TERMS_COND>General Terms</TERMS_COND>
+    <DOC_CONTROL_NO>dctrlno</DOC_CONTROL_NO>
+    <IREMARK>rre</IREMARK>
+    <TXBLEAMT>2357.1</TXBLEAMT>
+    <CTITLE>Extra Copy</CTITLE>
+    <CTITLENO>4</CTITLENO>
+  </prepcur>
+  <prepcur2>
+    <TAXABLEAMT>1000</TAXABLEAMT>
+    <IGSTR>18</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>180</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>84799090</HSNO>
+  </prepcur2>
+  <prepcur2>
+    <TAXABLEAMT>2357.1</TAXABLEAMT>
+    <IGSTR>10</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>235.71</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>0052</HSNO>
+  </prepcur2>
+  <prepcur2>
+    <TAXABLEAMT>2903.04</TAXABLEAMT>
+    <IGSTR>12</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>348.36</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>0051</HSNO>
+  </prepcur2>
+  <prepcur2>
+    <TAXABLEAMT>378</TAXABLEAMT>
+    <IGSTR>11</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>41.58</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>KIO55</HSNO>
+  </prepcur2>
+  <prepcur2>
+    <TAXABLEAMT>1400</TAXABLEAMT>
+    <IGSTR>16</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>224</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>Hsn1</HSNO>
+  </prepcur2>
+  <prepcur2>
+    <TAXABLEAMT>1118.19</TAXABLEAMT>
+    <IGSTR>18</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>176.8774</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>0</HSNO>
+  </prepcur2>
+  <prepcur2>
+    <TAXABLEAMT>2036.8</TAXABLEAMT>
+    <IGSTR>12</IGSTR>
+    <CGSTR>0</CGSTR>
+    <SGSTR>0</SGSTR>
+    <IGST>244.42</IGST>
+    <CGST>0</CGST>
+    <SGST>0</SGST>
+    <HSNO>1469</HSNO>
+  </prepcur2>
+  <prepcur3>
+    <CHRGNAME>Dumping</CHRGNAME>
+    <COL1>014</COL1>
+    <COL2>304.96</COL2>
+    <COL3>055</COL3>
+    <COL4>10</COL4>
+    <COL5>30.496</COL5>
+    <COL6>0</COL6>
+    <COL7>0</COL7>
+    <COL8>0</COL8>
+    <COL9>0</COL9>
+    <COL10>0</COL10>
+    <R_NO>2</R_NO>
+  </prepcur3>
+  <prepcur3>
+    <CHRGNAME>Non Mentioned</CHRGNAME>
+    <COL1>013</COL1>
+    <COL2>304.96</COL2>
+    <COL3>052</COL3>
+    <COL4>18</COL4>
+    <COL5>54.8928</COL5>
+    <COL6>0</COL6>
+    <COL7>0</COL7>
+    <COL8>0</COL8>
+    <COL9>0</COL9>
+    <COL10>0</COL10>
+    <R_NO>1</R_NO>
+  </prepcur3>
+  <prepcur3>
+    <CHRGNAME>FINISHER</CHRGNAME>
+    <COL1>016</COL1>
+    <COL2>508.27</COL2>
+    <COL3>063</COL3>
+    <COL4>18</COL4>
+    <COL5>91.4886</COL5>
+    <COL6>0</COL6>
+    <COL7>0</COL7>
+    <COL8>0</COL8>
+    <COL9>0</COL9>
+    <COL10>0</COL10>
+    <R_NO>3</R_NO>
+  </prepcur3>
+  <prepcur4>
+    <AMOUNT>266.206</AMOUNT>
+    <TAXNAME>IGST</TAXNAME>
+    <RATE>10</RATE>
+  </prepcur4>
+  <prepcur4>
+    <AMOUNT>41.58</AMOUNT>
+    <TAXNAME>IGST</TAXNAME>
+    <RATE>11</RATE>
+  </prepcur4>
+  <prepcur4>
+    <AMOUNT>592.78</AMOUNT>
+    <TAXNAME>IGST</TAXNAME>
+    <RATE>12</RATE>
+  </prepcur4>
+  <prepcur4>
+    <AMOUNT>224</AMOUNT>
+    <TAXNAME>IGST</TAXNAME>
+    <RATE>16</RATE>
+  </prepcur4>
+  <prepcur4>
+    <AMOUNT>326.3814</AMOUNT>
+    <TAXNAME>IGST</TAXNAME>
+    <RATE>18</RATE>
+  </prepcur4>
+  <Company_Detail>
+    <COMPANY_NAME>Demo International Limited</COMPANY_NAME>
+    <COMPANY_ADDRESS>sec 31demo address</COMPANY_ADDRESS>
+    <COMPANY_COUNTRY>IN</COMPANY_COUNTRY>
+    <COMPANY_STATE>07</COMPANY_STATE>
+    <COMPANY_CITY>Delhi Cantt.</COMPANY_CITY>
+    <COMPANY_PINCODE>121001</COMPANY_PINCODE>
+    <COMPANY_EMAIL_ID>gsthelp001@gmail.com</COMPANY_EMAIL_ID>
+    <COMPANY_WEBSITE>demo.com</COMPANY_WEBSITE>
+    <COMPANY_CONTACT_NO>8989898989</COMPANY_CONTACT_NO>
+    <COMPANY_ALTERNATE_CONTACT_NO>8989898989</COMPANY_ALTERNATE_CONTACT_NO>
+    <COMPANY_GSTIN_NO>10AAAAA0000A1ZA</COMPANY_GSTIN_NO>
+    <COM_PAN_NO>DRMPP1798A</COM_PAN_NO>
+    <COMPANY_CIN_NO>CIN69798798</COMPANY_CIN_NO>
+    <mLogo>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</mLogo>
+  </Company_Detail>
+  <Branch_Detail>
+    <UNIT_NAME>unit1</UNIT_NAME>
+    <UNIT_ADDRESS>sec 31</UNIT_ADDRESS>
+    <UNIT_COUNTRY>IN</UNIT_COUNTRY>
+    <COUNTRY_NAME>India</COUNTRY_NAME>
+    <STATE_NAME>Haryana</STATE_NAME>
+    <UNIT_STATE>06</UNIT_STATE>
+    <UNIT_CITY>Faridabad</UNIT_CITY>
+    <UNIT_PINCODE>121001</UNIT_PINCODE>
+    <UNIT_EMAIL>satest39@gmail.com</UNIT_EMAIL>
+    <UNIT_WEBSITE>0</UNIT_WEBSITE>
+    <UNIT_CONTACT_NO>8070605040</UNIT_CONTACT_NO>
+    <UNIT_ALTERNATE_CONTACT_NO>9090909090</UNIT_ALTERNATE_CONTACT_NO>
+    <SEPTR>100</SEPTR>
+    <UNIT_GSTIN_NO>06AAGCK0295E2ZO</UNIT_GSTIN_NO>
+    <BANK_NAME>UNION BANK OF INDIA</BANK_NAME>
+    <BANK_BRANCH>FARIDABAD</BANK_BRANCH>
+    <BANK_ACC>090908090809</BANK_ACC>
+    <BANK_IFSC>UBIN098909</BANK_IFSC>
+  </Branch_Detail>
+</NewDataSet>

@@ -1,0 +1,231 @@
+﻿@using System.Data;
+@model IList<skyinfyMVC.Models.Tmodelmain>
+@{
+    string clr = "";
+    Layout = "~/Views/Shared/_MasterPage.cshtml";
+    sgenFun sgen = new sgenFun(Model[0].Col15);
+    string userCode = sgen.GetCookie(Model[0].Col15, "userCode");
+
+    var viewName = sgen.GetSession(Model[0].Col15, "viewName").ToString();
+    var controllerName = sgen.GetSession(Model[0].Col15, "controllerName").ToString();
+}
+@using (Html.BeginForm(viewName, controllerName, new { @m_id = EncryptDecrypt.Encrypt(Model[0].Col15), @mid = EncryptDecrypt.Encrypt(Model[0].Col14) }, FormMethod.Post, new { enctype = "multipart /form-data" }))
+{
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <div class='input-group'>
+                    <div class="title_left">
+                        <h3>
+                            @Model[0].Col9
+                        </h3>
+                    </div>
+                    <span class="input-group-addon formclass"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="x_panel">
+        <div class="row">
+            @*<div class='col-sm-2'>
+                    <div class="form-group">
+                        <div class='input-group'>
+                            <input type="submit" class="btn btn-success form-control sa-button" id="btnalle="command" value="All" accesskey="AL" />
+                            <span class="input-group-addon formclass"></span>
+                        </div>
+                    </div>
+                </div>*@
+            <div class='col-sm-4'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        @Html.RadioButtonFor(model => model[0].Col17, "POD", new { @id = "Rbt_PWS", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", onclick = "call_filterfrm('" + Model[0].Col9 + "','" + Model[0].Col14 + "','" + Model[0].Col15 + "','Period Wise');", data_toggle = "tooltip", data_placement = "top", @title = "Period Wise" })
+                        <b style="padding-top:12px;margin-right:20px;margin-left:6px">Period Wise</b>
+                        @Html.RadioButtonFor(model => model[0].Col17, "PER", new { @id = "Rbt_PER", @class = " sa-input radio", onclick = "call_filterfrm('" + Model[0].Col9 + "','" + Model[0].Col14 + "','" + Model[0].Col15 + "','Person Wise');", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "Person Wise" })
+                        <b style="padding-top:12px;margin-right:20px; margin-left:6px">Person Wise</b>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2'>
+            </div>
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-success form-control sa-button" id="btnapp" name="command" value="Approved" onclick="APPRPT();" accesskey="A" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="button" class="btn btn-warning form-control sa-button" id="btndis" name="command" onclick="DISPRT();" value="Disapproved" accesskey="D" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm-2'>
+                <div class="form-group">
+                    <div class='input-group'>
+                        <input type="submit" class="btn btn-primary form-control sa-button" id="btnsave" name="command" value="Submit" accesskey="S" />
+                        <span class="input-group-addon formclass"></span>
+                    </div>
+                </div>
+            </div>
+        </div><hr />
+    </div>
+
+    <div style="overflow:scroll">
+        <div class="row">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                    <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important;background-color:lightgray">
+                        <div class="x_content">
+                            <div class="row">
+                                <div class="col-sm-3"><label for="first-name"><b style=" margin-left:20px; margin-right:15px">Approve</b><b style="margin-right:10px">Disapproved</b><span class="ClientProfileLabelColor"></span></label></div>
+                                <div class='col-sm-2'> <label>User Name</label> </div>
+                                <div class='col-sm-2'><label for="first-name">Type</label></div>
+                                <div class='col-sm-2'><label for="first-name">Total Hour</label></div>
+                                <div class='col-sm-2'><label for="first-name">Total Amount</label></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            @Html.HiddenFor(model => model[i].Col1, new { @id = "hf_clientid" })
+            @Html.HiddenFor(model => model[i].Col2, new { @id = "hf_clientunitid" })
+            @Html.HiddenFor(model => model[i].Col3, new { @id = "hf_entby" })
+            @Html.HiddenFor(model => model[i].Col4, new { @id = "hf_entdate" })
+            @Html.HiddenFor(model => model[i].Col5, new { @id = "hf_editby" })
+            @Html.HiddenFor(model => model[i].Col6, new { @id = "hf_editdate" })
+            @Html.HiddenFor(model => model[i].Col7, new { @id = "hf_recid" })
+            @Html.HiddenFor(model => model[i].Col8, new { @id = "hf_url" })
+            @Html.HiddenFor(model => model[i].Col9, new { @id = "hf_title" })
+            @Html.HiddenFor(model => model[i].Col10, new { @id = "hf_tab_name" })
+            @Html.HiddenFor(model => model[i].Col11, new { @id = "hf_where" })
+            @Html.HiddenFor(model => model[i].Col12, new { @id = "hf_type" })
+            @Html.HiddenFor(model => model[i].Col13, new { @id = "hf_btn_text" })
+            @Html.HiddenFor(model => model[i].Col14, new { @id = "hf_mid" })
+            @Html.HiddenFor(model => model[i].Col15, new { @id = "hf_m_id" })
+            @Html.HiddenFor(model => model[i].Col16, new { @id = "hf_vch_num" })
+            @Html.HiddenFor(model => model[0].Col100, new { @id = "hf_savenew" })
+            if (Model[i].Col18 != null)
+            {
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 smt">
+                        <div class="x_panel" style="padding: 0px 15px !important;margin-bottom:0px !important; @clr">
+                            <div class="x_content">
+
+                                <div id="Atten_@i" class="row table-responsive">
+                                    <div class='col-sm-3'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                <b style="padding-top:12px;margin-right:30px;margin-left:2px"></b>
+                                                @Html.RadioButtonFor(model => model[i].Col18, "APP", new { @id = "Rbt_A", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "Approve" })
+                                                <b style="padding-top:12px;margin-right:30px"></b>
+                                                @Html.RadioButtonFor(model => model[i].Col18, "DIS", new { @id = "Rbt_A", @class = " sa-input radio", @style = "vertical-align:initial;min-height:0px;margin:0px", data_toggle = "tooltip", data_placement = "top", @title = "DisApprove" })
+                                              </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                <div class=" clearfix"></div>
+                                                @Html.HiddenFor(model => model[i].Col20, new { @id = "hf_fstr" })
+                                                @Html.DisplayFor(model => model[i].Col19, new { @id = "username", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Designation", @onkeydown = "return checkLength(this, 28,event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.DisplayFor(model => model[i].Col21, new { @id = "type", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox", data_placeholder = "Department", @onkeydown = "return checkLength(this, 28,event);" })
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.DisplayFor(model => model[i].Col22, new { @id = "Total_our", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                <div class=" clearfix"></div>
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class='col-sm-2'>
+                                        <div class="form-group">
+                                            <div class='input-group'>
+                                                @Html.DisplayFor(model => model[i].Col23, new { @id = "tot_amount", @class = " form-control col-md-12 col-sm-12 col-xs-12 sa-textbox" })
+                                                <div class=" clearfix"></div>
+                                                <span class="input-group-addon formclass"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <input type="submit" id="callback1" formnovalidate value="Callback" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="submit" id="btn_pending" value="Pending" name="Command" title="callback" style="visibility:hidden" class="btn btn-primary" />
+    <input type="button" id="btn_approved" value="APPROVED" name="Command" title="callback" onclick="leavefun();" style="visibility:hidden" class="btn btn-primary" />
+    <input type="button" id="btn_rej" value="REJECTED" name="Command" title="callback" onclick="rejfun();" style="visibility:hidden" class="btn btn-primary" />
+}
+<script type="text/javascript">
+
+        $(document).ready(function () {
+                   @Html.Raw(ViewBag.scripCall);
+                 $("[id*=hf_controller]").val('@ViewContext.RouteData.Values["Controller"].ToString()');
+            $("[id*=hf_viewname]").val('@Path.GetFileNameWithoutExtension(Server.MapPath(VirtualPath))');
+
+        });
+    function pending_wise(ctrl)
+    { $(parent.document.getElementById('btn_pending')).trigger('click');
+    }
+
+    function approved_wise(ctrl) {
+        $(parent.document.getElementById('btn_approved')).trigger('click');
+    }
+    function rejected_wise(ctrl) {
+        $(parent.document.getElementById('btn_rej')).trigger('click');
+    }
+
+    function APPRPT() { var data = show_Foo('List Of Approved Attendence', 'APP', '0', '@viewName', '@controllerName'); }
+    function DISPRT() { var data = show_Foo('List Of Disapproved Attendence', 'DIS', '0', '@viewName', '@controllerName'); }
+    function callFoodemo(title, headid, mid, m_id, btnid) {
+        debugger;
+        $.ajax({
+            type: "GET",
+            url: "/Production/date_filter",
+            data: { "headid": headid, "mid": mid, "m_id": m_id, "btnid": btnid },
+            success: function (pageContents) {
+                //debugger
+                $('#myModal').width('50%');
+                $('#myModalContent').html(pageContents);
+                $('#myModalLabel')[0].innerText = title;
+                $('#myModal').modal(options);
+                $('#myModal').modal('show');
+                hidewait();
+            },
+            error: function (err) {
+                //debugger
+                hidewait();
+            }
+        });
+    }
+
+    function call_filterfrm(headid, mid, m_id, btnid) {
+        callFoodemo("Date Filter", headid, mid, m_id, btnid);
+    }
+</script>
+
+
+
